@@ -1427,7 +1427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &729019794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2074,6 +2074,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8919329eb1d5ab44c823aaf55c6c4977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BrickManager
+  gameManager: {fileID: 1988517344}
+  gameOverRow: 13
   brickPrefab: {fileID: 7211861392728797942, guid: ff74d641f8358974d80f7f52fa353f25, type: 3}
   fixedBrickPrefab: {fileID: 7211861392728797942, guid: 845c635dd02107d4fa08c299a504efe3, type: 3}
   brickParent: {fileID: 1511597322}
@@ -2865,8 +2867,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 443.41, y: 193.02}
-  m_SizeDelta: {x: 251.1866, y: 114.9637}
+  m_AnchoredPosition: {x: -149, y: 397}
+  m_SizeDelta: {x: 168.9813, y: 59.3543}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1665459939
 MonoBehaviour:

@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using ScriptableObjectScripts;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ public class BallController : MonoBehaviour
     [SerializeField] private BallBalanceData balanceData;
     
     
-    private float speed = 10f; // 공의 초기 속도
+    [SerializeField]private float speed = 10f; // 공의 초기 속도
     [SerializeField] private float baseSpeed = 10f; // 공의 초기 속도
     [SerializeField] private float maxSpeed = 30f; // 최대 속도
 
@@ -89,7 +90,8 @@ public class BallController : MonoBehaviour
         {
             speed = maxSpeed;
         }
-        speed -= 0.025f;
+
+        power = speed / 5;
     }
 
     void MoveBall(float distance)
@@ -136,7 +138,14 @@ public class BallController : MonoBehaviour
 
         if (hitObj != null)
         {
-            hitObj.OnBallHit();
+            hitObj.OnBallHit(); 
+        }
+
+        var damageObj = hit.collider.GetComponentInParent<IBallDamagable>();
+
+        if (damageObj != null)
+        {
+            damageObj.GetDamaged(power);
         }
 
         // 패들 충돌 로직
@@ -173,6 +182,7 @@ public class BallController : MonoBehaviour
         }
         else
         {
+            GetSlower();
             // 벽이나 기타 오브젝트: 일반적인 물리 반사 법칙 적용
             direction = Vector2.Reflect(direction, hit.normal).normalized;
             razerManager.Reset();
@@ -212,8 +222,17 @@ public class BallController : MonoBehaviour
     }
 
     // 에디터 씬 뷰에서 공의 충돌 범위를 확인하기 위한 기즈모
+    [SerializeField] private float damageCooldown = 0.2f;
+    private float lastDamagedTime = -999f;
+    private void GetSlower()
+    { 
+        if (Time.time < lastDamagedTime + damageCooldown)
+            return;
 
-
+        lastDamagedTime = Time.time;
+        
+        speed -= blockSpeedDecrease;
+    }
 
 
     //void LaunchBall()

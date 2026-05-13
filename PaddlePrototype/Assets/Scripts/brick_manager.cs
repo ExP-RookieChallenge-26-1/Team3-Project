@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ScriptableObjectScripts;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class BrickManager : MonoBehaviour
 {
+    
+    [SerializeField] private BrickManagerData brickData;
     private int currentVersion = 0;
 
     [System.Serializable]
@@ -117,10 +120,39 @@ public class BrickManager : MonoBehaviour
 
     private void Awake()
     {
-        ResetBricks();
+        
         
     }
+    private void Start()
+    {
+        brickPrefab = brickData.brickPrefab;
+        fixedBrickPrefab = brickData.fixedBrickPrefab;
 
+        fixedBricks = brickData.fixedBricks;
+
+        rowCount = brickData.rowCount;
+        columnCount = brickData.columnCount;
+        cellWidth = brickData.cellWidth;
+        cellHeight = brickData.cellHeight;
+        brickSizeRatio = brickData.brickSizeRatio;
+
+        startPosition = brickData.startPosition;
+
+        spawnInterval = brickData.spawnInterval;
+        minGrowPerTick = brickData.minGrowPerTick;
+        maxGrowPerTick = brickData.maxGrowPerTick;
+
+        rowWeightMultiplier = brickData.rowWeightMultiplier;
+        rowPriorityStep = brickData.rowPriorityStep;
+
+        onlyGrowFromStartConnectedBricks = brickData.onlyGrowFromStartConnectedBricks;
+
+        directions = brickData.directions;
+        startCells = brickData.startCells;
+        
+        
+        ResetBricks();
+    }
     
 
     public void ResetBricks()

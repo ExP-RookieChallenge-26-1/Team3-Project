@@ -1,7 +1,12 @@
+using ScriptableObjectScripts;
 using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
+    
+    [SerializeField] private BallBalanceData balanceData;
+    
+    
     private float speed = 10f; // 공의 초기 속도
     [SerializeField] private float baseSpeed = 10f; // 공의 초기 속도
     [SerializeField] private float maxSpeed = 30f; // 최대 속도
@@ -38,6 +43,28 @@ public class BallController : MonoBehaviour
 
     void Start()
     {
+        speed = balanceData.baseSpeed;
+        power = balanceData.basePower;
+
+        // 밸런싱 값 복사
+        baseSpeed = balanceData.baseSpeed;
+        maxSpeed = balanceData.maxSpeed;
+
+        basePower = balanceData.basePower;
+
+        paddleSpeedIncrease = balanceData.paddleSpeedIncrease;
+        paddlePowerIncrease = balanceData.paddlePowerIncrease;
+
+        blockSpeedDecrease = balanceData.blockSpeedDecrease;
+        blockPowerDecrease = balanceData.blockPowerDecrease;
+
+        centerPullStrength = balanceData.centerPullStrength;
+        centerZone = balanceData.centerZone;
+
+        _outsideMaxBounceAngle = balanceData.outsideMaxBounceAngle;
+        _insideMaxBounceAngle = balanceData.insideMaxBounceAngle;
+        
+        
         direction = new Vector2(0.5f, 1f).normalized;
         //LaunchBall();
         isGameStarted = true;
@@ -185,11 +212,7 @@ public class BallController : MonoBehaviour
     }
 
     // 에디터 씬 뷰에서 공의 충돌 범위를 확인하기 위한 기즈모
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, actualRadius);
-    }
+
 
 
 

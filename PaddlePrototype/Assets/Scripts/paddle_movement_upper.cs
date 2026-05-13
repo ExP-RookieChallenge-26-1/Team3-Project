@@ -1,9 +1,13 @@
+using ScriptableObjectScripts;
 using UnityEngine;
 using UnityEngine.InputSystem; // 1. 네임스페이스 추가
 using UnityEngine.U2D;
 
 public class UpperPadController : MonoBehaviour
 {
+    
+    [SerializeField] private PaddleData paddleData;
+    
     [SerializeField] private float moveSpeed = 15f;
     [SerializeField] private float paddleWidth = 0.7f;
     [SerializeField] private float activeCollisionEnabled = 1f;
@@ -22,6 +26,13 @@ public class UpperPadController : MonoBehaviour
 
     void Start()
     {
+        moveSpeed = paddleData.moveSpeed;
+        paddleWidth = paddleData.paddleWidth;
+        activeCollisionEnabled = paddleData.activeCollisionEnabled;
+
+        transparentAlpha = paddleData.transparentAlpha;
+        
+        
         mainCamera = Camera.main;
         shapeRenderer = GetComponent<SpriteShapeRenderer>();
         originalColor = shapeRenderer.color;

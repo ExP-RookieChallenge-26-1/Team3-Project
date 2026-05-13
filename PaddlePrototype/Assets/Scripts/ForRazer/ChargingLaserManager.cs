@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class ChargingLaserManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private ScriptableObjectScripts.LaserGaugeData laserGaugeData;
+    
 
     [SerializeField] private GaugeManager gauge;
     private LaserShooter shooter;
@@ -17,6 +18,7 @@ public class ChargingLaserManager : MonoBehaviour
 
     private void Start()
     {
+        PerBounceCount = laserGaugeData.perBounceCount;
         shooter = GetComponent<LaserShooter>();
     }
 

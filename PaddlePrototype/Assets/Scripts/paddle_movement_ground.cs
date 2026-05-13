@@ -1,8 +1,12 @@
+using ScriptableObjectScripts;
 using UnityEngine;
 using UnityEngine.InputSystem; // 1. 네임스페이스 추가
 
 public class GroundPadController : MonoBehaviour
 {
+    
+    [SerializeField] private PaddleData paddleData;
+    
     [SerializeField] private float moveSpeed = 15f;
     [SerializeField] private float paddleWidth = 0.7f;
     [SerializeField] private float activeCollisionEnabled = 1f;
@@ -18,6 +22,13 @@ public class GroundPadController : MonoBehaviour
 
     void Start()
     {
+        moveSpeed = paddleData.moveSpeed;
+        paddleWidth = paddleData.paddleWidth;
+        activeCollisionEnabled = paddleData.activeCollisionEnabled;
+
+        
+        
+        
         mainCamera = Camera.main;
         paddleCollider = GetComponent<Collider2D>();
         tr = GetComponent<Transform>();

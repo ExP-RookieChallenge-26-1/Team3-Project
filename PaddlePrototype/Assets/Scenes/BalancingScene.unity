@@ -384,6 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705ba1ecde105c1408ca7f5cf1c476f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::paddle_movement_upper
+  paddleData: {fileID: 11400000, guid: 7141ff85b9becbd4d87eed67bec4c42b, type: 2}
   moveSpeed: 50
   paddleWidth: 0.7
   activeCollisionEnabled: 1
@@ -525,8 +526,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 27.94
+  m_fontSizeBase: 27.94
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -612,8 +613,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1132, y: 197}
-  m_SizeDelta: {x: 261.8842, y: 115.2807}
+  m_AnchoredPosition: {x: -205, y: 108}
+  m_SizeDelta: {x: 168.6624, y: 75.7379}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &305040111
 MonoBehaviour:
@@ -662,8 +663,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 23
+  m_fontSizeBase: 23
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -780,7 +781,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -1074,8 +1075,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 27.94
+  m_fontSizeBase: 27.94
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -1295,12 +1296,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 635612616}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -6, y: -9, z: 0}
   m_LocalScale: {x: 23, y: 1.8118, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1977228570}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &669048545
 GameObject:
@@ -1371,7 +1372,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1616,6 +1617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb25bf6209b1fb4ab6b7a8e15247184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PadController
+  paddleData: {fileID: 11400000, guid: 7141ff85b9becbd4d87eed67bec4c42b, type: 2}
   moveSpeed: 30
   paddleWidth: 0.7
   activeCollisionEnabled: 1
@@ -1975,6 +1977,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb25bf6209b1fb4ab6b7a8e15247184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GroundPadController
+  paddleData: {fileID: 11400000, guid: 7141ff85b9becbd4d87eed67bec4c42b, type: 2}
   moveSpeed: 50
   paddleWidth: 0.7
   activeCollisionEnabled: 1
@@ -2074,6 +2077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8919329eb1d5ab44c823aaf55c6c4977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BrickManager
+  brickData: {fileID: 11400000, guid: 4e445844714817d45a2014294da31bde, type: 2}
   gameManager: {fileID: 1988517344}
   gameOverRow: 13
   brickPrefab: {fileID: 7211861392728797942, guid: ff74d641f8358974d80f7f52fa353f25, type: 3}
@@ -2206,6 +2210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705ba1ecde105c1408ca7f5cf1c476f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::paddle_movement_upper
+  paddleData: {fileID: 11400000, guid: 7141ff85b9becbd4d87eed67bec4c42b, type: 2}
   moveSpeed: 50
   paddleWidth: 0.7
   activeCollisionEnabled: 1
@@ -2431,6 +2436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ea584d29d6b03948868d3ecc368c58b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallController
+  balanceData: {fileID: 11400000, guid: 40a820d01fc7775418ab6a6de169fe99, type: 2}
   baseSpeed: 25
   maxSpeed: 40
   basePower: 10
@@ -2612,6 +2618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de0a5a496d81734bb0f88d2d16e6c7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChargingRazerManager
+  laserGaugeData: {fileID: 11400000, guid: 55eca7ba84b3ee844a583eb4c42986d3, type: 2}
   gauge: {fileID: 1977228571}
   charging: 0
   chargeCount: 0
@@ -2628,6 +2635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea2208b845501f049b535cc76dd193b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaserShooter
+  laserGaugeData: {fileID: 11400000, guid: 55eca7ba84b3ee844a583eb4c42986d3, type: 2}
   chargingManager: {fileID: 1387697787}
   ball: {fileID: 1250265851}
   targetLayer:
@@ -2740,8 +2748,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 900, y: 900}
-  m_SizeDelta: {x: 400, y: 300}
+  m_AnchoredPosition: {x: 207, y: 86}
+  m_SizeDelta: {x: 102.4276, y: 98.361}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1637123863
 MonoBehaviour:
@@ -2873,8 +2881,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 993, y: 340}
-  m_SizeDelta: {x: 168.9813, y: 59.3543}
+  m_AnchoredPosition: {x: 222.75342, y: -82.97107}
+  m_SizeDelta: {x: 121.1283, y: 77.6134}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1665459939
 MonoBehaviour:
@@ -3035,7 +3043,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -3275,7 +3283,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 635612618}
   m_Father: {fileID: 1988517345}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1977228571
@@ -3290,6 +3299,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a429e742d67ed48b1d1f9b873dce8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GaugeManager
+  laserGaugeData: {fileID: 11400000, guid: 55eca7ba84b3ee844a583eb4c42986d3, type: 2}
+  gaugeBar: {fileID: 635612618}
   filledGaugeSegments: 3
   maxGaugeSegments: 3
   gaugeSegmentText: {fileID: 305040111}
@@ -3450,8 +3461,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1135.83, y: -147.68924}
-  m_SizeDelta: {x: 261.8842, y: 115.2807}
+  m_AnchoredPosition: {x: -207.46594, y: -118.44992}
+  m_SizeDelta: {x: 168.6624, y: 75.7379}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2110146576
 MonoBehaviour:
@@ -3500,8 +3511,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 23
+  m_fontSizeBase: 23
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3568,4 +3579,3 @@ SceneRoots:
   - {fileID: 1181133268}
   - {fileID: 669048549}
   - {fileID: 115966462}
-  - {fileID: 635612618}

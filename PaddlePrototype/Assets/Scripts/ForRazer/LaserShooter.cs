@@ -4,6 +4,7 @@ using UnityEngine.Serialization;
 
 public class LaserShooter : MonoBehaviour
 {
+    [SerializeField] private ScriptableObjectScripts.LaserGaugeData laserGaugeData;
     [SerializeField] ChargingLaserManager chargingManager;
     
     
@@ -29,7 +30,14 @@ public class LaserShooter : MonoBehaviour
      *
      */
 
-    
+    private void Start()
+    {
+        baseWidth = laserGaugeData.baseWidth;
+        widthPerCharge = laserGaugeData.widthPerCharge;
+        range = laserGaugeData.range;
+        startOffset = laserGaugeData.startOffset;
+        ballSpawnBackOffset = laserGaugeData.ballSpawnBackOffset;
+    }
 
     public void Shoot(int chargeCount)
     {

@@ -2215,7 +2215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8919329eb1d5ab44c823aaf55c6c4977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BrickManager
-  brickData: {fileID: 11400000, guid: 4e445844714817d45a2014294da31bde, type: 2}
+  brickData: {fileID: 11400000, guid: 4f5ef20b83fb0974fb52929c8433c516, type: 2}
   gameManager: {fileID: 1988517344}
   gameOverRow: 13
   brickPrefab: {fileID: 7211861392728797942, guid: ff74d641f8358974d80f7f52fa353f25, type: 3}

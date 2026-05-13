@@ -8,7 +8,8 @@ namespace ScriptableObjectScripts
         [Header("Movement")]
         public float moveSpeed = 50f;
         public float paddleWidth = 0.7f;
-
+        public float debuffSpeed = 20f;
+            
         [Header("Collision")]
         public float activeCollisionEnabled = 1f;
 

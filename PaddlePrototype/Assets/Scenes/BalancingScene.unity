@@ -198,6 +198,143 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &152537526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 152537530}
+  - component: {fileID: 152537529}
+  - component: {fileID: 152537528}
+  - component: {fileID: 152537527}
+  m_Layer: 0
+  m_Name: ForPhone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &152537527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152537526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
+--- !u!81 &152537528
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152537526}
+  m_Enabled: 1
+--- !u!20 &152537529
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152537526}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.19245279, g: 0.19245279, b: 0.19245279, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 34
+  orthographic: 1
+  orthographic size: 9.6
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 1
+  m_TargetEye: 0
+  m_HDR: 1
+  m_AllowMSAA: 0
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 0
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &152537530
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152537526}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &226265232
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,7 +750,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -205, y: 108}
+  m_AnchoredPosition: {x: -509, y: 107}
   m_SizeDelta: {x: 168.6624, y: 75.7379}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &305040111
@@ -663,8 +800,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23
-  m_fontSizeBase: 23
+  m_fontSize: 28.26
+  m_fontSizeBase: 28.26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2438,6 +2575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallController
   balanceData: {fileID: 11400000, guid: 40a820d01fc7775418ab6a6de169fe99, type: 2}
+  speed: 10
   baseSpeed: 25
   maxSpeed: 40
   basePower: 10
@@ -2451,6 +2589,8 @@ MonoBehaviour:
   skinWidth: 0.03
   _outsideMaxBounceAngle: 50
   _insideMaxBounceAngle: 40
+  colliderCooldown: 0.01
+  damagedCooldown: 0.2
   collisionMask:
     serializedVersion: 2
     m_Bits: 64
@@ -2533,7 +2673,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2638,6 +2778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LaserShooter
   laserGaugeData: {fileID: 11400000, guid: 55eca7ba84b3ee844a583eb4c42986d3, type: 2}
   chargingManager: {fileID: 1387697787}
+  sameRowYTolerance: 0.05
   ball: {fileID: 1250265851}
   targetLayer:
     serializedVersion: 2
@@ -2749,7 +2890,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 207, y: 86}
+  m_AnchoredPosition: {x: 515, y: 102}
   m_SizeDelta: {x: 102.4276, y: 98.361}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1637123863
@@ -2882,7 +3023,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 222.75342, y: -82.97107}
+  m_AnchoredPosition: {x: 530.7534, y: -66.97107}
   m_SizeDelta: {x: 121.1283, y: 77.6134}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1665459939
@@ -3271,6 +3412,7 @@ MonoBehaviour:
   ceilingHp: 100
   ceilingHealthText: {fileID: 1911548483}
   gameManager: {fileID: 1988517344}
+  damageCooldown: 0.2
 --- !u!1 &1911548481
 GameObject:
   m_ObjectHideFlags: 0
@@ -3305,7 +3447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 503}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1911548483
@@ -3362,7 +3504,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -3455,7 +3597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GaugeManager
   laserGaugeData: {fileID: 11400000, guid: 55eca7ba84b3ee844a583eb4c42986d3, type: 2}
   gaugeBar: {fileID: 635612618}
-  filledGaugeSegments: 3
+  filledGaugeSegments: 0
   maxGaugeSegments: 3
   gaugeSegmentText: {fileID: 305040111}
   gaugeValueText: {fileID: 2110146576}
@@ -3492,7 +3634,7 @@ MonoBehaviour:
   enemyParent: {fileID: 1579213923}
   enemies:
   - enemyPrefab: {fileID: 1464731047082156668, guid: 1adff98940045504089e8f712a95ec0d, type: 3}
-    startCell: {x: 3, y: 0}
+    startCell: {x: 6, y: 7}
     moveCommands:
     - direction: {x: -1, y: 0}
       repeatCount: 1
@@ -3615,7 +3757,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -207.46594, y: -118.44992}
+  m_AnchoredPosition: {x: -511.46594, y: -119.44992}
   m_SizeDelta: {x: 168.6624, y: 75.7379}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2110146576
@@ -3665,8 +3807,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23
-  m_fontSizeBase: 23
+  m_fontSize: 28.26
+  m_fontSizeBase: 28.26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3733,3 +3875,4 @@ SceneRoots:
   - {fileID: 1181133268}
   - {fileID: 669048549}
   - {fileID: 115966462}
+  - {fileID: 152537530}

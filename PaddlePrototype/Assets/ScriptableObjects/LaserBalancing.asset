@@ -18,6 +18,6 @@ MonoBehaviour:
   startOffset: 0.5
   ballSpawnBackOffset: 0.3
   perBounceCount: 20
-  startGaugeValue: 30
-  gaugePerSegment: 10
+  startGaugeValue: 0
+  gaugePerSegment: 20
   maxGaugeSegments: 3

@@ -25,7 +25,7 @@ public class GaugeManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        
         maxGaugeScale = gaugeBar.localScale;
         currentGaugeValue = laserGaugeData.startGaugeValue;
         gaugePerSegment = laserGaugeData.gaugePerSegment;
@@ -57,7 +57,7 @@ public class GaugeManager : MonoBehaviour
 
         if (level <= 0)
         {
-            if(!(filledGaugeSegments<=0) && !(currentGaugeValue<0))
+            if(!(filledGaugeSegments<=0) && !(currentGaugeValue<=0))
             {
                 filledGaugeSegments--;
                 currentGaugeValue -= gaugePerSegment;

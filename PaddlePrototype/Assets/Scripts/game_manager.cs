@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
 
         Vector3 spawnPos = brickManager.GetCellWorldPosition(data.startCell);
 
+        
         GameObject enemyObj = Instantiate(
             data.enemyPrefab,
             spawnPos,
@@ -120,7 +121,7 @@ public class GameManager : MonoBehaviour
         {
             Vector2Int cell = enemyData.startCell;
 
-            // ÇØ´ç À§Ä¡¿¡ º®µ¹ÀÌ ¾øÀ¸¸é
+            // ï¿½Ø´ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (!brickManager.IsCellOccupied(cell))
             {
                 SpawnEnemy(enemyData);
@@ -139,7 +140,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator RestartRoutine()
     {
-        // ÇöÀç ÇÁ·¹ÀÓ UI/ÀÌº¥Æ® ³¡±îÁö ±â´Ù¸²
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ UI/ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ù¸ï¿½
         yield return null;
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

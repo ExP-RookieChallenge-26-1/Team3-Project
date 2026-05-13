@@ -49,7 +49,15 @@ public class GroundPadController : MonoBehaviour
     {
         //디버프 적용
         if (paddleDebuff != null && paddleDebuff.IsStunned)
-            return;
+        {
+
+            moveSpeed = paddleData.debuffSpeed;
+        }
+        else
+        {
+            moveSpeed = paddleData.moveSpeed;
+        }
+            
 
         // 2. Mouse.current를 사용하여 클릭 체크
         if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed)

@@ -47,8 +47,17 @@ public class UpperPadController : MonoBehaviour
     void Update()
     {
         //디버프 적용
-        if (paddleDebuff != null && paddleDebuff.IsStunned)
-            return;
+        if (paddleDebuff != null)
+        {
+            if (paddleDebuff.IsStunned)
+            {
+                moveSpeed = paddleData.debuffSpeed;
+            }
+            else
+            {
+                moveSpeed = paddleData.moveSpeed;
+            }
+        }
 
         // 2. Mouse.current를 사용하여 클릭 체크
         if (activeCollisionEnabled == 1) 

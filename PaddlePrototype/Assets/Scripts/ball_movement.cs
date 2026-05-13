@@ -33,6 +33,13 @@ public class BallController : MonoBehaviour
 
     private float actualRadius;
 
+    private SpriteRenderer spriteRenderer;
+    
+    [SerializeField] private float colliderCooldown = 0.001f;
+    private float lastHitTime = -999f;
+    [SerializeField] private float damagedCooldown = 0.2f;
+    private float lastDamagedTime = -999f;
+    
     public LayerMask collisionMask; // 벽과 패들 레이어를 선택하세요
     [SerializeField] private int maxCollisionIterations = 5;
     
@@ -64,8 +71,8 @@ public class BallController : MonoBehaviour
 
         _outsideMaxBounceAngle = balanceData.outsideMaxBounceAngle;
         _insideMaxBounceAngle = balanceData.insideMaxBounceAngle;
-        
-        
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
         direction = new Vector2(0.5f, 1f).normalized;
         //LaunchBall();
         isGameStarted = true;
@@ -91,7 +98,11 @@ public class BallController : MonoBehaviour
             speed = maxSpeed;
         }
 
+        
+        
         power = speed / 5;
+        spriteRenderer.color = new Color(1f, 1f - (speed-baseSpeed) / (maxSpeed-baseSpeed), 0f, 1f);
+
     }
 
     void MoveBall(float distance)
@@ -151,6 +162,10 @@ public class BallController : MonoBehaviour
         // 패들 충돌 로직
         if (obj.name.Contains("paddle_up") || obj.name.Contains("paddle_down") || obj.name.Contains("roof_paddle"))
         {
+            if (Time.time < lastHitTime + colliderCooldown)
+                return;
+
+            lastHitTime = Time.time;
             razerManager.CheckBounceCount();
             // 1. 비율 계산 (이미 3으로 잘 나온다면 이 값은 -1 ~ 1 사이가 될 것임)
             float xOffset = (transform.position.x - obj.transform.position.x) / (3f / 2f);
@@ -222,11 +237,10 @@ public class BallController : MonoBehaviour
     }
 
     // 에디터 씬 뷰에서 공의 충돌 범위를 확인하기 위한 기즈모
-    [SerializeField] private float damageCooldown = 0.2f;
-    private float lastDamagedTime = -999f;
+   
     private void GetSlower()
     { 
-        if (Time.time < lastDamagedTime + damageCooldown)
+        if (Time.time < lastDamagedTime + damagedCooldown)
             return;
 
         lastDamagedTime = Time.time;

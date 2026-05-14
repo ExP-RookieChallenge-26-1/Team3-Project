@@ -2,7 +2,7 @@
   "project_name": "unknown",
   "language": "C#",
   "engine_guess": "Unity",
-  "total_cs_files": 49,
+  "total_cs_files": 50,
   "mono_behaviour_files": 46,
   "scriptable_object_files": 0,
   "files_with_update": 17,
@@ -10,7 +10,7 @@
   "files_with_late_update": 4,
   "singleton_candidates": 0,
   "manager_like_classes": 16,
-  "ui_related_classes": 37,
+  "ui_related_classes": 38,
   "save_load_related_classes": 26,
   "role_counts": {
     "runtime": 46,
@@ -19,7 +19,7 @@
     "manager": 15,
     "save-load": 26,
     "data": 8,
-    "ui": 37,
+    "ui": 38,
     "scene": 1,
     "network": 1
   },

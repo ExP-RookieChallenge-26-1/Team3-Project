@@ -10815,5 +10815,82 @@
       "저장/불러오기 관련 로직 포함",
       "컴포넌트 조회 사용"
     ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Guage.cs",
+    "path": "ProjectDribble/Assets/Guage.cs",
+    "file_name": "Guage.cs",
+    "content_hash": "c4e917c564ed4b0dfdcbfa6151bfdba500981498",
+    "size": 198,
+    "line_count": 11,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine",
+      "UnityEngine.UI"
+    ],
+    "classes": [
+      {
+        "name": "Gauge",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehavior"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "Gauge",
+    "unity_type": "None",
+    "methods": [
+      "SetGuage"
+    ],
+    "fields": [
+      {
+        "name": "slider",
+        "type": "Slider",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 1,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "Slider",
+      "UnityEngine",
+      "UI",
+      "MonoBehavior",
+      "SetGuage"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "ui"
+    ],
+    "summary_signals": [
+      "UI 관련 로직 포함"
+    ]
   }
 ]

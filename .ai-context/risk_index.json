@@ -981,5 +981,12 @@
     "risk_flags": [],
     "risk_reasons": [],
     "risk_score": 0
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Guage.cs",
+    "class_name": "Gauge",
+    "risk_flags": [],
+    "risk_reasons": [],
+    "risk_score": 0
   }
 ]

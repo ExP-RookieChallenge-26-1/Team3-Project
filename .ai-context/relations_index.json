@@ -16427,5 +16427,47 @@
     "to_type": "WrapMode",
     "relation_type": "uses",
     "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Guage.cs",
+    "from_class": "Gauge",
+    "to_type": "MonoBehavior",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Guage.cs",
+    "from_class": "Gauge",
+    "to_type": "MonoBehavior",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Guage.cs",
+    "from_class": "Gauge",
+    "to_type": "SetGuage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Guage.cs",
+    "from_class": "Gauge",
+    "to_type": "Slider",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Guage.cs",
+    "from_class": "Gauge",
+    "to_type": "UI",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Guage.cs",
+    "from_class": "Gauge",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
   }
 ]

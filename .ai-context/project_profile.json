@@ -2,31 +2,37 @@
   "project_name": "unknown",
   "language": "C#",
   "engine_guess": "Unity",
-  "total_cs_files": 50,
-  "mono_behaviour_files": 46,
+  "total_cs_files": 98,
+  "mono_behaviour_files": 91,
   "scriptable_object_files": 0,
-  "files_with_update": 17,
+  "files_with_update": 33,
   "files_with_fixed_update": 1,
-  "files_with_late_update": 4,
+  "files_with_late_update": 8,
   "singleton_candidates": 0,
-  "manager_like_classes": 16,
-  "ui_related_classes": 38,
-  "save_load_related_classes": 26,
+  "manager_like_classes": 32,
+  "ui_related_classes": 74,
+  "save_load_related_classes": 51,
   "role_counts": {
-    "runtime": 46,
-    "combat": 33,
-    "player": 24,
-    "manager": 15,
-    "save-load": 26,
-    "data": 8,
-    "ui": 38,
-    "scene": 1,
-    "network": 1
+    "runtime": 91,
+    "combat": 66,
+    "player": 47,
+    "manager": 30,
+    "save-load": 51,
+    "data": 16,
+    "ui": 74,
+    "scene": 2,
+    "network": 2
   },
   "high_coupling_classes": [
     {
       "class_name": "TMP_TextSelector_B",
       "file_id": "PaddlePrototype/Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextSelector_B.cs",
+      "relation_count": 144,
+      "referenced_type_count": 137
+    },
+    {
+      "class_name": "TMP_TextSelector_B",
+      "file_id": "ProjectDribble/Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextSelector_B.cs",
       "relation_count": 144,
       "referenced_type_count": 137
     },
@@ -37,8 +43,20 @@
       "referenced_type_count": 124
     },
     {
+      "class_name": "TMP_TextInfoDebugTool",
+      "file_id": "ProjectDribble/Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextInfoDebugTool.cs",
+      "relation_count": 131,
+      "referenced_type_count": 124
+    },
+    {
       "class_name": "CameraController",
       "file_id": "PaddlePrototype/Assets/TextMesh Pro/Examples & Extras/Scripts/CameraController.cs",
+      "relation_count": 102,
+      "referenced_type_count": 99
+    },
+    {
+      "class_name": "CameraController",
+      "file_id": "ProjectDribble/Assets/TextMesh Pro/Examples & Extras/Scripts/CameraController.cs",
       "relation_count": 102,
       "referenced_type_count": 99
     },
@@ -49,45 +67,54 @@
       "referenced_type_count": 82
     },
     {
+      "class_name": "BrickManager",
+      "file_id": "ProjectDribble/Assets/Scripts/brick_manager.cs",
+      "relation_count": 89,
+      "referenced_type_count": 82
+    },
+    {
       "class_name": "VertexZoom",
       "file_id": "PaddlePrototype/Assets/TextMesh Pro/Examples & Extras/Scripts/VertexZoom.cs",
       "relation_count": 83,
       "referenced_type_count": 77
     },
     {
-      "class_name": "TMP_TextEventHandler",
-      "file_id": "PaddlePrototype/Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextEventHandler.cs",
-      "relation_count": 86,
-      "referenced_type_count": 64
-    },
-    {
-      "class_name": "TextMeshProFloatingText",
-      "file_id": "PaddlePrototype/Assets/TextMesh Pro/Examples & Extras/Scripts/TextMeshProFloatingText.cs",
-      "relation_count": 78,
-      "referenced_type_count": 70
-    },
-    {
-      "class_name": "VertexJitter",
-      "file_id": "PaddlePrototype/Assets/TextMesh Pro/Examples & Extras/Scripts/VertexJitter.cs",
-      "relation_count": 74,
-      "referenced_type_count": 69
-    },
-    {
-      "class_name": "Enemy",
-      "file_id": "PaddlePrototype/Assets/Scripts/enemy.cs",
-      "relation_count": 64,
-      "referenced_type_count": 60
-    },
-    {
-      "class_name": "TMP_FrameRateCounter",
-      "file_id": "PaddlePrototype/Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_FrameRateCounter.cs",
-      "relation_count": 64,
-      "referenced_type_count": 58
+      "class_name": "VertexZoom",
+      "file_id": "ProjectDribble/Assets/TextMesh Pro/Examples & Extras/Scripts/VertexZoom.cs",
+      "relation_count": 83,
+      "referenced_type_count": 77
     }
   ],
   "high_risk_classes": [
     {
       "file_id": "PaddlePrototype/Assets/TextMesh Pro/Examples & Extras/Scripts/TextMeshProFloatingText.cs",
+      "class_name": "TextMeshProFloatingText",
+      "risk_flags": [
+        "update-heavy",
+        "high-coupling",
+        "public-field-heavy",
+        "magic-number-heavy",
+        "large-class",
+        "init-order-sensitive",
+        "save-load-sensitive",
+        "ui-runtime-mixed",
+        "state-owner"
+      ],
+      "risk_reasons": [
+        "Unity 업데이트 루프 사용",
+        "참조 타입 또는 관계 수가 많음",
+        "public 필드 노출 수가 많음",
+        "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+        "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+        "초기화 순서에 민감할 가능성",
+        "저장/불러오기 관련 로직 포함",
+        "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+        "상태 중심 또는 관리 중심 클래스일 가능성"
+      ],
+      "risk_score": 100
+    },
+    {
+      "file_id": "ProjectDribble/Assets/TextMesh Pro/Examples & Extras/Scripts/TextMeshProFloatingText.cs",
       "class_name": "TextMeshProFloatingText",
       "risk_flags": [
         "update-heavy",
@@ -139,6 +166,31 @@
       "risk_score": 91
     },
     {
+      "file_id": "ProjectDribble/Assets/Scripts/enemy.cs",
+      "class_name": "Enemy",
+      "risk_flags": [
+        "update-heavy",
+        "high-coupling",
+        "public-field-heavy",
+        "magic-number-heavy",
+        "large-class",
+        "init-order-sensitive",
+        "save-load-sensitive",
+        "state-owner"
+      ],
+      "risk_reasons": [
+        "Unity 업데이트 루프 사용",
+        "참조 타입 또는 관계 수가 많음",
+        "public 필드 노출 수가 많음",
+        "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+        "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+        "초기화 순서에 민감할 가능성",
+        "저장/불러오기 관련 로직 포함",
+        "상태 중심 또는 관리 중심 클래스일 가능성"
+      ],
+      "risk_score": 91
+    },
+    {
       "file_id": "PaddlePrototype/Assets/TextMesh Pro/Examples & Extras/Scripts/CameraController.cs",
       "class_name": "CameraController",
       "risk_flags": [
@@ -164,7 +216,57 @@
       "risk_score": 89
     },
     {
+      "file_id": "ProjectDribble/Assets/TextMesh Pro/Examples & Extras/Scripts/CameraController.cs",
+      "class_name": "CameraController",
+      "risk_flags": [
+        "update-heavy",
+        "high-coupling",
+        "public-field-heavy",
+        "magic-number-heavy",
+        "large-class",
+        "init-order-sensitive",
+        "ui-runtime-mixed",
+        "state-owner"
+      ],
+      "risk_reasons": [
+        "Unity 업데이트 루프 사용",
+        "참조 타입 또는 관계 수가 많음",
+        "public 필드 노출 수가 많음",
+        "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+        "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+        "초기화 순서에 민감할 가능성",
+        "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+        "상태 중심 또는 관리 중심 클래스일 가능성"
+      ],
+      "risk_score": 89
+    },
+    {
       "file_id": "PaddlePrototype/Assets/Scripts/paddle_movement_upper.cs",
+      "class_name": "UpperPadController",
+      "risk_flags": [
+        "update-heavy",
+        "high-coupling",
+        "getcomponent-heavy",
+        "magic-number-heavy",
+        "init-order-sensitive",
+        "save-load-sensitive",
+        "ui-runtime-mixed",
+        "state-owner"
+      ],
+      "risk_reasons": [
+        "Unity 업데이트 루프 사용",
+        "참조 타입 또는 관계 수가 많음",
+        "GetComponent/TryGetComponent 호출이 많음",
+        "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+        "초기화 순서에 민감할 가능성",
+        "저장/불러오기 관련 로직 포함",
+        "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+        "상태 중심 또는 관리 중심 클래스일 가능성"
+      ],
+      "risk_score": 88
+    },
+    {
+      "file_id": "ProjectDribble/Assets/Scripts/paddle_movement.cs",
       "class_name": "UpperPadController",
       "risk_flags": [
         "update-heavy",
@@ -237,98 +339,6 @@
         "상태 중심 또는 관리 중심 클래스일 가능성"
       ],
       "risk_score": 86
-    },
-    {
-      "file_id": "PaddlePrototype/Assets/Scripts/brick_manager.cs",
-      "class_name": "BrickManager",
-      "risk_flags": [
-        "high-coupling",
-        "public-field-heavy",
-        "magic-number-heavy",
-        "large-class",
-        "init-order-sensitive",
-        "save-load-sensitive",
-        "state-owner"
-      ],
-      "risk_reasons": [
-        "참조 타입 또는 관계 수가 많음",
-        "public 필드 노출 수가 많음",
-        "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
-        "파일/메서드/필드 수가 많아 책임이 커질 가능성",
-        "초기화 순서에 민감할 가능성",
-        "저장/불러오기 관련 로직 포함",
-        "상태 중심 또는 관리 중심 클래스일 가능성"
-      ],
-      "risk_score": 81
-    },
-    {
-      "file_id": "PaddlePrototype/Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextInfoDebugTool.cs",
-      "class_name": "TMP_TextInfoDebugTool",
-      "risk_flags": [
-        "high-coupling",
-        "public-field-heavy",
-        "magic-number-heavy",
-        "large-class",
-        "save-load-sensitive",
-        "ui-runtime-mixed",
-        "state-owner"
-      ],
-      "risk_reasons": [
-        "참조 타입 또는 관계 수가 많음",
-        "public 필드 노출 수가 많음",
-        "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
-        "파일/메서드/필드 수가 많아 책임이 커질 가능성",
-        "저장/불러오기 관련 로직 포함",
-        "UI와 런타임 책임이 한 파일에 섞였을 가능성",
-        "상태 중심 또는 관리 중심 클래스일 가능성"
-      ],
-      "risk_score": 81
-    },
-    {
-      "file_id": "PaddlePrototype/Assets/Scripts/game_manager.cs",
-      "class_name": "GameManager",
-      "risk_flags": [
-        "high-coupling",
-        "public-field-heavy",
-        "find-heavy",
-        "init-order-sensitive",
-        "save-load-sensitive",
-        "ui-runtime-mixed",
-        "state-owner"
-      ],
-      "risk_reasons": [
-        "참조 타입 또는 관계 수가 많음",
-        "public 필드 노출 수가 많음",
-        "Find 계열 탐색 사용",
-        "초기화 순서에 민감할 가능성",
-        "저장/불러오기 관련 로직 포함",
-        "UI와 런타임 책임이 한 파일에 섞였을 가능성",
-        "상태 중심 또는 관리 중심 클래스일 가능성"
-      ],
-      "risk_score": 80
-    },
-    {
-      "file_id": "PaddlePrototype/Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextSelector_B.cs",
-      "class_name": "TMP_TextSelector_B",
-      "risk_flags": [
-        "update-heavy",
-        "high-coupling",
-        "magic-number-heavy",
-        "large-class",
-        "init-order-sensitive",
-        "ui-runtime-mixed",
-        "state-owner"
-      ],
-      "risk_reasons": [
-        "Unity 업데이트 루프 사용",
-        "참조 타입 또는 관계 수가 많음",
-        "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
-        "파일/메서드/필드 수가 많아 책임이 커질 가능성",
-        "초기화 순서에 민감할 가능성",
-        "UI와 런타임 책임이 한 파일에 섞였을 가능성",
-        "상태 중심 또는 관리 중심 클래스일 가능성"
-      ],
-      "risk_score": 79
     }
   ],
   "common_patterns": [

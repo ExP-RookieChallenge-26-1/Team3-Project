@@ -2,9 +2,13 @@
 using UnityEngine.UI;
 public class Gauge : MonoBehaviour
 {
-    public Slider slider;
+    [SerializeField]
+    private Slider slider;
     public void SetGuage(float value)
     {
-        slider.value = value;
+        if slider.value != null
+        {
+            slider.value = value;
+        }
     }
 }

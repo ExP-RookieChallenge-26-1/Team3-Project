@@ -10817,85 +10817,8 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/Guage.cs",
-    "path": "ProjectDribble/Assets/Guage.cs",
-    "file_name": "Guage.cs",
-    "content_hash": "c4e917c564ed4b0dfdcbfa6151bfdba500981498",
-    "size": 198,
-    "line_count": 11,
-    "namespace": "",
-    "using_list": [
-      "UnityEngine",
-      "UnityEngine.UI"
-    ],
-    "classes": [
-      {
-        "name": "Gauge",
-        "kind": "class",
-        "access": "public",
-        "base_types": [
-          "MonoBehavior"
-        ],
-        "interfaces": [],
-        "attributes": [],
-        "is_partial": false,
-        "is_generic": false
-      }
-    ],
-    "main_class_name": "Gauge",
-    "unity_type": "None",
-    "methods": [
-      "SetGuage"
-    ],
-    "fields": [
-      {
-        "name": "slider",
-        "type": "Slider",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      }
-    ],
-    "properties": [],
-    "events": [],
-    "unity_messages": [],
-    "has_update": false,
-    "has_fixed_update": false,
-    "has_late_update": false,
-    "has_awake": false,
-    "has_start": false,
-    "has_on_enable": false,
-    "has_on_disable": false,
-    "serialize_field_count": 0,
-    "public_field_count": 1,
-    "get_component_count": 0,
-    "find_call_count": 0,
-    "new_keyword_count": 0,
-    "coroutine_count": 0,
-    "singleton_candidate": false,
-    "dont_destroy_on_load": false,
-    "referenced_types": [
-      "Slider",
-      "UnityEngine",
-      "UI",
-      "MonoBehavior",
-      "SetGuage"
-    ],
-    "component_access_types": [],
-    "created_types": [],
-    "singleton_access_types": [],
-    "string_literals": [],
-    "numeric_literals": [],
-    "guessed_roles": [
-      "ui"
-    ],
-    "summary_signals": [
-      "UI 관련 로직 포함"
-    ]
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Scripts/ball_movement.cs",
-    "path": "ProjectDribble/Assets/Scripts/ball_movement.cs",
+    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
+    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
     "file_name": "ball_movement.cs",
     "content_hash": "1917cadeb37e67a8de8cce31091be98e4c9cd631",
     "size": 8273,
@@ -11156,8 +11079,8 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/brick_cell.cs",
-    "path": "ProjectDribble/Assets/Scripts/brick_cell.cs",
+    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/brick_cell.cs",
+    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/brick_cell.cs",
     "file_name": "brick_cell.cs",
     "content_hash": "16655b29802d7920230107438e0803c8acf02cb5",
     "size": 1592,
@@ -11299,8 +11222,8 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/brick_manager.cs",
-    "path": "ProjectDribble/Assets/Scripts/brick_manager.cs",
+    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/brick_manager.cs",
+    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/brick_manager.cs",
     "file_name": "brick_manager.cs",
     "content_hash": "d293cf1bcc8cb1638254aa09ea22def1224c3231",
     "size": 14531,
@@ -11736,8 +11659,8 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/enemy_projectile.cs",
-    "path": "ProjectDribble/Assets/Scripts/enemy_projectile.cs",
+    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/enemy_projectile.cs",
+    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/enemy_projectile.cs",
     "file_name": "enemy_projectile.cs",
     "content_hash": "934c98d825a55dde2eb32476336fa1040b6b7c85",
     "size": 990,
@@ -11847,8 +11770,8 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/enemy.cs",
-    "path": "ProjectDribble/Assets/Scripts/enemy.cs",
+    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/enemy.cs",
+    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/enemy.cs",
     "file_name": "enemy.cs",
     "content_hash": "ffb478ba70fb0f8ba8c5d809ce9f666d961b31ed",
     "size": 7878,
@@ -12180,8 +12103,8 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/ForRazer/BrickAreaDetector.cs",
-    "path": "ProjectDribble/Assets/Scripts/ForRazer/BrickAreaDetector.cs",
+    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/ForRazer/BrickAreaDetector.cs",
+    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/ForRazer/BrickAreaDetector.cs",
     "file_name": "BrickAreaDetector.cs",
     "content_hash": "3a9e97191e87a1cff6d29f998db3f99580bf7cf3",
     "size": 288,
@@ -12251,8 +12174,8 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
-    "path": "ProjectDribble/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
+    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/ForRazer/ChargingLaserManager.cs",
+    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/ForRazer/ChargingLaserManager.cs",
     "file_name": "ChargingLaserManager.cs",
     "content_hash": "a3caa29f01fc0f74752fedba6254fcd88894dccb",
     "size": 1470,
@@ -12387,8 +12310,8 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/ForRazer/GaugeManager.cs",
-    "path": "ProjectDribble/Assets/Scripts/ForRazer/GaugeManager.cs",
+    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/ForRazer/GaugeManager.cs",
+    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/ForRazer/GaugeManager.cs",
     "file_name": "GaugeManager.cs",
     "content_hash": "c209453385ffe500fd983d1b3e5cf17010851155",
     "size": 2024,
@@ -12523,8 +12446,8 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/ForRazer/LaserShooter.cs",
-    "path": "ProjectDribble/Assets/Scripts/ForRazer/LaserShooter.cs",
+    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/ForRazer/LaserShooter.cs",
+    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/ForRazer/LaserShooter.cs",
     "file_name": "LaserShooter.cs",
     "content_hash": "1eb9e1f643d56cf6c19c4eb0e4b87776de6b88fa",
     "size": 3867,
@@ -12701,8 +12624,8 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/game_manager.cs",
-    "path": "ProjectDribble/Assets/Scripts/game_manager.cs",
+    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/game_manager.cs",
+    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/game_manager.cs",
     "file_name": "game_manager.cs",
     "content_hash": "d7e743cb9736b3719b9fa92e084def61b2aee275",
     "size": 3604,
@@ -12893,8 +12816,8 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/i_ball_hit_receiver.cs",
-    "path": "ProjectDribble/Assets/Scripts/i_ball_hit_receiver.cs",
+    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/i_ball_hit_receiver.cs",
+    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/i_ball_hit_receiver.cs",
     "file_name": "i_ball_hit_receiver.cs",
     "content_hash": "d4d47f2e836e6ecf6d14545ff5d9630523e1ad40",
     "size": 60,
@@ -12953,8 +12876,8 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/paddle_debuff.cs",
-    "path": "ProjectDribble/Assets/Scripts/paddle_debuff.cs",
+    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/paddle_debuff.cs",
+    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/paddle_debuff.cs",
     "file_name": "paddle_debuff.cs",
     "content_hash": "b9338741d5073580816ef59447742b0e979b3eff",
     "size": 456,
@@ -13043,8 +12966,8 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/paddle_movement.cs",
-    "path": "ProjectDribble/Assets/Scripts/paddle_movement.cs",
+    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/paddle_movement.cs",
+    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/paddle_movement.cs",
     "file_name": "paddle_movement.cs",
     "content_hash": "ce23cb88c68bbaac73f41abae5b4ae107c23a5cf",
     "size": 3137,
@@ -13239,8 +13162,8 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/PaddleSkillHandler.cs",
-    "path": "ProjectDribble/Assets/Scripts/PaddleSkillHandler.cs",
+    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/PaddleSkillHandler.cs",
+    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/PaddleSkillHandler.cs",
     "file_name": "PaddleSkillHandler.cs",
     "content_hash": "b818ac9c89daec6b535c8b3831460d7b0c73f687",
     "size": 4258,
@@ -13444,6 +13367,84 @@
       "전투 계열 로직 포함",
       "저장/불러오기 관련 로직 포함",
       "컴포넌트 조회 사용"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Guage.cs",
+    "path": "ProjectDribble/Assets/Scripts/Guage.cs",
+    "file_name": "Guage.cs",
+    "content_hash": "0fb6aa24a2d4127f66f1336bd186aa81e7132a60",
+    "size": 189,
+    "line_count": 11,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine",
+      "UnityEngine.UI"
+    ],
+    "classes": [
+      {
+        "name": "Gauge",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "Gauge",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "SetGuage"
+    ],
+    "fields": [
+      {
+        "name": "slider",
+        "type": "Slider",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 1,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "Slider",
+      "UnityEngine",
+      "UI",
+      "SetGuage"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "ui",
+      "runtime"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "UI 관련 로직 포함"
     ]
   },
   {

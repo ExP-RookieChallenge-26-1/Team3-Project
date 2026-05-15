@@ -1848,6 +1848,19 @@
     "risk_score": 22
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/Guage.cs",
+    "class_name": "Gauge",
+    "risk_flags": [
+      "save-load-sensitive",
+      "ui-runtime-mixed"
+    ],
+    "risk_reasons": [
+      "저장/불러오기 관련 로직 포함",
+      "UI와 런타임 책임이 한 파일에 섞였을 가능성"
+    ],
+    "risk_score": 22
+  },
+  {
     "file_id": "ProjectDribble/Assets/TextMesh Pro/Examples & Extras/Scripts/DropdownSample.cs",
     "class_name": "DropdownSample",
     "risk_flags": [
@@ -1927,17 +1940,6 @@
     ],
     "risk_reasons": [
       "Unity 업데이트 루프 사용"
-    ],
-    "risk_score": 10
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Scripts/Guage.cs",
-    "class_name": "Gauge",
-    "risk_flags": [
-      "ui-runtime-mixed"
-    ],
-    "risk_reasons": [
-      "UI와 런타임 책임이 한 파일에 섞였을 가능성"
     ],
     "risk_score": 10
   },

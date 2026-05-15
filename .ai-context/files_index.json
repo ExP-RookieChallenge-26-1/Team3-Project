@@ -13373,9 +13373,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Guage.cs",
     "path": "ProjectDribble/Assets/Scripts/Guage.cs",
     "file_name": "Guage.cs",
-    "content_hash": "0fb6aa24a2d4127f66f1336bd186aa81e7132a60",
-    "size": 189,
-    "line_count": 11,
+    "content_hash": "3eb99f76c507ba870ae581a18b329b61168c0c2a",
+    "size": 267,
+    "line_count": 15,
     "namespace": "",
     "using_list": [
       "UnityEngine",
@@ -13404,8 +13404,8 @@
       {
         "name": "slider",
         "type": "Slider",
-        "access": "public",
-        "serialized": false,
+        "access": "private",
+        "serialized": true,
         "is_static": false
       }
     ],
@@ -13419,8 +13419,8 @@
     "has_start": false,
     "has_on_enable": false,
     "has_on_disable": false,
-    "serialize_field_count": 0,
-    "public_field_count": 1,
+    "serialize_field_count": 1,
+    "public_field_count": 0,
     "get_component_count": 0,
     "find_call_count": 0,
     "new_keyword_count": 0,
@@ -13440,11 +13440,14 @@
     "numeric_literals": [],
     "guessed_roles": [
       "ui",
+      "save-load",
       "runtime"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
-      "UI 관련 로직 포함"
+      "인스펙터 직렬화 필드 사용",
+      "UI 관련 로직 포함",
+      "저장/불러오기 관련 로직 포함"
     ]
   },
   {

@@ -16430,462 +16430,462 @@
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "CircleCollider2D",
     "relation_type": "component-access",
     "strength": 3
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "Transform",
     "relation_type": "component-access",
     "strength": 3
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "Vector2",
     "relation_type": "creates",
     "strength": 2
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "Vector3",
     "relation_type": "creates",
     "strength": 2
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "MonoBehaviour",
     "relation_type": "inherits",
     "strength": 4
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "Abs",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "AddBallBaseSpeed",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "AddBallMaxSpeed",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "AddBallRadius",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "AddBallSpeed",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "AddBlockPowerDecrease",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "AddBlockSpeedDecrease",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "AddInsideMaxBounceAngle",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "AddOutsideMaxBounceAngle",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "AddPaddlePowerIncrease",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "AddPaddleSpeedIncrease",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "bool",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "ChargingLaserManager",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "CheckBounceCount",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "CircleCast",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "CircleCollider2D",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "Clamp",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "ClosestPoint",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "Collider2D",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "Color",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "CompareTag",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "Contains",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "DrawWireSphere",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "Euler",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "float",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "GetComponent",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "GetComponentInParent",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "Gizmos",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "IBallHitReceiver",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "LaunchBall",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "LayerMask",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "Lerp",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "MoveBall",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "OnBallHit",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "OnDrawGizmos",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "OverlapCircle",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "Physics2D",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "Quaternion",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "RaycastHit2D",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "Reflect",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "Reset",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "ResolveOverlap",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "SetBallBaseSpeed",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "SetBallMaxSpeed",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "SetBallRadius",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "SetBallSpeed",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "SetBlockPowerDecrease",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "SetBlockSpeedDecrease",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "SetInsideMaxBounceAngle",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "SetOutsideMaxBounceAngle",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "SetPaddlePowerIncrease",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "SetPaddleSpeedIncrease",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "Space",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "Start",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "Translate",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "UnityEngine",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "Update",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "UpdateDirection",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "Vector2",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "Vector3",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "from_class": "BallController",
+    "from_class": "Balmove",
     "to_type": "World",
     "relation_type": "uses",
     "strength": 1
@@ -19789,6 +19789,874 @@
     "strength": 1
   },
   {
+    "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "BallMovement",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "BallSpeedController",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "CircleCollider2D",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "Transform",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "BallMovement",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "BallSpeedController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "CheckAndHandleCollision",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "CircleCast",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "CircleCollider2D",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "float",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "GetComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "LayerMask",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "Physics2D",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "RaycastHit2D",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "Reset",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "ResolveOverlap",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "Start",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "Update",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "UpdateDirection",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "Vector2",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "BallCollisionHandler",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "BallMovement",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "BallSpeedController",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "CircleCollider2D",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "Transform",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "Vector2",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "Vector3",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "AdjustSpeed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "BallCollisionHandler",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "BallMovement",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "BallSpeedController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "CircleCollider2D",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "Color",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "DrawWireSphere",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "float",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "GetComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "Gizmos",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "LayerMask",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "MoveBall",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "OnDrawGizmos",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "SetBallDirection",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "Start",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "Update",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "Vector2",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "Vector3",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "BallCollisionHandler",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "BallSpeedController",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "CircleCollider2D",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "Transform",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "Abs",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "AddBallBaseSpeed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "AddBallMaxSpeed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "AddBallSpeed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "BallCollisionHandler",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "BallController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "BallSpeedController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "CheckBounceCount",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "CircleCast",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "CircleCollider2D",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "Clamp",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "ClosestPoint",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "Collider2D",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "CompareTag",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "Contains",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "Euler",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "float",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "GetComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "GetComponentInParent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "IBallHitReceiver",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "LayerMask",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "Lerp",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "MoveBall",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "OnBallHit",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "OverlapCircle",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "Physics2D",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "Quaternion",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "RaycastHit2D",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "Reflect",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "Reset",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "ResolveOverlap",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "SetBallBaseSpeed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "SetBallMaxSpeed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "SetBallSpeed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "Space",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "Start",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "Translate",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "Update",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "UpdateDirection",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "Vector2",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "Vector3",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "World",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallPowerController.cs",
+    "from_class": "BallPowerController",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallPowerController.cs",
+    "from_class": "BallPowerController",
+    "to_type": "Start",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallPowerController.cs",
+    "from_class": "BallPowerController",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallPowerController.cs",
+    "from_class": "BallPowerController",
+    "to_type": "Update",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "BallController",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "BallMovement",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "CircleCollider2D",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "Transform",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "AddBallSpeed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "AdjustSpeed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "BallController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "BallMovement",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "BlockSpeedDecrease",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "CircleCast",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "CircleCollider2D",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "float",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "GetComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "LayerMask",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "PaddleSpeedIncrease",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "Physics2D",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "RaycastHit2D",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "SetBallSpeed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "Start",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "Update",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "Vector2",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
     "from_file": "ProjectDribble/Assets/Scripts/Guage.cs",
     "from_class": "Gauge",
     "to_type": "MonoBehaviour",
@@ -19820,6 +20688,258 @@
     "from_file": "ProjectDribble/Assets/Scripts/Guage.cs",
     "from_class": "Gauge",
     "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "Collider2D",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "SpriteShapeRenderer",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "Transform",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "Vector3",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "AddPaddleSpeed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "Alpha",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "bool",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "Box",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "Camera",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "Capsule",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "Circle",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "Clamp",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "Collider2D",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "Color",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "Find",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "float",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "GetComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "InputSystem",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "LogWarning",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "Mouse",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "MovePad",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "MoveTowards",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "ReadValue",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "ScreenToWorldPoint",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "SetPaddleAlpha",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "SetPaddleCollider",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "SetPaddleSpeed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "SpriteRenderer",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "SpriteShapeRenderer",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "Start",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "U2D",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "Update",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "Vector2",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "Vector3",
     "relation_type": "uses",
     "strength": 1
   },

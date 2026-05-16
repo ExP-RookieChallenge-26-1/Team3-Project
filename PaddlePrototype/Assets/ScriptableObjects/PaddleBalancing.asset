@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PaddleBalancing
   m_EditorClassIdentifier: Assembly-CSharp::ScriptableObjectScripts.PaddleData
   moveSpeed: 50
-  paddleWidth: 0.7
+  paddleWidth: 1
+  debuffSpeed: 20
   activeCollisionEnabled: 1
-  transparentAlpha: 0.3
+  transparentAlpha: 0.5

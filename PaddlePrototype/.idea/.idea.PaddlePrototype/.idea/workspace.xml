@@ -5,10 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9508e556-d083-4ec7-aa53-9788c555016c" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/BrickData_1.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/BrickData_1.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/BrickData_2.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/BrickData_2.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PaddlePrototype/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PaddlePrototype/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Brick.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Brick.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/FixedBrick.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/FixedBrick.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BalancingScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BalancingScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/BallBalancing.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObjects/BallBalancing.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/StageData/BrickData_일반_중_1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObjects/StageData/BrickData_일반_중_1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/StageData/BrickData_일반_중_2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObjects/StageData/BrickData_일반_중_2.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/StageData/BrickData_일반_초_1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObjects/StageData/BrickData_일반_초_1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/StageData/BrickData_퍼즐_중_1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObjects/StageData/BrickData_퍼즐_중_1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/brick_manager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/brick_manager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +117,8 @@
       <workItem from="1778162358172" duration="1326000" />
       <workItem from="1778659685355" duration="3216000" />
       <workItem from="1778669344097" duration="2341000" />
-      <workItem from="1778675167102" duration="4240000" />
+      <workItem from="1778675167102" duration="4837000" />
+      <workItem from="1778930107593" duration="1483000" />
     </task>
     <servers />
   </component>

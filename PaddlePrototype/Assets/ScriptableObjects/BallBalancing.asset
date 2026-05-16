@@ -15,11 +15,11 @@ MonoBehaviour:
   baseSpeed: 20
   maxSpeed: 55
   basePower: 5
-  paddleSpeedIncrease: 10
-  paddlePowerIncrease: 10
+  paddleSpeedIncrease: 5
+  paddlePowerIncrease: 5
   blockSpeedDecrease: 5
   blockPowerDecrease: 10
   centerPullStrength: 1
   centerZone: 0.2
-  outsideMaxBounceAngle: 60
+  outsideMaxBounceAngle: 80
   insideMaxBounceAngle: 40

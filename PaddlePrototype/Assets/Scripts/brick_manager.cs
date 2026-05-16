@@ -505,7 +505,7 @@ public class BrickManager : MonoBehaviour
     private void FitBrickToCell(GameObject brick)
     {
         brick.transform.localScale = new Vector3(
-            cellWidth * brickSizeRatio,
+            cellWidth/2 * brickSizeRatio,
             cellHeight * brickSizeRatio,
             1f
         );

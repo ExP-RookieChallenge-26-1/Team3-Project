@@ -8,6 +8,7 @@ TagManager:
   - down_paddle
   - roof_paddle
   - need_correction
+  - test_speedDecrease
   layers:
   - Default
   - TransparentFX

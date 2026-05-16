@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 226265237}
   m_Layer: 3
   m_Name: paddle_up
-  m_TagString: Untagged
+  m_TagString: top_paddle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -365,7 +365,7 @@ Transform:
   m_GameObject: {fileID: 226265232}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.6, z: 0}
+  m_LocalPosition: {x: 0, y: -3.5, z: 0}
   m_LocalScale: {x: 0.7, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -743,7 +743,7 @@ GameObject:
   - component: {fileID: 421692853}
   m_Layer: 3
   m_Name: wall_left
-  m_TagString: test_speedDecrease
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1998,7 +1998,7 @@ GameObject:
   - component: {fileID: 1242489111}
   m_Layer: 3
   m_Name: roof_paddle
-  m_TagString: Untagged
+  m_TagString: top_paddle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2040,19 +2040,17 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.339487, y: -0.3486703}
-  - {x: -1.6908966, y: 0.26675454}
-  - {x: -1.2915629, y: 0.5987444}
-  - {x: -0.91043895, y: 0.82706964}
-  - {x: -0.6414393, y: 0.92500275}
-  - {x: -0.34296986, y: 0.9818218}
-  - {x: 0.0015615096, y: 0.9994468}
-  - {x: 0.3474942, y: 0.976536}
-  - {x: 0.6569381, y: 0.9108072}
-  - {x: 1.0740054, y: 0.7342892}
-  - {x: 1.4678037, y: 0.4673434}
-  - {x: 1.875711, y: 0.113439865}
-  - {x: 2.3547144, y: -0.34176904}
+  - {x: -2.1801887, y: -0.1732968}
+  - {x: -1.5480313, y: 0.4237418}
+  - {x: -1.1882526, y: 0.71227205}
+  - {x: -0.8543457, y: 0.88873047}
+  - {x: -0.4802768, y: 0.976645}
+  - {x: -0.0000029288713, y: 0.99950004}
+  - {x: 0.48818147, y: 0.9664945}
+  - {x: 0.8780928, y: 0.862726}
+  - {x: 1.2238879, y: 0.6754843}
+  - {x: 1.7098947, y: 0.27396324}
+  - {x: 2.1804464, y: -0.17302825}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -2072,9 +2070,9 @@ MonoBehaviour:
   m_Spline:
     m_IsOpenEnded: 1
     m_ControlPoints:
-    - position: {x: -2.159453, y: -0.17521238, z: 0}
-      leftTangent: {x: -0.9738822, y: -0.93673706, z: 0}
-      rightTangent: {x: 0.8658955, y: 0.83286166, z: 0}
+    - position: {x: -2, y: 0, z: 0}
+      leftTangent: {x: -0.9738884, y: -0.9367374, z: -0}
+      rightTangent: {x: 0.8658923, y: 0.83286107, z: 0}
       mode: 1
       height: 1
       spriteIndex: 0
@@ -2088,9 +2086,9 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 1
       m_CornerMode: 1
-    - position: {x: 2.1742854, y: -0.16872263, z: 0}
-      leftTangent: {x: -0.7834004, y: 0.7518232, z: 0}
-      rightTangent: {x: 0.6651783, y: -0.63836336, z: 0}
+    - position: {x: 2, y: 0, z: 0}
+      leftTangent: {x: -0.78340197, y: 0.751823, z: 0}
+      rightTangent: {x: 0.6651766, y: -0.6383633, z: -0}
       mode: 1
       height: 1
       spriteIndex: 0
@@ -2118,19 +2116,17 @@ MonoBehaviour:
   m_Creator: {fileID: 0}
   m_Modifiers: []
   m_ColliderSegment:
-  - {x: -2.339487, y: -0.3486703}
-  - {x: -1.6908966, y: 0.26675454}
-  - {x: -1.2915629, y: 0.5987444}
-  - {x: -0.91043895, y: 0.82706964}
-  - {x: -0.6414393, y: 0.92500275}
-  - {x: -0.34296986, y: 0.9818218}
-  - {x: 0.0015615096, y: 0.9994468}
-  - {x: 0.3474942, y: 0.976536}
-  - {x: 0.6569381, y: 0.9108072}
-  - {x: 1.0740054, y: 0.7342892}
-  - {x: 1.4678037, y: 0.4673434}
-  - {x: 1.875711, y: 0.113439865}
-  - {x: 2.3547144, y: -0.34176904}
+  - {x: -2.1801887, y: -0.1732968}
+  - {x: -1.5480313, y: 0.4237418}
+  - {x: -1.1882526, y: 0.71227205}
+  - {x: -0.8543457, y: 0.88873047}
+  - {x: -0.4802768, y: 0.976645}
+  - {x: -0.0000029288713, y: 0.99950004}
+  - {x: 0.48818147, y: 0.9664945}
+  - {x: 0.8780928, y: 0.862726}
+  - {x: 1.2238879, y: 0.6754843}
+  - {x: 1.7098947, y: 0.27396324}
+  - {x: 2.1804464, y: -0.17302825}
   m_ShadowSegment: []
 --- !u!1971053207 &1242489114
 SpriteShapeRenderer:
@@ -2195,8 +2191,8 @@ SpriteShapeRenderer:
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0.0075120926, y: 0.360753, z: 0}
-    m_Extent: {x: 2.5206523, y: 0.8892432, z: 0}
+    m_Center: {x: 0.000027179718, y: 0.44843966, z: 0}
+    m_Extent: {x: 2.3538692, y: 0.80155605, z: 0}
   m_SpriteSortPoint: 0
 --- !u!4 &1242489115
 Transform:
@@ -2208,7 +2204,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -3.454, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.4, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1387697785}
@@ -2225,10 +2221,6 @@ GameObject:
   - component: {fileID: 1250265850}
   - component: {fileID: 1250265849}
   - component: {fileID: 1250265847}
-  - component: {fileID: 1250265852}
-  - component: {fileID: 1250265853}
-  - component: {fileID: 1250265854}
-  - component: {fileID: 1250265855}
   m_Layer: 0
   m_Name: ball
   m_TagString: Untagged
@@ -2373,67 +2365,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1355043334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1250265852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1250265846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c744604e84d3c845b28f95490b7b16d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BallMovement
-  speed: 15
-  baseSpeed: 15
-  maxSpeed: 30
-  moveDistance: 0
---- !u!114 &1250265853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1250265846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09d6143aea03d6046a28bed4487091f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BallController
-  ballRadius: 0.7
-  actualRadius: 0
-  direction: {x: 0, y: 0}
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 8
---- !u!114 &1250265854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1250265846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19f945b558fe6b14198a6efc8f12f8bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
-  skinWidth: 0.1
-  _outsideMaxBounceAngle: 50
-  _insideMaxBounceAngle: 50
---- !u!114 &1250265855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1250265846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3ffa797f56a5a0468b46618216ce79e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BallSpeedController
 --- !u!1 &1355043333
 GameObject:
   m_ObjectHideFlags: 0
@@ -2797,7 +2728,7 @@ GameObject:
   - component: {fileID: 1679818626}
   m_Layer: 3
   m_Name: wall_right
-  m_TagString: test_speedDecrease
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2935,7 +2866,7 @@ GameObject:
   - component: {fileID: 1771637052}
   m_Layer: 3
   m_Name: wall_up
-  m_TagString: test_speedDecrease
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -1,11 +1,9 @@
 {
-  "build_mode_used": "full",
-  "files_total": 104,
-  "files_parsed": 104,
-  "changed_cs_files": 0,
-  "added_cs_files": 0,
+  "build_mode_used": "incremental",
+  "files_total": 108,
+  "files_parsed": 8,
+  "changed_cs_files": 8,
+  "added_cs_files": 4,
   "deleted_cs_files": 0,
-  "rebuild_reasons": [
-    "git diff 실패"
-  ]
+  "rebuild_reasons": []
 }

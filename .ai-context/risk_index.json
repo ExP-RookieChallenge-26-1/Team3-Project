@@ -1519,6 +1519,25 @@
     "risk_score": 58
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "class_name": "LaserChargeController",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 58
+  },
+  {
     "file_id": "ProjectDribble/Assets/TextMesh Pro/Examples & Extras/Scripts/TMPro_InstructionOverlay.cs",
     "class_name": "TMPro_InstructionOverlay",
     "risk_flags": [
@@ -1998,6 +2017,19 @@
     "risk_score": 18
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/ChargeZone.cs",
+    "class_name": "ChargeZone",
+    "risk_flags": [
+      "update-heavy",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 18
+  },
+  {
     "file_id": "ProjectDribble/Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_DigitValidator.cs",
     "class_name": "TMP_DigitValidator",
     "risk_flags": [
@@ -2075,6 +2107,20 @@
   {
     "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/i_ball_hit_receiver.cs",
     "class_name": "IBallHitReceiver",
+    "risk_flags": [],
+    "risk_reasons": [],
+    "risk_score": 0
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/ILaserHittable.cs",
+    "class_name": "ILaserHittable",
+    "risk_flags": [],
+    "risk_reasons": [],
+    "risk_score": 0
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserShooter.cs",
+    "class_name": "LaserShoot",
     "risk_flags": [],
     "risk_reasons": [],
     "risk_score": 0

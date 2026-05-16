@@ -10820,9 +10820,9 @@
     "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
     "path": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
     "file_name": "ball_movement.cs",
-    "content_hash": "84f6623ee93afc7898522c2a2d829002d4b39de8",
-    "size": 8267,
-    "line_count": 276,
+    "content_hash": "39293859d92f63ceabbbc615847fc299c0e45046",
+    "size": 8137,
+    "line_count": 274,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -10973,7 +10973,6 @@
       "bool",
       "UnityEngine",
       "LayerMask",
-      "ChargingLaserManager",
       "Start",
       "LaunchBall",
       "GetComponent",
@@ -10992,14 +10991,12 @@
       "IBallHitReceiver",
       "OnBallHit",
       "Contains",
-      "CheckBounceCount",
       "Clamp",
       "Lerp",
       "Abs",
       "Quaternion",
       "Euler",
       "Reflect",
-      "Reset",
       "Collider2D",
       "OverlapCircle",
       "CompareTag",
@@ -11067,7 +11064,6 @@
       "runtime",
       "player",
       "combat",
-      "manager",
       "save-load"
     ],
     "summary_signals": [
@@ -11082,8 +11078,8 @@
     "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/brick_cell.cs",
     "path": "ProjectDribble/Assets/Old Assets/Old Scripts/brick_cell.cs",
     "file_name": "brick_cell.cs",
-    "content_hash": "16655b29802d7920230107438e0803c8acf02cb5",
-    "size": 1592,
+    "content_hash": "8a7f5fc996a6edafc4b0bc219603285801167934",
+    "size": 1596,
     "line_count": 77,
     "namespace": "",
     "using_list": [
@@ -12449,9 +12445,9 @@
     "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/ForRazer/LaserShooter.cs",
     "path": "ProjectDribble/Assets/Old Assets/Old Scripts/ForRazer/LaserShooter.cs",
     "file_name": "LaserShooter.cs",
-    "content_hash": "1eb9e1f643d56cf6c19c4eb0e4b87776de6b88fa",
-    "size": 3867,
-    "line_count": 129,
+    "content_hash": "ba58cbd0f314661c2f235b625eb42fd6fd4a79c7",
+    "size": 3862,
+    "line_count": 128,
     "namespace": "",
     "using_list": [
       "System.Linq",
@@ -12819,9 +12815,9 @@
     "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/i_ball_hit_receiver.cs",
     "path": "ProjectDribble/Assets/Old Assets/Old Scripts/i_ball_hit_receiver.cs",
     "file_name": "i_ball_hit_receiver.cs",
-    "content_hash": "d4d47f2e836e6ecf6d14545ff5d9630523e1ad40",
-    "size": 60,
-    "line_count": 5,
+    "content_hash": "af2d3999dd34ca4c54c22431b18b10d775e0110c",
+    "size": 65,
+    "line_count": 6,
     "namespace": "",
     "using_list": [],
     "classes": [
@@ -14161,6 +14157,367 @@
       "런타임 컴포넌트",
       "UI 관련 로직 포함",
       "저장/불러오기 관련 로직 포함"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/ILaserHittable.cs",
+    "path": "ProjectDribble/Assets/Scripts/ILaserHittable.cs",
+    "file_name": "ILaserHittable.cs",
+    "content_hash": "10a509e02539d888e8738de70d345846d9907576",
+    "size": 406,
+    "line_count": 20,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "ILaserHittable",
+        "kind": "interface",
+        "access": "public",
+        "base_types": [],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "ILaserHittable",
+    "unity_type": "None",
+    "methods": [
+      "OnLaserHit"
+    ],
+    "fields": [],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "UnityEngine",
+      "OnLaserHit",
+      "Destroy"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "combat",
+      "data"
+    ],
+    "summary_signals": [
+      "전투 계열 로직 포함"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/ChargeZone.cs",
+    "path": "ProjectDribble/Assets/Scripts/LaserScripts/ChargeZone.cs",
+    "file_name": "ChargeZone.cs",
+    "content_hash": "aee393c466a3360908e929f4eb6c8e2667b4c59a",
+    "size": 583,
+    "line_count": 31,
+    "namespace": "",
+    "using_list": [
+      "System",
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "ChargeZone",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "ChargeZone",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "OnTriggerEnter2D",
+      "OnTriggerExit2D",
+      "Update"
+    ],
+    "fields": [
+      {
+        "name": "isDribbling",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "bool",
+      "System",
+      "UnityEngine",
+      "OnDribblingChanged",
+      "OnTriggerEnter2D",
+      "Collider2D",
+      "CompareTag",
+      "Ball",
+      "Invoke",
+      "OnTriggerExit2D",
+      "Update"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Ball"
+    ],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "runtime"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "file_name": "LaserChargeController.cs",
+    "content_hash": "e8ee2958132610d3fc1e1f130747299404451716",
+    "size": 2182,
+    "line_count": 97,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine",
+      "UnityEngine.Serialization"
+    ],
+    "classes": [
+      {
+        "name": "LaserChargeController",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "LaserChargeController",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "OnEnable",
+      "OnDisable",
+      "HandleDribblingChanged",
+      "Update",
+      "CheckTimer",
+      "TryIncreaseChargeLevel",
+      "IncreaseChargeLevel",
+      "FireChargedLaser",
+      "Reset"
+    ],
+    "fields": [
+      {
+        "name": "isDribbling",
+        "type": "bool",
+        "access": "private",
+        "serialized": true,
+        "is_static": false
+      },
+      {
+        "name": "chargeTimer",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "chargeCount",
+        "type": "int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "maxChargeCount",
+        "type": "int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "OnEnable",
+      "OnDisable",
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": true,
+    "has_on_disable": true,
+    "serialize_field_count": 1,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "bool",
+      "float",
+      "int",
+      "UnityEngine",
+      "Serialization",
+      "ChargeZone",
+      "FormerlySerializedAs",
+      "GaugeManager",
+      "LaserShoot",
+      "OnEnable",
+      "OnDribblingChanged",
+      "HandleDribblingChanged",
+      "OnDisable",
+      "FireChargedLaser",
+      "Reset",
+      "Update",
+      "CheckTimer",
+      "TryIncreaseChargeLevel",
+      "IncreaseChargeLevel",
+      "ChangeGaugeLevel",
+      "ShootLaser"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [
+      "guageManger"
+    ],
+    "numeric_literals": [
+      3,
+      0,
+      3
+    ],
+    "guessed_roles": [
+      "runtime",
+      "save-load",
+      "manager"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재",
+      "인스펙터 직렬화 필드 사용",
+      "저장/불러오기 관련 로직 포함"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserShooter.cs",
+    "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserShooter.cs",
+    "file_name": "LaserShooter.cs",
+    "content_hash": "f58c967bc1069aa7209730ef4157e840d451e825",
+    "size": 169,
+    "line_count": 14,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "LaserShoot",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "LaserShoot",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "ShootLaser"
+    ],
+    "fields": [],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "UnityEngine",
+      "ShootLaser",
+      "Log",
+      "Shoot"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Shoot!"
+    ],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "runtime"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트"
     ]
   },
   {

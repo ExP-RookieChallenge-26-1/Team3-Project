@@ -4,14 +4,15 @@ using UnityEngine.Serialization;
 
 public class GaugeManager : MonoBehaviour
 {
-    
-    
+    [SerializeField] private ScriptableObjectScripts.LaserGaugeData laserGaugeData;
+    [SerializeField] private Transform gaugeBar;
 
     [Header("Gauge")]
     public int filledGaugeSegments = 0;
     private int currentGaugeValue=30;
     private int gaugePerSegment = 10;
     [SerializeField] private int maxGaugeSegments = 3;
+    private Vector2 maxGaugeScale;
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI gaugeSegmentText;
@@ -19,9 +20,17 @@ public class GaugeManager : MonoBehaviour
 
     public int CurrentGaugeValue => currentGaugeValue;
     
+    
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
+        maxGaugeScale = gaugeBar.localScale;
+        currentGaugeValue = laserGaugeData.startGaugeValue;
+        gaugePerSegment = laserGaugeData.gaugePerSegment;
+        maxGaugeSegments = laserGaugeData.maxGaugeSegments;
+        
         UpdateGaugeUI();
     }
 
@@ -36,6 +45,9 @@ public class GaugeManager : MonoBehaviour
         
         ChangeGaugeLevel(currentGaugeValue / gaugePerSegment);
 
+        float percent = (float)currentGaugeValue / (float)maxGaugeValue;
+        
+        TransGaugeBar(percent);
         UpdateGaugeUI();
     }
     
@@ -45,7 +57,7 @@ public class GaugeManager : MonoBehaviour
 
         if (level <= 0)
         {
-            if(!(filledGaugeSegments<=0) && !(currentGaugeValue<0))
+            if(!(filledGaugeSegments<=0) && !(currentGaugeValue<=0))
             {
                 filledGaugeSegments--;
                 currentGaugeValue -= gaugePerSegment;
@@ -70,6 +82,15 @@ public class GaugeManager : MonoBehaviour
     {
         
     }
+
+    private void TransGaugeBar(float percent)
+    {
+        Vector2 changedScale = new Vector2(maxGaugeScale.x * percent, maxGaugeScale.y);
+
+        gaugeBar.localScale = changedScale;
+    }
+    
+    
     private void UpdateGaugeUI()
     {
         if (gaugeSegmentText != null)

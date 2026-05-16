@@ -1,8 +1,14 @@
+using DefaultNamespace;
+using ScriptableObjectScripts;
 using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
-    private float speed = 10f; // 공의 초기 속도
+    
+    [SerializeField] private BallBalanceData balanceData;
+    
+    
+    [SerializeField]private float speed = 10f; // 공의 초기 속도
     [SerializeField] private float baseSpeed = 10f; // 공의 초기 속도
     [SerializeField] private float maxSpeed = 30f; // 최대 속도
 
@@ -27,7 +33,15 @@ public class BallController : MonoBehaviour
 
     private float actualRadius;
 
+    private SpriteRenderer spriteRenderer;
+    
+    [SerializeField] private float colliderCooldown = 0.001f;
+    private float lastHitTime = -999f;
+    [SerializeField] private float damagedCooldown = 0.2f;
+    private float lastDamagedTime = -999f;
+    
     public LayerMask collisionMask; // 벽과 패들 레이어를 선택하세요
+    [SerializeField] private int maxCollisionIterations = 5;
     
     private Transform tr;
     private Vector2 direction;
@@ -37,6 +51,28 @@ public class BallController : MonoBehaviour
 
     void Start()
     {
+        speed = balanceData.baseSpeed;
+        power = balanceData.basePower;
+
+        // 밸런싱 값 복사
+        baseSpeed = balanceData.baseSpeed;
+        maxSpeed = balanceData.maxSpeed;
+
+        basePower = balanceData.basePower;
+
+        paddleSpeedIncrease = balanceData.paddleSpeedIncrease;
+        paddlePowerIncrease = balanceData.paddlePowerIncrease;
+
+        blockSpeedDecrease = balanceData.blockSpeedDecrease;
+        blockPowerDecrease = balanceData.blockPowerDecrease;
+
+        centerPullStrength = balanceData.centerPullStrength;
+        centerZone = balanceData.centerZone;
+
+        _outsideMaxBounceAngle = balanceData.outsideMaxBounceAngle;
+        _insideMaxBounceAngle = balanceData.insideMaxBounceAngle;
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
         direction = new Vector2(0.5f, 1f).normalized;
         //LaunchBall();
         isGameStarted = true;
@@ -61,35 +97,46 @@ public class BallController : MonoBehaviour
         {
             speed = maxSpeed;
         }
-        speed -= 0.025f;
+
+        
+        
+        power = speed / 5;
+        spriteRenderer.color = new Color(1f, 1f - (speed-baseSpeed) / (maxSpeed-baseSpeed), 0f, 1f);
+
     }
 
     void MoveBall(float distance)
     {
-        // 1. CircleCast로 이동 경로에 장애물이 있는지 확인
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position, actualRadius, direction, distance, collisionMask);
+        float remainingDistance = distance;
 
-        if (hit.collider != null)
+        for (int i = 0; i < maxCollisionIterations; i++)
         {
-            // 2. 충돌 지점까지 우선 이동 (충돌 지점에서 아주 살짝 띄움)
-            float distanceToHit = hit.distance;
-            transform.Translate(direction * distanceToHit, Space.World);
+            // 1. CircleCast로 이동 경로에 장애물이 있는지 확인
+            RaycastHit2D hit = Physics2D.CircleCast(transform.position, actualRadius, direction, remainingDistance, collisionMask);
 
-            // 3. 충돌 대상에 따른 반사 방향 계산
-            float remainingDistance = distance - distanceToHit;
-            UpdateDirection(hit);
-
-            // 4. 남은 거리가 있다면 새로운 방향으로 다시 이동 (재귀 호출 방지를 위해 단순화)
-            if (remainingDistance > 0)
+            if (hit.collider != null)
             {
+                // 2. 충돌 지점까지 우선 이동 (충돌 지점에서 아주 살짝 띄움)
+                float distanceToHit = Mathf.Max(hit.distance - skinWidth, 0f);
+                transform.Translate(direction * distanceToHit, Space.World);
+
+                // 3. 충돌 대상에 따른 반사 방향 계산
+                remainingDistance -= distanceToHit;
+                UpdateDirection(hit);
+
+                if (remainingDistance <= 0.001f)
+                {
+                    break;
+                }
+            }
+            else
+            {
+                // 충돌이 없다면 지정된 거리만큼 직선 이동
                 transform.Translate(direction * remainingDistance, Space.World);
+                break;
             }
         }
-        else
-        {
-            // 충돌이 없다면 지정된 거리만큼 직선 이동
-            transform.Translate(direction * distance, Space.World);
-        }
+
         ResolveOverlap();
     }
 
@@ -102,12 +149,23 @@ public class BallController : MonoBehaviour
 
         if (hitObj != null)
         {
-            hitObj.OnBallHit();
+            hitObj.OnBallHit(); 
+        }
+
+        var damageObj = hit.collider.GetComponentInParent<IBallDamagable>();
+
+        if (damageObj != null)
+        {
+            damageObj.GetDamaged(power);
         }
 
         // 패들 충돌 로직
         if (obj.name.Contains("paddle_up") || obj.name.Contains("paddle_down") || obj.name.Contains("roof_paddle"))
         {
+            if (Time.time < lastHitTime + colliderCooldown)
+                return;
+
+            lastHitTime = Time.time;
             razerManager.CheckBounceCount();
             // 1. 비율 계산 (이미 3으로 잘 나온다면 이 값은 -1 ~ 1 사이가 될 것임)
             float xOffset = (transform.position.x - obj.transform.position.x) / (3f / 2f);
@@ -139,6 +197,7 @@ public class BallController : MonoBehaviour
         }
         else
         {
+            GetSlower();
             // 벽이나 기타 오브젝트: 일반적인 물리 반사 법칙 적용
             direction = Vector2.Reflect(direction, hit.normal).normalized;
             razerManager.Reset();
@@ -178,12 +237,16 @@ public class BallController : MonoBehaviour
     }
 
     // 에디터 씬 뷰에서 공의 충돌 범위를 확인하기 위한 기즈모
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, actualRadius);
-    }
+   
+    private void GetSlower()
+    { 
+        if (Time.time < lastDamagedTime + damagedCooldown)
+            return;
 
+        lastDamagedTime = Time.time;
+        
+        speed -= blockSpeedDecrease;
+    }
 
 
     //void LaunchBall()

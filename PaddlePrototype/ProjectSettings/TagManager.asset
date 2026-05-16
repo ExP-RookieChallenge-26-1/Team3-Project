@@ -42,14 +42,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: background
     uniqueID: 2316688509
     locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
   - name: ball
     uniqueID: 2994974985
+    locked: 0
+  - name: UI
+    uniqueID: 194398123
     locked: 0
   m_RenderingLayers:
   - Default

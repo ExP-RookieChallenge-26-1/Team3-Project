@@ -1,11 +1,13 @@
 using System.Linq;
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.Serialization;
 
 public class LaserShooter : MonoBehaviour
 {
+    [SerializeField] private ScriptableObjectScripts.LaserGaugeData laserGaugeData;
     [SerializeField] ChargingLaserManager chargingManager;
-    
+    [SerializeField] private float sameRowYTolerance = 0.05f;
     
     [SerializeField] private Transform ball;
     [SerializeField] private LayerMask targetLayer;
@@ -29,7 +31,14 @@ public class LaserShooter : MonoBehaviour
      *
      */
 
-    
+    private void Start()
+    {
+        baseWidth = laserGaugeData.baseWidth;
+        widthPerCharge = laserGaugeData.widthPerCharge;
+        range = laserGaugeData.range;
+        startOffset = laserGaugeData.startOffset;
+        ballSpawnBackOffset = laserGaugeData.ballSpawnBackOffset;
+    }
 
     public void Shoot(int chargeCount)
     {
@@ -49,48 +58,86 @@ public class LaserShooter : MonoBehaviour
     }
 
     private Vector2 FireSegment(Vector2 origin, Vector2 dir, float distance, float width)
+{
+    Vector2 start = origin + dir.normalized * startOffset;
+    Vector2 endPoint = start + dir.normalized * distance;
+
+    RaycastHit2D[] hits = Physics2D.BoxCastAll(
+        start,
+        new Vector2(width, 0.1f),
+        Vector2.SignedAngle(Vector2.up, dir),
+        dir,
+        distance,
+        stopLayer
+    );
+
+    hits = hits
+        .Where(hit => hit.collider != null)
+        .OrderBy(hit => hit.distance)
+        .ToArray();
+
+    bool foundFixedRow = false;
+    float fixedRowY = 0f;
+
+    HashSet<BrickCell> destroyedBricks = new HashSet<BrickCell>();
+
+    foreach (RaycastHit2D hit in hits)
     {
-        // startOffset을 통해 공보다 살짝 앞에 있도록
-        Vector2 start = origin + dir.normalized * startOffset;
-        Vector2 endPoint = start + dir.normalized * distance;
+        BrickCell brick = hit.collider.GetComponentInParent<BrickCell>();
 
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(
-            start,
-            new Vector2(width, 0.1f), // 감지 박스 하나의 크기
-            Vector2.SignedAngle(Vector2.up, dir), // 박스 회전 각도
-            dir, // 감지 진행 방향
-            distance, // 감지 진행 거리
-            stopLayer
-        );
-
-        hits = hits
-            .Where(hit => hit.collider != null)
-            .OrderBy(hit => hit.distance)
-            .ToArray();
-
-        foreach (RaycastHit2D hit in hits)
+        if (brick != null)
         {
-            BrickCell brick = hit.collider.GetComponentInParent<BrickCell>();
-            if (brick != null)
+            if (destroyedBricks.Contains(brick))
+                continue;
+
+            // 아직 고정 브릭 줄을 만나기 전
+            if (!foundFixedRow)
             {
                 Debug.Log("레이저가 브릭 감지: " + brick.name);
+
+                bool isFixed = brick.IsFixedBrick();
+
                 brick.DestroybyLaser();
-                if (brick.IsFixedBrick())
+                destroyedBricks.Add(brick);
+
+                if (isFixed)
                 {
+                    foundFixedRow = true;
+                    fixedRowY = brick.transform.position.y;
                     endPoint = hit.point;
-                    break;
                 }
+
                 continue;
             }
-            
-            Debug.Log("레이저가 벽/천장 감지: " + hit.collider.name);
-            endPoint = hit.point;
+
+            // 이미 고정 브릭 줄을 만난 이후:
+            // 같은 y줄의 브릭은 모두 파괴
+            if (Mathf.Abs(brick.transform.position.y - fixedRowY) <= sameRowYTolerance)
+            {
+                Debug.Log("레이저가 같은 y줄 브릭 감지: " + brick.name);
+
+                brick.DestroybyLaser();
+                destroyedBricks.Add(brick);
+
+                continue;
+            }
+
+            // 다른 y줄 브릭이면 레이저 종료
             break;
         }
-        
-        
-        return endPoint;
+
+        // 벽/천장 처리
+        if (!foundFixedRow)
+        {
+            Debug.Log("레이저가 벽/천장 감지: " + hit.collider.name);
+            endPoint = hit.point;
+        }
+
+        break;
     }
+
+    return endPoint;
+}
     
     private void OnDrawGizmos()
     {

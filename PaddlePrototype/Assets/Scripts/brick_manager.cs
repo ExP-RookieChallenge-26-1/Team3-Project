@@ -1,9 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using ScriptableObjectScripts;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BrickManager : MonoBehaviour
 {
+    
+    [SerializeField] private BrickManagerData brickData;
     private int currentVersion = 0;
 
     [System.Serializable]
@@ -14,6 +19,9 @@ public class BrickManager : MonoBehaviour
         public int priority = 0;
         public float weight = 1f;
     }
+    [Header("Game Over")]
+    [SerializeField] private GameManager gameManager;
+    [SerializeField]private int gameOverRow;
 
     [System.Serializable]
     public class FixedBrickData
@@ -112,8 +120,40 @@ public class BrickManager : MonoBehaviour
 
     private void Awake()
     {
+        
+        
+    }
+    private void Start()
+    {
+        brickPrefab = brickData.brickPrefab;
+        fixedBrickPrefab = brickData.fixedBrickPrefab;
+
+        fixedBricks = brickData.fixedBricks;
+
+        rowCount = brickData.rowCount;
+        columnCount = brickData.columnCount;
+        cellWidth = brickData.cellWidth;
+        cellHeight = brickData.cellHeight;
+        brickSizeRatio = brickData.brickSizeRatio;
+
+        startPosition = brickData.startPosition;
+
+        spawnInterval = brickData.spawnInterval;
+        minGrowPerTick = brickData.minGrowPerTick;
+        maxGrowPerTick = brickData.maxGrowPerTick;
+
+        rowWeightMultiplier = brickData.rowWeightMultiplier;
+        rowPriorityStep = brickData.rowPriorityStep;
+
+        onlyGrowFromStartConnectedBricks = brickData.onlyGrowFromStartConnectedBricks;
+
+        directions = brickData.directions;
+        startCells = brickData.startCells;
+        
+        
         ResetBricks();
     }
+    
 
     public void ResetBricks()
     {
@@ -205,7 +245,7 @@ public class BrickManager : MonoBehaviour
 
         if (prefab == null)
         {
-            Debug.LogError("Fixed Brick PrefabÀÌ ¾ø½À´Ï´Ù.");
+            Debug.LogError("Fixed Brick Prefabï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
             return;
         }
 
@@ -239,7 +279,7 @@ public class BrickManager : MonoBehaviour
 
         if (brickPrefab == null)
         {
-            Debug.LogError("Brick PrefabÀÌ ¾ø½À´Ï´Ù.");
+            Debug.LogError("Brick Prefabï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
             return;
         }
 
@@ -259,7 +299,17 @@ public class BrickManager : MonoBehaviour
         if (brickCell == null)
             brickCell = brick.AddComponent<BrickCell>();
 
+        
+        if (cell.y >= gameOverRow)
+        {
+            Debug.Log(cell.y);
+            Debug.Log(gameOverRow);
+            gameManager.RestartGame();
+        }
+        
         brickCell.Init(this, cell, false, currentVersion);
+        
+        
     }
 
     private List<GrowthCandidate> GetGrowthCandidates()
@@ -455,7 +505,7 @@ public class BrickManager : MonoBehaviour
     private void FitBrickToCell(GameObject brick)
     {
         brick.transform.localScale = new Vector3(
-            cellWidth * brickSizeRatio,
+            cellWidth/2 * brickSizeRatio,
             cellHeight * brickSizeRatio,
             1f
         );

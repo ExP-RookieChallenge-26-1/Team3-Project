@@ -384,7 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705ba1ecde105c1408ca7f5cf1c476f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::paddle_movement_upper
-  moveSpeed: 25
+  moveSpeed: 30
   paddleWidth: 0.7
   activeCollisionEnabled: 1
 --- !u!68 &226265237
@@ -612,8 +612,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -993, y: 703}
-  m_SizeDelta: {x: 400, y: 200}
+  m_AnchoredPosition: {x: -275.8, y: 177.32965}
+  m_SizeDelta: {x: 261.8842, y: 115.2807}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &305040111
 MonoBehaviour:
@@ -662,8 +662,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 92.16
-  m_fontSizeBase: 92.16
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1074,8 +1074,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -1525,7 +1525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb25bf6209b1fb4ab6b7a8e15247184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PadController
-  moveSpeed: 25
+  moveSpeed: 30
   paddleWidth: 0.7
   activeCollisionEnabled: 1
 --- !u!60 &729019798
@@ -1884,7 +1884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb25bf6209b1fb4ab6b7a8e15247184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GroundPadController
-  moveSpeed: 25
+  moveSpeed: 30
   paddleWidth: 0.7
   activeCollisionEnabled: 1
 --- !u!68 &1061203052
@@ -2010,16 +2010,16 @@ MonoBehaviour:
   directions:
   - name: Down
     direction: {x: 0, y: 1}
-    priority: 0
+    priority: 1
     weight: 5
   - name: Left
     direction: {x: -1, y: 0}
     priority: 1
-    weight: 1
+    weight: 2
   - name: Right
     direction: {x: 1, y: 0}
     priority: 1
-    weight: 1
+    weight: 2
   startCells:
   - {x: 0, y: 0}
   - {x: 6, y: 0}
@@ -2107,7 +2107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705ba1ecde105c1408ca7f5cf1c476f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::paddle_movement_upper
-  moveSpeed: 25
+  moveSpeed: 30
   paddleWidth: 0.7
   activeCollisionEnabled: 1
 --- !u!114 &1242489113
@@ -2335,19 +2335,20 @@ MonoBehaviour:
   baseSpeed: 25
   maxSpeed: 50
   basePower: 10
-  paddleSpeedIncrease: 5
+  paddleSpeedIncrease: 3
   paddlePowerIncrease: 10
-  blockSpeedDecrease: 5
+  blockSpeedDecrease: 6
   blockPowerDecrease: 10
   centerPullStrength: 1.5
   centerZone: 0.7
   ballRadius: 0.7
-  skinWidth: 0.02
+  skinWidth: 0.03
   _outsideMaxBounceAngle: 50
-  _insideMaxBounceAngle: 50
+  _insideMaxBounceAngle: 40
   collisionMask:
     serializedVersion: 2
     m_Bits: 64
+  maxCollisionIterations: 5
   razerManager: {fileID: 1387697787}
 --- !u!50 &1250265849
 Rigidbody2D:
@@ -2773,8 +2774,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 900, y: 600}
-  m_SizeDelta: {x: 400, y: 200}
+  m_AnchoredPosition: {x: 443.41, y: 193.02}
+  m_SizeDelta: {x: 251.1866, y: 114.9637}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1665459939
 MonoBehaviour:
@@ -3350,8 +3351,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -966, y: 105}
-  m_SizeDelta: {x: 400, y: 200}
+  m_AnchoredPosition: {x: -279.63, y: -167.35965}
+  m_SizeDelta: {x: 261.8842, y: 115.2807}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2110146576
 MonoBehaviour:
@@ -3400,8 +3401,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 92.16
-  m_fontSizeBase: 92.16
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

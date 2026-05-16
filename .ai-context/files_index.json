@@ -15253,13 +15253,14 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "file_name": "LaserChargeController.cs",
-    "content_hash": "e8ee2958132610d3fc1e1f130747299404451716",
-    "size": 2182,
-    "line_count": 97,
+    "content_hash": "3bd870bbce702b1ae1c1053f2b2ead8db973f6df",
+    "size": 2222,
+    "line_count": 98,
     "namespace": "",
     "using_list": [
       "UnityEngine",
-      "UnityEngine.Serialization"
+      "UnityEngine.Serialization",
+      "ScriptableObjectScripts"
     ],
     "classes": [
       {
@@ -15293,7 +15294,7 @@
         "name": "isDribbling",
         "type": "bool",
         "access": "private",
-        "serialized": true,
+        "serialized": false,
         "is_static": false
       },
       {
@@ -15305,13 +15306,6 @@
       },
       {
         "name": "chargeCount",
-        "type": "int",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "maxChargeCount",
         "type": "int",
         "access": "private",
         "serialized": false,
@@ -15332,7 +15326,7 @@
     "has_start": false,
     "has_on_enable": true,
     "has_on_disable": true,
-    "serialize_field_count": 1,
+    "serialize_field_count": 0,
     "public_field_count": 0,
     "get_component_count": 0,
     "find_call_count": 0,
@@ -15346,6 +15340,8 @@
       "int",
       "UnityEngine",
       "Serialization",
+      "ScriptableObjectScripts",
+      "LaserGaugeData",
       "ChargeZone",
       "FormerlySerializedAs",
       "GaugeManager",
@@ -15370,11 +15366,10 @@
       "guageManger"
     ],
     "numeric_literals": [
-      3,
-      0,
-      3
+      0
     ],
     "guessed_roles": [
+      "data",
       "runtime",
       "save-load",
       "manager"
@@ -15382,7 +15377,6 @@
     "summary_signals": [
       "런타임 컴포넌트",
       "Update 기반 처리 존재",
-      "인스펙터 직렬화 필드 사용",
       "저장/불러오기 관련 로직 포함"
     ]
   },
@@ -15390,11 +15384,12 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserShooter.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserShooter.cs",
     "file_name": "LaserShooter.cs",
-    "content_hash": "f58c967bc1069aa7209730ef4157e840d451e825",
-    "size": 169,
-    "line_count": 14,
+    "content_hash": "b585c227642ceca5081c96653bba0f165b42b207",
+    "size": 288,
+    "line_count": 16,
     "namespace": "",
     "using_list": [
+      "ScriptableObjectScripts",
       "UnityEngine"
     ],
     "classes": [
@@ -15436,7 +15431,9 @@
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
+      "ScriptableObjectScripts",
       "UnityEngine",
+      "LaserGaugeData",
       "ShootLaser",
       "Log",
       "Shoot"
@@ -15449,10 +15446,13 @@
     ],
     "numeric_literals": [],
     "guessed_roles": [
+      "data",
+      "save-load",
       "runtime"
     ],
     "summary_signals": [
-      "런타임 컴포넌트"
+      "런타임 컴포넌트",
+      "저장/불러오기 관련 로직 포함"
     ]
   },
   {
@@ -15662,6 +15662,675 @@
       "저장/불러오기 관련 로직 포함",
       "컴포넌트 조회 사용",
       "Find 계열 탐색 사용"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/ScriptableObjectScripts/BallBalanceData.cs",
+    "path": "ProjectDribble/Assets/Scripts/ScriptableObjectScripts/BallBalanceData.cs",
+    "file_name": "BallBalanceData.cs",
+    "content_hash": "594979d8ba0a88d17fc7787d573277d8f8fa6c22",
+    "size": 705,
+    "line_count": 31,
+    "namespace": "ScriptableObjectScripts",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "BallBalanceData",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "ScriptableObject"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "BallBalanceData",
+    "unity_type": "ScriptableObject",
+    "methods": [],
+    "fields": [
+      {
+        "name": "baseSpeed",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "maxSpeed",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "basePower",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "paddleSpeedIncrease",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "paddlePowerIncrease",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "blockSpeedDecrease",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "blockPowerDecrease",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "centerPullStrength",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "centerZone",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "outsideMaxBounceAngle",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "insideMaxBounceAngle",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 11,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "float",
+      "UnityEngine",
+      "ScriptableObjectScripts",
+      "CreateAssetMenu",
+      "Game",
+      "Ball",
+      "Balance",
+      "Base",
+      "Paddle",
+      "Block",
+      "Bounce"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Game/Ball Balance",
+      "Base",
+      "Paddle",
+      "Block",
+      "Bounce"
+    ],
+    "numeric_literals": [
+      25,
+      40,
+      10,
+      3,
+      6,
+      1,
+      0.2,
+      50
+    ],
+    "guessed_roles": [
+      "data"
+    ],
+    "summary_signals": [
+      "데이터 자산 중심 구조"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/ScriptableObjectScripts/BrickManagerData.cs",
+    "path": "ProjectDribble/Assets/Scripts/ScriptableObjectScripts/BrickManagerData.cs",
+    "file_name": "BrickManagerData.cs",
+    "content_hash": "4f1d13f750489814d15cdc9c9d4ac2dc612de943",
+    "size": 1880,
+    "line_count": 75,
+    "namespace": "ScriptableObjectScripts",
+    "using_list": [
+      "System.Collections.Generic",
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "BrickManagerData",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "ScriptableObject"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "BrickManagerData",
+    "unity_type": "ScriptableObject",
+    "methods": [
+      "Vector2",
+      "Vector2Int"
+    ],
+    "fields": [
+      {
+        "name": "brickPrefab",
+        "type": "GameObject",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "fixedBrickPrefab",
+        "type": "GameObject",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "rowCount",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "columnCount",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "cellWidth",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "cellHeight",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "brickSizeRatio",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "spawnInterval",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "minGrowPerTick",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "maxGrowPerTick",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "rowWeightMultiplier",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "rowPriorityStep",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "onlyGrowFromStartConnectedBricks",
+        "type": "bool",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 13,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 9,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "int",
+      "float",
+      "bool",
+      "System",
+      "Collections",
+      "Generic",
+      "UnityEngine",
+      "ScriptableObjectScripts",
+      "CreateAssetMenu",
+      "Game",
+      "Brick",
+      "Manager",
+      "Data",
+      "Prefabs",
+      "Fixed",
+      "Bricks",
+      "BrickManager",
+      "FixedBrickData",
+      "Grid",
+      "Map",
+      "Position",
+      "Vector2",
+      "Growth",
+      "Timing",
+      "Row",
+      "Weight",
+      "Priority",
+      "Connection",
+      "Rule",
+      "Directions",
+      "GrowthDirection",
+      "Down",
+      "Vector2Int",
+      "Left",
+      "Right",
+      "Start"
+    ],
+    "component_access_types": [],
+    "created_types": [
+      "Vector2",
+      "Vector2Int"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Game/Brick Manager Data",
+      "Brick Prefabs",
+      "Fixed Bricks",
+      "Grid",
+      "Map Position",
+      "Growth Timing",
+      "Row Weight",
+      "Row Priority",
+      "Connection Rule",
+      "Growth Directions",
+      "Down",
+      "Left",
+      "Right",
+      "Start Bricks"
+    ],
+    "numeric_literals": [
+      15,
+      7,
+      1.5,
+      0.8,
+      4.5,
+      7.5,
+      0.7,
+      2,
+      0.2,
+      5,
+      3,
+      6
+    ],
+    "guessed_roles": [
+      "data",
+      "manager",
+      "runtime"
+    ],
+    "summary_signals": [
+      "데이터 자산 중심 구조"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/ScriptableObjectScripts/LaserBalanceData.cs",
+    "path": "ProjectDribble/Assets/Scripts/ScriptableObjectScripts/LaserBalanceData.cs",
+    "file_name": "LaserBalanceData.cs",
+    "content_hash": "ab800f67f2b0c1a40c5de6ae4b9edc29307e48ad",
+    "size": 686,
+    "line_count": 26,
+    "namespace": "ScriptableObjectScripts",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "LaserGaugeData",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "ScriptableObject"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "LaserGaugeData",
+    "unity_type": "ScriptableObject",
+    "methods": [],
+    "fields": [
+      {
+        "name": "baseWidth",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "widthPerCharge",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "range",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "startOffset",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "ballSpawnBackOffset",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "chargeTime",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "maxChargeCount",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "startGaugeValue",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "gaugePerSegment",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "maxGaugeSegments",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 10,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "float",
+      "int",
+      "UnityEngine",
+      "ScriptableObjectScripts",
+      "CreateAssetMenu",
+      "Game",
+      "Laser",
+      "Gauge",
+      "Data",
+      "Charging"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Game/Laser Gauge Data",
+      "Laser",
+      "Charging",
+      "Gauge"
+    ],
+    "numeric_literals": [
+      1,
+      0.5,
+      20,
+      0.3,
+      3,
+      3,
+      30,
+      10
+    ],
+    "guessed_roles": [
+      "data",
+      "combat",
+      "runtime"
+    ],
+    "summary_signals": [
+      "데이터 자산 중심 구조",
+      "전투 계열 로직 포함"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/ScriptableObjectScripts/PaddleBalanceData.cs",
+    "path": "ProjectDribble/Assets/Scripts/ScriptableObjectScripts/PaddleBalanceData.cs",
+    "file_name": "PaddleBalanceData.cs",
+    "content_hash": "61f18309d1bfc11ad35cf236bf6420cc9d663973",
+    "size": 484,
+    "line_count": 19,
+    "namespace": "ScriptableObjectScripts",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "PaddleData",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "ScriptableObject"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "PaddleData",
+    "unity_type": "ScriptableObject",
+    "methods": [],
+    "fields": [
+      {
+        "name": "moveSpeed",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "paddleWidth",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "debuffSpeed",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "activeCollisionEnabled",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "transparentAlpha",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 5,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "float",
+      "UnityEngine",
+      "ScriptableObjectScripts",
+      "CreateAssetMenu",
+      "Game",
+      "Paddle",
+      "Data",
+      "Movement",
+      "Collision",
+      "Visual"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Game/Paddle Data",
+      "Movement",
+      "Collision",
+      "Visual"
+    ],
+    "numeric_literals": [
+      50,
+      0.7,
+      20,
+      1,
+      0.3
+    ],
+    "guessed_roles": [
+      "data",
+      "player"
+    ],
+    "summary_signals": [
+      "데이터 자산 중심 구조"
     ]
   },
   {

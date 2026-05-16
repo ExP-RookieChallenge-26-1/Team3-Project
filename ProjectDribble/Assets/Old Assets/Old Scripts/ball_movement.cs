@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BallController : MonoBehaviour
+public class Balmove : MonoBehaviour
 {
     private float speed = 10f; // 공의 초기 속도
     [SerializeField] private float baseSpeed = 10f; // 공의 초기 속도
@@ -41,7 +41,7 @@ public class BallController : MonoBehaviour
         tr = GetComponent<Transform>();
         tr.localScale = new Vector3(ballRadius,ballRadius,ballRadius);
         cc = GetComponent<CircleCollider2D>();
-        actualRadius = cc.radius * ballRadius*1.5f;
+        actualRadius = cc.radius * ballRadius*1.75f;
         
     }
 

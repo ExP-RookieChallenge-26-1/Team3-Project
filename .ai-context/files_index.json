@@ -10820,8 +10820,8 @@
     "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
     "path": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
     "file_name": "ball_movement.cs",
-    "content_hash": "1917cadeb37e67a8de8cce31091be98e4c9cd631",
-    "size": 8273,
+    "content_hash": "84f6623ee93afc7898522c2a2d829002d4b39de8",
+    "size": 8267,
     "line_count": 276,
     "namespace": "",
     "using_list": [
@@ -10829,7 +10829,7 @@
     ],
     "classes": [
       {
-        "name": "BallController",
+        "name": "Balmove",
         "kind": "class",
         "access": "public",
         "base_types": [
@@ -10841,7 +10841,7 @@
         "is_generic": false
       }
     ],
-    "main_class_name": "BallController",
+    "main_class_name": "Balmove",
     "unity_type": "MonoBehaviour",
     "methods": [
       "Start",
@@ -11053,7 +11053,7 @@
       50,
       0.5,
       1,
-      1.5,
+      1.75,
       0.025,
       2,
       3,
@@ -13370,11 +13370,733 @@
     ]
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "path": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "file_name": "BallCollisionHandler.cs",
+    "content_hash": "ed6398099e89ce4b50f82edb40df4a2e945326b9",
+    "size": 1710,
+    "line_count": 54,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "BallCollisionHandler",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "BallCollisionHandler",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Start",
+      "Update",
+      "CheckAndHandleCollision"
+    ],
+    "fields": [
+      {
+        "name": "tr",
+        "type": "Transform",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "cc",
+        "type": "CircleCollider2D",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "BallMovement",
+        "type": "BallMovement",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "BallSpeedController",
+        "type": "BallSpeedController",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "moveDistance",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Start",
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": true,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 4,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "CircleCollider2D",
+      "BallMovement",
+      "BallSpeedController",
+      "float",
+      "UnityEngine",
+      "Start",
+      "GetComponent",
+      "Update",
+      "Vector2",
+      "CheckAndHandleCollision",
+      "LayerMask",
+      "CircleCast",
+      "RaycastHit2D",
+      "Physics2D",
+      "UpdateDirection",
+      "Reset",
+      "ResolveOverlap"
+    ],
+    "component_access_types": [
+      "BallMovement",
+      "BallSpeedController",
+      "Transform",
+      "CircleCollider2D"
+    ],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "runtime",
+      "player",
+      "combat"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재",
+      "전투 계열 로직 포함",
+      "컴포넌트 조회 사용"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "path": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "file_name": "BallController.cs",
+    "content_hash": "2378e48e3eca7493b2eae3b55f3e7f3621720f79",
+    "size": 1657,
+    "line_count": 55,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "BallController",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "BallController",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Start",
+      "Vector3",
+      "Vector2",
+      "Update",
+      "SetBallDirection",
+      "OnDrawGizmos"
+    ],
+    "fields": [
+      {
+        "name": "actualRadius",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "direction",
+        "type": "Vector2",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "tr",
+        "type": "Transform",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "cc",
+        "type": "CircleCollider2D",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "BallMovement",
+        "type": "BallMovement",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "BallCollisionHandler",
+        "type": "BallCollisionHandler",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "BallSpeedController",
+        "type": "BallSpeedController",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Start",
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": true,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 2,
+    "get_component_count": 5,
+    "find_call_count": 0,
+    "new_keyword_count": 3,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "float",
+      "Vector2",
+      "CircleCollider2D",
+      "BallMovement",
+      "BallCollisionHandler",
+      "BallSpeedController",
+      "UnityEngine",
+      "LayerMask",
+      "Start",
+      "GetComponent",
+      "Vector3",
+      "Update",
+      "MoveBall",
+      "AdjustSpeed",
+      "SetBallDirection",
+      "OnDrawGizmos",
+      "Gizmos",
+      "Color",
+      "DrawWireSphere"
+    ],
+    "component_access_types": [
+      "BallMovement",
+      "BallCollisionHandler",
+      "BallSpeedController",
+      "Transform",
+      "CircleCollider2D"
+    ],
+    "created_types": [
+      "Vector3",
+      "Vector2"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [
+      0.7,
+      1.25,
+      0.5,
+      1,
+      2
+    ],
+    "guessed_roles": [
+      "runtime",
+      "player",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "path": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "file_name": "BallMovement.cs",
+    "content_hash": "f9c6e3b5d4d9e1022eb27667d34df76a5176d93e",
+    "size": 5764,
+    "line_count": 167,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "BallMovement",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "BallMovement",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Start",
+      "Update",
+      "MoveBall",
+      "UpdateDirection",
+      "ResolveOverlap",
+      "SetBallSpeed",
+      "AddBallSpeed",
+      "SetBallBaseSpeed",
+      "AddBallBaseSpeed",
+      "SetBallMaxSpeed",
+      "AddBallMaxSpeed"
+    ],
+    "fields": [
+      {
+        "name": "moveDistance",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "tr",
+        "type": "Transform",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "cc",
+        "type": "CircleCollider2D",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "BallController",
+        "type": "BallController",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "BallCollisionHandler",
+        "type": "BallCollisionHandler",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "BallSpeedController",
+        "type": "BallSpeedController",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "distanceToHit",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "remainingDistance",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "obj",
+        "type": "GameObject",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "targetAngle",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Start",
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": true,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 1,
+    "get_component_count": 4,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "float",
+      "CircleCollider2D",
+      "BallController",
+      "BallCollisionHandler",
+      "BallSpeedController",
+      "UnityEngine",
+      "Start",
+      "GetComponent",
+      "Update",
+      "MoveBall",
+      "Vector2",
+      "LayerMask",
+      "CircleCast",
+      "RaycastHit2D",
+      "Physics2D",
+      "Translate",
+      "Space",
+      "World",
+      "UpdateDirection",
+      "ResolveOverlap",
+      "GetComponentInParent",
+      "IBallHitReceiver",
+      "OnBallHit",
+      "Contains",
+      "CheckBounceCount",
+      "Clamp",
+      "Lerp",
+      "Abs",
+      "Quaternion",
+      "Euler",
+      "Reflect",
+      "Reset",
+      "Collider2D",
+      "OverlapCircle",
+      "CompareTag",
+      "ClosestPoint",
+      "Vector3",
+      "SetBallSpeed",
+      "AddBallSpeed",
+      "SetBallBaseSpeed",
+      "AddBallBaseSpeed",
+      "SetBallMaxSpeed",
+      "AddBallMaxSpeed"
+    ],
+    "component_access_types": [
+      "Transform",
+      "CircleCollider2D",
+      "BallCollisionHandler",
+      "BallSpeedController"
+    ],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [
+      "paddle_up",
+      "paddle_down",
+      "roof_paddle",
+      "need_correction"
+    ],
+    "numeric_literals": [
+      10,
+      30,
+      0.1,
+      50,
+      2,
+      3,
+      4,
+      3,
+      2,
+      1,
+      0.0001
+    ],
+    "guessed_roles": [
+      "runtime",
+      "player",
+      "combat",
+      "save-load",
+      "manager"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/BallPowerController.cs",
+    "path": "ProjectDribble/Assets/Scripts/BallPowerController.cs",
+    "file_name": "BallPowerController.cs",
+    "content_hash": "e347a76849e89e63f7472520eb8996ad39c3be76",
+    "size": 290,
+    "line_count": 17,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "BallPowerController",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "BallPowerController",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Start",
+      "Update"
+    ],
+    "fields": [],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Start",
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": true,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "UnityEngine",
+      "Start",
+      "Update"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "runtime"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "path": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "file_name": "BallSpeedController.cs",
+    "content_hash": "71cea75a90d8a0eb5ac56bb34649cfb2428b8cda",
+    "size": 1759,
+    "line_count": 56,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "BallSpeedController",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "BallSpeedController",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Start",
+      "Update",
+      "AdjustSpeed"
+    ],
+    "fields": [
+      {
+        "name": "tr",
+        "type": "Transform",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "cc",
+        "type": "CircleCollider2D",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "BallMovement",
+        "type": "BallMovement",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "BallController",
+        "type": "BallController",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "moveDistance",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Start",
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": true,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 4,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "CircleCollider2D",
+      "BallMovement",
+      "BallController",
+      "float",
+      "UnityEngine",
+      "PaddleSpeedIncrease",
+      "BlockSpeedDecrease",
+      "Start",
+      "Update",
+      "GetComponent",
+      "SetBallSpeed",
+      "AdjustSpeed",
+      "Vector2",
+      "LayerMask",
+      "CircleCast",
+      "RaycastHit2D",
+      "Physics2D",
+      "AddBallSpeed"
+    ],
+    "component_access_types": [
+      "BallMovement",
+      "BallController",
+      "Transform",
+      "CircleCollider2D"
+    ],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [
+      "paddle_down",
+      "wall_up"
+    ],
+    "numeric_literals": [
+      5,
+      5
+    ],
+    "guessed_roles": [
+      "runtime",
+      "player",
+      "combat",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
+    ]
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/Guage.cs",
     "path": "ProjectDribble/Assets/Scripts/Guage.cs",
     "file_name": "Guage.cs",
-    "content_hash": "9575f1aa656100ea9e3c5d6f5f64a8c265161e02",
-    "size": 263,
+    "content_hash": "211fc2d8385b42fdd91ab75f18bd7c92907a5d07",
+    "size": 265,
     "line_count": 14,
     "namespace": "",
     "using_list": [
@@ -13439,6 +14161,215 @@
       "런타임 컴포넌트",
       "UI 관련 로직 포함",
       "저장/불러오기 관련 로직 포함"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "path": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "file_name": "PaddleController.cs",
+    "content_hash": "363b12950334d46362853724cf324a5ff4c77443",
+    "size": 4573,
+    "line_count": 139,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine",
+      "UnityEngine.InputSystem",
+      "UnityEngine.U2D"
+    ],
+    "classes": [
+      {
+        "name": "PaddleMovement",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "PaddleMovement",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Start",
+      "Update",
+      "MovePad",
+      "Vector3",
+      "SetPaddleAlpha",
+      "SetPaddleCollider",
+      "SetPaddleSpeed",
+      "AddPaddleSpeed"
+    ],
+    "fields": [
+      {
+        "name": "transparentAlpha",
+        "type": "float",
+        "access": "private",
+        "serialized": true,
+        "is_static": false
+      },
+      {
+        "name": "mainCamera",
+        "type": "Camera",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "tr",
+        "type": "Transform",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "isCollisionOn",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "paddle_up",
+        "type": "Transform",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "paddle_down",
+        "type": "Transform",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "roof_paddle",
+        "type": "Transform",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "up_shape",
+        "type": "SpriteShapeRenderer",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "up_collider",
+        "type": "Collider2D",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "currentColor",
+        "type": "Color",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Start",
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": true,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 1,
+    "public_field_count": 0,
+    "get_component_count": 5,
+    "find_call_count": 2,
+    "new_keyword_count": 3,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "float",
+      "Camera",
+      "bool",
+      "SpriteShapeRenderer",
+      "Collider2D",
+      "Color",
+      "UnityEngine",
+      "InputSystem",
+      "U2D",
+      "Start",
+      "Find",
+      "GetComponent",
+      "Update",
+      "Mouse",
+      "MovePad",
+      "SetPaddleAlpha",
+      "SetPaddleCollider",
+      "Vector2",
+      "ReadValue",
+      "Vector3",
+      "ScreenToWorldPoint",
+      "MoveTowards",
+      "Clamp",
+      "SpriteRenderer",
+      "Alpha",
+      "LogWarning",
+      "Box",
+      "Circle",
+      "Capsule",
+      "SetPaddleSpeed",
+      "AddPaddleSpeed"
+    ],
+    "component_access_types": [
+      "SpriteShapeRenderer",
+      "Collider2D",
+      "Transform"
+    ],
+    "created_types": [
+      "Vector3"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "paddle_up",
+      "paddle_down",
+      "roof_paddle",
+      "{childName} 오브젝트에 SpriteRenderer가 없습니다.",
+      "{childName}이라는 이름의 자식 오브젝트를 찾을 수 없습니다.",
+      "{childName} 오브젝트에 Collider2D가 없습니다."
+    ],
+    "numeric_literals": [
+      15,
+      0.7,
+      1,
+      0.3,
+      1,
+      5.5,
+      2,
+      3,
+      0
+    ],
+    "guessed_roles": [
+      "runtime",
+      "player",
+      "ui",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재",
+      "인스펙터 직렬화 필드 사용",
+      "UI 관련 로직 포함",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용",
+      "Find 계열 탐색 사용"
     ]
   },
   {

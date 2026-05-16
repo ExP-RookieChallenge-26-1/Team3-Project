@@ -27,6 +27,33 @@
     "risk_score": 100
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "class_name": "PaddleMovement",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "getcomponent-heavy",
+      "find-heavy",
+      "magic-number-heavy",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "ui-runtime-mixed",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
+      "GetComponent/TryGetComponent 호출이 많음",
+      "Find 계열 탐색 사용",
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 100
+  },
+  {
     "file_id": "ProjectDribble/Assets/TextMesh Pro/Examples & Extras/Scripts/TextMeshProFloatingText.cs",
     "class_name": "TextMeshProFloatingText",
     "risk_flags": [
@@ -351,7 +378,7 @@
   },
   {
     "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "class_name": "BallController",
+    "class_name": "Balmove",
     "risk_flags": [
       "update-heavy",
       "high-coupling",
@@ -601,6 +628,29 @@
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 79
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "class_name": "BallMovement",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "getcomponent-heavy",
+      "magic-number-heavy",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
+      "GetComponent/TryGetComponent 호출이 많음",
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 78
   },
   {
     "file_id": "PaddlePrototype/Assets/Scripts/paddle_movement_ground.cs",
@@ -946,6 +996,48 @@
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 76
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "class_name": "BallController",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "getcomponent-heavy",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
+      "GetComponent/TryGetComponent 호출이 많음",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 70
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "class_name": "BallSpeedController",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "getcomponent-heavy",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
+      "GetComponent/TryGetComponent 호출이 많음",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 70
   },
   {
     "file_id": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
@@ -1403,6 +1495,25 @@
       "초기화 순서에 민감할 가능성",
       "저장/불러오기 관련 로직 포함",
       "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 58
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "class_name": "BallCollisionHandler",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "getcomponent-heavy",
+      "init-order-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
+      "GetComponent/TryGetComponent 호출이 많음",
+      "초기화 순서에 민감할 가능성",
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 58
@@ -1935,6 +2046,17 @@
   {
     "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/paddle_debuff.cs",
     "class_name": "PaddleDebuff",
+    "risk_flags": [
+      "update-heavy"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용"
+    ],
+    "risk_score": 10
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/BallPowerController.cs",
+    "class_name": "BallPowerController",
     "risk_flags": [
       "update-heavy"
     ],

@@ -6,7 +6,6 @@ public class LaserShooter : MonoBehaviour
 {
     [SerializeField] ChargingLaserManager chargingManager;
     
-    
     [SerializeField] private Transform ball;
     [SerializeField] private LayerMask targetLayer;
     [SerializeField] private LayerMask stopLayer; // Brick + Wall/Ceiling 포함

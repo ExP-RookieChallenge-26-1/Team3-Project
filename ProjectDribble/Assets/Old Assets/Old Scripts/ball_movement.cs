@@ -30,7 +30,6 @@ public class BallController : MonoBehaviour
     private Vector2 direction;
     private CircleCollider2D cc;
     private bool isGameStarted = false;
-    [SerializeField] private ChargingLaserManager razerManager;
 
     void Start()
     {
@@ -105,7 +104,7 @@ public class BallController : MonoBehaviour
         // 패들 충돌 로직
         if (obj.name.Contains("paddle_up") || obj.name.Contains("paddle_down") || obj.name.Contains("roof_paddle"))
         {
-            razerManager.CheckBounceCount();
+            
             // 1. 비율 계산 (이미 3으로 잘 나온다면 이 값은 -1 ~ 1 사이가 될 것임)
             float xOffset = (transform.position.x - obj.transform.position.x) / (3f / 2f);
             xOffset = Mathf.Clamp(xOffset, -1f, 1f);
@@ -138,7 +137,6 @@ public class BallController : MonoBehaviour
         {
             // 벽이나 기타 오브젝트: 일반적인 물리 반사 법칙 적용
             direction = Vector2.Reflect(direction, hit.normal).normalized;
-            razerManager.Reset();
         }
     }
 

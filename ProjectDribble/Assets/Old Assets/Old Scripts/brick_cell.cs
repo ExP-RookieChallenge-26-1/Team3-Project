@@ -28,7 +28,7 @@ public class BrickCell : MonoBehaviour, IBallHitReceiver
         this.isFixed = isFixed;
         this.version = version;
     }
-
+    
     public void OnBallHit()
     {
         if (isFixed)

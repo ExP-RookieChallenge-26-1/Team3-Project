@@ -3,8 +3,8 @@
     "file_id": "PaddlePrototype/Assets/Scripts/ball_movement.cs",
     "path": "PaddlePrototype/Assets/Scripts/ball_movement.cs",
     "file_name": "ball_movement.cs",
-    "content_hash": "13fabe9d15e41744e1409544e9c84c8ad5214288",
-    "size": 10062,
+    "content_hash": "ace40086f626e8dbdda96c8860433a7b6616c257",
+    "size": 10061,
     "line_count": 301,
     "namespace": "",
     "using_list": [
@@ -236,8 +236,8 @@
       0.5,
       1,
       1.5,
-      0,
       2,
+      0,
       3,
       3,
       2,
@@ -2534,8 +2534,8 @@
     "file_id": "PaddlePrototype/Assets/Scripts/paddle_movement_upper.cs",
     "path": "PaddlePrototype/Assets/Scripts/paddle_movement_upper.cs",
     "file_name": "paddle_movement_upper.cs",
-    "content_hash": "b00d4d0eaffcd025c1cdce0d1e4d473945fee437",
-    "size": 3384,
+    "content_hash": "826c75105e3beb5a0685dca6558007ec07a38958",
+    "size": 3346,
     "line_count": 109,
     "namespace": "",
     "using_list": [
@@ -2583,17 +2583,10 @@
         "is_static": false
       },
       {
-        "name": "shapeRenderer",
-        "type": "SpriteShapeRenderer",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
         "name": "originalColor",
         "type": "Color",
         "access": "private",
-        "serialized": false,
+        "serialized": true,
         "is_static": false
       },
       {
@@ -2652,9 +2645,9 @@
     "has_start": true,
     "has_on_enable": false,
     "has_on_disable": false,
-    "serialize_field_count": 1,
+    "serialize_field_count": 2,
     "public_field_count": 0,
-    "get_component_count": 3,
+    "get_component_count": 2,
     "find_call_count": 0,
     "new_keyword_count": 4,
     "coroutine_count": 0,
@@ -2663,7 +2656,6 @@
     "referenced_types": [
       "float",
       "Camera",
-      "SpriteShapeRenderer",
       "Color",
       "Collider2D",
       "bool",
@@ -2674,6 +2666,7 @@
       "InputSystem",
       "U2D",
       "PaddleData",
+      "SpriteRenderer",
       "Start",
       "GetComponent",
       "Vector3",
@@ -2690,7 +2683,6 @@
       "Clamp"
     ],
     "component_access_types": [
-      "SpriteShapeRenderer",
       "Collider2D",
       "Transform"
     ],

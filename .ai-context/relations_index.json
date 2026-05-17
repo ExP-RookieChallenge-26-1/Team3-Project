@@ -3243,13 +3243,6 @@
   {
     "from_file": "PaddlePrototype/Assets/Scripts/paddle_movement_upper.cs",
     "from_class": "UpperPadController",
-    "to_type": "SpriteShapeRenderer",
-    "relation_type": "component-access",
-    "strength": 3
-  },
-  {
-    "from_file": "PaddlePrototype/Assets/Scripts/paddle_movement_upper.cs",
-    "from_class": "UpperPadController",
     "to_type": "Transform",
     "relation_type": "component-access",
     "strength": 3
@@ -3404,7 +3397,7 @@
   {
     "from_file": "PaddlePrototype/Assets/Scripts/paddle_movement_upper.cs",
     "from_class": "UpperPadController",
-    "to_type": "SpriteShapeRenderer",
+    "to_type": "SpriteRenderer",
     "relation_type": "uses",
     "strength": 1
   },

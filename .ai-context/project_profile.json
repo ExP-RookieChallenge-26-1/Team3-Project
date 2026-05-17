@@ -268,31 +268,6 @@
       "risk_score": 89
     },
     {
-      "file_id": "PaddlePrototype/Assets/Scripts/paddle_movement_upper.cs",
-      "class_name": "UpperPadController",
-      "risk_flags": [
-        "update-heavy",
-        "high-coupling",
-        "getcomponent-heavy",
-        "magic-number-heavy",
-        "init-order-sensitive",
-        "save-load-sensitive",
-        "ui-runtime-mixed",
-        "state-owner"
-      ],
-      "risk_reasons": [
-        "Unity 업데이트 루프 사용",
-        "참조 타입 또는 관계 수가 많음",
-        "GetComponent/TryGetComponent 호출이 많음",
-        "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
-        "초기화 순서에 민감할 가능성",
-        "저장/불러오기 관련 로직 포함",
-        "UI와 런타임 책임이 한 파일에 섞였을 가능성",
-        "상태 중심 또는 관리 중심 클래스일 가능성"
-      ],
-      "risk_score": 88
-    },
-    {
       "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/paddle_movement.cs",
       "class_name": "UpperPadController",
       "risk_flags": [
@@ -320,6 +295,31 @@
     {
       "file_id": "PaddlePrototype/Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs",
       "class_name": "Benchmark01_UGUI",
+      "risk_flags": [
+        "update-heavy",
+        "high-coupling",
+        "public-field-heavy",
+        "magic-number-heavy",
+        "init-order-sensitive",
+        "save-load-sensitive",
+        "ui-runtime-mixed",
+        "state-owner"
+      ],
+      "risk_reasons": [
+        "Unity 업데이트 루프 사용",
+        "참조 타입 또는 관계 수가 많음",
+        "public 필드 노출 수가 많음",
+        "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+        "초기화 순서에 민감할 가능성",
+        "저장/불러오기 관련 로직 포함",
+        "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+        "상태 중심 또는 관리 중심 클래스일 가능성"
+      ],
+      "risk_score": 86
+    },
+    {
+      "file_id": "PaddlePrototype/Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs",
+      "class_name": "Benchmark01",
       "risk_flags": [
         "update-heavy",
         "high-coupling",

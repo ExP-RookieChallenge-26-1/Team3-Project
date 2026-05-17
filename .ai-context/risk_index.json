@@ -1061,6 +1061,27 @@
     "risk_score": 70
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/BlockManager.cs",
+    "class_name": "BlockManager",
+    "risk_flags": [
+      "high-coupling",
+      "public-field-heavy",
+      "magic-number-heavy",
+      "large-class",
+      "init-order-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "public 필드 노출 수가 많음",
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+      "초기화 순서에 민감할 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 69
+  },
+  {
     "file_id": "PaddlePrototype/Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_ExampleScript_01.cs",
     "class_name": "TMP_ExampleScript_01",
     "risk_flags": [
@@ -1907,6 +1928,21 @@
     "risk_score": 40
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/BlockPool.cs",
+    "class_name": "BlockPool",
+    "risk_flags": [
+      "high-coupling",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 38
+  },
+  {
     "file_id": "PaddlePrototype/Assets/Scripts/brick_cell.cs",
     "class_name": "BrickCell",
     "risk_flags": [
@@ -2007,6 +2043,19 @@
     "risk_reasons": [
       "public 필드 노출 수가 많음",
       "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 26
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/BlockCell.cs",
+    "class_name": "BlockCell",
+    "risk_flags": [
+      "high-coupling",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 26

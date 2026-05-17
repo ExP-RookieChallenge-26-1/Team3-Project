@@ -12,15 +12,15 @@ public class GaugeManager : MonoBehaviour
     private int currentGaugeValue=30;
     private int gaugePerSegment = 10;
     [SerializeField] private int maxGaugeSegments = 3;
-    private Vector2 maxGaugeScale;
+    private Vector3 maxGaugeScale;
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI gaugeSegmentText;
     [SerializeField] private TextMeshProUGUI gaugeValueText;
 
     public int CurrentGaugeValue => currentGaugeValue;
-    
-    
+
+    private int maxGaugeValue;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,15 +32,17 @@ public class GaugeManager : MonoBehaviour
         maxGaugeSegments = laserGaugeData.maxGaugeSegments;
         
         UpdateGaugeUI();
+        TransGaugeBar(currentGaugeValue/maxGaugeSegments);
+        maxGaugeValue = maxGaugeSegments * gaugePerSegment;
     }
 
     public void AddGauge()
     {
         
         // 최대면 추가 X 
-        int maxGaugeValue = maxGaugeSegments * gaugePerSegment;
+        
 
-        if (!(currentGaugeValue >= maxGaugeValue))
+        if (currentGaugeValue < maxGaugeValue)
             currentGaugeValue++;
         
         ChangeGaugeLevel(currentGaugeValue / gaugePerSegment);
@@ -55,9 +57,9 @@ public class GaugeManager : MonoBehaviour
     public void ChangeGaugeLevel(int level)
     {
 
-        if (level <= 0)
+        if (level < 0)
         {
-            if(!(filledGaugeSegments<=0) && !(currentGaugeValue<=0))
+            if((filledGaugeSegments>0) && (currentGaugeValue>0))
             {
                 filledGaugeSegments--;
                 currentGaugeValue -= gaugePerSegment;
@@ -74,7 +76,8 @@ public class GaugeManager : MonoBehaviour
         Debug.Log(filledGaugeSegments + "차징 게이지");
         
         UpdateGaugeUI();
-        
+        float percent = (float)currentGaugeValue / (float)maxGaugeValue;
+        TransGaugeBar(percent);
     }
     
     // Update is called once per frame
@@ -85,7 +88,7 @@ public class GaugeManager : MonoBehaviour
 
     private void TransGaugeBar(float percent)
     {
-        Vector2 changedScale = new Vector2(maxGaugeScale.x * percent, maxGaugeScale.y);
+        Vector3 changedScale = new Vector3(maxGaugeScale.x * percent, maxGaugeScale.y,maxGaugeScale.z);
 
         gaugeBar.localScale = changedScale;
     }
@@ -93,6 +96,7 @@ public class GaugeManager : MonoBehaviour
     
     private void UpdateGaugeUI()
     {
+        /*
         if (gaugeSegmentText != null)
         {
             gaugeSegmentText.text = $"Gauge Segments: {filledGaugeSegments} / {maxGaugeSegments}";
@@ -102,6 +106,7 @@ public class GaugeManager : MonoBehaviour
         {
             gaugeValueText.text = $"Gauge Value: {currentGaugeValue}";
         }
+        */
     }
 
     

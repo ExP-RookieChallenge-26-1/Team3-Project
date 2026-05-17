@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52d2290a6934be58c59be545897e59b, type: 3}
   m_Name: BallBalancing
   m_EditorClassIdentifier: Assembly-CSharp::ScriptableObjectScripts.BallBalanceData
-  baseSpeed: 20
+  baseSpeed: 30
   maxSpeed: 55
   basePower: 5
-  paddleSpeedIncrease: 5
+  paddleSpeedIncrease: 10
   paddlePowerIncrease: 5
   blockSpeedDecrease: 5
   blockPowerDecrease: 10

@@ -6,16 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="9508e556-d083-4ec7-aa53-9788c555016c" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PaddlePrototype/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PaddlePrototype/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BalancingScene 강선우.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BalancingScene 강선우.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BalancingScene 강선우.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BalancingScene 강선우.unity.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BalancingScene 권혜연.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BalancingScene 권혜연.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BalancingScene 권혜연.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BalancingScene 권혜연.unity.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Dong_Brick.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Dong_Brick.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Dong_Gauge.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Dong_Gauge.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Dong_Wall_Down.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Dong_Wall_Down.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Dong_Wall_Left.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Dong_Wall_Left.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Dong_Wall_Up.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Dong_Wall_Up.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Materials.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Materials/White_Ground.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Materials/White_Ground.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Brick.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Brick.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/FixedBrick.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/FixedBrick.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/BalancingScene 이동건.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BalancingScene 이동건.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BalancingScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BalancingScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BalancingScene.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BalancingScene.unity.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/StageData/BrickData_일반_중_1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObjects/StageData/BrickData_일반_중_1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ball_movement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ball_movement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/paddle_movement_upper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/paddle_movement_upper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/BallBalancing.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObjects/BallBalancing.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/LaserBalancing.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObjects/LaserBalancing.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ForRazer/ChargingLaserManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ForRazer/ChargingLaserManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ForRazer/GaugeManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ForRazer/GaugeManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,23 +51,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Unity 에디터에 연결.Unity 에디터에 연결">
     <configuration name="유닛 테스트(배치 모드)" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.4.4f1\Editor\Unity.exe" />
@@ -115,7 +120,8 @@
       <workItem from="1778669344097" duration="2341000" />
       <workItem from="1778675167102" duration="4837000" />
       <workItem from="1778930107593" duration="1483000" />
-      <workItem from="1778988963790" duration="1437000" />
+      <workItem from="1778988963790" duration="1883000" />
+      <workItem from="1779003083033" duration="1271000" />
     </task>
     <servers />
   </component>

@@ -3,9 +3,9 @@
     "file_id": "PaddlePrototype/Assets/Scripts/ball_movement.cs",
     "path": "PaddlePrototype/Assets/Scripts/ball_movement.cs",
     "file_name": "ball_movement.cs",
-    "content_hash": "ace40086f626e8dbdda96c8860433a7b6616c257",
-    "size": 10061,
-    "line_count": 301,
+    "content_hash": "2cde18b2b282e840434f83a2a2f186a2804d8748",
+    "size": 10602,
+    "line_count": 328,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -29,8 +29,9 @@
     "main_class_name": "BallController",
     "unity_type": "MonoBehaviour",
     "methods": [
-      "Start",
+      "SnapNormal",
       "Vector2",
+      "Start",
       "Vector3",
       "Update",
       "Color",
@@ -146,7 +147,7 @@
     "public_field_count": 0,
     "get_component_count": 3,
     "find_call_count": 0,
-    "new_keyword_count": 5,
+    "new_keyword_count": 7,
     "coroutine_count": 0,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
@@ -162,6 +163,9 @@
       "BallBalanceData",
       "LayerMask",
       "ChargingLaserManager",
+      "SnapNormal",
+      "Abs",
+      "Sign",
       "Start",
       "GetComponent",
       "LaunchBall",
@@ -169,9 +173,9 @@
       "Update",
       "MoveBall",
       "Color",
-      "CircleCast",
       "RaycastHit2D",
       "Physics2D",
+      "CircleCast",
       "Max",
       "Translate",
       "Space",
@@ -187,7 +191,6 @@
       "CheckBounceCount",
       "Clamp",
       "Lerp",
-      "Abs",
       "Quaternion",
       "Euler",
       "GetSlower",
@@ -233,12 +236,12 @@
       0.001,
       999,
       5,
+      0,
       0.5,
       1,
-      1.5,
       2,
-      0,
       3,
+      4,
       3,
       2,
       0.0001
@@ -406,8 +409,8 @@
     "file_id": "PaddlePrototype/Assets/Scripts/brick_manager.cs",
     "path": "PaddlePrototype/Assets/Scripts/brick_manager.cs",
     "file_name": "brick_manager.cs",
-    "content_hash": "d7b96f5d9d06ba0302e2afca971b9cda0d8dbf27",
-    "size": 15686,
+    "content_hash": "81e9455256e117ea4da893d4f1fb549e0381be77",
+    "size": 15685,
     "line_count": 616,
     "namespace": "",
     "using_list": [
@@ -1475,9 +1478,9 @@
     "file_id": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
     "path": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
     "file_name": "ChargingLaserManager.cs",
-    "content_hash": "9ff9d1355b579e1a0c4d9740901a9dd45657a4ee",
-    "size": 1464,
-    "line_count": 74,
+    "content_hash": "318848abaeb3fc0d0f98a06218f5b807dbf2564d",
+    "size": 1495,
+    "line_count": 80,
     "namespace": "",
     "using_list": [
       "System",
@@ -1502,7 +1505,7 @@
     "methods": [
       "Start",
       "CheckBounceCount",
-      "ChargingbyBounce",
+      "TryCharging",
       "Update",
       "ShootLaser",
       "Reset"
@@ -1572,8 +1575,8 @@
       "GetComponent",
       "CheckBounceCount",
       "Log",
-      "ChargingbyBounce",
-      "ChangeGaugeLevel",
+      "TryCharging",
+      "TryReduceGaugeLevel",
       "Update",
       "Input",
       "GetMouseButtonUp",
@@ -1611,14 +1614,14 @@
     "file_id": "PaddlePrototype/Assets/Scripts/ForRazer/GaugeManager.cs",
     "path": "PaddlePrototype/Assets/Scripts/ForRazer/GaugeManager.cs",
     "file_name": "GaugeManager.cs",
-    "content_hash": "118dccb3afba69f676dc2fc82c7f0b3977e0fa06",
-    "size": 2961,
-    "line_count": 115,
+    "content_hash": "0af1099af54480900f8a353f6a5504212e171d37",
+    "size": 2747,
+    "line_count": 109,
     "namespace": "",
     "using_list": [
+      "System",
       "TMPro",
-      "UnityEngine",
-      "UnityEngine.Serialization"
+      "UnityEngine"
     ],
     "classes": [
       {
@@ -1638,9 +1641,11 @@
     "unity_type": "MonoBehaviour",
     "methods": [
       "Start",
+      "OnDestroy",
+      "SetGaugeValue",
+      "UpdateGaugeSegmentByValue",
       "AddGauge",
-      "ChangeGaugeLevel",
-      "Update",
+      "TryReduceGaugeLevel",
       "TransGaugeBar",
       "Vector3",
       "UpdateGaugeUI"
@@ -1654,29 +1659,15 @@
         "is_static": false
       },
       {
-        "name": "currentGaugeValue",
+        "name": "maxGaugeValue",
         "type": "int",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "gaugePerSegment",
-        "type": "int",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "maxGaugeScale",
-        "type": "Vector3",
         "access": "private",
         "serialized": true,
         "is_static": false
       },
       {
-        "name": "maxGaugeValue",
-        "type": "int",
+        "name": "maxGaugeScale",
+        "type": "Vector3",
         "access": "private",
         "serialized": false,
         "is_static": false
@@ -1686,9 +1677,9 @@
     "events": [],
     "unity_messages": [
       "Start",
-      "Update"
+      "OnDestroy"
     ],
-    "has_update": true,
+    "has_update": false,
     "has_fixed_update": false,
     "has_late_update": false,
     "has_awake": false,
@@ -1706,23 +1697,27 @@
     "referenced_types": [
       "int",
       "Vector3",
+      "System",
       "TMPro",
       "UnityEngine",
-      "Serialization",
       "ScriptableObjectScripts",
       "LaserGaugeData",
       "Gauge",
       "UI",
       "TextMeshProUGUI",
+      "OnGaugeValueChanged",
       "CurrentGaugeValue",
       "Start",
-      "Update",
-      "UpdateGaugeUI",
+      "UpdateGaugeSegmentByValue",
       "TransGaugeBar",
-      "AddGauge",
-      "ChangeGaugeLevel",
+      "UpdateGaugeUI",
+      "SetGaugeValue",
+      "OnDestroy",
       "Clamp",
+      "Invoke",
       "Log",
+      "AddGauge",
+      "TryReduceGaugeLevel",
       "Segments",
       "Value"
     ],
@@ -1734,15 +1729,11 @@
     "string_literals": [
       "Gauge",
       "UI",
-      "차징 게이지",
-      "Gauge Segments: {filledGaugeSegments} / {maxGaugeSegments}",
-      "Gauge Value: {currentGaugeValue}"
+      " 게이지 세그먼트",
+      "Gauge Segments: {filledGaugeSegments} / {laserGaugeData.maxGaugeSegments}",
+      "Gauge Value: {value}"
     ],
-    "numeric_literals": [
-      30,
-      10,
-      3
-    ],
+    "numeric_literals": [],
     "guessed_roles": [
       "data",
       "runtime",
@@ -1752,7 +1743,6 @@
     ],
     "summary_signals": [
       "런타임 컴포넌트",
-      "Update 기반 처리 존재",
       "인스펙터 직렬화 필드 사용",
       "UI 관련 로직 포함",
       "전투 계열 로직 포함"
@@ -3321,12 +3311,13 @@
     "file_id": "PaddlePrototype/Assets/Scripts/ScriptableObjectScripts/LaserBalanceData.cs",
     "path": "PaddlePrototype/Assets/Scripts/ScriptableObjectScripts/LaserBalanceData.cs",
     "file_name": "LaserBalanceData.cs",
-    "content_hash": "aa19d8cf1de2a0ce11db5c829652503ac8a6bfa0",
-    "size": 640,
-    "line_count": 24,
+    "content_hash": "82bf0ccd81edb251031d8b226447856271618b76",
+    "size": 715,
+    "line_count": 25,
     "namespace": "ScriptableObjectScripts",
     "using_list": [
-      "UnityEngine"
+      "UnityEngine",
+      "UnityEngine.Serialization"
     ],
     "classes": [
       {
@@ -3432,13 +3423,15 @@
       "float",
       "int",
       "UnityEngine",
+      "Serialization",
       "ScriptableObjectScripts",
       "CreateAssetMenu",
       "Game",
       "Laser",
       "Gauge",
       "Data",
-      "Charging"
+      "Charging",
+      "FormerlySerializedAs"
     ],
     "component_access_types": [],
     "created_types": [],
@@ -3447,6 +3440,7 @@
       "Game/Laser Gauge Data",
       "Laser",
       "Charging",
+      "startGaugeValue",
       "Gauge"
     ],
     "numeric_literals": [
@@ -3460,12 +3454,14 @@
     ],
     "guessed_roles": [
       "data",
+      "save-load",
       "combat",
       "runtime"
     ],
     "summary_signals": [
       "데이터 자산 중심 구조",
-      "전투 계열 로직 포함"
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함"
     ]
   },
   {

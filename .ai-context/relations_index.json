@@ -352,6 +352,20 @@
   {
     "from_file": "PaddlePrototype/Assets/Scripts/ball_movement.cs",
     "from_class": "BallController",
+    "to_type": "Sign",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ball_movement.cs",
+    "from_class": "BallController",
+    "to_type": "SnapNormal",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ball_movement.cs",
+    "from_class": "BallController",
     "to_type": "Space",
     "relation_type": "uses",
     "strength": 1
@@ -2004,20 +2018,6 @@
   {
     "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
     "from_class": "ChargingLaserManager",
-    "to_type": "ChangeGaugeLevel",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
-    "from_class": "ChargingLaserManager",
-    "to_type": "ChargingbyBounce",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
-    "from_class": "ChargingLaserManager",
     "to_type": "CheckBounceCount",
     "relation_type": "uses",
     "strength": 1
@@ -2130,6 +2130,20 @@
   {
     "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
     "from_class": "ChargingLaserManager",
+    "to_type": "TryCharging",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
+    "from_class": "ChargingLaserManager",
+    "to_type": "TryReduceGaugeLevel",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
+    "from_class": "ChargingLaserManager",
     "to_type": "UnityEngine",
     "relation_type": "uses",
     "strength": 1
@@ -2165,13 +2179,6 @@
   {
     "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/GaugeManager.cs",
     "from_class": "GaugeManager",
-    "to_type": "ChangeGaugeLevel",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/GaugeManager.cs",
-    "from_class": "GaugeManager",
     "to_type": "Clamp",
     "relation_type": "uses",
     "strength": 1
@@ -2200,6 +2207,13 @@
   {
     "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/GaugeManager.cs",
     "from_class": "GaugeManager",
+    "to_type": "Invoke",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/GaugeManager.cs",
+    "from_class": "GaugeManager",
     "to_type": "LaserGaugeData",
     "relation_type": "uses",
     "strength": 1
@@ -2208,6 +2222,20 @@
     "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/GaugeManager.cs",
     "from_class": "GaugeManager",
     "to_type": "Log",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/GaugeManager.cs",
+    "from_class": "GaugeManager",
+    "to_type": "OnDestroy",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/GaugeManager.cs",
+    "from_class": "GaugeManager",
+    "to_type": "OnGaugeValueChanged",
     "relation_type": "uses",
     "strength": 1
   },
@@ -2228,7 +2256,7 @@
   {
     "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/GaugeManager.cs",
     "from_class": "GaugeManager",
-    "to_type": "Serialization",
+    "to_type": "SetGaugeValue",
     "relation_type": "uses",
     "strength": 1
   },
@@ -2236,6 +2264,13 @@
     "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/GaugeManager.cs",
     "from_class": "GaugeManager",
     "to_type": "Start",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/GaugeManager.cs",
+    "from_class": "GaugeManager",
+    "to_type": "System",
     "relation_type": "uses",
     "strength": 1
   },
@@ -2263,6 +2298,13 @@
   {
     "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/GaugeManager.cs",
     "from_class": "GaugeManager",
+    "to_type": "TryReduceGaugeLevel",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/GaugeManager.cs",
+    "from_class": "GaugeManager",
     "to_type": "UI",
     "relation_type": "uses",
     "strength": 1
@@ -2277,7 +2319,7 @@
   {
     "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/GaugeManager.cs",
     "from_class": "GaugeManager",
-    "to_type": "Update",
+    "to_type": "UpdateGaugeSegmentByValue",
     "relation_type": "uses",
     "strength": 1
   },
@@ -4160,6 +4202,13 @@
   {
     "from_file": "PaddlePrototype/Assets/Scripts/ScriptableObjectScripts/LaserBalanceData.cs",
     "from_class": "LaserGaugeData",
+    "to_type": "FormerlySerializedAs",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ScriptableObjectScripts/LaserBalanceData.cs",
+    "from_class": "LaserGaugeData",
     "to_type": "Game",
     "relation_type": "uses",
     "strength": 1
@@ -4189,6 +4238,13 @@
     "from_file": "PaddlePrototype/Assets/Scripts/ScriptableObjectScripts/LaserBalanceData.cs",
     "from_class": "LaserGaugeData",
     "to_type": "ScriptableObjectScripts",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ScriptableObjectScripts/LaserBalanceData.cs",
+    "from_class": "LaserGaugeData",
+    "to_type": "Serialization",
     "relation_type": "uses",
     "strength": 1
   },

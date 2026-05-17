@@ -49,6 +49,19 @@ public class BallController : MonoBehaviour
     private bool isGameStarted = false;
     [SerializeField] private ChargingLaserManager razerManager;
 
+    
+    Vector2 SnapNormal(Vector2 normal)
+    {
+        if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
+        {
+            return new Vector2(Mathf.Sign(normal.x), 0f);
+        }
+        else
+        {
+            return new Vector2(0f, Mathf.Sign(normal.y));
+        }
+    }
+    
     void Start()
     {
         speed = balanceData.baseSpeed;
@@ -81,7 +94,7 @@ public class BallController : MonoBehaviour
         tr = GetComponent<Transform>();
         tr.localScale = new Vector3(ballRadius,ballRadius,ballRadius);
         cc = GetComponent<CircleCollider2D>();
-        actualRadius = cc.radius * ballRadius*1.5f;
+        actualRadius = cc.radius * transform.lossyScale.x;
         
     }
 
@@ -111,18 +124,32 @@ public class BallController : MonoBehaviour
 
         for (int i = 0; i < maxCollisionIterations; i++)
         {
-            // 1. CircleCast로 이동 경로에 장애물이 있는지 확인
-            RaycastHit2D hit = Physics2D.CircleCast(transform.position, actualRadius, direction, remainingDistance, collisionMask);
+            RaycastHit2D hit = Physics2D.CircleCast(
+                transform.position,
+                actualRadius,
+                direction,
+                remainingDistance,
+                collisionMask
+            );
 
             if (hit.collider != null)
             {
-                // 2. 충돌 지점까지 우선 이동 (충돌 지점에서 아주 살짝 띄움)
-                float distanceToHit = Mathf.Max(hit.distance - skinWidth, 0f);
+                float distanceToHit = Mathf.Max(hit.distance, 0f);
+
+                // 1. 충돌 지점까지 이동
                 transform.Translate(direction * distanceToHit, Space.World);
 
-                // 3. 충돌 대상에 따른 반사 방향 계산
+                // 2. 남은 거리 감소
                 remainingDistance -= distanceToHit;
+
+                // 3. 반사 방향 계산
                 UpdateDirection(hit);
+
+                // 4. 충돌면에서 살짝 떼기
+                transform.position += (Vector3)(hit.normal * skinWidth);
+
+                // 5. 같은 프레임 재충돌 방지용으로 남은 거리 약간 감소
+                remainingDistance = Mathf.Max(remainingDistance - skinWidth, 0f);
 
                 if (remainingDistance <= 0.001f)
                 {
@@ -131,7 +158,6 @@ public class BallController : MonoBehaviour
             }
             else
             {
-                // 충돌이 없다면 지정된 거리만큼 직선 이동
                 transform.Translate(direction * remainingDistance, Space.World);
                 break;
             }
@@ -199,7 +225,8 @@ public class BallController : MonoBehaviour
         {
             GetSlower();
             // 벽이나 기타 오브젝트: 일반적인 물리 반사 법칙 적용
-            direction = Vector2.Reflect(direction, hit.normal).normalized;
+            Vector2 normal = SnapNormal(hit.normal);
+            direction = Vector2.Reflect(direction, normal).normalized;
             razerManager.Reset();
         }
     }

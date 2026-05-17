@@ -1,6 +1,6 @@
+using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class GaugeManager : MonoBehaviour
 {
@@ -9,106 +9,101 @@ public class GaugeManager : MonoBehaviour
 
     [Header("Gauge")]
     public int filledGaugeSegments = 0;
-    private int currentGaugeValue=30;
-    private int gaugePerSegment = 10;
-    [SerializeField] private int maxGaugeSegments = 3;
+
+    [SerializeField] private int currentGaugeValue = 0;
+    private int maxGaugeValue;
     private Vector3 maxGaugeScale;
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI gaugeSegmentText;
     [SerializeField] private TextMeshProUGUI gaugeValueText;
 
+    public event Action<int> OnGaugeValueChanged;
+
     public int CurrentGaugeValue => currentGaugeValue;
 
-    private int maxGaugeValue;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
         maxGaugeScale = gaugeBar.localScale;
-        currentGaugeValue = laserGaugeData.startGaugeValue;
-        gaugePerSegment = laserGaugeData.gaugePerSegment;
-        maxGaugeSegments = laserGaugeData.maxGaugeSegments;
-        
-        UpdateGaugeUI();
-        TransGaugeBar(currentGaugeValue/maxGaugeSegments);
-        maxGaugeValue = maxGaugeSegments * gaugePerSegment;
+
+        maxGaugeValue =
+            laserGaugeData.maxGaugeSegments * laserGaugeData.gaugePerSegment;
+
+        OnGaugeValueChanged += UpdateGaugeSegmentByValue;
+        OnGaugeValueChanged += TransGaugeBar;
+        OnGaugeValueChanged += UpdateGaugeUI;
+
+        SetGaugeValue(laserGaugeData.startGaugeValue);
+    }
+    
+    
+    
+    private void OnDestroy()
+    {
+        OnGaugeValueChanged -= UpdateGaugeSegmentByValue;
+        OnGaugeValueChanged -= TransGaugeBar;
+        OnGaugeValueChanged -= UpdateGaugeUI;
+    }
+
+    private void SetGaugeValue(int value)
+    {
+        currentGaugeValue = Mathf.Clamp(value, 0, maxGaugeValue);
+
+        OnGaugeValueChanged?.Invoke(currentGaugeValue);
+    }
+
+    private void UpdateGaugeSegmentByValue(int value)
+    {
+        filledGaugeSegments = value / laserGaugeData.gaugePerSegment;
+
+        filledGaugeSegments = Mathf.Clamp(
+            filledGaugeSegments,
+            0,
+            laserGaugeData.maxGaugeSegments
+        );
+
+        Debug.Log(filledGaugeSegments + " 게이지 세그먼트");
     }
 
     public void AddGauge()
     {
-        
-        // 최대면 추가 X 
-        
-
-        if (currentGaugeValue < maxGaugeValue)
-            currentGaugeValue++;
-        
-        ChangeGaugeLevel(currentGaugeValue / gaugePerSegment);
-
-        float percent = (float)currentGaugeValue / (float)maxGaugeValue;
-        
-        TransGaugeBar(percent);
-        UpdateGaugeUI();
-    }
-    
-    
-    public void ChangeGaugeLevel(int level)
-    {
-
-        if (level < 0)
-        {
-            if((filledGaugeSegments>0) && (currentGaugeValue>0))
-            {
-                filledGaugeSegments--;
-                currentGaugeValue -= gaugePerSegment;
-            }
-            
-        }   
-        else
-        {
-            filledGaugeSegments = level; 
-        }
-        
-        filledGaugeSegments = Mathf.Clamp(filledGaugeSegments, 0, maxGaugeSegments);
-        
-        Debug.Log(filledGaugeSegments + "차징 게이지");
-        
-        UpdateGaugeUI();
-        float percent = (float)currentGaugeValue / (float)maxGaugeValue;
-        TransGaugeBar(percent);
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-        
+        SetGaugeValue(currentGaugeValue + 1);
     }
 
-    private void TransGaugeBar(float percent)
+    public bool TryReduceGaugeLevel()
     {
-        Vector3 changedScale = new Vector3(maxGaugeScale.x * percent, maxGaugeScale.y,maxGaugeScale.z);
+        if (filledGaugeSegments < 1)
+            return false;
+
+        SetGaugeValue(currentGaugeValue - laserGaugeData.gaugePerSegment);
+
+        return true;
+    }
+
+    private void TransGaugeBar(int value)
+    {
+        float percent = (float)value / maxGaugeValue;
+
+        Vector3 changedScale = new Vector3(
+            maxGaugeScale.x * percent,
+            maxGaugeScale.y,
+            maxGaugeScale.z
+        );
 
         gaugeBar.localScale = changedScale;
     }
-    
-    
-    private void UpdateGaugeUI()
+
+    private void UpdateGaugeUI(int value)
     {
-        /*
         if (gaugeSegmentText != null)
         {
-            gaugeSegmentText.text = $"Gauge Segments: {filledGaugeSegments} / {maxGaugeSegments}";
+            gaugeSegmentText.text =
+                $"Gauge Segments: {filledGaugeSegments} / {laserGaugeData.maxGaugeSegments}";
         }
 
         if (gaugeValueText != null)
         {
-            gaugeValueText.text = $"Gauge Value: {currentGaugeValue}";
+            gaugeValueText.text = $"Gauge Value: {value}";
         }
-        */
     }
-
-    
-    
 }

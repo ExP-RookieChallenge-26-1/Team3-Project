@@ -20,7 +20,7 @@ public class BrickManager : MonoBehaviour
         public float weight = 1f;
     }
     [Header("Game Over")]
-    [SerializeField] private GameManager gameManager;
+    [SerializeField]private GameManager gameManager;
     [SerializeField]private int gameOverRow;
 
     [System.Serializable]

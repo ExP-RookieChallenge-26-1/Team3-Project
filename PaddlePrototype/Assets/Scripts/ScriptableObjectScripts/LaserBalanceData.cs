@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ScriptableObjectScripts
 {
@@ -15,7 +16,7 @@ namespace ScriptableObjectScripts
         [Header("Charging")]
         public int perBounceCount = 10;
 
-        [Header("Gauge")]
+        [FormerlySerializedAs("startGaugeValue")] [Header("Gauge")]
         public int startGaugeValue = 30;
         public int gaugePerSegment = 10;
         public int maxGaugeSegments = 3;

@@ -6,21 +6,29 @@
   <component name="ChangeListManager">
     <list default="true" id="9508e556-d083-4ec7-aa53-9788c555016c" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PaddlePrototype/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PaddlePrototype/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Dong_Brick.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Dong_Brick.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Dong_Gauge.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Dong_Gauge.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Dong_Wall_Down.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Dong_Wall_Down.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Dong_Wall_Left.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Dong_Wall_Left.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Dong_Wall_Up.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Dong_Wall_Up.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Materials.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Materials/White_Ground.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ArtTest/이동건 에셋/Materials/White_Ground.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Brick.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Brick.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/FixedBrick.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/FixedBrick.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/BalancingScene 이동건.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BalancingScene 이동건.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/BallBalancing.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObjects/BallBalancing.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BrickTest (김정우).unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BrickTest (김정우).unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BrickTest.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BrickTest.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/RazerTest Dong.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/RazerTest Dong.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene 1.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene 1.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/LaserBalancing.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObjects/LaserBalancing.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ForRazer/ChargingLaserManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ForRazer/ChargingLaserManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ForRazer/GaugeManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ForRazer/GaugeManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjectScripts/LaserBalanceData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjectScripts/LaserBalanceData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ball_movement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ball_movement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/brick_manager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/brick_manager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjectDribble/Assets/Scenes/projectDribble Dong.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../ProjectDribble/Assets/Scenes/projectDribble Dong.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjectDribble/Assets/Scenes/projectDribble KJW.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../ProjectDribble/Assets/Scenes/projectDribble KJW.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjectDribble/Assets/Scripts/BallCollisionHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../ProjectDribble/Assets/Scripts/BallCollisionHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjectDribble/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../ProjectDribble/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +39,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/ScriptableObjects/LaserBalancing.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CeilingManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ForRazer/BrickAreaDetector.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/IBallDamagable.cs" root0="FORCE_HIGHLIGHTING" />
@@ -122,6 +131,9 @@
       <workItem from="1778930107593" duration="1483000" />
       <workItem from="1778988963790" duration="1883000" />
       <workItem from="1779003083033" duration="1271000" />
+      <workItem from="1779024730253" duration="5263000" />
+      <workItem from="1779032416919" duration="2861000" />
+      <workItem from="1779039949130" duration="802000" />
     </task>
     <servers />
   </component>

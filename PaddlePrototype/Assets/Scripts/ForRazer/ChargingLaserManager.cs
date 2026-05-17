@@ -27,21 +27,27 @@ public class ChargingLaserManager : MonoBehaviour
     {
         bounceCount++;
         Debug.Log("팅");
-        if (bounceCount % PerBounceCount == 0 && gauge.filledGaugeSegments>0)
+        if (bounceCount == PerBounceCount)
         {
-            ChargingbyBounce(bounceCount/PerBounceCount);
-            
+            if(TryCharging())
+            {
+                bounceCount = 0;
+            }
+
         }
     }
 
-    
-    private void ChargingbyBounce(int bounceUnit)
+    private bool TryCharging()
     {
-        charging = true;
-        gauge.ChangeGaugeLevel(-1);
-
-        chargeCount = bounceUnit;
+        if (gauge.TryReduceGaugeLevel())
+        {
+            charging = true;
         
+            chargeCount++;
+            return true;
+        }
+
+        return false;
     }
 
     private void Update()

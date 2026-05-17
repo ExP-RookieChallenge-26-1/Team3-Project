@@ -65,6 +65,7 @@ public class BallMovement : MonoBehaviour
 
     public Vector2 UpdateDirection(RaycastHit2D hit, float outsideMaxAngle, float insideMaxAngle, Vector2 direction)
     {
+        Debug.Log("충돌함: " + hit.collider.name);
         GameObject obj = hit.collider.gameObject;
 
         //패들 외 물체와 충돌 시 작용 인터페이스(i ball hit receiver)로 위임 

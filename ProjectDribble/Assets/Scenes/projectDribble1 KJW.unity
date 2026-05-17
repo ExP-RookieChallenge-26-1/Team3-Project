@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 355846159}
   - component: {fileID: 355846160}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: GridArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -250,6 +250,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 483957524}
+  - component: {fileID: 483957525}
   m_Layer: 0
   m_Name: BlockManager
   m_TagString: Untagged
@@ -272,6 +273,92 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1373033667}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &483957525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483957523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64ddd7424d7b87444b0dffd0d3291bb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BlockManager
+  width: 7
+  height: 20
+  gridArea: {fileID: 355846159}
+  blockPool: {fileID: 530413549}
+  defaultHp: 1
+  fixedBlocks: []
+  startCells:
+  - {x: 3, y: 0}
+  spawnInterval: 1
+  minGrowPerTick: 1
+  maxGrowPerTick: 2
+  rowWeightMultiplier: 0.2
+  rowPriorityStep: 0
+  onlyGrowFromStartConnectedBlocks: 1
+  directions:
+  - name: Down
+    direction: {x: 0, y: 1}
+    priority: 0
+    weight: 5
+  - name: Left
+    direction: {x: -1, y: 0}
+    priority: 1
+    weight: 1
+  - name: Right
+    direction: {x: 1, y: 0}
+    priority: 1
+    weight: 1
+--- !u!1 &530413547
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 530413548}
+  - component: {fileID: 530413549}
+  m_Layer: 0
+  m_Name: BlockPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &530413548
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530413547}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1373033667}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &530413549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530413547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dde02de1867a1c43b958a75019b84bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BlockPool
+  BlockPrefab: {fileID: -3824261130330139456, guid: 690ab1dece30f1441b686740d5aeb669, type: 3}
+  fixedBlockParent: {fileID: 693990190}
+  flowBlockParent: {fileID: 1911902279}
 --- !u!1 &543368385
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,6 +685,7 @@ Transform:
   - {fileID: 693990190}
   - {fileID: 1911902279}
   - {fileID: 355846159}
+  - {fileID: 530413548}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1412339123

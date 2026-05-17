@@ -1,18 +1,17 @@
 using UnityEngine;
 using UnityEngine.Serialization;
-using ScriptableObjectScripts;
 
 public class LaserChargeController : MonoBehaviour
 {
-    [SerializeField] private LaserGaugeData  laserGaugeData;
     [SerializeField] private ChargeZone chargeZone;
     [FormerlySerializedAs("guageManger")] [SerializeField] private GaugeManager guageManager;
     [SerializeField] private LaserShoot laserShoot;
     
+    [SerializeField] private float chargeTime= 3f;
     private bool isDribbling = false;
     private float chargeTimer = 0f;
     private int chargeCount = 0;
-    
+    private int maxChargeCount = 3;
     private void OnEnable()
     {
         chargeZone.OnDribblingChanged += HandleDribblingChanged;
@@ -50,7 +49,7 @@ public class LaserChargeController : MonoBehaviour
         if (isDribbling)
         {
             chargeTimer += Time.deltaTime;
-            if (chargeTimer >= laserGaugeData.chargeTime)
+            if (chargeTimer >= chargeTime)
             {
                 return true;
             }
@@ -64,7 +63,7 @@ public class LaserChargeController : MonoBehaviour
         
         if (guageManager.filledGaugeSegments > 0)
         {
-            if (chargeCount < laserGaugeData.maxChargeCount)
+            if (chargeCount < maxChargeCount)
             {
                 IncreaseChargeLevel();
             }

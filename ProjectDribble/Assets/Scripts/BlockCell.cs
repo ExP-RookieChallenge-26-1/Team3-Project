@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BlockCell : MonoBehaviour , IBallHitReceiver , ILaserHittable
+public class BlockCell : MonoBehaviour , IBallHitReceiver , ILaserHittable , IDamageable
 {
     private BlockManager manager;
     private Vector2Int coord;
@@ -32,26 +32,28 @@ public class BlockCell : MonoBehaviour , IBallHitReceiver , ILaserHittable
         gameObject.SetActive(false);
     }
 
-    public void OnBallHit()
+    public void OnBallHit(/* Ball ball */)
     {
-        TakeDamage(1);
+        //ReflectDefault
     }
 
-    public void OnLaserHit(float damage)
+    public void OnLaserHit()
     {
-        gameObject.SetActive(false);
+        manager.RemoveBlock(coord);
     }
 
-    private void TakeDamage(int damage)
+    public bool TakeDamage(int damage)
     {
         if (isFixed)
-            return;
+            return false;
 
         hp -= damage;
 
         if (hp <= 0)
         {
             manager.RemoveBlock(coord);
+            return true;
         }
+        return false;
     }
 }

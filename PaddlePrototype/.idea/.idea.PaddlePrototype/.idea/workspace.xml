@@ -5,21 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9508e556-d083-4ec7-aa53-9788c555016c" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PaddlePrototype/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PaddlePrototype/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Brick.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Brick.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/FixedBrick.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/FixedBrick.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BalancingScene 강선우.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BalancingScene 강선우.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BalancingScene 강선우.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BalancingScene 강선우.unity.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BalancingScene 권혜연.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BalancingScene 권혜연.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BalancingScene 권혜연.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BalancingScene 권혜연.unity.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BalancingScene 이동건.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BalancingScene 이동건.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/BalancingScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BalancingScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/BallBalancing.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObjects/BallBalancing.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BalancingScene.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BalancingScene.unity.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/StageData/BrickData_일반_중_1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObjects/StageData/BrickData_일반_중_1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/StageData/BrickData_일반_중_2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObjects/StageData/BrickData_일반_중_2.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/StageData/BrickData_일반_초_1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObjects/StageData/BrickData_일반_초_1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/StageData/BrickData_퍼즐_중_1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObjects/StageData/BrickData_퍼즐_중_1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/brick_manager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/brick_manager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ball_movement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ball_movement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/paddle_movement_upper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/paddle_movement_upper.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,23 +46,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;BalancingBranch&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Unity 에디터에 연결.Unity 에디터에 연결">
     <configuration name="유닛 테스트(배치 모드)" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.4.4f1\Editor\Unity.exe" />
@@ -119,6 +115,7 @@
       <workItem from="1778669344097" duration="2341000" />
       <workItem from="1778675167102" duration="4837000" />
       <workItem from="1778930107593" duration="1483000" />
+      <workItem from="1778988963790" duration="1437000" />
     </task>
     <servers />
   </component>

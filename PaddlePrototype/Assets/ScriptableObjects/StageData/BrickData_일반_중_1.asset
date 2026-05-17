@@ -29,12 +29,12 @@ MonoBehaviour:
     prefabOverride: {fileID: 7211861392728797942, guid: 845c635dd02107d4fa08c299a504efe3, type: 3}
   - cell: {x: 4, y: 2}
     prefabOverride: {fileID: 7211861392728797942, guid: 845c635dd02107d4fa08c299a504efe3, type: 3}
-  rowCount: 18
+  rowCount: 15
   columnCount: 7
-  cellWidth: 2
-  cellHeight: 1
-  brickSizeRatio: 1
-  startPosition: {x: -6, y: 9.5}
+  cellWidth: 1.5
+  cellHeight: 0.8
+  brickSizeRatio: 0.8
+  startPosition: {x: -4.5, y: 7.5}
   spawnInterval: 0.7
   minGrowPerTick: 1
   maxGrowPerTick: 2
@@ -55,4 +55,5 @@ MonoBehaviour:
     priority: 1
     weight: 3
   startCells:
-  - {x: 3, y: 0}
+  - {x: 0, y: 0}
+  - {x: 6, y: 0}

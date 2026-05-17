@@ -14,7 +14,7 @@ public class UpperPadController : MonoBehaviour
     private float transparentAlpha = 0.3f;
     private Camera mainCamera;
 
-    private SpriteShapeRenderer shapeRenderer; 
+    [SerializeField]private SpriteRenderer spriteRenderer; 
     private Color originalColor; 
 
     private Collider2D paddleCollider;
@@ -34,8 +34,8 @@ public class UpperPadController : MonoBehaviour
         
         
         mainCamera = Camera.main;
-        shapeRenderer = GetComponent<SpriteShapeRenderer>();
-        originalColor = shapeRenderer.color;
+        
+        originalColor = spriteRenderer.color;
         paddleCollider = GetComponent<Collider2D>();
         tr = GetComponent<Transform>();
         tr.localScale = new Vector3(paddleWidth,0.5f,1f);
@@ -104,6 +104,6 @@ public class UpperPadController : MonoBehaviour
     {
         Color newColor = originalColor;
         newColor.a = alpha;
-        shapeRenderer.color = newColor;
+        spriteRenderer.color = newColor;
     }
 }

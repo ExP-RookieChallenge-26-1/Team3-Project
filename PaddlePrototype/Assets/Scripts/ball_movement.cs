@@ -101,7 +101,7 @@ public class BallController : MonoBehaviour
         
         
         power = speed / 5;
-        spriteRenderer.color = new Color(1f, 1f - (speed-baseSpeed) / (maxSpeed-baseSpeed), 0f, 1f);
+        spriteRenderer.color = new Color(1f, 1f, 1f- (speed-baseSpeed) / (maxSpeed-baseSpeed), 1f);
 
     }
 

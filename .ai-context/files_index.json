@@ -1475,8 +1475,8 @@
     "file_id": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
     "path": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
     "file_name": "ChargingLaserManager.cs",
-    "content_hash": "7e3c16345d787532c4f87831dcac017b02ffd59d",
-    "size": 1465,
+    "content_hash": "9ff9d1355b579e1a0c4d9740901a9dd45657a4ee",
+    "size": 1464,
     "line_count": 74,
     "namespace": "",
     "using_list": [
@@ -1611,9 +1611,9 @@
     "file_id": "PaddlePrototype/Assets/Scripts/ForRazer/GaugeManager.cs",
     "path": "PaddlePrototype/Assets/Scripts/ForRazer/GaugeManager.cs",
     "file_name": "GaugeManager.cs",
-    "content_hash": "91ee05ba6a4b41d8b9182c17a838431ec27c86a2",
-    "size": 2750,
-    "line_count": 110,
+    "content_hash": "118dccb3afba69f676dc2fc82c7f0b3977e0fa06",
+    "size": 2961,
+    "line_count": 115,
     "namespace": "",
     "using_list": [
       "TMPro",
@@ -1642,7 +1642,7 @@
       "ChangeGaugeLevel",
       "Update",
       "TransGaugeBar",
-      "Vector2",
+      "Vector3",
       "UpdateGaugeUI"
     ],
     "fields": [
@@ -1669,7 +1669,7 @@
       },
       {
         "name": "maxGaugeScale",
-        "type": "Vector2",
+        "type": "Vector3",
         "access": "private",
         "serialized": true,
         "is_static": false
@@ -1677,7 +1677,7 @@
       {
         "name": "maxGaugeValue",
         "type": "int",
-        "access": "internal",
+        "access": "private",
         "serialized": false,
         "is_static": false
       }
@@ -1705,7 +1705,7 @@
     "dont_destroy_on_load": false,
     "referenced_types": [
       "int",
-      "Vector2",
+      "Vector3",
       "TMPro",
       "UnityEngine",
       "Serialization",
@@ -1718,9 +1718,9 @@
       "Start",
       "Update",
       "UpdateGaugeUI",
+      "TransGaugeBar",
       "AddGauge",
       "ChangeGaugeLevel",
-      "TransGaugeBar",
       "Clamp",
       "Log",
       "Segments",
@@ -1728,7 +1728,7 @@
     ],
     "component_access_types": [],
     "created_types": [
-      "Vector2"
+      "Vector3"
     ],
     "singleton_access_types": [],
     "string_literals": [

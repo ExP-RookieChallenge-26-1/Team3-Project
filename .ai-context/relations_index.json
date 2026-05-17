@@ -21527,6 +21527,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
     "from_class": "BlockCell",
+    "to_type": "IDamageable",
+    "relation_type": "implements",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
+    "from_class": "BlockCell",
     "to_type": "ILaserHittable",
     "relation_type": "implements",
     "strength": 4
@@ -21542,6 +21549,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
     "from_class": "BlockCell",
     "to_type": "Activate",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
+    "from_class": "BlockCell",
+    "to_type": "Ball",
     "relation_type": "uses",
     "strength": 1
   },
@@ -21577,6 +21591,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
     "from_class": "BlockCell",
     "to_type": "IBallHitReceiver",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
+    "from_class": "BlockCell",
+    "to_type": "IDamageable",
     "relation_type": "uses",
     "strength": 1
   },
@@ -21626,6 +21647,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
     "from_class": "BlockCell",
     "to_type": "OnLaserHit",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
+    "from_class": "BlockCell",
+    "to_type": "ReflectDefault",
     "relation_type": "uses",
     "strength": 1
   },
@@ -22403,6 +22431,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Guage.cs",
     "from_class": "Gauge",
     "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/IDamageable.cs",
+    "from_class": "IDamageable",
+    "to_type": "TakeDamage",
     "relation_type": "uses",
     "strength": 1
   },

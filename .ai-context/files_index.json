@@ -15020,9 +15020,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/BlockCell.cs",
     "path": "ProjectDribble/Assets/Scripts/BlockCell.cs",
     "file_name": "BlockCell.cs",
-    "content_hash": "99905ce3e21b6a9a570a57f08ad44a2da4da2324",
-    "size": 1098,
-    "line_count": 57,
+    "content_hash": "1bedd8fb4b59c17b8ee7b1245ce6690e8d7cb004",
+    "size": 1168,
+    "line_count": 59,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -15035,11 +15035,13 @@
         "base_types": [
           "MonoBehaviour",
           "IBallHitReceiver",
-          "ILaserHittable"
+          "ILaserHittable",
+          "IDamageable"
         ],
         "interfaces": [
           "IBallHitReceiver",
-          "ILaserHittable"
+          "ILaserHittable",
+          "IDamageable"
         ],
         "attributes": [],
         "is_partial": false,
@@ -15112,6 +15114,7 @@
       "UnityEngine",
       "IBallHitReceiver",
       "ILaserHittable",
+      "IDamageable",
       "Coord",
       "IsFixed",
       "IsAlive",
@@ -15120,9 +15123,11 @@
       "SetActive",
       "Deactivate",
       "OnBallHit",
-      "TakeDamage",
+      "Ball",
+      "ReflectDefault",
       "OnLaserHit",
-      "RemoveBlock"
+      "RemoveBlock",
+      "TakeDamage"
     ],
     "component_access_types": [],
     "created_types": [],
@@ -15779,11 +15784,71 @@
     ]
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/IDamageable.cs",
+    "path": "ProjectDribble/Assets/Scripts/IDamageable.cs",
+    "file_name": "IDamageable.cs",
+    "content_hash": "d0c02ee4b9bebf2fdb3c8ee9573c8e196e80ccc6",
+    "size": 66,
+    "line_count": 5,
+    "namespace": "",
+    "using_list": [],
+    "classes": [
+      {
+        "name": "IDamageable",
+        "kind": "interface",
+        "access": "public",
+        "base_types": [],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "IDamageable",
+    "unity_type": "None",
+    "methods": [
+      "TakeDamage"
+    ],
+    "fields": [],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "TakeDamage"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "combat"
+    ],
+    "summary_signals": [
+      "전투 계열 로직 포함"
+    ]
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/ILaserHittable.cs",
     "path": "ProjectDribble/Assets/Scripts/ILaserHittable.cs",
     "file_name": "ILaserHittable.cs",
-    "content_hash": "10a509e02539d888e8738de70d345846d9907576",
-    "size": 406,
+    "content_hash": "92a52ab85ad6e585d761d993f87f47ab8ebc427e",
+    "size": 394,
     "line_count": 20,
     "namespace": "",
     "using_list": [

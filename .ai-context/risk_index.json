@@ -2239,6 +2239,13 @@
     "risk_score": 0
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/IDamageable.cs",
+    "class_name": "IDamageable",
+    "risk_flags": [],
+    "risk_reasons": [],
+    "risk_score": 0
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/ILaserHittable.cs",
     "class_name": "ILaserHittable",
     "risk_flags": [],

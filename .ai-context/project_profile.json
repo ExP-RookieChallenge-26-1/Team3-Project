@@ -2,7 +2,7 @@
   "project_name": "unknown",
   "language": "C#",
   "engine_guess": "Unity",
-  "total_cs_files": 117,
+  "total_cs_files": 118,
   "mono_behaviour_files": 105,
   "scriptable_object_files": 4,
   "files_with_update": 41,
@@ -13,7 +13,7 @@
   "ui_related_classes": 76,
   "save_load_related_classes": 55,
   "role_counts": {
-    "combat": 76,
+    "combat": 77,
     "data": 29,
     "runtime": 107,
     "player": 55,

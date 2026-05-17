@@ -14587,9 +14587,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/BallMovement.cs",
     "path": "ProjectDribble/Assets/Scripts/BallMovement.cs",
     "file_name": "BallMovement.cs",
-    "content_hash": "f9c6e3b5d4d9e1022eb27667d34df76a5176d93e",
-    "size": 5764,
-    "line_count": 167,
+    "content_hash": "78bdcc534ff35983397f12f37dcc77a2dd3659ae",
+    "size": 5818,
+    "line_count": 168,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -14737,6 +14737,7 @@
       "World",
       "UpdateDirection",
       "ResolveOverlap",
+      "Log",
       "GetComponentInParent",
       "IBallHitReceiver",
       "OnBallHit",
@@ -14770,6 +14771,7 @@
     "created_types": [],
     "singleton_access_types": [],
     "string_literals": [
+      "충돌함: ",
       "paddle_up",
       "paddle_down",
       "roof_paddle",
@@ -15012,6 +15014,696 @@
       "전투 계열 로직 포함",
       "저장/불러오기 관련 로직 포함",
       "컴포넌트 조회 사용"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/BlockCell.cs",
+    "path": "ProjectDribble/Assets/Scripts/BlockCell.cs",
+    "file_name": "BlockCell.cs",
+    "content_hash": "99905ce3e21b6a9a570a57f08ad44a2da4da2324",
+    "size": 1098,
+    "line_count": 57,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "BlockCell",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour",
+          "IBallHitReceiver",
+          "ILaserHittable"
+        ],
+        "interfaces": [
+          "IBallHitReceiver",
+          "ILaserHittable"
+        ],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "BlockCell",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Init",
+      "Activate",
+      "Deactivate",
+      "OnBallHit",
+      "OnLaserHit",
+      "TakeDamage"
+    ],
+    "fields": [
+      {
+        "name": "manager",
+        "type": "BlockManager",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "coord",
+        "type": "Vector2Int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "hp",
+        "type": "int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "isFixed",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "BlockManager",
+      "Vector2Int",
+      "int",
+      "bool",
+      "UnityEngine",
+      "IBallHitReceiver",
+      "ILaserHittable",
+      "Coord",
+      "IsFixed",
+      "IsAlive",
+      "Init",
+      "Activate",
+      "SetActive",
+      "Deactivate",
+      "OnBallHit",
+      "TakeDamage",
+      "OnLaserHit",
+      "RemoveBlock"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "combat",
+      "player",
+      "manager",
+      "data",
+      "runtime"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "전투 계열 로직 포함"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/BlockManager.cs",
+    "path": "ProjectDribble/Assets/Scripts/BlockManager.cs",
+    "file_name": "BlockManager.cs",
+    "content_hash": "db99bf4ba7d8d7805bea3dcd605688f1802f410c",
+    "size": 12102,
+    "line_count": 493,
+    "namespace": "",
+    "using_list": [
+      "System.Collections",
+      "System.Collections.Generic",
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "BlockManager",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      },
+      {
+        "name": "GrowthDirection",
+        "kind": "class",
+        "access": "public",
+        "base_types": [],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      },
+      {
+        "name": "FixedBlockData",
+        "kind": "class",
+        "access": "public",
+        "base_types": [],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      },
+      {
+        "name": "GrowthCandidate",
+        "kind": "struct",
+        "access": "private",
+        "base_types": [],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "BlockManager",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "GrowthCandidate",
+      "Vector2Int",
+      "Awake",
+      "Start",
+      "CreateGrid",
+      "CalculateGridSize",
+      "GridToWorld",
+      "Vector3",
+      "GetCellSize",
+      "Vector2",
+      "GrowRoutine",
+      "WaitForSeconds",
+      "SpawnFixedBlocks",
+      "SpawnStartBlocks",
+      "RespawnMissingStartBlocks",
+      "SpawnBlock",
+      "RemoveBlock",
+      "NotifyBlockDestroyed",
+      "GetGrowthCandidates",
+      "GetStartConnectedCells",
+      "AddCandidate",
+      "PickByPriorityAndWeight",
+      "PickWeightedCandidate",
+      "IsOccupied",
+      "IsValidCoord",
+      "OnDrawGizmos",
+      "OnDrawGizmosSelected",
+      "DrawGridGizmos"
+    ],
+    "fields": [
+      {
+        "name": "name",
+        "type": "string",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "direction",
+        "type": "Vector2Int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "priority",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "weight",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "cell",
+        "type": "Vector2Int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "hp",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "cell",
+        "type": "Vector2Int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "priority",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "weight",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "occupied",
+        "type": "bool[,]",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "fixedOccupied",
+        "type": "bool[,]",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "cellWidth",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "cellHeight",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "growRoutine",
+        "type": "Coroutine",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "areaSize",
+        "type": "Vector3",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "center",
+        "type": "Vector3",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "left",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "top",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "connected",
+        "type": "bool[,]",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "next",
+        "type": "Vector2Int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "finalWeight",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "finalPriority",
+        "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "connected",
+        "type": "bool[,]",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "next",
+        "type": "Vector2Int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "bestPriority",
+        "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "totalWeight",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "current",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Awake",
+      "Start"
+    ],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": true,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 9,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 20,
+    "coroutine_count": 2,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "string",
+      "Vector2Int",
+      "int",
+      "float",
+      "bool[,]",
+      "Coroutine",
+      "Vector3",
+      "System",
+      "Collections",
+      "Generic",
+      "UnityEngine",
+      "Serializable",
+      "Grid",
+      "Size",
+      "Area",
+      "References",
+      "BlockPool",
+      "Default",
+      "Block",
+      "Fixed",
+      "Blocks",
+      "Start",
+      "Growth",
+      "Timing",
+      "Row",
+      "Weight",
+      "Priority",
+      "Connection",
+      "Rule",
+      "Directions",
+      "Down",
+      "Left",
+      "Right",
+      "Awake",
+      "CreateGrid",
+      "CreatePool",
+      "GridToWorld",
+      "GetCellSize",
+      "SpawnFixedBlocks",
+      "SpawnStartBlocks",
+      "StartCoroutine",
+      "GrowRoutine",
+      "CalculateGridSize",
+      "Vector2",
+      "RespawnMissingStartBlocks",
+      "GetGrowthCandidates",
+      "Count",
+      "PickByPriorityAndWeight",
+      "SpawnBlock",
+      "WaitForSeconds",
+      "IsValidCoord",
+      "CreateFixedBlock",
+      "ActivateBlock",
+      "RemoveBlock",
+      "DeactivateBlock",
+      "NotifyBlockDestroyed",
+      "GetStartConnectedCells",
+      "AddCandidate",
+      "Enqueue",
+      "Dequeue",
+      "Add",
+      "MaxValue",
+      "PickWeightedCandidate",
+      "IsOccupied",
+      "OnDrawGizmos",
+      "DrawGridGizmos",
+      "Color",
+      "OnDrawGizmosSelected",
+      "Gizmos",
+      "DrawWireCube"
+    ],
+    "component_access_types": [],
+    "created_types": [
+      "Vector2Int",
+      "Vector3",
+      "Vector2",
+      "WaitForSeconds",
+      "GrowthCandidate"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Grid Size",
+      "Grid Area",
+      "References",
+      "Default Block",
+      "Fixed Blocks",
+      "Start Blocks",
+      "Growth Timing",
+      "Row Weight",
+      "Row Priority",
+      "Connection Rule",
+      "Growth Directions",
+      "Down",
+      "Left",
+      "Right"
+    ],
+    "numeric_literals": [
+      1,
+      999,
+      7,
+      20,
+      3,
+      2,
+      0.2,
+      5,
+      0.5,
+      0
+    ],
+    "guessed_roles": [
+      "runtime",
+      "player",
+      "manager",
+      "data",
+      "combat"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "전투 계열 로직 포함"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/BlockPool.cs",
+    "path": "ProjectDribble/Assets/Scripts/BlockPool.cs",
+    "file_name": "BlockPool.cs",
+    "content_hash": "46d3fa1020900bd0136298b056d0a553ff6fe4d1",
+    "size": 2568,
+    "line_count": 100,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "BlockPool",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "BlockPool",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "CreatePool",
+      "Vector2Int",
+      "gridToWorld",
+      "ActivateBlock",
+      "CreateFixedBlock",
+      "DeactivateBlock",
+      "GetBlock",
+      "ApplyBlockSize",
+      "Vector3"
+    ],
+    "fields": [
+      {
+        "name": "pool",
+        "type": "BlockCell[,]",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "cellSize",
+        "type": "Vector2",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "manager",
+        "type": "BlockManager",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "block",
+        "type": "BlockCell",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "block",
+        "type": "BlockCell",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 3,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "BlockCell[,]",
+      "Vector2",
+      "BlockManager",
+      "BlockCell",
+      "UnityEngine",
+      "References",
+      "System",
+      "Vector2Int",
+      "Vector3",
+      "CreatePool",
+      "Instantiate",
+      "Quaternion",
+      "ApplyBlockSize",
+      "Init",
+      "SetActive",
+      "ActivateBlock",
+      "SetParent",
+      "Activate",
+      "CreateFixedBlock",
+      "DeactivateBlock",
+      "Deactivate",
+      "GetBlock"
+    ],
+    "component_access_types": [],
+    "created_types": [
+      "Vector2Int",
+      "Vector3"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "References"
+    ],
+    "numeric_literals": [
+      0.78,
+      0.79,
+      1
+    ],
+    "guessed_roles": [
+      "manager",
+      "combat",
+      "save-load",
+      "runtime"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함"
     ]
   },
   {

@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class BallCollisionHandler : MonoBehaviour
 {
-    
-
     private Transform tr;
     private CircleCollider2D cc;
     private BallMovement BallMovement;
@@ -20,13 +18,7 @@ public class BallCollisionHandler : MonoBehaviour
         cc = GetComponent<CircleCollider2D>();
         moveDistance = BallMovement.moveDistance;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    
 
 // 현재 밑에 코드는 사용되지는 않음
     public Vector2 CheckAndHandleCollision(Vector2 direction, float actualRadius, LayerMask collisionMask)

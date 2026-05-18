@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 063cc7b49451d5945ba10eddb5a22f15
+guid: 0a5654ab1ef5c8046b5bb0d37273be8c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6111644803712268436
-    second: White_Wall_downLeft_0
+      213: -4969137262583189993
+    second: White_Paddle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: White_Wall_downLeft_0
+      name: White_Paddle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 12
-        height: 40
+        width: 108
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 498b1ae619ce0d450800000000000000
-      internalID: 6111644803712268436
+      spriteID: 71e629fbcf31a0bb0800000000000000
+      internalID: -4969137262583189993
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      White_Wall_downLeft_0: 6111644803712268436
+      White_Paddle_0: -4969137262583189993
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

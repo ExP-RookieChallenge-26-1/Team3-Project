@@ -14292,9 +14292,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
     "path": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
     "file_name": "BallCollisionHandler.cs",
-    "content_hash": "ed6398099e89ce4b50f82edb40df4a2e945326b9",
-    "size": 1710,
-    "line_count": 54,
+    "content_hash": "58d5d813675ce906b538b760c8418fdf2427c5a7",
+    "size": 1637,
+    "line_count": 46,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -14317,7 +14317,6 @@
     "unity_type": "MonoBehaviour",
     "methods": [
       "Start",
-      "Update",
       "CheckAndHandleCollision"
     ],
     "fields": [
@@ -14360,10 +14359,9 @@
     "properties": [],
     "events": [],
     "unity_messages": [
-      "Start",
-      "Update"
+      "Start"
     ],
-    "has_update": true,
+    "has_update": false,
     "has_fixed_update": false,
     "has_late_update": false,
     "has_awake": false,
@@ -14386,7 +14384,6 @@
       "UnityEngine",
       "Start",
       "GetComponent",
-      "Update",
       "Vector2",
       "CheckAndHandleCollision",
       "LayerMask",
@@ -14414,7 +14411,6 @@
     ],
     "summary_signals": [
       "런타임 컴포넌트",
-      "Update 기반 처리 존재",
       "전투 계열 로직 포함",
       "컴포넌트 조회 사용"
     ]

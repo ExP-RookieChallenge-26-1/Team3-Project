@@ -20834,13 +20834,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
     "from_class": "BallCollisionHandler",
-    "to_type": "Update",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
-    "from_class": "BallCollisionHandler",
     "to_type": "UpdateDirection",
     "relation_type": "uses",
     "strength": 1

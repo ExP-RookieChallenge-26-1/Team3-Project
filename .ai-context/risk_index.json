@@ -1500,25 +1500,6 @@
     "risk_score": 58
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
-    "class_name": "BallCollisionHandler",
-    "risk_flags": [
-      "update-heavy",
-      "high-coupling",
-      "getcomponent-heavy",
-      "init-order-sensitive",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "Unity 업데이트 루프 사용",
-      "참조 타입 또는 관계 수가 많음",
-      "GetComponent/TryGetComponent 호출이 많음",
-      "초기화 순서에 민감할 가능성",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 58
-  },
-  {
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "class_name": "LaserChargeController",
     "risk_flags": [
@@ -1669,6 +1650,23 @@
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 50
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "class_name": "BallCollisionHandler",
+    "risk_flags": [
+      "high-coupling",
+      "getcomponent-heavy",
+      "init-order-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "GetComponent/TryGetComponent 호출이 많음",
+      "초기화 순서에 민감할 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 48
   },
   {
     "file_id": "PaddlePrototype/Assets/Scripts/ForRazer/GaugeManager.cs",

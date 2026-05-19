@@ -65,7 +65,21 @@
   {
     "from_file": "PaddlePrototype/Assets/Scripts/ball_movement.cs",
     "from_class": "BallController",
+    "to_type": "BallSound",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ball_movement.cs",
+    "from_class": "BallController",
     "to_type": "bool",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ball_movement.cs",
+    "from_class": "BallController",
+    "to_type": "Bounce",
     "relation_type": "uses",
     "strength": 1
   },
@@ -240,6 +254,13 @@
   {
     "from_file": "PaddlePrototype/Assets/Scripts/ball_movement.cs",
     "from_class": "BallController",
+    "to_type": "InverseLerp",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ball_movement.cs",
+    "from_class": "BallController",
     "to_type": "IsFixedBrick",
     "relation_type": "uses",
     "strength": 1
@@ -303,7 +324,21 @@
   {
     "from_file": "PaddlePrototype/Assets/Scripts/ball_movement.cs",
     "from_class": "BallController",
+    "to_type": "PaddleBounce",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ball_movement.cs",
+    "from_class": "BallController",
     "to_type": "Physics2D",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ball_movement.cs",
+    "from_class": "BallController",
+    "to_type": "Play",
     "relation_type": "uses",
     "strength": 1
   },
@@ -360,6 +395,13 @@
     "from_file": "PaddlePrototype/Assets/Scripts/ball_movement.cs",
     "from_class": "BallController",
     "to_type": "SnapNormal",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ball_movement.cs",
+    "from_class": "BallController",
+    "to_type": "SoundType",
     "relation_type": "uses",
     "strength": 1
   },
@@ -430,6 +472,181 @@
     "from_file": "PaddlePrototype/Assets/Scripts/ball_movement.cs",
     "from_class": "BallController",
     "to_type": "World",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "AudioClip",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "AudioSource",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "Bounce",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "Charging",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "Clamp01",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "Clips",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "Fire",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "Lerp",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "Log",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "Option",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "PaddleBounce",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "Pitch",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "Play",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "PlayBounce",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "PlayFire",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "PlayOneShot",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "PlayPaddleBounce",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "SetCharging",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "Sound",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "SoundType",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "StartChargingSound",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "Stop",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "StopChargingSound",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "from_class": "BallSound",
+    "to_type": "UnityEngine",
     "relation_type": "uses",
     "strength": 1
   },
@@ -2011,6 +2228,13 @@
   {
     "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
     "from_class": "ChargingLaserManager",
+    "to_type": "BallSound",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
+    "from_class": "ChargingLaserManager",
     "to_type": "bool",
     "relation_type": "uses",
     "strength": 1
@@ -2018,7 +2242,21 @@
   {
     "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
     "from_class": "ChargingLaserManager",
+    "to_type": "Charging",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
+    "from_class": "ChargingLaserManager",
     "to_type": "CheckBounceCount",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
+    "from_class": "ChargingLaserManager",
+    "to_type": "Fire",
     "relation_type": "uses",
     "strength": 1
   },
@@ -2088,6 +2326,13 @@
   {
     "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
     "from_class": "ChargingLaserManager",
+    "to_type": "Play",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
+    "from_class": "ChargingLaserManager",
     "to_type": "Reset",
     "relation_type": "uses",
     "strength": 1
@@ -2102,6 +2347,13 @@
   {
     "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
     "from_class": "ChargingLaserManager",
+    "to_type": "SetCharging",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
+    "from_class": "ChargingLaserManager",
     "to_type": "Shoot",
     "relation_type": "uses",
     "strength": 1
@@ -2110,6 +2362,13 @@
     "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
     "from_class": "ChargingLaserManager",
     "to_type": "ShootLaser",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
+    "from_class": "ChargingLaserManager",
+    "to_type": "SoundType",
     "relation_type": "uses",
     "strength": 1
   },
@@ -2383,6 +2642,13 @@
     "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/LaserShooter.cs",
     "from_class": "LaserShooter",
     "to_type": "Add",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "PaddlePrototype/Assets/Scripts/ForRazer/LaserShooter.cs",
+    "from_class": "LaserShooter",
+    "to_type": "BallSound",
     "relation_type": "uses",
     "strength": 1
   },

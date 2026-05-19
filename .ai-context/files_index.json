@@ -3,9 +3,9 @@
     "file_id": "PaddlePrototype/Assets/Scripts/ball_movement.cs",
     "path": "PaddlePrototype/Assets/Scripts/ball_movement.cs",
     "file_name": "ball_movement.cs",
-    "content_hash": "2cde18b2b282e840434f83a2a2f186a2804d8748",
-    "size": 10602,
-    "line_count": 328,
+    "content_hash": "3758ec09583ad682cb0bd9819e56b1b5ade10e62",
+    "size": 10973,
+    "line_count": 335,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -161,6 +161,7 @@
       "ScriptableObjectScripts",
       "UnityEngine",
       "BallBalanceData",
+      "BallSound",
       "LayerMask",
       "ChargingLaserManager",
       "SnapNormal",
@@ -188,11 +189,16 @@
       "IBallDamagable",
       "GetDamaged",
       "Contains",
+      "InverseLerp",
+      "Play",
+      "SoundType",
+      "PaddleBounce",
       "CheckBounceCount",
       "Clamp",
       "Lerp",
       "Quaternion",
       "Euler",
+      "Bounce",
       "GetSlower",
       "Reflect",
       "Reset",
@@ -237,7 +243,7 @@
       999,
       5,
       0,
-      0.5,
+      0.3,
       1,
       2,
       3,
@@ -260,6 +266,115 @@
       "인스펙터 직렬화 필드 사용",
       "전투 계열 로직 포함",
       "컴포넌트 조회 사용"
+    ]
+  },
+  {
+    "file_id": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "path": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "file_name": "BallSound.cs",
+    "content_hash": "265e8a0fb8ef61739f9374e48da415ac81bd31c4",
+    "size": 3093,
+    "line_count": 131,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "BallSound",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "BallSound",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "SetCharging",
+      "Play",
+      "PlayPaddleBounce",
+      "PlayBounce",
+      "StartChargingSound",
+      "StopChargingSound",
+      "PlayFire"
+    ],
+    "fields": [],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "UnityEngine",
+      "SoundType",
+      "Bounce",
+      "PaddleBounce",
+      "Charging",
+      "Fire",
+      "AudioSource",
+      "Clips",
+      "AudioClip",
+      "Pitch",
+      "Option",
+      "SetCharging",
+      "StartChargingSound",
+      "StopChargingSound",
+      "Play",
+      "Clamp01",
+      "PlayBounce",
+      "PlayFire",
+      "PlayPaddleBounce",
+      "Lerp",
+      "PlayOneShot",
+      "Log",
+      "Sound",
+      "Stop"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Clips",
+      "Pitch",
+      "Option",
+      "Sound Play: PaddleBounce",
+      "Sound Play: Bounce",
+      "Sound Play: Charging",
+      "Sound Stop: Charging",
+      "Sound Play: Fire"
+    ],
+    "numeric_literals": [
+      0.9,
+      1.4,
+      0,
+      0.2
+    ],
+    "guessed_roles": [
+      "runtime",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "저장/불러오기 관련 로직 포함"
     ]
   },
   {
@@ -1478,9 +1593,9 @@
     "file_id": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
     "path": "PaddlePrototype/Assets/Scripts/ForRazer/ChargingLaserManager.cs",
     "file_name": "ChargingLaserManager.cs",
-    "content_hash": "318848abaeb3fc0d0f98a06218f5b807dbf2564d",
-    "size": 1495,
-    "line_count": 80,
+    "content_hash": "2de0adc61bb701789fc1ba18d832c4b57f9c2b66",
+    "size": 1868,
+    "line_count": 87,
     "namespace": "",
     "using_list": [
       "System",
@@ -1569,6 +1684,7 @@
       "UnityEngine",
       "ScriptableObjectScripts",
       "LaserGaugeData",
+      "BallSound",
       "GaugeManager",
       "PerBounceCount",
       "Start",
@@ -1577,11 +1693,16 @@
       "Log",
       "TryCharging",
       "TryReduceGaugeLevel",
+      "Play",
+      "SoundType",
+      "Charging",
       "Update",
       "Input",
       "GetMouseButtonUp",
       "ShootLaser",
+      "SetCharging",
       "Shoot",
+      "Fire",
       "Reset"
     ],
     "component_access_types": [
@@ -1593,7 +1714,8 @@
       "팅"
     ],
     "numeric_literals": [
-      10
+      10,
+      3
     ],
     "guessed_roles": [
       "data",
@@ -1752,9 +1874,9 @@
     "file_id": "PaddlePrototype/Assets/Scripts/ForRazer/LaserShooter.cs",
     "path": "PaddlePrototype/Assets/Scripts/ForRazer/LaserShooter.cs",
     "file_name": "LaserShooter.cs",
-    "content_hash": "c52a6cb64da68f834e96242d7b9fb6bcfa56cb5c",
-    "size": 5092,
-    "line_count": 176,
+    "content_hash": "d8b68386afed98b8abcde68de09ab5839afbec08",
+    "size": 5216,
+    "line_count": 182,
     "namespace": "",
     "using_list": [
       "System.Linq",
@@ -1882,6 +2004,7 @@
       "Collections",
       "Generic",
       "Serialization",
+      "BallSound",
       "ScriptableObjectScripts",
       "LaserGaugeData",
       "ChargingLaserManager",

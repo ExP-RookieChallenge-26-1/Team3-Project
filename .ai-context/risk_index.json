@@ -1924,6 +1924,21 @@
     "risk_score": 40
   },
   {
+    "file_id": "PaddlePrototype/Assets/Scripts/BallSound.cs",
+    "class_name": "BallSound",
+    "risk_flags": [
+      "high-coupling",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 38
+  },
+  {
     "file_id": "PaddlePrototype/Assets/Scripts/ScriptableObjectScripts/LaserBalanceData.cs",
     "class_name": "LaserGaugeData",
     "risk_flags": [

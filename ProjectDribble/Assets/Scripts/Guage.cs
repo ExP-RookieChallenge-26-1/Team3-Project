@@ -26,4 +26,9 @@ public class Gauge : MonoBehaviour
             return false;
         }
     }
+    public void ResetGauge()
+    {
+        slider.value = 0;
+    }
+
 }

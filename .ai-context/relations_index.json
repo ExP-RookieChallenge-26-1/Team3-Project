@@ -22458,6 +22458,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Guage.cs",
     "from_class": "Gauge",
+    "to_type": "AddGauge",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Guage.cs",
+    "from_class": "Gauge",
     "to_type": "SetGuage",
     "relation_type": "uses",
     "strength": 1

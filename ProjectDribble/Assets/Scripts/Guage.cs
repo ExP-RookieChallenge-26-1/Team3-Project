@@ -10,4 +10,8 @@ public class Gauge : MonoBehaviour
             slider.value = value;
         }
     }
+    public void AddGauge(int amount = 1)
+    {
+        slider.value += amount;
+    }
 }

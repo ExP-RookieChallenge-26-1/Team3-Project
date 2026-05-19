@@ -5,6 +5,8 @@ using UnityEngine.Serialization;
 
 public class LaserShooter : MonoBehaviour
 {
+    [SerializeField] private BallSound ballSound;
+    
     [SerializeField] private ScriptableObjectScripts.LaserGaugeData laserGaugeData;
     [SerializeField] ChargingLaserManager chargingManager;
     [SerializeField] private float sameRowYTolerance = 0.05f;
@@ -53,6 +55,10 @@ public class LaserShooter : MonoBehaviour
         Vector2 laserEndPoint = new Vector2(origin.x, laserEndBlock.y);
         Vector2 newBallPosition =
             laserEndPoint - direction.normalized * ballSpawnBackOffset;
+        chargingManager.charging = false;
+        
+        
+        
         
         ball.position = newBallPosition;
     }

@@ -2860,6 +2860,8 @@ GameObject:
   - component: {fileID: 1250265849}
   - component: {fileID: 1250265848}
   - component: {fileID: 1250265847}
+  - component: {fileID: 1250265853}
+  - component: {fileID: 1250265852}
   m_Layer: 0
   m_Name: ball
   m_TagString: Untagged
@@ -2916,6 +2918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallController
   balanceData: {fileID: 11400000, guid: 40a820d01fc7775418ab6a6de169fe99, type: 2}
+  ballSound: {fileID: 1250265853}
   speed: 10
   baseSpeed: 25
   maxSpeed: 40
@@ -3038,6 +3041,123 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1250265852
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250265846}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.827
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1250265853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250265846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 751f5303da762e04d9675d239f54f1e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BallSound
+  audioSource: {fileID: 1250265852}
+  paddleBounceClip: {fileID: 8300000, guid: 83dadf829ac64a14ba61b9315abbd576, type: 3}
+  bounceClip: {fileID: 8300000, guid: 6f1cd4b2af7f2514f89567a8361ef76b, type: 3}
+  chargingClip: {fileID: 8300000, guid: 25fee60d5ff61294593a2f31bcc1df5d, type: 3}
+  fireClip: {fileID: 8300000, guid: 43d7ea1b7193f014194778ee5a88d8f0, type: 3}
+  minPitch: 0.95
+  maxPitch: 1.15
+  isCharging: 0
 --- !u!1 &1387697784
 GameObject:
   m_ObjectHideFlags: 0
@@ -3101,6 +3221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChargingRazerManager
   laserGaugeData: {fileID: 11400000, guid: 55eca7ba84b3ee844a583eb4c42986d3, type: 2}
+  ballSound: {fileID: 1250265853}
   gauge: {fileID: 1977228571}
   charging: 0
   chargeCount: 0
@@ -3117,6 +3238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea2208b845501f049b535cc76dd193b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaserShooter
+  ballSound: {fileID: 0}
   laserGaugeData: {fileID: 11400000, guid: 55eca7ba84b3ee844a583eb4c42986d3, type: 2}
   chargingManager: {fileID: 1387697787}
   sameRowYTolerance: 0.05
@@ -3889,8 +4011,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -46, y: 927}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: 802}
+  m_SizeDelta: {x: 263.1797, y: 103.8198}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1911548483
 MonoBehaviour:

@@ -6,7 +6,7 @@ public class BallController : MonoBehaviour
 {
     
     [SerializeField] private BallBalanceData balanceData;
-    
+    [SerializeField] private BallSound ballSound;
     
     [SerializeField]private float speed = 10f; // 공의 초기 속도
     [SerializeField] private float baseSpeed = 10f; // 공의 초기 속도
@@ -86,7 +86,7 @@ public class BallController : MonoBehaviour
         _insideMaxBounceAngle = balanceData.insideMaxBounceAngle;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
-        direction = new Vector2(0.5f, 1f).normalized;
+        direction = new Vector2(0.3f, -1f).normalized;
         //LaunchBall();
         isGameStarted = true;
         speed = baseSpeed;
@@ -134,6 +134,8 @@ public class BallController : MonoBehaviour
 
             if (hit.collider != null)
             {
+                
+                
                 float distanceToHit = Mathf.Max(hit.distance, 0f);
 
                 // 1. 충돌 지점까지 이동
@@ -190,7 +192,8 @@ public class BallController : MonoBehaviour
         {
             if (Time.time < lastHitTime + colliderCooldown)
                 return;
-
+            float t = Mathf.InverseLerp(baseSpeed, maxSpeed, speed);
+            ballSound.Play(t, BallSound.SoundType.PaddleBounce);
             lastHitTime = Time.time;
             razerManager.CheckBounceCount();
             // 1. 비율 계산 (이미 3으로 잘 나온다면 이 값은 -1 ~ 1 사이가 될 것임)
@@ -223,6 +226,10 @@ public class BallController : MonoBehaviour
         }
         else
         {
+            
+            float t = Mathf.InverseLerp(baseSpeed, maxSpeed, speed);
+                
+            ballSound.Play(t, BallSound.SoundType.Bounce);
             GetSlower();
             // 벽이나 기타 오브젝트: 일반적인 물리 반사 법칙 적용
             Vector2 normal = SnapNormal(hit.normal);

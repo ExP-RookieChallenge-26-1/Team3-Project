@@ -4,7 +4,7 @@ using UnityEngine;
 public class ChargingLaserManager : MonoBehaviour
 {
     [SerializeField] private ScriptableObjectScripts.LaserGaugeData laserGaugeData;
-    
+    [SerializeField] private BallSound ballSound;
 
     [SerializeField] private GaugeManager gauge;
     private LaserShooter shooter;
@@ -42,8 +42,10 @@ public class ChargingLaserManager : MonoBehaviour
         if (gauge.TryReduceGaugeLevel())
         {
             charging = true;
-        
+            
             chargeCount++;
+            float chargeLevel = (float)chargeCount / 3f;
+            ballSound.Play(chargeLevel, BallSound.SoundType.Charging);
             return true;
         }
 
@@ -56,6 +58,7 @@ public class ChargingLaserManager : MonoBehaviour
         {
             ShootLaser();
         }
+        ballSound.SetCharging(charging);
     }
 
     private void ShootLaser()
@@ -63,9 +66,13 @@ public class ChargingLaserManager : MonoBehaviour
         if (chargeCount > 0)
         {
             shooter.Shoot(chargeCount);
+            charging = false;
+            float chargeLevel = (float)chargeCount / 3f;
+            ballSound.Play(chargeLevel, BallSound.SoundType.Fire);
             Reset();
         }
     }
+
     
     
     public void Reset()

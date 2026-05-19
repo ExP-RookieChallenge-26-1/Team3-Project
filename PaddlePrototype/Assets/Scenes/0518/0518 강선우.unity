@@ -2555,7 +2555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8919329eb1d5ab44c823aaf55c6c4977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BrickManager
-  brickData: {fileID: 11400000, guid: 93f988c6904301f4295a0a3aaf82c620, type: 2}
+  brickData: {fileID: 11400000, guid: db29386754cea594ea4c337c10d19212, type: 2}
   gameManager: {fileID: 1988517344}
   gameOverRow: 13
   brickPrefab: {fileID: 7211861392728797942, guid: 7af72b0a47e802d47b20e0c869f8d658, type: 3}
@@ -2916,6 +2916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallController
   balanceData: {fileID: 11400000, guid: 40a820d01fc7775418ab6a6de169fe99, type: 2}
+  ballSound: {fileID: 0}
   speed: 10
   baseSpeed: 25
   maxSpeed: 40
@@ -3101,6 +3102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChargingRazerManager
   laserGaugeData: {fileID: 11400000, guid: 55eca7ba84b3ee844a583eb4c42986d3, type: 2}
+  ballSound: {fileID: 0}
   gauge: {fileID: 1977228571}
   charging: 0
   chargeCount: 0
@@ -3117,6 +3119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea2208b845501f049b535cc76dd193b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaserShooter
+  ballSound: {fileID: 0}
   laserGaugeData: {fileID: 11400000, guid: 55eca7ba84b3ee844a583eb4c42986d3, type: 2}
   chargingManager: {fileID: 1387697787}
   sameRowYTolerance: 0.05

@@ -15707,8 +15707,8 @@
     "file_id": "ProjectDribble/Assets/Scripts/Guage.cs",
     "path": "ProjectDribble/Assets/Scripts/Guage.cs",
     "file_name": "Guage.cs",
-    "content_hash": "70cc7ee23e3c512c76cc046e58438a7ab71b4b5c",
-    "size": 651,
+    "content_hash": "3491e748b87f895859c65cbc0b27408b94c7ef1d",
+    "size": 652,
     "line_count": 35,
     "namespace": "",
     "using_list": [
@@ -15769,7 +15769,9 @@
     "created_types": [],
     "singleton_access_types": [],
     "string_literals": [],
-    "numeric_literals": [],
+    "numeric_literals": [
+      0
+    ],
     "guessed_roles": [
       "ui",
       "save-load",

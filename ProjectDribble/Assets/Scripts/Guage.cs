@@ -14,4 +14,16 @@ public class Gauge : MonoBehaviour
     {
         slider.value += amount;
     }
+    public bool ConsumeGauge(int amount = 1)
+    {
+        if (slider.value >= amount)
+        {
+            slider.value -= amount;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

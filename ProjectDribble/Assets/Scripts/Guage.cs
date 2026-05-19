@@ -28,7 +28,7 @@ public class Gauge : MonoBehaviour
     }
     public void ResetGauge()
     {
-        slider.value = 0;
+        slider.value = 0f;
     }
 
 }

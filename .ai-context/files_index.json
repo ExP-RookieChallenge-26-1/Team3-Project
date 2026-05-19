@@ -15707,9 +15707,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Guage.cs",
     "path": "ProjectDribble/Assets/Scripts/Guage.cs",
     "file_name": "Guage.cs",
-    "content_hash": "211fc2d8385b42fdd91ab75f18bd7c92907a5d07",
-    "size": 265,
-    "line_count": 14,
+    "content_hash": "8fe88379bc3cc13f916d92af72db2b65b7946197",
+    "size": 350,
+    "line_count": 18,
     "namespace": "",
     "using_list": [
       "UnityEngine",
@@ -15732,7 +15732,8 @@
     "main_class_name": "Gauge",
     "unity_type": "MonoBehaviour",
     "methods": [
-      "SetGuage"
+      "SetGuage",
+      "AddGauge"
     ],
     "fields": [],
     "properties": [],
@@ -15757,7 +15758,8 @@
       "UnityEngine",
       "UI",
       "Slider",
-      "SetGuage"
+      "SetGuage",
+      "AddGauge"
     ],
     "component_access_types": [],
     "created_types": [],

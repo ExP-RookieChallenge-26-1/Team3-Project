@@ -1,5 +1,2486 @@
 [
   {
+    "file_id": "Old Scripts/ball_movement.cs",
+    "path": "Old Scripts/ball_movement.cs",
+    "file_name": "ball_movement.cs",
+    "content_hash": "39293859d92f63ceabbbc615847fc299c0e45046",
+    "size": 8137,
+    "line_count": 274,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "Balmove",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "Balmove",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Start",
+      "Vector2",
+      "Vector3",
+      "Update",
+      "MoveBall",
+      "UpdateDirection",
+      "ResolveOverlap",
+      "OnDrawGizmos",
+      "SetBallSpeed",
+      "AddBallSpeed",
+      "SetBallBaseSpeed",
+      "AddBallBaseSpeed",
+      "SetBallMaxSpeed",
+      "AddBallMaxSpeed",
+      "SetPaddleSpeedIncrease",
+      "AddPaddleSpeedIncrease",
+      "SetPaddlePowerIncrease",
+      "AddPaddlePowerIncrease",
+      "SetBlockSpeedDecrease",
+      "AddBlockSpeedDecrease",
+      "SetBlockPowerDecrease",
+      "AddBlockPowerDecrease",
+      "SetBallRadius",
+      "AddBallRadius",
+      "SetInsideMaxBounceAngle",
+      "AddInsideMaxBounceAngle",
+      "SetOutsideMaxBounceAngle",
+      "AddOutsideMaxBounceAngle"
+    ],
+    "fields": [
+      {
+        "name": "power",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "actualRadius",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "tr",
+        "type": "Transform",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "direction",
+        "type": "Vector2",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "cc",
+        "type": "CircleCollider2D",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "isGameStarted",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "distanceToHit",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "remainingDistance",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "obj",
+        "type": "GameObject",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "targetAngle",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Start",
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": true,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 2,
+    "find_call_count": 0,
+    "new_keyword_count": 2,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "float",
+      "Vector2",
+      "CircleCollider2D",
+      "bool",
+      "UnityEngine",
+      "LayerMask",
+      "Start",
+      "LaunchBall",
+      "GetComponent",
+      "Vector3",
+      "Update",
+      "MoveBall",
+      "CircleCast",
+      "RaycastHit2D",
+      "Physics2D",
+      "Translate",
+      "Space",
+      "World",
+      "UpdateDirection",
+      "ResolveOverlap",
+      "GetComponentInParent",
+      "IBallHitReceiver",
+      "OnBallHit",
+      "Contains",
+      "Clamp",
+      "Lerp",
+      "Abs",
+      "Quaternion",
+      "Euler",
+      "Reflect",
+      "Collider2D",
+      "OverlapCircle",
+      "CompareTag",
+      "ClosestPoint",
+      "OnDrawGizmos",
+      "Gizmos",
+      "Color",
+      "DrawWireSphere",
+      "SetBallSpeed",
+      "AddBallSpeed",
+      "SetBallBaseSpeed",
+      "AddBallBaseSpeed",
+      "SetBallMaxSpeed",
+      "AddBallMaxSpeed",
+      "SetPaddleSpeedIncrease",
+      "AddPaddleSpeedIncrease",
+      "SetPaddlePowerIncrease",
+      "AddPaddlePowerIncrease",
+      "SetBlockSpeedDecrease",
+      "AddBlockSpeedDecrease",
+      "SetBlockPowerDecrease",
+      "AddBlockPowerDecrease",
+      "SetBallRadius",
+      "AddBallRadius",
+      "SetInsideMaxBounceAngle",
+      "AddInsideMaxBounceAngle",
+      "SetOutsideMaxBounceAngle",
+      "AddOutsideMaxBounceAngle"
+    ],
+    "component_access_types": [
+      "Transform",
+      "CircleCollider2D"
+    ],
+    "created_types": [
+      "Vector2",
+      "Vector3"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "paddle_up",
+      "paddle_down",
+      "roof_paddle",
+      "need_correction"
+    ],
+    "numeric_literals": [
+      10,
+      30,
+      5,
+      0.7,
+      0.1,
+      50,
+      0.5,
+      1,
+      1.75,
+      0.025,
+      2,
+      3,
+      4,
+      3,
+      2,
+      5,
+      0.0001
+    ],
+    "guessed_roles": [
+      "runtime",
+      "player",
+      "combat",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
+    ]
+  },
+  {
+    "file_id": "Old Scripts/brick_cell.cs",
+    "path": "Old Scripts/brick_cell.cs",
+    "file_name": "brick_cell.cs",
+    "content_hash": "ebadcd0c494818a0a0a4e2b4216fa64a3197ded8",
+    "size": 1599,
+    "line_count": 77,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "BrickCell",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour /*IBallHitReceiver*/"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "BrickCell",
+    "unity_type": "None",
+    "methods": [
+      "Awake",
+      "Init",
+      "OnBallHit",
+      "OnDestroy",
+      "DestroybyLaser",
+      "IsFixedBrick",
+      "OnCollisionEnter2D"
+    ],
+    "fields": [
+      {
+        "name": "manager",
+        "type": "BrickManager",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "cell",
+        "type": "Vector2Int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "isFixed",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "version",
+        "type": "int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "gaugeManager",
+        "type": "GaugeManager",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Awake",
+      "OnDestroy"
+    ],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 1,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "BrickManager",
+      "Vector2Int",
+      "bool",
+      "int",
+      "GaugeManager",
+      "UnityEngine",
+      "IBallHitReceiver",
+      "Awake",
+      "FindFirstObjectByType",
+      "Init",
+      "OnBallHit",
+      "AddGauge",
+      "Destroy",
+      "OnDestroy",
+      "NotifyBrickDestroyed",
+      "DestroybyLaser",
+      "IsFixedBrick",
+      "OnCollisionEnter2D",
+      "Collision2D",
+      "CompareTag",
+      "Ball",
+      "BallController",
+      "GetComponent",
+      "DecreaseByBlockHit"
+    ],
+    "component_access_types": [
+      "BallController"
+    ],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Ball"
+    ],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "runtime",
+      "combat",
+      "manager"
+    ],
+    "summary_signals": [
+      "전투 계열 로직 포함",
+      "컴포넌트 조회 사용"
+    ]
+  },
+  {
+    "file_id": "Old Scripts/brick_manager.cs",
+    "path": "Old Scripts/brick_manager.cs",
+    "file_name": "brick_manager.cs",
+    "content_hash": "d293cf1bcc8cb1638254aa09ea22def1224c3231",
+    "size": 14531,
+    "line_count": 571,
+    "namespace": "",
+    "using_list": [
+      "System.Collections",
+      "System.Collections.Generic",
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "BrickManager",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      },
+      {
+        "name": "GrowthDirection",
+        "kind": "class",
+        "access": "public",
+        "base_types": [],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      },
+      {
+        "name": "FixedBrickData",
+        "kind": "class",
+        "access": "public",
+        "base_types": [],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      },
+      {
+        "name": "GrowthCandidate",
+        "kind": "struct",
+        "access": "private",
+        "base_types": [],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "BrickManager",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "GrowthCandidate",
+      "Vector2",
+      "Vector2Int",
+      "Awake",
+      "ResetBricks",
+      "GrowRoutine",
+      "WaitForSeconds",
+      "RespawnMissingStartBricks",
+      "SpawnFixedBricks",
+      "SpawnStartBricks",
+      "SpawnFixedBrick",
+      "GridToWorld",
+      "SpawnBrick",
+      "GetGrowthCandidates",
+      "GetStartConnectedCells",
+      "AddCandidate",
+      "PickByPriorityAndWeight",
+      "PickWeightedCandidate",
+      "Vector3",
+      "FitBrickToCell",
+      "IsValidCell",
+      "NotifyBrickDestroyed",
+      "ClearBricks",
+      "StopGrowing",
+      "IsCellOccupied",
+      "GetCellWorldPosition",
+      "TryWorldToCell",
+      "OnDrawGizmos",
+      "OnDrawGizmosSelected",
+      "DrawGridGizmos"
+    ],
+    "fields": [
+      {
+        "name": "currentVersion",
+        "type": "int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "direction",
+        "type": "Vector2Int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "priority",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "weight",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "cell",
+        "type": "Vector2Int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "prefabOverride",
+        "type": "GameObject",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "cell",
+        "type": "Vector2Int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "priority",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "weight",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "occupied",
+        "type": "bool[,]",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "fixedOccupied",
+        "type": "bool[,]",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "growRoutine",
+        "type": "Coroutine",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "clearing",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "connected",
+        "type": "bool[,]",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "next",
+        "type": "Vector2Int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "finalWeight",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "finalPriority",
+        "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "connected",
+        "type": "bool[,]",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "next",
+        "type": "Vector2Int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "bestPriority",
+        "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "totalWeight",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "current",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "x",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "y",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [
+      {
+        "access": "public",
+        "type": "bool",
+        "name": "IsInitialized"
+      }
+    ],
+    "events": [],
+    "unity_messages": [
+      "Awake"
+    ],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 9,
+    "get_component_count": 2,
+    "find_call_count": 0,
+    "new_keyword_count": 22,
+    "coroutine_count": 2,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "int",
+      "string",
+      "Vector2Int",
+      "float",
+      "bool[,]",
+      "Coroutine",
+      "bool",
+      "System",
+      "Collections",
+      "Generic",
+      "UnityEngine",
+      "Serializable",
+      "Brick",
+      "Prefabs",
+      "Fixed",
+      "Bricks",
+      "Grid",
+      "Map",
+      "Position",
+      "Vector2",
+      "Growth",
+      "Timing",
+      "Row",
+      "Weight",
+      "Priority",
+      "Connection",
+      "Rule",
+      "Directions",
+      "Down",
+      "Left",
+      "Right",
+      "Start",
+      "IsInitialized",
+      "Awake",
+      "ResetBricks",
+      "StopGrowing",
+      "ClearBricks",
+      "SpawnFixedBricks",
+      "SpawnStartBricks",
+      "StartCoroutine",
+      "GrowRoutine",
+      "RespawnMissingStartBricks",
+      "GetGrowthCandidates",
+      "Count",
+      "PickByPriorityAndWeight",
+      "SpawnBrick",
+      "WaitForSeconds",
+      "IsValidCell",
+      "SpawnFixedBrick",
+      "LogError",
+      "Prefab",
+      "Instantiate",
+      "GridToWorld",
+      "Quaternion",
+      "FixedBrick_",
+      "FitBrickToCell",
+      "BrickCell",
+      "GetComponent",
+      "AddComponent",
+      "Init",
+      "Brick_",
+      "GetStartConnectedCells",
+      "AddCandidate",
+      "Enqueue",
+      "Dequeue",
+      "Add",
+      "MaxValue",
+      "PickWeightedCandidate",
+      "Vector3",
+      "NotifyBrickDestroyed",
+      "Destroy",
+      "StopCoroutine",
+      "IsCellOccupied",
+      "GetCellWorldPosition",
+      "TryWorldToCell",
+      "RoundToInt",
+      "OnDrawGizmos",
+      "DrawGridGizmos",
+      "Color",
+      "OnDrawGizmosSelected",
+      "Gizmos",
+      "DrawWireCube"
+    ],
+    "component_access_types": [
+      "BrickCell"
+    ],
+    "created_types": [
+      "Vector2",
+      "Vector2Int",
+      "WaitForSeconds",
+      "GrowthCandidate",
+      "Vector3"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Brick Prefabs",
+      "Fixed Bricks",
+      "Grid",
+      "Map Position",
+      "Growth Timing",
+      "Row Weight",
+      "Row Priority",
+      "Connection Rule",
+      "Growth Directions",
+      "Down",
+      "Left",
+      "Right",
+      "Start Bricks",
+      "Fixed Brick Prefab�� �����ϴ�.",
+      "need_correction",
+      "FixedBrick_{data.cell.y}_{data.cell.x}",
+      "Brick Prefab�� �����ϴ�.",
+      "Brick_{cell.y}_{cell.x}"
+    ],
+    "numeric_literals": [
+      1,
+      7,
+      20,
+      0.8,
+      0.4,
+      7.6,
+      4,
+      1,
+      2,
+      0.2,
+      5,
+      10,
+      3,
+      0
+    ],
+    "guessed_roles": [
+      "runtime",
+      "manager",
+      "data",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
+    ]
+  },
+  {
+    "file_id": "Old Scripts/enemy_projectile.cs",
+    "path": "Old Scripts/enemy_projectile.cs",
+    "file_name": "enemy_projectile.cs",
+    "content_hash": "934c98d825a55dde2eb32476336fa1040b6b7c85",
+    "size": 990,
+    "line_count": 44,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "EnemyProjectile",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "EnemyProjectile",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Vector2",
+      "Awake",
+      "Start",
+      "Vector3",
+      "OnTriggerEnter2D"
+    ],
+    "fields": [
+      {
+        "name": "rb",
+        "type": "Rigidbody2D",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Awake",
+      "Start"
+    ],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": true,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 1,
+    "find_call_count": 0,
+    "new_keyword_count": 2,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "Rigidbody2D",
+      "UnityEngine",
+      "Size",
+      "Vector2",
+      "Awake",
+      "GetComponent",
+      "Start",
+      "Vector3",
+      "Destroy",
+      "OnTriggerEnter2D",
+      "Collider2D",
+      "PaddleDebuff",
+      "GetComponentInParent",
+      "ApplyStun"
+    ],
+    "component_access_types": [
+      "Rigidbody2D"
+    ],
+    "created_types": [
+      "Vector2",
+      "Vector3"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Size"
+    ],
+    "numeric_literals": [
+      5,
+      0.5,
+      0.3,
+      1,
+      0
+    ],
+    "guessed_roles": [
+      "runtime",
+      "combat",
+      "player",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
+    ]
+  },
+  {
+    "file_id": "Old Scripts/enemy.cs",
+    "path": "Old Scripts/enemy.cs",
+    "file_name": "enemy.cs",
+    "content_hash": "6b8fb3c73e8ded6d110930c9516c4ab4039e3e76",
+    "size": 7881,
+    "line_count": 310,
+    "namespace": "",
+    "using_list": [
+      "System.Collections",
+      "System.Collections.Generic",
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "Enemy",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour /*IBallHitReceiver*/"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      },
+      {
+        "name": "MoveCommand",
+        "kind": "class",
+        "access": "public",
+        "base_types": [],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "Enemy",
+    "unity_type": "None",
+    "methods": [
+      "Awake",
+      "Update",
+      "Fire",
+      "OnBallHit",
+      "Init",
+      "MoveRoutine",
+      "WaitForSeconds",
+      "TryMoveByCommand",
+      "AdvanceCommand",
+      "CompleteCurrentCommand",
+      "MoveToCell",
+      "StopMoving",
+      "OnCollisionEnter2D"
+    ],
+    "fields": [
+      {
+        "name": "currentHp",
+        "type": "int",
+        "access": "private",
+        "serialized": true,
+        "is_static": false
+      },
+      {
+        "name": "fireTimer",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "direction",
+        "type": "Vector2Int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "sectionLoopEnd",
+        "type": "bool",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "stopYMoveAtRow",
+        "type": "bool",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "stopYRow",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "brickManager",
+        "type": "BrickManager",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "currentCell",
+        "type": "Vector2Int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "commands",
+        "type": "List<MoveCommand>",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "moveInterval",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "moveSpeed",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "loopAllCommands",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "commandIndex",
+        "type": "int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "commandRepeatCounter",
+        "type": "int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "isMoving",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "moveRoutine",
+        "type": "Coroutine",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "safety",
+        "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "command",
+        "type": "MoveCommand",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "direction",
+        "type": "Vector2Int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "nextCell",
+        "type": "Vector2Int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "endIndex",
+        "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Awake",
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 1,
+    "public_field_count": 4,
+    "get_component_count": 1,
+    "find_call_count": 0,
+    "new_keyword_count": 1,
+    "coroutine_count": 4,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "int",
+      "float",
+      "Vector2Int",
+      "bool",
+      "BrickManager",
+      "Coroutine",
+      "System",
+      "Collections",
+      "Generic",
+      "UnityEngine",
+      "IBallHitReceiver",
+      "HP",
+      "Projectile",
+      "Awake",
+      "Update",
+      "Fire",
+      "Vector3",
+      "Instantiate",
+      "Quaternion",
+      "OnBallHit",
+      "Log",
+      "Hit",
+      "Destroy",
+      "BlockedMoveAction",
+      "Wait",
+      "SkipToNextCommand",
+      "Serializable",
+      "Move",
+      "Repeat",
+      "Min",
+      "Section",
+      "Loop",
+      "Limit",
+      "Blocked",
+      "Init",
+      "Clear",
+      "GetCellWorldPosition",
+      "StopCoroutine",
+      "StartCoroutine",
+      "MoveRoutine",
+      "TryMoveByCommand",
+      "WaitForSeconds",
+      "Count",
+      "CompleteCurrentCommand",
+      "IsCellOccupied",
+      "MoveToCell",
+      "AdvanceCommand",
+      "ContainsKey",
+      "Clamp",
+      "Remove",
+      "StopMoving",
+      "Distance",
+      "MoveTowards",
+      "OnCollisionEnter2D",
+      "Collision2D",
+      "CompareTag",
+      "Ball",
+      "BallController",
+      "GetComponent",
+      "DecreaseByBlockHit"
+    ],
+    "component_access_types": [
+      "BallController"
+    ],
+    "created_types": [
+      "WaitForSeconds"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "HP",
+      "Projectile",
+      "Enemy Hit: {currentHp}/{maxHp}",
+      "Move",
+      "Repeat",
+      "Section Loop",
+      "�ǵ��ư� Ŀ�ǵ� ��ȣ",
+      "���� �ݺ� Ƚ��",
+      "Y Limit",
+      "Blocked",
+      "Ball"
+    ],
+    "numeric_literals": [
+      3,
+      2,
+      0,
+      6,
+      20,
+      0.01
+    ],
+    "guessed_roles": [
+      "combat",
+      "runtime",
+      "player",
+      "manager",
+      "save-load"
+    ],
+    "summary_signals": [
+      "Update 기반 처리 존재",
+      "인스펙터 직렬화 필드 사용",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
+    ]
+  },
+  {
+    "file_id": "Old Scripts/ForRazer/BrickAreaDetector.cs",
+    "path": "Old Scripts/ForRazer/BrickAreaDetector.cs",
+    "file_name": "BrickAreaDetector.cs",
+    "content_hash": "3a9e97191e87a1cff6d29f998db3f99580bf7cf3",
+    "size": 288,
+    "line_count": 17,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "BrickAreaDetector",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "BrickAreaDetector",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Start",
+      "Update"
+    ],
+    "fields": [],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Start",
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": true,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "UnityEngine",
+      "Start",
+      "Update"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "runtime"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재"
+    ]
+  },
+  {
+    "file_id": "Old Scripts/ForRazer/ChargingLaserManager.cs",
+    "path": "Old Scripts/ForRazer/ChargingLaserManager.cs",
+    "file_name": "ChargingLaserManager.cs",
+    "content_hash": "a3caa29f01fc0f74752fedba6254fcd88894dccb",
+    "size": 1470,
+    "line_count": 72,
+    "namespace": "",
+    "using_list": [
+      "System",
+      "UnityEngine",
+      "UnityEngine.InputSystem"
+    ],
+    "classes": [
+      {
+        "name": "ChargingLaserManager",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "ChargingLaserManager",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Start",
+      "CheckBounceCount",
+      "ChargingbyBounce",
+      "Update",
+      "ShootLaser",
+      "Reset"
+    ],
+    "fields": [
+      {
+        "name": "shooter",
+        "type": "LaserShooter",
+        "access": "private",
+        "serialized": true,
+        "is_static": false
+      },
+      {
+        "name": "charging",
+        "type": "bool",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "bounceCount",
+        "type": "int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "chargeCount",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Start",
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": true,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 1,
+    "public_field_count": 2,
+    "get_component_count": 1,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "LaserShooter",
+      "bool",
+      "int",
+      "System",
+      "UnityEngine",
+      "InputSystem",
+      "Start",
+      "Update",
+      "GaugeManager",
+      "PerBounceCount",
+      "GetComponent",
+      "CheckBounceCount",
+      "Log",
+      "ChargingbyBounce",
+      "ChangeGaugeLevel",
+      "Mouse",
+      "ShootLaser",
+      "Shoot",
+      "Reset"
+    ],
+    "component_access_types": [
+      "LaserShooter"
+    ],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [
+      "팅"
+    ],
+    "numeric_literals": [
+      10
+    ],
+    "guessed_roles": [
+      "runtime",
+      "player",
+      "manager",
+      "ui",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재",
+      "인스펙터 직렬화 필드 사용",
+      "UI 관련 로직 포함",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
+    ]
+  },
+  {
+    "file_id": "Old Scripts/ForRazer/GaugeManager.cs",
+    "path": "Old Scripts/ForRazer/GaugeManager.cs",
+    "file_name": "GaugeManager.cs",
+    "content_hash": "c209453385ffe500fd983d1b3e5cf17010851155",
+    "size": 2024,
+    "line_count": 89,
+    "namespace": "",
+    "using_list": [
+      "TMPro",
+      "UnityEngine",
+      "UnityEngine.Serialization"
+    ],
+    "classes": [
+      {
+        "name": "GaugeManager",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "GaugeManager",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Start",
+      "AddGauge",
+      "ChangeGaugeLevel",
+      "Update",
+      "UpdateGaugeUI"
+    ],
+    "fields": [
+      {
+        "name": "filledGaugeSegments",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "currentGaugeValue",
+        "type": "int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "gaugePerSegment",
+        "type": "int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "maxGaugeValue",
+        "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Start",
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": true,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 1,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "int",
+      "TMPro",
+      "UnityEngine",
+      "Serialization",
+      "Gauge",
+      "UI",
+      "TextMeshProUGUI",
+      "CurrentGaugeValue",
+      "Start",
+      "Update",
+      "UpdateGaugeUI",
+      "AddGauge",
+      "ChangeGaugeLevel",
+      "Clamp",
+      "Log",
+      "Segments",
+      "Value"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Gauge",
+      "UI",
+      "차징 게이지",
+      "Gauge Segments: {filledGaugeSegments} / {maxGaugeSegments}",
+      "Gauge Value: {currentGaugeValue}"
+    ],
+    "numeric_literals": [
+      30,
+      10,
+      3
+    ],
+    "guessed_roles": [
+      "runtime",
+      "ui",
+      "combat",
+      "manager",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재",
+      "UI 관련 로직 포함",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함"
+    ]
+  },
+  {
+    "file_id": "Old Scripts/ForRazer/LaserShooter.cs",
+    "path": "Old Scripts/ForRazer/LaserShooter.cs",
+    "file_name": "LaserShooter.cs",
+    "content_hash": "ba58cbd0f314661c2f235b625eb42fd6fd4a79c7",
+    "size": 3862,
+    "line_count": 128,
+    "namespace": "",
+    "using_list": [
+      "System.Linq",
+      "UnityEngine",
+      "UnityEngine.Serialization"
+    ],
+    "classes": [
+      {
+        "name": "LaserShooter",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "LaserShooter",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Shoot",
+      "Vector2",
+      "FireSegment",
+      "OnDrawGizmos",
+      "Vector3"
+    ],
+    "fields": [
+      {
+        "name": "origin",
+        "type": "Vector2",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "width",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "start",
+        "type": "Vector2",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "endPoint",
+        "type": "Vector2",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "dir",
+        "type": "Vector2",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "width",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "oldMatrix",
+        "type": "Matrix4x4",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 3,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "Vector2",
+      "float",
+      "Matrix4x4",
+      "System",
+      "Linq",
+      "UnityEngine",
+      "Serialization",
+      "ChargingLaserManager",
+      "LayerMask",
+      "Brick",
+      "Wall",
+      "Ceiling",
+      "Laser",
+      "Max",
+      "Up",
+      "Shoot",
+      "Log",
+      "FireSegment",
+      "RaycastHit2D",
+      "Physics2D",
+      "BoxCastAll",
+      "SignedAngle",
+      "Where",
+      "OrderBy",
+      "ToArray",
+      "BrickCell",
+      "GetComponentInParent",
+      "DestroybyLaser",
+      "IsFixedBrick",
+      "OnDrawGizmos",
+      "Gizmos",
+      "TRS",
+      "Quaternion",
+      "Euler",
+      "Vector3",
+      "Color",
+      "DrawWireCube"
+    ],
+    "component_access_types": [],
+    "created_types": [
+      "Vector2",
+      "Vector3"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Laser",
+      "차징 ",
+      "슛",
+      "레이저가 브릭 감지: ",
+      "레이저가 벽/천장 감지: "
+    ],
+    "numeric_literals": [
+      1,
+      0.5,
+      20,
+      0.3,
+      0.1,
+      1
+    ],
+    "guessed_roles": [
+      "combat",
+      "runtime",
+      "manager",
+      "player",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함"
+    ]
+  },
+  {
+    "file_id": "Old Scripts/game_manager.cs",
+    "path": "Old Scripts/game_manager.cs",
+    "file_name": "game_manager.cs",
+    "content_hash": "d7e743cb9736b3719b9fa92e084def61b2aee275",
+    "size": 3604,
+    "line_count": 147,
+    "namespace": "",
+    "using_list": [
+      "System.Collections",
+      "System.Collections.Generic",
+      "UnityEngine",
+      "UnityEngine.SceneManagement"
+    ],
+    "classes": [
+      {
+        "name": "GameManager",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      },
+      {
+        "name": "EnemySpawnData",
+        "kind": "class",
+        "access": "public",
+        "base_types": [],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "GameManager",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Vector2Int",
+      "Start",
+      "SpawnAllEnemies",
+      "SpawnEnemy",
+      "ClearEnemies",
+      "RespawnEnemiesIfNoBrick",
+      "RestartGame",
+      "RestartRoutine"
+    ],
+    "fields": [
+      {
+        "name": "enemyPrefab",
+        "type": "GameObject",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "moveInterval",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "moveSpeed",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "loopAllCommands",
+        "type": "bool",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "isRestarting",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "cell",
+        "type": "Vector2Int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Start"
+    ],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": true,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 4,
+    "get_component_count": 1,
+    "find_call_count": 2,
+    "new_keyword_count": 1,
+    "coroutine_count": 3,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "float",
+      "bool",
+      "Vector2Int",
+      "System",
+      "Collections",
+      "Generic",
+      "UnityEngine",
+      "SceneManagement",
+      "Serializable",
+      "Spawn",
+      "Move",
+      "Commands",
+      "Enemy",
+      "MoveCommand",
+      "Setting",
+      "BrickManager",
+      "Option",
+      "Start",
+      "FindAnyObjectByType",
+      "IsInitialized",
+      "SpawnAllEnemies",
+      "ClearEnemies",
+      "SpawnEnemy",
+      "Vector3",
+      "GetCellWorldPosition",
+      "Instantiate",
+      "Quaternion",
+      "GetComponent",
+      "AddComponent",
+      "Init",
+      "Add",
+      "Destroy",
+      "Clear",
+      "GetChild",
+      "RespawnEnemiesIfNoBrick",
+      "IsCellOccupied",
+      "RestartGame",
+      "StartCoroutine",
+      "RestartRoutine",
+      "UI",
+      "SceneManager",
+      "LoadScene",
+      "GetActiveScene"
+    ],
+    "component_access_types": [
+      "Enemy"
+    ],
+    "created_types": [
+      "Vector2Int"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Spawn",
+      "Move Commands",
+      "Move Setting",
+      "Enemy",
+      "Enemy Spawn Option"
+    ],
+    "numeric_literals": [
+      1,
+      3
+    ],
+    "guessed_roles": [
+      "scene",
+      "save-load",
+      "runtime",
+      "ui",
+      "player"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "UI 관련 로직 포함",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용",
+      "Find 계열 탐색 사용"
+    ]
+  },
+  {
+    "file_id": "Old Scripts/paddle_debuff.cs",
+    "path": "Old Scripts/paddle_debuff.cs",
+    "file_name": "paddle_debuff.cs",
+    "content_hash": "b9338741d5073580816ef59447742b0e979b3eff",
+    "size": 456,
+    "line_count": 26,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "PaddleDebuff",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "PaddleDebuff",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Update",
+      "ApplyStun"
+    ],
+    "fields": [
+      {
+        "name": "isStunned",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "stunTimer",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "bool",
+      "float",
+      "UnityEngine",
+      "IsStunned",
+      "Update",
+      "ApplyStun"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [
+      0
+    ],
+    "guessed_roles": [
+      "runtime"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재"
+    ]
+  },
+  {
+    "file_id": "Old Scripts/paddle_movement.cs",
+    "path": "Old Scripts/paddle_movement.cs",
+    "file_name": "paddle_movement.cs",
+    "content_hash": "ce23cb88c68bbaac73f41abae5b4ae107c23a5cf",
+    "size": 3137,
+    "line_count": 101,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine",
+      "UnityEngine.InputSystem",
+      "UnityEngine.U2D"
+    ],
+    "classes": [
+      {
+        "name": "UpperPadController",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "UpperPadController",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Start",
+      "Vector3",
+      "Update",
+      "MovePad",
+      "SetAlpha",
+      "SetPaddleWidth",
+      "AddPaddleWidth",
+      "SetPaddleSpeed",
+      "AddPaddleSpeed"
+    ],
+    "fields": [
+      {
+        "name": "transparentAlpha",
+        "type": "float",
+        "access": "private",
+        "serialized": true,
+        "is_static": false
+      },
+      {
+        "name": "mainCamera",
+        "type": "Camera",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "shapeRenderer",
+        "type": "SpriteShapeRenderer",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "originalColor",
+        "type": "Color",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "paddleCollider",
+        "type": "Collider2D",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "tr",
+        "type": "Transform",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "isCollisionOn",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "paddleDebuff",
+        "type": "PaddleDebuff",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "newColor",
+        "type": "Color",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Start",
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": true,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 1,
+    "public_field_count": 0,
+    "get_component_count": 3,
+    "find_call_count": 0,
+    "new_keyword_count": 6,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "float",
+      "Camera",
+      "SpriteShapeRenderer",
+      "Color",
+      "Collider2D",
+      "bool",
+      "PaddleDebuff",
+      "UnityEngine",
+      "InputSystem",
+      "U2D",
+      "Start",
+      "GetComponent",
+      "CompareTag",
+      "Vector3",
+      "GetComponentInParent",
+      "Update",
+      "IsStunned",
+      "Mouse",
+      "SetAlpha",
+      "MovePad",
+      "Vector2",
+      "ReadValue",
+      "ScreenToWorldPoint",
+      "MoveTowards",
+      "Clamp",
+      "SetPaddleWidth",
+      "AddPaddleWidth",
+      "SetPaddleSpeed",
+      "AddPaddleSpeed"
+    ],
+    "component_access_types": [
+      "SpriteShapeRenderer",
+      "Collider2D",
+      "Transform"
+    ],
+    "created_types": [
+      "Vector3"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "top_paddle",
+      "down_paddle",
+      "roof_paddle"
+    ],
+    "numeric_literals": [
+      15,
+      0.7,
+      1,
+      0.3,
+      0.5,
+      1,
+      3,
+      5.5
+    ],
+    "guessed_roles": [
+      "runtime",
+      "player",
+      "ui",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재",
+      "인스펙터 직렬화 필드 사용",
+      "UI 관련 로직 포함",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
+    ]
+  },
+  {
+    "file_id": "Old Scripts/PaddleSkillHandler.cs",
+    "path": "Old Scripts/PaddleSkillHandler.cs",
+    "file_name": "PaddleSkillHandler.cs",
+    "content_hash": "b818ac9c89daec6b535c8b3831460d7b0c73f687",
+    "size": 4258,
+    "line_count": 145,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine",
+      "System.Collections",
+      "System.Collections.Generic"
+    ],
+    "classes": [
+      {
+        "name": "PaddleSkillHandler",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "PaddleSkillHandler",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Awake",
+      "Update",
+      "OnBallHitPaddle",
+      "HandleDribbleTimer",
+      "StartCharging",
+      "HandleChargingInput",
+      "ReleaseSequence",
+      "ExecuteSkill",
+      "Vector2"
+    ],
+    "fields": [
+      {
+        "name": "chargeLevel",
+        "type": "int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "isCharging",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "chargeHoldTimer",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "dribbleCount",
+        "type": "int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "dribbleWindowTimer",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "DRIBBLE_TIME_LIMIT",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "paddleCollider",
+        "type": "Collider2D",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "damage",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Awake",
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 1,
+    "find_call_count": 0,
+    "new_keyword_count": 1,
+    "coroutine_count": 2,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "int",
+      "bool",
+      "float",
+      "Collider2D",
+      "UnityEngine",
+      "System",
+      "Collections",
+      "Generic",
+      "References",
+      "BallController",
+      "BrickManager",
+      "LayerMask",
+      "Gauge",
+      "Charge",
+      "Dribble",
+      "Logic",
+      "DRIBBLE_TIME_LIMIT",
+      "Awake",
+      "GetComponent",
+      "Update",
+      "HandleDribbleTimer",
+      "HandleChargingInput",
+      "OnBallHitPaddle",
+      "StartCharging",
+      "Log",
+      "Input",
+      "GetKey",
+      "KeyCode",
+      "Space",
+      "GetKeyUp",
+      "StartCoroutine",
+      "ReleaseSequence",
+      "ExecuteSkill",
+      "Vector2",
+      "Physics2D",
+      "OverlapBoxAll",
+      "GetComponentInParent",
+      "IBallHitReceiver",
+      "OnBallHit",
+      "Enemy",
+      "TakeDamage",
+      "ExecutePowerShot"
+    ],
+    "component_access_types": [
+      "Collider2D"
+    ],
+    "created_types": [
+      "Vector2"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "References",
+      "Gauge & Charge",
+      "Dribble Logic",
+      "차징 시작: 1단계",
+      "차징 단계 상승: {chargeLevel}단계",
+      "패들 비활성화 - 공 방출 대기",
+      "{chargeLevel}단계 레이저 발사!"
+    ],
+    "numeric_literals": [
+      3,
+      3,
+      0,
+      2,
+      1,
+      2,
+      0.5,
+      4,
+      1.5,
+      30,
+      20,
+      10
+    ],
+    "guessed_roles": [
+      "runtime",
+      "combat",
+      "player",
+      "manager",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
+    ]
+  },
+  {
     "file_id": "PaddlePrototype/Assets/Scripts/ball_movement.cs",
     "path": "PaddlePrototype/Assets/Scripts/ball_movement.cs",
     "file_name": "ball_movement.cs",
@@ -11863,2563 +14344,15 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/ball_movement.cs",
-    "file_name": "ball_movement.cs",
-    "content_hash": "39293859d92f63ceabbbc615847fc299c0e45046",
-    "size": 8137,
-    "line_count": 274,
-    "namespace": "",
-    "using_list": [
-      "UnityEngine"
-    ],
-    "classes": [
-      {
-        "name": "Balmove",
-        "kind": "class",
-        "access": "public",
-        "base_types": [
-          "MonoBehaviour"
-        ],
-        "interfaces": [],
-        "attributes": [],
-        "is_partial": false,
-        "is_generic": false
-      }
-    ],
-    "main_class_name": "Balmove",
-    "unity_type": "MonoBehaviour",
-    "methods": [
-      "Start",
-      "Vector2",
-      "Vector3",
-      "Update",
-      "MoveBall",
-      "UpdateDirection",
-      "ResolveOverlap",
-      "OnDrawGizmos",
-      "SetBallSpeed",
-      "AddBallSpeed",
-      "SetBallBaseSpeed",
-      "AddBallBaseSpeed",
-      "SetBallMaxSpeed",
-      "AddBallMaxSpeed",
-      "SetPaddleSpeedIncrease",
-      "AddPaddleSpeedIncrease",
-      "SetPaddlePowerIncrease",
-      "AddPaddlePowerIncrease",
-      "SetBlockSpeedDecrease",
-      "AddBlockSpeedDecrease",
-      "SetBlockPowerDecrease",
-      "AddBlockPowerDecrease",
-      "SetBallRadius",
-      "AddBallRadius",
-      "SetInsideMaxBounceAngle",
-      "AddInsideMaxBounceAngle",
-      "SetOutsideMaxBounceAngle",
-      "AddOutsideMaxBounceAngle"
-    ],
-    "fields": [
-      {
-        "name": "power",
-        "type": "float",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "actualRadius",
-        "type": "float",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "tr",
-        "type": "Transform",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "direction",
-        "type": "Vector2",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "cc",
-        "type": "CircleCollider2D",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "isGameStarted",
-        "type": "bool",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "distanceToHit",
-        "type": "float",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "remainingDistance",
-        "type": "float",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "obj",
-        "type": "GameObject",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "targetAngle",
-        "type": "float",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      }
-    ],
-    "properties": [],
-    "events": [],
-    "unity_messages": [
-      "Start",
-      "Update"
-    ],
-    "has_update": true,
-    "has_fixed_update": false,
-    "has_late_update": false,
-    "has_awake": false,
-    "has_start": true,
-    "has_on_enable": false,
-    "has_on_disable": false,
-    "serialize_field_count": 0,
-    "public_field_count": 0,
-    "get_component_count": 2,
-    "find_call_count": 0,
-    "new_keyword_count": 2,
-    "coroutine_count": 0,
-    "singleton_candidate": false,
-    "dont_destroy_on_load": false,
-    "referenced_types": [
-      "float",
-      "Vector2",
-      "CircleCollider2D",
-      "bool",
-      "UnityEngine",
-      "LayerMask",
-      "Start",
-      "LaunchBall",
-      "GetComponent",
-      "Vector3",
-      "Update",
-      "MoveBall",
-      "CircleCast",
-      "RaycastHit2D",
-      "Physics2D",
-      "Translate",
-      "Space",
-      "World",
-      "UpdateDirection",
-      "ResolveOverlap",
-      "GetComponentInParent",
-      "IBallHitReceiver",
-      "OnBallHit",
-      "Contains",
-      "Clamp",
-      "Lerp",
-      "Abs",
-      "Quaternion",
-      "Euler",
-      "Reflect",
-      "Collider2D",
-      "OverlapCircle",
-      "CompareTag",
-      "ClosestPoint",
-      "OnDrawGizmos",
-      "Gizmos",
-      "Color",
-      "DrawWireSphere",
-      "SetBallSpeed",
-      "AddBallSpeed",
-      "SetBallBaseSpeed",
-      "AddBallBaseSpeed",
-      "SetBallMaxSpeed",
-      "AddBallMaxSpeed",
-      "SetPaddleSpeedIncrease",
-      "AddPaddleSpeedIncrease",
-      "SetPaddlePowerIncrease",
-      "AddPaddlePowerIncrease",
-      "SetBlockSpeedDecrease",
-      "AddBlockSpeedDecrease",
-      "SetBlockPowerDecrease",
-      "AddBlockPowerDecrease",
-      "SetBallRadius",
-      "AddBallRadius",
-      "SetInsideMaxBounceAngle",
-      "AddInsideMaxBounceAngle",
-      "SetOutsideMaxBounceAngle",
-      "AddOutsideMaxBounceAngle"
-    ],
-    "component_access_types": [
-      "Transform",
-      "CircleCollider2D"
-    ],
-    "created_types": [
-      "Vector2",
-      "Vector3"
-    ],
-    "singleton_access_types": [],
-    "string_literals": [
-      "paddle_up",
-      "paddle_down",
-      "roof_paddle",
-      "need_correction"
-    ],
-    "numeric_literals": [
-      10,
-      30,
-      5,
-      0.7,
-      0.1,
-      50,
-      0.5,
-      1,
-      1.75,
-      0.025,
-      2,
-      3,
-      4,
-      3,
-      2,
-      5,
-      0.0001
-    ],
-    "guessed_roles": [
-      "runtime",
-      "player",
-      "combat",
-      "save-load"
-    ],
-    "summary_signals": [
-      "런타임 컴포넌트",
-      "Update 기반 처리 존재",
-      "전투 계열 로직 포함",
-      "저장/불러오기 관련 로직 포함",
-      "컴포넌트 조회 사용"
-    ]
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/brick_cell.cs",
-    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/brick_cell.cs",
-    "file_name": "brick_cell.cs",
-    "content_hash": "8a7f5fc996a6edafc4b0bc219603285801167934",
-    "size": 1596,
-    "line_count": 77,
-    "namespace": "",
-    "using_list": [
-      "UnityEngine"
-    ],
-    "classes": [
-      {
-        "name": "BrickCell",
-        "kind": "class",
-        "access": "public",
-        "base_types": [
-          "MonoBehaviour",
-          "IBallHitReceiver"
-        ],
-        "interfaces": [
-          "IBallHitReceiver"
-        ],
-        "attributes": [],
-        "is_partial": false,
-        "is_generic": false
-      }
-    ],
-    "main_class_name": "BrickCell",
-    "unity_type": "MonoBehaviour",
-    "methods": [
-      "Awake",
-      "Init",
-      "OnBallHit",
-      "OnDestroy",
-      "DestroybyLaser",
-      "IsFixedBrick",
-      "OnCollisionEnter2D"
-    ],
-    "fields": [
-      {
-        "name": "manager",
-        "type": "BrickManager",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "cell",
-        "type": "Vector2Int",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "isFixed",
-        "type": "bool",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "version",
-        "type": "int",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "gaugeManager",
-        "type": "GaugeManager",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      }
-    ],
-    "properties": [],
-    "events": [],
-    "unity_messages": [
-      "Awake",
-      "OnDestroy"
-    ],
-    "has_update": false,
-    "has_fixed_update": false,
-    "has_late_update": false,
-    "has_awake": true,
-    "has_start": false,
-    "has_on_enable": false,
-    "has_on_disable": false,
-    "serialize_field_count": 0,
-    "public_field_count": 0,
-    "get_component_count": 1,
-    "find_call_count": 0,
-    "new_keyword_count": 0,
-    "coroutine_count": 0,
-    "singleton_candidate": false,
-    "dont_destroy_on_load": false,
-    "referenced_types": [
-      "BrickManager",
-      "Vector2Int",
-      "bool",
-      "int",
-      "GaugeManager",
-      "UnityEngine",
-      "IBallHitReceiver",
-      "Awake",
-      "FindFirstObjectByType",
-      "Init",
-      "OnBallHit",
-      "AddGauge",
-      "Destroy",
-      "OnDestroy",
-      "NotifyBrickDestroyed",
-      "DestroybyLaser",
-      "IsFixedBrick",
-      "OnCollisionEnter2D",
-      "Collision2D",
-      "CompareTag",
-      "Ball",
-      "BallController",
-      "GetComponent",
-      "DecreaseByBlockHit"
-    ],
-    "component_access_types": [
-      "BallController"
-    ],
-    "created_types": [],
-    "singleton_access_types": [],
-    "string_literals": [
-      "Ball"
-    ],
-    "numeric_literals": [],
-    "guessed_roles": [
-      "runtime",
-      "combat",
-      "manager"
-    ],
-    "summary_signals": [
-      "런타임 컴포넌트",
-      "전투 계열 로직 포함",
-      "컴포넌트 조회 사용"
-    ]
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/brick_manager.cs",
-    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/brick_manager.cs",
-    "file_name": "brick_manager.cs",
-    "content_hash": "d293cf1bcc8cb1638254aa09ea22def1224c3231",
-    "size": 14531,
-    "line_count": 571,
-    "namespace": "",
-    "using_list": [
-      "System.Collections",
-      "System.Collections.Generic",
-      "UnityEngine"
-    ],
-    "classes": [
-      {
-        "name": "BrickManager",
-        "kind": "class",
-        "access": "public",
-        "base_types": [
-          "MonoBehaviour"
-        ],
-        "interfaces": [],
-        "attributes": [],
-        "is_partial": false,
-        "is_generic": false
-      },
-      {
-        "name": "GrowthDirection",
-        "kind": "class",
-        "access": "public",
-        "base_types": [],
-        "interfaces": [],
-        "attributes": [],
-        "is_partial": false,
-        "is_generic": false
-      },
-      {
-        "name": "FixedBrickData",
-        "kind": "class",
-        "access": "public",
-        "base_types": [],
-        "interfaces": [],
-        "attributes": [],
-        "is_partial": false,
-        "is_generic": false
-      },
-      {
-        "name": "GrowthCandidate",
-        "kind": "struct",
-        "access": "private",
-        "base_types": [],
-        "interfaces": [],
-        "attributes": [],
-        "is_partial": false,
-        "is_generic": false
-      }
-    ],
-    "main_class_name": "BrickManager",
-    "unity_type": "MonoBehaviour",
-    "methods": [
-      "GrowthCandidate",
-      "Vector2",
-      "Vector2Int",
-      "Awake",
-      "ResetBricks",
-      "GrowRoutine",
-      "WaitForSeconds",
-      "RespawnMissingStartBricks",
-      "SpawnFixedBricks",
-      "SpawnStartBricks",
-      "SpawnFixedBrick",
-      "GridToWorld",
-      "SpawnBrick",
-      "GetGrowthCandidates",
-      "GetStartConnectedCells",
-      "AddCandidate",
-      "PickByPriorityAndWeight",
-      "PickWeightedCandidate",
-      "Vector3",
-      "FitBrickToCell",
-      "IsValidCell",
-      "NotifyBrickDestroyed",
-      "ClearBricks",
-      "StopGrowing",
-      "IsCellOccupied",
-      "GetCellWorldPosition",
-      "TryWorldToCell",
-      "OnDrawGizmos",
-      "OnDrawGizmosSelected",
-      "DrawGridGizmos"
-    ],
-    "fields": [
-      {
-        "name": "currentVersion",
-        "type": "int",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "name",
-        "type": "string",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "direction",
-        "type": "Vector2Int",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "priority",
-        "type": "int",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "weight",
-        "type": "float",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "cell",
-        "type": "Vector2Int",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "prefabOverride",
-        "type": "GameObject",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "cell",
-        "type": "Vector2Int",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "priority",
-        "type": "int",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "weight",
-        "type": "float",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "occupied",
-        "type": "bool[,]",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "fixedOccupied",
-        "type": "bool[,]",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "growRoutine",
-        "type": "Coroutine",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "clearing",
-        "type": "bool",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "connected",
-        "type": "bool[,]",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "next",
-        "type": "Vector2Int",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "finalWeight",
-        "type": "float",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "finalPriority",
-        "type": "int",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "connected",
-        "type": "bool[,]",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "next",
-        "type": "Vector2Int",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "bestPriority",
-        "type": "int",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "totalWeight",
-        "type": "float",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "current",
-        "type": "float",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "x",
-        "type": "float",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "y",
-        "type": "float",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      }
-    ],
-    "properties": [
-      {
-        "access": "public",
-        "type": "bool",
-        "name": "IsInitialized"
-      }
-    ],
-    "events": [],
-    "unity_messages": [
-      "Awake"
-    ],
-    "has_update": false,
-    "has_fixed_update": false,
-    "has_late_update": false,
-    "has_awake": true,
-    "has_start": false,
-    "has_on_enable": false,
-    "has_on_disable": false,
-    "serialize_field_count": 0,
-    "public_field_count": 9,
-    "get_component_count": 2,
-    "find_call_count": 0,
-    "new_keyword_count": 22,
-    "coroutine_count": 2,
-    "singleton_candidate": false,
-    "dont_destroy_on_load": false,
-    "referenced_types": [
-      "int",
-      "string",
-      "Vector2Int",
-      "float",
-      "bool[,]",
-      "Coroutine",
-      "bool",
-      "System",
-      "Collections",
-      "Generic",
-      "UnityEngine",
-      "Serializable",
-      "Brick",
-      "Prefabs",
-      "Fixed",
-      "Bricks",
-      "Grid",
-      "Map",
-      "Position",
-      "Vector2",
-      "Growth",
-      "Timing",
-      "Row",
-      "Weight",
-      "Priority",
-      "Connection",
-      "Rule",
-      "Directions",
-      "Down",
-      "Left",
-      "Right",
-      "Start",
-      "IsInitialized",
-      "Awake",
-      "ResetBricks",
-      "StopGrowing",
-      "ClearBricks",
-      "SpawnFixedBricks",
-      "SpawnStartBricks",
-      "StartCoroutine",
-      "GrowRoutine",
-      "RespawnMissingStartBricks",
-      "GetGrowthCandidates",
-      "Count",
-      "PickByPriorityAndWeight",
-      "SpawnBrick",
-      "WaitForSeconds",
-      "IsValidCell",
-      "SpawnFixedBrick",
-      "LogError",
-      "Prefab",
-      "Instantiate",
-      "GridToWorld",
-      "Quaternion",
-      "FixedBrick_",
-      "FitBrickToCell",
-      "BrickCell",
-      "GetComponent",
-      "AddComponent",
-      "Init",
-      "Brick_",
-      "GetStartConnectedCells",
-      "AddCandidate",
-      "Enqueue",
-      "Dequeue",
-      "Add",
-      "MaxValue",
-      "PickWeightedCandidate",
-      "Vector3",
-      "NotifyBrickDestroyed",
-      "Destroy",
-      "StopCoroutine",
-      "IsCellOccupied",
-      "GetCellWorldPosition",
-      "TryWorldToCell",
-      "RoundToInt",
-      "OnDrawGizmos",
-      "DrawGridGizmos",
-      "Color",
-      "OnDrawGizmosSelected",
-      "Gizmos",
-      "DrawWireCube"
-    ],
-    "component_access_types": [
-      "BrickCell"
-    ],
-    "created_types": [
-      "Vector2",
-      "Vector2Int",
-      "WaitForSeconds",
-      "GrowthCandidate",
-      "Vector3"
-    ],
-    "singleton_access_types": [],
-    "string_literals": [
-      "Brick Prefabs",
-      "Fixed Bricks",
-      "Grid",
-      "Map Position",
-      "Growth Timing",
-      "Row Weight",
-      "Row Priority",
-      "Connection Rule",
-      "Growth Directions",
-      "Down",
-      "Left",
-      "Right",
-      "Start Bricks",
-      "Fixed Brick Prefab�� �����ϴ�.",
-      "need_correction",
-      "FixedBrick_{data.cell.y}_{data.cell.x}",
-      "Brick Prefab�� �����ϴ�.",
-      "Brick_{cell.y}_{cell.x}"
-    ],
-    "numeric_literals": [
-      1,
-      7,
-      20,
-      0.8,
-      0.4,
-      7.6,
-      4,
-      1,
-      2,
-      0.2,
-      5,
-      10,
-      3,
-      0
-    ],
-    "guessed_roles": [
-      "runtime",
-      "manager",
-      "data",
-      "save-load"
-    ],
-    "summary_signals": [
-      "런타임 컴포넌트",
-      "저장/불러오기 관련 로직 포함",
-      "컴포넌트 조회 사용"
-    ]
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/enemy_projectile.cs",
-    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/enemy_projectile.cs",
-    "file_name": "enemy_projectile.cs",
-    "content_hash": "934c98d825a55dde2eb32476336fa1040b6b7c85",
-    "size": 990,
-    "line_count": 44,
-    "namespace": "",
-    "using_list": [
-      "UnityEngine"
-    ],
-    "classes": [
-      {
-        "name": "EnemyProjectile",
-        "kind": "class",
-        "access": "public",
-        "base_types": [
-          "MonoBehaviour"
-        ],
-        "interfaces": [],
-        "attributes": [],
-        "is_partial": false,
-        "is_generic": false
-      }
-    ],
-    "main_class_name": "EnemyProjectile",
-    "unity_type": "MonoBehaviour",
-    "methods": [
-      "Vector2",
-      "Awake",
-      "Start",
-      "Vector3",
-      "OnTriggerEnter2D"
-    ],
-    "fields": [
-      {
-        "name": "rb",
-        "type": "Rigidbody2D",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      }
-    ],
-    "properties": [],
-    "events": [],
-    "unity_messages": [
-      "Awake",
-      "Start"
-    ],
-    "has_update": false,
-    "has_fixed_update": false,
-    "has_late_update": false,
-    "has_awake": true,
-    "has_start": true,
-    "has_on_enable": false,
-    "has_on_disable": false,
-    "serialize_field_count": 0,
-    "public_field_count": 0,
-    "get_component_count": 1,
-    "find_call_count": 0,
-    "new_keyword_count": 2,
-    "coroutine_count": 0,
-    "singleton_candidate": false,
-    "dont_destroy_on_load": false,
-    "referenced_types": [
-      "Rigidbody2D",
-      "UnityEngine",
-      "Size",
-      "Vector2",
-      "Awake",
-      "GetComponent",
-      "Start",
-      "Vector3",
-      "Destroy",
-      "OnTriggerEnter2D",
-      "Collider2D",
-      "PaddleDebuff",
-      "GetComponentInParent",
-      "ApplyStun"
-    ],
-    "component_access_types": [
-      "Rigidbody2D"
-    ],
-    "created_types": [
-      "Vector2",
-      "Vector3"
-    ],
-    "singleton_access_types": [],
-    "string_literals": [
-      "Size"
-    ],
-    "numeric_literals": [
-      5,
-      0.5,
-      0.3,
-      1,
-      0
-    ],
-    "guessed_roles": [
-      "runtime",
-      "combat",
-      "player",
-      "save-load"
-    ],
-    "summary_signals": [
-      "런타임 컴포넌트",
-      "전투 계열 로직 포함",
-      "저장/불러오기 관련 로직 포함",
-      "컴포넌트 조회 사용"
-    ]
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/enemy.cs",
-    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/enemy.cs",
-    "file_name": "enemy.cs",
-    "content_hash": "ffb478ba70fb0f8ba8c5d809ce9f666d961b31ed",
-    "size": 7878,
-    "line_count": 310,
-    "namespace": "",
-    "using_list": [
-      "System.Collections",
-      "System.Collections.Generic",
-      "UnityEngine"
-    ],
-    "classes": [
-      {
-        "name": "Enemy",
-        "kind": "class",
-        "access": "public",
-        "base_types": [
-          "MonoBehaviour",
-          "IBallHitReceiver"
-        ],
-        "interfaces": [
-          "IBallHitReceiver"
-        ],
-        "attributes": [],
-        "is_partial": false,
-        "is_generic": false
-      },
-      {
-        "name": "MoveCommand",
-        "kind": "class",
-        "access": "public",
-        "base_types": [],
-        "interfaces": [],
-        "attributes": [],
-        "is_partial": false,
-        "is_generic": false
-      }
-    ],
-    "main_class_name": "Enemy",
-    "unity_type": "MonoBehaviour",
-    "methods": [
-      "Awake",
-      "Update",
-      "Fire",
-      "OnBallHit",
-      "Init",
-      "MoveRoutine",
-      "WaitForSeconds",
-      "TryMoveByCommand",
-      "AdvanceCommand",
-      "CompleteCurrentCommand",
-      "MoveToCell",
-      "StopMoving",
-      "OnCollisionEnter2D"
-    ],
-    "fields": [
-      {
-        "name": "currentHp",
-        "type": "int",
-        "access": "private",
-        "serialized": true,
-        "is_static": false
-      },
-      {
-        "name": "fireTimer",
-        "type": "float",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "direction",
-        "type": "Vector2Int",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "sectionLoopEnd",
-        "type": "bool",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "stopYMoveAtRow",
-        "type": "bool",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "stopYRow",
-        "type": "int",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "brickManager",
-        "type": "BrickManager",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "currentCell",
-        "type": "Vector2Int",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "commands",
-        "type": "List<MoveCommand>",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "moveInterval",
-        "type": "float",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "moveSpeed",
-        "type": "float",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "loopAllCommands",
-        "type": "bool",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "commandIndex",
-        "type": "int",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "commandRepeatCounter",
-        "type": "int",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "isMoving",
-        "type": "bool",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "moveRoutine",
-        "type": "Coroutine",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "safety",
-        "type": "int",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "command",
-        "type": "MoveCommand",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "direction",
-        "type": "Vector2Int",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "nextCell",
-        "type": "Vector2Int",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "endIndex",
-        "type": "int",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      }
-    ],
-    "properties": [],
-    "events": [],
-    "unity_messages": [
-      "Awake",
-      "Update"
-    ],
-    "has_update": true,
-    "has_fixed_update": false,
-    "has_late_update": false,
-    "has_awake": true,
-    "has_start": false,
-    "has_on_enable": false,
-    "has_on_disable": false,
-    "serialize_field_count": 1,
-    "public_field_count": 4,
-    "get_component_count": 1,
-    "find_call_count": 0,
-    "new_keyword_count": 1,
-    "coroutine_count": 4,
-    "singleton_candidate": false,
-    "dont_destroy_on_load": false,
-    "referenced_types": [
-      "int",
-      "float",
-      "Vector2Int",
-      "bool",
-      "BrickManager",
-      "Coroutine",
-      "System",
-      "Collections",
-      "Generic",
-      "UnityEngine",
-      "IBallHitReceiver",
-      "HP",
-      "Projectile",
-      "Awake",
-      "Update",
-      "Fire",
-      "Vector3",
-      "Instantiate",
-      "Quaternion",
-      "OnBallHit",
-      "Log",
-      "Hit",
-      "Destroy",
-      "BlockedMoveAction",
-      "Wait",
-      "SkipToNextCommand",
-      "Serializable",
-      "Move",
-      "Repeat",
-      "Min",
-      "Section",
-      "Loop",
-      "Limit",
-      "Blocked",
-      "Init",
-      "Clear",
-      "GetCellWorldPosition",
-      "StopCoroutine",
-      "StartCoroutine",
-      "MoveRoutine",
-      "TryMoveByCommand",
-      "WaitForSeconds",
-      "Count",
-      "CompleteCurrentCommand",
-      "IsCellOccupied",
-      "MoveToCell",
-      "AdvanceCommand",
-      "ContainsKey",
-      "Clamp",
-      "Remove",
-      "StopMoving",
-      "Distance",
-      "MoveTowards",
-      "OnCollisionEnter2D",
-      "Collision2D",
-      "CompareTag",
-      "Ball",
-      "BallController",
-      "GetComponent",
-      "DecreaseByBlockHit"
-    ],
-    "component_access_types": [
-      "BallController"
-    ],
-    "created_types": [
-      "WaitForSeconds"
-    ],
-    "singleton_access_types": [],
-    "string_literals": [
-      "HP",
-      "Projectile",
-      "Enemy Hit: {currentHp}/{maxHp}",
-      "Move",
-      "Repeat",
-      "Section Loop",
-      "�ǵ��ư� Ŀ�ǵ� ��ȣ",
-      "���� �ݺ� Ƚ��",
-      "Y Limit",
-      "Blocked",
-      "Ball"
-    ],
-    "numeric_literals": [
-      3,
-      2,
-      0,
-      6,
-      20,
-      0.01
-    ],
-    "guessed_roles": [
-      "combat",
-      "runtime",
-      "player",
-      "manager",
-      "save-load"
-    ],
-    "summary_signals": [
-      "런타임 컴포넌트",
-      "Update 기반 처리 존재",
-      "인스펙터 직렬화 필드 사용",
-      "전투 계열 로직 포함",
-      "저장/불러오기 관련 로직 포함",
-      "컴포넌트 조회 사용"
-    ]
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/ForRazer/BrickAreaDetector.cs",
-    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/ForRazer/BrickAreaDetector.cs",
-    "file_name": "BrickAreaDetector.cs",
-    "content_hash": "3a9e97191e87a1cff6d29f998db3f99580bf7cf3",
-    "size": 288,
-    "line_count": 17,
-    "namespace": "",
-    "using_list": [
-      "UnityEngine"
-    ],
-    "classes": [
-      {
-        "name": "BrickAreaDetector",
-        "kind": "class",
-        "access": "public",
-        "base_types": [
-          "MonoBehaviour"
-        ],
-        "interfaces": [],
-        "attributes": [],
-        "is_partial": false,
-        "is_generic": false
-      }
-    ],
-    "main_class_name": "BrickAreaDetector",
-    "unity_type": "MonoBehaviour",
-    "methods": [
-      "Start",
-      "Update"
-    ],
-    "fields": [],
-    "properties": [],
-    "events": [],
-    "unity_messages": [
-      "Start",
-      "Update"
-    ],
-    "has_update": true,
-    "has_fixed_update": false,
-    "has_late_update": false,
-    "has_awake": false,
-    "has_start": true,
-    "has_on_enable": false,
-    "has_on_disable": false,
-    "serialize_field_count": 0,
-    "public_field_count": 0,
-    "get_component_count": 0,
-    "find_call_count": 0,
-    "new_keyword_count": 0,
-    "coroutine_count": 0,
-    "singleton_candidate": false,
-    "dont_destroy_on_load": false,
-    "referenced_types": [
-      "UnityEngine",
-      "Start",
-      "Update"
-    ],
-    "component_access_types": [],
-    "created_types": [],
-    "singleton_access_types": [],
-    "string_literals": [],
-    "numeric_literals": [],
-    "guessed_roles": [
-      "runtime"
-    ],
-    "summary_signals": [
-      "런타임 컴포넌트",
-      "Update 기반 처리 존재"
-    ]
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/ForRazer/ChargingLaserManager.cs",
-    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/ForRazer/ChargingLaserManager.cs",
-    "file_name": "ChargingLaserManager.cs",
-    "content_hash": "a3caa29f01fc0f74752fedba6254fcd88894dccb",
-    "size": 1470,
-    "line_count": 72,
-    "namespace": "",
-    "using_list": [
-      "System",
-      "UnityEngine",
-      "UnityEngine.InputSystem"
-    ],
-    "classes": [
-      {
-        "name": "ChargingLaserManager",
-        "kind": "class",
-        "access": "public",
-        "base_types": [
-          "MonoBehaviour"
-        ],
-        "interfaces": [],
-        "attributes": [],
-        "is_partial": false,
-        "is_generic": false
-      }
-    ],
-    "main_class_name": "ChargingLaserManager",
-    "unity_type": "MonoBehaviour",
-    "methods": [
-      "Start",
-      "CheckBounceCount",
-      "ChargingbyBounce",
-      "Update",
-      "ShootLaser",
-      "Reset"
-    ],
-    "fields": [
-      {
-        "name": "shooter",
-        "type": "LaserShooter",
-        "access": "private",
-        "serialized": true,
-        "is_static": false
-      },
-      {
-        "name": "charging",
-        "type": "bool",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "bounceCount",
-        "type": "int",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "chargeCount",
-        "type": "int",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      }
-    ],
-    "properties": [],
-    "events": [],
-    "unity_messages": [
-      "Start",
-      "Update"
-    ],
-    "has_update": true,
-    "has_fixed_update": false,
-    "has_late_update": false,
-    "has_awake": false,
-    "has_start": true,
-    "has_on_enable": false,
-    "has_on_disable": false,
-    "serialize_field_count": 1,
-    "public_field_count": 2,
-    "get_component_count": 1,
-    "find_call_count": 0,
-    "new_keyword_count": 0,
-    "coroutine_count": 0,
-    "singleton_candidate": false,
-    "dont_destroy_on_load": false,
-    "referenced_types": [
-      "LaserShooter",
-      "bool",
-      "int",
-      "System",
-      "UnityEngine",
-      "InputSystem",
-      "Start",
-      "Update",
-      "GaugeManager",
-      "PerBounceCount",
-      "GetComponent",
-      "CheckBounceCount",
-      "Log",
-      "ChargingbyBounce",
-      "ChangeGaugeLevel",
-      "Mouse",
-      "ShootLaser",
-      "Shoot",
-      "Reset"
-    ],
-    "component_access_types": [
-      "LaserShooter"
-    ],
-    "created_types": [],
-    "singleton_access_types": [],
-    "string_literals": [
-      "팅"
-    ],
-    "numeric_literals": [
-      10
-    ],
-    "guessed_roles": [
-      "runtime",
-      "player",
-      "manager",
-      "ui",
-      "save-load"
-    ],
-    "summary_signals": [
-      "런타임 컴포넌트",
-      "Update 기반 처리 존재",
-      "인스펙터 직렬화 필드 사용",
-      "UI 관련 로직 포함",
-      "저장/불러오기 관련 로직 포함",
-      "컴포넌트 조회 사용"
-    ]
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/ForRazer/GaugeManager.cs",
-    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/ForRazer/GaugeManager.cs",
-    "file_name": "GaugeManager.cs",
-    "content_hash": "c209453385ffe500fd983d1b3e5cf17010851155",
-    "size": 2024,
-    "line_count": 89,
-    "namespace": "",
-    "using_list": [
-      "TMPro",
-      "UnityEngine",
-      "UnityEngine.Serialization"
-    ],
-    "classes": [
-      {
-        "name": "GaugeManager",
-        "kind": "class",
-        "access": "public",
-        "base_types": [
-          "MonoBehaviour"
-        ],
-        "interfaces": [],
-        "attributes": [],
-        "is_partial": false,
-        "is_generic": false
-      }
-    ],
-    "main_class_name": "GaugeManager",
-    "unity_type": "MonoBehaviour",
-    "methods": [
-      "Start",
-      "AddGauge",
-      "ChangeGaugeLevel",
-      "Update",
-      "UpdateGaugeUI"
-    ],
-    "fields": [
-      {
-        "name": "filledGaugeSegments",
-        "type": "int",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "currentGaugeValue",
-        "type": "int",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "gaugePerSegment",
-        "type": "int",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "maxGaugeValue",
-        "type": "int",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      }
-    ],
-    "properties": [],
-    "events": [],
-    "unity_messages": [
-      "Start",
-      "Update"
-    ],
-    "has_update": true,
-    "has_fixed_update": false,
-    "has_late_update": false,
-    "has_awake": false,
-    "has_start": true,
-    "has_on_enable": false,
-    "has_on_disable": false,
-    "serialize_field_count": 0,
-    "public_field_count": 1,
-    "get_component_count": 0,
-    "find_call_count": 0,
-    "new_keyword_count": 0,
-    "coroutine_count": 0,
-    "singleton_candidate": false,
-    "dont_destroy_on_load": false,
-    "referenced_types": [
-      "int",
-      "TMPro",
-      "UnityEngine",
-      "Serialization",
-      "Gauge",
-      "UI",
-      "TextMeshProUGUI",
-      "CurrentGaugeValue",
-      "Start",
-      "Update",
-      "UpdateGaugeUI",
-      "AddGauge",
-      "ChangeGaugeLevel",
-      "Clamp",
-      "Log",
-      "Segments",
-      "Value"
-    ],
-    "component_access_types": [],
-    "created_types": [],
-    "singleton_access_types": [],
-    "string_literals": [
-      "Gauge",
-      "UI",
-      "차징 게이지",
-      "Gauge Segments: {filledGaugeSegments} / {maxGaugeSegments}",
-      "Gauge Value: {currentGaugeValue}"
-    ],
-    "numeric_literals": [
-      30,
-      10,
-      3
-    ],
-    "guessed_roles": [
-      "runtime",
-      "ui",
-      "combat",
-      "manager",
-      "save-load"
-    ],
-    "summary_signals": [
-      "런타임 컴포넌트",
-      "Update 기반 처리 존재",
-      "UI 관련 로직 포함",
-      "전투 계열 로직 포함",
-      "저장/불러오기 관련 로직 포함"
-    ]
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/ForRazer/LaserShooter.cs",
-    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/ForRazer/LaserShooter.cs",
-    "file_name": "LaserShooter.cs",
-    "content_hash": "ba58cbd0f314661c2f235b625eb42fd6fd4a79c7",
-    "size": 3862,
-    "line_count": 128,
-    "namespace": "",
-    "using_list": [
-      "System.Linq",
-      "UnityEngine",
-      "UnityEngine.Serialization"
-    ],
-    "classes": [
-      {
-        "name": "LaserShooter",
-        "kind": "class",
-        "access": "public",
-        "base_types": [
-          "MonoBehaviour"
-        ],
-        "interfaces": [],
-        "attributes": [],
-        "is_partial": false,
-        "is_generic": false
-      }
-    ],
-    "main_class_name": "LaserShooter",
-    "unity_type": "MonoBehaviour",
-    "methods": [
-      "Shoot",
-      "Vector2",
-      "FireSegment",
-      "OnDrawGizmos",
-      "Vector3"
-    ],
-    "fields": [
-      {
-        "name": "origin",
-        "type": "Vector2",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "width",
-        "type": "float",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "start",
-        "type": "Vector2",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "endPoint",
-        "type": "Vector2",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "dir",
-        "type": "Vector2",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "width",
-        "type": "float",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "oldMatrix",
-        "type": "Matrix4x4",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      }
-    ],
-    "properties": [],
-    "events": [],
-    "unity_messages": [],
-    "has_update": false,
-    "has_fixed_update": false,
-    "has_late_update": false,
-    "has_awake": false,
-    "has_start": false,
-    "has_on_enable": false,
-    "has_on_disable": false,
-    "serialize_field_count": 0,
-    "public_field_count": 0,
-    "get_component_count": 0,
-    "find_call_count": 0,
-    "new_keyword_count": 3,
-    "coroutine_count": 0,
-    "singleton_candidate": false,
-    "dont_destroy_on_load": false,
-    "referenced_types": [
-      "Vector2",
-      "float",
-      "Matrix4x4",
-      "System",
-      "Linq",
-      "UnityEngine",
-      "Serialization",
-      "ChargingLaserManager",
-      "LayerMask",
-      "Brick",
-      "Wall",
-      "Ceiling",
-      "Laser",
-      "Max",
-      "Up",
-      "Shoot",
-      "Log",
-      "FireSegment",
-      "RaycastHit2D",
-      "Physics2D",
-      "BoxCastAll",
-      "SignedAngle",
-      "Where",
-      "OrderBy",
-      "ToArray",
-      "BrickCell",
-      "GetComponentInParent",
-      "DestroybyLaser",
-      "IsFixedBrick",
-      "OnDrawGizmos",
-      "Gizmos",
-      "TRS",
-      "Quaternion",
-      "Euler",
-      "Vector3",
-      "Color",
-      "DrawWireCube"
-    ],
-    "component_access_types": [],
-    "created_types": [
-      "Vector2",
-      "Vector3"
-    ],
-    "singleton_access_types": [],
-    "string_literals": [
-      "Laser",
-      "차징 ",
-      "슛",
-      "레이저가 브릭 감지: ",
-      "레이저가 벽/천장 감지: "
-    ],
-    "numeric_literals": [
-      1,
-      0.5,
-      20,
-      0.3,
-      0.1,
-      1
-    ],
-    "guessed_roles": [
-      "combat",
-      "runtime",
-      "manager",
-      "player",
-      "save-load"
-    ],
-    "summary_signals": [
-      "런타임 컴포넌트",
-      "전투 계열 로직 포함",
-      "저장/불러오기 관련 로직 포함"
-    ]
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/game_manager.cs",
-    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/game_manager.cs",
-    "file_name": "game_manager.cs",
-    "content_hash": "d7e743cb9736b3719b9fa92e084def61b2aee275",
-    "size": 3604,
-    "line_count": 147,
-    "namespace": "",
-    "using_list": [
-      "System.Collections",
-      "System.Collections.Generic",
-      "UnityEngine",
-      "UnityEngine.SceneManagement"
-    ],
-    "classes": [
-      {
-        "name": "GameManager",
-        "kind": "class",
-        "access": "public",
-        "base_types": [
-          "MonoBehaviour"
-        ],
-        "interfaces": [],
-        "attributes": [],
-        "is_partial": false,
-        "is_generic": false
-      },
-      {
-        "name": "EnemySpawnData",
-        "kind": "class",
-        "access": "public",
-        "base_types": [],
-        "interfaces": [],
-        "attributes": [],
-        "is_partial": false,
-        "is_generic": false
-      }
-    ],
-    "main_class_name": "GameManager",
-    "unity_type": "MonoBehaviour",
-    "methods": [
-      "Vector2Int",
-      "Start",
-      "SpawnAllEnemies",
-      "SpawnEnemy",
-      "ClearEnemies",
-      "RespawnEnemiesIfNoBrick",
-      "RestartGame",
-      "RestartRoutine"
-    ],
-    "fields": [
-      {
-        "name": "enemyPrefab",
-        "type": "GameObject",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "moveInterval",
-        "type": "float",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "moveSpeed",
-        "type": "float",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "loopAllCommands",
-        "type": "bool",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "isRestarting",
-        "type": "bool",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "cell",
-        "type": "Vector2Int",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      }
-    ],
-    "properties": [],
-    "events": [],
-    "unity_messages": [
-      "Start"
-    ],
-    "has_update": false,
-    "has_fixed_update": false,
-    "has_late_update": false,
-    "has_awake": false,
-    "has_start": true,
-    "has_on_enable": false,
-    "has_on_disable": false,
-    "serialize_field_count": 0,
-    "public_field_count": 4,
-    "get_component_count": 1,
-    "find_call_count": 2,
-    "new_keyword_count": 1,
-    "coroutine_count": 3,
-    "singleton_candidate": false,
-    "dont_destroy_on_load": false,
-    "referenced_types": [
-      "float",
-      "bool",
-      "Vector2Int",
-      "System",
-      "Collections",
-      "Generic",
-      "UnityEngine",
-      "SceneManagement",
-      "Serializable",
-      "Spawn",
-      "Move",
-      "Commands",
-      "Enemy",
-      "MoveCommand",
-      "Setting",
-      "BrickManager",
-      "Option",
-      "Start",
-      "FindAnyObjectByType",
-      "IsInitialized",
-      "SpawnAllEnemies",
-      "ClearEnemies",
-      "SpawnEnemy",
-      "Vector3",
-      "GetCellWorldPosition",
-      "Instantiate",
-      "Quaternion",
-      "GetComponent",
-      "AddComponent",
-      "Init",
-      "Add",
-      "Destroy",
-      "Clear",
-      "GetChild",
-      "RespawnEnemiesIfNoBrick",
-      "IsCellOccupied",
-      "RestartGame",
-      "StartCoroutine",
-      "RestartRoutine",
-      "UI",
-      "SceneManager",
-      "LoadScene",
-      "GetActiveScene"
-    ],
-    "component_access_types": [
-      "Enemy"
-    ],
-    "created_types": [
-      "Vector2Int"
-    ],
-    "singleton_access_types": [],
-    "string_literals": [
-      "Spawn",
-      "Move Commands",
-      "Move Setting",
-      "Enemy",
-      "Enemy Spawn Option"
-    ],
-    "numeric_literals": [
-      1,
-      3
-    ],
-    "guessed_roles": [
-      "scene",
-      "save-load",
-      "runtime",
-      "ui",
-      "player"
-    ],
-    "summary_signals": [
-      "런타임 컴포넌트",
-      "UI 관련 로직 포함",
-      "저장/불러오기 관련 로직 포함",
-      "컴포넌트 조회 사용",
-      "Find 계열 탐색 사용"
-    ]
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/i_ball_hit_receiver.cs",
-    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/i_ball_hit_receiver.cs",
-    "file_name": "i_ball_hit_receiver.cs",
-    "content_hash": "af2d3999dd34ca4c54c22431b18b10d775e0110c",
-    "size": 65,
-    "line_count": 6,
-    "namespace": "",
-    "using_list": [],
-    "classes": [
-      {
-        "name": "IBallHitReceiver",
-        "kind": "interface",
-        "access": "public",
-        "base_types": [],
-        "interfaces": [],
-        "attributes": [],
-        "is_partial": false,
-        "is_generic": false
-      }
-    ],
-    "main_class_name": "IBallHitReceiver",
-    "unity_type": "None",
-    "methods": [
-      "OnBallHit"
-    ],
-    "fields": [],
-    "properties": [],
-    "events": [],
-    "unity_messages": [],
-    "has_update": false,
-    "has_fixed_update": false,
-    "has_late_update": false,
-    "has_awake": false,
-    "has_start": false,
-    "has_on_enable": false,
-    "has_on_disable": false,
-    "serialize_field_count": 0,
-    "public_field_count": 0,
-    "get_component_count": 0,
-    "find_call_count": 0,
-    "new_keyword_count": 0,
-    "coroutine_count": 0,
-    "singleton_candidate": false,
-    "dont_destroy_on_load": false,
-    "referenced_types": [
-      "OnBallHit"
-    ],
-    "component_access_types": [],
-    "created_types": [],
-    "singleton_access_types": [],
-    "string_literals": [],
-    "numeric_literals": [],
-    "guessed_roles": [
-      "combat"
-    ],
-    "summary_signals": [
-      "전투 계열 로직 포함"
-    ]
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/paddle_debuff.cs",
-    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/paddle_debuff.cs",
-    "file_name": "paddle_debuff.cs",
-    "content_hash": "b9338741d5073580816ef59447742b0e979b3eff",
-    "size": 456,
-    "line_count": 26,
-    "namespace": "",
-    "using_list": [
-      "UnityEngine"
-    ],
-    "classes": [
-      {
-        "name": "PaddleDebuff",
-        "kind": "class",
-        "access": "public",
-        "base_types": [
-          "MonoBehaviour"
-        ],
-        "interfaces": [],
-        "attributes": [],
-        "is_partial": false,
-        "is_generic": false
-      }
-    ],
-    "main_class_name": "PaddleDebuff",
-    "unity_type": "MonoBehaviour",
-    "methods": [
-      "Update",
-      "ApplyStun"
-    ],
-    "fields": [
-      {
-        "name": "isStunned",
-        "type": "bool",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "stunTimer",
-        "type": "float",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      }
-    ],
-    "properties": [],
-    "events": [],
-    "unity_messages": [
-      "Update"
-    ],
-    "has_update": true,
-    "has_fixed_update": false,
-    "has_late_update": false,
-    "has_awake": false,
-    "has_start": false,
-    "has_on_enable": false,
-    "has_on_disable": false,
-    "serialize_field_count": 0,
-    "public_field_count": 0,
-    "get_component_count": 0,
-    "find_call_count": 0,
-    "new_keyword_count": 0,
-    "coroutine_count": 0,
-    "singleton_candidate": false,
-    "dont_destroy_on_load": false,
-    "referenced_types": [
-      "bool",
-      "float",
-      "UnityEngine",
-      "IsStunned",
-      "Update",
-      "ApplyStun"
-    ],
-    "component_access_types": [],
-    "created_types": [],
-    "singleton_access_types": [],
-    "string_literals": [],
-    "numeric_literals": [
-      0
-    ],
-    "guessed_roles": [
-      "runtime"
-    ],
-    "summary_signals": [
-      "런타임 컴포넌트",
-      "Update 기반 처리 존재"
-    ]
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/paddle_movement.cs",
-    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/paddle_movement.cs",
-    "file_name": "paddle_movement.cs",
-    "content_hash": "ce23cb88c68bbaac73f41abae5b4ae107c23a5cf",
-    "size": 3137,
-    "line_count": 101,
-    "namespace": "",
-    "using_list": [
-      "UnityEngine",
-      "UnityEngine.InputSystem",
-      "UnityEngine.U2D"
-    ],
-    "classes": [
-      {
-        "name": "UpperPadController",
-        "kind": "class",
-        "access": "public",
-        "base_types": [
-          "MonoBehaviour"
-        ],
-        "interfaces": [],
-        "attributes": [],
-        "is_partial": false,
-        "is_generic": false
-      }
-    ],
-    "main_class_name": "UpperPadController",
-    "unity_type": "MonoBehaviour",
-    "methods": [
-      "Start",
-      "Vector3",
-      "Update",
-      "MovePad",
-      "SetAlpha",
-      "SetPaddleWidth",
-      "AddPaddleWidth",
-      "SetPaddleSpeed",
-      "AddPaddleSpeed"
-    ],
-    "fields": [
-      {
-        "name": "transparentAlpha",
-        "type": "float",
-        "access": "private",
-        "serialized": true,
-        "is_static": false
-      },
-      {
-        "name": "mainCamera",
-        "type": "Camera",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "shapeRenderer",
-        "type": "SpriteShapeRenderer",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "originalColor",
-        "type": "Color",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "paddleCollider",
-        "type": "Collider2D",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "tr",
-        "type": "Transform",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "isCollisionOn",
-        "type": "bool",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "paddleDebuff",
-        "type": "PaddleDebuff",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "newColor",
-        "type": "Color",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      }
-    ],
-    "properties": [],
-    "events": [],
-    "unity_messages": [
-      "Start",
-      "Update"
-    ],
-    "has_update": true,
-    "has_fixed_update": false,
-    "has_late_update": false,
-    "has_awake": false,
-    "has_start": true,
-    "has_on_enable": false,
-    "has_on_disable": false,
-    "serialize_field_count": 1,
-    "public_field_count": 0,
-    "get_component_count": 3,
-    "find_call_count": 0,
-    "new_keyword_count": 6,
-    "coroutine_count": 0,
-    "singleton_candidate": false,
-    "dont_destroy_on_load": false,
-    "referenced_types": [
-      "float",
-      "Camera",
-      "SpriteShapeRenderer",
-      "Color",
-      "Collider2D",
-      "bool",
-      "PaddleDebuff",
-      "UnityEngine",
-      "InputSystem",
-      "U2D",
-      "Start",
-      "GetComponent",
-      "CompareTag",
-      "Vector3",
-      "GetComponentInParent",
-      "Update",
-      "IsStunned",
-      "Mouse",
-      "SetAlpha",
-      "MovePad",
-      "Vector2",
-      "ReadValue",
-      "ScreenToWorldPoint",
-      "MoveTowards",
-      "Clamp",
-      "SetPaddleWidth",
-      "AddPaddleWidth",
-      "SetPaddleSpeed",
-      "AddPaddleSpeed"
-    ],
-    "component_access_types": [
-      "SpriteShapeRenderer",
-      "Collider2D",
-      "Transform"
-    ],
-    "created_types": [
-      "Vector3"
-    ],
-    "singleton_access_types": [],
-    "string_literals": [
-      "top_paddle",
-      "down_paddle",
-      "roof_paddle"
-    ],
-    "numeric_literals": [
-      15,
-      0.7,
-      1,
-      0.3,
-      0.5,
-      1,
-      3,
-      5.5
-    ],
-    "guessed_roles": [
-      "runtime",
-      "player",
-      "ui",
-      "save-load"
-    ],
-    "summary_signals": [
-      "런타임 컴포넌트",
-      "Update 기반 처리 존재",
-      "인스펙터 직렬화 필드 사용",
-      "UI 관련 로직 포함",
-      "저장/불러오기 관련 로직 포함",
-      "컴포넌트 조회 사용"
-    ]
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Old Assets/Old Scripts/PaddleSkillHandler.cs",
-    "path": "ProjectDribble/Assets/Old Assets/Old Scripts/PaddleSkillHandler.cs",
-    "file_name": "PaddleSkillHandler.cs",
-    "content_hash": "b818ac9c89daec6b535c8b3831460d7b0c73f687",
-    "size": 4258,
-    "line_count": 145,
-    "namespace": "",
-    "using_list": [
-      "UnityEngine",
-      "System.Collections",
-      "System.Collections.Generic"
-    ],
-    "classes": [
-      {
-        "name": "PaddleSkillHandler",
-        "kind": "class",
-        "access": "public",
-        "base_types": [
-          "MonoBehaviour"
-        ],
-        "interfaces": [],
-        "attributes": [],
-        "is_partial": false,
-        "is_generic": false
-      }
-    ],
-    "main_class_name": "PaddleSkillHandler",
-    "unity_type": "MonoBehaviour",
-    "methods": [
-      "Awake",
-      "Update",
-      "OnBallHitPaddle",
-      "HandleDribbleTimer",
-      "StartCharging",
-      "HandleChargingInput",
-      "ReleaseSequence",
-      "ExecuteSkill",
-      "Vector2"
-    ],
-    "fields": [
-      {
-        "name": "chargeLevel",
-        "type": "int",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "isCharging",
-        "type": "bool",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "chargeHoldTimer",
-        "type": "float",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "dribbleCount",
-        "type": "int",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "dribbleWindowTimer",
-        "type": "float",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "DRIBBLE_TIME_LIMIT",
-        "type": "float",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "paddleCollider",
-        "type": "Collider2D",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "damage",
-        "type": "float",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      }
-    ],
-    "properties": [],
-    "events": [],
-    "unity_messages": [
-      "Awake",
-      "Update"
-    ],
-    "has_update": true,
-    "has_fixed_update": false,
-    "has_late_update": false,
-    "has_awake": true,
-    "has_start": false,
-    "has_on_enable": false,
-    "has_on_disable": false,
-    "serialize_field_count": 0,
-    "public_field_count": 0,
-    "get_component_count": 1,
-    "find_call_count": 0,
-    "new_keyword_count": 1,
-    "coroutine_count": 2,
-    "singleton_candidate": false,
-    "dont_destroy_on_load": false,
-    "referenced_types": [
-      "int",
-      "bool",
-      "float",
-      "Collider2D",
-      "UnityEngine",
-      "System",
-      "Collections",
-      "Generic",
-      "References",
-      "BallController",
-      "BrickManager",
-      "LayerMask",
-      "Gauge",
-      "Charge",
-      "Dribble",
-      "Logic",
-      "DRIBBLE_TIME_LIMIT",
-      "Awake",
-      "GetComponent",
-      "Update",
-      "HandleDribbleTimer",
-      "HandleChargingInput",
-      "OnBallHitPaddle",
-      "StartCharging",
-      "Log",
-      "Input",
-      "GetKey",
-      "KeyCode",
-      "Space",
-      "GetKeyUp",
-      "StartCoroutine",
-      "ReleaseSequence",
-      "ExecuteSkill",
-      "Vector2",
-      "Physics2D",
-      "OverlapBoxAll",
-      "GetComponentInParent",
-      "IBallHitReceiver",
-      "OnBallHit",
-      "Enemy",
-      "TakeDamage",
-      "ExecutePowerShot"
-    ],
-    "component_access_types": [
-      "Collider2D"
-    ],
-    "created_types": [
-      "Vector2"
-    ],
-    "singleton_access_types": [],
-    "string_literals": [
-      "References",
-      "Gauge & Charge",
-      "Dribble Logic",
-      "차징 시작: 1단계",
-      "차징 단계 상승: {chargeLevel}단계",
-      "패들 비활성화 - 공 방출 대기",
-      "{chargeLevel}단계 레이저 발사!"
-    ],
-    "numeric_literals": [
-      3,
-      3,
-      0,
-      2,
-      1,
-      2,
-      0.5,
-      4,
-      1.5,
-      30,
-      20,
-      10
-    ],
-    "guessed_roles": [
-      "runtime",
-      "combat",
-      "player",
-      "manager",
-      "save-load"
-    ],
-    "summary_signals": [
-      "런타임 컴포넌트",
-      "Update 기반 처리 존재",
-      "전투 계열 로직 포함",
-      "저장/불러오기 관련 로직 포함",
-      "컴포넌트 조회 사용"
-    ]
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
-    "path": "ProjectDribble/Assets/Scripts/BallCollisionHandler.cs",
+    "file_id": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
+    "path": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "file_name": "BallCollisionHandler.cs",
-    "content_hash": "58d5d813675ce906b538b760c8418fdf2427c5a7",
-    "size": 1637,
-    "line_count": 46,
+    "content_hash": "2265ee2eac0b0fb99959670409af38b0fc48ff79",
+    "size": 2271,
+    "line_count": 76,
     "namespace": "",
     "using_list": [
+      "Interfaces",
       "UnityEngine"
     ],
     "classes": [
@@ -14440,41 +14373,28 @@
     "unity_type": "MonoBehaviour",
     "methods": [
       "Start",
-      "CheckAndHandleCollision"
+      "HandleCollision",
+      "BallCollisionResult"
     ],
     "fields": [
       {
-        "name": "tr",
-        "type": "Transform",
+        "name": "ballController",
+        "type": "BallController",
         "access": "private",
         "serialized": false,
         "is_static": false
       },
       {
-        "name": "cc",
-        "type": "CircleCollider2D",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "BallMovement",
-        "type": "BallMovement",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "BallSpeedController",
+        "name": "ballSpeedController",
         "type": "BallSpeedController",
         "access": "private",
         "serialized": false,
         "is_static": false
       },
       {
-        "name": "moveDistance",
-        "type": "float",
-        "access": "internal",
+        "name": "ballPowerController",
+        "type": "BallPowerController",
+        "access": "private",
         "serialized": false,
         "is_static": false
       }
@@ -14493,44 +14413,58 @@
     "has_on_disable": false,
     "serialize_field_count": 0,
     "public_field_count": 0,
-    "get_component_count": 4,
+    "get_component_count": 3,
     "find_call_count": 0,
-    "new_keyword_count": 0,
+    "new_keyword_count": 3,
     "coroutine_count": 0,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
-      "CircleCollider2D",
-      "BallMovement",
+      "BallController",
       "BallSpeedController",
-      "float",
+      "BallPowerController",
+      "Interfaces",
       "UnityEngine",
       "Start",
       "GetComponent",
-      "Vector2",
-      "CheckAndHandleCollision",
-      "LayerMask",
-      "CircleCast",
+      "BallCollisionResult",
+      "HandleCollision",
       "RaycastHit2D",
-      "Physics2D",
-      "UpdateDirection",
-      "Reset",
-      "ResolveOverlap"
+      "Vector2",
+      "Log",
+      "IBallSpeedModifier",
+      "GetComponentInParent",
+      "ModifySpeed",
+      "IDamageable",
+      "TakeDamage",
+      "CurrentDamage",
+      "IBallHitReceiver",
+      "OnBallHit",
+      "IBallReflector",
+      "GetReflectDirection",
+      "Reflect"
     ],
     "component_access_types": [
-      "BallMovement",
+      "BallController",
       "BallSpeedController",
-      "Transform",
-      "CircleCollider2D"
+      "BallPowerController"
     ],
-    "created_types": [],
+    "created_types": [
+      "BallCollisionResult"
+    ],
     "singleton_access_types": [],
-    "string_literals": [],
-    "numeric_literals": [],
+    "string_literals": [
+      "충돌함: "
+    ],
+    "numeric_literals": [
+      2,
+      3,
+      4,
+      5
+    ],
     "guessed_roles": [
-      "runtime",
-      "player",
-      "combat"
+      "combat",
+      "runtime"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
@@ -14539,12 +14473,89 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/BallController.cs",
-    "path": "ProjectDribble/Assets/Scripts/BallController.cs",
+    "file_id": "ProjectDribble/Assets/Scripts/Ball/BallCollsionResult.cs",
+    "path": "ProjectDribble/Assets/Scripts/Ball/BallCollsionResult.cs",
+    "file_name": "BallCollsionResult.cs",
+    "content_hash": "03d9553071a2f91c2da0fdd5058a2f16d2b0036c",
+    "size": 356,
+    "line_count": 13,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "BallCollisionResult",
+        "kind": "struct",
+        "access": "public",
+        "base_types": [],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "BallCollisionResult",
+    "unity_type": "None",
+    "methods": [
+      "BallCollisionResult"
+    ],
+    "fields": [
+      {
+        "name": "nextDirection",
+        "type": "Vector2",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "shouldMoveRemainingDistance",
+        "type": "bool",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 2,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "Vector2",
+      "bool",
+      "UnityEngine"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "player"
+    ],
+    "summary_signals": []
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Ball/BallController.cs",
+    "path": "ProjectDribble/Assets/Scripts/Ball/BallController.cs",
     "file_name": "BallController.cs",
-    "content_hash": "2378e48e3eca7493b2eae3b55f3e7f3621720f79",
-    "size": 1657,
-    "line_count": 55,
+    "content_hash": "2743490a522436b45dc0c51979317c56078487d8",
+    "size": 1621,
+    "line_count": 57,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -14622,6 +14633,13 @@
         "access": "private",
         "serialized": false,
         "is_static": false
+      },
+      {
+        "name": "ballDamage",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
       }
     ],
     "properties": [],
@@ -14638,7 +14656,7 @@
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 0,
-    "public_field_count": 2,
+    "public_field_count": 3,
     "get_component_count": 5,
     "find_call_count": 0,
     "new_keyword_count": 3,
@@ -14652,6 +14670,7 @@
       "BallMovement",
       "BallCollisionHandler",
       "BallSpeedController",
+      "int",
       "UnityEngine",
       "LayerMask",
       "Start",
@@ -14659,7 +14678,6 @@
       "Vector3",
       "Update",
       "MoveBall",
-      "AdjustSpeed",
       "SetBallDirection",
       "OnDrawGizmos",
       "Gizmos",
@@ -14689,22 +14707,24 @@
     "guessed_roles": [
       "runtime",
       "player",
+      "combat",
       "save-load"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
       "Update 기반 처리 존재",
+      "전투 계열 로직 포함",
       "저장/불러오기 관련 로직 포함",
       "컴포넌트 조회 사용"
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/BallMovement.cs",
-    "path": "ProjectDribble/Assets/Scripts/BallMovement.cs",
+    "file_id": "ProjectDribble/Assets/Scripts/Ball/BallMovement.cs",
+    "path": "ProjectDribble/Assets/Scripts/Ball/BallMovement.cs",
     "file_name": "BallMovement.cs",
-    "content_hash": "78bdcc534ff35983397f12f37dcc77a2dd3659ae",
-    "size": 5818,
-    "line_count": 168,
+    "content_hash": "fc57c51f7e971e2e4d5006b6effc2b53a5362486",
+    "size": 5979,
+    "line_count": 177,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -14850,8 +14870,9 @@
       "Translate",
       "Space",
       "World",
+      "BallCollisionResult",
+      "HandleCollision",
       "UpdateDirection",
-      "ResolveOverlap",
       "Log",
       "GetComponentInParent",
       "IBallHitReceiver",
@@ -14865,6 +14886,7 @@
       "Euler",
       "Reflect",
       "Reset",
+      "ResolveOverlap",
       "Collider2D",
       "OverlapCircle",
       "CompareTag",
@@ -14907,8 +14929,8 @@
     ],
     "guessed_roles": [
       "runtime",
-      "player",
       "combat",
+      "player",
       "save-load",
       "manager"
     ],
@@ -14921,12 +14943,12 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/BallPowerController.cs",
-    "path": "ProjectDribble/Assets/Scripts/BallPowerController.cs",
+    "file_id": "ProjectDribble/Assets/Scripts/Ball/BallPowerController.cs",
+    "path": "ProjectDribble/Assets/Scripts/Ball/BallPowerController.cs",
     "file_name": "BallPowerController.cs",
-    "content_hash": "e347a76849e89e63f7472520eb8996ad39c3be76",
-    "size": 290,
-    "line_count": 17,
+    "content_hash": "5620a066009ea613c96179a1b6da95e62d1e0899",
+    "size": 401,
+    "line_count": 19,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -14949,55 +14971,76 @@
     "unity_type": "MonoBehaviour",
     "methods": [
       "Start",
-      "Update"
+      "CurrentDamage"
     ],
-    "fields": [],
+    "fields": [
+      {
+        "name": "ballMovement",
+        "type": "BallMovement",
+        "access": "private",
+        "serialized": true,
+        "is_static": false
+      }
+    ],
     "properties": [],
     "events": [],
     "unity_messages": [
-      "Start",
-      "Update"
+      "Start"
     ],
-    "has_update": true,
+    "has_update": false,
     "has_fixed_update": false,
     "has_late_update": false,
     "has_awake": false,
     "has_start": true,
     "has_on_enable": false,
     "has_on_disable": false,
-    "serialize_field_count": 0,
+    "serialize_field_count": 1,
     "public_field_count": 0,
-    "get_component_count": 0,
+    "get_component_count": 1,
     "find_call_count": 0,
     "new_keyword_count": 0,
     "coroutine_count": 0,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
+      "BallMovement",
       "UnityEngine",
       "Start",
-      "Update"
+      "GetComponent",
+      "CurrentDamage",
+      "Max",
+      "RoundToInt"
     ],
-    "component_access_types": [],
+    "component_access_types": [
+      "BallMovement"
+    ],
     "created_types": [],
     "singleton_access_types": [],
     "string_literals": [],
-    "numeric_literals": [],
+    "numeric_literals": [
+      0.2
+    ],
     "guessed_roles": [
-      "runtime"
+      "runtime",
+      "player",
+      "combat",
+      "save-load"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
-      "Update 기반 처리 존재"
+      "인스펙터 직렬화 필드 사용",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
-    "path": "ProjectDribble/Assets/Scripts/BallSpeedController.cs",
+    "file_id": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
+    "path": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
     "file_name": "BallSpeedController.cs",
-    "content_hash": "71cea75a90d8a0eb5ac56bb34649cfb2428b8cda",
-    "size": 1759,
-    "line_count": 56,
+    "content_hash": "6217ba4703d57fa16ddce2eea0c531fe545f69b7",
+    "size": 2601,
+    "line_count": 96,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -15021,7 +15064,10 @@
     "methods": [
       "Start",
       "Update",
-      "AdjustSpeed"
+      "AdjustSpeed",
+      "HandleCollisionSpeed",
+      "AddSpeed",
+      "ClampSpeed"
     ],
     "fields": [
       {
@@ -15099,7 +15145,11 @@
       "CircleCast",
       "RaycastHit2D",
       "Physics2D",
-      "AddBallSpeed"
+      "AddBallSpeed",
+      "HandleCollisionSpeed",
+      "Collider2D",
+      "ClampSpeed",
+      "AddSpeed"
     ],
     "component_access_types": [
       "BallMovement",
@@ -15135,11 +15185,12 @@
     "file_id": "ProjectDribble/Assets/Scripts/BlockCell.cs",
     "path": "ProjectDribble/Assets/Scripts/BlockCell.cs",
     "file_name": "BlockCell.cs",
-    "content_hash": "1bedd8fb4b59c17b8ee7b1245ce6690e8d7cb004",
-    "size": 1168,
-    "line_count": 59,
+    "content_hash": "79a61d42289b3fd18aa9a0217445a818e94b25d4",
+    "size": 1522,
+    "line_count": 75,
     "namespace": "",
     "using_list": [
+      "Interfaces",
       "UnityEngine"
     ],
     "classes": [
@@ -15148,16 +15199,9 @@
         "kind": "class",
         "access": "public",
         "base_types": [
-          "MonoBehaviour",
-          "IBallHitReceiver",
-          "ILaserHittable",
-          "IDamageable"
+          "MonoBehaviour"
         ],
-        "interfaces": [
-          "IBallHitReceiver",
-          "ILaserHittable",
-          "IDamageable"
-        ],
+        "interfaces": [],
         "attributes": [],
         "is_partial": false,
         "is_generic": false
@@ -15169,6 +15213,7 @@
       "Init",
       "Activate",
       "Deactivate",
+      "ModifySpeed",
       "OnBallHit",
       "OnLaserHit",
       "TakeDamage"
@@ -15226,10 +15271,12 @@
       "Vector2Int",
       "int",
       "bool",
+      "Interfaces",
       "UnityEngine",
       "IBallHitReceiver",
       "ILaserHittable",
       "IDamageable",
+      "IBallSpeedModifier",
       "Coord",
       "IsFixed",
       "IsAlive",
@@ -15237,9 +15284,12 @@
       "Activate",
       "SetActive",
       "Deactivate",
+      "ModifySpeed",
+      "BallSpeedController",
+      "AddSpeed",
       "OnBallHit",
-      "Ball",
-      "ReflectDefault",
+      "BallController",
+      "BallCollisionHandler",
       "OnLaserHit",
       "RemoveBlock",
       "TakeDamage"
@@ -15248,17 +15298,20 @@
     "created_types": [],
     "singleton_access_types": [],
     "string_literals": [],
-    "numeric_literals": [],
+    "numeric_literals": [
+      2
+    ],
     "guessed_roles": [
       "combat",
       "player",
       "manager",
       "data",
-      "runtime"
+      "save-load"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
-      "전투 계열 로직 포함"
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함"
     ]
   },
   {
@@ -15907,13 +15960,199 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/IDamageable.cs",
-    "path": "ProjectDribble/Assets/Scripts/IDamageable.cs",
-    "file_name": "IDamageable.cs",
-    "content_hash": "d0c02ee4b9bebf2fdb3c8ee9573c8e196e80ccc6",
-    "size": 66,
-    "line_count": 5,
+    "file_id": "ProjectDribble/Assets/Scripts/IBallHitReceiver.cs",
+    "path": "ProjectDribble/Assets/Scripts/IBallHitReceiver.cs",
+    "file_name": "IBallHitReceiver.cs",
+    "content_hash": "f58bbc00803ff8c174996b65c896a0ee388493fc",
+    "size": 78,
+    "line_count": 4,
     "namespace": "",
+    "using_list": [],
+    "classes": [
+      {
+        "name": "IBallHitReceiver",
+        "kind": "interface",
+        "access": "public",
+        "base_types": [],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "IBallHitReceiver",
+    "unity_type": "None",
+    "methods": [
+      "OnBallHit"
+    ],
+    "fields": [],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "OnBallHit",
+      "BallController"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "combat"
+    ],
+    "summary_signals": [
+      "전투 계열 로직 포함"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Interfaces/IBallReflector.cs",
+    "path": "ProjectDribble/Assets/Scripts/Interfaces/IBallReflector.cs",
+    "file_name": "IBallReflector.cs",
+    "content_hash": "55097b1853d00da8356ab290804fcbfb1d8f2ca0",
+    "size": 244,
+    "line_count": 13,
+    "namespace": "Interfaces",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "IBallReflector",
+        "kind": "interface",
+        "access": "public",
+        "base_types": [],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "IBallReflector",
+    "unity_type": "None",
+    "methods": [
+      "GetReflectDirection"
+    ],
+    "fields": [],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "UnityEngine",
+      "Interfaces",
+      "Vector2",
+      "GetReflectDirection",
+      "BallController",
+      "RaycastHit2D"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "combat"
+    ],
+    "summary_signals": [
+      "전투 계열 로직 포함"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Interfaces/IBallSpeedModifier.cs",
+    "path": "ProjectDribble/Assets/Scripts/Interfaces/IBallSpeedModifier.cs",
+    "file_name": "IBallSpeedModifier.cs",
+    "content_hash": "e9ec993bbebb6df89150299a16b34d6a8de52df8",
+    "size": 139,
+    "line_count": 7,
+    "namespace": "Interfaces",
+    "using_list": [],
+    "classes": [
+      {
+        "name": "IBallSpeedModifier",
+        "kind": "interface",
+        "access": "public",
+        "base_types": [],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "IBallSpeedModifier",
+    "unity_type": "None",
+    "methods": [
+      "ModifySpeed"
+    ],
+    "fields": [],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "Interfaces",
+      "ModifySpeed",
+      "BallSpeedController"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [],
+    "guessed_roles": [],
+    "summary_signals": []
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Interfaces/IDamageable.cs",
+    "path": "ProjectDribble/Assets/Scripts/Interfaces/IDamageable.cs",
+    "file_name": "IDamageable.cs",
+    "content_hash": "183f20123589f5f9f62d9af256e288cfbcc82a75",
+    "size": 107,
+    "line_count": 8,
+    "namespace": "Interfaces",
     "using_list": [],
     "classes": [
       {
@@ -15952,6 +16191,7 @@
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
+      "Interfaces",
       "TakeDamage"
     ],
     "component_access_types": [],
@@ -15967,16 +16207,14 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/ILaserHittable.cs",
-    "path": "ProjectDribble/Assets/Scripts/ILaserHittable.cs",
+    "file_id": "ProjectDribble/Assets/Scripts/Interfaces/ILaserHittable.cs",
+    "path": "ProjectDribble/Assets/Scripts/Interfaces/ILaserHittable.cs",
     "file_name": "ILaserHittable.cs",
-    "content_hash": "92a52ab85ad6e585d761d993f87f47ab8ebc427e",
-    "size": 394,
-    "line_count": 20,
-    "namespace": "",
-    "using_list": [
-      "UnityEngine"
-    ],
+    "content_hash": "562ac76f042c76ec03479e43eead620622d62289",
+    "size": 411,
+    "line_count": 21,
+    "namespace": "Interfaces",
+    "using_list": [],
     "classes": [
       {
         "name": "ILaserHittable",
@@ -16014,7 +16252,7 @@
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
-      "UnityEngine",
+      "Interfaces",
       "OnLaserHit",
       "Destroy"
     ],
@@ -16119,6 +16357,142 @@
     "summary_signals": [
       "런타임 컴포넌트",
       "Update 기반 처리 존재"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
+    "path": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
+    "file_name": "GaugeManager.cs",
+    "content_hash": "c209453385ffe500fd983d1b3e5cf17010851155",
+    "size": 2024,
+    "line_count": 89,
+    "namespace": "",
+    "using_list": [
+      "TMPro",
+      "UnityEngine",
+      "UnityEngine.Serialization"
+    ],
+    "classes": [
+      {
+        "name": "GaugeManager",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "GaugeManager",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Start",
+      "AddGauge",
+      "ChangeGaugeLevel",
+      "Update",
+      "UpdateGaugeUI"
+    ],
+    "fields": [
+      {
+        "name": "filledGaugeSegments",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "currentGaugeValue",
+        "type": "int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "gaugePerSegment",
+        "type": "int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "maxGaugeValue",
+        "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Start",
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": true,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 1,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "int",
+      "TMPro",
+      "UnityEngine",
+      "Serialization",
+      "Gauge",
+      "UI",
+      "TextMeshProUGUI",
+      "CurrentGaugeValue",
+      "Start",
+      "Update",
+      "UpdateGaugeUI",
+      "AddGauge",
+      "ChangeGaugeLevel",
+      "Clamp",
+      "Log",
+      "Segments",
+      "Value"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Gauge",
+      "UI",
+      "차징 게이지",
+      "Gauge Segments: {filledGaugeSegments} / {maxGaugeSegments}",
+      "Gauge Value: {currentGaugeValue}"
+    ],
+    "numeric_literals": [
+      30,
+      10,
+      3
+    ],
+    "guessed_roles": [
+      "runtime",
+      "ui",
+      "combat",
+      "manager",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재",
+      "UI 관련 로직 포함",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함"
     ]
   },
   {
@@ -16328,6 +16702,113 @@
     ]
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/PaddleBallReflector.cs",
+    "path": "ProjectDribble/Assets/Scripts/PaddleBallReflector.cs",
+    "file_name": "PaddleBallReflector.cs",
+    "content_hash": "0c748d0b7922ad8101603e6c7900c9aaec6f0014",
+    "size": 945,
+    "line_count": 34,
+    "namespace": "",
+    "using_list": [
+      "Interfaces",
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "PaddleBallReflector",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour",
+          "IBallReflector"
+        ],
+        "interfaces": [
+          "IBallReflector"
+        ],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "PaddleBallReflector",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "GetReflectDirection"
+    ],
+    "fields": [
+      {
+        "name": "baseDir",
+        "type": "Vector2",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "Vector2",
+      "Interfaces",
+      "UnityEngine",
+      "IBallReflector",
+      "Reflect",
+      "Direction",
+      "Bounce",
+      "Angle",
+      "Paddle",
+      "Size",
+      "GetReflectDirection",
+      "BallController",
+      "RaycastHit2D",
+      "Clamp",
+      "Lerp",
+      "Abs",
+      "Quaternion",
+      "Euler"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Reflect Direction",
+      "Bounce Angle",
+      "Paddle Size"
+    ],
+    "numeric_literals": [
+      50,
+      3,
+      2,
+      1,
+      0
+    ],
+    "guessed_roles": [
+      "combat",
+      "save-load",
+      "runtime"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함"
+    ]
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/PaddleController.cs",
     "path": "ProjectDribble/Assets/Scripts/PaddleController.cs",
     "file_name": "PaddleController.cs",
@@ -16534,6 +17015,170 @@
       "저장/불러오기 관련 로직 포함",
       "컴포넌트 조회 사용",
       "Find 계열 탐색 사용"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/PaddleSpeedModifier.cs",
+    "path": "ProjectDribble/Assets/Scripts/PaddleSpeedModifier.cs",
+    "file_name": "PaddleSpeedModifier.cs",
+    "content_hash": "fc4421b2b715f97bde9a8f7f68dedc777335d06d",
+    "size": 295,
+    "line_count": 12,
+    "namespace": "",
+    "using_list": [
+      "Interfaces",
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "PaddleSpeedModifier",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour",
+          "IBallSpeedModifier"
+        ],
+        "interfaces": [
+          "IBallSpeedModifier"
+        ],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "PaddleSpeedModifier",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "ModifySpeed"
+    ],
+    "fields": [],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "Interfaces",
+      "UnityEngine",
+      "IBallSpeedModifier",
+      "ModifySpeed",
+      "BallSpeedController",
+      "AddSpeed"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [
+      5
+    ],
+    "guessed_roles": [
+      "save-load",
+      "runtime"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "저장/불러오기 관련 로직 포함"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/WallBallHitReceiver.cs",
+    "path": "ProjectDribble/Assets/Scripts/WallBallHitReceiver.cs",
+    "file_name": "WallBallHitReceiver.cs",
+    "content_hash": "b1318fcf739cc2776f64dcfcaa24bbcc82c8fc0c",
+    "size": 561,
+    "line_count": 19,
+    "namespace": "DefaultNamespace",
+    "using_list": [
+      "Interfaces",
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "WallBallHitReceiver",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour",
+          "IBallHitReceiver",
+          "IBallSpeedModifier"
+        ],
+        "interfaces": [
+          "IBallHitReceiver",
+          "IBallSpeedModifier"
+        ],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "WallBallHitReceiver",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "OnBallHit",
+      "ModifySpeed"
+    ],
+    "fields": [],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "Interfaces",
+      "UnityEngine",
+      "DefaultNamespace",
+      "IBallHitReceiver",
+      "IBallSpeedModifier",
+      "OnBallHit",
+      "BallController",
+      "BallCollisionHandler",
+      "ModifySpeed",
+      "BallSpeedController",
+      "AddSpeed"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [
+      5
+    ],
+    "guessed_roles": [
+      "combat",
+      "save-load",
+      "runtime"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함"
     ]
   },
   {

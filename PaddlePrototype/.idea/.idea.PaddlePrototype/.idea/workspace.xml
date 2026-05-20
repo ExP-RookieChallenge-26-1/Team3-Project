@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9508e556-d083-4ec7-aa53-9788c555016c" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PaddlePrototype/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PaddlePrototype/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/0518/0518 권혜연.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/0518/0518 권혜연.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/0518/0518 이동건.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/0518/0518 이동건.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/LaserBalancing.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObjects/LaserBalancing.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ForRazer/ChargingLaserManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ForRazer/ChargingLaserManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ForRazer/LaserShooter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ForRazer/LaserShooter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ball_movement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ball_movement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" afterDir="false" />
-    </list>
+    <list default="true" id="9508e556-d083-4ec7-aa53-9788c555016c" name="변경" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

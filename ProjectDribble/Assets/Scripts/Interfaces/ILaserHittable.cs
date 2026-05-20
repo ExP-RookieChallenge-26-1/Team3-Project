@@ -1,7 +1,7 @@
-using UnityEngine;
-
-public interface ILaserHittable
+namespace Interfaces
 {
+    public interface ILaserHittable
+    {
     
         void OnLaserHit(); 
         /* damage는 적이나 다른 것들을 위해 만들어둠
@@ -16,4 +16,5 @@ public interface ILaserHittable
 
         
         
+    }
 }

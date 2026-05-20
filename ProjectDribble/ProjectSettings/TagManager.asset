@@ -46,6 +46,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: UI
+    uniqueID: 2978591121
+    locked: 0
+  - name: Paddle
+    uniqueID: 3752784911
+    locked: 0
+  - name: New Layer 3
+    uniqueID: 4098998569
+    locked: 0
   m_RenderingLayers:
   - Default
   m_MigratedRenderPipelines: []

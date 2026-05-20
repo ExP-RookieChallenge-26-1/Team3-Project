@@ -1,10 +1,18 @@
+using Interfaces;
 using UnityEngine;
 
-public class BlockCell : MonoBehaviour , IBallHitReceiver , ILaserHittable , IDamageable
+public class BlockCell : MonoBehaviour,
+    IBallHitReceiver,
+    ILaserHittable,
+    IDamageable,
+    IBallSpeedModifier
 {
     private BlockManager manager;
     private Vector2Int coord;
 
+    
+    [SerializeField] private float ballSpeedDecrease = 2f;
+    
     private int hp;
     private bool isFixed;
 
@@ -32,9 +40,16 @@ public class BlockCell : MonoBehaviour , IBallHitReceiver , ILaserHittable , IDa
         gameObject.SetActive(false);
     }
 
-    public void OnBallHit(/* Ball ball */)
+    public void ModifySpeed(BallSpeedController speedController)
     {
-        //ReflectDefault
+        speedController.AddSpeed(-ballSpeedDecrease);
+    }
+    
+    public void OnBallHit(BallController ball)
+    {
+        
+        // 일단 비워둬도 됨.
+        // 반사는 BallCollisionHandler에서 기본 반사 처리함.
     }
 
     public void OnLaserHit()
@@ -54,6 +69,7 @@ public class BlockCell : MonoBehaviour , IBallHitReceiver , ILaserHittable , IDa
             manager.RemoveBlock(coord);
             return true;
         }
+
         return false;
     }
 }

@@ -9,6 +9,7 @@ public class BallMovement : MonoBehaviour
     [SerializeField] public float skinWidth = 0.1f; // 벽과 거리 유지 정도
     [SerializeField] private float _outsideMaxBounceAngle = 50f;
     [SerializeField] private float _insideMaxBounceAngle = 50f;
+    [SerializeField] private int ballDamage = 1;
     
     public float moveDistance = 0;
     private Transform tr;
@@ -29,40 +30,48 @@ public class BallMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveDistance = speed * Time.deltaTime;
+        
         //MoveBall(BallController.direction, BallController.actualRadius, BallController.collisionMask);
     }
     public Vector2 MoveBall(Vector2 direction, float actualRadius, LayerMask collisionMask)
     {
+        moveDistance = speed * Time.deltaTime;
         // 1. CircleCast로 이동 경로에 장애물이 있는지 확인
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position, actualRadius, direction, moveDistance, collisionMask);
+        RaycastHit2D hit = Physics2D.CircleCast(
+            transform.position,
+            actualRadius,
+            direction,
+            moveDistance,
+            collisionMask
+        );
 
         if (hit.collider != null)
-        {
+        {   
             // 2. 충돌 지점까지 우선 이동 (충돌 지점에서 아주 살짝 띄움)
             float distanceToHit = hit.distance;
             transform.Translate(direction * distanceToHit, Space.World);
-
+            
             // 3. 충돌 대상에 따른 반사 방향 계산
             float remainingDistance = moveDistance - distanceToHit;
-            direction = UpdateDirection(hit, _outsideMaxBounceAngle, _insideMaxBounceAngle, direction);
 
+            BallCollisionResult result =
+                BallCollisionHandler.HandleCollision(hit, direction);
+
+            direction = result.nextDirection;
+            
             // 4. 남은 거리가 있다면 새로운 방향으로 다시 이동 (재귀 호출 방지를 위해 단순화)
-            if (remainingDistance > 0)
-            {
+            if (result.shouldMoveRemainingDistance && remainingDistance > 0)
+            {   
                 transform.Translate(direction * remainingDistance, Space.World);
             }
-            return direction;
-        }
-        else
-        {
-            // 충돌이 없다면 지정된 거리만큼 직선 이동
-            transform.Translate(direction * moveDistance, Space.World);
-            return direction;
-        }
-        ResolveOverlap(actualRadius, collisionMask);
-    }
 
+            return direction;
+        }
+        // 충돌이 없다면 지정된 거리만큼 직선 이동
+        transform.Translate(direction * moveDistance, Space.World);
+        return direction;
+    }
+   /*
     public Vector2 UpdateDirection(RaycastHit2D hit, float outsideMaxAngle, float insideMaxAngle, Vector2 direction)
     {
         Debug.Log("충돌함: " + hit.collider.name);
@@ -132,7 +141,7 @@ public class BallMovement : MonoBehaviour
         tr.position += (Vector3)(pushDir.normalized * (skinWidth));
         
     }
-
+*/
 
     // 공 현재 속도
     public void SetBallSpeed(float amount)

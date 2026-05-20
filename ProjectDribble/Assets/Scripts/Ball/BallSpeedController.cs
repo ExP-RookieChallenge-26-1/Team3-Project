@@ -37,6 +37,7 @@ public class BallSpeedController : MonoBehaviour
         moveDistance = BallMovement.moveDistance;
     }
 
+    /*
     public void AdjustSpeed(Vector2 direction, float actualRadius, LayerMask collisionMask)
     {
         // CircleCast로 앞길에 장애물이 있는지 미리 레이저를 쏴봅니다.
@@ -52,5 +53,44 @@ public class BallSpeedController : MonoBehaviour
             BallMovement.AddBallSpeed(-5.0f);
         }
     }
+*/
+    
+    public void HandleCollisionSpeed(Collider2D collider)
+    {
+        if (collider == null)
+            return;
 
+        if (collider.name == "paddle_down")
+        {
+            BallMovement.AddBallSpeed(PaddleSpeedIncrease);
+        }
+
+        if (collider.name == "wall_up")
+        {
+            BallMovement.AddBallSpeed(-5.0f);
+        }
+
+        ClampSpeed();
+    }
+    
+    
+    public void AddSpeed(float amount)
+    {
+        BallMovement.AddBallSpeed(amount);
+        ClampSpeed();
+    }
+    
+
+    private void ClampSpeed()
+    {
+        if (BallMovement.speed < BallMovement.baseSpeed)
+        {
+            BallMovement.SetBallSpeed(BallMovement.baseSpeed);
+        }
+
+        if (BallMovement.speed > BallMovement.maxSpeed)
+        {
+            BallMovement.SetBallSpeed(BallMovement.maxSpeed);
+        }
+    }
 }

@@ -17,7 +17,8 @@ public class BallController : MonoBehaviour
     private BallMovement BallMovement;
     private BallCollisionHandler BallCollisionHandler;
     private BallSpeedController BallSpeedController;
-
+    
+    public int ballDamage = 1;
 
     void Start()
     {
@@ -39,7 +40,6 @@ public class BallController : MonoBehaviour
         // 2. 결정된 방향(direction)으로 순수하게 직선 이동만 합니다.
         direction = BallMovement.MoveBall(direction, actualRadius, collisionMask);
 
-        BallSpeedController.AdjustSpeed(direction, actualRadius, collisionMask);
     }
 
     public void SetBallDirection(float x,float y)
@@ -51,4 +51,6 @@ public class BallController : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, actualRadius);
     }
+    
+    
 }

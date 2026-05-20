@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IBallHitReceiver
+public class Enemy : MonoBehaviour /*IBallHitReceiver*/
 {
     [Header("HP")]
     [SerializeField] private int maxHp = 3;

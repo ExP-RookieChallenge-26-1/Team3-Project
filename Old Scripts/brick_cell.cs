@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BrickCell : MonoBehaviour, IBallHitReceiver
+public class BrickCell : MonoBehaviour /*IBallHitReceiver*/
 {
     private BrickManager manager;
     private Vector2Int cell;

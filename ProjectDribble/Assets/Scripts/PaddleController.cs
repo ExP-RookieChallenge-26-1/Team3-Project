@@ -4,8 +4,6 @@ using UnityEngine.U2D;
 
 public class PaddleMovement : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 15f;
-    [SerializeField] private float paddleWidth = 0.7f;
     [SerializeField] private float activeCollisionEnabled = 1f;
     private float transparentAlpha = 0.3f;
     private Camera mainCamera;
@@ -14,6 +12,8 @@ public class PaddleMovement : MonoBehaviour
     //private Color originalColor; 
 
     //private Collider2D paddleCollider;
+
+    public PaddleData data;
     private Transform tr;
     private bool isCollisionOn = true;
 
@@ -24,8 +24,15 @@ public class PaddleMovement : MonoBehaviour
     SpriteShapeRenderer up_shape;
     Collider2D up_collider;
 
+    float moveSpeed; 
+    float paddleWidth; 
+
+
     void Start()
     {
+        moveSpeed = data.moveSpeed;
+        paddleWidth = data.paddleWidth;
+
         paddle_up = transform.Find("paddle_up");
         paddle_down = transform.Find("paddle_down");
         roof_paddle = transform.Find("roof_paddle");

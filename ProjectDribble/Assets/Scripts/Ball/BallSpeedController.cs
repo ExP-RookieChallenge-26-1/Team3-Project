@@ -7,16 +7,23 @@ public class BallSpeedController : MonoBehaviour
 
     private BallMovement BallMovement;
     private BallController BallController;
-    [SerializeField] private float PaddleSpeedIncrease = 5f;
-
-    [SerializeField] private float BlockSpeedDecrease = -5f;
-
+    public BallData data;
 
     float moveDistance;
+
+    float baseSpeed;
+    float maxSpeed;
+    float PaddleSpeedIncrease;
+    float BlockSpeedDecrease;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        baseSpeed = data.baseSpeed;
+        maxSpeed = data.maxSpeed;
+        PaddleSpeedIncrease = data.PaddleSpeedIncrease;
+        BlockSpeedDecrease = data.BlockSpeedDecrease;
+
         BallMovement = GetComponent<BallMovement>();
         BallController = GetComponent<BallController>();
         tr = GetComponent<Transform>();
@@ -26,13 +33,13 @@ public class BallSpeedController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if (BallMovement.speed < BallMovement.baseSpeed)
+       if (BallMovement.speed < baseSpeed)
        {
-           BallMovement.SetBallSpeed(BallMovement.baseSpeed);
+           BallMovement.SetBallSpeed(baseSpeed);
        }
-       if (BallMovement.speed >= BallMovement.maxSpeed)
+       if (BallMovement.speed >= maxSpeed)
        {
-           BallMovement.SetBallSpeed(BallMovement.maxSpeed);
+           BallMovement.SetBallSpeed(maxSpeed);
        }
         moveDistance = BallMovement.moveDistance;
     }
@@ -83,14 +90,14 @@ public class BallSpeedController : MonoBehaviour
 
     private void ClampSpeed()
     {
-        if (BallMovement.speed < BallMovement.baseSpeed)
+        if (BallMovement.speed < baseSpeed)
         {
-            BallMovement.SetBallSpeed(BallMovement.baseSpeed);
+            BallMovement.SetBallSpeed(baseSpeed);
         }
 
-        if (BallMovement.speed > BallMovement.maxSpeed)
+        if (BallMovement.speed > maxSpeed)
         {
-            BallMovement.SetBallSpeed(BallMovement.maxSpeed);
+            BallMovement.SetBallSpeed(maxSpeed);
         }
     }
 }

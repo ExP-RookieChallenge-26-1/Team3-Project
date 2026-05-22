@@ -874,9 +874,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9b1692c8f99eb478a6d3ab4d38749d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::paddle_movement
-  moveSpeed: 50
-  paddleWidth: 0.7
   activeCollisionEnabled: 1
+  data: {fileID: 11400000, guid: 553479fb14815704aac8e148ffd42d28, type: 2}
 --- !u!114 &536276579249367524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1340,12 +1339,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallMovement
   speed: 30
-  baseSpeed: 30
-  maxSpeed: 55
   skinWidth: 0.1
   _outsideMaxBounceAngle: 50
   _insideMaxBounceAngle: 60
-  ballDamage: 1
+  data: {fileID: 11400000, guid: 54b931febcc33ad4c8a764de402b55e5, type: 2}
   moveDistance: 0
 --- !u!114 &2783037743883938765
 MonoBehaviour:
@@ -1505,8 +1502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaddleBallReflector
   reflectUp: 1
-  maxBounceAngle: 50
-  paddleWidth: 3
+  data: {fileID: 11400000, guid: 553479fb14815704aac8e148ffd42d28, type: 2}
 --- !u!4 &3601250980634238498
 Transform:
   m_ObjectHideFlags: 0
@@ -2143,8 +2139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaddleBallReflector
   reflectUp: 0
-  maxBounceAngle: 50
-  paddleWidth: 3
+  data: {fileID: 11400000, guid: 553479fb14815704aac8e148ffd42d28, type: 2}
 --- !u!1 &5988251570761651996
 GameObject:
   m_ObjectHideFlags: 0
@@ -2862,8 +2857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ffa797f56a5a0468b46618216ce79e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallSpeedController
-  PaddleSpeedIncrease: 5
-  BlockSpeedDecrease: -5
+  data: {fileID: 11400000, guid: 54b931febcc33ad4c8a764de402b55e5, type: 2}
 --- !u!4 &8279302420138287470
 Transform:
   m_ObjectHideFlags: 0
@@ -3297,7 +3291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99dee2c176ea9d47a9d401387d5ac65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallPowerController
-  damageMultiplier: 0.2
+  data: {fileID: 11400000, guid: 54b931febcc33ad4c8a764de402b55e5, type: 2}
 --- !u!1 &8728273839673105625
 GameObject:
   m_ObjectHideFlags: 0
@@ -3340,8 +3334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaddleBallReflector
   reflectUp: 1
-  maxBounceAngle: 50
-  paddleWidth: 3
+  data: {fileID: 11400000, guid: 553479fb14815704aac8e148ffd42d28, type: 2}
 --- !u!4 &8996345764293730004
 Transform:
   m_ObjectHideFlags: 0

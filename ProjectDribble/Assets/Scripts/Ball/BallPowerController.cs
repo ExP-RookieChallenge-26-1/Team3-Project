@@ -2,12 +2,17 @@ using UnityEngine;
 
 public class BallPowerController : MonoBehaviour
 {
-    [SerializeField] private float damageMultiplier = 0.2f;
+
     private BallMovement ballMovement;
+
+    public BallData data;
+
+    float damageMultiplier;
 
     void Start()
     {
         ballMovement = GetComponent<BallMovement>();
+        damageMultiplier = data.DamageMultiplier;
     }
     
     public int CurrentDamage()

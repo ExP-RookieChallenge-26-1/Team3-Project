@@ -6,11 +6,17 @@ public class PaddleBallReflector : MonoBehaviour, IBallReflector
     [Header("Reflect Direction")]
     [SerializeField] private bool reflectUp = true;
 
-    [Header("Bounce Angle")]
-    [SerializeField] private float maxBounceAngle = 50f;
 
-    [Header("Paddle Size")]
-    [SerializeField] private float paddleWidth = 3f;
+    public PaddleData data;
+
+    float maxBounceAngle;
+    float paddleWidth;
+
+    void Start()
+    {
+        maxBounceAngle = data.maxBounceAngle;
+        paddleWidth = data.collisionPaddleWidth;
+    }
 
     public Vector2 GetReflectDirection(
         BallController ball,

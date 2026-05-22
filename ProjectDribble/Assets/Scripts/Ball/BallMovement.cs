@@ -4,13 +4,13 @@ using UnityEngine;
 public class BallMovement : MonoBehaviour
 {
     public float speed = 10f; // 공의 초기 속도
-    [SerializeField] public float baseSpeed = 10f; // 공의 초기 속도
-    [SerializeField] public float maxSpeed = 30f; // 최대 속도
+
     [SerializeField] public float skinWidth = 0.1f; // 벽과 거리 유지 정도
     [SerializeField] private float _outsideMaxBounceAngle = 50f;
     [SerializeField] private float _insideMaxBounceAngle = 50f;
-    [SerializeField] private int ballDamage = 1;
+
     
+    public BallData data;
     public float moveDistance = 0;
     private Transform tr;
     private CircleCollider2D cc;
@@ -19,12 +19,20 @@ public class BallMovement : MonoBehaviour
     private BallCollisionHandler BallCollisionHandler;
     private BallSpeedController BallSpeedController;
 
+    float baseSpeed;
+    float maxSpeed;
+    float ballDamage;
+
     void Start()
     {
         tr = GetComponent<Transform>();
         cc = GetComponent<CircleCollider2D>();
         BallCollisionHandler = GetComponent<BallCollisionHandler>();
         BallSpeedController = GetComponent<BallSpeedController>();
+
+        baseSpeed = data.baseSpeed;
+        maxSpeed = data.maxSpeed;
+        ballDamage = data.ballDamage;
     }
 
     // Update is called once per frame

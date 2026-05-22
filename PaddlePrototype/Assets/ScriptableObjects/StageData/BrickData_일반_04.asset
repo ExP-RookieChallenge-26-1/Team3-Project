@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7473cba836f8d346b235f94a649939a, type: 3}
+  m_Name: "BrickData_\uC77C\uBC18_04"
+  m_EditorClassIdentifier: Assembly-CSharp::ScriptableObjectScripts.BrickManagerData
+  brickPrefab: {fileID: 7211861392728797942, guid: ff74d641f8358974d80f7f52fa353f25, type: 3}
+  fixedBrickPrefab: {fileID: 7211861392728797942, guid: 845c635dd02107d4fa08c299a504efe3, type: 3}
+  fixedBricks:
+  - cell: {x: 0, y: 0}
+    prefabOverride: {fileID: 0}
+  - cell: {x: 1, y: 0}
+    prefabOverride: {fileID: 0}
+  - cell: {x: 2, y: 0}
+    prefabOverride: {fileID: 0}
+  - cell: {x: 2, y: 6}
+    prefabOverride: {fileID: 0}
+  - cell: {x: 3, y: 6}
+    prefabOverride: {fileID: 0}
+  - cell: {x: 4, y: 6}
+    prefabOverride: {fileID: 0}
+  - cell: {x: 4, y: 3}
+    prefabOverride: {fileID: 0}
+  - cell: {x: 6, y: 3}
+    prefabOverride: {fileID: 0}
+  - cell: {x: 6, y: 9}
+    prefabOverride: {fileID: 0}
+  - cell: {x: 5, y: 9}
+    prefabOverride: {fileID: 0}
+  - cell: {x: 5, y: 3}
+    prefabOverride: {fileID: 0}
+  rowCount: 18
+  columnCount: 7
+  cellWidth: 2
+  cellHeight: 1
+  brickSizeRatio: 1
+  startPosition: {x: -6, y: 9.5}
+  spawnInterval: 0.7
+  minGrowPerTick: 1
+  maxGrowPerTick: 1
+  rowWeightMultiplier: 0
+  rowPriorityStep: 0
+  onlyGrowFromStartConnectedBricks: 1
+  directions:
+  - name: Left
+    direction: {x: -1, y: 0}
+    priority: 3
+    weight: 1
+  - name: Right
+    direction: {x: 1, y: 0}
+    priority: 1
+    weight: 7
+  - name: Down
+    direction: {x: 0, y: 1}
+    priority: 1
+    weight: 10
+  startCells:
+  - {x: 6, y: 2}

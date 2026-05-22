@@ -20944,6 +20944,111 @@
     "strength": 1
   },
   {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/BallData.cs",
+    "from_class": "BallData",
+    "to_type": "ScriptableObject",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/BallData.cs",
+    "from_class": "BallData",
+    "to_type": "BlockSpeedDecrease",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/BallData.cs",
+    "from_class": "BallData",
+    "to_type": "CreateAssetMenu",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/BallData.cs",
+    "from_class": "BallData",
+    "to_type": "DamageMultiplier",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/BallData.cs",
+    "from_class": "BallData",
+    "to_type": "float",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/BallData.cs",
+    "from_class": "BallData",
+    "to_type": "Objects",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/BallData.cs",
+    "from_class": "BallData",
+    "to_type": "PaddleSpeedIncrease",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/BallData.cs",
+    "from_class": "BallData",
+    "to_type": "Scriptable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/BallData.cs",
+    "from_class": "BallData",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/PaddleData.cs",
+    "from_class": "PaddleData",
+    "to_type": "ScriptableObject",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/PaddleData.cs",
+    "from_class": "PaddleData",
+    "to_type": "CreateAssetMenu",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/PaddleData.cs",
+    "from_class": "PaddleData",
+    "to_type": "float",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/PaddleData.cs",
+    "from_class": "PaddleData",
+    "to_type": "Objects",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/PaddleData.cs",
+    "from_class": "PaddleData",
+    "to_type": "Scriptable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/PaddleData.cs",
+    "from_class": "PaddleData",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "from_class": "BallCollisionHandler",
     "to_type": "BallController",
@@ -21436,6 +21541,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallMovement.cs",
     "from_class": "BallMovement",
+    "to_type": "BallData",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallMovement.cs",
+    "from_class": "BallMovement",
     "to_type": "BallSpeedController",
     "relation_type": "uses",
     "strength": 1
@@ -21723,6 +21835,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallPowerController.cs",
     "from_class": "BallPowerController",
+    "to_type": "BallData",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallPowerController.cs",
+    "from_class": "BallPowerController",
     "to_type": "BallMovement",
     "relation_type": "uses",
     "strength": 1
@@ -21731,6 +21850,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallPowerController.cs",
     "from_class": "BallPowerController",
     "to_type": "CurrentDamage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallPowerController.cs",
+    "from_class": "BallPowerController",
+    "to_type": "DamageMultiplier",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallPowerController.cs",
+    "from_class": "BallPowerController",
+    "to_type": "float",
     "relation_type": "uses",
     "strength": 1
   },
@@ -21829,6 +21962,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
     "from_class": "BallSpeedController",
     "to_type": "BallController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "BallData",
     "relation_type": "uses",
     "strength": 1
   },
@@ -23445,21 +23585,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/PaddleBallReflector.cs",
     "from_class": "PaddleBallReflector",
-    "to_type": "Angle",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/PaddleBallReflector.cs",
-    "from_class": "PaddleBallReflector",
     "to_type": "BallController",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/PaddleBallReflector.cs",
-    "from_class": "PaddleBallReflector",
-    "to_type": "Bounce",
     "relation_type": "uses",
     "strength": 1
   },
@@ -23481,6 +23607,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/PaddleBallReflector.cs",
     "from_class": "PaddleBallReflector",
     "to_type": "Euler",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleBallReflector.cs",
+    "from_class": "PaddleBallReflector",
+    "to_type": "float",
     "relation_type": "uses",
     "strength": 1
   },
@@ -23515,7 +23648,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/PaddleBallReflector.cs",
     "from_class": "PaddleBallReflector",
-    "to_type": "Paddle",
+    "to_type": "PaddleData",
     "relation_type": "uses",
     "strength": 1
   },
@@ -23543,7 +23676,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/PaddleBallReflector.cs",
     "from_class": "PaddleBallReflector",
-    "to_type": "Size",
+    "to_type": "Start",
     "relation_type": "uses",
     "strength": 1
   },
@@ -23719,6 +23852,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
     "from_class": "PaddleMovement",
     "to_type": "MoveTowards",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+    "from_class": "PaddleMovement",
+    "to_type": "PaddleData",
     "relation_type": "uses",
     "strength": 1
   },

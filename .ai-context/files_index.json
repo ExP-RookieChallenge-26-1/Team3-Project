@@ -14344,6 +14344,218 @@
     ]
   },
   {
+    "file_id": "ProjectDribble/Assets/ScriptableObjects/BallData.cs",
+    "path": "ProjectDribble/Assets/ScriptableObjects/BallData.cs",
+    "file_name": "BallData.cs",
+    "content_hash": "79cd50b6866d2d2bb1a6957c3ad538b817e67364",
+    "size": 377,
+    "line_count": 13,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "BallData",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "ScriptableObject"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "BallData",
+    "unity_type": "ScriptableObject",
+    "methods": [],
+    "fields": [
+      {
+        "name": "baseSpeed",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "maxSpeed",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "ballDamage",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "PaddleSpeedIncrease",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "BlockSpeedDecrease",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "DamageMultiplier",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 6,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "float",
+      "UnityEngine",
+      "CreateAssetMenu",
+      "Scriptable",
+      "Objects",
+      "PaddleSpeedIncrease",
+      "BlockSpeedDecrease",
+      "DamageMultiplier"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [
+      "BallData",
+      "Scriptable Objects/BallData"
+    ],
+    "numeric_literals": [
+      30,
+      55,
+      1,
+      5,
+      0.2
+    ],
+    "guessed_roles": [
+      "data",
+      "combat"
+    ],
+    "summary_signals": [
+      "데이터 자산 중심 구조",
+      "전투 계열 로직 포함"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/ScriptableObjects/PaddleData.cs",
+    "path": "ProjectDribble/Assets/ScriptableObjects/PaddleData.cs",
+    "file_name": "PaddleData.cs",
+    "content_hash": "cc62b7f803dbd83f66f29f6c8e700f180be9d28f",
+    "size": 384,
+    "line_count": 11,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "PaddleData",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "ScriptableObject"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "PaddleData",
+    "unity_type": "ScriptableObject",
+    "methods": [],
+    "fields": [
+      {
+        "name": "moveSpeed",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "maxBounceAngle",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 2,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "float",
+      "UnityEngine",
+      "CreateAssetMenu",
+      "Scriptable",
+      "Objects"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [
+      "PaddleData",
+      "Scriptable Objects/PaddleData"
+    ],
+    "numeric_literals": [
+      50,
+      0.7,
+      3
+    ],
+    "guessed_roles": [
+      "data",
+      "player"
+    ],
+    "summary_signals": [
+      "데이터 자산 중심 구조"
+    ]
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "file_name": "BallCollisionHandler.cs",
@@ -14722,9 +14934,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallMovement.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallMovement.cs",
     "file_name": "BallMovement.cs",
-    "content_hash": "fc57c51f7e971e2e4d5006b6effc2b53a5362486",
-    "size": 5979,
-    "line_count": 177,
+    "content_hash": "0616ccae4d047f6ad003c149f091c55d883dc53d",
+    "size": 5989,
+    "line_count": 185,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -14759,6 +14971,13 @@
       "AddBallMaxSpeed"
     ],
     "fields": [
+      {
+        "name": "data",
+        "type": "BallData",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
       {
         "name": "moveDistance",
         "type": "float",
@@ -14798,6 +15017,27 @@
         "name": "BallSpeedController",
         "type": "BallSpeedController",
         "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "baseSpeed",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "maxSpeed",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "ballDamage",
+        "type": "float",
+        "access": "internal",
         "serialized": false,
         "is_static": false
       },
@@ -14844,7 +15084,7 @@
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 0,
-    "public_field_count": 1,
+    "public_field_count": 2,
     "get_component_count": 4,
     "find_call_count": 0,
     "new_keyword_count": 0,
@@ -14852,6 +15092,7 @@
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
+      "BallData",
       "float",
       "CircleCollider2D",
       "BallController",
@@ -14916,7 +15157,6 @@
     ],
     "numeric_literals": [
       10,
-      30,
       0.1,
       50,
       2,
@@ -14931,8 +15171,8 @@
       "runtime",
       "combat",
       "player",
-      "save-load",
-      "manager"
+      "data",
+      "save-load"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
@@ -14946,9 +15186,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallPowerController.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallPowerController.cs",
     "file_name": "BallPowerController.cs",
-    "content_hash": "5620a066009ea613c96179a1b6da95e62d1e0899",
-    "size": 401,
-    "line_count": 19,
+    "content_hash": "68f432dc85a3540bc036315bc5e3bee95f21a45c",
+    "size": 448,
+    "line_count": 24,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -14978,7 +15218,21 @@
         "name": "ballMovement",
         "type": "BallMovement",
         "access": "private",
-        "serialized": true,
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "data",
+        "type": "BallData",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "damageMultiplier",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
         "is_static": false
       }
     ],
@@ -14994,8 +15248,8 @@
     "has_start": true,
     "has_on_enable": false,
     "has_on_disable": false,
-    "serialize_field_count": 1,
-    "public_field_count": 0,
+    "serialize_field_count": 0,
+    "public_field_count": 1,
     "get_component_count": 1,
     "find_call_count": 0,
     "new_keyword_count": 0,
@@ -15004,9 +15258,12 @@
     "dont_destroy_on_load": false,
     "referenced_types": [
       "BallMovement",
+      "BallData",
+      "float",
       "UnityEngine",
       "Start",
       "GetComponent",
+      "DamageMultiplier",
       "CurrentDamage",
       "Max",
       "RoundToInt"
@@ -15017,20 +15274,16 @@
     "created_types": [],
     "singleton_access_types": [],
     "string_literals": [],
-    "numeric_literals": [
-      0.2
-    ],
+    "numeric_literals": [],
     "guessed_roles": [
       "runtime",
       "player",
       "combat",
-      "save-load"
+      "data"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
-      "인스펙터 직렬화 필드 사용",
       "전투 계열 로직 포함",
-      "저장/불러오기 관련 로직 포함",
       "컴포넌트 조회 사용"
     ]
   },
@@ -15038,9 +15291,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
     "file_name": "BallSpeedController.cs",
-    "content_hash": "6217ba4703d57fa16ddce2eea0c531fe545f69b7",
-    "size": 2601,
-    "line_count": 96,
+    "content_hash": "8652122b65a0021677f1ea2bcf184cdd5f764964",
+    "size": 2683,
+    "line_count": 103,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -15099,7 +15352,42 @@
         "is_static": false
       },
       {
+        "name": "data",
+        "type": "BallData",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "moveDistance",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "baseSpeed",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "maxSpeed",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "PaddleSpeedIncrease",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "BlockSpeedDecrease",
         "type": "float",
         "access": "internal",
         "serialized": false,
@@ -15120,7 +15408,7 @@
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 0,
-    "public_field_count": 0,
+    "public_field_count": 1,
     "get_component_count": 4,
     "find_call_count": 0,
     "new_keyword_count": 0,
@@ -15131,6 +15419,7 @@
       "CircleCollider2D",
       "BallMovement",
       "BallController",
+      "BallData",
       "float",
       "UnityEngine",
       "PaddleSpeedIncrease",
@@ -15164,20 +15453,18 @@
       "wall_up"
     ],
     "numeric_literals": [
-      5,
       5
     ],
     "guessed_roles": [
       "runtime",
       "player",
       "combat",
-      "save-load"
+      "data"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
       "Update 기반 처리 존재",
       "전투 계열 로직 포함",
-      "저장/불러오기 관련 로직 포함",
       "컴포넌트 조회 사용"
     ]
   },
@@ -16705,9 +16992,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/PaddleBallReflector.cs",
     "path": "ProjectDribble/Assets/Scripts/PaddleBallReflector.cs",
     "file_name": "PaddleBallReflector.cs",
-    "content_hash": "0c748d0b7922ad8101603e6c7900c9aaec6f0014",
-    "size": 945,
-    "line_count": 34,
+    "content_hash": "840e88f82ff7a465187959f7cc5ef9efb3b7b4e0",
+    "size": 981,
+    "line_count": 40,
     "namespace": "",
     "using_list": [
       "Interfaces",
@@ -16733,9 +17020,31 @@
     "main_class_name": "PaddleBallReflector",
     "unity_type": "MonoBehaviour",
     "methods": [
+      "Start",
       "GetReflectDirection"
     ],
     "fields": [
+      {
+        "name": "data",
+        "type": "PaddleData",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "maxBounceAngle",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "paddleWidth",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
       {
         "name": "baseDir",
         "type": "Vector2",
@@ -16746,16 +17055,18 @@
     ],
     "properties": [],
     "events": [],
-    "unity_messages": [],
+    "unity_messages": [
+      "Start"
+    ],
     "has_update": false,
     "has_fixed_update": false,
     "has_late_update": false,
     "has_awake": false,
-    "has_start": false,
+    "has_start": true,
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 0,
-    "public_field_count": 0,
+    "public_field_count": 1,
     "get_component_count": 0,
     "find_call_count": 0,
     "new_keyword_count": 0,
@@ -16763,16 +17074,15 @@
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
+      "PaddleData",
+      "float",
       "Vector2",
       "Interfaces",
       "UnityEngine",
       "IBallReflector",
       "Reflect",
       "Direction",
-      "Bounce",
-      "Angle",
-      "Paddle",
-      "Size",
+      "Start",
       "GetReflectDirection",
       "BallController",
       "RaycastHit2D",
@@ -16786,21 +17096,18 @@
     "created_types": [],
     "singleton_access_types": [],
     "string_literals": [
-      "Reflect Direction",
-      "Bounce Angle",
-      "Paddle Size"
+      "Reflect Direction"
     ],
     "numeric_literals": [
-      50,
-      3,
       2,
       1,
       0
     ],
     "guessed_roles": [
+      "runtime",
       "combat",
-      "save-load",
-      "runtime"
+      "data",
+      "save-load"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
@@ -16812,9 +17119,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/PaddleController.cs",
     "path": "ProjectDribble/Assets/Scripts/PaddleController.cs",
     "file_name": "PaddleController.cs",
-    "content_hash": "363b12950334d46362853724cf324a5ff4c77443",
-    "size": 4573,
-    "line_count": 139,
+    "content_hash": "421f2bbc0666e712208e2a082107c513a9f72db8",
+    "size": 4620,
+    "line_count": 146,
     "namespace": "",
     "using_list": [
       "UnityEngine",
@@ -16859,6 +17166,13 @@
         "name": "mainCamera",
         "type": "Camera",
         "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "data",
+        "type": "PaddleData",
+        "access": "public",
         "serialized": false,
         "is_static": false
       },
@@ -16912,6 +17226,20 @@
         "is_static": false
       },
       {
+        "name": "moveSpeed",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "paddleWidth",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "currentColor",
         "type": "Color",
         "access": "internal",
@@ -16933,7 +17261,7 @@
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 1,
-    "public_field_count": 0,
+    "public_field_count": 1,
     "get_component_count": 5,
     "find_call_count": 2,
     "new_keyword_count": 3,
@@ -16943,6 +17271,7 @@
     "referenced_types": [
       "float",
       "Camera",
+      "PaddleData",
       "bool",
       "SpriteShapeRenderer",
       "Collider2D",
@@ -16991,8 +17320,6 @@
       "{childName} 오브젝트에 Collider2D가 없습니다."
     ],
     "numeric_literals": [
-      15,
-      0.7,
       1,
       0.3,
       1,
@@ -17004,6 +17331,7 @@
     "guessed_roles": [
       "runtime",
       "player",
+      "data",
       "ui",
       "save-load"
     ],

@@ -1,88 +1,75 @@
-using TMPro;
+using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class GaugeManager : MonoBehaviour
 {
-    
-    
+    [SerializeField] private ScriptableObjects.LaserData _data;
 
     [Header("Gauge")]
-    public int filledGaugeSegments = 0;
-    private int currentGaugeValue=30;
-    private int gaugePerSegment = 10;
-    [SerializeField] private int maxGaugeSegments = 3;
-
-    [Header("UI")]
-    [SerializeField] private TextMeshProUGUI gaugeSegmentText;
-    [SerializeField] private TextMeshProUGUI gaugeValueText;
+    [SerializeField] private int currentGaugeValue = 0;
 
     public int CurrentGaugeValue => currentGaugeValue;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public int FilledGaugeSegments { get; private set; }
+    public int MaxGaugeValue { get; private set; }
+    public int MaxGaugeSegments => _data.maxGaugeSegments;
+    public int GaugePerSegment => _data.gaugePerSegment;
+
+    public event Action<int> OnGaugeValueChanged;
+    public event Action<int> OnGaugeSegmentChanged;
+
+    private void Start()
     {
-        UpdateGaugeUI();
+        MaxGaugeValue = _data.maxGaugeSegments * _data.gaugePerSegment;
+
+        SetGaugeValue(_data.startGaugeValue);
+    }
+
+    private void SetGaugeValue(int value)
+    {
+        int previousSegments = FilledGaugeSegments;
+
+        currentGaugeValue = Mathf.Clamp(value, 0, MaxGaugeValue);
+
+        UpdateGaugeSegmentByValue(currentGaugeValue);
+
+        OnGaugeValueChanged?.Invoke(currentGaugeValue);
+
+        if (previousSegments != FilledGaugeSegments)
+        {
+            OnGaugeSegmentChanged?.Invoke(FilledGaugeSegments);
+        }
+    }
+
+    private void UpdateGaugeSegmentByValue(int value)
+    {
+        FilledGaugeSegments = value / _data.gaugePerSegment;
+
+        FilledGaugeSegments = Mathf.Clamp(
+            FilledGaugeSegments,
+            0,
+            _data.maxGaugeSegments
+        );
+
+        Debug.Log(FilledGaugeSegments + " 게이지 세그먼트");
     }
 
     public void AddGauge()
     {
-        
-        // 최대면 추가 X 
-        int maxGaugeValue = maxGaugeSegments * gaugePerSegment;
-
-        if (!(currentGaugeValue >= maxGaugeValue))
-            currentGaugeValue++;
-        
-        ChangeGaugeLevel(currentGaugeValue / gaugePerSegment);
-
-        UpdateGaugeUI();
+        SetGaugeValue(currentGaugeValue + 1);
     }
-    
-    
-    public void ChangeGaugeLevel(int level)
+
+    public void AddGauge(int amount)
     {
-
-        if (level <= 0)
-        {
-            if(!(filledGaugeSegments<=0) && !(currentGaugeValue<0))
-            {
-                filledGaugeSegments--;
-                currentGaugeValue -= gaugePerSegment;
-            }
-            
-        }   
-        else
-        {
-            filledGaugeSegments = level; 
-        }
-        
-        filledGaugeSegments = Mathf.Clamp(filledGaugeSegments, 0, maxGaugeSegments);
-        
-        Debug.Log(filledGaugeSegments + "차징 게이지");
-        
-        UpdateGaugeUI();
-        
+        SetGaugeValue(currentGaugeValue + amount);
     }
-    
-    // Update is called once per frame
-    void Update()
+
+    public bool TryReduceGaugeLevel()
     {
-        
-    }
-    private void UpdateGaugeUI()
-    {
-        if (gaugeSegmentText != null)
-        {
-            gaugeSegmentText.text = $"Gauge Segments: {filledGaugeSegments} / {maxGaugeSegments}";
-        }
+        if (FilledGaugeSegments < 1)
+            return false;
 
-        if (gaugeValueText != null)
-        {
-            gaugeValueText.text = $"Gauge Value: {currentGaugeValue}";
-        }
-    }
+        SetGaugeValue(currentGaugeValue - _data.gaugePerSegment);
 
-    
-    
+        return true;
+    }
 }

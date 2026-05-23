@@ -4,27 +4,42 @@ using UnityEngine;
 public class ChargeZone : MonoBehaviour
 {
     private bool isDribbling;
-    
+
     public event Action<bool> OnDribblingChanged;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Ball"))
-        {
-            OnDribblingChanged?.Invoke(true);
-        }
+        if (!other.CompareTag("Ball"))
+            return;
+
+        SetDribbling(true);
     }
-    
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (!other.CompareTag("Ball"))
+            return;
+
+        SetDribbling(true);
+    }
+
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Ball"))
-        {
-            OnDribblingChanged?.Invoke(false);
-        }
+        if (!other.CompareTag("Ball"))
+            return;
+
+        SetDribbling(false);
     }
-    // Update is called once per frame
-    void Update()
+
+    private void SetDribbling(bool value)
     {
-        
+        if (isDribbling == value)
+            return;
+
+        isDribbling = value;
+
+        Debug.Log("드리블 상태 변경: " + isDribbling);
+
+        OnDribblingChanged?.Invoke(isDribbling);
     }
 }

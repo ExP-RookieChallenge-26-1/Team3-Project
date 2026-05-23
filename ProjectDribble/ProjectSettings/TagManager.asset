@@ -9,6 +9,7 @@ TagManager:
   - roof_paddle
   - need_correction
   - test_speedDecrease
+  - Ball
   layers:
   - Default
   - TransparentFX

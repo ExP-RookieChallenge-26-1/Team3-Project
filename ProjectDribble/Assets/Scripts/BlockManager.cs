@@ -392,7 +392,8 @@ public class BlockManager : MonoBehaviour
         return occupied[coord.x, coord.y];
     }
 
-    private bool IsValidCoord(Vector2Int coord)
+    // LaserBlockEraser에서 접근 필요
+    public bool IsValidCoord(Vector2Int coord)
     {
         return coord.x >= 0 &&
                coord.x < data.width &&
@@ -410,6 +411,44 @@ public class BlockManager : MonoBehaviour
         DrawGridGizmos(Color.green);
     }
 
+    // 레이저 발사시 블록 탐지를 위한 참조
+    public int Width => data.width;
+    public int Height => data.height;
+
+    public bool IsFixed(Vector2Int coord)
+    {
+        if (!IsValidCoord(coord))
+            return false;
+
+        return fixedOccupied[coord.x, coord.y];
+    }
+    
+    public float GetTopBoundaryY()
+    {
+        CalculateGridSize();
+
+        float top = gridArea.position.y + gridArea.lossyScale.y * 0.5f;
+        return top;
+    }
+    
+    public int WorldXToGridX(float worldX)
+    {
+        CalculateGridSize();
+
+        float left = gridArea.position.x - gridArea.lossyScale.x * 0.5f;
+        int x = Mathf.FloorToInt((worldX - left) / cellWidth);
+
+        return Mathf.Clamp(x, 0, data.width - 1);
+    }
+
+    public float GetCellHeight()
+    {
+        CalculateGridSize();
+        return cellHeight;
+    }
+    
+    
+    
     private void DrawGridGizmos(Color color)
     {
         if (data == null)

@@ -1,8 +1,14 @@
+using ScriptableObjects;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
 public class LaserChargeController : MonoBehaviour
 {
+    [SerializeField] private LaserData _data;
+    
+    [SerializeField] private LaserChargePreview laserChargePreview;
+    [SerializeField] private Transform laserStartPoint;
     [SerializeField] private ChargeZone chargeZone;
     [FormerlySerializedAs("guageManger")] [SerializeField] private GaugeManager guageManager;
     [SerializeField] private LaserShoot laserShoot;
@@ -25,10 +31,19 @@ public class LaserChargeController : MonoBehaviour
     private void HandleDribblingChanged(bool value)
     {
         isDribbling = value;
-
+        
         if (isDribbling == false)
         {
-            FireChargedLaser();
+            if(!Mouse.current.leftButton.isPressed)
+            {
+                TryFireChargedLaser();
+            }
+            else
+            {
+                
+                ReturnGauge();
+            }
+            
             Reset();
         }
         
@@ -36,10 +51,33 @@ public class LaserChargeController : MonoBehaviour
     
     void Update()
     {
+        UpdateChargePreview();
+
         if (CheckTimer())
         {
             TryIncreaseChargeLevel();
         }
+    }
+    
+    private void UpdateChargePreview()
+    {
+        if (laserChargePreview == null)
+            return;
+
+        if (!isDribbling)
+        {
+            laserChargePreview.Hide();
+            return;
+        }
+
+        float width = _data.baseWidth + _data.widthPerCharge * chargeCount;
+        float range = _data.range;
+
+        laserChargePreview.Show(
+            laserStartPoint.position,
+            width,
+            range
+        );
     }
     
     // 드리블 타임 체크
@@ -61,25 +99,24 @@ public class LaserChargeController : MonoBehaviour
     private void TryIncreaseChargeLevel()
     {
         
-        if (guageManager.filledGaugeSegments > 0)
+        if (guageManager.FilledGaugeSegments > 0)
         {
             if (chargeCount < maxChargeCount)
             {
                 IncreaseChargeLevel();
             }
-
             
             
         }
     }
     private void IncreaseChargeLevel()
     {
-        guageManager.ChangeGaugeLevel(-1);
+        guageManager.TryReduceGaugeLevel();
         chargeTimer = 0f;
         chargeCount++;
     }
 
-    private void FireChargedLaser()
+    private void TryFireChargedLaser()
     {
         if (chargeCount > 0)
         {
@@ -88,6 +125,17 @@ public class LaserChargeController : MonoBehaviour
         }
     }
 
+    private void ReturnGauge()
+    {
+        int returnAmount = chargeCount * _data.gaugePerSegment;
+
+        for (int i = 0; i < returnAmount; i++)
+        {
+            guageManager.AddGauge();
+        }
+    }
+    
+    
     private void Reset()
     {
         chargeCount = 0;

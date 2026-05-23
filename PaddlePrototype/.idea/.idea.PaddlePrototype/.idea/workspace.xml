@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9508e556-d083-4ec7-aa53-9788c555016c" name="변경" comment="" />
+    <list default="true" id="9508e556-d083-4ec7-aa53-9788c555016c" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/../ProjectDribble/Assets/Prefabs/BlockRoot.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjectDribble/Assets/Prefabs/BlockRoot.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjectDribble/Assets/Prefabs/LaserRoot.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjectDribble/Assets/Prefabs/LaserRoot.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjectDribble/Assets/Prefabs/PlayerRoot.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjectDribble/Assets/Prefabs/PlayerRoot.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjectDribble/Assets/Prefabs/Wall.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjectDribble/Assets/Prefabs/Wall.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjectDribble/Assets/Scenes/RealProjectDribble 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../ProjectDribble/Assets/Scenes/RealProjectDribble 1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjectDribble/Assets/Scenes/RealProjectDribble.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../ProjectDribble/Assets/Scenes/RealProjectDribble.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjectDribble/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../ProjectDribble/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -13,11 +13,10 @@ public class LaserChargeController : MonoBehaviour
     [FormerlySerializedAs("guageManger")] [SerializeField] private GaugeManager guageManager;
     [SerializeField] private LaserShoot laserShoot;
     
-    [SerializeField] private float chargeTime= 3f;
     private bool isDribbling = false;
     private float chargeTimer = 0f;
     private int chargeCount = 0;
-    private int maxChargeCount = 3;
+   
     private void OnEnable()
     {
         chargeZone.OnDribblingChanged += HandleDribblingChanged;
@@ -49,6 +48,7 @@ public class LaserChargeController : MonoBehaviour
         
     }
     
+    
     void Update()
     {
         UpdateChargePreview();
@@ -70,7 +70,13 @@ public class LaserChargeController : MonoBehaviour
             return;
         }
 
-        float width = _data.baseWidth + _data.widthPerCharge * chargeCount;
+        int previewChargeCount = Mathf.Clamp(
+            chargeCount + 1,
+            1,
+            _data.maxChargeCount
+        );
+
+        float width = _data.baseWidth + _data.widthPerCharge * previewChargeCount;
         float range = _data.range;
 
         laserChargePreview.Show(
@@ -87,11 +93,13 @@ public class LaserChargeController : MonoBehaviour
         if (isDribbling)
         {
             chargeTimer += Time.deltaTime;
-            if (chargeTimer >= chargeTime)
+
+            if (chargeTimer >= _data.chargeTime)
             {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -101,7 +109,7 @@ public class LaserChargeController : MonoBehaviour
         
         if (guageManager.FilledGaugeSegments > 0)
         {
-            if (chargeCount < maxChargeCount)
+            if (chargeCount < _data.maxChargeCount)
             {
                 IncreaseChargeLevel();
             }

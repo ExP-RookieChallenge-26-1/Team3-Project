@@ -1,14 +1,10 @@
-﻿using UnityEngine;
+﻿using ScriptableObjects;
+using UnityEngine;
 
 public class LaserChargePreview : MonoBehaviour
 {
+    [SerializeField] private LaserData laserData;
     [SerializeField] private LineRenderer lineRenderer;
-
-    [Header("Color")]
-    [SerializeField] private Color previewColor = Color.red;
-
-    [Header("Visual")]
-    [SerializeField] private float lineWidth = 0.05f;
 
     private void Awake()
     {
@@ -21,11 +17,14 @@ public class LaserChargePreview : MonoBehaviour
         lineRenderer.loop = false;
         lineRenderer.useWorldSpace = true;
 
-        lineRenderer.startWidth = lineWidth;
-        lineRenderer.endWidth = lineWidth;
+        if (laserData != null)
+        {
+            lineRenderer.startWidth = laserData.previewLineWidth;
+            lineRenderer.endWidth = laserData.previewLineWidth;
 
-        lineRenderer.startColor = previewColor;
-        lineRenderer.endColor = previewColor;
+            lineRenderer.startColor = laserData.previewColor;
+            lineRenderer.endColor = laserData.previewColor;
+        }
 
         Hide();
     }

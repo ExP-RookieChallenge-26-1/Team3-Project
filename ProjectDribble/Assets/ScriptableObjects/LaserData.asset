@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea46879f60e416dbb81c55fda5eaa60, type: 3}
   m_Name: LaserData
   m_EditorClassIdentifier: Assembly-CSharp::ScriptableObjects.LaserData
-  baseWidth: 1
+  startGaugeValue: 30
+  maxGaugeSegments: 3
+  gaugePerSegment: 10
+  chargeTime: 2
+  maxChargeCount: 3
+  baseWidth: 1.5
   widthPerCharge: 0.5
-  range: 20
+  range: 18
   startOffset: 0.5
   ballSpawnBackOffset: 0.3
-  perBounceCount: 10
-  startGaugeValue: 30
-  gaugePerSegment: 10
-  maxGaugeSegments: 3
+  previewColor: {r: 1, g: 0, b: 0, a: 1}
+  previewLineWidth: 0.05

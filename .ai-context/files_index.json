@@ -14467,6 +14467,158 @@
     ]
   },
   {
+    "file_id": "ProjectDribble/Assets/ScriptableObjects/LaserData.cs",
+    "path": "ProjectDribble/Assets/ScriptableObjects/LaserData.cs",
+    "file_name": "LaserData.cs",
+    "content_hash": "4161f51384fa3dc2f81b1662e524bbb38493e3b1",
+    "size": 655,
+    "line_count": 24,
+    "namespace": "ScriptableObjects",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "LaserData",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "ScriptableObject"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "LaserData",
+    "unity_type": "ScriptableObject",
+    "methods": [],
+    "fields": [
+      {
+        "name": "baseWidth",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "widthPerCharge",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "range",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "startOffset",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "ballSpawnBackOffset",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "perBounceCount",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "startGaugeValue",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "gaugePerSegment",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "maxGaugeSegments",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 9,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "float",
+      "int",
+      "UnityEngine",
+      "ScriptableObjects",
+      "CreateAssetMenu",
+      "Game",
+      "Laser",
+      "Gauge",
+      "Data",
+      "Charging"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [
+      "LaserData",
+      "Game/Laser Gauge Data",
+      "Laser",
+      "Charging",
+      "Gauge"
+    ],
+    "numeric_literals": [
+      1,
+      0.5,
+      20,
+      0.3,
+      10,
+      30,
+      3
+    ],
+    "guessed_roles": [
+      "data",
+      "combat",
+      "runtime"
+    ],
+    "summary_signals": [
+      "데이터 자산 중심 구조",
+      "전투 계열 로직 포함"
+    ]
+  },
+  {
     "file_id": "ProjectDribble/Assets/ScriptableObjects/PaddleData.cs",
     "path": "ProjectDribble/Assets/ScriptableObjects/PaddleData.cs",
     "file_name": "PaddleData.cs",
@@ -15895,9 +16047,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "path": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "file_name": "BlockManager.cs",
-    "content_hash": "07546840275448ca3a2e0728bb8de530823282c6",
-    "size": 10764,
-    "line_count": 437,
+    "content_hash": "b3c261172e82d1c962906d0bde4b9c4cf7eeb02f",
+    "size": 11671,
+    "line_count": 476,
     "namespace": "",
     "using_list": [
       "System.Collections",
@@ -15958,6 +16110,10 @@
       "IsValidCoord",
       "OnDrawGizmos",
       "OnDrawGizmosSelected",
+      "IsFixed",
+      "GetTopBoundaryY",
+      "WorldXToGridX",
+      "GetCellHeight",
       "DrawGridGizmos"
     ],
     "fields": [
@@ -16093,6 +16249,20 @@
         "access": "internal",
         "serialized": false,
         "is_static": false
+      },
+      {
+        "name": "top",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "left",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
       }
     ],
     "properties": [],
@@ -16168,10 +16338,19 @@
       "MaxValue",
       "PickWeightedCandidate",
       "IsOccupied",
+      "LaserBlockEraser",
       "OnDrawGizmos",
       "DrawGridGizmos",
       "Color",
       "OnDrawGizmosSelected",
+      "Width",
+      "Height",
+      "IsFixed",
+      "GetTopBoundaryY",
+      "WorldXToGridX",
+      "FloorToInt",
+      "Clamp",
+      "GetCellHeight",
       "Gizmos",
       "DrawWireCube"
     ],
@@ -16742,9 +16921,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/ChargeZone.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/ChargeZone.cs",
     "file_name": "ChargeZone.cs",
-    "content_hash": "aee393c466a3360908e929f4eb6c8e2667b4c59a",
-    "size": 583,
-    "line_count": 31,
+    "content_hash": "3a84f115b4b84b5cf614911260425f33eedf6d23",
+    "size": 868,
+    "line_count": 45,
     "namespace": "",
     "using_list": [
       "System",
@@ -16768,8 +16947,9 @@
     "unity_type": "MonoBehaviour",
     "methods": [
       "OnTriggerEnter2D",
+      "OnTriggerStay2D",
       "OnTriggerExit2D",
-      "Update"
+      "SetDribbling"
     ],
     "fields": [
       {
@@ -16782,10 +16962,8 @@
     ],
     "properties": [],
     "events": [],
-    "unity_messages": [
-      "Update"
-    ],
-    "has_update": true,
+    "unity_messages": [],
+    "has_update": false,
     "has_fixed_update": false,
     "has_late_update": false,
     "has_awake": false,
@@ -16809,37 +16987,38 @@
       "Collider2D",
       "CompareTag",
       "Ball",
-      "Invoke",
+      "SetDribbling",
+      "OnTriggerStay2D",
       "OnTriggerExit2D",
-      "Update"
+      "Log",
+      "Invoke"
     ],
     "component_access_types": [],
     "created_types": [],
     "singleton_access_types": [],
     "string_literals": [
-      "Ball"
+      "Ball",
+      "드리블 상태 변경: "
     ],
     "numeric_literals": [],
     "guessed_roles": [
       "runtime"
     ],
     "summary_signals": [
-      "런타임 컴포넌트",
-      "Update 기반 처리 존재"
+      "런타임 컴포넌트"
     ]
   },
   {
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
     "file_name": "GaugeManager.cs",
-    "content_hash": "c209453385ffe500fd983d1b3e5cf17010851155",
-    "size": 2024,
-    "line_count": 89,
+    "content_hash": "9b4594bc308ebe5d9d0e65d65ce9d363b9b953b5",
+    "size": 1911,
+    "line_count": 75,
     "namespace": "",
     "using_list": [
-      "TMPro",
-      "UnityEngine",
-      "UnityEngine.Serialization"
+      "System",
+      "UnityEngine"
     ],
     "classes": [
       {
@@ -16859,48 +17038,37 @@
     "unity_type": "MonoBehaviour",
     "methods": [
       "Start",
+      "SetGaugeValue",
+      "UpdateGaugeSegmentByValue",
       "AddGauge",
-      "ChangeGaugeLevel",
-      "Update",
-      "UpdateGaugeUI"
+      "TryReduceGaugeLevel"
     ],
     "fields": [
       {
-        "name": "filledGaugeSegments",
-        "type": "int",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "currentGaugeValue",
-        "type": "int",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "gaugePerSegment",
-        "type": "int",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "maxGaugeValue",
+        "name": "previousSegments",
         "type": "int",
         "access": "internal",
         "serialized": false,
         "is_static": false
       }
     ],
-    "properties": [],
+    "properties": [
+      {
+        "access": "public",
+        "type": "int",
+        "name": "FilledGaugeSegments"
+      },
+      {
+        "access": "public",
+        "type": "int",
+        "name": "MaxGaugeValue"
+      }
+    ],
     "events": [],
     "unity_messages": [
-      "Start",
-      "Update"
+      "Start"
     ],
-    "has_update": true,
+    "has_update": false,
     "has_fixed_update": false,
     "has_late_update": false,
     "has_awake": false,
@@ -16908,7 +17076,7 @@
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 0,
-    "public_field_count": 1,
+    "public_field_count": 0,
     "get_component_count": 0,
     "find_call_count": 0,
     "new_keyword_count": 0,
@@ -16917,37 +17085,164 @@
     "dont_destroy_on_load": false,
     "referenced_types": [
       "int",
-      "TMPro",
+      "System",
       "UnityEngine",
-      "Serialization",
+      "ScriptableObjects",
+      "LaserData",
       "Gauge",
-      "UI",
-      "TextMeshProUGUI",
       "CurrentGaugeValue",
+      "FilledGaugeSegments",
+      "MaxGaugeValue",
+      "MaxGaugeSegments",
+      "GaugePerSegment",
+      "OnGaugeValueChanged",
+      "OnGaugeSegmentChanged",
       "Start",
-      "Update",
-      "UpdateGaugeUI",
-      "AddGauge",
-      "ChangeGaugeLevel",
+      "SetGaugeValue",
       "Clamp",
+      "UpdateGaugeSegmentByValue",
+      "Invoke",
       "Log",
-      "Segments",
-      "Value"
+      "AddGauge",
+      "TryReduceGaugeLevel"
     ],
     "component_access_types": [],
     "created_types": [],
     "singleton_access_types": [],
     "string_literals": [
       "Gauge",
-      "UI",
-      "차징 게이지",
-      "Gauge Segments: {filledGaugeSegments} / {maxGaugeSegments}",
-      "Gauge Value: {currentGaugeValue}"
+      " 게이지 세그먼트"
+    ],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "data",
+      "runtime",
+      "manager",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "저장/불러오기 관련 로직 포함"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
+    "path": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
+    "file_name": "GaugeUI.cs",
+    "content_hash": "9b2fc56de598b92594628f5f0050a40b6fe7e4c1",
+    "size": 2277,
+    "line_count": 95,
+    "namespace": "",
+    "using_list": [
+      "TMPro",
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "GaugeUI",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "GaugeUI",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Awake",
+      "OnEnable",
+      "OnDisable",
+      "Start",
+      "RefreshAll",
+      "UpdateGaugeBar",
+      "Vector3",
+      "UpdateGaugeValueText",
+      "UpdateGaugeSegmentText"
+    ],
+    "fields": [
+      {
+        "name": "maxGaugeScale",
+        "type": "Vector3",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "percent",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Awake",
+      "OnEnable",
+      "OnDisable",
+      "Start"
+    ],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": true,
+    "has_on_enable": true,
+    "has_on_disable": true,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 1,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "Vector3",
+      "float",
+      "TMPro",
+      "UnityEngine",
+      "GaugeManager",
+      "Gauge",
+      "Bar",
+      "Text",
+      "TextMeshProUGUI",
+      "Awake",
+      "OnEnable",
+      "OnGaugeValueChanged",
+      "UpdateGaugeBar",
+      "UpdateGaugeValueText",
+      "OnGaugeSegmentChanged",
+      "UpdateGaugeSegmentText",
+      "OnDisable",
+      "Start",
+      "RefreshAll",
+      "CurrentGaugeValue",
+      "FilledGaugeSegments",
+      "MaxGaugeValue",
+      "Value",
+      "Segments",
+      "MaxGaugeSegments"
+    ],
+    "component_access_types": [],
+    "created_types": [
+      "Vector3"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Gauge Bar",
+      "Text",
+      "Gauge Value: {value}",
+      "Gauge Segments: {segment} / {gaugeManager.MaxGaugeSegments}"
     ],
     "numeric_literals": [
-      30,
-      10,
-      3
+      0
     ],
     "guessed_roles": [
       "runtime",
@@ -16958,8 +17253,142 @@
     ],
     "summary_signals": [
       "런타임 컴포넌트",
-      "Update 기반 처리 존재",
       "UI 관련 로직 포함",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
+    "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
+    "file_name": "LaserBlockEraser.cs",
+    "content_hash": "8cf677820ac4a3e579a738d11824f1575a2e9d5a",
+    "size": 2865,
+    "line_count": 104,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "LaserBlockEraser",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "LaserBlockEraser",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "EraseByLaser",
+      "Vector2",
+      "EraseColumn",
+      "Vector2Int",
+      "FindBlockCellAtCoord"
+    ],
+    "fields": [
+      {
+        "name": "start",
+        "type": "Vector2",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "leftX",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "rightX",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "centerColumnEndY",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 2,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "Vector2",
+      "float",
+      "UnityEngine",
+      "BlockManager",
+      "EraseByLaser",
+      "WorldXToGridX",
+      "GetTopBoundaryY",
+      "EraseColumn",
+      "Height",
+      "Vector2Int",
+      "IsValidCoord",
+      "IsOccupied",
+      "Vector3",
+      "GridToWorld",
+      "BlockCell",
+      "FindBlockCellAtCoord",
+      "LogWarning",
+      "IsFixed",
+      "GetCellHeight",
+      "OnLaserHit",
+      "GetCellSize",
+      "Collider2D",
+      "Physics2D",
+      "OverlapBox",
+      "GetComponentInParent"
+    ],
+    "component_access_types": [],
+    "created_types": [
+      "Vector2",
+      "Vector2Int"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "occupied는 true인데 BlockCell을 찾지 못함: "
+    ],
+    "numeric_literals": [
+      0.5,
+      0.8,
+      0
+    ],
+    "guessed_roles": [
+      "runtime",
+      "combat",
+      "manager",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
       "전투 계열 로직 포함",
       "저장/불러오기 관련 로직 포함"
     ]
@@ -16968,12 +17397,14 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "file_name": "LaserChargeController.cs",
-    "content_hash": "e8ee2958132610d3fc1e1f130747299404451716",
-    "size": 2182,
-    "line_count": 97,
+    "content_hash": "49b347ce20a350c9cc8830a54d962fad1e45f20d",
+    "size": 3325,
+    "line_count": 145,
     "namespace": "",
     "using_list": [
+      "ScriptableObjects",
       "UnityEngine",
+      "UnityEngine.InputSystem",
       "UnityEngine.Serialization"
     ],
     "classes": [
@@ -16997,10 +17428,12 @@
       "OnDisable",
       "HandleDribblingChanged",
       "Update",
+      "UpdateChargePreview",
       "CheckTimer",
       "TryIncreaseChargeLevel",
       "IncreaseChargeLevel",
-      "FireChargedLaser",
+      "TryFireChargedLaser",
+      "ReturnGauge",
       "Reset"
     ],
     "fields": [
@@ -17031,6 +17464,27 @@
         "access": "private",
         "serialized": false,
         "is_static": false
+      },
+      {
+        "name": "width",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "range",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "returnAmount",
+        "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
       }
     ],
     "properties": [],
@@ -17059,8 +17513,12 @@
       "bool",
       "float",
       "int",
+      "ScriptableObjects",
       "UnityEngine",
+      "InputSystem",
       "Serialization",
+      "LaserData",
+      "LaserChargePreview",
       "ChargeZone",
       "FormerlySerializedAs",
       "GaugeManager",
@@ -17069,14 +17527,21 @@
       "OnDribblingChanged",
       "HandleDribblingChanged",
       "OnDisable",
-      "FireChargedLaser",
+      "Mouse",
+      "TryFireChargedLaser",
+      "ReturnGauge",
       "Reset",
       "Update",
+      "UpdateChargePreview",
       "CheckTimer",
       "TryIncreaseChargeLevel",
+      "Hide",
+      "Show",
+      "FilledGaugeSegments",
       "IncreaseChargeLevel",
-      "ChangeGaugeLevel",
-      "ShootLaser"
+      "TryReduceGaugeLevel",
+      "ShootLaser",
+      "AddGauge"
     ],
     "component_access_types": [],
     "created_types": [],
@@ -17090,7 +17555,9 @@
       3
     ],
     "guessed_roles": [
+      "data",
       "runtime",
+      "player",
       "save-load",
       "manager"
     ],
@@ -17102,14 +17569,122 @@
     ]
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "file_name": "LaserChargePreview.cs",
+    "content_hash": "2caf9af9f6f4daee43fd546aab4a0d6005935e0a",
+    "size": 1804,
+    "line_count": 74,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "LaserChargePreview",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "LaserChargePreview",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Awake",
+      "Show",
+      "Vector3",
+      "Hide"
+    ],
+    "fields": [
+      {
+        "name": "halfWidth",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Awake"
+    ],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 1,
+    "find_call_count": 0,
+    "new_keyword_count": 4,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "float",
+      "UnityEngine",
+      "LineRenderer",
+      "Color",
+      "Visual",
+      "Awake",
+      "GetComponent",
+      "Hide",
+      "Show",
+      "Vector2",
+      "SetActive",
+      "Vector3",
+      "SetPosition"
+    ],
+    "component_access_types": [
+      "LineRenderer"
+    ],
+    "created_types": [
+      "Vector3"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Color",
+      "Visual"
+    ],
+    "numeric_literals": [
+      0.05,
+      5,
+      0.5,
+      0,
+      2,
+      3,
+      4
+    ],
+    "guessed_roles": [
+      "runtime",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
+    ]
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserShooter.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserShooter.cs",
     "file_name": "LaserShooter.cs",
-    "content_hash": "f58c967bc1069aa7209730ef4157e840d451e825",
-    "size": 169,
-    "line_count": 14,
+    "content_hash": "ea8c41e89f85370044d31c5596933d297e642199",
+    "size": 883,
+    "line_count": 34,
     "namespace": "",
     "using_list": [
+      "ScriptableObjects",
       "UnityEngine"
     ],
     "classes": [
@@ -17131,7 +17706,22 @@
     "methods": [
       "ShootLaser"
     ],
-    "fields": [],
+    "fields": [
+      {
+        "name": "origin",
+        "type": "Vector2",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "width",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
     "properties": [],
     "events": [],
     "unity_messages": [],
@@ -17151,23 +17741,34 @@
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
+      "Vector2",
+      "float",
+      "ScriptableObjects",
       "UnityEngine",
+      "LaserData",
+      "LaserBlockEraser",
       "ShootLaser",
       "Log",
-      "Shoot"
+      "EraseByLaser"
     ],
     "component_access_types": [],
     "created_types": [],
     "singleton_access_types": [],
     "string_literals": [
-      "Shoot!"
+      "차징 ",
+      "슛"
     ],
     "numeric_literals": [],
     "guessed_roles": [
-      "runtime"
+      "data",
+      "runtime",
+      "combat",
+      "save-load"
     ],
     "summary_signals": [
-      "런타임 컴포넌트"
+      "런타임 컴포넌트",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함"
     ]
   },
   {

@@ -1498,6 +1498,25 @@
     "risk_score": 58
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
+    "class_name": "GaugeUI",
+    "risk_flags": [
+      "high-coupling",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "ui-runtime-mixed",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 58
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "class_name": "LaserChargeController",
     "risk_flags": [
@@ -1650,25 +1669,6 @@
     "risk_score": 50
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
-    "class_name": "GaugeManager",
-    "risk_flags": [
-      "update-heavy",
-      "init-order-sensitive",
-      "save-load-sensitive",
-      "ui-runtime-mixed",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "Unity 업데이트 루프 사용",
-      "초기화 순서에 민감할 가능성",
-      "저장/불러오기 관련 로직 포함",
-      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 50
-  },
-  {
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "class_name": "BallCollisionHandler",
     "risk_flags": [
@@ -1681,6 +1681,23 @@
       "참조 타입 또는 관계 수가 많음",
       "GetComponent/TryGetComponent 호출이 많음",
       "초기화 순서에 민감할 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 48
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
+    "class_name": "GaugeManager",
+    "risk_flags": [
+      "high-coupling",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 48
@@ -2005,6 +2022,38 @@
     "risk_score": 38
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
+    "class_name": "LaserBlockEraser",
+    "risk_flags": [
+      "high-coupling",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 38
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "class_name": "LaserChargePreview",
+    "risk_flags": [
+      "magic-number-heavy",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 38
+  },
+  {
     "file_id": "Old Scripts/brick_cell.cs",
     "class_name": "BrickCell",
     "risk_flags": [
@@ -2205,6 +2254,19 @@
     "risk_score": 18
   },
   {
+    "file_id": "ProjectDribble/Assets/ScriptableObjects/LaserData.cs",
+    "class_name": "LaserData",
+    "risk_flags": [
+      "public-field-heavy",
+      "magic-number-heavy"
+    ],
+    "risk_reasons": [
+      "public 필드 노출 수가 많음",
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음"
+    ],
+    "risk_score": 18
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallPowerController.cs",
     "class_name": "BallPowerController",
     "risk_flags": [
@@ -2213,19 +2275,6 @@
     ],
     "risk_reasons": [
       "초기화 순서에 민감할 가능성",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 18
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/ChargeZone.cs",
-    "class_name": "ChargeZone",
-    "risk_flags": [
-      "update-heavy",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "Unity 업데이트 루프 사용",
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 18
@@ -2242,6 +2291,17 @@
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 18
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserShooter.cs",
+    "class_name": "LaserShoot",
+    "risk_flags": [
+      "save-load-sensitive"
+    ],
+    "risk_reasons": [
+      "저장/불러오기 관련 로직 포함"
+    ],
+    "risk_score": 12
   },
   {
     "file_id": "ProjectDribble/Assets/Scripts/PaddleSpeedModifier.cs",
@@ -2321,6 +2381,17 @@
     "risk_score": 10
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/ChargeZone.cs",
+    "class_name": "ChargeZone",
+    "risk_flags": [
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 8
+  },
+  {
     "file_id": "PaddlePrototype/Assets/Scripts/i_ball_hit_receiver.cs",
     "class_name": "IBallHitReceiver",
     "risk_flags": [],
@@ -2379,13 +2450,6 @@
   {
     "file_id": "ProjectDribble/Assets/Scripts/Interfaces/ILaserHittable.cs",
     "class_name": "ILaserHittable",
-    "risk_flags": [],
-    "risk_reasons": [],
-    "risk_score": 0
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserShooter.cs",
-    "class_name": "LaserShoot",
     "risk_flags": [],
     "risk_reasons": [],
     "risk_score": 0

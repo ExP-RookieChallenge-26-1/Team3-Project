@@ -4,22 +4,6 @@ using UnityEngine;
 
 public class BlockManager : MonoBehaviour
 {
-    [System.Serializable]
-    public class GrowthDirection
-    {
-        public string name;
-        public Vector2Int direction;
-        public int priority = 0;
-        public float weight = 1f;
-    }
-
-    [System.Serializable]
-    public class FixedBlockData
-    {
-        public Vector2Int cell;
-        public int hp = 999;
-    }
-
     private struct GrowthCandidate
     {
         public Vector2Int cell;
@@ -34,68 +18,14 @@ public class BlockManager : MonoBehaviour
         }
     }
 
-    [Header("Grid Size")]
-    [SerializeField] private int width = 7;
-    [SerializeField] private int height = 20;
+    [Header("Stage Data")]
+    [SerializeField] private StageBlockData data;
 
     [Header("Grid Area")]
     [SerializeField] private Transform gridArea;
 
     [Header("References")]
     [SerializeField] private BlockPool blockPool;
-
-    [Header("Flow Block")]
-    [SerializeField] private int defaultHp = 10;
-
-    [Header("Fixed Blocks")]
-    [SerializeField] private List<FixedBlockData> fixedBlocks = new();
-
-    [Header("Start Blocks")]
-    [SerializeField] private List<Vector2Int> startCells = new()
-    {
-        new Vector2Int(3, 0)
-    };
-
-    [Header("Growth Timing")]
-    [SerializeField] private float spawnInterval = 1f;
-    [SerializeField] private int minGrowPerTick = 1;
-    [SerializeField] private int maxGrowPerTick = 2;
-
-    [Header("Row Weight")]
-    [SerializeField] private float rowWeightMultiplier = 0.2f;
-
-    [Header("Row Priority")]
-    [SerializeField] private int rowPriorityStep = 0;
-
-    [Header("Connection Rule")]
-    [SerializeField] private bool onlyGrowFromStartConnectedBlocks = true;
-
-    [Header("Growth Directions")]
-    [SerializeField]
-    private List<GrowthDirection> directions = new()
-    {
-        new GrowthDirection
-        {
-            name = "Down",
-            direction = new Vector2Int(0, 1),
-            priority = 0,
-            weight = 5f
-        },
-        new GrowthDirection
-        {
-            name = "Left",
-            direction = new Vector2Int(-1, 0),
-            priority = 1,
-            weight = 1f
-        },
-        new GrowthDirection
-        {
-            name = "Right",
-            direction = new Vector2Int(1, 0),
-            priority = 1,
-            weight = 1f
-        }
-    };
 
     private bool[,] occupied;
     private bool[,] fixedOccupied;
@@ -110,8 +40,8 @@ public class BlockManager : MonoBehaviour
         CreateGrid();
 
         blockPool.CreatePool(
-            width,
-            height,
+            data.width,
+            data.height,
             GridToWorld,
             GetCellSize,
             this
@@ -128,16 +58,16 @@ public class BlockManager : MonoBehaviour
 
     private void CreateGrid()
     {
-        occupied = new bool[width, height];
-        fixedOccupied = new bool[width, height];
+        occupied = new bool[data.width, data.height];
+        fixedOccupied = new bool[data.width, data.height];
     }
 
     private void CalculateGridSize()
     {
         Vector3 areaSize = gridArea.lossyScale;
 
-        cellWidth = areaSize.x / width;
-        cellHeight = areaSize.y / height;
+        cellWidth = areaSize.x / data.width;
+        cellHeight = areaSize.y / data.height;
     }
 
     public Vector3 GridToWorld(Vector2Int coord)
@@ -167,7 +97,10 @@ public class BlockManager : MonoBehaviour
         {
             RespawnMissingStartBlocks();
 
-            int growCount = Random.Range(minGrowPerTick, maxGrowPerTick + 1);
+            int growCount = Random.Range(
+                data.minGrowPerTick,
+                data.maxGrowPerTick + 1
+            );
 
             for (int i = 0; i < growCount; i++)
             {
@@ -177,44 +110,44 @@ public class BlockManager : MonoBehaviour
                     break;
 
                 GrowthCandidate selected = PickByPriorityAndWeight(candidates);
-                SpawnBlock(selected.cell, defaultHp, false);
+                SpawnBlock(selected.cell, data.defaultHp, false);
             }
 
-            yield return new WaitForSeconds(spawnInterval);
+            yield return new WaitForSeconds(data.spawnInterval);
         }
     }
 
     private void SpawnFixedBlocks()
     {
-        foreach (FixedBlockData data in fixedBlocks)
+        foreach (StageBlockData.FixedBlockData fixedBlock in data.fixedBlocks)
         {
-            SpawnBlock(data.cell, data.hp, true);
+            SpawnBlock(fixedBlock.cell, fixedBlock.hp, true);
         }
     }
 
     private void SpawnStartBlocks()
     {
-        foreach (Vector2Int cell in startCells)
+        foreach (Vector2Int cell in data.startCells)
         {
-            SpawnBlock(cell, defaultHp, false);
+            SpawnBlock(cell, data.defaultHp, false);
         }
     }
 
     private void RespawnMissingStartBlocks()
     {
-        foreach (Vector2Int cell in startCells)
+        foreach (Vector2Int cell in data.startCells)
         {
             if (!IsValidCoord(cell))
                 continue;
 
             if (!occupied[cell.x, cell.y])
-                SpawnBlock(cell, defaultHp, false);
+                SpawnBlock(cell, data.defaultHp, false);
         }
     }
 
     public void SpawnBlock(Vector2Int coord)
     {
-        SpawnBlock(coord, defaultHp, false);
+        SpawnBlock(coord, data.defaultHp, false);
     }
 
     public void SpawnBlock(Vector2Int coord, int hp, bool isFixed)
@@ -269,12 +202,12 @@ public class BlockManager : MonoBehaviour
 
         bool[,] connected = null;
 
-        if (onlyGrowFromStartConnectedBlocks)
+        if (data.onlyGrowFromStartConnectedBlocks)
             connected = GetStartConnectedCells();
 
-        for (int y = 0; y < height; y++)
+        for (int y = 0; y < data.height; y++)
         {
-            for (int x = 0; x < width; x++)
+            for (int x = 0; x < data.width; x++)
             {
                 if (!occupied[x, y])
                     continue;
@@ -282,22 +215,30 @@ public class BlockManager : MonoBehaviour
                 if (fixedOccupied[x, y])
                     continue;
 
-                if (onlyGrowFromStartConnectedBlocks && !connected[x, y])
+                if (data.onlyGrowFromStartConnectedBlocks && !connected[x, y])
                     continue;
 
                 Vector2Int parent = new Vector2Int(x, y);
 
-                foreach (GrowthDirection dir in directions)
+                foreach (StageBlockData.GrowthDirection dir in data.directions)
                 {
                     if (dir.weight <= 0f)
                         continue;
 
                     Vector2Int next = parent + dir.direction;
 
-                    float finalWeight = dir.weight + next.y * rowWeightMultiplier;
-                    int finalPriority = dir.priority + next.y * rowPriorityStep;
+                    float finalWeight =
+                        dir.weight + next.y * data.rowWeightMultiplier;
 
-                    AddCandidate(candidates, next, finalPriority, finalWeight);
+                    int finalPriority =
+                        dir.priority + next.y * data.rowPriorityStep;
+
+                    AddCandidate(
+                        candidates,
+                        next,
+                        finalPriority,
+                        finalWeight
+                    );
                 }
             }
         }
@@ -307,10 +248,10 @@ public class BlockManager : MonoBehaviour
 
     private bool[,] GetStartConnectedCells()
     {
-        bool[,] connected = new bool[width, height];
+        bool[,] connected = new bool[data.width, data.height];
         Queue<Vector2Int> queue = new();
 
-        foreach (Vector2Int startCell in startCells)
+        foreach (Vector2Int startCell in data.startCells)
         {
             if (!IsValidCoord(startCell))
                 continue;
@@ -454,9 +395,9 @@ public class BlockManager : MonoBehaviour
     private bool IsValidCoord(Vector2Int coord)
     {
         return coord.x >= 0 &&
-               coord.x < width &&
+               coord.x < data.width &&
                coord.y >= 0 &&
-               coord.y < height;
+               coord.y < data.height;
     }
 
     private void OnDrawGizmos()
@@ -471,6 +412,9 @@ public class BlockManager : MonoBehaviour
 
     private void DrawGridGizmos(Color color)
     {
+        if (data == null)
+            return;
+
         if (gridArea == null)
             return;
 
@@ -478,9 +422,9 @@ public class BlockManager : MonoBehaviour
 
         Gizmos.color = color;
 
-        for (int y = 0; y < height; y++)
+        for (int y = 0; y < data.height; y++)
         {
-            for (int x = 0; x < width; x++)
+            for (int x = 0; x < data.width; x++)
             {
                 Vector2Int coord = new Vector2Int(x, y);
                 Vector3 center = GridToWorld(coord);

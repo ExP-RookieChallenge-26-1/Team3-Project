@@ -10,15 +10,26 @@ public class BlockCell : MonoBehaviour,
     private BlockManager manager;
     private Vector2Int coord;
 
-    
     [SerializeField] private float ballSpeedDecrease = 2f;
-    
+
+    [Header("Visual")]
+    [SerializeField] private float minAlpha = 0.2f;
+
+    private SpriteRenderer sr;
+
     private int hp;
+    private int maxHp;
+
     private bool isFixed;
 
     public Vector2Int Coord => coord;
     public bool IsFixed => isFixed;
     public bool IsAlive => gameObject.activeSelf;
+
+    private void Awake()
+    {
+        sr = GetComponent<SpriteRenderer>();
+    }
 
     public void Init(BlockManager manager, Vector2Int coord)
     {
@@ -29,10 +40,15 @@ public class BlockCell : MonoBehaviour,
     public void Activate(Vector2Int coord, int hp, bool isFixed)
     {
         this.coord = coord;
+
         this.hp = hp;
+        this.maxHp = hp;
+
         this.isFixed = isFixed;
 
         gameObject.SetActive(true);
+
+        UpdateVisual();
     }
 
     public void Deactivate()
@@ -64,6 +80,8 @@ public class BlockCell : MonoBehaviour,
 
         hp -= damage;
 
+        UpdateVisual();
+
         if (hp <= 0)
         {
             manager.RemoveBlock(coord);
@@ -71,5 +89,20 @@ public class BlockCell : MonoBehaviour,
         }
 
         return false;
+    }
+
+    private void UpdateVisual()
+    {
+        if (sr == null)
+            return;
+
+        float hpPercent = (float)hp / maxHp;
+
+        float alpha = Mathf.Lerp(minAlpha, 1f, hpPercent);
+
+        Color color = sr.color;
+        color.a = alpha;
+
+        sr.color = color;
     }
 }

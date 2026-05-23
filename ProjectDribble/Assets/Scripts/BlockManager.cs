@@ -44,8 +44,8 @@ public class BlockManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private BlockPool blockPool;
 
-    [Header("Default Block")]
-    [SerializeField] private int defaultHp = 1;
+    [Header("Flow Block")]
+    [SerializeField] private int defaultHp = 10;
 
     [Header("Fixed Blocks")]
     [SerializeField] private List<FixedBlockData> fixedBlocks = new();

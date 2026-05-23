@@ -21016,7 +21016,28 @@
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/LaserData.cs",
     "from_class": "LaserData",
-    "to_type": "Charging",
+    "to_type": "After",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/LaserData.cs",
+    "from_class": "LaserData",
+    "to_type": "Ball",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/LaserData.cs",
+    "from_class": "LaserData",
+    "to_type": "Charge",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/LaserData.cs",
+    "from_class": "LaserData",
+    "to_type": "Color",
     "relation_type": "uses",
     "strength": 1
   },
@@ -21030,21 +21051,7 @@
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/LaserData.cs",
     "from_class": "LaserData",
-    "to_type": "Data",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/ScriptableObjects/LaserData.cs",
-    "from_class": "LaserData",
     "to_type": "float",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/ScriptableObjects/LaserData.cs",
-    "from_class": "LaserData",
-    "to_type": "Game",
     "relation_type": "uses",
     "strength": 1
   },
@@ -21072,7 +21079,28 @@
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/LaserData.cs",
     "from_class": "LaserData",
+    "to_type": "Min",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/LaserData.cs",
+    "from_class": "LaserData",
+    "to_type": "Preview",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/LaserData.cs",
+    "from_class": "LaserData",
     "to_type": "ScriptableObjects",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/LaserData.cs",
+    "from_class": "LaserData",
+    "to_type": "Size",
     "relation_type": "uses",
     "strength": 1
   },
@@ -24173,6 +24201,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "from_class": "LaserChargeController",
+    "to_type": "Clamp",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
     "to_type": "FilledGaugeSegments",
     "relation_type": "uses",
     "strength": 1
@@ -24397,13 +24432,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
     "from_class": "LaserChargePreview",
-    "to_type": "Color",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
-    "from_class": "LaserChargePreview",
     "to_type": "float",
     "relation_type": "uses",
     "strength": 1
@@ -24425,7 +24453,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
     "from_class": "LaserChargePreview",
+    "to_type": "LaserData",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
     "to_type": "LineRenderer",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "ScriptableObjects",
     "relation_type": "uses",
     "strength": 1
   },
@@ -24468,13 +24510,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
     "from_class": "LaserChargePreview",
     "to_type": "Vector3",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
-    "from_class": "LaserChargePreview",
-    "to_type": "Visual",
     "relation_type": "uses",
     "strength": 1
   },

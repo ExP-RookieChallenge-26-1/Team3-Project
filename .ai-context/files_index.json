@@ -14470,9 +14470,9 @@
     "file_id": "ProjectDribble/Assets/ScriptableObjects/LaserData.cs",
     "path": "ProjectDribble/Assets/ScriptableObjects/LaserData.cs",
     "file_name": "LaserData.cs",
-    "content_hash": "4161f51384fa3dc2f81b1662e524bbb38493e3b1",
-    "size": 655,
-    "line_count": 24,
+    "content_hash": "94a6c905b560d25ecd3080f0bc26f2226ba40562",
+    "size": 1085,
+    "line_count": 55,
     "namespace": "ScriptableObjects",
     "using_list": [
       "UnityEngine"
@@ -14495,6 +14495,41 @@
     "unity_type": "ScriptableObject",
     "methods": [],
     "fields": [
+      {
+        "name": "startGaugeValue",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "maxGaugeSegments",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "gaugePerSegment",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "chargeTime",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "maxChargeCount",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
       {
         "name": "baseWidth",
         "type": "float",
@@ -14531,29 +14566,15 @@
         "is_static": false
       },
       {
-        "name": "perBounceCount",
-        "type": "int",
+        "name": "previewColor",
+        "type": "Color",
         "access": "public",
         "serialized": false,
         "is_static": false
       },
       {
-        "name": "startGaugeValue",
-        "type": "int",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "gaugePerSegment",
-        "type": "int",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "maxGaugeSegments",
-        "type": "int",
+        "name": "previewLineWidth",
+        "type": "float",
         "access": "public",
         "serialized": false,
         "is_static": false
@@ -14570,7 +14591,7 @@
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 0,
-    "public_field_count": 9,
+    "public_field_count": 12,
     "get_component_count": 0,
     "find_call_count": 0,
     "new_keyword_count": 0,
@@ -14578,35 +14599,43 @@
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
-      "float",
       "int",
+      "float",
+      "Color",
       "UnityEngine",
       "ScriptableObjects",
       "CreateAssetMenu",
-      "Game",
-      "Laser",
       "Gauge",
-      "Data",
-      "Charging"
+      "Min",
+      "Charge",
+      "Laser",
+      "Size",
+      "Ball",
+      "After",
+      "Preview"
     ],
     "component_access_types": [],
     "created_types": [],
     "singleton_access_types": [],
     "string_literals": [
       "LaserData",
-      "Game/Laser Gauge Data",
-      "Laser",
-      "Charging",
-      "Gauge"
+      "ScriptableObjects/LaserData",
+      "Gauge",
+      "Charge",
+      "Laser Size",
+      "Ball After Laser",
+      "Preview"
     ],
     "numeric_literals": [
-      1,
-      0.5,
-      20,
-      0.3,
+      3,
       10,
-      30,
-      3
+      0.01,
+      3,
+      0,
+      0.5,
+      10,
+      0.001,
+      0.05
     ],
     "guessed_roles": [
       "data",
@@ -17397,9 +17426,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "file_name": "LaserChargeController.cs",
-    "content_hash": "49b347ce20a350c9cc8830a54d962fad1e45f20d",
-    "size": 3325,
-    "line_count": 145,
+    "content_hash": "38aa8fcac76ec4cf84b7ec10bf90f831a5248553",
+    "size": 3403,
+    "line_count": 153,
     "namespace": "",
     "using_list": [
       "ScriptableObjects",
@@ -17441,7 +17470,7 @@
         "name": "isDribbling",
         "type": "bool",
         "access": "private",
-        "serialized": true,
+        "serialized": false,
         "is_static": false
       },
       {
@@ -17453,13 +17482,6 @@
       },
       {
         "name": "chargeCount",
-        "type": "int",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "maxChargeCount",
         "type": "int",
         "access": "private",
         "serialized": false,
@@ -17501,7 +17523,7 @@
     "has_start": false,
     "has_on_enable": true,
     "has_on_disable": true,
-    "serialize_field_count": 1,
+    "serialize_field_count": 0,
     "public_field_count": 0,
     "get_component_count": 0,
     "find_call_count": 0,
@@ -17536,6 +17558,7 @@
       "CheckTimer",
       "TryIncreaseChargeLevel",
       "Hide",
+      "Clamp",
       "Show",
       "FilledGaugeSegments",
       "IncreaseChargeLevel",
@@ -17550,9 +17573,7 @@
       "guageManger"
     ],
     "numeric_literals": [
-      3,
-      0,
-      3
+      0
     ],
     "guessed_roles": [
       "data",
@@ -17564,7 +17585,6 @@
     "summary_signals": [
       "런타임 컴포넌트",
       "Update 기반 처리 존재",
-      "인스펙터 직렬화 필드 사용",
       "저장/불러오기 관련 로직 포함"
     ]
   },
@@ -17572,11 +17592,12 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
     "file_name": "LaserChargePreview.cs",
-    "content_hash": "2caf9af9f6f4daee43fd546aab4a0d6005935e0a",
-    "size": 1804,
-    "line_count": 74,
+    "content_hash": "8f876d30161d31a004aed1be245adddd6e9d2c72",
+    "size": 1838,
+    "line_count": 73,
     "namespace": "",
     "using_list": [
+      "ScriptableObjects",
       "UnityEngine"
     ],
     "classes": [
@@ -17632,10 +17653,10 @@
     "dont_destroy_on_load": false,
     "referenced_types": [
       "float",
+      "ScriptableObjects",
       "UnityEngine",
+      "LaserData",
       "LineRenderer",
-      "Color",
-      "Visual",
       "Awake",
       "GetComponent",
       "Hide",
@@ -17652,12 +17673,8 @@
       "Vector3"
     ],
     "singleton_access_types": [],
-    "string_literals": [
-      "Color",
-      "Visual"
-    ],
+    "string_literals": [],
     "numeric_literals": [
-      0.05,
       5,
       0.5,
       0,
@@ -17666,6 +17683,7 @@
       4
     ],
     "guessed_roles": [
+      "data",
       "runtime",
       "save-load"
     ],

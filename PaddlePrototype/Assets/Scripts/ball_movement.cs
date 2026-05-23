@@ -37,6 +37,7 @@ public class BallController : MonoBehaviour
     
     [SerializeField] private float colliderCooldown = 0.001f;
     private float lastHitTime = -999f;
+    private Collider2D lastHitCollider; // 수정: 같은 콜라이더 중복 히트 판정용
     [SerializeField] private float damagedCooldown = 0.2f;
     private float lastDamagedTime = -999f;
     
@@ -111,27 +112,37 @@ public class BallController : MonoBehaviour
 
         for (int i = 0; i < maxCollisionIterations; i++)
         {
-            // 1. CircleCast로 이동 경로에 장애물이 있는지 확인
-            RaycastHit2D hit = Physics2D.CircleCast(transform.position, actualRadius, direction, remainingDistance, collisionMask);
+            RaycastHit2D hit = Physics2D.CircleCast(
+                transform.position,
+                actualRadius,
+                direction,
+                remainingDistance,
+                collisionMask
+            );
 
             if (hit.collider != null)
             {
-                // 2. 충돌 지점까지 우선 이동 (충돌 지점에서 아주 살짝 띄움)
-                float distanceToHit = Mathf.Max(hit.distance - skinWidth, 0f);
-                transform.Translate(direction * distanceToHit, Space.World);
+                float moveDistance = Mathf.Max(hit.distance - skinWidth, 0f);
 
-                // 3. 충돌 대상에 따른 반사 방향 계산
-                remainingDistance -= distanceToHit;
-                UpdateDirection(hit);
+                // 1. 충돌 직전까지 이동
+                transform.Translate(direction * moveDistance, Space.World);
+
+                // 2. 충돌면 바깥쪽으로 확실히 밀어냄
+                transform.position += (Vector3)(hit.normal * skinWidth);
+
+                // 3. 남은 이동 거리 감소
+                remainingDistance -= Mathf.Max(hit.distance, skinWidth);
+
+                bool directionUpdated = UpdateDirection(hit);
+
+                if (!directionUpdated)
+                    break;
 
                 if (remainingDistance <= 0.001f)
-                {
                     break;
-                }
             }
             else
             {
-                // 충돌이 없다면 지정된 거리만큼 직선 이동
                 transform.Translate(direction * remainingDistance, Space.World);
                 break;
             }
@@ -140,7 +151,7 @@ public class BallController : MonoBehaviour
         ResolveOverlap();
     }
 
-    void UpdateDirection(RaycastHit2D hit)
+    bool UpdateDirection(RaycastHit2D hit)
     {
         GameObject obj = hit.collider.gameObject;
 
@@ -162,10 +173,14 @@ public class BallController : MonoBehaviour
         // 패들 충돌 로직
         if (obj.name.Contains("paddle_up") || obj.name.Contains("paddle_down") || obj.name.Contains("roof_paddle"))
         {
-            if (Time.time < lastHitTime + colliderCooldown)
-                return;
+            // 수정: 같은 콜라이더에 대한 중복 히트만 cooldown 처리
+            if (hit.collider == lastHitCollider && Time.time < lastHitTime + colliderCooldown)
+                return false;
 
+            
+            
             lastHitTime = Time.time;
+            lastHitCollider = hit.collider; // 수정: 마지막 충돌 콜라이더 저장
             razerManager.CheckBounceCount();
             // 1. 비율 계산 (이미 3으로 잘 나온다면 이 값은 -1 ~ 1 사이가 될 것임)
             float xOffset = (transform.position.x - obj.transform.position.x) / (3f / 2f);
@@ -189,51 +204,71 @@ public class BallController : MonoBehaviour
 
             direction = (rotation * baseDir).normalized;
 
-            // 5. 가속 로직 (아래쪽 패들에 닿았을 때만 가속하고 싶다면 조건 유지)
-            if (obj.name.Contains("paddle_down"))
-            {
-                speed += 5; 
-            }
+            // 5. 가속 로직
+            speed += paddleSpeedIncrease; 
+
+            return true;
         }
         else
         {
+            lastHitCollider = hit.collider; // 수정: 마지막 충돌 콜라이더 저장
+            lastHitTime = Time.time; // 수정: 마지막 충돌 시간 저장
+
             GetSlower();
             // 벽이나 기타 오브젝트: 일반적인 물리 반사 법칙 적용
             direction = Vector2.Reflect(direction, hit.normal).normalized;
             razerManager.Reset();
+
+            return true;
         }
     }
 
     void ResolveOverlap()
     {
-        Collider2D overlap = Physics2D.OverlapCircle(tr.position, actualRadius, collisionMask);
+        // 수정: ColliderDistance2D를 사용해서 겹침 보정
+        Collider2D[] overlaps = Physics2D.OverlapCircleAll(tr.position, actualRadius, collisionMask);
 
-        if (overlap == null)
+        if (overlaps == null || overlaps.Length == 0)
             return;
 
-        BrickCell brick = overlap.GetComponentInParent<BrickCell>();
-
-        //일반 벽돌만 겹침 보정 제외
-        //고정 벽돌은 보정해야 끼임 방지됨
-        if (brick != null && !brick.IsFixedBrick())
-            return;
-
-        //적은 겹침 보정 제외
-        Enemy enemy = overlap.GetComponentInParent<Enemy>();
-        if (enemy != null)
-            return;
-
-        Vector2 closest = overlap.ClosestPoint(tr.position);
-        Vector2 pushDir = (tr.position - (Vector3)closest);
-
-        if (pushDir.sqrMagnitude < 0.0001f)
+        foreach (Collider2D overlap in overlaps)
         {
-            // 완전히 겹쳤을 때 (중심이 동일)
-            pushDir = Random.insideUnitCircle.normalized;
-        }
+            if (overlap == null)
+                continue;
 
-        tr.position += (Vector3)(pushDir.normalized * (skinWidth));
-        
+            if (overlap == cc)
+                continue;
+
+            BrickCell brick = overlap.GetComponentInParent<BrickCell>();
+
+            //일반 벽돌만 겹침 보정 제외
+            //고정 벽돌은 보정해야 끼임 방지됨
+            if (brick != null && !brick.IsFixedBrick())
+                continue;
+
+            //적은 겹침 보정 제외
+            Enemy enemy = overlap.GetComponentInParent<Enemy>();
+            if (enemy != null)
+                continue;
+
+            ColliderDistance2D dist = cc.Distance(overlap);
+
+            if (!dist.isOverlapped)
+                continue;
+
+            // ColliderDistance2D.normal은 첫 번째 Collider에서 두 번째 Collider를 향하는 방향으로 쓰이는 경우가 많음
+            // 따라서 공을 겹친 대상에서 멀어지게 하기 위해 반대 방향으로 밀어냄
+            Vector2 pushDir = -dist.normal;
+
+            if (pushDir.sqrMagnitude < 0.0001f)
+            {
+                // 완전히 겹쳤을 때 (중심이 동일)
+                pushDir = Random.insideUnitCircle.normalized;
+            }
+
+            float pushDistance = Mathf.Abs(dist.distance) + skinWidth;
+            tr.position += (Vector3)(pushDir.normalized * pushDistance);
+        }
     }
 
     // 에디터 씬 뷰에서 공의 충돌 범위를 확인하기 위한 기즈모

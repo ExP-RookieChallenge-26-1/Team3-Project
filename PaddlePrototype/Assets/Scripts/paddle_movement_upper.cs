@@ -38,7 +38,7 @@ public class UpperPadController : MonoBehaviour
         originalColor = shapeRenderer.color;
         paddleCollider = GetComponent<Collider2D>();
         tr = GetComponent<Transform>();
-        tr.localScale = new Vector3(paddleWidth,0.5f,1f);
+        //tr.localScale = new Vector3(paddleWidth,0.5f,1f);
 
         //디버프
         paddleDebuff = GetComponentInParent<PaddleDebuff>();

@@ -59,6 +59,9 @@ public class BallMovement : MonoBehaviour
             float distanceToHit = hit.distance;
             transform.Translate(direction * distanceToHit, Space.World);
             
+            // 2.5. 충돌면 바깥쪽으로 확실히 밀어냄
+            transform.position += (Vector3)(hit.normal * skinWidth);
+            
             // 3. 충돌 대상에 따른 반사 방향 계산
             float remainingDistance = moveDistance - distanceToHit;
 
@@ -77,6 +80,7 @@ public class BallMovement : MonoBehaviour
         }
         // 충돌이 없다면 지정된 거리만큼 직선 이동
         transform.Translate(direction * moveDistance, Space.World);
+        ResolveOverlap(actualRadius, collisionMask);
         return direction;
     }
    /*
@@ -126,7 +130,7 @@ public class BallMovement : MonoBehaviour
            // razerManager.Reset();
         }
     }
-
+*/
     void ResolveOverlap(float actualRadius, LayerMask collisionMask)
     {
         Collider2D overlap = Physics2D.OverlapCircle(tr.position, actualRadius, collisionMask);
@@ -149,7 +153,7 @@ public class BallMovement : MonoBehaviour
         tr.position += (Vector3)(pushDir.normalized * (skinWidth));
         
     }
-*/
+
 
     // 공 현재 속도
     public void SetBallSpeed(float amount)

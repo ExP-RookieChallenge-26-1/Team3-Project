@@ -14556,6 +14556,257 @@
     ]
   },
   {
+    "file_id": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "path": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "file_name": "StageBlockData.cs",
+    "content_hash": "fb53fc8369efa7aa7d7553a87517bfec856c46ef",
+    "size": 1860,
+    "line_count": 78,
+    "namespace": "",
+    "using_list": [
+      "System.Collections.Generic",
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "StageBlockData",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "ScriptableObject"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      },
+      {
+        "name": "GrowthDirection",
+        "kind": "class",
+        "access": "public",
+        "base_types": [],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      },
+      {
+        "name": "FixedBlockData",
+        "kind": "class",
+        "access": "public",
+        "base_types": [],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "StageBlockData",
+    "unity_type": "ScriptableObject",
+    "methods": [
+      "Vector2Int"
+    ],
+    "fields": [
+      {
+        "name": "name",
+        "type": "string",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "direction",
+        "type": "Vector2Int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "priority",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "weight",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "cell",
+        "type": "Vector2Int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "hp",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "width",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "height",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "defaultHp",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "spawnInterval",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "minGrowPerTick",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "maxGrowPerTick",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "rowWeightMultiplier",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "rowPriorityStep",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "onlyGrowFromStartConnectedBlocks",
+        "type": "bool",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 15,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 7,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "string",
+      "Vector2Int",
+      "int",
+      "float",
+      "bool",
+      "System",
+      "Collections",
+      "Generic",
+      "UnityEngine",
+      "CreateAssetMenu",
+      "Scriptable",
+      "Objects",
+      "Serializable",
+      "Grid",
+      "Size",
+      "Flow",
+      "Block",
+      "Fixed",
+      "Blocks",
+      "Start",
+      "Growth",
+      "Timing",
+      "Row",
+      "Weight",
+      "Priority",
+      "Connection",
+      "Rule",
+      "Directions",
+      "Down",
+      "Left",
+      "Right"
+    ],
+    "component_access_types": [],
+    "created_types": [
+      "Vector2Int"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "StageBlockData",
+      "Scriptable Objects/StageBlockData",
+      "Grid Size",
+      "Flow Block",
+      "Fixed Blocks",
+      "Start Blocks",
+      "Growth Timing",
+      "Row Weight",
+      "Row Priority",
+      "Connection Rule",
+      "Growth Directions",
+      "Down",
+      "Left",
+      "Right"
+    ],
+    "numeric_literals": [
+      1,
+      999,
+      7,
+      18,
+      10,
+      3,
+      2,
+      0.2,
+      5
+    ],
+    "guessed_roles": [
+      "data",
+      "runtime",
+      "combat"
+    ],
+    "summary_signals": [
+      "데이터 자산 중심 구조",
+      "전투 계열 로직 포함"
+    ]
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "file_name": "BallCollisionHandler.cs",
@@ -15472,9 +15723,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/BlockCell.cs",
     "path": "ProjectDribble/Assets/Scripts/BlockCell.cs",
     "file_name": "BlockCell.cs",
-    "content_hash": "79a61d42289b3fd18aa9a0217445a818e94b25d4",
-    "size": 1522,
-    "line_count": 75,
+    "content_hash": "ca164e082afa47c7cdfd7799eb883a8e09255f60",
+    "size": 2085,
+    "line_count": 108,
     "namespace": "",
     "using_list": [
       "Interfaces",
@@ -15497,13 +15748,15 @@
     "main_class_name": "BlockCell",
     "unity_type": "MonoBehaviour",
     "methods": [
+      "Awake",
       "Init",
       "Activate",
       "Deactivate",
       "ModifySpeed",
       "OnBallHit",
       "OnLaserHit",
-      "TakeDamage"
+      "TakeDamage",
+      "UpdateVisual"
     ],
     "fields": [
       {
@@ -15521,7 +15774,21 @@
         "is_static": false
       },
       {
+        "name": "sr",
+        "type": "SpriteRenderer",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "hp",
+        "type": "int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "maxHp",
         "type": "int",
         "access": "private",
         "serialized": false,
@@ -15533,21 +15800,30 @@
         "access": "private",
         "serialized": false,
         "is_static": false
+      },
+      {
+        "name": "color",
+        "type": "Color",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
       }
     ],
     "properties": [],
     "events": [],
-    "unity_messages": [],
+    "unity_messages": [
+      "Awake"
+    ],
     "has_update": false,
     "has_fixed_update": false,
     "has_late_update": false,
-    "has_awake": false,
+    "has_awake": true,
     "has_start": false,
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 0,
     "public_field_count": 0,
-    "get_component_count": 0,
+    "get_component_count": 1,
     "find_call_count": 0,
     "new_keyword_count": 0,
     "coroutine_count": 0,
@@ -15556,20 +15832,26 @@
     "referenced_types": [
       "BlockManager",
       "Vector2Int",
+      "SpriteRenderer",
       "int",
       "bool",
+      "Color",
       "Interfaces",
       "UnityEngine",
       "IBallHitReceiver",
       "ILaserHittable",
       "IDamageable",
       "IBallSpeedModifier",
+      "Visual",
       "Coord",
       "IsFixed",
       "IsAlive",
+      "Awake",
+      "GetComponent",
       "Init",
       "Activate",
       "SetActive",
+      "UpdateVisual",
       "Deactivate",
       "ModifySpeed",
       "BallSpeedController",
@@ -15579,35 +15861,42 @@
       "BallCollisionHandler",
       "OnLaserHit",
       "RemoveBlock",
-      "TakeDamage"
+      "TakeDamage",
+      "Lerp"
     ],
-    "component_access_types": [],
+    "component_access_types": [
+      "SpriteRenderer"
+    ],
     "created_types": [],
     "singleton_access_types": [],
-    "string_literals": [],
+    "string_literals": [
+      "Visual"
+    ],
     "numeric_literals": [
-      2
+      2,
+      0.2,
+      1
     ],
     "guessed_roles": [
       "combat",
+      "runtime",
       "player",
       "manager",
-      "data",
-      "save-load"
+      "data"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
       "전투 계열 로직 포함",
-      "저장/불러오기 관련 로직 포함"
+      "컴포넌트 조회 사용"
     ]
   },
   {
     "file_id": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "path": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "file_name": "BlockManager.cs",
-    "content_hash": "2566eb91cbf69e08f5ade24a97ebb2bf9b22772b",
-    "size": 12100,
-    "line_count": 493,
+    "content_hash": "07546840275448ca3a2e0728bb8de530823282c6",
+    "size": 10764,
+    "line_count": 437,
     "namespace": "",
     "using_list": [
       "System.Collections",
@@ -15628,26 +15917,6 @@
         "is_generic": false
       },
       {
-        "name": "GrowthDirection",
-        "kind": "class",
-        "access": "public",
-        "base_types": [],
-        "interfaces": [],
-        "attributes": [],
-        "is_partial": false,
-        "is_generic": false
-      },
-      {
-        "name": "FixedBlockData",
-        "kind": "class",
-        "access": "public",
-        "base_types": [],
-        "interfaces": [],
-        "attributes": [],
-        "is_partial": false,
-        "is_generic": false
-      },
-      {
         "name": "GrowthCandidate",
         "kind": "struct",
         "access": "private",
@@ -15662,7 +15931,6 @@
     "unity_type": "MonoBehaviour",
     "methods": [
       "GrowthCandidate",
-      "Vector2Int",
       "Awake",
       "Start",
       "CreateGrid",
@@ -15680,6 +15948,7 @@
       "RemoveBlock",
       "NotifyBlockDestroyed",
       "GetGrowthCandidates",
+      "Vector2Int",
       "GetStartConnectedCells",
       "AddCandidate",
       "PickByPriorityAndWeight",
@@ -15691,48 +15960,6 @@
       "DrawGridGizmos"
     ],
     "fields": [
-      {
-        "name": "name",
-        "type": "string",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "direction",
-        "type": "Vector2Int",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "priority",
-        "type": "int",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "weight",
-        "type": "float",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "cell",
-        "type": "Vector2Int",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "hp",
-        "type": "int",
-        "access": "public",
-        "serialized": false,
-        "is_static": false
-      },
       {
         "name": "cell",
         "type": "Vector2Int",
@@ -15832,20 +16059,6 @@
         "is_static": false
       },
       {
-        "name": "finalWeight",
-        "type": "float",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "finalPriority",
-        "type": "int",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
         "name": "connected",
         "type": "bool[,]",
         "access": "internal",
@@ -15895,15 +16108,14 @@
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 0,
-    "public_field_count": 9,
+    "public_field_count": 3,
     "get_component_count": 0,
     "find_call_count": 0,
-    "new_keyword_count": 20,
+    "new_keyword_count": 13,
     "coroutine_count": 2,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
-      "string",
       "Vector2Int",
       "int",
       "float",
@@ -15914,33 +16126,19 @@
       "Collections",
       "Generic",
       "UnityEngine",
-      "Serializable",
+      "Stage",
+      "Data",
+      "StageBlockData",
       "Grid",
-      "Size",
       "Area",
       "References",
       "BlockPool",
-      "Flow",
-      "Block",
-      "Fixed",
-      "Blocks",
-      "Start",
-      "Growth",
-      "Timing",
-      "Row",
-      "Weight",
-      "Priority",
-      "Connection",
-      "Rule",
-      "Directions",
-      "Down",
-      "Left",
-      "Right",
       "Awake",
       "CreateGrid",
       "CreatePool",
       "GridToWorld",
       "GetCellSize",
+      "Start",
       "SpawnFixedBlocks",
       "SpawnStartBlocks",
       "StartCoroutine",
@@ -15953,6 +16151,7 @@
       "PickByPriorityAndWeight",
       "SpawnBlock",
       "WaitForSeconds",
+      "FixedBlockData",
       "IsValidCoord",
       "CreateFixedBlock",
       "ActivateBlock",
@@ -15960,6 +16159,7 @@
       "DeactivateBlock",
       "NotifyBlockDestroyed",
       "GetStartConnectedCells",
+      "GrowthDirection",
       "AddCandidate",
       "Enqueue",
       "Dequeue",
@@ -15976,39 +16176,19 @@
     ],
     "component_access_types": [],
     "created_types": [
-      "Vector2Int",
       "Vector3",
       "Vector2",
       "WaitForSeconds",
+      "Vector2Int",
       "GrowthCandidate"
     ],
     "singleton_access_types": [],
     "string_literals": [
-      "Grid Size",
+      "Stage Data",
       "Grid Area",
-      "References",
-      "Flow Block",
-      "Fixed Blocks",
-      "Start Blocks",
-      "Growth Timing",
-      "Row Weight",
-      "Row Priority",
-      "Connection Rule",
-      "Growth Directions",
-      "Down",
-      "Left",
-      "Right"
+      "References"
     ],
     "numeric_literals": [
-      1,
-      999,
-      7,
-      20,
-      10,
-      3,
-      2,
-      0.2,
-      5,
       0.5,
       0
     ],

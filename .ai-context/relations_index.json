@@ -21049,6 +21049,237 @@
     "strength": 1
   },
   {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Vector2Int",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "ScriptableObject",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Block",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Blocks",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "bool",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Collections",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Connection",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "CreateAssetMenu",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Directions",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Down",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Fixed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "float",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Flow",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Generic",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Grid",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Growth",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "int",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Left",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Objects",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Priority",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Right",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Row",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Rule",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Scriptable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Serializable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Size",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Start",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "string",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "System",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Timing",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Vector2Int",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "from_class": "StageBlockData",
+    "to_type": "Weight",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "from_class": "BallCollisionHandler",
     "to_type": "BallController",
@@ -22101,6 +22332,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
     "from_class": "BlockCell",
+    "to_type": "SpriteRenderer",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
+    "from_class": "BlockCell",
     "to_type": "MonoBehaviour",
     "relation_type": "inherits",
     "strength": 4
@@ -22116,6 +22354,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
     "from_class": "BlockCell",
     "to_type": "AddSpeed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
+    "from_class": "BlockCell",
+    "to_type": "Awake",
     "relation_type": "uses",
     "strength": 1
   },
@@ -22157,6 +22402,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
     "from_class": "BlockCell",
+    "to_type": "Color",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
+    "from_class": "BlockCell",
     "to_type": "Coord",
     "relation_type": "uses",
     "strength": 1
@@ -22165,6 +22417,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
     "from_class": "BlockCell",
     "to_type": "Deactivate",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
+    "from_class": "BlockCell",
+    "to_type": "GetComponent",
     "relation_type": "uses",
     "strength": 1
   },
@@ -22234,6 +22493,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
     "from_class": "BlockCell",
+    "to_type": "Lerp",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
+    "from_class": "BlockCell",
     "to_type": "ModifySpeed",
     "relation_type": "uses",
     "strength": 1
@@ -22269,6 +22535,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
     "from_class": "BlockCell",
+    "to_type": "SpriteRenderer",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
+    "from_class": "BlockCell",
     "to_type": "TakeDamage",
     "relation_type": "uses",
     "strength": 1
@@ -22283,7 +22556,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
     "from_class": "BlockCell",
+    "to_type": "UpdateVisual",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
+    "from_class": "BlockCell",
     "to_type": "Vector2Int",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
+    "from_class": "BlockCell",
+    "to_type": "Visual",
     "relation_type": "uses",
     "strength": 1
   },
@@ -22367,21 +22654,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "from_class": "BlockManager",
-    "to_type": "Block",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
     "to_type": "BlockPool",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
-    "to_type": "Blocks",
     "relation_type": "uses",
     "strength": 1
   },
@@ -22410,13 +22683,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "from_class": "BlockManager",
     "to_type": "Color",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
-    "to_type": "Connection",
     "relation_type": "uses",
     "strength": 1
   },
@@ -22458,6 +22724,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "from_class": "BlockManager",
+    "to_type": "Data",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
+    "from_class": "BlockManager",
     "to_type": "DeactivateBlock",
     "relation_type": "uses",
     "strength": 1
@@ -22466,20 +22739,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "from_class": "BlockManager",
     "to_type": "Dequeue",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
-    "to_type": "Directions",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
-    "to_type": "Down",
     "relation_type": "uses",
     "strength": 1
   },
@@ -22507,7 +22766,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "from_class": "BlockManager",
-    "to_type": "Fixed",
+    "to_type": "FixedBlockData",
     "relation_type": "uses",
     "strength": 1
   },
@@ -22515,13 +22774,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "from_class": "BlockManager",
     "to_type": "float",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
-    "to_type": "Flow",
     "relation_type": "uses",
     "strength": 1
   },
@@ -22584,7 +22836,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "from_class": "BlockManager",
-    "to_type": "Growth",
+    "to_type": "GrowthDirection",
     "relation_type": "uses",
     "strength": 1
   },
@@ -22606,13 +22858,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "from_class": "BlockManager",
     "to_type": "IsValidCoord",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
-    "to_type": "Left",
     "relation_type": "uses",
     "strength": 1
   },
@@ -22661,13 +22906,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "from_class": "BlockManager",
-    "to_type": "Priority",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
     "to_type": "References",
     "relation_type": "uses",
     "strength": 1
@@ -22683,41 +22921,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "from_class": "BlockManager",
     "to_type": "RespawnMissingStartBlocks",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
-    "to_type": "Right",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
-    "to_type": "Row",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
-    "to_type": "Rule",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
-    "to_type": "Serializable",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
-    "to_type": "Size",
     "relation_type": "uses",
     "strength": 1
   },
@@ -22745,6 +22948,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "from_class": "BlockManager",
+    "to_type": "Stage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
+    "from_class": "BlockManager",
+    "to_type": "StageBlockData",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
+    "from_class": "BlockManager",
     "to_type": "Start",
     "relation_type": "uses",
     "strength": 1
@@ -22759,21 +22976,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "from_class": "BlockManager",
-    "to_type": "string",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
     "to_type": "System",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
-    "to_type": "Timing",
     "relation_type": "uses",
     "strength": 1
   },
@@ -22809,13 +23012,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "from_class": "BlockManager",
     "to_type": "WaitForSeconds",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
-    "to_type": "Weight",
     "relation_type": "uses",
     "strength": 1
   },

@@ -6,7 +6,7 @@ public class BallController : MonoBehaviour
 {
     
     [SerializeField] private BallBalanceData balanceData;
-    
+    [SerializeField] private BallSound ballSound;
     
     [SerializeField]private float speed = 10f; // 공의 초기 속도
     [SerializeField] private float baseSpeed = 10f; // 공의 초기 속도
@@ -120,8 +120,18 @@ public class BallController : MonoBehaviour
                 collisionMask
             );
 
+            
+            
             if (hit.collider != null)
             {
+                
+                
+                ballSound.PlayBounceBySpeed(
+                    speed,
+                    baseSpeed,
+                    maxSpeed
+                );
+                
                 float moveDistance = Mathf.Max(hit.distance - skinWidth, 0f);
 
                 // 1. 충돌 직전까지 이동

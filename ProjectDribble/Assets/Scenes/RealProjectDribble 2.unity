@@ -2836,6 +2836,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHp: 10
+  leftGroundRenderer: {fileID: 1169768074}
+  rightGroundRenderer: {fileID: 1247640126}
+  fullHpColor: {r: 1, g: 1, b: 1, a: 1}
+  lowHpColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!4 &6097537737299600355
 Transform:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CeilingManager : MonoBehaviour
 {
@@ -102,6 +103,13 @@ public class CeilingManager : MonoBehaviour
     private void Die()
     {
         Debug.Log("천장 파괴 / 스테이지 클리어");
-        gameObject.SetActive(false);
+        Invoke(nameof(RestartScene), 1f);
+        
+    }
+
+    private void RestartScene()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
     }
 }

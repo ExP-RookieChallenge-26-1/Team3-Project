@@ -27,7 +27,6 @@ public class BlockManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private BlockPool blockPool;
 
-    [SerializeField] private GaugeManager gaugeManager;
     private bool[,] occupied;
     private bool[,] fixedOccupied;
 
@@ -172,7 +171,7 @@ public class BlockManager : MonoBehaviour
         }
     }
 
-    public void RemoveBlock(Vector2Int coord, bool force = false)
+    public void RemoveBlock(Vector2Int coord)
     {
         if (!IsValidCoord(coord))
             return;
@@ -180,45 +179,15 @@ public class BlockManager : MonoBehaviour
         if (!occupied[coord.x, coord.y])
             return;
 
-        if (fixedOccupied[coord.x, coord.y] && !force)
+        if (fixedOccupied[coord.x, coord.y])
             return;
 
         occupied[coord.x, coord.y] = false;
-
-        bool wasFixed = fixedOccupied[coord.x, coord.y];
         fixedOccupied[coord.x, coord.y] = false;
 
-        if (wasFixed)
-        {
-            BlockCell block = GetBlockCell(coord); // 없다면 만들어야 함
-            if (block != null)
-                Destroy(block.gameObject);
-        }
-        else
-        {
-            blockPool.DeactivateBlock(coord);
-        }
+        blockPool.DeactivateBlock(coord);
     }
 
-    public BlockCell GetBlockCell(Vector2Int coord)
-    {
-        if (!IsValidCoord(coord))
-            return null;
-
-        Vector3 cellCenter = GridToWorld(coord);
-        Vector2 cellSize = GetCellSize();
-
-        Collider2D hit = Physics2D.OverlapBox(
-            cellCenter,
-            cellSize * 0.8f,
-            0f
-        );
-
-        if (hit == null)
-            return null;
-
-        return hit.GetComponentInParent<BlockCell>();
-    }
     public void NotifyBlockDestroyed(Vector2Int coord, bool isFixed)
     {
         if (isFixed)
@@ -227,11 +196,6 @@ public class BlockManager : MonoBehaviour
         RemoveBlock(coord);
     }
 
-    public void AddGauge()
-    {
-        gaugeManager.AddGauge();
-    }
-    
     private List<GrowthCandidate> GetGrowthCandidates()
     {
         List<GrowthCandidate> candidates = new();

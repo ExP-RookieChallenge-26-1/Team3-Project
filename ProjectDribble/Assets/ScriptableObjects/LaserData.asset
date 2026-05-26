@@ -15,11 +15,11 @@ MonoBehaviour:
   startGaugeValue: 30
   maxGaugeSegments: 3
   gaugePerSegment: 10
-  chargeTime: 1.5
+  chargeTime: 2
   maxChargeCount: 3
-  baseWidth: 2
-  widthPerCharge: 1.5
-  range: 28
+  baseWidth: 1.5
+  widthPerCharge: 0.5
+  range: 18
   startOffset: 0.5
   ballSpawnBackOffset: 0.3
   previewColor: {r: 1, g: 0, b: 0, a: 1}

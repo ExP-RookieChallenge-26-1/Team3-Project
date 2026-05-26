@@ -29,7 +29,7 @@ public class BallController : MonoBehaviour
         tr.localScale = new Vector3(ballRadius,ballRadius,ballRadius);
         cc = GetComponent<CircleCollider2D>();
         actualRadius = cc.radius * ballRadius*1.25f;
-        direction = new Vector2(0f, -1f).normalized;
+        direction = new Vector2(0.5f, 1f).normalized;
     }
 
     // Update is called once per frame
@@ -45,7 +45,6 @@ public class BallController : MonoBehaviour
     public void SetBallDirection(float x,float y)
     {
         direction = new Vector2(x, y).normalized;
-        
     }
     private void OnDrawGizmos()
     {

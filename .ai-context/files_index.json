@@ -15197,9 +15197,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallController.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallController.cs",
     "file_name": "BallController.cs",
-    "content_hash": "2743490a522436b45dc0c51979317c56078487d8",
-    "size": 1621,
-    "line_count": 57,
+    "content_hash": "695a3ca80fbad1f98cddace807cf5ffae6d955a1",
+    "size": 1629,
+    "line_count": 58,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -15344,7 +15344,7 @@
     "numeric_literals": [
       0.7,
       1.25,
-      0.5,
+      0,
       1,
       2
     ],
@@ -15905,9 +15905,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/BlockCell.cs",
     "path": "ProjectDribble/Assets/Scripts/BlockCell.cs",
     "file_name": "BlockCell.cs",
-    "content_hash": "ca32a12ad830a509d975d4f8d7ed389a4f900bf7",
-    "size": 2193,
-    "line_count": 114,
+    "content_hash": "d54de66c9ebe0a05912654bea19979f8c200ed1c",
+    "size": 2302,
+    "line_count": 118,
     "namespace": "",
     "using_list": [
       "Interfaces",
@@ -16024,6 +16024,7 @@
       "ILaserHittable",
       "IDamageable",
       "IBallSpeedModifier",
+      "GaugeManager",
       "Visual",
       "Coord",
       "IsFixed",
@@ -16044,6 +16045,7 @@
       "OnLaserHit",
       "RemoveBlock",
       "TakeDamage",
+      "AddGauge",
       "Lerp"
     ],
     "component_access_types": [
@@ -16076,9 +16078,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "path": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "file_name": "BlockManager.cs",
-    "content_hash": "b3c261172e82d1c962906d0bde4b9c4cf7eeb02f",
-    "size": 11671,
-    "line_count": 476,
+    "content_hash": "dde206385fa76e25eca72f1f055b2a54c2d7ea8c",
+    "size": 12574,
+    "line_count": 512,
     "namespace": "",
     "using_list": [
       "System.Collections",
@@ -16128,7 +16130,9 @@
       "RespawnMissingStartBlocks",
       "SpawnBlock",
       "RemoveBlock",
+      "GetBlockCell",
       "NotifyBlockDestroyed",
+      "AddGauge",
       "GetGrowthCandidates",
       "Vector2Int",
       "GetStartConnectedCells",
@@ -16171,7 +16175,7 @@
         "name": "occupied",
         "type": "bool[,]",
         "access": "private",
-        "serialized": false,
+        "serialized": true,
         "is_static": false
       },
       {
@@ -16226,6 +16230,13 @@
       {
         "name": "top",
         "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "wasFixed",
+        "type": "bool",
         "access": "internal",
         "serialized": false,
         "is_static": false
@@ -16307,7 +16318,7 @@
     "has_start": true,
     "has_on_enable": false,
     "has_on_disable": false,
-    "serialize_field_count": 0,
+    "serialize_field_count": 1,
     "public_field_count": 3,
     "get_component_count": 0,
     "find_call_count": 0,
@@ -16322,6 +16333,7 @@
       "bool[,]",
       "Coroutine",
       "Vector3",
+      "bool",
       "System",
       "Collections",
       "Generic",
@@ -16333,6 +16345,7 @@
       "Area",
       "References",
       "BlockPool",
+      "GaugeManager",
       "Awake",
       "CreateGrid",
       "CreatePool",
@@ -16356,8 +16369,16 @@
       "CreateFixedBlock",
       "ActivateBlock",
       "RemoveBlock",
+      "BlockCell",
+      "GetBlockCell",
+      "Destroy",
       "DeactivateBlock",
+      "Collider2D",
+      "Physics2D",
+      "OverlapBox",
+      "GetComponentInParent",
       "NotifyBlockDestroyed",
+      "AddGauge",
       "GetStartConnectedCells",
       "GrowthDirection",
       "AddCandidate",
@@ -16399,17 +16420,19 @@
     ],
     "numeric_literals": [
       0.5,
+      0.8,
       0
     ],
     "guessed_roles": [
       "runtime",
+      "combat",
       "player",
       "manager",
-      "data",
-      "combat"
+      "data"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
+      "인스펙터 직렬화 필드 사용",
       "전투 계열 로직 포함"
     ]
   },
@@ -17699,9 +17722,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserShooter.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserShooter.cs",
     "file_name": "LaserShooter.cs",
-    "content_hash": "ea8c41e89f85370044d31c5596933d297e642199",
-    "size": 883,
-    "line_count": 34,
+    "content_hash": "5f8c8f9a0af833bca66d3dbda539390beb13bf39",
+    "size": 989,
+    "line_count": 36,
     "namespace": "",
     "using_list": [
       "ScriptableObjects",
@@ -17767,9 +17790,11 @@
       "UnityEngine",
       "LaserData",
       "LaserBlockEraser",
+      "BallController",
       "ShootLaser",
       "Log",
-      "EraseByLaser"
+      "EraseByLaser",
+      "SetBallDirection"
     ],
     "component_access_types": [],
     "created_types": [],

@@ -74,7 +74,7 @@ public class PaddleMovement : MonoBehaviour
         Vector3 targetPos = new Vector3(mousePos.x, transform.position.y, transform.position.z);
         transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
 
-        float clampedX = Mathf.Clamp(transform.position.x, -5.5f, 5.5f);
+        float clampedX = Mathf.Clamp(transform.position.x, -6.5f, 6.5f);
         transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
     }
 

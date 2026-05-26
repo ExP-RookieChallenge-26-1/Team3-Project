@@ -10,6 +10,7 @@ public class BlockCell : MonoBehaviour,
     private BlockManager manager;
     private Vector2Int coord;
 
+    [SerializeField] private GaugeManager _gaugeManager;
     [SerializeField] private float ballSpeedDecrease = 2f;
 
     [Header("Visual")]
@@ -70,7 +71,7 @@ public class BlockCell : MonoBehaviour,
 
     public bool OnLaserHit()
     {
-        manager.RemoveBlock(coord);
+        manager.RemoveBlock(coord, true);
         return isFixed;
     }
 
@@ -85,7 +86,10 @@ public class BlockCell : MonoBehaviour,
 
         if (hp <= 0)
         {
+
+            manager.AddGauge();
             manager.RemoveBlock(coord);
+            
             if (hp == 0)
             {
                 return false;

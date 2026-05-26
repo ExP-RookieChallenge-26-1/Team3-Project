@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PaddleData
   moveSpeed: 50
   paddleWidth: 0.7
-  maxBounceAngle: 50
+  maxBounceAngle: 60
   collisionPaddleWidth: 3

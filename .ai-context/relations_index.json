@@ -22458,13 +22458,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
     "from_class": "BlockCell",
-    "to_type": "AddGauge",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
-    "from_class": "BlockCell",
     "to_type": "AddSpeed",
     "relation_type": "uses",
     "strength": 1
@@ -22529,13 +22522,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
     "from_class": "BlockCell",
     "to_type": "Deactivate",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockCell.cs",
-    "from_class": "BlockCell",
-    "to_type": "GaugeManager",
     "relation_type": "uses",
     "strength": 1
   },
@@ -22759,13 +22745,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "from_class": "BlockManager",
-    "to_type": "AddGauge",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
     "to_type": "Area",
     "relation_type": "uses",
     "strength": 1
@@ -22780,21 +22759,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "from_class": "BlockManager",
-    "to_type": "BlockCell",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
     "to_type": "BlockPool",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
-    "to_type": "bool",
     "relation_type": "uses",
     "strength": 1
   },
@@ -22823,13 +22788,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "from_class": "BlockManager",
     "to_type": "Collections",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
-    "to_type": "Collider2D",
     "relation_type": "uses",
     "strength": 1
   },
@@ -22899,13 +22857,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "from_class": "BlockManager",
-    "to_type": "Destroy",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
     "to_type": "DrawGridGizmos",
     "relation_type": "uses",
     "strength": 1
@@ -22948,21 +22899,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "from_class": "BlockManager",
-    "to_type": "GaugeManager",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
     "to_type": "Generic",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
-    "to_type": "GetBlockCell",
     "relation_type": "uses",
     "strength": 1
   },
@@ -22977,13 +22914,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "from_class": "BlockManager",
     "to_type": "GetCellSize",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
-    "to_type": "GetComponentInParent",
     "relation_type": "uses",
     "strength": 1
   },
@@ -23110,20 +23040,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
     "from_class": "BlockManager",
     "to_type": "OnDrawGizmosSelected",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
-    "to_type": "OverlapBox",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/BlockManager.cs",
-    "from_class": "BlockManager",
-    "to_type": "Physics2D",
     "relation_type": "uses",
     "strength": 1
   },
@@ -24607,13 +24523,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserShooter.cs",
     "from_class": "LaserShoot",
-    "to_type": "BallController",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserShooter.cs",
-    "from_class": "LaserShoot",
     "to_type": "EraseByLaser",
     "relation_type": "uses",
     "strength": 1
@@ -24650,13 +24559,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserShooter.cs",
     "from_class": "LaserShoot",
     "to_type": "ScriptableObjects",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserShooter.cs",
-    "from_class": "LaserShoot",
-    "to_type": "SetBallDirection",
     "relation_type": "uses",
     "strength": 1
   },

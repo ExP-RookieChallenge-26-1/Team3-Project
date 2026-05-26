@@ -1924,7 +1924,7 @@
     "risk_score": 44
   },
   {
-    "file_id": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "file_id": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
     "class_name": "StageBlockData",
     "risk_flags": [
       "high-coupling",
@@ -2189,7 +2189,7 @@
     "risk_score": 26
   },
   {
-    "file_id": "ProjectDribble/Assets/ScriptableObjects/LaserData.cs",
+    "file_id": "ProjectDribble/Assets/ScriptableObjects/Scripts/LaserData.cs",
     "class_name": "LaserData",
     "risk_flags": [
       "public-field-heavy",
@@ -2372,7 +2372,7 @@
     "risk_score": 10
   },
   {
-    "file_id": "ProjectDribble/Assets/ScriptableObjects/BallData.cs",
+    "file_id": "ProjectDribble/Assets/ScriptableObjects/Scripts/BallData.cs",
     "class_name": "BallData",
     "risk_flags": [
       "public-field-heavy"
@@ -2408,7 +2408,7 @@
     "risk_score": 0
   },
   {
-    "file_id": "ProjectDribble/Assets/ScriptableObjects/PaddleData.cs",
+    "file_id": "ProjectDribble/Assets/ScriptableObjects/Scripts/PaddleData.cs",
     "class_name": "PaddleData",
     "risk_flags": [],
     "risk_reasons": [],

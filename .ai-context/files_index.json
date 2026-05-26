@@ -14344,8 +14344,8 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/ScriptableObjects/BallData.cs",
-    "path": "ProjectDribble/Assets/ScriptableObjects/BallData.cs",
+    "file_id": "ProjectDribble/Assets/ScriptableObjects/Scripts/BallData.cs",
+    "path": "ProjectDribble/Assets/ScriptableObjects/Scripts/BallData.cs",
     "file_name": "BallData.cs",
     "content_hash": "79cd50b6866d2d2bb1a6957c3ad538b817e67364",
     "size": 377,
@@ -14467,8 +14467,8 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/ScriptableObjects/LaserData.cs",
-    "path": "ProjectDribble/Assets/ScriptableObjects/LaserData.cs",
+    "file_id": "ProjectDribble/Assets/ScriptableObjects/Scripts/LaserData.cs",
+    "path": "ProjectDribble/Assets/ScriptableObjects/Scripts/LaserData.cs",
     "file_name": "LaserData.cs",
     "content_hash": "94a6c905b560d25ecd3080f0bc26f2226ba40562",
     "size": 1085,
@@ -14648,8 +14648,8 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/ScriptableObjects/PaddleData.cs",
-    "path": "ProjectDribble/Assets/ScriptableObjects/PaddleData.cs",
+    "file_id": "ProjectDribble/Assets/ScriptableObjects/Scripts/PaddleData.cs",
+    "path": "ProjectDribble/Assets/ScriptableObjects/Scripts/PaddleData.cs",
     "file_name": "PaddleData.cs",
     "content_hash": "cc62b7f803dbd83f66f29f6c8e700f180be9d28f",
     "size": 384,
@@ -14737,8 +14737,8 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
-    "path": "ProjectDribble/Assets/ScriptableObjects/StageBlockData.cs",
+    "file_id": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
+    "path": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
     "file_name": "StageBlockData.cs",
     "content_hash": "fb53fc8369efa7aa7d7553a87517bfec856c46ef",
     "size": 1860,

@@ -23991,13 +23991,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
     "from_class": "LaserBlockEraser",
-    "to_type": "BlockCell",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
-    "from_class": "LaserBlockEraser",
     "to_type": "BlockManager",
     "relation_type": "uses",
     "strength": 1
@@ -24026,7 +24019,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
     "from_class": "LaserBlockEraser",
-    "to_type": "FindBlockCellAtCoord",
+    "to_type": "FindLaserTargetAtCoord",
     "relation_type": "uses",
     "strength": 1
   },
@@ -24082,7 +24075,14 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
     "from_class": "LaserBlockEraser",
-    "to_type": "IsFixed",
+    "to_type": "ILaserHittable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
+    "from_class": "LaserBlockEraser",
+    "to_type": "Interfaces",
     "relation_type": "uses",
     "strength": 1
   },

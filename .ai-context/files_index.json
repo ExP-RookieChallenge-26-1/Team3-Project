@@ -15905,9 +15905,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/BlockCell.cs",
     "path": "ProjectDribble/Assets/Scripts/BlockCell.cs",
     "file_name": "BlockCell.cs",
-    "content_hash": "ca164e082afa47c7cdfd7799eb883a8e09255f60",
-    "size": 2085,
-    "line_count": 108,
+    "content_hash": "ca32a12ad830a509d975d4f8d7ed389a4f900bf7",
+    "size": 2193,
+    "line_count": 114,
     "namespace": "",
     "using_list": [
       "Interfaces",
@@ -16887,7 +16887,7 @@
     "file_id": "ProjectDribble/Assets/Scripts/Interfaces/ILaserHittable.cs",
     "path": "ProjectDribble/Assets/Scripts/Interfaces/ILaserHittable.cs",
     "file_name": "ILaserHittable.cs",
-    "content_hash": "562ac76f042c76ec03479e43eead620622d62289",
+    "content_hash": "262e458657a8fdb7b1f15ddf18b00d85d1c72381",
     "size": 411,
     "line_count": 21,
     "namespace": "Interfaces",
@@ -17291,11 +17291,12 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
     "file_name": "LaserBlockEraser.cs",
-    "content_hash": "8cf677820ac4a3e579a738d11824f1575a2e9d5a",
-    "size": 2865,
+    "content_hash": "f95b30a5c9253e7bf376873d0fb031b2d060fa17",
+    "size": 2833,
     "line_count": 104,
     "namespace": "",
     "using_list": [
+      "Interfaces",
       "UnityEngine"
     ],
     "classes": [
@@ -17319,7 +17320,7 @@
       "Vector2",
       "EraseColumn",
       "Vector2Int",
-      "FindBlockCellAtCoord"
+      "FindLaserTargetAtCoord"
     ],
     "fields": [
       {
@@ -17372,6 +17373,7 @@
     "referenced_types": [
       "Vector2",
       "float",
+      "Interfaces",
       "UnityEngine",
       "BlockManager",
       "EraseByLaser",
@@ -17384,12 +17386,11 @@
       "IsOccupied",
       "Vector3",
       "GridToWorld",
-      "BlockCell",
-      "FindBlockCellAtCoord",
+      "ILaserHittable",
+      "FindLaserTargetAtCoord",
       "LogWarning",
-      "IsFixed",
-      "GetCellHeight",
       "OnLaserHit",
+      "GetCellHeight",
       "GetCellSize",
       "Collider2D",
       "Physics2D",
@@ -17403,7 +17404,7 @@
     ],
     "singleton_access_types": [],
     "string_literals": [
-      "occupied는 true인데 BlockCell을 찾지 못함: "
+      "occupied는 true인데 ILaserHittable을 찾지 못함: "
     ],
     "numeric_literals": [
       0.5,
@@ -17414,6 +17415,7 @@
       "runtime",
       "combat",
       "manager",
+      "data",
       "save-load"
     ],
     "summary_signals": [

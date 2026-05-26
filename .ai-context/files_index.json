@@ -16580,6 +16580,415 @@
     ]
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/CeilingBrick.cs",
+    "path": "ProjectDribble/Assets/Scripts/CeilingBrick.cs",
+    "file_name": "CeilingBrick.cs",
+    "content_hash": "69e82dd270b34c069ba074b54836f622ed5bf7df",
+    "size": 627,
+    "line_count": 30,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine",
+      "Interfaces"
+    ],
+    "classes": [
+      {
+        "name": "CeilingBrick",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour",
+          "IDamageable"
+        ],
+        "interfaces": [
+          "IDamageable"
+        ],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "CeilingBrick",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Init",
+      "TakeDamage",
+      "Break"
+    ],
+    "fields": [
+      {
+        "name": "manager",
+        "type": "CeilingManager",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 1,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "CeilingManager",
+      "UnityEngine",
+      "Interfaces",
+      "IDamageable",
+      "SpriteRenderer",
+      "Init",
+      "Sprite",
+      "GetComponent",
+      "TakeDamage",
+      "Break",
+      "SetActive"
+    ],
+    "component_access_types": [
+      "SpriteRenderer"
+    ],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "combat",
+      "manager",
+      "save-load",
+      "runtime"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/CeilingDamager.cs",
+    "path": "ProjectDribble/Assets/Scripts/CeilingDamager.cs",
+    "file_name": "CeilingDamager.cs",
+    "content_hash": "e6904132c93cc61cf34f5a08f5a4bb3406574c2b",
+    "size": 426,
+    "line_count": 27,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine",
+      "Interfaces",
+      "System.Collections"
+    ],
+    "classes": [
+      {
+        "name": "CeilingDamager",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour",
+          "IDamageable"
+        ],
+        "interfaces": [
+          "IDamageable"
+        ],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "CeilingDamager",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "TakeDamage",
+      "Die"
+    ],
+    "fields": [],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "UnityEngine",
+      "Interfaces",
+      "System",
+      "Collections",
+      "IDamageable",
+      "TakeDamage",
+      "Die",
+      "Destroy"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "combat",
+      "save-load",
+      "runtime"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "path": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "file_name": "CeilingManager.cs",
+    "content_hash": "8433169fd1d603d2ca8703550cd44cf669caa468",
+    "size": 2668,
+    "line_count": 107,
+    "namespace": "",
+    "using_list": [
+      "System.Collections.Generic",
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "CeilingManager",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "CeilingManager",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Vector2",
+      "Start",
+      "CreateCeilingBricks",
+      "TakeDamage",
+      "UpdateBrokenBricksByHpRatio",
+      "BreakRandomBrick",
+      "Die"
+    ],
+    "fields": [
+      {
+        "name": "currentHp",
+        "type": "int",
+        "access": "private",
+        "serialized": true,
+        "is_static": false
+      },
+      {
+        "name": "totalBrickCount",
+        "type": "int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "index",
+        "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "sprite",
+        "type": "Sprite",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "brick",
+        "type": "CeilingBrick",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Start"
+    ],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": true,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 1,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 2,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "int",
+      "Sprite",
+      "CeilingBrick",
+      "System",
+      "Collections",
+      "Generic",
+      "UnityEngine",
+      "Ceiling",
+      "HP",
+      "Brick",
+      "Spawn",
+      "Vector2",
+      "Sprites",
+      "Start",
+      "CreateCeilingBricks",
+      "Count",
+      "Instantiate",
+      "Quaternion",
+      "Length",
+      "Init",
+      "Add",
+      "TakeDamage",
+      "Clamp",
+      "UpdateBrokenBricksByHpRatio",
+      "Die",
+      "CeilToInt",
+      "BreakRandomBrick",
+      "RemoveAt",
+      "Break",
+      "Log",
+      "SetActive"
+    ],
+    "component_access_types": [],
+    "created_types": [
+      "Vector2"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Ceiling HP",
+      "Brick Spawn",
+      "Sprites",
+      "천장 파괴 / 스테이지 클리어"
+    ],
+    "numeric_literals": [
+      100,
+      7,
+      2,
+      1,
+      0.5
+    ],
+    "guessed_roles": [
+      "combat",
+      "runtime",
+      "player",
+      "manager",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "인스펙터 직렬화 필드 사용",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/GroundHp.cs",
+    "path": "ProjectDribble/Assets/Scripts/GroundHp.cs",
+    "file_name": "GroundHp.cs",
+    "content_hash": "6744aa4524fea17a307718fd17a9c09f84227286",
+    "size": 294,
+    "line_count": 20,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "GroundHp",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "GroundHp",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Start",
+      "Update"
+    ],
+    "fields": [],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Start",
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": true,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "UnityEngine",
+      "Start",
+      "Update"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "runtime",
+      "combat"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재",
+      "전투 계열 로직 포함"
+    ]
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/Guage.cs",
     "path": "ProjectDribble/Assets/Scripts/Guage.cs",
     "file_name": "Guage.cs",
@@ -16660,8 +17069,8 @@
     ]
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/IBallHitReceiver.cs",
-    "path": "ProjectDribble/Assets/Scripts/IBallHitReceiver.cs",
+    "file_id": "ProjectDribble/Assets/Scripts/Interfaces/IBallHitReceiver.cs",
+    "path": "ProjectDribble/Assets/Scripts/Interfaces/IBallHitReceiver.cs",
     "file_name": "IBallHitReceiver.cs",
     "content_hash": "f58bbc00803ff8c174996b65c896a0ee388493fc",
     "size": 78,
@@ -17947,7 +18356,7 @@
     "file_id": "ProjectDribble/Assets/Scripts/PaddleController.cs",
     "path": "ProjectDribble/Assets/Scripts/PaddleController.cs",
     "file_name": "PaddleController.cs",
-    "content_hash": "421f2bbc0666e712208e2a082107c513a9f72db8",
+    "content_hash": "c1f7783a45e695fad23a63f0dc28c68d52cfc417",
     "size": 4620,
     "line_count": 146,
     "namespace": "",
@@ -18151,7 +18560,7 @@
       1,
       0.3,
       1,
-      5.5,
+      6.5,
       2,
       3,
       0

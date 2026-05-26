@@ -1686,6 +1686,23 @@
     "risk_score": 48
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "class_name": "CeilingManager",
+    "risk_flags": [
+      "high-coupling",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 48
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
     "class_name": "GaugeManager",
     "risk_flags": [
@@ -2243,6 +2260,19 @@
     "risk_score": 22
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/CeilingBrick.cs",
+    "class_name": "CeilingBrick",
+    "risk_flags": [
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 20
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserShooter.cs",
     "class_name": "LaserShoot",
     "risk_flags": [
@@ -2306,6 +2336,17 @@
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 18
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/CeilingDamager.cs",
+    "class_name": "CeilingDamager",
+    "risk_flags": [
+      "save-load-sensitive"
+    ],
+    "risk_reasons": [
+      "저장/불러오기 관련 로직 포함"
+    ],
+    "risk_score": 12
   },
   {
     "file_id": "ProjectDribble/Assets/Scripts/PaddleSpeedModifier.cs",
@@ -2385,6 +2426,17 @@
     "risk_score": 10
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/GroundHp.cs",
+    "class_name": "GroundHp",
+    "risk_flags": [
+      "update-heavy"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용"
+    ],
+    "risk_score": 10
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/ChargeZone.cs",
     "class_name": "ChargeZone",
     "risk_flags": [
@@ -2424,7 +2476,7 @@
     "risk_score": 0
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/IBallHitReceiver.cs",
+    "file_id": "ProjectDribble/Assets/Scripts/Interfaces/IBallHitReceiver.cs",
     "class_name": "IBallHitReceiver",
     "risk_flags": [],
     "risk_reasons": [],

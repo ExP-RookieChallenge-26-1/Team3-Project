@@ -3,8 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [Header("HP")]
-    [SerializeField] private int maxHp = 10;
+    [Header("Data")]
+    [SerializeField] private HealthData healthData;
 
     private int currentHp;
     private bool isDead = false;
@@ -13,12 +13,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private SpriteRenderer leftGroundRenderer;
     [SerializeField] private SpriteRenderer rightGroundRenderer;
 
-    [SerializeField] private Color fullHpColor = Color.white;
-    [SerializeField] private Color lowHpColor = Color.green;
-
     private void Awake()
     {
-        currentHp = maxHp;
+        currentHp = healthData.playerMaxHp;
         UpdateGroundColor();
     }
 
@@ -28,7 +25,7 @@ public class PlayerHealth : MonoBehaviour
             return;
 
         currentHp -= damage;
-        currentHp = Mathf.Clamp(currentHp, 0, maxHp);
+        currentHp = Mathf.Clamp(currentHp, 0, healthData.playerMaxHp);
 
         Debug.Log($"Player HP: {currentHp}");
 
@@ -42,11 +39,11 @@ public class PlayerHealth : MonoBehaviour
 
     private void UpdateGroundColor()
     {
-        float hpRatio = currentHp / (float)maxHp;
+        float hpRatio = currentHp / (float)healthData.playerMaxHp;
 
         Color currentColor = Color.Lerp(
-            lowHpColor,
-            fullHpColor,
+            healthData.lowHpColor,
+            healthData.fullHpColor,
             hpRatio
         );
 

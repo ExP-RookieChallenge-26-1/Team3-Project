@@ -3,13 +3,12 @@ using UnityEngine;
 
 public class BlockDamageZone : MonoBehaviour
 {
+    [Header("Data")]
+    [SerializeField] private HealthData healthData;
+
     [Header("References")]
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private BoxCollider2D zoneCollider;
-
-    [Header("Damage")]
-    [SerializeField] private int damagePerTick = 1;
-    [SerializeField] private float damageInterval = 1f;
 
     [Header("Detect")]
     [SerializeField] private LayerMask blockLayerMask;
@@ -22,6 +21,13 @@ public class BlockDamageZone : MonoBehaviour
     {
         if (zoneCollider == null)
             zoneCollider = GetComponent<BoxCollider2D>();
+
+        if (zoneCollider == null)
+        {
+            Debug.LogError($"{name}에 BoxCollider2D가 없습니다.");
+            enabled = false;
+            return;
+        }
     }
 
     private void Update()
@@ -36,11 +42,11 @@ public class BlockDamageZone : MonoBehaviour
 
         damageTimer += Time.deltaTime;
 
-        if (damageTimer >= damageInterval)
+        if (damageTimer >= healthData.damageInterval)
         {
             damageTimer = 0f;
 
-            playerHealth.TakeDamage(damagePerTick);
+            playerHealth.TakeDamage(healthData.damagePerTick);
             
         }
     }
@@ -71,17 +77,5 @@ public class BlockDamageZone : MonoBehaviour
 
             detectedBlocks.Add(block);
         }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        if (zoneCollider == null)
-            zoneCollider = GetComponent<BoxCollider2D>();
-
-        if (zoneCollider == null)
-            return;
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(zoneCollider.bounds.center, zoneCollider.bounds.size);
     }
 }

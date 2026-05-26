@@ -4,8 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class CeilingManager : MonoBehaviour
 {
-    [Header("Ceiling HP")]
-    [SerializeField] private int maxHp = 100;
+    [Header("Data")]
+    [SerializeField] private HealthData healthData;
+
     private int currentHp;
 
     [Header("Brick Spawn")]
@@ -25,7 +26,8 @@ public class CeilingManager : MonoBehaviour
 
     private void Start()
     {
-        currentHp = maxHp;
+        currentHp = healthData.ceilingMaxHp;
+
         CreateCeilingBricks();
 
         totalBrickCount = aliveBricks.Count;
@@ -65,9 +67,8 @@ public class CeilingManager : MonoBehaviour
     public void TakeDamage(int damage, CeilingBrick hitBrick)
     {
         currentHp -= damage;
-        currentHp = Mathf.Clamp(currentHp, 0, maxHp);
+        currentHp = Mathf.Clamp(currentHp, 0, healthData.ceilingMaxHp);
 
-        
         UpdateBrokenBricksByHpRatio();
 
         if (currentHp <= 0)
@@ -78,7 +79,7 @@ public class CeilingManager : MonoBehaviour
 
     private void UpdateBrokenBricksByHpRatio()
     {
-        float hpRatio = currentHp / (float)maxHp;
+        float hpRatio = currentHp / (float)healthData.ceilingMaxHp;
         int targetAliveCount = Mathf.CeilToInt(totalBrickCount * hpRatio);
 
         while (aliveBricks.Count > targetAliveCount)
@@ -104,7 +105,6 @@ public class CeilingManager : MonoBehaviour
     {
         Debug.Log("천장 파괴 / 스테이지 클리어");
         Invoke(nameof(RestartScene), 1f);
-        
     }
 
     private void RestartScene()

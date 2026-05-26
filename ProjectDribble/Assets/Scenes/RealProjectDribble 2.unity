@@ -234,14 +234,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 99345688}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1169768075}
   - {fileID: 1247640123}
-  m_Father: {fileID: 4970976747851473168}
+  m_Father: {fileID: 3019606844128198322}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &949227554
 GameObject:
@@ -1172,7 +1172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7724e34210dd70428b8294e454edaf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CeilingManager
-  maxHp: 130
+  healthData: {fileID: 11400000, guid: 117f7251e9974744096b222ffafdf8bc, type: 2}
   ceilingBrickPrefab: {fileID: 6450190104311429135, guid: 70d54978defbfd6429c5e5f4038c4cc8, type: 3}
   columnCount: 7
   rowCount: 2
@@ -1724,10 +1724,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6097537737299600355}
   - {fileID: 9059070479574643173}
   - {fileID: 4727541033041821518}
   - {fileID: 4311641027604904549}
-  - {fileID: 6097537737299600355}
+  - {fileID: 99345689}
   m_Father: {fileID: 4970976747851473168}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3171635610435208423
@@ -2355,7 +2356,6 @@ Transform:
   m_Children:
   - {fileID: 3019606844128198322}
   - {fileID: 3171635610435208423}
-  - {fileID: 99345689}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4979493474648238134
@@ -2835,11 +2835,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24b971d2b0bb4215b904d805d774cf0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  maxHp: 10
+  healthData: {fileID: 11400000, guid: 117f7251e9974744096b222ffafdf8bc, type: 2}
   leftGroundRenderer: {fileID: 1169768074}
   rightGroundRenderer: {fileID: 1247640126}
-  fullHpColor: {r: 1, g: 1, b: 1, a: 1}
-  lowHpColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!4 &6097537737299600355
 Transform:
   m_ObjectHideFlags: 0
@@ -3920,10 +3918,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57b975c9a9044aa479f2070582759f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GroundHp
+  healthData: {fileID: 11400000, guid: 117f7251e9974744096b222ffafdf8bc, type: 2}
   playerHealth: {fileID: 5988251570761651997}
   zoneCollider: {fileID: 8495157055083633254}
-  damagePerTick: 1
-  damageInterval: 1
   blockLayerMask:
     serializedVersion: 2
     m_Bits: 8

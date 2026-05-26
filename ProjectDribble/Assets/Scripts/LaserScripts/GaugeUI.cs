@@ -70,7 +70,7 @@ public class GaugeUI : MonoBehaviour
         }
 
         gaugeBar.localScale = new Vector3(
-            maxGaugeScale.x * percent,
+            maxGaugeScale.x * (1 - percent),
             maxGaugeScale.y,
             maxGaugeScale.z
         );

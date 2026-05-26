@@ -37,8 +37,7 @@ public class ChargeZone : MonoBehaviour
             return;
 
         isDribbling = value;
-
-        Debug.Log("드리블 상태 변경: " + isDribbling);
+        
 
         OnDribblingChanged?.Invoke(isDribbling);
     }

@@ -50,7 +50,6 @@ public class GaugeManager : MonoBehaviour
             _data.maxGaugeSegments
         );
 
-        Debug.Log(FilledGaugeSegments + " 게이지 세그먼트");
     }
 
     public void AddGauge()

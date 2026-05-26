@@ -68,9 +68,10 @@ public class BlockCell : MonoBehaviour,
         // 반사는 BallCollisionHandler에서 기본 반사 처리함.
     }
 
-    public void OnLaserHit()
+    public bool OnLaserHit()
     {
         manager.RemoveBlock(coord);
+        return isFixed;
     }
 
     public bool TakeDamage(int damage)
@@ -85,6 +86,11 @@ public class BlockCell : MonoBehaviour,
         if (hp <= 0)
         {
             manager.RemoveBlock(coord);
+            if (hp == 0)
+            {
+                return false;
+            }
+
             return true;
         }
 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Interfaces;
+using UnityEngine;
 
 public class LaserBlockEraser : MonoBehaviour
 {
@@ -60,32 +61,31 @@ public class LaserBlockEraser : MonoBehaviour
             if (cellCenter.y > endY)
                 continue;
 
-            BlockCell block = FindBlockCellAtCoord(coord);
+            ILaserHittable laserTarget = FindLaserTargetAtCoord(coord);
 
-            if (block == null)
+            if (laserTarget == null)
             {
-                Debug.LogWarning("occupied는 true인데 BlockCell을 찾지 못함: " + coord);
+                Debug.LogWarning("occupied는 true인데 ILaserHittable을 찾지 못함: " + coord);
                 continue;
             }
 
-            if (block.IsFixed)
+            bool isBlocked = laserTarget.OnLaserHit();
+
+            if (isBlocked)
             {
                 float cellHeight = blockManager.GetCellHeight();
 
-                // 고정 블럭을 만나면 이 column만 막힘.
+                // 이 column만 여기서 막힘.
                 // 옆 column은 계속 진행됨.
                 return cellCenter.y - cellHeight * 0.5f;
             }
-
-            // 일반 블럭이면 BlockCell의 레이저 반응 함수 호출.
-            block.OnLaserHit();
         }
 
-        
         // 이 column은 끝까지 막히지 않음.
         return endY;
     }
-    private BlockCell FindBlockCellAtCoord(Vector2Int coord)
+
+    private ILaserHittable FindLaserTargetAtCoord(Vector2Int coord)
     {
         Vector3 cellCenter = blockManager.GridToWorld(coord);
         Vector2 cellSize = blockManager.GetCellSize();
@@ -99,6 +99,6 @@ public class LaserBlockEraser : MonoBehaviour
         if (hit == null)
             return null;
 
-        return hit.GetComponentInParent<BlockCell>();
+        return hit.GetComponentInParent<ILaserHittable>();
     }
 }

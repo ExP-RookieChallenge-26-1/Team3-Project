@@ -4,7 +4,8 @@ using UnityEngine;
 public class LaserShoot : MonoBehaviour
 {
     [SerializeField] private LaserData laserData;
-    [SerializeField] private LaserBlockEraser laserBlockEraser; 
+    [SerializeField] private LaserBlockEraser laserBlockEraser;
+    [SerializeField] private BallController ballController;
     [SerializeField] private Transform ball;
     [SerializeField] private Transform firePoint;
     public void ShootLaser(int chargeCount)
@@ -26,6 +27,7 @@ public class LaserShoot : MonoBehaviour
             laserEndPoint - Vector2.up * laserData.ballSpawnBackOffset;
 
         ball.position = newBallPosition;
+        ballController.SetBallDirection(0,-1);
         
     }
     

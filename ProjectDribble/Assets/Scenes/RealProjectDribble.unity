@@ -1758,6 +1758,7 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: b143fb238f2394044b1362773bdb5d77, type: 2}
   gridArea: {fileID: 6122753485179795921}
   blockPool: {fileID: 1815667933250341828}
+  gaugeManager: {fileID: 0}
 --- !u!1971053207 &4615708149781353790
 SpriteShapeRenderer:
   serializedVersion: 2
@@ -1890,6 +1891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LaserShoot
   laserData: {fileID: 11400000, guid: 0379fc37ebdf6b94abba4c8925f4a626, type: 2}
   laserBlockEraser: {fileID: 5809704192425365442}
+  ballController: {fileID: 0}
   ball: {fileID: 3171635610435208423}
   firePoint: {fileID: 9059070479574643173}
 --- !u!4 &5265716868967427068

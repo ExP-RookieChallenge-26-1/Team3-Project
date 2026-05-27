@@ -4,6 +4,7 @@ using UnityEngine.U2D;
 
 public class PaddleMovement : MonoBehaviour
 {
+    [SerializeField] private PointerInputReader inputReader;
     [SerializeField] private float activeCollisionEnabled = 1f;
     private float transparentAlpha = 0.3f;
     private Camera mainCamera;
@@ -48,9 +49,9 @@ public class PaddleMovement : MonoBehaviour
 
     void Update()
     {
-        if (Mouse.current.leftButton.isPressed)
+        if (inputReader != null && inputReader.IsPressed)
         {
-            MovePad();
+            MovePad(inputReader.ScreenPosition);
             SetPaddleAlpha("paddle_up",1.0f);
             SetPaddleAlpha("roof_paddle",1.0f);
             SetPaddleCollider("paddle_up",true);
@@ -65,17 +66,35 @@ public class PaddleMovement : MonoBehaviour
         }
     }
 
-    void MovePad()
+    void MovePad(Vector2 screenPosition) // 모바일 터치를 위해서 수정
     {
-        // 마우스 위치 읽기
-        Vector2 mousePixelPos = Mouse.current.position.ReadValue();
-        Vector3 mousePos = mainCamera.ScreenToWorldPoint(new Vector3(mousePixelPos.x, mousePixelPos.y, -mainCamera.transform.position.z));
-        
-        Vector3 targetPos = new Vector3(mousePos.x, transform.position.y, transform.position.z);
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
+        Vector3 worldPos = mainCamera.ScreenToWorldPoint(
+            new Vector3(
+                screenPosition.x,
+                screenPosition.y,
+                -mainCamera.transform.position.z
+            )
+        );
+
+        Vector3 targetPos = new Vector3(
+            worldPos.x,
+            transform.position.y,
+            transform.position.z
+        );
+
+        transform.position = Vector3.MoveTowards(
+            transform.position,
+            targetPos,
+            moveSpeed * Time.deltaTime
+        );
 
         float clampedX = Mathf.Clamp(transform.position.x, -6.5f, 6.5f);
-        transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
+
+        transform.position = new Vector3(
+            clampedX,
+            transform.position.y,
+            transform.position.z
+        );
     }
 
     public void SetPaddleAlpha(string childName, float alpha)

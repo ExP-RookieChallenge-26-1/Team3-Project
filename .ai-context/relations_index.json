@@ -20988,13 +20988,6 @@
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/BallData.cs",
     "from_class": "BallData",
-    "to_type": "PaddleSpeedIncrease",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/BallData.cs",
-    "from_class": "BallData",
     "to_type": "Scriptable",
     "relation_type": "uses",
     "strength": 1
@@ -25524,7 +25517,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/PaddleSpeedModifier.cs",
     "from_class": "PaddleSpeedModifier",
+    "to_type": "BallData",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleSpeedModifier.cs",
+    "from_class": "PaddleSpeedModifier",
     "to_type": "BallSpeedController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleSpeedModifier.cs",
+    "from_class": "PaddleSpeedModifier",
+    "to_type": "float",
     "relation_type": "uses",
     "strength": 1
   },
@@ -25546,6 +25553,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/PaddleSpeedModifier.cs",
     "from_class": "PaddleSpeedModifier",
     "to_type": "ModifySpeed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleSpeedModifier.cs",
+    "from_class": "PaddleSpeedModifier",
+    "to_type": "Start",
     "relation_type": "uses",
     "strength": 1
   },

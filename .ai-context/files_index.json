@@ -14347,9 +14347,9 @@
     "file_id": "ProjectDribble/Assets/ScriptableObjects/Scripts/BallData.cs",
     "path": "ProjectDribble/Assets/ScriptableObjects/Scripts/BallData.cs",
     "file_name": "BallData.cs",
-    "content_hash": "79cd50b6866d2d2bb1a6957c3ad538b817e67364",
-    "size": 377,
-    "line_count": 13,
+    "content_hash": "507766b4339fe95291d91c1108ee14d6c25a50d5",
+    "size": 435,
+    "line_count": 15,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -14394,7 +14394,14 @@
         "is_static": false
       },
       {
-        "name": "PaddleSpeedIncrease",
+        "name": "outerPaddleSpeedIncrease",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "innerPaddleSpeedIncrease",
         "type": "float",
         "access": "public",
         "serialized": false,
@@ -14426,7 +14433,7 @@
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 0,
-    "public_field_count": 6,
+    "public_field_count": 7,
     "get_component_count": 0,
     "find_call_count": 0,
     "new_keyword_count": 0,
@@ -14439,7 +14446,6 @@
       "CreateAssetMenu",
       "Scriptable",
       "Objects",
-      "PaddleSpeedIncrease",
       "BlockSpeedDecrease",
       "DamageMultiplier"
     ],
@@ -14651,9 +14657,9 @@
     "file_id": "ProjectDribble/Assets/ScriptableObjects/Scripts/PaddleData.cs",
     "path": "ProjectDribble/Assets/ScriptableObjects/Scripts/PaddleData.cs",
     "file_name": "PaddleData.cs",
-    "content_hash": "cc62b7f803dbd83f66f29f6c8e700f180be9d28f",
-    "size": 384,
-    "line_count": 11,
+    "content_hash": "94ac6890dbe12339044bf48a4030cf38264e58d7",
+    "size": 433,
+    "line_count": 12,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -14684,7 +14690,14 @@
         "is_static": false
       },
       {
-        "name": "maxBounceAngle",
+        "name": "outerMaxBounceAngle",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "innerMaxBounceAngle",
         "type": "float",
         "access": "public",
         "serialized": false,
@@ -14702,7 +14715,7 @@
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 0,
-    "public_field_count": 2,
+    "public_field_count": 3,
     "get_component_count": 0,
     "find_call_count": 0,
     "new_keyword_count": 0,
@@ -15724,8 +15737,8 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
     "file_name": "BallSpeedController.cs",
-    "content_hash": "8652122b65a0021677f1ea2bcf184cdd5f764964",
-    "size": 2683,
+    "content_hash": "98f7925454dc4984c8c4e1923377032b640a33b1",
+    "size": 2690,
     "line_count": 103,
     "namespace": "",
     "using_list": [
@@ -18229,9 +18242,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/PaddleBallReflector.cs",
     "path": "ProjectDribble/Assets/Scripts/PaddleBallReflector.cs",
     "file_name": "PaddleBallReflector.cs",
-    "content_hash": "840e88f82ff7a465187959f7cc5ef9efb3b7b4e0",
-    "size": 981,
-    "line_count": 40,
+    "content_hash": "1fc939d75ee83d54fd97899f03056ab3fabd994e",
+    "size": 1124,
+    "line_count": 45,
     "namespace": "",
     "using_list": [
       "Interfaces",
@@ -18333,7 +18346,8 @@
     "created_types": [],
     "singleton_access_types": [],
     "string_literals": [
-      "Reflect Direction"
+      "Reflect Direction",
+      "roof_paddle"
     ],
     "numeric_literals": [
       2,
@@ -18586,9 +18600,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/PaddleSpeedModifier.cs",
     "path": "ProjectDribble/Assets/Scripts/PaddleSpeedModifier.cs",
     "file_name": "PaddleSpeedModifier.cs",
-    "content_hash": "fc4421b2b715f97bde9a8f7f68dedc777335d06d",
-    "size": 295,
-    "line_count": 12,
+    "content_hash": "7ffb392aa94c785819c89c52121b784fa77eb2f1",
+    "size": 519,
+    "line_count": 24,
     "namespace": "",
     "using_list": [
       "Interfaces",
@@ -18614,21 +18628,39 @@
     "main_class_name": "PaddleSpeedModifier",
     "unity_type": "MonoBehaviour",
     "methods": [
+      "Start",
       "ModifySpeed"
     ],
-    "fields": [],
+    "fields": [
+      {
+        "name": "data",
+        "type": "BallData",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "speedIncrease",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
     "properties": [],
     "events": [],
-    "unity_messages": [],
+    "unity_messages": [
+      "Start"
+    ],
     "has_update": false,
     "has_fixed_update": false,
     "has_late_update": false,
     "has_awake": false,
-    "has_start": false,
+    "has_start": true,
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 0,
-    "public_field_count": 0,
+    "public_field_count": 1,
     "get_component_count": 0,
     "find_call_count": 0,
     "new_keyword_count": 0,
@@ -18636,9 +18668,12 @@
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
+      "BallData",
+      "float",
       "Interfaces",
       "UnityEngine",
       "IBallSpeedModifier",
+      "Start",
       "ModifySpeed",
       "BallSpeedController",
       "AddSpeed"
@@ -18646,17 +18681,16 @@
     "component_access_types": [],
     "created_types": [],
     "singleton_access_types": [],
-    "string_literals": [],
-    "numeric_literals": [
-      5
+    "string_literals": [
+      "roof_paddle"
     ],
+    "numeric_literals": [],
     "guessed_roles": [
-      "save-load",
-      "runtime"
+      "runtime",
+      "data"
     ],
     "summary_signals": [
-      "런타임 컴포넌트",
-      "저장/불러오기 관련 로직 포함"
+      "런타임 컴포넌트"
     ]
   },
   {

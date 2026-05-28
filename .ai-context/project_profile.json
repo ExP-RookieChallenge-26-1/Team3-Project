@@ -11,14 +11,14 @@
   "singleton_candidates": 0,
   "manager_like_classes": 42,
   "ui_related_classes": 77,
-  "save_load_related_classes": 67,
+  "save_load_related_classes": 66,
   "role_counts": {
     "runtime": 121,
     "player": 59,
     "combat": 92,
-    "save-load": 67,
+    "save-load": 66,
     "manager": 40,
-    "data": 43,
+    "data": 44,
     "ui": 77,
     "scene": 2,
     "network": 2

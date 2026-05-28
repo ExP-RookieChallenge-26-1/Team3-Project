@@ -878,9 +878,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.16666666
     y: 0
-    width: 1
+    width: 0.6666666
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -1302,7 +1302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb02a98df8da476ea6fff758e9a21367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaddleSpeedModifier
-  speedIncrease: 8
+  data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
 --- !u!4 &268038522320780690
 Transform:
   m_ObjectHideFlags: 0
@@ -1679,7 +1679,7 @@ MonoBehaviour:
   skinWidth: 0.1
   _outsideMaxBounceAngle: 50
   _insideMaxBounceAngle: 60
-  data: {fileID: 11400000, guid: 54b931febcc33ad4c8a764de402b55e5, type: 2}
+  data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
   moveDistance: 0
 --- !u!1 &2380388176305477121
 GameObject:
@@ -1979,7 +1979,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb02a98df8da476ea6fff758e9a21367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaddleSpeedModifier
-  speedIncrease: 8
+  data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
 --- !u!114 &3691128700249804780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1992,7 +1992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb02a98df8da476ea6fff758e9a21367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaddleSpeedModifier
-  speedIncrease: 8
+  data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
 --- !u!114 &3735814449434435070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3439,7 +3439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ffa797f56a5a0468b46618216ce79e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallSpeedController
-  data: {fileID: 11400000, guid: 54b931febcc33ad4c8a764de402b55e5, type: 2}
+  data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
 --- !u!4 &8279302420138287470
 Transform:
   m_ObjectHideFlags: 0
@@ -3844,7 +3844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99dee2c176ea9d47a9d401387d5ac65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallPowerController
-  data: {fileID: 11400000, guid: 54b931febcc33ad4c8a764de402b55e5, type: 2}
+  data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
 --- !u!1 &8736495040494826391
 GameObject:
   m_ObjectHideFlags: 0

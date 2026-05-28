@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0127b42207167a4fac8693b6c5836c8, type: 3}
   m_Name: BallData
   m_EditorClassIdentifier: Assembly-CSharp::BallData
-  baseSpeed: 40
-  maxSpeed: 80
+  baseSpeed: 30
+  maxSpeed: 55
   ballDamage: 1
-  PaddleSpeedIncrease: 5
-  BlockSpeedDecrease: -10
-  DamageMultiplier: 0.25
+  outerPaddleSpeedIncrease: 5
+  innerPaddleSpeedIncrease: 5
+  BlockSpeedDecrease: -5
+  DamageMultiplier: 0.2

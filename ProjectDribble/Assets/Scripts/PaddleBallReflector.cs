@@ -14,7 +14,12 @@ public class PaddleBallReflector : MonoBehaviour, IBallReflector
 
     void Start()
     {
-        maxBounceAngle = data.maxBounceAngle;
+        if (gameObject.name == "roof_paddle")
+            maxBounceAngle = data.outerMaxBounceAngle;
+        else
+        {
+            maxBounceAngle = data.innerMaxBounceAngle;
+        }
         paddleWidth = data.collisionPaddleWidth;
     }
 

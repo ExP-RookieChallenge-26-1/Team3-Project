@@ -3215,6 +3215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4970976747851473168}
   - component: {fileID: 5988251570761651997}
+  - component: {fileID: 5988251570761651998}
   m_Layer: 0
   m_Name: PlayerRoot
   m_TagString: Untagged
@@ -3237,6 +3238,22 @@ MonoBehaviour:
   healthData: {fileID: 11400000, guid: 117f7251e9974744096b222ffafdf8bc, type: 2}
   leftGroundRenderer: {fileID: 1169768074}
   rightGroundRenderer: {fileID: 1247640126}
+--- !u!114 &5988251570761651998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5988251570761651996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df6d3ee96e3244ecb3e031fcff51994d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BallRecallInput
+  ballRespawner: {fileID: 8720353550579785846}
+  minSwipeDistance: 80
+  verticalDominance: 1.5
+  holdDuration: 0.4
 --- !u!4 &6097537737299600355
 Transform:
   m_ObjectHideFlags: 0
@@ -4540,6 +4557,7 @@ GameObject:
   - component: {fileID: 8198340417991375921}
   - component: {fileID: 8720353550579785844}
   - component: {fileID: 8720353550579785845}
+  - component: {fileID: 8720353550579785846}
   m_Layer: 0
   m_Name: ball
   m_TagString: Ball
@@ -4682,6 +4700,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a9da6c08e0a49d4dbca18f135c9dd8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallSpawnController
+  ballMovement: {fileID: 2358190074791870190}
+--- !u!114 &8720353550579785846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8673730412575904137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0578ee380ebe48e0b0db65f1cf0a5033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BallRespawner
+  upperPaddle: {fileID: 9059070479574643173}
+  lowerPaddle: {fileID: 4311641027604904549}
+  ballSpawnController: {fileID: 8720353550579785845}
+  recallStartSpeed: 8
+  recallStartDirection: {x: 0, y: 1}
+  ballController: {fileID: 8185791647005175377}
   ballMovement: {fileID: 2358190074791870190}
 --- !u!1 &8736495040494826391
 GameObject:

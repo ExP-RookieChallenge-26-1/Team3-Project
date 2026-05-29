@@ -21,15 +21,13 @@ public class BallSpawnController : MonoBehaviour
 
     public void InitializeBall(
         Vector2 worldPosition,
-        Vector2 startDirection,
-        float startSpeed
+        Vector2 startDirection
     )
     {
         lastStartPosition = worldPosition;
         lastStartDirection = startDirection.sqrMagnitude > 0f
             ? startDirection.normalized
             : Vector2.down;
-        lastStartSpeed = startSpeed;
 
         transform.position = worldPosition;
 
@@ -41,12 +39,13 @@ public class BallSpawnController : MonoBehaviour
         if (ballMovement != null)
         {
             ballMovement.ResetMovementState();
-            ballMovement.SetBallSpeed(startSpeed);
+            ballMovement.SetBallSpeed(); //base speed로
         }
     }
 
+    
     public void ResetBallState()
     {
-        InitializeBall(lastStartPosition, lastStartDirection, lastStartSpeed);
+        InitializeBall(lastStartPosition, lastStartDirection);
     }
 }

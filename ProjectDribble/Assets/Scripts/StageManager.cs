@@ -142,8 +142,7 @@ public class StageManager : MonoBehaviour
         {
             ballSpawnController.InitializeBall(
                 data.ballStartPosition,
-                data.ballStartDirection,
-                data.ballStartSpeed
+                data.ballStartDirection
             );
         }
     }

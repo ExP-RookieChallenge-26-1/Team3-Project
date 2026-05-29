@@ -163,9 +163,13 @@ public class BallMovement : MonoBehaviour
 
 
     // 공 현재 속도
-    public void SetBallSpeed(float amount)
+    public void SetBallSpeed(float amount = -1)
     {
-        speed = amount;
+        if (amount < 0)
+        {
+            speed = baseSpeed;
+        }
+        else{speed = amount;}
     }
     public void AddBallSpeed(float amount)
     {

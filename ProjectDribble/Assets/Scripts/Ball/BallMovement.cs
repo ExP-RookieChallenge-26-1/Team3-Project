@@ -22,6 +22,9 @@ public class BallMovement : MonoBehaviour
     float baseSpeed;
     float maxSpeed;
     float ballDamage;
+    float initialSpeed;
+    float initialBaseSpeed;
+    float initialMaxSpeed;
 
     void Start()
     {
@@ -33,6 +36,10 @@ public class BallMovement : MonoBehaviour
         baseSpeed = data.baseSpeed;
         maxSpeed = data.maxSpeed;
         ballDamage = data.ballDamage;
+
+        initialSpeed = speed;
+        initialBaseSpeed = baseSpeed;
+        initialMaxSpeed = maxSpeed;
     }
 
     // Update is called once per frame
@@ -183,6 +190,13 @@ public class BallMovement : MonoBehaviour
     public void AddBallMaxSpeed(float amount)
     {
         maxSpeed += amount;
+    }
+
+    public void ResetMovementState()
+    {
+        speed = initialSpeed;
+        baseSpeed = initialBaseSpeed;
+        maxSpeed = initialMaxSpeed;
     }
     
 }

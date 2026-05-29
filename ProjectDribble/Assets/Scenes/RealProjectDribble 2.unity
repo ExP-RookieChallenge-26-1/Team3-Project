@@ -412,6 +412,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 977133736}
+  - component: {fileID: 977133737}
   m_Layer: 0
   m_Name: StageManager
   m_TagString: Untagged
@@ -434,6 +435,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &977133737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977133735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d2bf405a8d17bb46825d82fed7e0cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageManager
+  stages:
+  - {fileID: 11400000, guid: f6d0b059c7b03354a8259b6601fd6d0e, type: 2}
+  - {fileID: 11400000, guid: 6f9f7bebaa6fdb843bd33df6a9f38dbd, type: 2}
+  startStageIndex: 0
+  ceilingManager: {fileID: 22802466009801029}
+  playerHealth: {fileID: 5988251570761651997}
+  blockManager: {fileID: 4361603370357834238}
+  gaugeManager: {fileID: 3735814449434435070}
+  ballSpawnController: {fileID: 8720353550579785845}
 --- !u!1 &1168435297
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,10 +936,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
   bgmSource: {fileID: 1766143808}
   sfxSource: {fileID: 179826586}
-  audioClipNames:
-  - 
-  - 
-  - 
+  soundDatas:
+  - soundId: 1
+    soundType: 1
+    clip: {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
+    volume: 1
+    basePitch: 1
+    usePitchByRatio: 1
+    minPitch: 0.8
+    maxPitch: 1.3
 --- !u!1 &1267497279
 GameObject:
   m_ObjectHideFlags: 0
@@ -2111,8 +2138,8 @@ Transform:
   m_GameObject: {fileID: 8673730412575904137}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0014079, y: -11.379, z: 1.0577}
-  m_LocalScale: {x: 1.1282, y: 1.1282, z: 1.1282}
+  m_LocalPosition: {x: 0, y: -11.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4970976747851473168}
@@ -4512,6 +4539,7 @@ GameObject:
   - component: {fileID: 3211453147680052799}
   - component: {fileID: 8198340417991375921}
   - component: {fileID: 8720353550579785844}
+  - component: {fileID: 8720353550579785845}
   m_Layer: 0
   m_Name: ball
   m_TagString: Ball
@@ -4642,6 +4670,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallPowerController
   data: {fileID: 11400000, guid: 54b931febcc33ad4c8a764de402b55e5, type: 2}
+--- !u!114 &8720353550579785845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8673730412575904137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a9da6c08e0a49d4dbca18f135c9dd8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BallSpawnController
+  ballMovement: {fileID: 2358190074791870190}
 --- !u!1 &8736495040494826391
 GameObject:
   m_ObjectHideFlags: 0

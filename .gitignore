@@ -105,3 +105,8 @@ InitTestScene*.unity*
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
 PaddlePrototype/Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Roboto-Bold SDF.asset
+/ProjectDribble/.agents
+/ProjectDribble/.codex
+/ProjectDribble/Assets/Plugins
+ProjectDribble/Assets/Plugins.meta
+ProjectDribble/ProjectSettings/ProjectSettings.asset

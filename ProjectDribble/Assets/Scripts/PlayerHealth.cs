@@ -1,21 +1,39 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+using System;
+using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public event Action OnPlayerDead;
+
     [Header("Data")]
     [SerializeField] private HealthData healthData;
 
     private int currentHp;
-    private bool isDead = false;
+    private int runtimeMaxHp;
+    private bool isDead;
 
     [Header("Ground Visual")]
     [SerializeField] private SpriteRenderer leftGroundRenderer;
     [SerializeField] private SpriteRenderer rightGroundRenderer;
 
+    public int CurrentHp => currentHp;
+    public int MaxHp => runtimeMaxHp;
+
     private void Awake()
     {
-        currentHp = healthData.playerMaxHp;
+        InitializePlayerHealth(healthData.playerMaxHp);
+    }
+
+    public void InitializePlayerHealth(int maxHp)
+    {
+        runtimeMaxHp = Mathf.Max(1, maxHp);
+        ResetPlayerHealth();
+    }
+
+    public void ResetPlayerHealth()
+    {
+        isDead = false;
+        currentHp = runtimeMaxHp > 0 ? runtimeMaxHp : Mathf.Max(1, healthData.playerMaxHp);
         UpdateGroundColor();
     }
 
@@ -25,10 +43,9 @@ public class PlayerHealth : MonoBehaviour
             return;
 
         currentHp -= damage;
-        currentHp = Mathf.Clamp(currentHp, 0, healthData.playerMaxHp);
+        currentHp = Mathf.Clamp(currentHp, 0, runtimeMaxHp);
 
         Debug.Log($"Player HP: {currentHp}");
-
         UpdateGroundColor();
 
         if (currentHp <= 0)
@@ -39,7 +56,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void UpdateGroundColor()
     {
-        float hpRatio = currentHp / (float)healthData.playerMaxHp;
+        float hpRatio = currentHp / (float)runtimeMaxHp;
 
         Color currentColor = Color.Lerp(
             healthData.lowHpColor,
@@ -56,16 +73,11 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
+        if (isDead)
+            return;
+
         isDead = true;
-
-        Debug.Log("Game Over - Restart Scene");
-
-        RestartScene();
-    }
-
-    private void RestartScene()
-    {
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.name);
+        Debug.Log("Game Over");
+        OnPlayerDead?.Invoke();
     }
 }

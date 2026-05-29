@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 
 public enum SoundType
@@ -9,20 +10,18 @@ public enum SoundType
 
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager Instance { get; private set; } 
-    //싱글톤
-    // 다른 소리 트리거하는 쪽에서 Instance에 get은 할 수 있지만 set은 못하도록
+    public static SoundManager Instance { get; private set; }
 
     [Header("Audio Sources")]
     [SerializeField] private AudioSource bgmSource;
     [SerializeField] private AudioSource sfxSource;
 
-    [Header("Preload Clip Names")]
-    [SerializeField] private string[] audioClipNames;
+    [Header("Sound Data")]
+    [SerializeField] private SoundData[] soundDatas;
 
-    private readonly Dictionary<string, AudioClip> _clipDict = new();
+    private readonly Dictionary<SoundId, SoundData> soundDataDict = new();
 
-    private void Awake() //싱글톤
+    private void Awake()
     {
         if (Instance != null && Instance != this)
         {
@@ -40,39 +39,62 @@ public class SoundManager : MonoBehaviour
     {
         if (bgmSource != null)
             bgmSource.loop = true;
-        // bgm은 기본이 루프니까
 
-        foreach (string clipName in audioClipNames)
+        soundDataDict.Clear();
+
+        foreach (SoundData data in soundDatas)
         {
-            GetClip(clipName);
+            if (data == null)
+                continue;
+
+            if (soundDataDict.ContainsKey(data.soundId))
+            {
+                Debug.LogWarning($"SoundManager: {data.soundId}가 중복 등록되었습니다.");
+                continue;
+            }
+
+            soundDataDict.Add(data.soundId, data);
         }
     }
 
-    public void Play2D(
-        string clipName,
-        SoundType type = SoundType.SFX,
-        float pitch = 1f
-    )
+    public void Play2D(SoundId id, float pitchRatio = -1f)
     {
-        AudioClip clip = GetClip(clipName);
-
-        if (clip == null)
+        if (!soundDataDict.TryGetValue(id, out SoundData data))
         {
-            Debug.LogWarning($"SoundManager: {clipName} 클립을 찾을 수 없습니다.");
+            Debug.LogWarning($"SoundManager: {id} 사운드 데이터가 없습니다.");
             return;
         }
 
-        if (type == SoundType.BGM)
+        if (data.clip == null)
         {
-            PlayBGM(clip, pitch);
+            Debug.LogWarning($"SoundManager: {id} AudioClip이 비어 있습니다.");
+            return;
+        }
+
+        float pitch = GetPitch(data, pitchRatio);
+
+        if (data.soundType == SoundType.BGM)
+        {
+            PlayBGM(data.clip, pitch, data.volume);
         }
         else
         {
-            PlaySFX(clip, pitch);
+            PlaySFX(data.clip, pitch, data.volume);
         }
     }
 
-    private void PlayBGM(AudioClip clip, float pitch)
+    private float GetPitch(SoundData data, float pitchRatio)
+    {
+        if (data.usePitchByRatio && pitchRatio >= 0f)
+        {
+            pitchRatio = Mathf.Clamp01(pitchRatio);
+            return Mathf.Lerp(data.minPitch, data.maxPitch, pitchRatio);
+        }
+
+        return data.basePitch;
+    }
+
+    private void PlayBGM(AudioClip clip, float pitch, float volume)
     {
         if (bgmSource == null)
         {
@@ -84,11 +106,12 @@ public class SoundManager : MonoBehaviour
             bgmSource.Stop();
 
         bgmSource.pitch = pitch;
+        bgmSource.volume = volume;
         bgmSource.clip = clip;
         bgmSource.Play();
     }
 
-    private void PlaySFX(AudioClip clip, float pitch) 
+    private void PlaySFX(AudioClip clip, float pitch, float volume)
     {
         if (sfxSource == null)
         {
@@ -97,10 +120,11 @@ public class SoundManager : MonoBehaviour
         }
 
         sfxSource.pitch = pitch;
+        sfxSource.volume = volume;
         sfxSource.PlayOneShot(clip);
     }
 
-    public void StopBGM() // 나중에 UI에 연결
+    public void StopBGM()
     {
         if (bgmSource == null)
             return;
@@ -108,7 +132,7 @@ public class SoundManager : MonoBehaviour
         bgmSource.Stop();
     }
 
-    public void SetVolume(SoundType type, float volume) // 나중에 UI에 연결
+    public void SetVolume(SoundType type, float volume)
     {
         volume = Mathf.Clamp01(volume);
 
@@ -122,28 +146,5 @@ public class SoundManager : MonoBehaviour
             if (sfxSource != null)
                 sfxSource.volume = volume;
         }
-    }
-
-    public AudioClip GetClip(string clipName)
-    {
-        if (string.IsNullOrEmpty(clipName))
-            return null;
-
-        if (_clipDict.TryGetValue(clipName, out AudioClip clip))
-            return clip;
-
-        clip = Resources.Load<AudioClip>($"Sounds/{clipName}");
-
-        if (clip != null)
-        {
-            _clipDict.Add(clipName, clip);
-        }
-
-        return clip;
-    }
-
-    public void ClearCache()
-    {
-        _clipDict.Clear();
     }
 }

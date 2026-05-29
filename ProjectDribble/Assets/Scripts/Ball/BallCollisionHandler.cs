@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using Interfaces;
 using UnityEngine;
 
@@ -20,7 +21,8 @@ public class BallCollisionHandler : MonoBehaviour
     public BallCollisionResult HandleCollision(RaycastHit2D hit, Vector2 incomingDirection)
     {
         Debug.Log("충돌함: " + hit.collider.name);
-
+        
+        SoundManager.Instance.Play2D(SoundId.BallBounce);
         // 1. 충돌 시점에 속도 변화 적용
         IBallSpeedModifier speedModifier =
             hit.collider.GetComponentInParent<IBallSpeedModifier>();

@@ -54,7 +54,52 @@ public class BlockManager : MonoBehaviour
         SpawnFixedBlocks();
         SpawnStartBlocks();
 
+        StartGrowth();
+    }
+
+    public void InitializeStageBlocks(StageBlockData stageData)
+    {
+        if (stageData != null)
+        {
+            data = stageData;
+        }
+
+        ResetBlocks();
+        StartGrowth();
+    }
+
+    public void ResetBlocks()
+    {
+        StopGrowth();
+        ClearAllSpawnedBlocks();
+
+        CreateGrid();
+
+        blockPool.CreatePool(
+            data.width,
+            data.height,
+            GridToWorld,
+            GetCellSize,
+            this
+        );
+
+        SpawnFixedBlocks();
+        SpawnStartBlocks();
+    }
+
+    public void StartGrowth()
+    {
+        StopGrowth();
         growRoutine = StartCoroutine(GrowRoutine());
+    }
+
+    public void StopGrowth()
+    {
+        if (growRoutine != null)
+        {
+            StopCoroutine(growRoutine);
+            growRoutine = null;
+        }
     }
 
     private void CreateGrid()
@@ -506,6 +551,19 @@ public class BlockManager : MonoBehaviour
                 Vector3 size = new Vector3(cellWidth, cellHeight, 0f);
 
                 Gizmos.DrawWireCube(center, size);
+            }
+        }
+    }
+
+    private void ClearAllSpawnedBlocks()
+    {
+        BlockCell[] blocks = FindObjectsOfType<BlockCell>(true);
+
+        for (int i = 0; i < blocks.Length; i++)
+        {
+            if (blocks[i] != null)
+            {
+                Destroy(blocks[i].gameObject);
             }
         }
     }

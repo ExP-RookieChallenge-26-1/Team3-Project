@@ -20,8 +20,18 @@ public class GaugeManager : MonoBehaviour
     private void Start()
     {
         MaxGaugeValue = _data.maxGaugeSegments * _data.gaugePerSegment;
-
         SetGaugeValue(_data.startGaugeValue);
+    }
+
+    public void InitializeGauge(int startValue)
+    {
+        MaxGaugeValue = _data.maxGaugeSegments * _data.gaugePerSegment;
+        SetGaugeValue(startValue);
+    }
+
+    public void ResetGauge()
+    {
+        InitializeGauge(_data.startGaugeValue);
     }
 
     private void SetGaugeValue(int value)

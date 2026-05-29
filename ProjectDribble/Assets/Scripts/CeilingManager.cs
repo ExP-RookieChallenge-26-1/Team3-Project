@@ -1,13 +1,18 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class CeilingManager : MonoBehaviour
 {
+    public event Action OnStageCleared;
+
     [Header("Data")]
     [SerializeField] private HealthData healthData;
 
     private int currentHp;
+    private int runtimeMaxHp;
+    private bool isStageCleared;
+    private bool isInitialized;
 
     [Header("Brick Spawn")]
     [SerializeField] private CeilingBrick ceilingBrickPrefab;
@@ -21,15 +26,36 @@ public class CeilingManager : MonoBehaviour
     [Header("Sprites")]
     [SerializeField] private Sprite[] ceilingSprites;
 
-    private List<CeilingBrick> aliveBricks = new();
+    private readonly List<CeilingBrick> aliveBricks = new();
     private int totalBrickCount;
+
+    private void Awake()
+    {
+        runtimeMaxHp = Mathf.Max(1, healthData.ceilingMaxHp);
+    }
 
     private void Start()
     {
-        currentHp = healthData.ceilingMaxHp;
+        if (!isInitialized)
+        {
+            InitializeCeiling(runtimeMaxHp);
+        }
+    }
 
+    public void InitializeCeiling(int maxHp)
+    {
+        runtimeMaxHp = Mathf.Max(1, maxHp);
+        isInitialized = true;
+        ResetCeilingState();
+    }
+
+    public void ResetCeilingState()
+    {
+        isStageCleared = false;
+        currentHp = runtimeMaxHp > 0 ? runtimeMaxHp : Mathf.Max(1, healthData.ceilingMaxHp);
+
+        ClearCeilingBricks();
         CreateCeilingBricks();
-
         totalBrickCount = aliveBricks.Count;
     }
 
@@ -64,10 +90,23 @@ public class CeilingManager : MonoBehaviour
         }
     }
 
+    private void ClearCeilingBricks()
+    {
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
+
+        aliveBricks.Clear();
+    }
+
     public void TakeDamage(int damage, CeilingBrick hitBrick)
     {
+        if (isStageCleared)
+            return;
+
         currentHp -= damage;
-        currentHp = Mathf.Clamp(currentHp, 0, healthData.ceilingMaxHp);
+        currentHp = Mathf.Clamp(currentHp, 0, runtimeMaxHp);
 
         UpdateBrokenBricksByHpRatio();
 
@@ -79,7 +118,7 @@ public class CeilingManager : MonoBehaviour
 
     private void UpdateBrokenBricksByHpRatio()
     {
-        float hpRatio = currentHp / (float)healthData.ceilingMaxHp;
+        float hpRatio = currentHp / (float)runtimeMaxHp;
         int targetAliveCount = Mathf.CeilToInt(totalBrickCount * hpRatio);
 
         while (aliveBricks.Count > targetAliveCount)
@@ -93,7 +132,7 @@ public class CeilingManager : MonoBehaviour
         if (aliveBricks.Count <= 0)
             return;
 
-        int index = Random.Range(0, aliveBricks.Count);
+        int index = UnityEngine.Random.Range(0, aliveBricks.Count);
 
         CeilingBrick brick = aliveBricks[index];
         aliveBricks.RemoveAt(index);
@@ -103,13 +142,11 @@ public class CeilingManager : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("천장 파괴 / 스테이지 클리어");
-        Invoke(nameof(RestartScene), 1f);
-    }
+        if (isStageCleared)
+            return;
 
-    private void RestartScene()
-    {
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.name);
+        isStageCleared = true;
+        Debug.Log("Ceiling broken / Stage clear");
+        OnStageCleared?.Invoke();
     }
 }

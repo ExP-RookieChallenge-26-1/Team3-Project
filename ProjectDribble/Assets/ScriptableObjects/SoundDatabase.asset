@@ -19,5 +19,5 @@ MonoBehaviour:
     volume: 1
     usePitchByRatio: 1
     basePitch: 1
-    minPitch: 0
-    maxPitch: 0
+    minPitch: 0.8
+    maxPitch: 1.4

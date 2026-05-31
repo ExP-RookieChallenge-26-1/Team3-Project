@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StageBlockData 2
   m_EditorClassIdentifier: Assembly-CSharp::StageBlockData
   width: 7
-  height: 18
+  height: 20
   defaultHp: 10
   fixedBlocks: []
   startCells:

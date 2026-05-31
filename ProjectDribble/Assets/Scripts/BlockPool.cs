@@ -95,6 +95,6 @@ public class BlockPool : MonoBehaviour
 
     private void ApplyBlockSize(BlockCell block)
     {
-        block.transform.localScale = new Vector3(cellSize.x * 0.78f, cellSize.y * 0.79f, 1f);
+        block.transform.localScale = new Vector3(cellSize.x, cellSize.y , 1f);
     }
 }

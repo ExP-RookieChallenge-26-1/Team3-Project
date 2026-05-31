@@ -134,7 +134,8 @@ public class BlockManager : MonoBehaviour
     public Vector2 GetCellSize()
     {
         CalculateGridSize();
-        return new Vector2(cellWidth, cellHeight);
+        //return new Vector2(cellWidth, cellHeight);
+        return new Vector2(1f,1f);
     }
 
     private IEnumerator GrowRoutine()

@@ -36,3 +36,7 @@ MonoBehaviour:
     slowAmount: 1
   minDirectionX: 0.25
   minDirectionY: 0
+  outerPaddleSpeedIncrease: 5
+  innerPaddleSpeedIncrease: 5
+  BlockSpeedDecrease: -5
+  DamageMultiplier: 0.2

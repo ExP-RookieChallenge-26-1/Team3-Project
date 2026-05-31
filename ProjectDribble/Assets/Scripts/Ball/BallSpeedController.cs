@@ -26,7 +26,7 @@ public class BallSpeedController : MonoBehaviour
     {
         baseSpeed = data.baseSpeed;
         maxSpeed = data.maxSpeed;
-        PaddleSpeedIncrease = data.PaddleSpeedIncrease;
+        PaddleSpeedIncrease = data.outerPaddleSpeedIncrease;
         BlockSpeedDecrease = data.BlockSpeedDecrease;
 
         BallMovement = GetComponent<BallMovement>();
@@ -76,7 +76,7 @@ public class BallSpeedController : MonoBehaviour
 
         if (collider.name == "paddle_down")
         {
-            BallMovement.AddBallSpeed(PaddleSpeedIncrease);
+            //BallMovement.AddBallSpeed(PaddleSpeedIncrease);
         }
 
         if (collider.name == "wall_up")

@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -559,7 +559,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
   m_IgnoreReversedGraphics: 1
   m_BlockingObjects: 0
@@ -576,7 +576,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
@@ -686,7 +686,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d2bf405a8d17bb46825d82fed7e0cd1, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::StageManager
   stages:
   - {fileID: 11400000, guid: f6d0b059c7b03354a8259b6601fd6d0e, type: 2}
@@ -725,7 +725,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.UI.InputSystemUIInputModule
   m_SendPointerHoverToParent: 1
   m_MoveRepeatDelay: 0.5
@@ -756,7 +756,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
@@ -803,7 +803,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5ef8af32debf834bb70e500f6314133, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::PointerInputReader
 --- !u!4 &1168435299
 Transform:
@@ -1364,7 +1364,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba3f67172f71bd34cabce7a3ef2513d0, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::CameraAspectFitter
   targetWidth: 5
   targetHeight: 10
@@ -1594,7 +1594,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b599ed78674d7944d8c676d1a271fb54, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::PlayTestUI
   ballMovement: {fileID: 2358190074791870190}
   ballPowerController: {fileID: 8720353550579785844}
@@ -1870,7 +1870,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1970,7 +1970,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7724e34210dd70428b8294e454edaf6, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::CeilingManager
   healthData: {fileID: 11400000, guid: 117f7251e9974744096b222ffafdf8bc, type: 2}
   ceilingBrickPrefab: {fileID: 6450190104311429135, guid: 70d54978defbfd6429c5e5f4038c4cc8, type: 3}
@@ -2092,7 +2092,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27c81c31427e472eb7672671a851f10d, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::DefaultNamespace.WallBallHitReceiver
   ballSpeedDecrease: 5
 --- !u!4 &603430885421747095
@@ -2436,7 +2436,7 @@ MonoBehaviour:
   skinWidth: 0.1
   _outsideMaxBounceAngle: 50
   _insideMaxBounceAngle: 60
-  data: {fileID: 11400000, guid: 54b931febcc33ad4c8a764de402b55e5, type: 2}
+  data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
   moveDistance: 0
 --- !u!1 &2380388176305477121
 GameObject:
@@ -2817,7 +2817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb02a98df8da476ea6fff758e9a21367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaddleSpeedModifier
-  speedIncrease: 8
+  data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
 --- !u!114 &3691128700249804780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2830,7 +2830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb02a98df8da476ea6fff758e9a21367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaddleSpeedModifier
-  speedIncrease: 8
+  data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
 --- !u!114 &3735814449434435070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3629,7 +3629,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 24b971d2b0bb4215b904d805d774cf0b, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   healthData: {fileID: 11400000, guid: 117f7251e9974744096b222ffafdf8bc, type: 2}
   leftGroundRenderer: {fileID: 1169768074}
@@ -3644,7 +3644,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df6d3ee96e3244ecb3e031fcff51994d, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::BallRecallInput
   ballRespawner: {fileID: 8720353550579785846}
   minSwipeDistance: 220
@@ -3696,7 +3696,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27c81c31427e472eb7672671a851f10d, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::DefaultNamespace.WallBallHitReceiver
   ballSpeedDecrease: 5
 --- !u!1971053207 &6268299393540507972
@@ -4832,7 +4832,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57b975c9a9044aa479f2070582759f68, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::GroundHp
   healthData: {fileID: 11400000, guid: 117f7251e9974744096b222ffafdf8bc, type: 2}
   playerHealth: {fileID: 5988251570761651997}
@@ -5097,7 +5097,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a9da6c08e0a49d4dbca18f135c9dd8b, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::BallSpawnController
   ballMovement: {fileID: 2358190074791870190}
 --- !u!114 &8720353550579785846
@@ -5110,7 +5110,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0578ee380ebe48e0b0db65f1cf0a5033, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::BallRespawner
   upperPaddle: {fileID: 9059070479574643173}
   lowerPaddle: {fileID: 4311641027604904549}

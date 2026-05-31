@@ -20988,13 +20988,6 @@
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/BallData.cs",
     "from_class": "BallData",
-    "to_type": "PaddleSpeedIncrease",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/BallData.cs",
-    "from_class": "BallData",
     "to_type": "Scriptable",
     "relation_type": "uses",
     "strength": 1
@@ -23443,6 +23436,433 @@
     "strength": 1
   },
   {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingBrick.cs",
+    "from_class": "CeilingBrick",
+    "to_type": "SpriteRenderer",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingBrick.cs",
+    "from_class": "CeilingBrick",
+    "to_type": "IDamageable",
+    "relation_type": "implements",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingBrick.cs",
+    "from_class": "CeilingBrick",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingBrick.cs",
+    "from_class": "CeilingBrick",
+    "to_type": "Break",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingBrick.cs",
+    "from_class": "CeilingBrick",
+    "to_type": "CeilingManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingBrick.cs",
+    "from_class": "CeilingBrick",
+    "to_type": "GetComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingBrick.cs",
+    "from_class": "CeilingBrick",
+    "to_type": "IDamageable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingBrick.cs",
+    "from_class": "CeilingBrick",
+    "to_type": "Init",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingBrick.cs",
+    "from_class": "CeilingBrick",
+    "to_type": "Interfaces",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingBrick.cs",
+    "from_class": "CeilingBrick",
+    "to_type": "SetActive",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingBrick.cs",
+    "from_class": "CeilingBrick",
+    "to_type": "Sprite",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingBrick.cs",
+    "from_class": "CeilingBrick",
+    "to_type": "SpriteRenderer",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingBrick.cs",
+    "from_class": "CeilingBrick",
+    "to_type": "TakeDamage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingBrick.cs",
+    "from_class": "CeilingBrick",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingDamager.cs",
+    "from_class": "CeilingDamager",
+    "to_type": "IDamageable",
+    "relation_type": "implements",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingDamager.cs",
+    "from_class": "CeilingDamager",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingDamager.cs",
+    "from_class": "CeilingDamager",
+    "to_type": "Collections",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingDamager.cs",
+    "from_class": "CeilingDamager",
+    "to_type": "Destroy",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingDamager.cs",
+    "from_class": "CeilingDamager",
+    "to_type": "Die",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingDamager.cs",
+    "from_class": "CeilingDamager",
+    "to_type": "IDamageable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingDamager.cs",
+    "from_class": "CeilingDamager",
+    "to_type": "Interfaces",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingDamager.cs",
+    "from_class": "CeilingDamager",
+    "to_type": "System",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingDamager.cs",
+    "from_class": "CeilingDamager",
+    "to_type": "TakeDamage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingDamager.cs",
+    "from_class": "CeilingDamager",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "Vector2",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "Add",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "Break",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "BreakRandomBrick",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "Brick",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "Ceiling",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "CeilingBrick",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "CeilToInt",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "Clamp",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "Collections",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "Count",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "CreateCeilingBricks",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "Die",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "Generic",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "HP",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "Init",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "Instantiate",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "int",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "Length",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "Log",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "Quaternion",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "RemoveAt",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "SetActive",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "Spawn",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "Sprite",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "Sprites",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "Start",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "System",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "TakeDamage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "UpdateBrokenBricksByHpRatio",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "Vector2",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GroundHp.cs",
+    "from_class": "GroundHp",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GroundHp.cs",
+    "from_class": "GroundHp",
+    "to_type": "Start",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GroundHp.cs",
+    "from_class": "GroundHp",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GroundHp.cs",
+    "from_class": "GroundHp",
+    "to_type": "Update",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
     "from_file": "ProjectDribble/Assets/Scripts/Guage.cs",
     "from_class": "Gauge",
     "to_type": "MonoBehaviour",
@@ -23499,14 +23919,14 @@
     "strength": 1
   },
   {
-    "from_file": "ProjectDribble/Assets/Scripts/IBallHitReceiver.cs",
+    "from_file": "ProjectDribble/Assets/Scripts/Interfaces/IBallHitReceiver.cs",
     "from_class": "IBallHitReceiver",
     "to_type": "BallController",
     "relation_type": "uses",
     "strength": 1
   },
   {
-    "from_file": "ProjectDribble/Assets/Scripts/IBallHitReceiver.cs",
+    "from_file": "ProjectDribble/Assets/Scripts/Interfaces/IBallHitReceiver.cs",
     "from_class": "IBallHitReceiver",
     "to_type": "OnBallHit",
     "relation_type": "uses",
@@ -25097,7 +25517,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/PaddleSpeedModifier.cs",
     "from_class": "PaddleSpeedModifier",
+    "to_type": "BallData",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleSpeedModifier.cs",
+    "from_class": "PaddleSpeedModifier",
     "to_type": "BallSpeedController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleSpeedModifier.cs",
+    "from_class": "PaddleSpeedModifier",
+    "to_type": "float",
     "relation_type": "uses",
     "strength": 1
   },
@@ -25119,6 +25553,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/PaddleSpeedModifier.cs",
     "from_class": "PaddleSpeedModifier",
     "to_type": "ModifySpeed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PaddleSpeedModifier.cs",
+    "from_class": "PaddleSpeedModifier",
+    "to_type": "Start",
     "relation_type": "uses",
     "strength": 1
   },

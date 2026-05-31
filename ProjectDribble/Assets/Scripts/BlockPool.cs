@@ -51,7 +51,7 @@ public class BlockPool : MonoBehaviour
         }
     }
 
-    public void ActivateBlock(Vector2Int coord, int hp)
+    public void ActivateBlock(Vector2Int coord, float hp)
     {
         BlockCell block = pool[coord.x, coord.y];
 
@@ -63,7 +63,7 @@ public class BlockPool : MonoBehaviour
         block.Activate(coord, hp, false);
     }
 
-    public BlockCell CreateFixedBlock(Vector2Int coord, int hp)
+    public BlockCell CreateFixedBlock(Vector2Int coord, float hp)
     {
         BlockCell block = Instantiate(
             fixedBlockPrefab,

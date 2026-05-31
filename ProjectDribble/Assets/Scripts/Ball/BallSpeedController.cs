@@ -7,6 +7,7 @@ public class BallSpeedController : MonoBehaviour
 
     private BallMovement BallMovement;
     private BallController BallController;
+    private BallPowerController BallPowerController;
     public BallData data;
 
     float moveDistance;
@@ -15,6 +16,10 @@ public class BallSpeedController : MonoBehaviour
     float maxSpeed;
     float PaddleSpeedIncrease;
     float BlockSpeedDecrease;
+    [SerializeField] private float currentSpeed;
+    private float lastBlockSpeedSlowTime = -999f;
+
+    public float CurrentSpeed => currentSpeed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,6 +31,7 @@ public class BallSpeedController : MonoBehaviour
 
         BallMovement = GetComponent<BallMovement>();
         BallController = GetComponent<BallController>();
+        BallPowerController = GetComponent<BallPowerController>();
         tr = GetComponent<Transform>();
         cc = GetComponent<CircleCollider2D>();
     }
@@ -41,6 +47,7 @@ public class BallSpeedController : MonoBehaviour
        {
            BallMovement.SetBallSpeed(maxSpeed);
        }
+        currentSpeed = BallMovement.speed;
         moveDistance = BallMovement.moveDistance;
     }
 
@@ -79,12 +86,65 @@ public class BallSpeedController : MonoBehaviour
 
         ClampSpeed();
     }
+
+    public void ResetToBaseSpeed()
+    {
+        BallMovement.SetBallSpeed(baseSpeed);
+        currentSpeed = BallMovement.speed;
+        BallPowerController?.ResetToBaseDamage();
+        Debug.Log($"[BallState] Reset to Base. Speed: {BallMovement.speed}, Damage: {BallPowerController?.CurrentDamage() ?? 0f}");
+    }
+
+    public void TryApplyBlockSpeedSlow(float fallbackSlowAmount = 0f)
+    {
+        float cooldown = data != null ? data.BlockSpeedSlowCooldown : 0f;
+        bool isCooldownReady = Time.time >= lastBlockSpeedSlowTime + cooldown;
+        float speedBeforeSlow = BallMovement.speed;
+
+        Debug.Log($"[BallSpeed] Try Slow. Cooldown Ready: {isCooldownReady}, CurrentSpeed: {speedBeforeSlow}");
+
+        if (!isCooldownReady)
+            return;
+
+        float slowAmount = data != null
+            ? data.GetBlockSlowAmount(speedBeforeSlow)
+            : fallbackSlowAmount;
+
+        BallMovement.AddBallSpeed(-slowAmount);
+        ClampSpeed();
+        currentSpeed = BallMovement.speed;
+
+        lastBlockSpeedSlowTime = Time.time;
+
+        Debug.Log($"[BallSpeed] Block Slow Applied. SlowAmount: {slowAmount}, CurrentSpeed After Slow: {BallMovement.speed}");
+    }
     
+    public void ApplyBlockSlow(float fallbackSlowAmount = 0f)
+    {
+        TryApplyBlockSpeedSlow(fallbackSlowAmount);
+    }
     
     public void AddSpeed(float amount)
     {
         BallMovement.AddBallSpeed(amount);
         ClampSpeed();
+        currentSpeed = BallMovement.speed;
+    }
+
+    public void AddSpeedByPaddle(float fallbackSpeedBonus)
+    {
+        float speedBonus = fallbackSpeedBonus;
+
+        AddSpeed(speedBonus);
+        BallPowerController?.AddPaddleDamage();
+    }
+
+    public void AddSpeedByDribble()
+    {
+        float speedBonus = data != null ? data.DribbleSpeedBonus : 0f;
+
+        AddSpeed(speedBonus);
+        BallPowerController?.AddDribbleDamage();
     }
     
 

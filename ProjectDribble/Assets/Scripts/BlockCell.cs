@@ -18,8 +18,8 @@ public class BlockCell : MonoBehaviour,
 
     private SpriteRenderer sr;
 
-    private int hp;
-    private int maxHp;
+    private float hp;
+    private float maxHp;
 
     private bool isFixed;
 
@@ -38,7 +38,7 @@ public class BlockCell : MonoBehaviour,
         this.coord = coord;
     }
 
-    public void Activate(Vector2Int coord, int hp, bool isFixed)
+    public void Activate(Vector2Int coord, float hp, bool isFixed)
     {
         this.coord = coord;
 
@@ -59,7 +59,7 @@ public class BlockCell : MonoBehaviour,
 
     public void ModifySpeed(BallSpeedController speedController)
     {
-        speedController.AddSpeed(-ballSpeedDecrease);
+        speedController.ApplyBlockSlow(ballSpeedDecrease);
     }
     
     public void OnBallHit(BallController ball)
@@ -75,7 +75,7 @@ public class BlockCell : MonoBehaviour,
         return isFixed;
     }
 
-    public bool TakeDamage(int damage)
+    public bool TakeDamage(float damage)
     {
         if (isFixed)
             return false;
@@ -90,7 +90,7 @@ public class BlockCell : MonoBehaviour,
             manager.AddGauge();
             manager.RemoveBlock(coord);
             
-            if (hp == 0)
+            if (hp>= - 0.3f)
             {
                 return false;
             }

@@ -7,6 +7,6 @@ public class PaddleSpeedModifier : MonoBehaviour, IBallSpeedModifier
 
     public void ModifySpeed(BallSpeedController speedController)
     {
-        speedController.AddSpeed(speedIncrease);
+        speedController.AddSpeedByPaddle(speedIncrease);
     }
 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StageBlockData
   width: 7
   height: 18
-  defaultHp: 12
+  defaultHp: 6
   fixedBlocks:
   - cell: {x: 0, y: 4}
     hp: 1
@@ -33,7 +33,7 @@ MonoBehaviour:
   startCells:
   - {x: 0, y: 0}
   - {x: 6, y: 0}
-  spawnInterval: 0.1
+  spawnInterval: 1.2
   minGrowPerTick: 2
   maxGrowPerTick: 4
   rowWeightMultiplier: 0.2

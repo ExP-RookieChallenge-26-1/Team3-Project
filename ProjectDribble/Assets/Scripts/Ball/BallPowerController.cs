@@ -2,22 +2,56 @@ using UnityEngine;
 
 public class BallPowerController : MonoBehaviour
 {
-
-    private BallMovement ballMovement;
-
     public BallData data;
 
-    float damageMultiplier;
+    [SerializeField] private float currentDamage;
+
+    public float CurrentDamageValue => currentDamage;
 
     void Start()
     {
-        ballMovement = GetComponent<BallMovement>();
-        damageMultiplier = data.DamageMultiplier;
+        ResetToBaseDamage();
     }
     
-    public int CurrentDamage()
+    public float CurrentDamage()
     {
-        return Mathf.Max(1,
-            Mathf.RoundToInt(ballMovement.speed * damageMultiplier));
+        return currentDamage;
+    }
+
+    public void ResetToBaseDamage()
+    {
+        currentDamage = data != null ? data.BaseDamage : 1f;
+    }
+
+    public void AddDamage(float amount)
+    {
+        if (data == null)
+        {
+            currentDamage = Mathf.Max(0f, currentDamage + amount);
+            return;
+        }
+
+        currentDamage += amount;
+        currentDamage = Mathf.Clamp(currentDamage, data.BaseDamage, data.MaxDamage);
+    }
+
+    public void AddPaddleDamage()
+    {
+        AddDamage(data != null ? data.PaddleDamageBonus : 0f);
+    }
+
+    public void AddDribbleDamage()
+    {
+        AddDamage(data != null ? data.DribbleDamageBonus : 0f);
+    }
+
+    public void ApplyBlockDamageLoss()
+    {
+        float beforeDamage = currentDamage;
+        float lossAmount = data != null ? data.BlockDamageLoss : 0f;
+
+        AddDamage(-lossAmount);
+
+        Debug.Log($"[BallDamage] Damage Loss: {lossAmount}, CurrentDamage Before Loss: {beforeDamage}, CurrentDamage After Loss: {currentDamage}");
     }
 }

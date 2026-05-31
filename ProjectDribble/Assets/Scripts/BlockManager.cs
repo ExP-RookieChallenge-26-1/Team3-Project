@@ -196,7 +196,7 @@ public class BlockManager : MonoBehaviour
         SpawnBlock(coord, data.defaultHp, false);
     }
 
-    public void SpawnBlock(Vector2Int coord, int hp, bool isFixed)
+    public void SpawnBlock(Vector2Int coord, float hp, bool isFixed)
     {
         if (!IsValidCoord(coord))
             return;

@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class BallCollisionHandler : MonoBehaviour
 {
-    
-
     private BallController ballController;
     private BallSpeedController ballSpeedController;
     private BallPowerController ballPowerController;
-
 
     private void Start()
     {
@@ -20,35 +17,46 @@ public class BallCollisionHandler : MonoBehaviour
 
     public BallCollisionResult HandleCollision(RaycastHit2D hit, Vector2 incomingDirection)
     {
-        Debug.Log("충돌함: " + hit.collider.name);
-        
+        Debug.Log("Collision: " + hit.collider.name);
+
         SoundManager.Instance.Play2D(SoundId.BallBounce);
-        // 1. 충돌 시점에 속도 변화 적용
+
+        bool isFloorHit = IsFloorCollider(hit.collider);
         IBallSpeedModifier speedModifier =
             hit.collider.GetComponentInParent<IBallSpeedModifier>();
 
-        if (speedModifier != null)
+        if (isFloorHit)
         {
-            speedModifier.ModifySpeed(ballSpeedController);
+            ballSpeedController.ResetToBaseSpeed();
         }
-        
-        
-        
-        // 2. 데미지 처리
+
         IDamageable damageable = hit.collider.GetComponentInParent<IDamageable>();
 
         if (damageable != null)
         {
-            bool destroyed = damageable.TakeDamage(ballPowerController.CurrentDamage());
+            float damageToApply = ballPowerController.CurrentDamage();
 
-            // 죽었으면 반사하지 않고 기존 방향 유지
+            Debug.Log($"[BallDamage] Apply Damage: {damageToApply}, CurrentDamage Before Loss: {ballPowerController.CurrentDamage()}");
+
+            bool destroyed = damageable.TakeDamage(damageToApply);
+
+            ballPowerController.ApplyBlockDamageLoss();
+
+            if (!isFloorHit && speedModifier != null)
+            {
+                speedModifier.ModifySpeed(ballSpeedController);
+            }
+
             if (destroyed)
             {
-                return new BallCollisionResult(incomingDirection.normalized, true);
+                return CreateResult(incomingDirection, true);
             }
         }
+        else if (!isFloorHit && speedModifier != null)
+        {
+            speedModifier.ModifySpeed(ballSpeedController);
+        }
 
-        // 3. 공에 맞았을 때의 일반 반응
         IBallHitReceiver receiver = hit.collider.GetComponentInParent<IBallHitReceiver>();
 
         if (receiver != null)
@@ -56,7 +64,6 @@ public class BallCollisionHandler : MonoBehaviour
             receiver.OnBallHit(ballController);
         }
 
-        // 4. 특수 반사 처리
         IBallReflector reflector = hit.collider.GetComponentInParent<IBallReflector>();
 
         if (reflector != null)
@@ -67,12 +74,38 @@ public class BallCollisionHandler : MonoBehaviour
                 incomingDirection
             );
 
-            return new BallCollisionResult(reflectedDirection.normalized, true);
+            return CreateResult(reflectedDirection, true);
         }
 
-        // 5. 기본 반사
         Vector2 defaultDirection = Vector2.Reflect(incomingDirection, hit.normal).normalized;
 
-        return new BallCollisionResult(defaultDirection, true);
+        return CreateResult(defaultDirection, true);
+    }
+
+    private BallCollisionResult CreateResult(Vector2 direction, bool shouldMoveRemainingDistance)
+    {
+        Vector2 correctedDirection = ballController.CorrectDirection(direction);
+        return new BallCollisionResult(correctedDirection, shouldMoveRemainingDistance);
+    }
+
+    private bool IsFloorCollider(Collider2D collider)
+    {
+        if (collider == null)
+            return false;
+
+        string objectName = collider.name.ToLowerInvariant();
+        string parentName = collider.transform.parent != null
+            ? collider.transform.parent.name.ToLowerInvariant()
+            : string.Empty;
+
+        return IsFloorName(objectName) || IsFloorName(parentName);
+    }
+
+    private bool IsFloorName(string objectName)
+    {
+        return objectName.Contains("ground")
+               || objectName.Contains("floor")
+               || objectName.Contains("bottom")
+               || objectName.Contains("wall_down");
     }
 }

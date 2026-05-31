@@ -3,9 +3,9 @@ using Interfaces;
 using System.Collections;
 public class CeilingDamager : MonoBehaviour, IDamageable
 {
-    [SerializeField] private int hp = 1;
+    [SerializeField] private float hp = 1;
 
-    public bool TakeDamage(int damage)
+    public bool TakeDamage(float damage)
     {
         hp -= damage;
 

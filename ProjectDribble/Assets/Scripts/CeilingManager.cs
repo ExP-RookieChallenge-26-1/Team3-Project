@@ -6,11 +6,18 @@ public class CeilingManager : MonoBehaviour
 {
     public event Action OnStageCleared;
 
+    private const int LeftSegmentStartX = 0;
+    private const int LeftSegmentEndX = 1;
+    private const int CenterSegmentStartX = 2;
+    private const int CenterSegmentEndX = 4;
+    private const int RightSegmentStartX = 5;
+    private const int RightSegmentEndX = 6;
+
     [Header("Data")]
     [SerializeField] private HealthData healthData;
 
-    private int currentHp;
-    private int runtimeMaxHp;
+    private float currentHp;
+    private float runtimeMaxHp;
     private bool isStageCleared;
     private bool isInitialized;
 
@@ -26,8 +33,18 @@ public class CeilingManager : MonoBehaviour
     [Header("Sprites")]
     [SerializeField] private Sprite[] ceilingSprites;
 
+    [Header("Segments")]
+    [SerializeField] private int leftSegmentMaxHp;
+    [SerializeField] private int centerSegmentMaxHp;
+    [SerializeField] private int rightSegmentMaxHp;
+
+    [Header("Ball Control")]
+    [SerializeField] private Transform ball;
+    [SerializeField] private float forceDownSpeed = 10f;
+    [SerializeField] private bool forceBallDownOnSegmentDestroyed = true;
+
     private readonly List<CeilingBrick> aliveBricks = new();
-    private int totalBrickCount;
+    private readonly List<CeilingSegment> segments = new();
 
     private void Awake()
     {
@@ -42,7 +59,7 @@ public class CeilingManager : MonoBehaviour
         }
     }
 
-    public void InitializeCeiling(int maxHp)
+    public void InitializeCeiling(float maxHp)
     {
         runtimeMaxHp = Mathf.Max(1, maxHp);
         isInitialized = true;
@@ -52,11 +69,33 @@ public class CeilingManager : MonoBehaviour
     public void ResetCeilingState()
     {
         isStageCleared = false;
-        currentHp = runtimeMaxHp > 0 ? runtimeMaxHp : Mathf.Max(1, healthData.ceilingMaxHp);
+        currentHp = 0;
 
         ClearCeilingBricks();
+        ResetSegments();
         CreateCeilingBricks();
-        totalBrickCount = aliveBricks.Count;
+    }
+
+    private void ResetSegments()
+    {
+        segments.Clear();
+
+        float maxHp = runtimeMaxHp > 0 ? runtimeMaxHp : Mathf.Max(1, healthData.ceilingMaxHp);
+        float leftHp = leftSegmentMaxHp > 0 ? leftSegmentMaxHp : CalculateDefaultSegmentHp(maxHp, 2);
+        float centerHp = centerSegmentMaxHp > 0 ? centerSegmentMaxHp : CalculateDefaultSegmentHp(maxHp, 3);
+        float rightHp = rightSegmentMaxHp > 0 ? rightSegmentMaxHp : CalculateDefaultSegmentHp(maxHp, 2);
+
+        segments.Add(new CeilingSegment("Left", LeftSegmentStartX, LeftSegmentEndX, leftHp));
+        segments.Add(new CeilingSegment("Center", CenterSegmentStartX, CenterSegmentEndX, centerHp));
+        segments.Add(new CeilingSegment("Right", RightSegmentStartX, RightSegmentEndX, rightHp));
+
+        UpdateCurrentHpFromSegments();
+    }
+
+    private int CalculateDefaultSegmentHp(float totalHp, int segmentWidth)
+    {
+        float widthRatio = segmentWidth / (float)Mathf.Max(1, columnCount);
+        return Mathf.Max(1, Mathf.RoundToInt(totalHp * widthRatio));
     }
 
     private void CreateCeilingBricks()
@@ -84,7 +123,7 @@ public class CeilingManager : MonoBehaviour
                 if (ceilingSprites != null && index < ceilingSprites.Length)
                     sprite = ceilingSprites[index];
 
-                brick.Init(this, sprite);
+                brick.Init(this, new Vector2Int(x, y), sprite);
                 aliveBricks.Add(brick);
             }
         }
@@ -100,44 +139,227 @@ public class CeilingManager : MonoBehaviour
         aliveBricks.Clear();
     }
 
-    public void TakeDamage(int damage, CeilingBrick hitBrick)
+    public void TakeDamage(float damage, CeilingBrick hitBrick)
+    {
+        if (hitBrick == null)
+            return;
+
+        DamageSegmentByCoord(hitBrick.Coord, damage);
+    }
+
+    public void DamageSegmentByCoord(Vector2Int coord, float damage)
+    {
+        DamageSegmentByX(coord.x, damage);
+    }
+
+    public void DamageSegmentByX(int x, float damage)
     {
         if (isStageCleared)
             return;
 
-        currentHp -= damage;
-        currentHp = Mathf.Clamp(currentHp, 0, runtimeMaxHp);
+        CeilingSegment segment = GetSegmentByX(x);
 
-        UpdateBrokenBricksByHpRatio();
+        if (segment == null)
+        {
+            Debug.LogWarning($"CeilingManager: x={x} does not belong to a ceiling segment.");
+            return;
+        }
 
-        if (currentHp <= 0)
+        if (segment.IsDestroyed)
+        {
+            Debug.Log($"Ceiling segment {segment.SegmentName} is already destroyed.");
+            return;
+        }
+
+        bool destroyed = segment.ApplyDamage(damage);
+        UpdateCurrentHpFromSegments();
+
+        Debug.Log(
+            $"Ceiling segment {segment.SegmentName} damaged by {damage}. HP {segment.CurrentHp}/{segment.MaxHp}"
+        );
+
+        UpdateSegmentBlockVisuals(segment);
+
+        if (destroyed)
+        {
+            Debug.Log($"Ceiling segment {segment.SegmentName} destroyed.");
+            BreakSegmentBricks(segment);
+            ForceBallDown();
+        }
+
+        if (AreAllSegmentsDestroyed())
         {
             Die();
         }
     }
 
-    private void UpdateBrokenBricksByHpRatio()
+    public bool IsSegmentDestroyedByX(int x)
     {
-        float hpRatio = currentHp / (float)runtimeMaxHp;
-        int targetAliveCount = Mathf.CeilToInt(totalBrickCount * hpRatio);
+        CeilingSegment segment = GetSegmentByX(x);
+        return segment != null && segment.IsDestroyed;
+    }
 
-        while (aliveBricks.Count > targetAliveCount)
+    public float GetSegmentHpPercentByX(int x)
+    {
+        CeilingSegment segment = GetSegmentByX(x);
+        return segment == null ? 0f : segment.GetHpPercent();
+    }
+
+    public bool AreAllSegmentsDestroyed()
+    {
+        return segments.Count > 0 && segments.TrueForAll(segment => segment.IsDestroyed);
+    }
+
+    public void UpdateSegmentBlockVisuals(CeilingSegment segment)
+    {
+        if (segment == null)
+            return;
+
+        float hpRatio = Mathf.Clamp01(segment.GetHpPercent());
+        int totalBlockCount = GetSegmentTotalBlockCount(segment);
+        int targetAliveCount = Mathf.CeilToInt(totalBlockCount * hpRatio);
+        targetAliveCount = Mathf.Clamp(targetAliveCount, 0, totalBlockCount);
+
+        int currentAliveCount = GetAliveBlockCountInSegment(segment);
+        int removeCount = Mathf.Max(0, currentAliveCount - targetAliveCount);
+
+        Debug.Log(
+            $"Ceiling segment {segment.SegmentName} visual update. HP ratio {hpRatio:F2}, total blocks {totalBlockCount}, target alive {targetAliveCount}, current alive {currentAliveCount}, remove {removeCount}"
+        );
+
+        if (removeCount > 0)
         {
-            BreakRandomBrick();
+            DestroyRandomBlocksInSegment(segment, removeCount);
         }
     }
 
-    private void BreakRandomBrick()
+    public void DestroyRandomBlocksInSegment(CeilingSegment segment, int count)
     {
-        if (aliveBricks.Count <= 0)
+        if (segment == null || count <= 0)
             return;
 
-        int index = UnityEngine.Random.Range(0, aliveBricks.Count);
+        List<CeilingBrick> segmentAliveBricks = GetAliveBricksInSegment(segment);
+        int destroyCount = Mathf.Clamp(count, 0, segmentAliveBricks.Count);
 
-        CeilingBrick brick = aliveBricks[index];
-        aliveBricks.RemoveAt(index);
+        for (int i = 0; i < destroyCount; i++)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, segmentAliveBricks.Count);
+            CeilingBrick brick = segmentAliveBricks[randomIndex];
+            segmentAliveBricks.RemoveAt(randomIndex);
 
-        brick.Break();
+            aliveBricks.Remove(brick);
+            Debug.Log($"Ceiling segment {segment.SegmentName} random block destroyed at {brick.Coord}.");
+            brick.Break();
+        }
+    }
+
+    private void BreakSegmentBricks(CeilingSegment segment)
+    {
+        for (int i = aliveBricks.Count - 1; i >= 0; i--)
+        {
+            CeilingBrick brick = aliveBricks[i];
+
+            if (brick == null || !segment.ContainsX(brick.Coord.x))
+                continue;
+
+            aliveBricks.RemoveAt(i);
+            brick.Break();
+        }
+    }
+
+    public void ForceBallDown()
+    {
+        if (!forceBallDownOnSegmentDestroyed)
+            return;
+
+        if (ball == null)
+        {
+            Debug.LogWarning("CeilingManager: ball reference is missing. Cannot force ball down.");
+            return;
+        }
+
+        BallController ballController = ball.GetComponent<BallController>();
+        BallMovement ballMovement = ball.GetComponent<BallMovement>();
+
+        if (ballController != null)
+        {
+            ballController.SetBallDirection(Vector2.down.x, Vector2.down.y);
+        }
+
+        if (ballMovement != null)
+        {
+            float targetSpeed = Mathf.Max(ballMovement.speed, forceDownSpeed);
+            ballMovement.SetBallSpeed(targetSpeed);
+            Debug.Log($"CeilingManager: forced ball down. Speed {targetSpeed}.");
+            return;
+        }
+
+        Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
+
+        if (rb != null)
+        {
+            float targetSpeed = Mathf.Max(rb.linearVelocity.magnitude, forceDownSpeed);
+            rb.linearVelocity = Vector2.down * targetSpeed;
+            Debug.Log($"CeilingManager: forced Rigidbody2D ball down. Speed {targetSpeed}.");
+            return;
+        }
+
+        Debug.LogWarning("CeilingManager: ball has no BallMovement or Rigidbody2D component.");
+    }
+
+    private CeilingSegment GetSegmentByX(int x)
+    {
+        for (int i = 0; i < segments.Count; i++)
+        {
+            if (segments[i].ContainsX(x))
+                return segments[i];
+        }
+
+        return null;
+    }
+
+    private int GetSegmentTotalBlockCount(CeilingSegment segment)
+    {
+        int width = Mathf.Max(0, segment.EndX - segment.StartX + 1);
+        return width * Mathf.Max(0, rowCount);
+    }
+
+    private int GetAliveBlockCountInSegment(CeilingSegment segment)
+    {
+        return GetAliveBricksInSegment(segment).Count;
+    }
+
+    private List<CeilingBrick> GetAliveBricksInSegment(CeilingSegment segment)
+    {
+        List<CeilingBrick> result = new();
+
+        for (int i = 0; i < aliveBricks.Count; i++)
+        {
+            CeilingBrick brick = aliveBricks[i];
+
+            if (brick == null)
+                continue;
+
+            if (!brick.gameObject.activeSelf)
+                continue;
+
+            if (!segment.ContainsX(brick.Coord.x))
+                continue;
+
+            result.Add(brick);
+        }
+
+        return result;
+    }
+
+    private void UpdateCurrentHpFromSegments()
+    {
+        currentHp = 0;
+
+        for (int i = 0; i < segments.Count; i++)
+        {
+            currentHp += segments[i].CurrentHp;
+        }
     }
 
     private void Die()

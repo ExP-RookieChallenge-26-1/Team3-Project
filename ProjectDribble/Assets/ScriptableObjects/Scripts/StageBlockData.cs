@@ -17,7 +17,7 @@ public class StageBlockData : ScriptableObject
     public class FixedBlockData
     {
         public Vector2Int cell;
-        public int hp = 999;
+        public float hp = 999;
     }
 
     [Header("Grid Size")]
@@ -25,7 +25,7 @@ public class StageBlockData : ScriptableObject
     public int height = 18;
 
     [Header("Flow Block")]
-    public int defaultHp = 10;
+    public float defaultHp = 10;
 
     [Header("Fixed Blocks")]
     public List<FixedBlockData> fixedBlocks = new();

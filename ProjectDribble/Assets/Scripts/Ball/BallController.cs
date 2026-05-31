@@ -10,6 +10,7 @@ public class BallController : MonoBehaviour
     public Vector2 direction;
 
     public LayerMask collisionMask; // 벽과 패들 레이어를 선택하세요
+    public BallData data;
     
     private Transform tr;
 
@@ -25,6 +26,10 @@ public class BallController : MonoBehaviour
         BallMovement = GetComponent<BallMovement>();
         BallCollisionHandler = GetComponent<BallCollisionHandler>();
         BallSpeedController = GetComponent<BallSpeedController>();
+        if (data == null && BallMovement != null)
+            data = BallMovement.data;
+        if (data == null && BallSpeedController != null)
+            data = BallSpeedController.data;
         tr = GetComponent<Transform>();
         tr.localScale = new Vector3(ballRadius,ballRadius,ballRadius);
         cc = GetComponent<CircleCollider2D>();
@@ -44,8 +49,45 @@ public class BallController : MonoBehaviour
 
     public void SetBallDirection(float x,float y)
     {
-        direction = new Vector2(x, y).normalized;
+        direction = CorrectDirection(new Vector2(x, y));
         
+    }
+
+    public Vector2 CorrectDirection(Vector2 dir)
+    {
+        if (dir.sqrMagnitude < 0.0001f)
+            return Vector2.down;
+
+        Vector2 beforeDir = dir.normalized;
+        Vector2 corrected = beforeDir;
+
+        if (data == null)
+            return corrected;
+
+        if (Mathf.Abs(corrected.x) < data.MinDirectionX)
+        {
+            float signX = corrected.x == 0f
+                ? (Random.value < 0.5f ? -1f : 1f)
+                : Mathf.Sign(corrected.x);
+
+            corrected.x = signX * data.MinDirectionX;
+        }
+
+        if (Mathf.Abs(corrected.y) < data.MinDirectionY)
+        {
+            float signY = corrected.y == 0f
+                ? (Random.value < 0.5f ? -1f : 1f)
+                : Mathf.Sign(corrected.y);
+
+            corrected.y = signY * data.MinDirectionY;
+        }
+
+        corrected = corrected.normalized;
+
+        if ((corrected - beforeDir).sqrMagnitude > 0.0001f)
+            Debug.Log($"[BallDirection] Corrected direction from {beforeDir} to {corrected}");
+
+        return corrected;
     }
     private void OnDrawGizmos()
     {

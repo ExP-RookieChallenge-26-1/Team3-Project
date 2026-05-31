@@ -2,6 +2,6 @@ namespace Interfaces
 {
     public interface IDamageable
     {
-        bool TakeDamage(int damage);
+        bool TakeDamage(float damage);
     }
 }

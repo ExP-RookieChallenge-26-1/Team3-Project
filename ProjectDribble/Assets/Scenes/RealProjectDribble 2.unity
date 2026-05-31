@@ -256,6 +256,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57b975c9a9044aa479f2070582759f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GroundHp
+  blockManager: {fileID: 4361603370357834238}
+  gameManager: {fileID: 949227556}
+  HP: 100
+  maxHP: 100
+  damage: 10
+  damageInterval: 2
 --- !u!1 &775327761
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,6 +362,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 949227555}
+  - component: {fileID: 949227556}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -378,6 +385,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &949227556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949227554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471dec266718df84da9bf760cdfec586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
 --- !u!1 &977133735
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +441,6 @@ GameObject:
   - component: {fileID: 1169768077}
   - component: {fileID: 1169768076}
   - component: {fileID: 1169768078}
-  - component: {fileID: 1169768079}
   m_Layer: 3
   m_Name: left_ground
   m_TagString: Untagged
@@ -604,18 +622,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 11.09, y: -0.82}
   m_Radius: 1
---- !u!114 &1169768079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1169768073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57b975c9a9044aa479f2070582759f68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GroundHp
 --- !u!1 &1247640122
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,7 +635,6 @@ GameObject:
   - component: {fileID: 1247640125}
   - component: {fileID: 1247640124}
   - component: {fileID: 1247640127}
-  - component: {fileID: 1247640128}
   m_Layer: 3
   m_Name: right_ground
   m_TagString: Untagged
@@ -811,18 +816,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -11.12, y: -0.86}
   m_Radius: 1
---- !u!114 &1247640128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1247640122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57b975c9a9044aa479f2070582759f68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GroundHp
 --- !u!1 &1267497279
 GameObject:
   m_ObjectHideFlags: 0
@@ -886,7 +879,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 22.5
+  orthographic size: 30
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

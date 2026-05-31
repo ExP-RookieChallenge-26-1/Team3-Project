@@ -35,6 +35,20 @@ public class BallData : ScriptableObject
     [Header("Block Speed Slow")]
     [SerializeField] private float blockSpeedSlowCooldown = 0.25f;
 
+    [Header("Capture")]
+    [SerializeField] private float captureCooldown = 0.12f;
+    [SerializeField] private float releaseRecaptureDelay = 0.15f;
+    [SerializeField] private float minEntranceDirectionX = 0.1f;
+    [SerializeField] private bool debugCaptureLog = true;
+
+    [Header("Captured Dribble")]
+    [SerializeField] private float capturedDribbleSpeedFallback = 20f;
+    [SerializeField] private float capturedTopOffset = 0.5f;
+    [SerializeField] private float capturedBottomOffset = -0.5f;
+    [SerializeField] private float capturedXFollowSpeed = 30f;
+    [SerializeField] private float capturedPaddleHitCooldown = 0.05f;
+    [SerializeField] private bool debugCapturedDribbleLog = true;
+
     [SerializeField] private List<SpeedSlowRule> blockSlowRules = new()
     {
         new SpeedSlowRule { minSpeed = 0f, slowAmount = 4f },
@@ -55,6 +69,16 @@ public class BallData : ScriptableObject
     public float BlockDamageLoss => blockDamageLoss;
     public float BlockSpeedSlowCooldown => blockSpeedSlowCooldown;
     public float DribbleSpeedBonus => dribbleSpeedBonus;
+    public float CaptureCooldown => captureCooldown;
+    public float ReleaseRecaptureDelay => releaseRecaptureDelay;
+    public float MinEntranceDirectionX => minEntranceDirectionX;
+    public bool DebugCaptureLog => debugCaptureLog;
+    public float CapturedDribbleSpeedFallback => capturedDribbleSpeedFallback;
+    public float CapturedTopOffset => capturedTopOffset;
+    public float CapturedBottomOffset => capturedBottomOffset;
+    public float CapturedXFollowSpeed => capturedXFollowSpeed;
+    public float CapturedPaddleHitCooldown => capturedPaddleHitCooldown;
+    public bool DebugCapturedDribbleLog => debugCapturedDribbleLog;
 
     public float GetBlockSlowAmount(float currentSpeed)
     {
@@ -86,5 +110,11 @@ public class BallData : ScriptableObject
         blockDamageLoss = Mathf.Max(0f, blockDamageLoss);
         blockSpeedSlowCooldown = Mathf.Max(0f, blockSpeedSlowCooldown);
         dribbleSpeedBonus = Mathf.Max(0f, dribbleSpeedBonus);
+        captureCooldown = Mathf.Max(0f, captureCooldown);
+        releaseRecaptureDelay = Mathf.Max(0f, releaseRecaptureDelay);
+        minEntranceDirectionX = Mathf.Max(0f, minEntranceDirectionX);
+        capturedDribbleSpeedFallback = Mathf.Max(0f, capturedDribbleSpeedFallback);
+        capturedXFollowSpeed = Mathf.Max(0f, capturedXFollowSpeed);
+        capturedPaddleHitCooldown = Mathf.Max(0f, capturedPaddleHitCooldown);
     }
 }

@@ -1526,6 +1526,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PaddleCaptureEntrance
   paddle: {fileID: 356703115933531917}
   captureAnchor: {fileID: 413990941}
+  side: 1
+  minEntranceDirectionX: 0.1
+  debugLog: 1
 --- !u!1 &1465136419
 GameObject:
   m_ObjectHideFlags: 0
@@ -2074,6 +2077,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PaddleCaptureEntrance
   paddle: {fileID: 356703115933531917}
   captureAnchor: {fileID: 413990941}
+  side: 0
+  minEntranceDirectionX: 0.1
+  debugLog: 1
 --- !u!1 &1896597040
 GameObject:
   m_ObjectHideFlags: 0
@@ -4953,8 +4959,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallController
   ballRadius: 1
-  captureAnchor: {fileID: 0}
+  captureAnchor: {fileID: 413990941}
   capturedLocalOffset: {x: 0, y: 0}
+  captureCooldown: 0.12
+  releaseRecaptureDelay: 0.15
+  capturedDribbleSpeed: 20
+  capturedTopOffset: 1
+  capturedBottomOffset: -1
+  capturedTopBound: {fileID: 9059070479574643173}
+  capturedBottomBound: {fileID: 4311641027604904549}
+  topCapturedPaddleModifier: {fileID: 3611774075496182083}
+  bottomCapturedPaddleModifier: {fileID: 3691128700249804780}
+  capturedXFollowSpeed: 30
+  capturedPaddleHitCooldown: 0.05
+  debugCapturedDribble: 1
   actualRadius: 0
   direction: {x: 0, y: 0}
   collisionMask:

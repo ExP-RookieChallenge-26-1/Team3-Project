@@ -28,6 +28,8 @@ public class PaddleMovement : MonoBehaviour
     float moveSpeed; 
     float paddleWidth; 
 
+    public bool IsPaddleActive => inputReader != null && inputReader.IsPressed;
+
 
     void Start()
     {
@@ -49,7 +51,7 @@ public class PaddleMovement : MonoBehaviour
 
     void Update()
     {
-        if (inputReader != null && inputReader.IsPressed)
+        if (IsPaddleActive)
         {
             MovePad(inputReader.ScreenPosition);
             SetPaddleAlpha("paddle_up",1.0f);

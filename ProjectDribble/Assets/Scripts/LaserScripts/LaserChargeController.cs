@@ -10,25 +10,49 @@ public class LaserChargeController : MonoBehaviour
     [SerializeField] private LaserChargePreview laserChargePreview;
     [SerializeField] private Transform laserStartPoint;
     [SerializeField] private ChargeZone chargeZone;
+    [SerializeField] private BallController ballController;
     [FormerlySerializedAs("guageManger")] [SerializeField] private GaugeManager guageManager;
     [SerializeField] private LaserShoot laserShoot;
     
     private bool isDribbling = false;
     private float chargeTimer = 0f;
     private int chargeCount = 0;
+
+    private void Awake()
+    {
+        if (ballController == null)
+            ballController = FindAnyObjectByType<BallController>();
+    }
    
     private void OnEnable()
     {
-        chargeZone.OnDribblingChanged += HandleDribblingChanged;
+        if (chargeZone != null)
+            chargeZone.OnDribblingChanged += HandleDribblingChanged;
+
+        if (ballController != null)
+        {
+            ballController.OnCaptured += HandleBallCaptured;
+            ballController.OnReleased += HandleBallReleased;
+        }
     }
 
     private void OnDisable()
     {
-        chargeZone.OnDribblingChanged -= HandleDribblingChanged;
+        if (chargeZone != null)
+            chargeZone.OnDribblingChanged -= HandleDribblingChanged;
+
+        if (ballController != null)
+        {
+            ballController.OnCaptured -= HandleBallCaptured;
+            ballController.OnReleased -= HandleBallReleased;
+        }
     }
     // 차징존에 공이 들어오고 나갈 때 호출되는 이벤트 핸들러
     private void HandleDribblingChanged(bool value)
     {
+        if (ballController != null)
+            return;
+
         isDribbling = value;
         
         if (isDribbling == false)
@@ -46,6 +70,24 @@ public class LaserChargeController : MonoBehaviour
             Reset();
         }
         
+    }
+
+    private void HandleBallCaptured()
+    {
+        isDribbling = true;
+        chargeTimer = 0f;
+        Debug.Log("[LaserCharge] Start charging by BallCaptured event");
+    }
+
+    private void HandleBallReleased()
+    {
+        if (!isDribbling)
+            return;
+
+        isDribbling = false;
+        Debug.Log("[LaserCharge] Stop charging by BallReleased event");
+        TryFireChargedLaser();
+        Reset();
     }
     
     

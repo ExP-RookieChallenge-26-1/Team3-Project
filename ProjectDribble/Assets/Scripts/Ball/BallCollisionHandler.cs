@@ -17,6 +17,11 @@ public class BallCollisionHandler : MonoBehaviour
 
     public BallCollisionResult HandleCollision(RaycastHit2D hit, Vector2 incomingDirection)
     {
+        if (ballController != null && ballController.IsCaptured)
+        {
+            return new BallCollisionResult(incomingDirection.normalized, false);
+        }
+
         Debug.Log("Collision: " + hit.collider.name);
 
         SoundManager.Instance.Play2D(SoundId.BallBounce);

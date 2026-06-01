@@ -17,6 +17,15 @@ public class BallCollisionHandler : MonoBehaviour
 
     public BallCollisionResult HandleCollision(RaycastHit2D hit, Vector2 incomingDirection)
     {
+        return HandleCollision(hit, incomingDirection, hit.normal);
+    }
+
+    public BallCollisionResult HandleCollision(
+        RaycastHit2D hit,
+        Vector2 incomingDirection,
+        Vector2 collisionNormal
+    )
+    {
         if (ballController != null && ballController.IsCaptured)
         {
             return new BallCollisionResult(incomingDirection.normalized, false);
@@ -82,7 +91,11 @@ public class BallCollisionHandler : MonoBehaviour
             return CreateResult(reflectedDirection, true);
         }
 
-        Vector2 defaultDirection = Vector2.Reflect(incomingDirection, hit.normal).normalized;
+        Vector2 normal = collisionNormal.sqrMagnitude > 0.0001f
+            ? collisionNormal.normalized
+            : hit.normal.normalized;
+
+        Vector2 defaultDirection = Vector2.Reflect(incomingDirection, normal).normalized;
 
         return CreateResult(defaultDirection, true);
     }

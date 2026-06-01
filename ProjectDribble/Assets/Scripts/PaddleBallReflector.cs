@@ -12,6 +12,8 @@ public class PaddleBallReflector : MonoBehaviour, IBallReflector
     float maxBounceAngle;
     float paddleWidth;
 
+    public bool ReflectUp => reflectUp;
+
     void Start()
     {
         if (gameObject.name == "roof_paddle")

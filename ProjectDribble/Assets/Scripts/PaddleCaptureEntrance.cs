@@ -12,6 +12,7 @@ public class PaddleCaptureEntrance : MonoBehaviour
     [SerializeField] private PaddleMovement paddle;
     [SerializeField] private Transform captureAnchor;
     [SerializeField] private CaptureEntranceSide side;
+    [SerializeField] private bool debugPaddleActiveState;
 
     private void Awake()
     {
@@ -20,6 +21,14 @@ public class PaddleCaptureEntrance : MonoBehaviour
 
         if (captureAnchor == null && paddle != null)
             captureAnchor = paddle.transform;
+
+        Collider2D trigger = GetComponent<Collider2D>();
+
+        if (trigger != null)
+        {
+            trigger.enabled = true;
+            trigger.isTrigger = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -34,7 +43,13 @@ public class PaddleCaptureEntrance : MonoBehaviour
 
     private void TryCapture(Collider2D other)
     {
-        if (paddle == null || !paddle.IsPaddleActive)
+        if (paddle == null)
+        {
+            Log("[PaddleCapture] Failed: Paddle is missing");
+            return;
+        }
+
+        if (!paddle.IsPaddleActive)
         {
             Log("[PaddleCapture] Failed: Paddle is not active");
             return;
@@ -44,6 +59,8 @@ public class PaddleCaptureEntrance : MonoBehaviour
 
         if (ball == null)
             return;
+
+        LogBallPaddleEnter();
 
         if (data == null)
             data = ball.data;
@@ -62,6 +79,9 @@ public class PaddleCaptureEntrance : MonoBehaviour
 
         if (!ball.CanCaptureNow)
         {
+            if (ball.IsInCapturedReleaseRecaptureDelay || ball.IsInReleaseRecaptureDelay)
+                Log("[CaptureBlocked] reason=releaseRecaptureDelay");
+
             Log("[PaddleCapture] Failed: Capture cooldown");
             return;
         }
@@ -69,6 +89,21 @@ public class PaddleCaptureEntrance : MonoBehaviour
         Log("[PaddleCapture] Capture entrance triggered");
         Log("[PaddleCapture] Success");
         ball.Capture(captureAnchor, paddle);
+    }
+
+    private void LogBallPaddleEnter()
+    {
+        if (!debugPaddleActiveState)
+            return;
+
+        Collider2D trigger = GetComponent<Collider2D>();
+        bool isPaddleActive = paddle != null && paddle.IsPaddleActive;
+        string paddleName = paddle != null ? paddle.name : "None";
+        bool isTrigger = trigger != null && trigger.isTrigger;
+
+        Debug.Log(
+            $"[BallPaddleEnter] paddle={paddleName}, isPaddleActive={isPaddleActive}, trigger={isTrigger}"
+        );
     }
 
     private bool IsMovingIntoEntrance(Vector2 ballDirection)

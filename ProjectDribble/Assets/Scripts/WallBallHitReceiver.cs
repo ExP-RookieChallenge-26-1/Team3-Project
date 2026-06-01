@@ -15,5 +15,23 @@ namespace DefaultNamespace
         {
             speedController.AddSpeed(-ballSpeedDecrease);
         }
+
+        private void OnDrawGizmosSelected()
+        {
+            Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
+
+            Gizmos.color = Color.cyan;
+
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                Collider2D wallCollider = colliders[i];
+
+                if (wallCollider == null)
+                    continue;
+
+                Bounds bounds = wallCollider.bounds;
+                Gizmos.DrawWireCube(bounds.center, bounds.size);
+            }
+        }
     }
 }

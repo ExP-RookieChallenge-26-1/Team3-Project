@@ -1,196 +1,346 @@
+using DefaultNamespace;
 using UnityEngine;
-
 
 public class BallMovement : MonoBehaviour
 {
-    public float speed = 10f; // 공의 초기 속도
+    public float speed = 10f;
 
-    [SerializeField] public float skinWidth = 0.1f; // 벽과 거리 유지 정도
+    [SerializeField] public float skinWidth = 0.03f;
     [SerializeField] private float _outsideMaxBounceAngle = 50f;
     [SerializeField] private float _insideMaxBounceAngle = 50f;
+    [SerializeField] private int maxCollisionIterations = 4;
+    [SerializeField] private bool debugCollision;
+    [SerializeField] private bool warnWhenOutOfPlayArea = true;
+    [SerializeField] private float outOfPlayAreaY = -30f;
 
-    
     public BallData data;
     public float moveDistance = 0;
+
     private Transform tr;
     private CircleCollider2D cc;
+    private Rigidbody2D rb;
 
-    private BallController BallController;
-    private BallCollisionHandler BallCollisionHandler;
-    private BallSpeedController BallSpeedController;
+    private BallController ballController;
+    private BallCollisionHandler ballCollisionHandler;
+    private readonly RaycastHit2D[] collisionHits = new RaycastHit2D[16];
 
-    float baseSpeed;
-    float maxSpeed;
-    float ballDamage;
-    float initialSpeed;
-    float initialBaseSpeed;
-    float initialMaxSpeed;
+    private float baseSpeed;
+    private float maxSpeed;
+    private float ballDamage;
+    private float initialSpeed;
+    private float initialBaseSpeed;
+    private float initialMaxSpeed;
 
-    void Start()
+    private void Start()
     {
-        tr = GetComponent<Transform>();
+        tr = transform;
         cc = GetComponent<CircleCollider2D>();
-        BallCollisionHandler = GetComponent<BallCollisionHandler>();
-        BallSpeedController = GetComponent<BallSpeedController>();
+        rb = GetComponent<Rigidbody2D>();
+        ballController = GetComponent<BallController>();
+        ballCollisionHandler = GetComponent<BallCollisionHandler>();
 
-        baseSpeed = data.baseSpeed;
-        maxSpeed = data.maxSpeed;
-        ballDamage = data.ballDamage;
+        ConfigureRigidbody();
+
+        if (data == null && ballController != null)
+            data = ballController.data;
+
+        baseSpeed = data != null ? data.baseSpeed : speed;
+        maxSpeed = data != null ? data.maxSpeed : speed;
+        ballDamage = data != null ? data.ballDamage : 1f;
 
         initialSpeed = speed;
         initialBaseSpeed = baseSpeed;
         initialMaxSpeed = maxSpeed;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-        //MoveBall(BallController.direction, BallController.actualRadius, BallController.collisionMask);
-    }
     public Vector2 MoveBall(Vector2 direction, float actualRadius, LayerMask collisionMask)
     {
+        if (direction.sqrMagnitude < 0.0001f)
+            direction = Vector2.down;
+
+        direction.Normalize();
         moveDistance = speed * Time.deltaTime;
-        // 1. CircleCast로 이동 경로에 장애물이 있는지 확인
-        RaycastHit2D hit = Physics2D.CircleCast(
-            transform.position,
+
+        float remainingDistance = moveDistance;
+        int iterationCount = Mathf.Max(1, maxCollisionIterations);
+
+        for (int i = 0; i < iterationCount && remainingDistance > 0.0001f; i++)
+        {
+            Vector2 startPosition = GetPosition();
+            RaycastHit2D hit = CastForCollision(
+                startPosition,
+                actualRadius,
+                direction,
+                remainingDistance + skinWidth,
+                collisionMask
+            );
+
+            DebugMove(startPosition, startPosition + direction * remainingDistance, hit);
+
+            if (hit.collider == null)
+            {
+                MoveBy(direction * remainingDistance);
+                remainingDistance = 0f;
+                break;
+            }
+
+            float safeDistance = Mathf.Max(0f, hit.distance - skinWidth);
+            MoveBy(direction * safeDistance);
+
+            Vector2 stableNormal = GetStableNormal(hit, direction, actualRadius, collisionMask);
+            MoveBy(stableNormal * skinWidth);
+
+            remainingDistance -= safeDistance;
+
+            if (debugCollision)
+            {
+                Debug.Log(
+                    $"[BallCollisionCast] Hit {hit.collider.name}, point: {hit.point}, normal: {stableNormal}, distance: {hit.distance}, remaining: {remainingDistance}"
+                );
+            }
+
+            BallCollisionResult result = ballCollisionHandler.HandleCollision(hit, direction, stableNormal);
+            direction = result.nextDirection;
+
+            if (!result.shouldMoveRemainingDistance)
+                break;
+
+            remainingDistance = Mathf.Max(0f, remainingDistance - skinWidth);
+            ResolveOverlap(actualRadius, collisionMask, direction);
+        }
+
+        ResolveOverlap(actualRadius, collisionMask, direction);
+        WarnIfOutOfPlayArea();
+
+        return direction;
+    }
+
+    private RaycastHit2D CastForCollision(
+        Vector2 startPosition,
+        float actualRadius,
+        Vector2 direction,
+        float distance,
+        LayerMask collisionMask
+    )
+    {
+        ContactFilter2D filter = new ContactFilter2D();
+        filter.SetLayerMask(collisionMask);
+        filter.useLayerMask = true;
+        filter.useTriggers = false;
+
+        int hitCount = Physics2D.CircleCast(
+            startPosition,
             actualRadius,
             direction,
-            moveDistance,
+            filter,
+            collisionHits,
+            distance
+        );
+
+        RaycastHit2D closestHit = default;
+        float closestDistance = float.PositiveInfinity;
+
+        for (int i = 0; i < hitCount; i++)
+        {
+            RaycastHit2D hit = collisionHits[i];
+
+            if (hit.collider == null || hit.collider == cc || hit.collider.isTrigger)
+                continue;
+
+            if (hit.distance < closestDistance)
+            {
+                closestHit = hit;
+                closestDistance = hit.distance;
+            }
+        }
+
+        return closestHit;
+    }
+
+    public Vector2 UpdateDirection(RaycastHit2D hit, float outsideMaxAngle, float insideMaxAngle, Vector2 direction)
+    {
+        return Vector2.Reflect(direction, hit.normal).normalized;
+    }
+
+    private void ResolveOverlap(float actualRadius, LayerMask collisionMask, Vector2 fallbackDirection)
+    {
+        Collider2D[] overlaps = Physics2D.OverlapCircleAll(GetPosition(), actualRadius, collisionMask);
+
+        for (int i = 0; i < overlaps.Length; i++)
+        {
+            Collider2D overlap = overlaps[i];
+
+            if (overlap == null || overlap == cc)
+                continue;
+
+            if (overlap.isTrigger)
+                continue;
+
+            if (overlap.CompareTag("need_correction"))
+                continue;
+
+            Vector2 position = GetPosition();
+            Vector2 closest = overlap.ClosestPoint(position);
+            Vector2 pushDirection = position - closest;
+
+            if (pushDirection.sqrMagnitude < 0.0001f)
+                pushDirection = position - (Vector2)overlap.bounds.center;
+
+            if (pushDirection.sqrMagnitude < 0.0001f)
+                pushDirection = -fallbackDirection;
+
+            float distanceToSurface = Vector2.Distance(position, closest);
+            float penetration = actualRadius - distanceToSurface;
+
+            if (penetration > 0f)
+                MoveBy(pushDirection.normalized * (penetration + skinWidth));
+        }
+    }
+
+    private Vector2 GetStableNormal(
+        RaycastHit2D hit,
+        Vector2 incomingDirection,
+        float actualRadius,
+        LayerMask collisionMask
+    )
+    {
+        Vector2 sampleCenter = GetPosition() + incomingDirection.normalized * Mathf.Max(0f, hit.distance);
+        Collider2D[] nearbyColliders = Physics2D.OverlapCircleAll(
+            sampleCenter,
+            actualRadius + skinWidth * 2f,
             collisionMask
         );
 
-        if (hit.collider != null)
-        {   
-            // 2. 충돌 지점까지 우선 이동 (충돌 지점에서 아주 살짝 띄움)
-            float distanceToHit = hit.distance;
-            transform.Translate(direction * distanceToHit, Space.World);
-            
-            // 2.5. 충돌면 바깥쪽으로 확실히 밀어냄
-            transform.position += (Vector3)(hit.normal * skinWidth);
-            
-            // 3. 충돌 대상에 따른 반사 방향 계산
-            float remainingDistance = moveDistance - distanceToHit;
+        Vector2 normalSum = hit.normal.sqrMagnitude > 0.0001f
+            ? hit.normal.normalized
+            : -incomingDirection.normalized;
 
-            BallCollisionResult result =
-                BallCollisionHandler.HandleCollision(hit, direction);
+        for (int i = 0; i < nearbyColliders.Length; i++)
+        {
+            Collider2D nearby = nearbyColliders[i];
 
-            direction = result.nextDirection;
-            
-            // 4. 남은 거리가 있다면 새로운 방향으로 다시 이동 (재귀 호출 방지를 위해 단순화)
-            if (result.shouldMoveRemainingDistance && remainingDistance > 0)
-            {   
-                transform.Translate(direction * remainingDistance, Space.World);
-            }
+            if (nearby == null || nearby == cc)
+                continue;
 
-            return direction;
+            if (nearby.isTrigger)
+                continue;
+
+            if (!IsBlockOrWall(nearby))
+                continue;
+
+            Vector2 closest = nearby.ClosestPoint(sampleCenter);
+            Vector2 away = sampleCenter - closest;
+
+            if (away.sqrMagnitude < 0.0001f)
+                away = sampleCenter - (Vector2)nearby.bounds.center;
+
+            if (away.sqrMagnitude > 0.0001f)
+                normalSum += away.normalized;
         }
-        // 충돌이 없다면 지정된 거리만큼 직선 이동
-        transform.Translate(direction * moveDistance, Space.World);
-        ResolveOverlap(actualRadius, collisionMask);
-        return direction;
+
+        if (normalSum.sqrMagnitude < 0.0001f)
+            return -incomingDirection.normalized;
+
+        Vector2 stableNormal = normalSum.normalized;
+
+        if (Vector2.Dot(stableNormal, -incomingDirection.normalized) < 0f)
+            stableNormal = -stableNormal;
+
+        return stableNormal;
     }
-   /*
-    public Vector2 UpdateDirection(RaycastHit2D hit, float outsideMaxAngle, float insideMaxAngle, Vector2 direction)
+
+    private bool IsBlockOrWall(Collider2D collider)
     {
-        Debug.Log("충돌함: " + hit.collider.name);
-        GameObject obj = hit.collider.gameObject;
+        if (collider.GetComponentInParent<BlockCell>() != null)
+            return true;
 
-        //패들 외 물체와 충돌 시 작용 인터페이스(i ball hit receiver)로 위임 
-        var hitObj = hit.collider.GetComponentInParent<IBallHitReceiver>();
+        if (collider.GetComponentInParent<WallBallHitReceiver>() != null)
+            return true;
 
-        if (hitObj != null)
-        {
-            hitObj.OnBallHit();
-        }
+        return collider.name.ToLowerInvariant().Contains("wall");
+    }
 
-        // 패들 충돌 로직
-        if (obj.name.Contains("paddle_up") || obj.name.Contains("paddle_down") || obj.name.Contains("roof_paddle"))
-        {
-            //razerManager.CheckBounceCount();
-            // 1. 비율 계산 ( -1 ~ 1 사이가 될 것임)
-            float xOffset = (transform.position.x - obj.transform.position.x) / (3f / 2f);
-            xOffset = Mathf.Clamp(xOffset, -1f, 1f);
-        
-            // 2. 튕겨나갈 기본 방향 결정 (위패들은 아래로, 아래패들은 위로)
-            Vector2 baseDir = obj.name.Contains("paddle_down") || obj.name.Contains("roof_paddle") ? Vector2.up : Vector2.down;
+    private Vector2 GetPosition()
+    {
+        return rb != null ? rb.position : (Vector2)tr.position;
+    }
 
-            // 3. 각도 보정 (Lerp)
-            float targetAngle;
-            if (obj.name.Contains("paddle_up") || obj.name.Contains("paddle_down"))
-            {
-                targetAngle = Mathf.Lerp(0, insideMaxAngle, Mathf.Abs(xOffset));
-            }
-            else
-            {
-                targetAngle = Mathf.Lerp(0, outsideMaxAngle, Mathf.Abs(xOffset));
-            }
-            
-            Quaternion rotation = Quaternion.Euler(0, 0, -xOffset * targetAngle);
+    private void MoveBy(Vector2 delta)
+    {
+        if (delta.sqrMagnitude <= 0f)
+            return;
 
-            return (rotation * baseDir).normalized;
-        }
+        Vector2 nextPosition = GetPosition() + delta;
+
+        if (rb != null)
+            rb.position = nextPosition;
         else
-        {
-            // 벽이나 기타 오브젝트: 일반적인 물리 반사 법칙 적용
-            return Vector2.Reflect(direction, hit.normal).normalized;
-           // razerManager.Reset();
-        }
+            tr.position = nextPosition;
     }
-*/
-    void ResolveOverlap(float actualRadius, LayerMask collisionMask)
+
+    private void ConfigureRigidbody()
     {
-        Collider2D overlap = Physics2D.OverlapCircle(tr.position, actualRadius, collisionMask);
-
-        if (overlap == null)
+        if (rb == null)
             return;
 
-        if (overlap.CompareTag("need_correction")) // 해당 태그 보유한 모든 오브젝트를 예외 처리함
-            return;
-
-        Vector2 closest = overlap.ClosestPoint(tr.position);
-        Vector2 pushDir = (tr.position - (Vector3)closest);
-
-        if (pushDir.sqrMagnitude < 0.0001f)
-        {
-            // 완전히 겹쳤을 때 (중심이 동일)
-            pushDir = Random.insideUnitCircle.normalized;
-        }
-
-        tr.position += (Vector3)(pushDir.normalized * (skinWidth));
-        
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.gravityScale = 0f;
+        rb.freezeRotation = true;
+        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        rb.interpolation = RigidbodyInterpolation2D.Interpolate;
     }
 
+    private void DebugMove(Vector2 startPosition, Vector2 endPosition, RaycastHit2D hit)
+    {
+        if (!debugCollision)
+            return;
 
-    // 공 현재 속도
+        Debug.DrawLine(startPosition, endPosition, hit.collider != null ? Color.red : Color.cyan);
+        Debug.DrawRay(startPosition, (endPosition - startPosition).normalized, Color.yellow);
+
+        if (hit.collider != null)
+            Debug.DrawRay(hit.point, hit.normal, Color.green);
+    }
+
+    private void WarnIfOutOfPlayArea()
+    {
+        if (!warnWhenOutOfPlayArea)
+            return;
+
+        Vector2 position = GetPosition();
+
+        if (position.y < outOfPlayAreaY)
+            Debug.LogWarning($"[BallOutOfPlayArea] Position: {position}, Speed: {speed}, MoveDistance: {moveDistance}");
+    }
+
     public void SetBallSpeed(float amount = -1)
     {
         if (amount < 0)
-        {
             speed = baseSpeed;
-        }
-        else{speed = amount;}
+        else
+            speed = amount;
     }
+
     public void AddBallSpeed(float amount)
     {
         speed += amount;
     }
 
-// 공 기본 속도
     public void SetBallBaseSpeed(float amount)
     {
         baseSpeed = amount;
     }
+
     public void AddBallBaseSpeed(float amount)
     {
         baseSpeed += amount;
     }
 
-// 공 최대 속도
     public void SetBallMaxSpeed(float amount)
     {
         maxSpeed = amount;
     }
+
     public void AddBallMaxSpeed(float amount)
     {
         maxSpeed += amount;
@@ -202,5 +352,4 @@ public class BallMovement : MonoBehaviour
         baseSpeed = initialBaseSpeed;
         maxSpeed = initialMaxSpeed;
     }
-    
 }

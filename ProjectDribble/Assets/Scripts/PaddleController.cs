@@ -1,74 +1,66 @@
 using UnityEngine;
-using UnityEngine.InputSystem; // 1. 네임스페이스 추가
+using UnityEngine.InputSystem;
 using UnityEngine.U2D;
 
 public class PaddleMovement : MonoBehaviour
 {
     [SerializeField] private PointerInputReader inputReader;
-    [SerializeField] private float activeCollisionEnabled = 1f;
-    private float transparentAlpha = 0.3f;
-    private Camera mainCamera;
+    [SerializeField] private bool debugPaddleActiveState;
 
-    //private SpriteShapeRenderer shapeRenderer; 
-    //private Color originalColor; 
-
-    //private Collider2D paddleCollider;
+    private const float TransparentAlpha = 0.3f;
 
     public PaddleData data;
-    private Transform tr;
-    private bool isCollisionOn = true;
 
-    Transform paddle_up;
-    Transform paddle_down;
-    Transform roof_paddle;
-
-    SpriteShapeRenderer up_shape;
-    Collider2D up_collider;
-
-    float moveSpeed; 
-    float paddleWidth; 
+    private Camera mainCamera;
+    private float moveSpeed;
+    private float paddleWidth;
+    private float velocityX;
+    private bool lastLoggedPaddleActive;
 
     public bool IsPaddleActive => inputReader != null && inputReader.IsPressed;
+    public float VelocityX => velocityX;
 
-
-    void Start()
+    private void Start()
     {
         moveSpeed = data.moveSpeed;
         paddleWidth = data.paddleWidth;
-
-        paddle_up = transform.Find("paddle_up");
-        paddle_down = transform.Find("paddle_down");
-        roof_paddle = transform.Find("roof_paddle");
-
-        up_shape = paddle_up.GetComponent<SpriteShapeRenderer>();
-        up_collider = paddle_up.GetComponent<Collider2D>();
-
         mainCamera = Camera.main;
-        tr = GetComponent<Transform>();
-        
-        
+
+        SetReflectColliderEnabled("paddle_up", IsPaddleActive);
+        SetReflectColliderEnabled("roof_paddle", IsPaddleActive);
+        EnsureCaptureTriggersEnabled();
+
+        lastLoggedPaddleActive = !IsPaddleActive;
+        LogPaddleStateIfChanged();
     }
 
-    void Update()
+    private void Update()
     {
+        float xBeforeMove = transform.position.x;
+
         if (IsPaddleActive)
         {
             MovePad(inputReader.ScreenPosition);
-            SetPaddleAlpha("paddle_up",1.0f);
-            SetPaddleAlpha("roof_paddle",1.0f);
-            SetPaddleCollider("paddle_up",true);
-            SetPaddleCollider("roof_paddle",true);
+            SetPaddleAlpha("paddle_up", 1f);
+            SetPaddleAlpha("roof_paddle", 1f);
         }
         else
         {
-            SetPaddleAlpha("paddle_up",transparentAlpha);
-            SetPaddleAlpha("roof_paddle",transparentAlpha);
-            SetPaddleCollider("paddle_up",false);
-            SetPaddleCollider("roof_paddle",false);
+            SetPaddleAlpha("paddle_up", TransparentAlpha);
+            SetPaddleAlpha("roof_paddle", TransparentAlpha);
         }
+
+        SetReflectColliderEnabled("paddle_up", IsPaddleActive);
+        SetReflectColliderEnabled("roof_paddle", IsPaddleActive);
+        EnsureCaptureTriggersEnabled();
+
+        float deltaTime = Mathf.Max(Time.deltaTime, 0.0001f);
+        velocityX = (transform.position.x - xBeforeMove) / deltaTime;
+
+        LogPaddleStateIfChanged();
     }
 
-    void MovePad(Vector2 screenPosition) // 모바일 터치를 위해서 수정
+    private void MovePad(Vector2 screenPosition)
     {
         Vector3 worldPos = mainCamera.ScreenToWorldPoint(
             new Vector3(
@@ -101,57 +93,130 @@ public class PaddleMovement : MonoBehaviour
 
     public void SetPaddleAlpha(string childName, float alpha)
     {
-        // 1. 이름으로 자식 오브젝트의 Transform을 찾음
         Transform childTransform = transform.Find(childName);
 
-        if (childTransform != null)
+        if (childTransform == null)
         {
-            // 2. 해당 자식의 SpriteRenderer 컴포넌트를 가져옴
-            SpriteShapeRenderer spriteShapeRenderer = childTransform.GetComponent<SpriteShapeRenderer>();
+            Debug.LogWarning($"{childName} child object was not found.");
+            return;
+        }
 
-            if (spriteShapeRenderer != null)
-            {
-                // 3. 기존 색상을 가져와서 알파(Alpha) 값만 변경 후 재대입
-                Color currentColor = spriteShapeRenderer.color;
-                currentColor.a = alpha; // 투명도 설정 (0.0f ~ 1.0f)
-                
-                spriteShapeRenderer.color = currentColor;
-            }
-            else
-            {
-                Debug.LogWarning($"{childName} 오브젝트에 SpriteRenderer가 없습니다.");
-            }
-        }
-        else
+        SpriteShapeRenderer spriteShapeRenderer = childTransform.GetComponent<SpriteShapeRenderer>();
+
+        if (spriteShapeRenderer == null)
         {
-            Debug.LogWarning($"{childName}이라는 이름의 자식 오브젝트를 찾을 수 없습니다.");
+            Debug.LogWarning($"{childName} has no SpriteShapeRenderer.");
+            return;
         }
+
+        Color currentColor = spriteShapeRenderer.color;
+        currentColor.a = alpha;
+        spriteShapeRenderer.color = currentColor;
     }
 
     public void SetPaddleCollider(string childName, bool isActive)
     {
-        // 1. 이름으로 자식 오브젝트를 찾음
+        SetReflectColliderEnabled(childName, isActive);
+    }
+
+    private void SetReflectColliderEnabled(string childName, bool isActive)
+    {
         Transform childTransform = transform.Find(childName);
 
-        if (childTransform != null)
+        if (childTransform == null)
         {
-            // 2. 해당 자식의 Collider2D 컴포넌트를 가져옴 (Box, Circle, Capsule 등 모두 호환)
-            Collider2D col = childTransform.GetComponent<Collider2D>();
+            Debug.LogWarning($"{childName} child object was not found.");
+            return;
+        }
 
-            if (col != null)
-            {
-                // 3. 콜라이더 활성화 상태 변경 (true = 켜기, false = 끄기)
-                col.enabled = isActive;
-            }
-            else
-            {
-                Debug.LogWarning($"{childName} 오브젝트에 Collider2D가 없습니다.");
-            }
-        }
-        else
+        Collider2D col = childTransform.GetComponent<Collider2D>();
+
+        if (col == null)
         {
-            Debug.LogWarning($"{childName}이라는 이름의 자식 오브젝트를 찾을 수 없습니다.");
+            Debug.LogWarning($"{childName} has no Collider2D.");
+            return;
         }
+
+        col.enabled = isActive;
+    }
+
+    private void EnsureCaptureTriggersEnabled()
+    {
+        PaddleCaptureEntrance[] entrances = GetComponentsInChildren<PaddleCaptureEntrance>(true);
+
+        for (int i = 0; i < entrances.Length; i++)
+            EnsureTriggerEnabled(entrances[i].GetComponent<Collider2D>());
+
+        PaddleInactiveCaptureTrigger[] inactiveTriggers =
+            GetComponentsInChildren<PaddleInactiveCaptureTrigger>(true);
+
+        for (int i = 0; i < inactiveTriggers.Length; i++)
+            EnsureTriggerEnabled(inactiveTriggers[i].GetComponent<Collider2D>());
+    }
+
+    private void EnsureTriggerEnabled(Collider2D trigger)
+    {
+        if (trigger == null)
+            return;
+
+        trigger.enabled = true;
+        trigger.isTrigger = true;
+    }
+
+    private void LogPaddleStateIfChanged()
+    {
+        if (!debugPaddleActiveState)
+            return;
+
+        if (lastLoggedPaddleActive == IsPaddleActive)
+            return;
+
+        lastLoggedPaddleActive = IsPaddleActive;
+
+        bool reflectColliderEnabled =
+            IsColliderEnabled("paddle_up") || IsColliderEnabled("roof_paddle");
+        bool dribbleTriggerEnabled = IsAnyCaptureTriggerEnabled();
+
+        Debug.Log(
+            $"[PaddleState] active={IsPaddleActive}, reflectCollider={reflectColliderEnabled}, dribbleTrigger={dribbleTriggerEnabled}"
+        );
+    }
+
+    private bool IsColliderEnabled(string childName)
+    {
+        Transform childTransform = transform.Find(childName);
+
+        if (childTransform == null)
+            return false;
+
+        Collider2D col = childTransform.GetComponent<Collider2D>();
+        return col != null && col.enabled;
+    }
+
+    private bool IsAnyCaptureTriggerEnabled()
+    {
+        PaddleCaptureEntrance[] entrances = GetComponentsInChildren<PaddleCaptureEntrance>(true);
+
+        for (int i = 0; i < entrances.Length; i++)
+        {
+            Collider2D trigger = entrances[i].GetComponent<Collider2D>();
+
+            if (trigger != null && trigger.enabled && trigger.isTrigger)
+                return true;
+        }
+
+        PaddleInactiveCaptureTrigger[] inactiveTriggers =
+            GetComponentsInChildren<PaddleInactiveCaptureTrigger>(true);
+
+        for (int i = 0; i < inactiveTriggers.Length; i++)
+        {
+            Collider2D trigger = inactiveTriggers[i].GetComponent<Collider2D>();
+
+            if (trigger != null && trigger.enabled && trigger.isTrigger)
+                return true;
+        }
+
+        return false;
     }
 
     public void SetPaddleSpeed(float amount)

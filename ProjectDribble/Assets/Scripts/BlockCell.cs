@@ -115,4 +115,22 @@ public class BlockCell : MonoBehaviour,
 
         sr.color = color;
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
+
+        Gizmos.color = Color.yellow;
+
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            Collider2D blockCollider = colliders[i];
+
+            if (blockCollider == null)
+                continue;
+
+            Bounds bounds = blockCollider.bounds;
+            Gizmos.DrawWireCube(bounds.center, bounds.size);
+        }
+    }
 }

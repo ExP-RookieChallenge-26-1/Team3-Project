@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BallData
   m_EditorClassIdentifier: Assembly-CSharp::BallData
   baseSpeed: 30
-  maxSpeed: 70
+  maxSpeed: 100
   ballDamage: 1
   outerPaddleSpeedIncrease: 5
   innerPaddleSpeedIncrease: 5
@@ -31,8 +31,8 @@ MonoBehaviour:
   minEntranceDirectionX: 0.1
   debugCaptureLog: 1
   capturedDribbleSpeedFallback: 20
-  capturedTopOffset: 0.5
-  capturedBottomOffset: -0.5
+  capturedTopOffset: 1
+  capturedBottomOffset: -1
   capturedXFollowSpeed: 30
   capturedPaddleHitCooldown: 0.05
   debugCapturedDribbleLog: 1

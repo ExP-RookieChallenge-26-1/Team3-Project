@@ -135,7 +135,7 @@ public class BlockManager : MonoBehaviour
     {
         CalculateGridSize();
         //return new Vector2(cellWidth, cellHeight);
-        return new Vector2(1f,1f);
+        return new Vector2(1f, 1f);
     }
 
     private IEnumerator GrowRoutine()
@@ -256,7 +256,7 @@ public class BlockManager : MonoBehaviour
 
         Collider2D hit = Physics2D.OverlapBox(
             cellCenter,
-            cellSize * 0.8f,
+            cellSize,
             0f
         );
 

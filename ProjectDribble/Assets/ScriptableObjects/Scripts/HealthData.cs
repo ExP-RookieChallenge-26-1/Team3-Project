@@ -16,7 +16,7 @@ public class HealthData : ScriptableObject
     [Header("Block Damage Zone")]
     public int damagePerTick = 1;
     public float damageInterval = 1f;
-
+    
     [Header("Ceiling HP")]
     public int ceilingMaxHp = 100;
 }

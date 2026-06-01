@@ -33,7 +33,7 @@ MonoBehaviour:
   startCells:
   - {x: 0, y: 0}
   - {x: 6, y: 0}
-  spawnInterval: 1.2
+  spawnInterval: 0.1
   minGrowPerTick: 2
   maxGrowPerTick: 4
   rowWeightMultiplier: 0.2

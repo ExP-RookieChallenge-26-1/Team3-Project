@@ -15,7 +15,9 @@ public class PlayerHealth : MonoBehaviour
     [Header("Ground Visual")]
     [SerializeField] private SpriteRenderer leftGroundRenderer;
     [SerializeField] private SpriteRenderer rightGroundRenderer;
-
+    [SerializeField] private SpriteRenderer UpPaddleRenderer;
+    [SerializeField] private SpriteRenderer DownPaddleRenderer;
+    
     public int CurrentHp => currentHp;
     public int MaxHp => runtimeMaxHp;
 
@@ -69,6 +71,11 @@ public class PlayerHealth : MonoBehaviour
 
         if (rightGroundRenderer != null)
             rightGroundRenderer.color = currentColor;
+        if (DownPaddleRenderer != null)
+            DownPaddleRenderer.color = currentColor;
+
+        if (UpPaddleRenderer != null)
+            UpPaddleRenderer.color = currentColor;
     }
 
     private void Die()

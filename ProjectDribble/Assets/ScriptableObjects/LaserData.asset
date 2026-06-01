@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScriptableObjects.LaserData
   startGaugeValue: 25
   maxGaugeSegments: 3
-  gaugePerSegment: 25
+  gaugePerSegment: 10
   chargeTime: 1.5
   maxChargeCount: 3
   baseWidth: 2

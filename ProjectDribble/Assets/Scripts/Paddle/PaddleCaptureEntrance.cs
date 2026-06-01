@@ -3,13 +3,14 @@ using UnityEngine;
 public enum CaptureEntranceSide
 {
     Left,
-    Right
+    Right,
+    Up
 }
 
 public class PaddleCaptureEntrance : MonoBehaviour
 {
     [SerializeField] private BallData data;
-    [SerializeField] private PaddleMovement paddle;
+    [SerializeField] private PaddleController paddle;
     [SerializeField] private Transform captureAnchor;
     [SerializeField] private CaptureEntranceSide side;
     [SerializeField] private bool debugPaddleActiveState;
@@ -17,7 +18,7 @@ public class PaddleCaptureEntrance : MonoBehaviour
     private void Awake()
     {
         if (paddle == null)
-            paddle = GetComponentInParent<PaddleMovement>();
+            paddle = GetComponentInParent<PaddleController>();
 
         if (captureAnchor == null && paddle != null)
             captureAnchor = paddle.transform;
@@ -117,6 +118,9 @@ public class PaddleCaptureEntrance : MonoBehaviour
 
         if (side == CaptureEntranceSide.Right)
             return ballDirection.x < -minEntranceDirectionX;
+        
+        if (side == CaptureEntranceSide.Up)
+            return ballDirection.y < -minEntranceDirectionX;
 
         return false;
     }

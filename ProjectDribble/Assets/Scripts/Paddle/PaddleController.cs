@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.U2D;
 
-public class PaddleMovement : MonoBehaviour
+public class PaddleController : MonoBehaviour
 {
     [SerializeField] private PointerInputReader inputReader;
     [SerializeField] private bool debugPaddleActiveState;

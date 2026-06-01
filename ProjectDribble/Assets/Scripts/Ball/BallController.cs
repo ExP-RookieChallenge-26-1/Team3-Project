@@ -41,7 +41,7 @@ public class BallController : MonoBehaviour
     private BallMovement BallMovement;
     private BallCollisionHandler BallCollisionHandler;
     private BallSpeedController BallSpeedController;
-    private PaddleMovement capturedPaddle;
+    private PaddleController capturedPaddle;
     private float capturedYDirection = 1f;
     private float lastCaptureTime = -999f;
     private float lastReleaseTime = -999f;
@@ -49,7 +49,7 @@ public class BallController : MonoBehaviour
     private float lastDribbleSpeedIncreaseTime = -999f;
     private float capturedStartTime = -999f;
     private float lastCaptureReleaseTime = -999f;
-    private PaddleMovement inactiveCaptureSuppressedPaddle;
+    private PaddleController inactiveCaptureSuppressedPaddle;
     private bool suppressInactiveCaptureUntilPaddleActive;
 
     public int ballDamage = 1;
@@ -106,7 +106,7 @@ public class BallController : MonoBehaviour
         Capture(anchor, null);
     }
 
-    public void Capture(Transform anchor, PaddleMovement paddle)
+    public void Capture(Transform anchor, PaddleController paddle)
     {
         if (IsInactivePaddleCaptureBlocked(paddle))
             return;
@@ -130,7 +130,7 @@ public class BallController : MonoBehaviour
 
     public void Capture(
         Transform anchor,
-        PaddleMovement paddle,
+        PaddleController paddle,
         bool bounceUp,
         string source
     )
@@ -152,7 +152,7 @@ public class BallController : MonoBehaviour
 
     public void CaptureFromInactiveTrigger(
         Transform anchor,
-        PaddleMovement paddle,
+        PaddleController paddle,
         bool bounceUp
     )
     {
@@ -171,7 +171,7 @@ public class BallController : MonoBehaviour
         StartCapturedDribble(paddle, bounceUp, "InactivePaddleTrigger");
     }
 
-    private bool IsInactivePaddleCaptureBlocked(PaddleMovement paddle)
+    private bool IsInactivePaddleCaptureBlocked(PaddleController paddle)
     {
         if (paddle == null || paddle.IsPaddleActive)
             return false;
@@ -343,7 +343,7 @@ public class BallController : MonoBehaviour
             : data.innerPaddleSpeedIncrease;
     }
 
-    private void StartCapturedDribble(PaddleMovement paddle, bool bounceUp, string source)
+    private void StartCapturedDribble(PaddleController paddle, bool bounceUp, string source)
     {
         if (paddle != null && paddle == inactiveCaptureSuppressedPaddle && paddle.IsPaddleActive)
             ClearInactiveCaptureSuppression("paddle active before capture");
@@ -375,7 +375,7 @@ public class BallController : MonoBehaviour
         return false;
     }
 
-    public bool CanCaptureFromInactivePaddle(PaddleMovement paddle)
+    public bool CanCaptureFromInactivePaddle(PaddleController paddle)
     {
         RefreshInactiveCaptureSuppression();
 
@@ -432,7 +432,7 @@ public class BallController : MonoBehaviour
         if (!IsCaptured)
             return;
 
-        PaddleMovement releasedPaddle = capturedPaddle;
+        PaddleController releasedPaddle = capturedPaddle;
 
         if (direction.sqrMagnitude < 0.0001f)
             direction = new Vector2(0f, capturedYDirection).normalized;
@@ -453,7 +453,7 @@ public class BallController : MonoBehaviour
         OnReleased?.Invoke();
     }
 
-    private void SuppressInactiveCaptureUntilPaddleActive(PaddleMovement paddle)
+    private void SuppressInactiveCaptureUntilPaddleActive(PaddleController paddle)
     {
         inactiveCaptureSuppressedPaddle = paddle;
         suppressInactiveCaptureUntilPaddleActive = true;

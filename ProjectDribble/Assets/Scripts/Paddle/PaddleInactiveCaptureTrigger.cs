@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PaddleInactiveCaptureTrigger : MonoBehaviour
 {
-    [SerializeField] private PaddleMovement paddle;
+    [SerializeField] private PaddleController paddle;
     [SerializeField] private Transform captureAnchor;
     [SerializeField] private bool bounceUp = true;
     [SerializeField] private bool debugPaddleActiveState;
@@ -10,7 +10,7 @@ public class PaddleInactiveCaptureTrigger : MonoBehaviour
     private void Awake()
     {
         if (paddle == null)
-            paddle = GetComponentInParent<PaddleMovement>();
+            paddle = GetComponentInParent<PaddleController>();
 
         if (captureAnchor == null && paddle != null)
             captureAnchor = paddle.transform;

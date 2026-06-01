@@ -1749,8 +1749,8 @@ Transform:
   m_GameObject: {fileID: 1448456095}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4, y: -12, z: 0}
-  m_LocalScale: {x: 0.5, y: 3, z: 1}
+  m_LocalPosition: {x: -3.62, y: -12, z: 0}
+  m_LocalScale: {x: 0.5, y: 2.67, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 263173833}
@@ -1816,7 +1816,7 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
   paddle: {fileID: 356703115933531917}
   captureAnchor: {fileID: 413990941}
-  side: 1
+  side: 0
   debugPaddleActiveState: 0
 --- !u!1 &1465136419
 GameObject:
@@ -2300,8 +2300,8 @@ Transform:
   m_GameObject: {fileID: 1805478322}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: -12, z: 0}
-  m_LocalScale: {x: 0.5, y: 3, z: 1}
+  m_LocalPosition: {x: 3.62, y: -12, z: 0}
+  m_LocalScale: {x: 0.5, y: 2.67, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 263173833}
@@ -2367,8 +2367,8 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
   paddle: {fileID: 356703115933531917}
   captureAnchor: {fileID: 413990941}
-  side: 0
-  debugPaddleActiveState: 1
+  side: 1
+  debugPaddleActiveState: 0
 --- !u!1 &1896597040
 GameObject:
   m_ObjectHideFlags: 0
@@ -3361,7 +3361,7 @@ Transform:
   m_GameObject: {fileID: 8673730412575904137}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.39, y: -4.59, z: 0}
+  m_LocalPosition: {x: -6.04, y: -11.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4442,8 +4442,8 @@ MonoBehaviour:
   healthData: {fileID: 11400000, guid: 117f7251e9974744096b222ffafdf8bc, type: 2}
   leftGroundRenderer: {fileID: 1169768074}
   rightGroundRenderer: {fileID: 1247640126}
-  UpPaddleRenderer: {fileID: 0}
-  DownPaddleRenderer: {fileID: 0}
+  UpPaddleRenderer: {fileID: 1465136420}
+  DownPaddleRenderer: {fileID: 1537632514}
 --- !u!114 &5988251570761651998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5469,10 +5469,10 @@ MonoBehaviour:
   capturedBottomBound: {fileID: 4311641027604904549}
   topCapturedPaddleModifier: {fileID: 3611774075496182083}
   bottomCapturedPaddleModifier: {fileID: 3691128700249804780}
-  dribbleVerticalCorrectionDelay: 0.15
-  dribbleVerticalCorrectionDuration: 0.4
-  dribbleMaxInitialX: 0.6
-  dribbleMovingXInfluence: 0.15
+  dribbleVerticalCorrectionDelay: 1
+  dribbleVerticalCorrectionDuration: 1
+  dribbleMaxInitialX: 1
+  dribbleMovingXInfluence: 0.4
   dribbleStillVelocityThreshold: 0.02
   dribbleSpeedIncreaseCooldown: 0.25
   captureReleaseGraceTime: 0.08
@@ -5737,6 +5737,7 @@ GameObject:
   - component: {fileID: 8720353550579785844}
   - component: {fileID: 8720353550579785845}
   - component: {fileID: 8720353550579785846}
+  - component: {fileID: 8720353550579785847}
   m_Layer: 0
   m_Name: ball
   m_TagString: Ball
@@ -5900,6 +5901,18 @@ MonoBehaviour:
   recallStartDirection: {x: 0, y: 1}
   ballController: {fileID: 8185791647005175377}
   ballMovement: {fileID: 2358190074791870190}
+--- !u!114 &8720353550579785847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8673730412575904137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8b89ecb43b4dd4db975db471a1c0d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BallCapturedDribbleController
 --- !u!1 &8736495040494826391
 GameObject:
   m_ObjectHideFlags: 0

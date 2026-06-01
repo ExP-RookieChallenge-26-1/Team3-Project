@@ -26,14 +26,14 @@ MonoBehaviour:
   dribbleDamageBonus: 0.2
   blockDamageLoss: 0.5
   blockSpeedSlowCooldown: 0.25
-  captureCooldown: 0.12
-  releaseRecaptureDelay: 0.15
+  captureCooldown: 0.1
+  releaseRecaptureDelay: 0.5
   minEntranceDirectionX: 0.1
   debugCaptureLog: 1
   capturedDribbleSpeedFallback: 20
-  capturedTopOffset: 1
-  capturedBottomOffset: -1
-  capturedXFollowSpeed: 30
+  capturedTopOffset: 1.5
+  capturedBottomOffset: -1.5
+  capturedXFollowSpeed: 15
   capturedPaddleHitCooldown: 0.05
   debugCapturedDribbleLog: 1
   blockSlowRules:

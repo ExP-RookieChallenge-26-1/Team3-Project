@@ -8,6 +8,7 @@ public enum BallState
     Captured
 }
 
+[RequireComponent(typeof(BallCapturedDribbleController))]
 public class BallController : MonoBehaviour
 {
     [SerializeField] private float ballRadius = 0.7f;
@@ -17,6 +18,7 @@ public class BallController : MonoBehaviour
     [SerializeField] private Transform capturedBottomBound;
     [SerializeField] private PaddleSpeedModifier topCapturedPaddleModifier;
     [SerializeField] private PaddleSpeedModifier bottomCapturedPaddleModifier;
+    
     [Header("Captured Dribble")]
     [SerializeField] private float dribbleVerticalCorrectionDelay = 0.15f;
     [SerializeField] private float dribbleVerticalCorrectionDuration = 0.4f;
@@ -41,16 +43,10 @@ public class BallController : MonoBehaviour
     private BallMovement BallMovement;
     private BallCollisionHandler BallCollisionHandler;
     private BallSpeedController BallSpeedController;
-    private PaddleController capturedPaddle;
-    private float capturedYDirection = 1f;
+    private BallCapturedDribbleController capturedDribbleController;
     private float lastCaptureTime = -999f;
     private float lastReleaseTime = -999f;
-    private float lastCapturedPaddleHitTime = -999f;
-    private float lastDribbleSpeedIncreaseTime = -999f;
-    private float capturedStartTime = -999f;
     private float lastCaptureReleaseTime = -999f;
-    private PaddleController inactiveCaptureSuppressedPaddle;
-    private bool suppressInactiveCaptureUntilPaddleActive;
 
     public int ballDamage = 1;
     public BallState CurrentState { get; private set; } = BallState.Free;
@@ -74,6 +70,7 @@ public class BallController : MonoBehaviour
         BallMovement = GetComponent<BallMovement>();
         BallCollisionHandler = GetComponent<BallCollisionHandler>();
         BallSpeedController = GetComponent<BallSpeedController>();
+        EnsureCapturedDribbleController();
 
         if (data == null && BallMovement != null)
             data = BallMovement.data;
@@ -90,11 +87,12 @@ public class BallController : MonoBehaviour
 
     void Update()
     {
-        RefreshInactiveCaptureSuppression();
+        EnsureCapturedDribbleController();
+        capturedDribbleController.RefreshInactiveCaptureSuppression();
 
         if (IsCaptured)
         {
-            MoveCapturedBall();
+            capturedDribbleController.Tick();
             return;
         }
 
@@ -108,10 +106,12 @@ public class BallController : MonoBehaviour
 
     public void Capture(Transform anchor, PaddleController paddle)
     {
-        if (IsInactivePaddleCaptureBlocked(paddle))
+        EnsureCapturedDribbleController();
+
+        if (capturedDribbleController.IsInactivePaddleCaptureBlocked(paddle))
             return;
 
-        if (!CanStartCapturedDribble())
+        if (!capturedDribbleController.CanStartCapturedDribble())
             return;
 
         if (anchor != null)
@@ -135,10 +135,12 @@ public class BallController : MonoBehaviour
         string source
     )
     {
-        if (IsInactivePaddleCaptureBlocked(paddle))
+        EnsureCapturedDribbleController();
+
+        if (capturedDribbleController.IsInactivePaddleCaptureBlocked(paddle))
             return;
 
-        if (!CanStartCapturedDribble())
+        if (!capturedDribbleController.CanStartCapturedDribble())
             return;
 
         if (anchor != null)
@@ -156,6 +158,8 @@ public class BallController : MonoBehaviour
         bool bounceUp
     )
     {
+        EnsureCapturedDribbleController();
+
         if (paddle == null || paddle.IsPaddleActive)
             return;
 
@@ -171,25 +175,15 @@ public class BallController : MonoBehaviour
         StartCapturedDribble(paddle, bounceUp, "InactivePaddleTrigger");
     }
 
-    private bool IsInactivePaddleCaptureBlocked(PaddleController paddle)
-    {
-        if (paddle == null || paddle.IsPaddleActive)
-            return false;
-
-        if (debugCaptureRelease)
-            Debug.Log("[CaptureBlocked] reason=inactivePaddleDirectCapture");
-
-        return true;
-    }
-
     public void Release(Vector2 releaseDirection)
     {
+        EnsureCapturedDribbleController();
+
         if (releaseDirection.sqrMagnitude > 0.0001f)
             direction = CorrectDirection(releaseDirection);
 
+        capturedDribbleController.ResetCapture();
         captureAnchor = null;
-        capturedPaddle = null;
-        capturedStartTime = -999f;
         CurrentState = BallState.Free;
         lastReleaseTime = Time.time;
         Debug.Log("[BallState] Released");
@@ -206,13 +200,15 @@ public class BallController : MonoBehaviour
 
     public void ReleaseUpward()
     {
+        EnsureCapturedDribbleController();
+
         Vector2 releaseDirection = direction;
         releaseDirection.y = Mathf.Abs(releaseDirection.y);
 
         if (releaseDirection.sqrMagnitude < 0.01f)
             releaseDirection = Vector2.up;
 
-        LogCapturedDribble("[BallState] Released Upward");
+        capturedDribbleController.LogCapturedDribble("[BallState] Released Upward");
         Release(releaseDirection.normalized);
     }
 
@@ -259,322 +255,78 @@ public class BallController : MonoBehaviour
         return corrected;
     }
 
-    private void MoveCapturedBall()
-    {
-        if (captureAnchor == null)
-            return;
-
-        if (UpdateCapturedReleaseState())
-            return;
-
-        Vector3 pos = transform.position;
-        Vector3 anchorPos = captureAnchor.position;
-
-        float targetX = anchorPos.x + capturedLocalOffset.x;
-        float dribbleSpeed = BallSpeedController != null
-            ? BallSpeedController.CurrentSpeed
-            : CapturedDribbleSpeedFallback;
-
-        pos.x = Mathf.Lerp(pos.x, targetX, CapturedXFollowSpeed * Time.deltaTime);
-        pos.y += capturedYDirection * dribbleSpeed * Time.deltaTime;
-
-        float topY = capturedTopBound != null
-            ? capturedTopBound.position.y - actualRadius
-            : anchorPos.y + CapturedTopOffset;
-        float bottomY = capturedBottomBound != null
-            ? capturedBottomBound.position.y + actualRadius
-            : anchorPos.y + CapturedBottomOffset;
-
-        if (pos.y >= topY)
-        {
-            pos.y = topY;
-            capturedYDirection = -1f;
-            LogCapturedDribble("[BallState] Captured Dribble Bounce Top");
-            ApplyCapturedPaddleHit(true);
-        }
-        else if (pos.y <= bottomY)
-        {
-            pos.y = bottomY;
-            capturedYDirection = 1f;
-            LogCapturedDribble("[BallState] Captured Dribble Bounce Bottom");
-            ApplyCapturedPaddleHit(false);
-        }
-
-        transform.position = pos;
-
-        float paddleVelocityX = capturedPaddle != null ? capturedPaddle.VelocityX : 0f;
-        direction = GetDribbleBounceDirection(capturedYDirection > 0f, paddleVelocityX);
-
-        LogMoveCapturedBall(paddleVelocityX);
-
-        LogCapturedDribble($"[BallState] Captured Dribble Speed: {dribbleSpeed}");
-    }
-
-    private void ApplyCapturedPaddleHit(bool isTopBound)
-    {
-        if (Time.time < lastCapturedPaddleHitTime + CapturedPaddleHitCooldown)
-        {
-            LogCapturedDribble("[CapturedPaddleHit] Skipped by cooldown.");
-            return;
-        }
-
-        if (BallSpeedController == null)
-            return;
-
-        TryIncreaseSpeedFromDribble();
-
-        lastCapturedPaddleHitTime = Time.time;
-
-        if (SoundManager.Instance != null)
-            SoundManager.Instance.Play2D(SoundId.BallBounce);
-
-        LogCapturedDribble(isTopBound
-            ? "[CapturedPaddleHit] Top bound hit. Apply paddle bonus."
-            : "[CapturedPaddleHit] Bottom bound hit. Apply paddle bonus.");
-    }
-
-    private float GetCapturedPaddleFallbackSpeedBonus(bool isTopBound)
-    {
-        if (data == null)
-            return 0f;
-
-        return isTopBound
-            ? data.outerPaddleSpeedIncrease
-            : data.innerPaddleSpeedIncrease;
-    }
-
     private void StartCapturedDribble(PaddleController paddle, bool bounceUp, string source)
     {
-        if (paddle != null && paddle == inactiveCaptureSuppressedPaddle && paddle.IsPaddleActive)
-            ClearInactiveCaptureSuppression("paddle active before capture");
-
-        capturedPaddle = paddle;
-        capturedYDirection = bounceUp ? 1f : -1f;
-        CurrentState = BallState.Captured;
-        lastCaptureTime = Time.time;
-        lastDribbleSpeedIncreaseTime = -999f;
-        capturedStartTime = Time.time;
-
-        float paddleVelocityX = capturedPaddle != null ? capturedPaddle.VelocityX : 0f;
-        direction = GetDribbleBounceDirection(bounceUp, paddleVelocityX);
-
-        Debug.Log("[BallState] Captured");
-        LogCapturedDribble("[BallState] Captured Dribble Start");
-        LogStartCapturedDribble(source, bounceUp, paddleVelocityX);
-        OnCaptured?.Invoke();
-    }
-
-    private bool CanStartCapturedDribble()
-    {
-        if (CanCaptureNow)
-            return true;
-
-        if (debugCaptureRelease && (IsInCapturedReleaseRecaptureDelay || IsInReleaseRecaptureDelay))
-            Debug.Log("[CaptureBlocked] reason=releaseRecaptureDelay");
-
-        return false;
+        capturedDribbleController.Begin(captureAnchor, paddle, bounceUp, source);
     }
 
     public bool CanCaptureFromInactivePaddle(PaddleController paddle)
     {
-        RefreshInactiveCaptureSuppression();
-
-        if (!CanStartCapturedDribble())
-            return false;
-
-        if (
-            suppressInactiveCaptureUntilPaddleActive &&
-            paddle != null &&
-            paddle == inactiveCaptureSuppressedPaddle
-        )
-        {
-            if (debugCaptureRelease)
-                Debug.Log("[CaptureBlocked] reason=paddleReleasedUntilActive");
-
-            return false;
-        }
-
-        return true;
+        EnsureCapturedDribbleController();
+        return capturedDribbleController.CanCaptureFromInactivePaddle(paddle);
     }
 
-    private bool UpdateCapturedReleaseState()
+    private void EnsureCapturedDribbleController()
     {
-        if (!IsCaptured)
-            return false;
+        if (capturedDribbleController == null)
+            capturedDribbleController = GetComponent<BallCapturedDribbleController>();
 
-        bool gracePassed = Time.time >= capturedStartTime + captureReleaseGraceTime;
-        bool active = capturedPaddle != null && capturedPaddle.IsPaddleActive;
+        if (capturedDribbleController == null)
+            capturedDribbleController = gameObject.AddComponent<BallCapturedDribbleController>();
 
-        if (debugCaptureRelease)
-        {
-            Debug.Log(
-                $"[CapturedState] active={active}, gracePassed={gracePassed}, isCaptured={IsCaptured}"
-            );
-        }
+        if (BallSpeedController == null)
+            BallSpeedController = GetComponent<BallSpeedController>();
 
-        if (capturedPaddle == null)
-        {
-            ReleaseCapturedDribble("capturedPaddle null");
-            return true;
-        }
-
-        if (gracePassed && !capturedPaddle.IsPaddleActive)
-        {
-            ReleaseCapturedDribble("paddle inactive");
-            return true;
-        }
-
-        return false;
+        capturedDribbleController.Initialize(this, BallSpeedController);
     }
 
-    private void ReleaseCapturedDribble(string reason)
+    public void EnterCapturedState()
     {
-        if (!IsCaptured)
-            return;
+        CurrentState = BallState.Captured;
+        lastCaptureTime = Time.time;
+    }
 
-        PaddleController releasedPaddle = capturedPaddle;
-
-        if (direction.sqrMagnitude < 0.0001f)
-            direction = new Vector2(0f, capturedYDirection).normalized;
-
+    public void ReleaseCapturedStateFromDribble()
+    {
         captureAnchor = null;
-        capturedPaddle = null;
-        capturedStartTime = -999f;
         CurrentState = BallState.Free;
         lastCaptureReleaseTime = Time.time;
         lastReleaseTime = Time.time;
+    }
 
-        if (debugCaptureRelease)
-            Debug.Log($"[ReleaseCapturedDribble] reason={reason}, time={Time.time:0.00}");
+    public void NotifyCaptured()
+    {
+        OnCaptured?.Invoke();
+    }
 
-        if (reason == "paddle inactive" && releasedPaddle != null)
-            SuppressInactiveCaptureUntilPaddleActive(releasedPaddle);
-
+    public void NotifyReleased()
+    {
         OnReleased?.Invoke();
     }
 
-    private void SuppressInactiveCaptureUntilPaddleActive(PaddleController paddle)
-    {
-        inactiveCaptureSuppressedPaddle = paddle;
-        suppressInactiveCaptureUntilPaddleActive = true;
-
-        if (debugCaptureRelease)
-            Debug.Log($"[CaptureBlocked] reason=paddleReleasedUntilActive, paddle={paddle.name}");
-    }
-
-    private void RefreshInactiveCaptureSuppression()
-    {
-        if (!suppressInactiveCaptureUntilPaddleActive)
-            return;
-
-        if (inactiveCaptureSuppressedPaddle == null)
-        {
-            ClearInactiveCaptureSuppression("paddle missing");
-            return;
-        }
-
-        if (inactiveCaptureSuppressedPaddle.IsPaddleActive)
-            ClearInactiveCaptureSuppression("paddle active");
-    }
-
-    private void ClearInactiveCaptureSuppression(string reason)
-    {
-        suppressInactiveCaptureUntilPaddleActive = false;
-        inactiveCaptureSuppressedPaddle = null;
-
-        if (debugCaptureRelease)
-            Debug.Log($"[CaptureUnblocked] reason={reason}");
-    }
-
-    private Vector2 GetDribbleBounceDirection(bool bounceUp, float paddleVelocityX)
-    {
-        float y = bounceUp ? 1f : -1f;
-        float elapsed = Mathf.Max(0f, Time.time - capturedStartTime);
-        float correctionT = Mathf.InverseLerp(
-            dribbleVerticalCorrectionDelay,
-            dribbleVerticalCorrectionDelay + dribbleVerticalCorrectionDuration,
-            elapsed
-        );
-
-        correctionT = Mathf.Clamp01(correctionT);
-
-        float currentX = Mathf.Clamp(direction.x, -dribbleMaxInitialX, dribbleMaxInitialX);
-        float movingX = paddleVelocityX * dribbleMovingXInfluence;
-        float targetX = Mathf.Abs(paddleVelocityX) < dribbleStillVelocityThreshold
-            ? 0f
-            : movingX;
-
-        float x = Mathf.Lerp(currentX, targetX, correctionT);
-        Vector2 finalDirection = new Vector2(x, y).normalized;
-
-        if (debugDribbleBounce)
-        {
-            Debug.Log(
-                $"[DribbleBounce] elapsed={elapsed:0.00}, correctionT={correctionT:0.00}, currentX={currentX:0.00}, targetX={targetX:0.00}, finalDir={finalDirection}"
-            );
-        }
-
-        return finalDirection;
-    }
-
-    private void LogStartCapturedDribble(string source, bool bounceUp, float paddleVelocityX)
-    {
-        if (!debugDribbleState)
-            return;
-
-        string paddleName = capturedPaddle != null
-            ? capturedPaddle.name
-            : "None";
-        string paddleSide = bounceUp ? "Lower" : "Upper";
-        bool paddleActive = capturedPaddle != null && capturedPaddle.IsPaddleActive;
-
-        Debug.Log(
-            $"[StartCapturedDribble] source={source}, paddle={paddleSide}, paddleObject={paddleName}, active={paddleActive}, bounceUp={bounceUp}, paddleVelX={paddleVelocityX:0.00}, dir={direction}, isCaptured={IsCaptured}, time={Time.time:0.00}"
-        );
-    }
-
-    private void LogMoveCapturedBall(float paddleVelocityX)
-    {
-        if (!debugDribbleState)
-            return;
-
-        Debug.Log(
-            $"[MoveCapturedBall] dir={direction}, capturedYDirection={capturedYDirection:0}, paddleVelX={paddleVelocityX:0.00}"
-        );
-    }
-
-    private void TryIncreaseSpeedFromDribble()
-    {
-        if (Time.time < lastDribbleSpeedIncreaseTime + dribbleSpeedIncreaseCooldown)
-        {
-            if (debugDribbleBounce)
-                Debug.Log("[DribbleSpeed] skipped by cooldown");
-
-            return;
-        }
-
-        lastDribbleSpeedIncreaseTime = Time.time;
-        BallSpeedController.AddSpeedByDribble();
-
-        if (debugDribbleBounce)
-            Debug.Log("[DribbleSpeed] increase applied");
-    }
-
-    private void LogCapturedDribble(string message)
-    {
-        if (DebugCapturedDribbleLog)
-            Debug.Log(message);
-    }
+    public Vector2 CapturedLocalOffset => capturedLocalOffset;
+    public Transform CapturedTopBound => capturedTopBound;
+    public Transform CapturedBottomBound => capturedBottomBound;
+    public float DribbleVerticalCorrectionDelay => dribbleVerticalCorrectionDelay;
+    public float DribbleVerticalCorrectionDuration => dribbleVerticalCorrectionDuration;
+    public float DribbleMaxInitialX => dribbleMaxInitialX;
+    public float DribbleMovingXInfluence => dribbleMovingXInfluence;
+    public float DribbleStillVelocityThreshold => dribbleStillVelocityThreshold;
+    public float DribbleSpeedIncreaseCooldown => dribbleSpeedIncreaseCooldown;
+    public float CaptureReleaseGraceTime => captureReleaseGraceTime;
+    public bool DebugDribbleBounce => debugDribbleBounce;
+    public bool DebugDribbleState => debugDribbleState;
+    public bool DebugCaptureRelease => debugCaptureRelease;
+    public float CapturedDribbleSpeedFallback => data != null ? data.CapturedDribbleSpeedFallback : 20f;
+    public float CapturedTopOffset => data != null ? data.CapturedTopOffset : 0.5f;
+    public float CapturedBottomOffset => data != null ? data.CapturedBottomOffset : -0.5f;
+    public float CapturedXFollowSpeed => data != null ? data.CapturedXFollowSpeed : 30f;
+    public float CapturedPaddleHitCooldown => data != null ? data.CapturedPaddleHitCooldown : 0.05f;
+    public float CapturedReleaseRecaptureDelay => Mathf.Max(0f, capturedReleaseRecaptureDelay);
+    public bool DebugCapturedDribbleLog => data == null || data.DebugCapturedDribbleLog;
 
     private float CaptureCooldown => data != null ? data.CaptureCooldown : 0.12f;
     private float ReleaseRecaptureDelay => data != null ? data.ReleaseRecaptureDelay : 0.15f;
-    private float CapturedDribbleSpeedFallback => data != null ? data.CapturedDribbleSpeedFallback : 20f;
-    private float CapturedTopOffset => data != null ? data.CapturedTopOffset : 0.5f;
-    private float CapturedBottomOffset => data != null ? data.CapturedBottomOffset : -0.5f;
-    private float CapturedXFollowSpeed => data != null ? data.CapturedXFollowSpeed : 30f;
-    private float CapturedPaddleHitCooldown => data != null ? data.CapturedPaddleHitCooldown : 0.05f;
-    private float CapturedReleaseRecaptureDelay => Mathf.Max(0f, capturedReleaseRecaptureDelay);
-    private bool DebugCapturedDribbleLog => data == null || data.DebugCapturedDribbleLog;
 
     private void OnDrawGizmos()
     {

@@ -35,6 +35,26 @@ public class BallCollisionHandler : MonoBehaviour
 
         SoundManager.Instance.Play2D(SoundId.BallBounce);
 
+        PaddleBallReflector paddleReflector =
+            hit.collider.GetComponentInParent<PaddleBallReflector>();
+
+        if (paddleReflector != null)
+        {
+            PaddleController hitPaddle =
+                paddleReflector.GetComponentInParent<PaddleController>();
+
+            if (
+                ballController != null &&
+                ballController.TryStartPendingCaptureFromPaddleHit(
+                    hitPaddle,
+                    paddleReflector.ReflectUp
+                )
+            )
+            {
+                return new BallCollisionResult(ballController.direction.normalized, false);
+            }
+        }
+
         bool isFloorHit = IsFloorCollider(hit.collider);
         IBallSpeedModifier speedModifier =
             hit.collider.GetComponentInParent<IBallSpeedModifier>();
@@ -50,7 +70,8 @@ public class BallCollisionHandler : MonoBehaviour
         {
             float damageToApply = ballPowerController.CurrentDamage();
 
-            Debug.Log($"[BallDamage] Apply Damage: {damageToApply}, CurrentDamage Before Loss: {ballPowerController.CurrentDamage()}");
+           
+            //Debug.Log($"[BallDamage] Apply Damage: {damageToApply}, CurrentDamage Before Loss: {ballPowerController.CurrentDamage()}");
 
             bool destroyed = damageable.TakeDamage(damageToApply);
 

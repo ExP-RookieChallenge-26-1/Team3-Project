@@ -19,6 +19,7 @@ public class PaddleController : MonoBehaviour
 
     public bool IsPaddleActive => inputReader != null && inputReader.IsPressed;
     public float VelocityX => velocityX;
+    public Vector2 Velocity => new Vector2(velocityX, 0f);
 
     private void Start()
     {

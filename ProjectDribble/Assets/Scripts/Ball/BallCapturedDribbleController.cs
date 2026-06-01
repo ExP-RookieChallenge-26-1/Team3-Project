@@ -3,11 +3,26 @@ using UnityEngine;
 
 public class BallCapturedDribbleController : MonoBehaviour
 {
+    private enum CapturePhase
+    {
+        None,
+        ApproachingAnchor,
+        Dribbling
+    }
+
+    [Header("Capture Approach")]
+    [SerializeField] private float captureApproachSpeed = 18f;
+    [SerializeField] private float captureApproachCompleteDistance = 0.08f;
+
     private BallController ball;
     private BallSpeedController speedController;
+    private Transform pendingCaptureAnchor;
+    private PaddleController pendingCapturePaddle;
     private Transform captureAnchor;
     private PaddleController capturedPaddle;
+    private CapturePhase capturePhase = CapturePhase.None;
     private float capturedYDirection = 1f;
+    private bool isInCaptureZone;
     private float lastCapturedPaddleHitTime = -999f;
     private float lastDribbleSpeedIncreaseTime = -999f;
     private float capturedStartTime = -999f;
@@ -66,12 +81,24 @@ public class BallCapturedDribbleController : MonoBehaviour
 
     public void Begin(Transform anchor, PaddleController paddle, bool bounceUp, string source)
     {
+        BeginPendingCapture(anchor, paddle, bounceUp, source);
+    }
+
+    public bool IsInCaptureZone => isInCaptureZone;
+    public bool HasPendingCapture =>
+        isInCaptureZone &&
+        pendingCaptureAnchor != null &&
+        pendingCapturePaddle != null;
+
+    public void BeginImmediate(Transform anchor, PaddleController paddle, bool bounceUp, string source)
+    {
         if (paddle != null && paddle == inactiveCaptureSuppressedPaddle && paddle.IsPaddleActive)
             ClearInactiveCaptureSuppression("paddle active before capture");
 
         captureAnchor = anchor;
         capturedPaddle = paddle;
         capturedYDirection = bounceUp ? 1f : -1f;
+        capturePhase = CapturePhase.Dribbling;
         lastDribbleSpeedIncreaseTime = -999f;
         capturedStartTime = Time.time;
 
@@ -86,7 +113,110 @@ public class BallCapturedDribbleController : MonoBehaviour
         ball.NotifyCaptured();
     }
 
+    public void BeginPendingCapture(
+        Transform anchor,
+        PaddleController paddle,
+        bool bounceUp,
+        string source
+    )
+    {
+        EnterCaptureZone(anchor, paddle, bounceUp);
+    }
+
+    public void EnterCaptureZone(Transform anchor, PaddleController paddle, bool bounceUp)
+    {
+        if (anchor == null)
+            return;
+
+        if (paddle == null)
+            return;
+
+        if (
+            isInCaptureZone &&
+            pendingCaptureAnchor == anchor &&
+            pendingCapturePaddle == paddle
+        )
+            return;
+
+        isInCaptureZone = true;
+        pendingCaptureAnchor = anchor;
+        pendingCapturePaddle = paddle;
+
+        LogCapturePhase("[CaptureZone] Enter/Stay: pending candidate maintained");
+    }
+
+    public void ExitCaptureZone(PaddleController paddle)
+    {
+        if (!isInCaptureZone)
+            return;
+
+        if (paddle != null && pendingCapturePaddle != null && pendingCapturePaddle != paddle)
+            return;
+
+        isInCaptureZone = false;
+        pendingCaptureAnchor = null;
+        pendingCapturePaddle = null;
+
+        LogCapturePhase("[CaptureZone] Exit: pending candidate cleared");
+    }
+
+    public bool TryStartCaptureFromPaddleHit(PaddleController hitPaddle, bool bounceUp)
+    {
+        if (capturePhase != CapturePhase.None)
+            return false;
+
+        if (!HasPendingCapture)
+            return false;
+
+        if (hitPaddle == null)
+            return false;
+
+        if (!hitPaddle.IsPaddleActive)
+        {
+            LogCapturePhase("[Capture] Capture blocked: paddle inactive");
+            return false;
+        }
+
+        if (hitPaddle != pendingCapturePaddle)
+        {
+            LogCapturePhase("[Capture] Capture blocked: paddle mismatch");
+            return false;
+        }
+
+        if (!CanStartCapturedDribble())
+        {
+            LogCapturePhase("[Capture] Capture blocked: cooldown");
+            return false;
+        }
+
+        captureAnchor = pendingCaptureAnchor;
+        capturedPaddle = pendingCapturePaddle;
+
+        LogCapturePhase("[Capture] Pending -> Capture by paddle hit");
+        BeginApproachAnchor(hitPaddle, bounceUp);
+        return true;
+    }
+
+    public void CancelPendingCapture(PaddleController paddle)
+    {
+        ExitCaptureZone(paddle);
+    }
+
     public void Tick()
+    {
+        if (capturePhase == CapturePhase.ApproachingAnchor)
+        {
+            TickApproachAnchor();
+            return;
+        }
+
+        if (capturePhase != CapturePhase.Dribbling)
+            return;
+
+        TickDribble();
+    }
+
+    private void TickDribble()
     {
         if (captureAnchor == null)
             return;
@@ -139,6 +269,7 @@ public class BallCapturedDribbleController : MonoBehaviour
 
     public void ResetCapture()
     {
+        capturePhase = CapturePhase.None;
         captureAnchor = null;
         capturedPaddle = null;
         capturedStartTime = -999f;
@@ -189,6 +320,82 @@ public class BallCapturedDribbleController : MonoBehaviour
         return false;
     }
 
+    private void BeginApproachAnchor(PaddleController hitPaddle, bool bounceUp)
+    {
+        capturedPaddle = hitPaddle;
+        capturedYDirection = bounceUp ? 1f : -1f;
+        capturedStartTime = Time.time;
+        capturePhase = CapturePhase.ApproachingAnchor;
+
+        Vector2 targetPos = GetApproachTargetPosition();
+        Vector2 currentPos = transform.position;
+        Vector2 directionToAnchor = targetPos - currentPos;
+
+        if (directionToAnchor.sqrMagnitude > 0.0001f)
+            ball.direction = directionToAnchor.normalized;
+
+        ball.EnterCapturedState();
+        LogCapturePhase("[Capture] Paddle Hit -> Approach Anchor");
+    }
+
+    private void TickApproachAnchor()
+    {
+        if (captureAnchor == null)
+        {
+            ReleaseCapturedDribble("captureAnchor null");
+            return;
+        }
+
+        if (UpdateCapturedReleaseState())
+            return;
+
+        Vector2 currentPos = transform.position;
+        Vector2 targetPos = GetApproachTargetPosition();
+        Vector2 nextPos = Vector2.MoveTowards(
+            currentPos,
+            targetPos,
+            captureApproachSpeed * Time.deltaTime
+        );
+
+        Vector2 approachDirection = targetPos - currentPos;
+
+        if (approachDirection.sqrMagnitude > 0.0001f)
+            ball.direction = approachDirection.normalized;
+
+        transform.position = nextPos;
+
+        if (Vector2.Distance(nextPos, targetPos) <= captureApproachCompleteDistance)
+            BeginCapturedDribble();
+    }
+
+    private void BeginCapturedDribble()
+    {
+        Vector2 targetPos = GetApproachTargetPosition();
+        transform.position = targetPos;
+        capturePhase = CapturePhase.Dribbling;
+        capturedStartTime = Time.time;
+        lastDribbleSpeedIncreaseTime = -999f;
+
+        float paddleVelocityX = capturedPaddle != null ? capturedPaddle.VelocityX : 0f;
+        ball.direction = GetDribbleBounceDirection(capturedYDirection > 0f, paddleVelocityX);
+
+        LogCapturePhase("[Capture] Approach Complete -> Dribbling");
+        Debug.Log("[BallState] Captured");
+        LogCapturedDribble("[BallState] Captured Dribble Start");
+        LogStartCapturedDribble("ApproachAnchor", capturedYDirection > 0f, paddleVelocityX);
+        ball.NotifyCaptured();
+    }
+
+    private Vector2 GetApproachTargetPosition()
+    {
+        Vector2 anchorPos = captureAnchor.position;
+
+        return new Vector2(
+            anchorPos.x + ball.CapturedLocalOffset.x,
+            anchorPos.y
+        );
+    }
+
     private void ReleaseCapturedDribble(string reason)
     {
         if (!ball.IsCaptured)
@@ -208,6 +415,7 @@ public class BallCapturedDribbleController : MonoBehaviour
         if (reason == "paddle inactive" && releasedPaddle != null)
             SuppressInactiveCaptureUntilPaddleActive(releasedPaddle);
 
+        LogCapturePhase("[Capture] Release");
         ball.NotifyReleased();
     }
 
@@ -329,6 +537,12 @@ public class BallCapturedDribbleController : MonoBehaviour
     public void LogCapturedDribble(string message)
     {
         if (ball.DebugCapturedDribbleLog)
+            Debug.Log(message);
+    }
+
+    private void LogCapturePhase(string message)
+    {
+        if (ball.DebugCaptureRelease || ball.DebugDribbleState)
             Debug.Log(message);
     }
 }

@@ -34,25 +34,29 @@ public class PaddleCaptureEntrance : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        TryCapture(other);
+        TryEnterCaptureZone(other);
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        TryCapture(other);
+        TryEnterCaptureZone(other);
     }
 
-    private void TryCapture(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        BallController ball = other.GetComponentInParent<BallController>();
+
+        if (ball == null)
+            return;
+
+        ball.ExitCaptureZone(paddle);
+    }
+
+    private void TryEnterCaptureZone(Collider2D other)
     {
         if (paddle == null)
         {
-            Log("[PaddleCapture] Failed: Paddle is missing");
-            return;
-        }
-
-        if (!paddle.IsPaddleActive)
-        {
-            Log("[PaddleCapture] Failed: Paddle is not active");
+            Log("[CaptureZone] Failed: Paddle is missing");
             return;
         }
 
@@ -66,30 +70,7 @@ public class PaddleCaptureEntrance : MonoBehaviour
         if (data == null)
             data = ball.data;
 
-        if (!ball.IsFree)
-        {
-            Log("[PaddleCapture] Failed: Ball is not free");
-            return;
-        }
-
-        if (!IsMovingIntoEntrance(ball.direction))
-        {
-            Log("[PaddleCapture] Failed: Wrong entrance direction");
-            return;
-        }
-
-        if (!ball.CanCaptureNow)
-        {
-            if (ball.IsInCapturedReleaseRecaptureDelay || ball.IsInReleaseRecaptureDelay)
-                Log("[CaptureBlocked] reason=releaseRecaptureDelay");
-
-            Log("[PaddleCapture] Failed: Capture cooldown");
-            return;
-        }
-
-        Log("[PaddleCapture] Capture entrance triggered");
-        Log("[PaddleCapture] Success");
-        ball.Capture(captureAnchor, paddle);
+        ball.EnterCaptureZone(captureAnchor, paddle, GetBounceUp());
     }
 
     private void LogBallPaddleEnter()
@@ -107,22 +88,9 @@ public class PaddleCaptureEntrance : MonoBehaviour
         );
     }
 
-    private bool IsMovingIntoEntrance(Vector2 ballDirection)
+    private bool GetBounceUp()
     {
-        float minEntranceDirectionX = data != null
-            ? data.MinEntranceDirectionX
-            : 0.1f;
-
-        if (side == CaptureEntranceSide.Left)
-            return ballDirection.x > minEntranceDirectionX;
-
-        if (side == CaptureEntranceSide.Right)
-            return ballDirection.x < -minEntranceDirectionX;
-        
-        if (side == CaptureEntranceSide.Up)
-            return ballDirection.y < -minEntranceDirectionX;
-
-        return false;
+        return side != CaptureEntranceSide.Up;
     }
 
     private void Log(string message)

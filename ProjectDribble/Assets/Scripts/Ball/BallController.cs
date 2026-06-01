@@ -61,6 +61,17 @@ public class BallController : MonoBehaviour
         !IsInCaptureCooldown &&
         !IsInReleaseRecaptureDelay &&
         !IsInCapturedReleaseRecaptureDelay;
+    public Vector2 Velocity
+    {
+        get
+        {
+            float speed = BallMovement != null
+                ? BallMovement.speed
+                : (data != null ? data.baseSpeed : 0f);
+
+            return direction.normalized * speed;
+        }
+    }
 
     public event Action OnCaptured;
     public event Action OnReleased;
@@ -104,6 +115,25 @@ public class BallController : MonoBehaviour
         Capture(anchor, null);
     }
 
+    public void BeginPendingCapture(Transform anchor, PaddleController paddle, bool bounceUp)
+    {
+        EnsureCapturedDribbleController();
+
+        EnterCaptureZone(anchor, paddle, bounceUp);
+    }
+
+    public void EnterCaptureZone(Transform anchor, PaddleController paddle, bool bounceUp)
+    {
+        EnsureCapturedDribbleController();
+        capturedDribbleController.EnterCaptureZone(anchor, paddle, bounceUp);
+    }
+
+    public void ExitCaptureZone(PaddleController paddle)
+    {
+        EnsureCapturedDribbleController();
+        capturedDribbleController.ExitCaptureZone(paddle);
+    }
+
     public void Capture(Transform anchor, PaddleController paddle)
     {
         EnsureCapturedDribbleController();
@@ -125,7 +155,7 @@ public class BallController : MonoBehaviour
             ? "Entrance"
             : "InactivePaddle";
 
-        StartCapturedDribble(paddle, bounceUp, source);
+        StartPendingCapture(paddle, bounceUp, source);
     }
 
     public void Capture(
@@ -149,7 +179,7 @@ public class BallController : MonoBehaviour
         if (captureAnchor == null)
             return;
 
-        StartCapturedDribble(paddle, bounceUp, source);
+        StartPendingCapture(paddle, bounceUp, source);
     }
 
     public void CaptureFromInactiveTrigger(
@@ -255,9 +285,26 @@ public class BallController : MonoBehaviour
         return corrected;
     }
 
-    private void StartCapturedDribble(PaddleController paddle, bool bounceUp, string source)
+    private void StartPendingCapture(PaddleController paddle, bool bounceUp, string source)
     {
         capturedDribbleController.Begin(captureAnchor, paddle, bounceUp, source);
+    }
+
+    private void StartCapturedDribble(PaddleController paddle, bool bounceUp, string source)
+    {
+        capturedDribbleController.BeginImmediate(captureAnchor, paddle, bounceUp, source);
+    }
+
+    public bool TryStartPendingCaptureFromPaddleHit(PaddleController hitPaddle, bool bounceUp)
+    {
+        EnsureCapturedDribbleController();
+        return capturedDribbleController.TryStartCaptureFromPaddleHit(hitPaddle, bounceUp);
+    }
+
+    public void CancelPendingCapture(PaddleController paddle)
+    {
+        EnsureCapturedDribbleController();
+        capturedDribbleController.CancelPendingCapture(paddle);
     }
 
     public bool CanCaptureFromInactivePaddle(PaddleController paddle)

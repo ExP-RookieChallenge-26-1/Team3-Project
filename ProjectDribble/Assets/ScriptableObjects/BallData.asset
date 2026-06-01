@@ -15,8 +15,8 @@ MonoBehaviour:
   baseSpeed: 30
   maxSpeed: 100
   ballDamage: 1
-  outerPaddleSpeedIncrease: 5
-  innerPaddleSpeedIncrease: 5
+  outerPaddleSpeedIncrease: 10
+  innerPaddleSpeedIncrease: 2
   BlockSpeedDecrease: -5
   DamageMultiplier: 0.2
   dribbleSpeedBonus: 5
@@ -28,7 +28,7 @@ MonoBehaviour:
   blockSpeedSlowCooldown: 0.25
   captureCooldown: 0.1
   releaseRecaptureDelay: 0.5
-  minEntranceDirectionX: 0.1
+  minEntranceDirectionX: 0.05
   debugCaptureLog: 1
   capturedDribbleSpeedFallback: 20
   capturedTopOffset: 1.5

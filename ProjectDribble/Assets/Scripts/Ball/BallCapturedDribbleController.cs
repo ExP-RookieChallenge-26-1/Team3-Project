@@ -14,6 +14,15 @@ public class BallCapturedDribbleController : MonoBehaviour
     [SerializeField] private float captureApproachSpeed = 18f;
     [SerializeField] private float captureApproachCompleteDistance = 0.08f;
 
+    [Header("Ellipse Captured Bounds")]
+    [SerializeField] private bool useEllipseCapturedBounds = true;
+    [SerializeField] private Transform capturedTopEllipseCenter;
+    [SerializeField] private Transform capturedBottomEllipseCenter;
+    [SerializeField] private float capturedEllipseHalfWidth = 2.8f;
+    [SerializeField] private float capturedEllipseHalfHeight = 0.35f;
+    [SerializeField] private Color capturedTopEllipseGizmoColor = new Color(0.2f, 0.7f, 1f, 1f);
+    [SerializeField] private Color capturedBottomEllipseGizmoColor = new Color(1f, 0.75f, 0.2f, 1f);
+
     private BallController ball;
     private BallSpeedController speedController;
     private Transform pendingCaptureAnchor;
@@ -235,12 +244,9 @@ public class BallCapturedDribbleController : MonoBehaviour
         pos.x = Mathf.Lerp(pos.x, targetX, ball.CapturedXFollowSpeed * Time.deltaTime);
         pos.y += capturedYDirection * dribbleSpeed * Time.deltaTime;
 
-        float topY = ball.CapturedTopBound != null
-            ? ball.CapturedTopBound.position.y - ball.actualRadius
-            : anchorPos.y + ball.CapturedTopOffset;
-        float bottomY = ball.CapturedBottomBound != null
-            ? ball.CapturedBottomBound.position.y + ball.actualRadius
-            : anchorPos.y + ball.CapturedBottomOffset;
+        float topY = GetCapturedTopY(pos, anchorPos);
+        float bottomY = GetCapturedBottomY(pos, anchorPos);
+        CorrectInvalidCapturedBounds(ref bottomY, ref topY);
 
         if (pos.y >= topY)
         {
@@ -265,6 +271,127 @@ public class BallCapturedDribbleController : MonoBehaviour
         LogMoveCapturedBall(paddleVelocityX);
 
         LogCapturedDribble($"[BallState] Captured Dribble Speed: {dribbleSpeed}");
+    }
+
+    private float GetCapturedTopY(Vector2 pos, Vector2 anchorPos)
+    {
+        if (useEllipseCapturedBounds && capturedTopEllipseCenter != null)
+        {
+            return GetEllipseInnerBoundY(
+                capturedTopEllipseCenter,
+                pos.x,
+                true,
+                ball.actualRadius
+            );
+        }
+
+        if (ball.CapturedTopBound != null)
+            return ball.CapturedTopBound.position.y - ball.actualRadius;
+
+        return anchorPos.y + ball.CapturedTopOffset;
+    }
+
+    private float GetCapturedBottomY(Vector2 pos, Vector2 anchorPos)
+    {
+        if (useEllipseCapturedBounds && capturedBottomEllipseCenter != null)
+        {
+            return GetEllipseInnerBoundY(
+                capturedBottomEllipseCenter,
+                pos.x,
+                false,
+                ball.actualRadius
+            );
+        }
+
+        if (ball.CapturedBottomBound != null)
+            return ball.CapturedBottomBound.position.y + ball.actualRadius;
+
+        return anchorPos.y + ball.CapturedBottomOffset;
+    }
+
+    private float GetEllipseInnerBoundY(
+        Transform ellipseCenter,
+        float ballX,
+        bool isTop,
+        float ballRadius
+    )
+    {
+        float safeHalfWidth = Mathf.Max(0.0001f, capturedEllipseHalfWidth);
+        float normalizedX = (ballX - ellipseCenter.position.x) / safeHalfWidth;
+        normalizedX = Mathf.Clamp(normalizedX, -1f, 1f);
+
+        float safeHalfHeight = Mathf.Max(0f, capturedEllipseHalfHeight);
+        float ellipseY = safeHalfHeight * Mathf.Sqrt(1f - normalizedX * normalizedX);
+
+        if (isTop)
+            return ellipseCenter.position.y + ellipseY - ballRadius;
+
+        return ellipseCenter.position.y - ellipseY + ballRadius;
+    }
+
+    private void CorrectInvalidCapturedBounds(ref float bottomY, ref float topY)
+    {
+        if (bottomY < topY)
+            return;
+
+        float centerY = (topY + bottomY) * 0.5f;
+        float minGap = ball.actualRadius * 2f;
+
+        bottomY = centerY - minGap * 0.5f;
+        topY = centerY + minGap * 0.5f;
+
+        if (ball.data == null || ball.data.DebugCaptureLog)
+            Debug.LogWarning("[CapturedDribble] Invalid ellipse bounds corrected");
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        DrawCapturedEllipseGizmo(capturedTopEllipseCenter, capturedTopEllipseGizmoColor);
+        DrawCapturedEllipseGizmo(capturedBottomEllipseCenter, capturedBottomEllipseGizmoColor);
+    }
+
+    private void DrawCapturedEllipseGizmo(Transform ellipseCenter, Color color)
+    {
+        if (!useEllipseCapturedBounds || ellipseCenter == null)
+            return;
+
+        const int SegmentCount = 64;
+
+        float halfWidth = Mathf.Max(0.0001f, capturedEllipseHalfWidth);
+        float halfHeight = Mathf.Max(0f, capturedEllipseHalfHeight);
+        Vector3 center = ellipseCenter.position;
+        Vector3 previous = GetEllipsePoint(center, halfWidth, halfHeight, 0f);
+
+        Gizmos.color = color;
+
+        for (int i = 1; i <= SegmentCount; i++)
+        {
+            float t = i / (float)SegmentCount;
+            Vector3 next = GetEllipsePoint(center, halfWidth, halfHeight, t);
+            Gizmos.DrawLine(previous, next);
+            previous = next;
+        }
+
+        Gizmos.DrawLine(
+            center + Vector3.left * halfWidth,
+            center + Vector3.right * halfWidth
+        );
+
+        Gizmos.DrawLine(
+            center + Vector3.down * halfHeight,
+            center + Vector3.up * halfHeight
+        );
+    }
+
+    private Vector3 GetEllipsePoint(Vector3 center, float halfWidth, float halfHeight, float t)
+    {
+        float angle = t * Mathf.PI * 2f;
+
+        return new Vector3(
+            center.x + Mathf.Cos(angle) * halfWidth,
+            center.y + Mathf.Sin(angle) * halfHeight,
+            center.z
+        );
     }
 
     public void ResetCapture()
@@ -354,7 +481,7 @@ public class BallCapturedDribbleController : MonoBehaviour
         Vector2 nextPos = Vector2.MoveTowards(
             currentPos,
             targetPos,
-            captureApproachSpeed * Time.deltaTime
+            speedController.CurrentSpeed * Time.deltaTime
         );
 
         Vector2 approachDirection = targetPos - currentPos;

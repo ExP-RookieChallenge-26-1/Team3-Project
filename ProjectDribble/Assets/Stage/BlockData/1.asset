@@ -33,9 +33,9 @@ MonoBehaviour:
   startCells:
   - {x: 0, y: 0}
   - {x: 6, y: 0}
-  spawnInterval: 1.1
-  minGrowPerTick: 2
-  maxGrowPerTick: 2
+  spawnInterval: 0.2
+  minGrowPerTick: 5
+  maxGrowPerTick: 5
   rowWeightMultiplier: 0.2
   rowPriorityStep: 0
   onlyGrowFromStartConnectedBlocks: 1

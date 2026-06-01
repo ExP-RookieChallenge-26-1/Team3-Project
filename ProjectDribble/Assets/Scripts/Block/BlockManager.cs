@@ -286,6 +286,7 @@ public class BlockManager : MonoBehaviour
 
         if (data.onlyGrowFromStartConnectedBlocks)
             connected = GetStartConnectedCells();
+            
 
         for (int y = 0; y < data.height; y++)
         {
@@ -328,7 +329,7 @@ public class BlockManager : MonoBehaviour
         return candidates;
     }
 
-    private bool[,] GetStartConnectedCells()
+    public bool[,] GetStartConnectedCells()
     {
         bool[,] connected = new bool[data.width, data.height];
         Queue<Vector2Int> queue = new();

@@ -1794,7 +1794,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9df67bdf5ac247d4ab8a735f58f84b21, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PaddleCaptureEntrance
+  m_EditorClassIdentifier: Assembly-CSharp::PaddleCaptureZone
   data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
   paddle: {fileID: 356703115933531917}
   captureAnchor: {fileID: 413990941}
@@ -2345,7 +2345,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9df67bdf5ac247d4ab8a735f58f84b21, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PaddleCaptureEntrance
+  m_EditorClassIdentifier: Assembly-CSharp::PaddleCaptureZone
   data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
   paddle: {fileID: 356703115933531917}
   captureAnchor: {fileID: 413990941}

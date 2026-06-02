@@ -11,15 +11,18 @@ public class BallCapturedDribbleController : MonoBehaviour
     }
 
     [Header("Capture Approach")]
+    [Tooltip("Reserved for approach tuning. Current approach speed still follows BallSpeedController.")]
     [SerializeField] private float captureApproachSpeed = 18f;
     [SerializeField] private float captureApproachCompleteDistance = 0.08f;
 
-    [Header("Ellipse Captured Bounds")]
+    [Header("Captured Bounds - Ellipse")]
     [SerializeField] private bool useEllipseCapturedBounds = true;
     [SerializeField] private Transform capturedTopEllipseCenter;
     [SerializeField] private Transform capturedBottomEllipseCenter;
     [SerializeField] private float capturedEllipseHalfWidth = 2.8f;
     [SerializeField] private float capturedEllipseHalfHeight = 0.35f;
+
+    [Header("Captured Bounds - Gizmo")]
     [SerializeField] private Color capturedTopEllipseGizmoColor = new Color(0.2f, 0.7f, 1f, 1f);
     [SerializeField] private Color capturedBottomEllipseGizmoColor = new Color(1f, 0.75f, 0.2f, 1f);
 
@@ -49,7 +52,7 @@ public class BallCapturedDribbleController : MonoBehaviour
         if (paddle == null || paddle.IsPaddleActive)
             return false;
 
-        if (ball.DebugCaptureRelease)
+        if (ShouldLogCapture())
             Debug.Log("[CaptureBlocked] reason=inactivePaddleDirectCapture");
 
         return true;
@@ -60,7 +63,7 @@ public class BallCapturedDribbleController : MonoBehaviour
         if (ball.CanCaptureNow)
             return true;
 
-        if (ball.DebugCaptureRelease && (ball.IsInCapturedReleaseRecaptureDelay || ball.IsInReleaseRecaptureDelay))
+        if (ShouldLogCapture() && (ball.IsInCapturedReleaseRecaptureDelay || ball.IsInReleaseRecaptureDelay))
             Debug.Log("[CaptureBlocked] reason=releaseRecaptureDelay");
 
         return false;
@@ -79,7 +82,7 @@ public class BallCapturedDribbleController : MonoBehaviour
             paddle == inactiveCaptureSuppressedPaddle
         )
         {
-            if (ball.DebugCaptureRelease)
+            if (ShouldLogCapture())
                 Debug.Log("[CaptureBlocked] reason=paddleReleasedUntilActive");
 
             return false;
@@ -116,7 +119,7 @@ public class BallCapturedDribbleController : MonoBehaviour
 
         ball.EnterCapturedState();
 
-        Debug.Log("[BallState] Captured");
+        LogCapture("[BallState] Captured");
         LogCapturedDribble("[BallState] Captured Dribble Start");
         LogStartCapturedDribble(source, bounceUp, paddleVelocityX);
         ball.NotifyCaptured();
@@ -171,6 +174,15 @@ public class BallCapturedDribbleController : MonoBehaviour
 
     public bool TryStartCaptureFromPaddleHit(PaddleController hitPaddle, bool bounceUp)
     {
+        if (!CanUsePendingCapture(hitPaddle))
+            return false;
+
+        StartApproachFromPendingCapture(hitPaddle, bounceUp);
+        return true;
+    }
+
+    private bool CanUsePendingCapture(PaddleController hitPaddle)
+    {
         if (capturePhase != CapturePhase.None)
             return false;
 
@@ -198,12 +210,16 @@ public class BallCapturedDribbleController : MonoBehaviour
             return false;
         }
 
+        return true;
+    }
+
+    private void StartApproachFromPendingCapture(PaddleController hitPaddle, bool bounceUp)
+    {
         captureAnchor = pendingCaptureAnchor;
         capturedPaddle = pendingCapturePaddle;
 
         LogCapturePhase("[Capture] Pending -> Capture by paddle hit");
         BeginApproachAnchor(hitPaddle, bounceUp);
-        return true;
     }
 
     public void CancelPendingCapture(PaddleController paddle)
@@ -236,18 +252,43 @@ public class BallCapturedDribbleController : MonoBehaviour
         Vector3 pos = transform.position;
         Vector3 anchorPos = captureAnchor.position;
 
-        float targetX = anchorPos.x + ball.CapturedLocalOffset.x;
         float dribbleSpeed = speedController != null
             ? speedController.CurrentSpeed
             : ball.CapturedDribbleSpeedFallback;
 
+        MoveCapturedPosition(ref pos, anchorPos, dribbleSpeed);
+        ResolveCapturedBounds(pos, anchorPos, out float bottomY, out float topY);
+        ApplyCapturedBoundBounce(ref pos, bottomY, topY);
+
+        transform.position = pos;
+
+        UpdateCapturedDribbleDirection();
+
+        LogCapturedDribble($"[BallState] Captured Dribble Speed: {dribbleSpeed}");
+    }
+
+    private void MoveCapturedPosition(ref Vector3 pos, Vector3 anchorPos, float dribbleSpeed)
+    {
+        float targetX = anchorPos.x + ball.CapturedLocalOffset.x;
+
         pos.x = Mathf.Lerp(pos.x, targetX, ball.CapturedXFollowSpeed * Time.deltaTime);
         pos.y += capturedYDirection * dribbleSpeed * Time.deltaTime;
+    }
 
-        float topY = GetCapturedTopY(pos, anchorPos);
-        float bottomY = GetCapturedBottomY(pos, anchorPos);
+    private void ResolveCapturedBounds(
+        Vector2 pos,
+        Vector2 anchorPos,
+        out float bottomY,
+        out float topY
+    )
+    {
+        topY = GetCapturedTopY(pos, anchorPos);
+        bottomY = GetCapturedBottomY(pos, anchorPos);
         CorrectInvalidCapturedBounds(ref bottomY, ref topY);
+    }
 
+    private void ApplyCapturedBoundBounce(ref Vector3 pos, float bottomY, float topY)
+    {
         if (pos.y >= topY)
         {
             pos.y = topY;
@@ -262,26 +303,27 @@ public class BallCapturedDribbleController : MonoBehaviour
             LogCapturedDribble("[BallState] Captured Dribble Bounce Bottom");
             ApplyCapturedPaddleHit(false);
         }
+    }
 
-        transform.position = pos;
-
+    private void UpdateCapturedDribbleDirection()
+    {
         float paddleVelocityX = capturedPaddle != null ? capturedPaddle.VelocityX : 0f;
         ball.direction = GetDribbleBounceDirection(capturedYDirection > 0f, paddleVelocityX);
 
         LogMoveCapturedBall(paddleVelocityX);
-
-        LogCapturedDribble($"[BallState] Captured Dribble Speed: {dribbleSpeed}");
     }
 
     private float GetCapturedTopY(Vector2 pos, Vector2 anchorPos)
     {
         if (useEllipseCapturedBounds && capturedTopEllipseCenter != null)
         {
-            return GetEllipseInnerBoundY(
+            return CapturedEllipseBounds.GetInnerBoundY(
                 capturedTopEllipseCenter,
                 pos.x,
                 true,
-                ball.actualRadius
+                ball.actualRadius,
+                capturedEllipseHalfWidth,
+                capturedEllipseHalfHeight
             );
         }
 
@@ -295,11 +337,13 @@ public class BallCapturedDribbleController : MonoBehaviour
     {
         if (useEllipseCapturedBounds && capturedBottomEllipseCenter != null)
         {
-            return GetEllipseInnerBoundY(
+            return CapturedEllipseBounds.GetInnerBoundY(
                 capturedBottomEllipseCenter,
                 pos.x,
                 false,
-                ball.actualRadius
+                ball.actualRadius,
+                capturedEllipseHalfWidth,
+                capturedEllipseHalfHeight
             );
         }
 
@@ -307,26 +351,6 @@ public class BallCapturedDribbleController : MonoBehaviour
             return ball.CapturedBottomBound.position.y + ball.actualRadius;
 
         return anchorPos.y + ball.CapturedBottomOffset;
-    }
-
-    private float GetEllipseInnerBoundY(
-        Transform ellipseCenter,
-        float ballX,
-        bool isTop,
-        float ballRadius
-    )
-    {
-        float safeHalfWidth = Mathf.Max(0.0001f, capturedEllipseHalfWidth);
-        float normalizedX = (ballX - ellipseCenter.position.x) / safeHalfWidth;
-        normalizedX = Mathf.Clamp(normalizedX, -1f, 1f);
-
-        float safeHalfHeight = Mathf.Max(0f, capturedEllipseHalfHeight);
-        float ellipseY = safeHalfHeight * Mathf.Sqrt(1f - normalizedX * normalizedX);
-
-        if (isTop)
-            return ellipseCenter.position.y + ellipseY - ballRadius;
-
-        return ellipseCenter.position.y - ellipseY + ballRadius;
     }
 
     private void CorrectInvalidCapturedBounds(ref float bottomY, ref float topY)
@@ -340,7 +364,7 @@ public class BallCapturedDribbleController : MonoBehaviour
         bottomY = centerY - minGap * 0.5f;
         topY = centerY + minGap * 0.5f;
 
-        if (ball.data == null || ball.data.DebugCaptureLog)
+        if (ShouldLogCapture())
             Debug.LogWarning("[CapturedDribble] Invalid ellipse bounds corrected");
     }
 
@@ -355,42 +379,11 @@ public class BallCapturedDribbleController : MonoBehaviour
         if (!useEllipseCapturedBounds || ellipseCenter == null)
             return;
 
-        const int SegmentCount = 64;
-
-        float halfWidth = Mathf.Max(0.0001f, capturedEllipseHalfWidth);
-        float halfHeight = Mathf.Max(0f, capturedEllipseHalfHeight);
-        Vector3 center = ellipseCenter.position;
-        Vector3 previous = GetEllipsePoint(center, halfWidth, halfHeight, 0f);
-
-        Gizmos.color = color;
-
-        for (int i = 1; i <= SegmentCount; i++)
-        {
-            float t = i / (float)SegmentCount;
-            Vector3 next = GetEllipsePoint(center, halfWidth, halfHeight, t);
-            Gizmos.DrawLine(previous, next);
-            previous = next;
-        }
-
-        Gizmos.DrawLine(
-            center + Vector3.left * halfWidth,
-            center + Vector3.right * halfWidth
-        );
-
-        Gizmos.DrawLine(
-            center + Vector3.down * halfHeight,
-            center + Vector3.up * halfHeight
-        );
-    }
-
-    private Vector3 GetEllipsePoint(Vector3 center, float halfWidth, float halfHeight, float t)
-    {
-        float angle = t * Mathf.PI * 2f;
-
-        return new Vector3(
-            center.x + Mathf.Cos(angle) * halfWidth,
-            center.y + Mathf.Sin(angle) * halfHeight,
-            center.z
+        CapturedEllipseBounds.DrawGizmo(
+            ellipseCenter,
+            color,
+            capturedEllipseHalfWidth,
+            capturedEllipseHalfHeight
         );
     }
 
@@ -425,7 +418,7 @@ public class BallCapturedDribbleController : MonoBehaviour
         bool gracePassed = Time.time >= capturedStartTime + ball.CaptureReleaseGraceTime;
         bool active = capturedPaddle != null && capturedPaddle.IsPaddleActive;
 
-        if (ball.DebugCaptureRelease)
+        if (ShouldLogCapture())
         {
             Debug.Log(
                 $"[CapturedState] active={active}, gracePassed={gracePassed}, isCaptured={ball.IsCaptured}"
@@ -507,7 +500,7 @@ public class BallCapturedDribbleController : MonoBehaviour
         ball.direction = GetDribbleBounceDirection(capturedYDirection > 0f, paddleVelocityX);
 
         LogCapturePhase("[Capture] Approach Complete -> Dribbling");
-        Debug.Log("[BallState] Captured");
+        LogCapture("[BallState] Captured");
         LogCapturedDribble("[BallState] Captured Dribble Start");
         LogStartCapturedDribble("ApproachAnchor", capturedYDirection > 0f, paddleVelocityX);
         ball.NotifyCaptured();
@@ -536,7 +529,7 @@ public class BallCapturedDribbleController : MonoBehaviour
         ResetCapture();
         ball.ReleaseCapturedStateFromDribble();
 
-        if (ball.DebugCaptureRelease)
+        if (ShouldLogCapture())
             Debug.Log($"[ReleaseCapturedDribble] reason={reason}, time={Time.time:0.00}");
 
         if (reason == "paddle inactive" && releasedPaddle != null)
@@ -574,7 +567,7 @@ public class BallCapturedDribbleController : MonoBehaviour
         inactiveCaptureSuppressedPaddle = paddle;
         suppressInactiveCaptureUntilPaddleActive = true;
 
-        if (ball.DebugCaptureRelease)
+        if (ShouldLogCapture())
             Debug.Log($"[CaptureBlocked] reason=paddleReleasedUntilActive, paddle={paddle.name}");
     }
 
@@ -583,7 +576,7 @@ public class BallCapturedDribbleController : MonoBehaviour
         suppressInactiveCaptureUntilPaddleActive = false;
         inactiveCaptureSuppressedPaddle = null;
 
-        if (ball.DebugCaptureRelease)
+        if (ShouldLogCapture())
             Debug.Log($"[CaptureUnblocked] reason={reason}");
     }
 
@@ -669,7 +662,17 @@ public class BallCapturedDribbleController : MonoBehaviour
 
     private void LogCapturePhase(string message)
     {
-        if (ball.DebugCaptureRelease || ball.DebugDribbleState)
+        LogCapture(message);
+    }
+
+    private void LogCapture(string message)
+    {
+        if (ShouldLogCapture())
             Debug.Log(message);
+    }
+
+    private bool ShouldLogCapture()
+    {
+        return ball == null || ball.data == null || ball.data.DebugCaptureLog;
     }
 }

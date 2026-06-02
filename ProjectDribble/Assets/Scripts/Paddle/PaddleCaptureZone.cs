@@ -7,12 +7,17 @@ public enum CaptureEntranceSide
     Up
 }
 
-public class PaddleCaptureEntrance : MonoBehaviour
+public class PaddleCaptureZone : MonoBehaviour
 {
+    [Header("Capture Zone")]
     [SerializeField] private BallData data;
     [SerializeField] private PaddleController paddle;
     [SerializeField] private Transform captureAnchor;
+
+    [Tooltip("Determines the captured dribble's initial vertical direction.")]
     [SerializeField] private CaptureEntranceSide side;
+
+    [Header("Debug")]
     [SerializeField] private bool debugPaddleActiveState;
 
     private void Awake()
@@ -70,6 +75,7 @@ public class PaddleCaptureEntrance : MonoBehaviour
         if (data == null)
             data = ball.data;
 
+        // CaptureZone only registers a pending candidate. Actual capture starts on paddle contact.
         ball.EnterCaptureZone(captureAnchor, paddle, GetBounceUp());
     }
 

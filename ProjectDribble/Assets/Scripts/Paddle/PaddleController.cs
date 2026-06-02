@@ -143,7 +143,7 @@ public class PaddleController : MonoBehaviour
 
     private void EnsureCaptureTriggersEnabled()
     {
-        PaddleCaptureEntrance[] entrances = GetComponentsInChildren<PaddleCaptureEntrance>(true);
+        PaddleCaptureZone[] entrances = GetComponentsInChildren<PaddleCaptureZone>(true);
 
         for (int i = 0; i < entrances.Length; i++)
             EnsureTriggerEnabled(entrances[i].GetComponent<Collider2D>());
@@ -196,7 +196,7 @@ public class PaddleController : MonoBehaviour
 
     private bool IsAnyCaptureTriggerEnabled()
     {
-        PaddleCaptureEntrance[] entrances = GetComponentsInChildren<PaddleCaptureEntrance>(true);
+        PaddleCaptureZone[] entrances = GetComponentsInChildren<PaddleCaptureZone>(true);
 
         for (int i = 0; i < entrances.Length; i++)
         {

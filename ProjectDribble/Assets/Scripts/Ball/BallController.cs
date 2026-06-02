@@ -30,7 +30,7 @@ public class BallController : MonoBehaviour
     [SerializeField] private float capturedReleaseRecaptureDelay = 0.15f;
     [SerializeField] private bool debugDribbleBounce;
     [SerializeField] private bool debugDribbleState;
-    [SerializeField] private bool debugCaptureRelease;
+    [SerializeField] private bool debugCaptureRelease; 
 
     public float actualRadius;
     public Vector2 direction;

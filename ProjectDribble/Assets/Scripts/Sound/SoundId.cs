@@ -4,22 +4,35 @@
     {
         None,
 
+        // Ball
         BallBounce,
-        PaddleBounce,
-        WallBounce,
+        BallGroundBounce,
+        BallReleased,
+        BallRespawn,
 
-        BlockHit,
-        FixedBlockHit,
+        // Block
         BlockBreak,
-        FixedBlockBreak,
 
+        // Gauge
+        GaugeSegmentFilled,
+
+        // Laser
         LaserCharge,
         LaserFire,
 
-        ButtonClick,
+        // Player / Ceiling
+        PlayerHit,
+        CeilingHit,
+        CeilingBreak,
 
-        StageBGM,
+        // UI
+        UIClick,
+
+        // Game State
         GameOver,
-        StageClear
+        StageClear,
+
+        // BGM
+        StageBGM
     }
 }

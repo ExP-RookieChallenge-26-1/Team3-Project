@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using DefaultNamespace;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -11,6 +13,7 @@ public class PlayerHealth : MonoBehaviour
     private int currentHp;
     private int runtimeMaxHp;
     private bool isDead;
+    private bool gameOverSoundStarted;
 
     [Header("Ground Visual")]
     [SerializeField] private SpriteRenderer leftGroundRenderer;
@@ -35,6 +38,7 @@ public class PlayerHealth : MonoBehaviour
     public void ResetPlayerHealth()
     {
         isDead = false;
+        gameOverSoundStarted = false;
         currentHp = runtimeMaxHp > 0 ? runtimeMaxHp : Mathf.Max(1, healthData.playerMaxHp);
         UpdateGroundColor();
     }
@@ -44,11 +48,18 @@ public class PlayerHealth : MonoBehaviour
         if (isDead)
             return;
 
+        int previousHp = currentHp;
         currentHp -= damage;
         currentHp = Mathf.Clamp(currentHp, 0, runtimeMaxHp);
 
         Debug.Log($"Player HP: {currentHp}");
         UpdateGroundColor();
+
+        if (currentHp < previousHp)
+        {
+            float dangerRatio = 1f - currentHp / (float)runtimeMaxHp;
+            SoundManager.Instance.Play(SoundId.PlayerHit, Mathf.Clamp01(dangerRatio));
+        }
 
         if (currentHp <= 0)
         {
@@ -85,6 +96,22 @@ public class PlayerHealth : MonoBehaviour
 
         isDead = true;
         Debug.Log("Game Over");
+        StartGameOverSoundDelay();
         OnPlayerDead?.Invoke();
+    }
+
+    private void StartGameOverSoundDelay()
+    {
+        if (gameOverSoundStarted)
+            return;
+
+        gameOverSoundStarted = true;
+        StartCoroutine(PlayGameOverSoundDelayed());
+    }
+
+    private IEnumerator PlayGameOverSoundDelayed()
+    {
+        yield return new WaitForSeconds(0.5f);
+        SoundManager.Instance.Play(SoundId.GameOver);
     }
 }

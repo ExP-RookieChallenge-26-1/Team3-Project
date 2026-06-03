@@ -208,6 +208,7 @@ public class BallController : MonoBehaviour
     public void Release(Vector2 releaseDirection)
     {
         EnsureCapturedDribbleController();
+        bool wasCaptured = IsCaptured;
 
         if (releaseDirection.sqrMagnitude > 0.0001f)
             direction = CorrectDirection(releaseDirection);
@@ -216,6 +217,11 @@ public class BallController : MonoBehaviour
         captureAnchor = null;
         CurrentState = BallState.Free;
         lastReleaseTime = Time.time;
+        if (wasCaptured)
+        {
+            PlayBallReleased();
+        }
+
         Debug.Log("[BallState] Released");
         OnReleased?.Invoke();
     }
@@ -339,6 +345,7 @@ public class BallController : MonoBehaviour
         CurrentState = BallState.Free;
         lastCaptureReleaseTime = Time.time;
         lastReleaseTime = Time.time;
+        PlayBallReleased();
     }
 
     public void NotifyCaptured()
@@ -374,6 +381,12 @@ public class BallController : MonoBehaviour
 
     private float CaptureCooldown => data != null ? data.CaptureCooldown : 0.12f;
     private float ReleaseRecaptureDelay => data != null ? data.ReleaseRecaptureDelay : 0.15f;
+
+    private void PlayBallReleased()
+    {
+        float ratio = BallSpeedController != null ? BallSpeedController.GetSpeedRatio() : 0f;
+        SoundManager.Instance.Play(SoundId.BallReleased, ratio);
+    }
 
     private void OnDrawGizmos()
     {

@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using Interfaces;
 using UnityEngine;
 
@@ -71,6 +72,15 @@ public class BlockCell : MonoBehaviour,
 
     public bool OnLaserHit()
     {
+        SoundManager.Instance.Play(
+            SoundId.BlockBreak,
+            new SoundPlayOptions
+            {
+                ratio = 0f,
+                volumeScale = 0.45f,
+                pitchScale = 1.05f
+            }
+        );
         manager.RemoveBlock(coord, true);
         return isFixed;
     }
@@ -88,6 +98,7 @@ public class BlockCell : MonoBehaviour,
         {
 
             manager.AddGauge();
+            SoundManager.Instance.Play(SoundId.BlockBreak);
             manager.RemoveBlock(coord);
             
             if (hp>= - 0.3f)

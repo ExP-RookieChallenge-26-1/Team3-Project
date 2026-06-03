@@ -1,7 +1,7 @@
 using ScriptableObjects;
 using UnityEngine;
 
-public class LaserShoot : MonoBehaviour
+public class LaserShooter : MonoBehaviour
 {
     [SerializeField] private LaserData laserData;
     [SerializeField] private LaserBlockEraser laserBlockEraser; 

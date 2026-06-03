@@ -1,4 +1,5 @@
 using System;
+using DefaultNamespace;
 using UnityEngine;
 
 public class GaugeManager : MonoBehaviour
@@ -47,6 +48,14 @@ public class GaugeManager : MonoBehaviour
         if (previousSegments != FilledGaugeSegments)
         {
             OnGaugeSegmentChanged?.Invoke(FilledGaugeSegments);
+
+            if (FilledGaugeSegments > previousSegments)
+            {
+                float ratio = MaxGaugeSegments > 0
+                    ? FilledGaugeSegments / (float)MaxGaugeSegments
+                    : 0f;
+                SoundManager.Instance.Play(SoundId.GaugeSegmentFilled, ratio);
+            }
         }
     }
 

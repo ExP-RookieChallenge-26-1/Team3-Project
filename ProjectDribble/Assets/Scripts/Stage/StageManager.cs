@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using UnityEngine;
 
 public class StageManager : MonoBehaviour
@@ -71,6 +72,8 @@ public class StageManager : MonoBehaviour
 
     private void HandleStageCleared()
     {
+        SoundManager.Instance.Play(SoundId.StageClear);
+
         bool moved = TryStartNextStage();
 
         if (!moved)

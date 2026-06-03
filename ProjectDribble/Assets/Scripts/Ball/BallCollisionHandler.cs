@@ -33,10 +33,19 @@ public class BallCollisionHandler : MonoBehaviour
 
         Debug.Log("Collision: " + hit.collider.name);
 
-        
-        
-        // 사운드 재생 - 공 충돌음 재생
-        SoundManager.Instance.Play2D(GetCollisionSoundId(hit.collider), true);
+
+
+        float speedRatio = ballSpeedController.GetSpeedRatio();
+
+        SoundPlayOptions options;
+        SoundId soundId = GetCollisionSound(hit.collider, speedRatio, out options);
+        BlockCell hitBlock = hit.collider.GetComponentInParent<BlockCell>();
+        bool shouldDelayBlockBounce = hitBlock != null && !hitBlock.IsFixed;
+
+        if (!shouldDelayBlockBounce)
+        {
+            SoundManager.Instance.Play(soundId, options);
+        }
 
         PaddleBallReflector paddleReflector =
             hit.collider.GetComponentInParent<PaddleBallReflector>();
@@ -77,12 +86,23 @@ public class BallCollisionHandler : MonoBehaviour
             //Debug.Log($"[BallDamage] Apply Damage: {damageToApply}, CurrentDamage Before Loss: {ballPowerController.CurrentDamage()}");
 
             bool destroyed = damageable.TakeDamage(damageToApply);
+            bool blockWasBroken = hitBlock != null && !hitBlock.IsAlive;
 
             ballPowerController.ApplyBlockDamageLoss();
 
             if (!isFloorHit && speedModifier != null)
             {
                 speedModifier.ModifySpeed(ballSpeedController);
+            }
+
+            if (blockWasBroken)
+            {
+                return CreateResult(incomingDirection, true);
+            }
+
+            if (shouldDelayBlockBounce)
+            {
+                SoundManager.Instance.Play(soundId, options);
             }
 
             if (destroyed)
@@ -143,23 +163,61 @@ public class BallCollisionHandler : MonoBehaviour
         return IsFloorName(objectName) || IsFloorName(parentName);
     }
 
-    private SoundId GetCollisionSoundId(Collider2D collider)
+
+    private SoundId GetCollisionSound(
+        Collider2D collider,
+        float speedRatio,
+        out SoundPlayOptions options
+    )
     {
+        options = SoundPlayOptions.Default;
+        options.ratio = speedRatio;
+
         if (collider == null)
             return SoundId.BallBounce;
 
         if (collider.GetComponentInParent<PaddleBallReflector>() != null)
-            return SoundId.PaddleBounce;
+        {
+            options.volumeScale = 1.1f;
+            options.pitchScale = 1.08f;
+            return SoundId.BallBounce;
+        }
 
         BlockCell block = collider.GetComponentInParent<BlockCell>();
         if (block != null)
-            return block.IsFixed ? SoundId.FixedBlockHit : SoundId.BlockHit;
+        {
+            if (block.IsFixed)
+            {
+                options.volumeScale = 1.05f;
+                options.pitchScale = 1.1f;
+            }
+            else
+            {
+                options.volumeScale = 1f;
+                options.pitchScale = 1f;
+            }
+
+            return SoundId.BallBounce;
+        }
 
         if (collider.GetComponentInParent<CeilingBrick>() != null)
-            return SoundId.BlockHit;
+        {
+            options.volumeScale = 1.15f;
+            options.pitchScale = 1.15f;
+            return SoundId.BallBounce;
+        }
 
         if (collider.GetComponentInParent<WallBallHitReceiver>() != null || IsFloorCollider(collider))
-            return SoundId.WallBounce;
+        {
+            if (IsFloorCollider(collider))
+            {
+                return SoundId.BallGroundBounce;
+            }
+
+            options.volumeScale = 0.5f;
+            options.pitchScale = 0.92f;
+            return SoundId.BallBounce;
+        }
 
         return SoundId.BallBounce;
     }

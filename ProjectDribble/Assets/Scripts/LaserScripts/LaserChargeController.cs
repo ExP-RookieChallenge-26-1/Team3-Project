@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,7 +13,7 @@ public class LaserChargeController : MonoBehaviour
     [SerializeField] private ChargeZone chargeZone;
     [SerializeField] private BallController ballController;
     [FormerlySerializedAs("guageManger")] [SerializeField] private GaugeManager guageManager;
-    [SerializeField] private LaserShoot laserShoot;
+    [SerializeField] private LaserShooter laserShoot;
     
     private bool isDribbling = false;
     private float chargeTimer = 0f;
@@ -46,6 +47,8 @@ public class LaserChargeController : MonoBehaviour
             ballController.OnCaptured -= HandleBallCaptured;
             ballController.OnReleased -= HandleBallReleased;
         }
+
+        SoundManager.Instance.StopLoop();
     }
     // 차징존에 공이 들어오고 나갈 때 호출되는 이벤트 핸들러
     private void HandleDribblingChanged(bool value)
@@ -76,6 +79,7 @@ public class LaserChargeController : MonoBehaviour
     {
         isDribbling = true;
         chargeTimer = 0f;
+        SoundManager.Instance.PlayLoop(SoundId.LaserCharge, GetChargeRatio());
         Debug.Log("[LaserCharge] Start charging by BallCaptured event");
     }
 
@@ -164,12 +168,16 @@ public class LaserChargeController : MonoBehaviour
         guageManager.TryReduceGaugeLevel();
         chargeTimer = 0f;
         chargeCount++;
+        SoundManager.Instance.SetLoopRatio(GetChargeRatio());
     }
 
     private void TryFireChargedLaser()
     {
         if (chargeCount > 0)
         {
+            float chargeRatio = GetChargeRatio();
+            SoundManager.Instance.StopLoop();
+            SoundManager.Instance.Play(SoundId.LaserFire, chargeRatio);
             laserShoot.ShootLaser(chargeCount);
             chargeCount = 0;
         }
@@ -177,6 +185,7 @@ public class LaserChargeController : MonoBehaviour
 
     private void ReturnGauge()
     {
+        SoundManager.Instance.StopLoop();
         int returnAmount = chargeCount * _data.gaugePerSegment;
 
         for (int i = 0; i < returnAmount; i++)
@@ -188,7 +197,16 @@ public class LaserChargeController : MonoBehaviour
     
     private void Reset()
     {
+        SoundManager.Instance.StopLoop();
         chargeCount = 0;
         chargeTimer = 0;
+    }
+
+    private float GetChargeRatio()
+    {
+        if (_data == null || _data.maxChargeCount <= 0)
+            return 0f;
+
+        return Mathf.Clamp01(chargeCount / (float)_data.maxChargeCount);
     }
 }

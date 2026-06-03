@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+using DefaultNamespace;
+using UnityEngine;
 
 public class BallRespawner : MonoBehaviour
 {
@@ -6,14 +7,13 @@ public class BallRespawner : MonoBehaviour
     [SerializeField] private Transform upperPaddle;
     [SerializeField] private Transform lowerPaddle;
     [SerializeField] private BallSpawnController ballSpawnController;
+
     [Header("Recall Setting")]
     [SerializeField] private float recallStartSpeed = 8f;
     [SerializeField] private Vector2 recallStartDirection = Vector2.up;
-    
+
     [SerializeField] private BallController ballController;
     [SerializeField] private BallMovement ballMovement;
-
-    
 
     public void RecallBallToPaddle()
     {
@@ -23,6 +23,8 @@ public class BallRespawner : MonoBehaviour
             recallPosition,
             recallStartDirection
         );
+
+        SoundManager.Instance.Play(SoundId.BallRespawn);
     }
 
     private Vector2 GetPaddleCenterPosition()

@@ -295,7 +295,7 @@ public class BallCapturedDribbleController : MonoBehaviour
             capturedYDirection = -1f;
             LogCapturedDribble("[BallState] Captured Dribble Bounce Top");
             ApplyCapturedPaddleHit(true);
-            SoundManager.Instance.Play2D(SoundId.PaddleBounce,true);
+            
         }
         else if (pos.y <= bottomY)
         {
@@ -545,18 +545,24 @@ public class BallCapturedDribbleController : MonoBehaviour
         if (Time.time < lastCapturedPaddleHitTime + ball.CapturedPaddleHitCooldown)
         {
             LogCapturedDribble("[CapturedPaddleHit] Skipped by cooldown.");
-            return;
+                               return;
         }
 
         if (speedController == null)
             return;
 
+        SoundManager.Instance.Play(SoundId.BallBounce,
+            new SoundPlayOptions()
+            {
+                pitchScale = 1.08f,
+                ratio = speedController.GetSpeedRatio(),
+                volumeScale = 0.7f
+            });
+        
         TryIncreaseSpeedFromDribble();
 
         lastCapturedPaddleHitTime = Time.time;
-
-        if (SoundManager.Instance != null)
-            SoundManager.Instance.Play2D(SoundId.BallBounce);
+        
 
         LogCapturedDribble(isTopBound
             ? "[CapturedPaddleHit] Top bound hit. Apply paddle bonus."

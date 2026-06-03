@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.Serialization;
 
 public enum SoundType
 {
@@ -11,18 +13,26 @@ public enum SoundType
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
+
     [SerializeField] private BallSpeedController ballSpeedController;
-    
-    
-    
+
     [Header("Audio Sources")]
     [SerializeField] private AudioSource bgmSource;
-    [SerializeField] private AudioSource sfxSource;
+
+    [FormerlySerializedAs("sfxSource")]
+    [SerializeField] private AudioSource defaultSfxSource;
+
+    [SerializeField] private AudioSource loopSource;
+    [SerializeField] private AudioSource uiSfxSource;
 
     [Header("Sound Data")]
     [SerializeField] private SoundData[] soundDatas;
 
-    private readonly Dictionary<SoundId, SoundData> soundDataDict = new();
+    private readonly Dictionary<SoundId, SoundData> soundMap = new();
+    private readonly Dictionary<SoundId, float> lastPlayTimes = new();
+    private SoundData currentLoopData;
+    private SoundPlayOptions currentLoopOptions;
+    private SoundId currentLoopId = SoundId.None;
 
     private void Awake()
     {
@@ -43,24 +53,27 @@ public class SoundManager : MonoBehaviour
         if (bgmSource != null)
             bgmSource.loop = true;
 
-        soundDataDict.Clear();
+        if (loopSource != null)
+            loopSource.loop = true;
+
+        soundMap.Clear();
+        lastPlayTimes.Clear();
 
         foreach (SoundData data in soundDatas)
         {
             if (data == null)
                 continue;
 
-            if (soundDataDict.ContainsKey(data.soundId))
+            if (soundMap.ContainsKey(data.id))
             {
-                Debug.LogWarning($"SoundManager: {data.soundId}가 중복 등록되었습니다.");
+                Debug.LogWarning($"SoundManager: {data.id} is registered more than once. The first entry will be used.");
                 continue;
             }
 
-            soundDataDict.Add(data.soundId, data);
+            soundMap.Add(data.id, data);
         }
     }
 
-    // 속도에 따른 피치 변화
     private float GetBallSpeedPitchRatio()
     {
         if (ballSpeedController == null || ballSpeedController.data == null)
@@ -74,79 +87,211 @@ public class SoundManager : MonoBehaviour
 
         return Mathf.InverseLerp(baseSpeed, maxSpeed, ballSpeedController.CurrentSpeed);
     }
-    
-    public void Play2D(SoundId id, bool isPitch = false)
+
+    public void Play(SoundId id)
     {
-        if (!soundDataDict.TryGetValue(id, out SoundData data))
-        {
-            Debug.LogWarning($"SoundManager: {id} 사운드 데이터가 없습니다.");
-            return;
-        }
+        Play(id, SoundPlayOptions.Default);
+    }
 
-        if (data.clip == null)
-        {
-            Debug.LogWarning($"SoundManager: {id} AudioClip이 비어 있습니다.");
-            return;
-        }
+    public void Play(SoundId id, float ratio)
+    {
+        SoundPlayOptions options = SoundPlayOptions.Default;
+        options.ratio = ratio;
+        Play(id, options);
+    }
 
-        float pitch = GetPitch(data, isPitch);
+    public void Play(SoundId id, float ratio, float volumeScale)
+    {
+        SoundPlayOptions options = SoundPlayOptions.Default;
+        options.ratio = ratio;
+        options.volumeScale = volumeScale;
+        Play(id, options);
+    }
+
+    public void Play(SoundId id, SoundPlayOptions options)
+    {
+        if (!TryGetSoundData(id, out SoundData data))
+            return;
+
+        if (!CanPlayByInterval(data))
+            return;
+
+        AudioClip clip = GetRandomClip(data);
+        if (clip == null)
+            return;
+
+        float pitch = CalculatePitch(data, options);
+        float volume = CalculateVolume(data, options);
 
         if (data.soundType == SoundType.BGM)
         {
-            PlayBGM(data.clip, pitch, data.volume);
+            PlayBGM(clip, pitch, volume, data.mixerGroup);
+            return;
         }
-        else
-        {
-            PlaySFX(data.clip, pitch, data.volume);
-        }
-    }
 
-    private float GetPitch(SoundData data, bool isPitch)
+        AudioSource source = GetSourceFor(id);
+        if (source == null)
+        {
+            Debug.LogWarning($"SoundManager: AudioSource for {id} is not assigned.");
+            return;
+        }
+
+        ApplyMixerGroup(source, data.mixerGroup);
+        source.pitch = pitch;
+        source.PlayOneShot(clip, volume);
+        lastPlayTimes[id] = Time.time;
+    }
+    
+
+    public void PlayLoop(SoundId id)
     {
-        // 효과음에 랜덤 피치 주기
-        float randomOffset = Random.Range(-0.03f, 0.03f);
-        
-        if (data.usePitchByRatio && isPitch == true)
-        {
-            float pitchRatio =  GetBallSpeedPitchRatio();
-            pitchRatio = Mathf.Clamp01(pitchRatio);
-            
-            float speedPitch = Mathf.Lerp(data.minPitch, data.maxPitch, pitchRatio);
-
-            return speedPitch + randomOffset;
-        }
-
-        return data.basePitch+randomOffset;
+        PlayLoop(id, SoundPlayOptions.Default);
     }
 
-    private void PlayBGM(AudioClip clip, float pitch, float volume)
+    public void PlayLoop(SoundId id, float ratio)
+    {
+        SoundPlayOptions options = SoundPlayOptions.Default;
+        options.ratio = ratio;
+        PlayLoop(id, options);
+    }
+
+    public void PlayLoop(SoundId id, SoundPlayOptions options)
+    {
+        if (loopSource == null)
+        {
+            Debug.LogWarning("SoundManager: loop AudioSource is not assigned.");
+            return;
+        }
+
+        if (!TryGetSoundData(id, out SoundData data))
+            return;
+
+        if (loopSource.isPlaying && currentLoopId == id)
+        {
+            SetLoopRatio(options.ratio);
+            return;
+        }
+
+        AudioClip clip = GetRandomClip(data);
+        if (clip == null)
+            return;
+
+        currentLoopId = id;
+        currentLoopData = data;
+        currentLoopOptions = options;
+
+        ApplyMixerGroup(loopSource, data.mixerGroup);
+        loopSource.clip = clip;
+        loopSource.loop = true;
+        loopSource.pitch = CalculatePitch(data, options);
+        loopSource.volume = CalculateVolume(data, options);
+        loopSource.Play();
+    }
+
+    public void StopLoop()
+    {
+        currentLoopData = null;
+        currentLoopOptions = SoundPlayOptions.Default;
+        currentLoopId = SoundId.None;
+
+        if (loopSource == null)
+            return;
+
+        loopSource.Stop();
+        loopSource.clip = null;
+    }
+
+    public void SetLoopRatio(float ratio)
+    {
+        if (loopSource == null || !loopSource.isPlaying || currentLoopData == null)
+            return;
+
+        currentLoopOptions.ratio = ratio;
+        loopSource.pitch = CalculatePitch(currentLoopData, currentLoopOptions);
+    }
+
+    private bool TryGetSoundData(SoundId id, out SoundData data)
+    {
+        if (soundMap.TryGetValue(id, out data))
+            return true;
+
+        Debug.LogWarning($"SoundManager: SoundData for {id} is missing.");
+        return false;
+    }
+
+    private AudioClip GetRandomClip(SoundData data)
+    {
+        if (data.clips == null || data.clips.Length == 0)
+        {
+            Debug.LogWarning($"SoundManager: AudioClip for {data.id} is empty.");
+            return null;
+        }
+
+        return data.clips[Random.Range(0, data.clips.Length)];
+    }
+
+    private float CalculatePitch(SoundData data, SoundPlayOptions options)
+    {
+        float ratio = Mathf.Clamp01(options.ratio);
+        float pitch = Mathf.Lerp(data.basePitch, data.maxPitch, ratio);
+        pitch += Random.Range(-data.pitchRandomRange, data.pitchRandomRange);
+        pitch *= options.pitchScale;
+        return Mathf.Clamp(pitch, 0.1f, 3f);
+    }
+
+    private float CalculateVolume(SoundData data, SoundPlayOptions options)
+    {
+        float volume = data.baseVolume;
+        volume += Random.Range(-data.volumeRandomRange, data.volumeRandomRange);
+        volume *= options.volumeScale;
+        return Mathf.Clamp01(volume);
+    }
+
+    private bool CanPlayByInterval(SoundData data)
+    {
+        if (data.minInterval <= 0f)
+            return true;
+
+        if (lastPlayTimes.TryGetValue(data.id, out float lastPlayTime) &&
+            Time.time - lastPlayTime < data.minInterval)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    private AudioSource GetSourceFor(SoundId id)
+    {
+        string idName = id.ToString();
+        if (idName == "UIClick" || idName == "GaugeSegmentFilled")
+            return uiSfxSource != null ? uiSfxSource : defaultSfxSource;
+
+        return defaultSfxSource;
+    }
+
+    private void ApplyMixerGroup(AudioSource source, AudioMixerGroup mixerGroup)
+    {
+        if (mixerGroup != null)
+            source.outputAudioMixerGroup = mixerGroup;
+    }
+
+    private void PlayBGM(AudioClip clip, float pitch, float volume, AudioMixerGroup mixerGroup = null)
     {
         if (bgmSource == null)
         {
-            Debug.LogWarning("SoundManager: BGM AudioSource가 없습니다.");
+            Debug.LogWarning("SoundManager: BGM AudioSource is not assigned.");
             return;
         }
 
         if (bgmSource.isPlaying)
             bgmSource.Stop();
 
+        ApplyMixerGroup(bgmSource, mixerGroup);
         bgmSource.pitch = pitch;
         bgmSource.volume = volume;
         bgmSource.clip = clip;
         bgmSource.Play();
-    }
-
-    private void PlaySFX(AudioClip clip, float pitch, float volume)
-    {
-        if (sfxSource == null)
-        {
-            Debug.LogWarning("SoundManager: SFX AudioSource가 없습니다.");
-            return;
-        }
-
-        sfxSource.pitch = pitch;
-        sfxSource.volume = volume;
-        sfxSource.PlayOneShot(clip);
     }
 
     public void StopBGM()
@@ -168,8 +313,14 @@ public class SoundManager : MonoBehaviour
         }
         else
         {
-            if (sfxSource != null)
-                sfxSource.volume = volume;
+            if (defaultSfxSource != null)
+                defaultSfxSource.volume = volume;
+
+            if (uiSfxSource != null)
+                uiSfxSource.volume = volume;
+
+            if (loopSource != null)
+                loopSource.volume = volume;
         }
     }
 }

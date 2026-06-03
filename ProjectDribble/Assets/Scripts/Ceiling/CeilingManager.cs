@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 
 public class CeilingManager : MonoBehaviour
@@ -182,9 +183,15 @@ public class CeilingManager : MonoBehaviour
 
         if (destroyed)
         {
+            SoundManager.Instance.Play(SoundId.CeilingBreak);
             Debug.Log($"Ceiling segment {segment.SegmentName} destroyed.");
             BreakSegmentBricks(segment);
             ForceBallDown();
+        }
+        else
+        {
+            float ratio = 1f - segment.GetHpPercent();
+            SoundManager.Instance.Play(SoundId.CeilingHit, Mathf.Clamp01(ratio));
         }
 
         if (AreAllSegmentsDestroyed())

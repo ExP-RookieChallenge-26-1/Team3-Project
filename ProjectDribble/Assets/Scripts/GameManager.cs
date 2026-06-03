@@ -4,6 +4,13 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
+    
+    void Awake()
+    {
+        QualitySettings.vSyncCount = 1;
+        Application.targetFrameRate = 60;
+    }
+
     public void StartGame()
     {
     }

@@ -101,7 +101,7 @@ public class BallSpeedController : MonoBehaviour
         bool isCooldownReady = Time.time >= lastBlockSpeedSlowTime + cooldown;
         float speedBeforeSlow = BallMovement.speed;
 
-        Debug.Log($"[BallSpeed] Try Slow. Cooldown Ready: {isCooldownReady}, CurrentSpeed: {speedBeforeSlow}");
+        //Debug.Log($"[BallSpeed] Try Slow. Cooldown Ready: {isCooldownReady}, CurrentSpeed: {speedBeforeSlow}");
 
         if (!isCooldownReady)
             return;
@@ -116,7 +116,7 @@ public class BallSpeedController : MonoBehaviour
 
         lastBlockSpeedSlowTime = Time.time;
 
-        Debug.Log($"[BallSpeed] Block Slow Applied. SlowAmount: {slowAmount}, CurrentSpeed After Slow: {BallMovement.speed}");
+        //Debug.Log($"[BallSpeed] Block Slow Applied. SlowAmount: {slowAmount}, CurrentSpeed After Slow: {BallMovement.speed}");
     }
     
     public void ApplyBlockSlow(float fallbackSlowAmount = 0f)
@@ -159,5 +159,10 @@ public class BallSpeedController : MonoBehaviour
         {
             BallMovement.SetBallSpeed(maxSpeed);
         }
+    }
+
+    public float GetSpeedRatio()
+    {
+        return Mathf.InverseLerp(baseSpeed, maxSpeed, currentSpeed);
     }
 }

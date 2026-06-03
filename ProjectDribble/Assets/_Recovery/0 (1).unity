@@ -1412,7 +1412,7 @@ MonoBehaviour:
   soundDatas:
   - id: 1
     clips:
-    - {fileID: 8300000, guid: 6744363a541ccea40be007a23c5f668f, type: 3}
+    - {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
     legacyClip: {fileID: 8300000, guid: 6744363a541ccea40be007a23c5f668f, type: 3}
     soundType: 1
     baseVolume: 1
@@ -1421,18 +1421,18 @@ MonoBehaviour:
     maxPitch: 2
     pitchRandomRange: 0.03
     mixerGroup: {fileID: 0}
-    minInterval: 0.03
+    minInterval: 0.02
     usePitchByRatio: 1
     minPitch: 0.8
   - id: 2
     clips:
-    - {fileID: 8300000, guid: 9176f17c96adc8542928b87484d6b5d1, type: 3}
-    legacyClip: {fileID: 8300000, guid: 9176f17c96adc8542928b87484d6b5d1, type: 3}
+    - {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
+    legacyClip: {fileID: 8300000, guid: 6744363a541ccea40be007a23c5f668f, type: 3}
     soundType: 1
-    baseVolume: 0.74
+    baseVolume: 1
     volumeRandomRange: 0
     basePitch: 1
-    maxPitch: 1
+    maxPitch: 2
     pitchRandomRange: 0.03
     mixerGroup: {fileID: 0}
     minInterval: 0
@@ -1471,7 +1471,21 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
     legacyClip: {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
     soundType: 1
-    baseVolume: 0.78
+    baseVolume: 0.489
+    volumeRandomRange: 0
+    basePitch: 1
+    maxPitch: 2
+    pitchRandomRange: 0.03
+    mixerGroup: {fileID: 0}
+    minInterval: 0
+    usePitchByRatio: 1
+    minPitch: 0.8
+  - id: 6
+    clips:
+    - {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
+    legacyClip: {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
+    soundType: 1
+    baseVolume: 0.489
     volumeRandomRange: 0
     basePitch: 1
     maxPitch: 2
@@ -1482,22 +1496,22 @@ MonoBehaviour:
     minPitch: 0.8
   - id: 7
     clips:
-    - {fileID: 8300000, guid: 6744363a541ccea40be007a23c5f668f, type: 3}
-    legacyClip: {fileID: 8300000, guid: 6744363a541ccea40be007a23c5f668f, type: 3}
+    - {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
+    legacyClip: {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
     soundType: 1
-    baseVolume: 0.3
+    baseVolume: 0.489
     volumeRandomRange: 0
     basePitch: 1
     maxPitch: 2
-    pitchRandomRange: 0
+    pitchRandomRange: 0.03
     mixerGroup: {fileID: 0}
     minInterval: 0
     usePitchByRatio: 1
     minPitch: 0.8
   - id: 8
     clips:
-    - {fileID: 8300000, guid: 5df1fe56e126ba24eb620ed687f9fd5e, type: 3}
-    legacyClip: {fileID: 8300000, guid: 5df1fe56e126ba24eb620ed687f9fd5e, type: 3}
+    - {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
+    legacyClip: {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
     soundType: 1
     baseVolume: 0.489
     volumeRandomRange: 0
@@ -1510,8 +1524,8 @@ MonoBehaviour:
     minPitch: 0.8
   - id: 9
     clips:
-    - {fileID: 8300000, guid: 28de93a9048fce24499842654eff8c8e, type: 3}
-    legacyClip: {fileID: 8300000, guid: 28de93a9048fce24499842654eff8c8e, type: 3}
+    - {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
+    legacyClip: {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
     soundType: 1
     baseVolume: 0.489
     volumeRandomRange: 0
@@ -1524,27 +1538,27 @@ MonoBehaviour:
     minPitch: 0.8
   - id: 10
     clips:
-    - {fileID: 8300000, guid: e80d903fd15ab2c42a23154416af3e59, type: 3}
-    legacyClip: {fileID: 8300000, guid: e80d903fd15ab2c42a23154416af3e59, type: 3}
+    - {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
+    legacyClip: {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
     soundType: 1
     baseVolume: 0.489
-    volumeRandomRange: 0.02
+    volumeRandomRange: 0
     basePitch: 1
     maxPitch: 2
-    pitchRandomRange: 0.05
+    pitchRandomRange: 0.03
     mixerGroup: {fileID: 0}
-    minInterval: 0.05
+    minInterval: 0
     usePitchByRatio: 1
     minPitch: 0.8
   - id: 11
     clips:
-    - {fileID: 8300000, guid: e80d903fd15ab2c42a23154416af3e59, type: 3}
-    legacyClip: {fileID: 8300000, guid: e80d903fd15ab2c42a23154416af3e59, type: 3}
+    - {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
+    legacyClip: {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
     soundType: 1
-    baseVolume: 1
+    baseVolume: 0.489
     volumeRandomRange: 0
     basePitch: 1
-    maxPitch: 1
+    maxPitch: 2
     pitchRandomRange: 0.03
     mixerGroup: {fileID: 0}
     minInterval: 0
@@ -1648,15 +1662,15 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.38683385
+    x: -0.28125
     y: 0
-    width: 0.22570533
-    height: 1
+    width: 0.5625
+    height: 0
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 30.0625
+  orthographic size: 22.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5258,7 +5272,7 @@ MonoBehaviour:
   captureReleaseGraceTime: 0.08
   capturedReleaseRecaptureDelay: 0.15
   debugDribbleBounce: 0
-  debugDribbleState: 0
+  debugDribbleState: 1
   debugCaptureRelease: 0
   actualRadius: 0
   direction: {x: 0, y: 0}

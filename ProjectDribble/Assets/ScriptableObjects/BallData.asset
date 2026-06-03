@@ -29,13 +29,13 @@ MonoBehaviour:
   captureCooldown: 0.1
   releaseRecaptureDelay: 0.5
   minEntranceDirectionX: 0.05
-  debugCaptureLog: 1
+  debugCaptureLog: 0
   capturedDribbleSpeedFallback: 20
   capturedTopOffset: 1.5
   capturedBottomOffset: -1.5
   capturedXFollowSpeed: 15
   capturedPaddleHitCooldown: 0.05
-  debugCapturedDribbleLog: 1
+  debugCapturedDribbleLog: 0
   blockSlowRules:
   - minSpeed: 0
     slowAmount: 4

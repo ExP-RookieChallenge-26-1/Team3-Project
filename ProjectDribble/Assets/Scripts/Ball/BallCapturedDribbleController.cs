@@ -295,6 +295,7 @@ public class BallCapturedDribbleController : MonoBehaviour
             capturedYDirection = -1f;
             LogCapturedDribble("[BallState] Captured Dribble Bounce Top");
             ApplyCapturedPaddleHit(true);
+            SoundManager.Instance.Play2D(SoundId.PaddleBounce,true);
         }
         else if (pos.y <= bottomY)
         {

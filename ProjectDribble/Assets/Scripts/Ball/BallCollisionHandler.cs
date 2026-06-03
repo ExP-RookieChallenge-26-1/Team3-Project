@@ -33,7 +33,10 @@ public class BallCollisionHandler : MonoBehaviour
 
         Debug.Log("Collision: " + hit.collider.name);
 
-        SoundManager.Instance.Play2D(SoundId.BallBounce);
+        
+        
+        // 사운드 재생 - 공 충돌음 재생
+        SoundManager.Instance.Play2D(GetCollisionSoundId(hit.collider), true);
 
         PaddleBallReflector paddleReflector =
             hit.collider.GetComponentInParent<PaddleBallReflector>();
@@ -140,11 +143,32 @@ public class BallCollisionHandler : MonoBehaviour
         return IsFloorName(objectName) || IsFloorName(parentName);
     }
 
+    private SoundId GetCollisionSoundId(Collider2D collider)
+    {
+        if (collider == null)
+            return SoundId.BallBounce;
+
+        if (collider.GetComponentInParent<PaddleBallReflector>() != null)
+            return SoundId.PaddleBounce;
+
+        BlockCell block = collider.GetComponentInParent<BlockCell>();
+        if (block != null)
+            return block.IsFixed ? SoundId.FixedBlockHit : SoundId.BlockHit;
+
+        if (collider.GetComponentInParent<CeilingBrick>() != null)
+            return SoundId.BlockHit;
+
+        if (collider.GetComponentInParent<WallBallHitReceiver>() != null || IsFloorCollider(collider))
+            return SoundId.WallBounce;
+
+        return SoundId.BallBounce;
+    }
+    
+
     private bool IsFloorName(string objectName)
     {
         return objectName.Contains("ground")
                || objectName.Contains("floor")
-               || objectName.Contains("bottom")
-               || objectName.Contains("wall_down");
+               || objectName.Contains("bottom");
     }
 }

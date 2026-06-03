@@ -11,7 +11,10 @@ public enum SoundType
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
-
+    [SerializeField] private BallSpeedController ballSpeedController;
+    
+    
+    
     [Header("Audio Sources")]
     [SerializeField] private AudioSource bgmSource;
     [SerializeField] private AudioSource sfxSource;
@@ -57,7 +60,22 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void Play2D(SoundId id, float pitchRatio = -1f)
+    // 속도에 따른 피치 변화
+    private float GetBallSpeedPitchRatio()
+    {
+        if (ballSpeedController == null || ballSpeedController.data == null)
+            return 0f;
+
+        float baseSpeed = ballSpeedController.data.baseSpeed;
+        float maxSpeed = ballSpeedController.data.maxSpeed;
+
+        if (Mathf.Approximately(baseSpeed, maxSpeed))
+            return 0f;
+
+        return Mathf.InverseLerp(baseSpeed, maxSpeed, ballSpeedController.CurrentSpeed);
+    }
+    
+    public void Play2D(SoundId id, bool isPitch = false)
     {
         if (!soundDataDict.TryGetValue(id, out SoundData data))
         {
@@ -71,7 +89,7 @@ public class SoundManager : MonoBehaviour
             return;
         }
 
-        float pitch = GetPitch(data, pitchRatio);
+        float pitch = GetPitch(data, isPitch);
 
         if (data.soundType == SoundType.BGM)
         {
@@ -83,15 +101,22 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    private float GetPitch(SoundData data, float pitchRatio)
+    private float GetPitch(SoundData data, bool isPitch)
     {
-        if (data.usePitchByRatio && pitchRatio >= 0f)
+        // 효과음에 랜덤 피치 주기
+        float randomOffset = Random.Range(-0.03f, 0.03f);
+        
+        if (data.usePitchByRatio && isPitch == true)
         {
+            float pitchRatio =  GetBallSpeedPitchRatio();
             pitchRatio = Mathf.Clamp01(pitchRatio);
-            return Mathf.Lerp(data.minPitch, data.maxPitch, pitchRatio);
+            
+            float speedPitch = Mathf.Lerp(data.minPitch, data.maxPitch, pitchRatio);
+
+            return speedPitch + randomOffset;
         }
 
-        return data.basePitch;
+        return data.basePitch+randomOffset;
     }
 
     private void PlayBGM(AudioClip clip, float pitch, float volume)

@@ -129,16 +129,20 @@ public class PaddleController : MonoBehaviour
             Debug.LogWarning($"{childName} child object was not found.");
             return;
         }
+        // 콜라이더 여러개 적용을 위해
+        Collider2D[] colliders = childTransform.GetComponents<Collider2D>();
 
-        Collider2D col = childTransform.GetComponent<Collider2D>();
-
-        if (col == null)
+        foreach (Collider2D col in colliders)
         {
-            Debug.LogWarning($"{childName} has no Collider2D.");
-            return;
+            if (col == null)
+            {
+                Debug.LogWarning($"{childName} has no Collider2D.");
+                return;
+            }
+            
+            col.enabled = isActive;
         }
-
-        col.enabled = isActive;
+        
     }
 
     private void EnsureCaptureTriggersEnabled()

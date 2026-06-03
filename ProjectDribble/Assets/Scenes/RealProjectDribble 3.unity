@@ -1273,17 +1273,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 763a91c4431a0b342a62b640929724d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
+  ballSpeedController: {fileID: 8198340417991375921}
   bgmSource: {fileID: 1766143808}
   sfxSource: {fileID: 179826586}
   soundDatas:
-  - soundId: 1
+  - soundId: 3
     soundType: 1
     clip: {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
-    volume: 1
+    volume: 0.489
     basePitch: 1
     usePitchByRatio: 1
     minPitch: 0.8
-    maxPitch: 1.3
+    maxPitch: 2
+  - soundId: 2
+    soundType: 1
+    clip: {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
+    volume: 0.489
+    basePitch: 1
+    usePitchByRatio: 1
+    minPitch: 0.8
+    maxPitch: 2
+  - soundId: 4
+    soundType: 1
+    clip: {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
+    volume: 0.489
+    basePitch: 1
+    usePitchByRatio: 1
+    minPitch: 0.8
+    maxPitch: 2
 --- !u!1 &1267497279
 GameObject:
   m_ObjectHideFlags: 0

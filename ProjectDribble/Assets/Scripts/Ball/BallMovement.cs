@@ -108,7 +108,7 @@ public class BallMovement : MonoBehaviour
                 if (debugCollision)
                 {
                     Debug.Log(
-                        $"[BallCollisionRepeatBlocked] frame={Time.frameCount}, iter={i}, collider={hit.collider.name}, distance={hit.distance:0.0000}, dir={direction}, lastResolvedDir={lastResolvedDirection}, reason=sameColliderImmediateRehit"
+                        $"[BallCollisionRepeatBlocked] frame={Time.frameCount}, iter={i}, collider={hit.collider.name}, distance={hit.distance:0.0000}, dir={direction}, lastResolvedDir={lastResolvedDirection}, reason=immediateZeroDistanceRehit"
                     );
                 }
 
@@ -223,7 +223,7 @@ public class BallMovement : MonoBehaviour
         if (hit.distance > ImmediateRehitDistance)
             return false;
 
-        if (hit.collider == currentMoveLastHitCollider)
+        if (currentMoveLastHitCollider != null)
             return true;
 
         if (hit.collider != lastResolvedCollider)
@@ -300,6 +300,18 @@ public class BallMovement : MonoBehaviour
             return wallNormal;
         }
 
+        if (TryGetDirectHitNormal(hit, incomingDirection, out Vector2 directNormal))
+        {
+            if (debugCollision)
+            {
+                Debug.Log(
+                    $"[BallStableNormalDirectOverride] frame={Time.frameCount}, collider={hit.collider.name}, hitNormal={hit.normal}, incoming={incomingDirection}, directNormal={directNormal}"
+                );
+            }
+
+            return directNormal;
+        }
+
         Vector2 sampleCenter = GetPosition() + incomingDirection.normalized * Mathf.Max(0f, hit.distance);
         Collider2D[] nearbyColliders = Physics2D.OverlapCircleAll(
             sampleCenter,
@@ -360,6 +372,35 @@ public class BallMovement : MonoBehaviour
         }
 
         return stableNormal;
+    }
+
+    private bool TryGetDirectHitNormal(
+        RaycastHit2D hit,
+        Vector2 incomingDirection,
+        out Vector2 normal
+    )
+    {
+        normal = Vector2.zero;
+
+        if (hit.collider == null)
+            return false;
+
+        bool isBrick =
+            hit.collider.GetComponentInParent<BlockCell>() != null ||
+            hit.collider.GetComponentInParent<CeilingBrick>() != null;
+
+        if (!isBrick)
+            return false;
+
+        if (hit.normal.sqrMagnitude < 0.0001f)
+            return false;
+
+        normal = hit.normal.normalized;
+
+        if (Vector2.Dot(normal, -incomingDirection.normalized) < 0f)
+            normal = -normal;
+
+        return true;
     }
 
     private bool TryGetAxisAlignedWallNormal(Collider2D collider, out Vector2 normal)

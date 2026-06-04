@@ -1416,10 +1416,10 @@ MonoBehaviour:
     legacyClip: {fileID: 8300000, guid: 460782fd23fefc845a323777a4d404ab, type: 3}
     soundType: 1
     baseVolume: 0.5
-    volumeRandomRange: 0.03
+    volumeRandomRange: 0.04
     basePitch: 0.9
     maxPitch: 2
-    pitchRandomRange: 0.03
+    pitchRandomRange: 0.04
     mixerGroup: {fileID: 0}
     minInterval: 0.03
     usePitchByRatio: 1
@@ -1468,21 +1468,21 @@ MonoBehaviour:
     minPitch: 0.8
   - id: 5
     clips:
-    - {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
-    legacyClip: {fileID: 8300000, guid: e82046eeb1e45c44ca5a21a6e8d15fa5, type: 3}
+    - {fileID: 8300000, guid: d7cd59d147b7379408b59018c93377de, type: 3}
+    legacyClip: {fileID: 8300000, guid: d7cd59d147b7379408b59018c93377de, type: 3}
     soundType: 1
-    baseVolume: 0.75
+    baseVolume: 0.655
     volumeRandomRange: 0.03
-    basePitch: 1
-    maxPitch: 2
-    pitchRandomRange: 0.03
+    basePitch: 0.8
+    maxPitch: 0.8
+    pitchRandomRange: 0.05
     mixerGroup: {fileID: 0}
     minInterval: 0.03
     usePitchByRatio: 1
     minPitch: 0.8
   - id: 7
     clips:
-    - {fileID: 8300000, guid: 6744363a541ccea40be007a23c5f668f, type: 3}
+    - {fileID: 8300000, guid: 4862593b2dfe1eb43a8ebaa22e8eec4b, type: 3}
     legacyClip: {fileID: 8300000, guid: 6744363a541ccea40be007a23c5f668f, type: 3}
     soundType: 1
     baseVolume: 0.3
@@ -2840,7 +2840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c81c31427e472eb7672671a851f10d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DefaultNamespace.WallBallHitReceiver
-  ballSpeedDecrease: 5
+  ballSpeedDecrease: 0
 --- !u!4 &603430885421747095
 Transform:
   m_ObjectHideFlags: 0
@@ -4310,7 +4310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c81c31427e472eb7672671a851f10d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DefaultNamespace.WallBallHitReceiver
-  ballSpeedDecrease: 5
+  ballSpeedDecrease: 0
 --- !u!1971053207 &6268299393540507972
 SpriteShapeRenderer:
   serializedVersion: 2

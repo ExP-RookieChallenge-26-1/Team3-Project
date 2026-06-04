@@ -15,7 +15,7 @@ MonoBehaviour:
   startGaugeValue: 25
   maxGaugeSegments: 3
   gaugePerSegment: 10
-  chargeTime: 1.5
+  chargeTime: 2.5
   maxChargeCount: 3
   baseWidth: 2
   widthPerCharge: 1.5

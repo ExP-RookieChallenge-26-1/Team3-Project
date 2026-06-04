@@ -79,7 +79,7 @@ public class LaserChargeController : MonoBehaviour
     {
         isDribbling = true;
         chargeTimer = 0f;
-        SoundManager.Instance.PlayLoop(SoundId.LaserCharge, GetChargeRatio());
+        
         Debug.Log("[LaserCharge] Start charging by BallCaptured event");
     }
 
@@ -165,10 +165,12 @@ public class LaserChargeController : MonoBehaviour
     }
     private void IncreaseChargeLevel()
     {
+        
         guageManager.TryReduceGaugeLevel();
         chargeTimer = 0f;
         chargeCount++;
         SoundManager.Instance.SetLoopRatio(GetChargeRatio());
+        SoundManager.Instance.PlayLoop(SoundId.LaserCharge, GetChargeRatio());
     }
 
     private void TryFireChargedLaser()

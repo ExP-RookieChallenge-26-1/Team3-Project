@@ -190,8 +190,8 @@ public class BallCollisionHandler : MonoBehaviour
         {
             if (block.IsFixed)
             {
-                options.volumeScale = 1.05f;
-                options.pitchScale = 1.1f;
+                options.volumeScale = 1.15f;
+                options.pitchScale = 1.2f;
             }
             else
             {
@@ -205,7 +205,7 @@ public class BallCollisionHandler : MonoBehaviour
         if (collider.GetComponentInParent<CeilingBrick>() != null)
         {
             options.volumeScale = 1.15f;
-            options.pitchScale = 1.15f;
+            options.pitchScale = 1.2f;
             return SoundId.BallBounce;
         }
 
@@ -217,7 +217,7 @@ public class BallCollisionHandler : MonoBehaviour
             }
 
             options.volumeScale = 0.5f;
-            options.pitchScale = 0.92f;
+            options.pitchScale = 0.8f;
             return SoundId.BallBounce;
         }
 

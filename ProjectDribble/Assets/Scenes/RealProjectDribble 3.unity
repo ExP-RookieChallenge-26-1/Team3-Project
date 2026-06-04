@@ -788,7 +788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
   m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
+  m_ReferencePixelsPerUnit: 16
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
@@ -1412,12 +1412,12 @@ MonoBehaviour:
   soundDatas:
   - id: 1
     clips:
-    - {fileID: 8300000, guid: 6744363a541ccea40be007a23c5f668f, type: 3}
-    legacyClip: {fileID: 8300000, guid: 6744363a541ccea40be007a23c5f668f, type: 3}
+    - {fileID: 8300000, guid: 140b5a95c1421b046ba4d544d06da615, type: 3}
+    legacyClip: {fileID: 8300000, guid: 460782fd23fefc845a323777a4d404ab, type: 3}
     soundType: 1
-    baseVolume: 1
+    baseVolume: 0.5
     volumeRandomRange: 0.03
-    basePitch: 1
+    basePitch: 0.9
     maxPitch: 2
     pitchRandomRange: 0.03
     mixerGroup: {fileID: 0}
@@ -1469,15 +1469,15 @@ MonoBehaviour:
   - id: 5
     clips:
     - {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
-    legacyClip: {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
+    legacyClip: {fileID: 8300000, guid: e82046eeb1e45c44ca5a21a6e8d15fa5, type: 3}
     soundType: 1
-    baseVolume: 0.78
-    volumeRandomRange: 0
+    baseVolume: 0.75
+    volumeRandomRange: 0.03
     basePitch: 1
     maxPitch: 2
     pitchRandomRange: 0.03
     mixerGroup: {fileID: 0}
-    minInterval: 0
+    minInterval: 0.03
     usePitchByRatio: 1
     minPitch: 0.8
   - id: 7
@@ -1648,15 +1648,15 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.38683385
+    x: 0
     y: 0
-    width: 0.22570533
+    width: 1
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 30.0625
+  orthographic size: 22.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3227,7 +3227,7 @@ Transform:
   m_GameObject: {fileID: 8673730412575904137}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.04, y: -11.36, z: 0}
+  m_LocalPosition: {x: -0, y: -11.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -5443,7 +5443,7 @@ MonoBehaviour:
   laserChargePreview: {fileID: 8376147688552453340}
   laserStartPoint: {fileID: 9059070479574643173}
   chargeZone: {fileID: 4723045640407748154}
-  ballController: {fileID: 0}
+  ballController: {fileID: 8185791647005175377}
   guageManager: {fileID: 3735814449434435070}
   laserShoot: {fileID: 4979493474648238134}
 --- !u!68 &8573653355632497595

@@ -230,10 +230,10 @@ public class CeilingManager : MonoBehaviour
         int currentAliveCount = GetAliveBlockCountInSegment(segment);
         int removeCount = Mathf.Max(0, currentAliveCount - targetAliveCount);
 
-        Debug.Log(
+     /*   Debug.Log(
             $"Ceiling segment {segment.SegmentName} visual update. HP ratio {hpRatio:F2}, total blocks {totalBlockCount}, target alive {targetAliveCount}, current alive {currentAliveCount}, remove {removeCount}"
         );
-
+*/
         if (removeCount > 0)
         {
             DestroyRandomBlocksInSegment(segment, removeCount);

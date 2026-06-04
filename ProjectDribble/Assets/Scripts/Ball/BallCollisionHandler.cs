@@ -31,7 +31,9 @@ public class BallCollisionHandler : MonoBehaviour
             return new BallCollisionResult(incomingDirection.normalized, false);
         }
 
-        Debug.Log("Collision: " + hit.collider.name);
+        Debug.Log(
+            $"Collision: {hit.collider.name}, frame={Time.frameCount}, inDir={incomingDirection}, hitNormal={hit.normal}, usedNormal={collisionNormal}, distance={hit.distance:0.0000}"
+        );
 
 
 

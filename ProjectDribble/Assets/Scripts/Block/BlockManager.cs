@@ -554,6 +554,9 @@ public class BlockManager : MonoBehaviour
         int y
     )
     {
+        if (stemOwner == null)
+            return 0;
+
         if (y < 0 || y >= data.height)
             return 0;
 

@@ -35,7 +35,6 @@ public class BlockManager : MonoBehaviour
     private float cellHeight;
 
     private Coroutine growRoutine;
-    private bool hasWarnedStemGrowthFallback;
 
     private void Awake()
     {
@@ -175,16 +174,60 @@ public class BlockManager : MonoBehaviour
 
     private void SpawnStartBlocks()
     {
+        if (data.UseStemGrowth && data.HasStemGrowthData)
+        {
+            SpawnStemStartBlocks();
+            return;
+        }
+
+        SpawnLegacyStartBlocks();
+    }
+
+    private void SpawnLegacyStartBlocks()
+    {
         foreach (Vector2Int cell in data.startCells)
         {
             SpawnBlock(cell, data.defaultHp, false);
         }
     }
 
+    private void SpawnStemStartBlocks()
+    {
+        foreach (StageBlockData.GrowthStemData stem in data.growthStems)
+        {
+            SpawnBlock(stem.startCoord, data.defaultHp, false);
+        }
+    }
+
     private void RespawnMissingStartBlocks()
+    {
+        if (data.UseStemGrowth && data.HasStemGrowthData)
+        {
+            RespawnMissingStemStartBlocks();
+            return;
+        }
+
+        RespawnMissingLegacyStartBlocks();
+    }
+
+    private void RespawnMissingLegacyStartBlocks()
     {
         foreach (Vector2Int cell in data.startCells)
         {
+            if (!IsValidCoord(cell))
+                continue;
+
+            if (!occupied[cell.x, cell.y])
+                SpawnBlock(cell, data.defaultHp, false);
+        }
+    }
+
+    private void RespawnMissingStemStartBlocks()
+    {
+        foreach (StageBlockData.GrowthStemData stem in data.growthStems)
+        {
+            Vector2Int cell = stem.startCoord;
+
             if (!IsValidCoord(cell))
                 continue;
 
@@ -281,23 +324,73 @@ public class BlockManager : MonoBehaviour
     
     private List<GrowthCandidate> GetGrowthCandidates()
     {
-        if (data.UseStemGrowth)
-            return GetStemGrowthCandidatesPlaceholder();
+        if (data.UseStemGrowth && data.HasStemGrowthData)
+            return GetStemGrowthCandidates();
 
         return GetLegacyGrowthCandidates();
     }
 
-    private List<GrowthCandidate> GetStemGrowthCandidatesPlaceholder()
+    private List<GrowthCandidate> GetStemGrowthCandidates()
     {
-        if (!hasWarnedStemGrowthFallback)
+        List<GrowthCandidate> candidates = new();
+
+        bool[,] connected = null;
+
+        if (data.onlyGrowFromStartConnectedBlocks)
+            connected = GetStartConnectedCells();
+
+        foreach (StageBlockData.GrowthStemData stem in data.growthStems)
         {
-            Debug.LogWarning(
-                "Stem growth is enabled, but stem growth logic is not implemented yet. Falling back to legacy growth."
-            );
-            hasWarnedStemGrowthFallback = true;
+            if (stem.growWeight <= 0f)
+                continue;
+
+            IEnumerable<StageBlockData.GrowthDirection> directions = GetStemGrowthDirections(stem);
+
+            for (int y = 0; y < data.height; y++)
+            {
+                for (int x = 0; x < data.width; x++)
+                {
+                    Vector2Int parent = new Vector2Int(x, y);
+
+                    if (!IsStemGrowthCoord(parent, stem))
+                        continue;
+
+                    if (!occupied[x, y])
+                        continue;
+
+                    if (fixedOccupied[x, y])
+                        continue;
+
+                    if (data.onlyGrowFromStartConnectedBlocks && !connected[x, y])
+                        continue;
+
+                    foreach (StageBlockData.GrowthDirection dir in directions)
+                    {
+                        if (dir.weight <= 0f)
+                            continue;
+
+                        Vector2Int next = parent + dir.direction;
+
+                        if (!IsStemGrowthCoord(next, stem))
+                            continue;
+
+                        if (occupied[next.x, next.y])
+                            continue;
+
+                        float finalWeight = dir.weight * stem.growWeight;
+
+                        AddCandidate(
+                            candidates,
+                            next,
+                            dir.priority,
+                            finalWeight
+                        );
+                    }
+                }
+            }
         }
 
-        return GetLegacyGrowthCandidates();
+        return candidates;
     }
 
     private List<GrowthCandidate> GetLegacyGrowthCandidates()
@@ -356,7 +449,7 @@ public class BlockManager : MonoBehaviour
         bool[,] connected = new bool[data.width, data.height];
         Queue<Vector2Int> queue = new();
 
-        foreach (Vector2Int startCell in data.startCells)
+        foreach (Vector2Int startCell in GetActiveStartCoords())
         {
             if (!IsValidCoord(startCell))
                 continue;
@@ -405,6 +498,44 @@ public class BlockManager : MonoBehaviour
         }
 
         return connected;
+    }
+
+    private IEnumerable<Vector2Int> GetActiveStartCoords()
+    {
+        if (data.UseStemGrowth && data.HasStemGrowthData)
+        {
+            foreach (StageBlockData.GrowthStemData stem in data.growthStems)
+                yield return stem.startCoord;
+
+            yield break;
+        }
+
+        foreach (Vector2Int startCell in data.startCells)
+            yield return startCell;
+    }
+
+    private IEnumerable<StageBlockData.GrowthDirection> GetStemGrowthDirections(
+        StageBlockData.GrowthStemData stem
+    )
+    {
+        if (stem.preferredDirections != null && stem.preferredDirections.Length > 0)
+            return stem.preferredDirections;
+
+        return data.directions;
+    }
+
+    private bool IsStemGrowthCoord(
+        Vector2Int coord,
+        StageBlockData.GrowthStemData stem
+    )
+    {
+        if (!IsValidCoord(coord))
+            return false;
+
+        return coord.x >= stem.minX &&
+               coord.x <= stem.maxX &&
+               coord.y >= stem.startCoord.y &&
+               coord.y <= stem.startCoord.y + stem.maxLength;
     }
 
     private void AddCandidate(

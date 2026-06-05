@@ -20,6 +20,18 @@ public class StageBlockData : ScriptableObject
         public float hp = 999;
     }
 
+    [System.Serializable]
+    public class GrowthStemData
+    {
+        public Vector2Int startCoord;
+        public int minX;
+        public int maxX;
+        public int maxLength;
+        public int width = 1;
+        public float growWeight = 1f;
+        public GrowthDirection[] preferredDirections = new GrowthDirection[0];
+    }
+
     [Header("Grid Size")]
     public int width = 7;
     public int height = 18;
@@ -30,6 +42,10 @@ public class StageBlockData : ScriptableObject
     [Header("Growth Mode")]
     public bool useStemGrowth = false;
     public bool UseStemGrowth => useStemGrowth;
+
+    [Header("Stem Growth")]
+    public GrowthStemData[] growthStems = new GrowthStemData[0];
+    public bool HasStemGrowthData => growthStems != null && growthStems.Length > 0;
 
     [Header("Fixed Blocks")]
     public List<FixedBlockData> fixedBlocks = new();

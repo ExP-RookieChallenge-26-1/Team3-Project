@@ -15,6 +15,8 @@ MonoBehaviour:
   width: 7
   height: 20
   defaultHp: 6
+  useStemGrowth: 0
+  growthStems: []
   fixedBlocks:
   - cell: {x: 0, y: 4}
     hp: 1

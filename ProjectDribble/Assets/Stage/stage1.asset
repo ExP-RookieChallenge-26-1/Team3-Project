@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce5f614b448eead419bad4017a2d335c, type: 3}
   m_Name: stage1
   m_EditorClassIdentifier: Assembly-CSharp::StageDefinition
-  blockData: {fileID: 11400000, guid: 162849a0bbcf3104d97b0f4020754402, type: 2}
+  blockData: {fileID: 11400000, guid: 9a5a4b4fb3f4bb44a8c992e099c8d123, type: 2}
   ceilingMaxHpOverride: 100
   playerMaxHpOverride: 10
   startGaugeValue: 10

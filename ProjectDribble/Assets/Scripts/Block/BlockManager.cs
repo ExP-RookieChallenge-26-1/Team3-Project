@@ -9,12 +9,14 @@ public class BlockManager : MonoBehaviour
         public Vector2Int cell;
         public int priority;
         public float weight;
+        public int stemIndex;
 
-        public GrowthCandidate(Vector2Int cell, int priority, float weight)
+        public GrowthCandidate(Vector2Int cell, int priority, float weight, int stemIndex = -1)
         {
             this.cell = cell;
             this.priority = priority;
             this.weight = weight;
+            this.stemIndex = stemIndex;
         }
     }
 
@@ -30,6 +32,7 @@ public class BlockManager : MonoBehaviour
     [SerializeField] private GaugeManager gaugeManager;
     private bool[,] occupied;
     private bool[,] fixedOccupied;
+    private int[,] stemOwner;
 
     private float cellWidth;
     private float cellHeight;
@@ -106,6 +109,15 @@ public class BlockManager : MonoBehaviour
     {
         occupied = new bool[data.width, data.height];
         fixedOccupied = new bool[data.width, data.height];
+        stemOwner = new int[data.width, data.height];
+
+        for (int x = 0; x < data.width; x++)
+        {
+            for (int y = 0; y < data.height; y++)
+            {
+                stemOwner[x, y] = -1;
+            }
+        }
     }
 
     private void CalculateGridSize()
@@ -157,7 +169,7 @@ public class BlockManager : MonoBehaviour
                     break;
 
                 GrowthCandidate selected = PickByPriorityAndWeight(candidates);
-                SpawnBlock(selected.cell, data.defaultHp, false);
+                SpawnBlock(selected.cell, data.defaultHp, false, selected.stemIndex);
             }
 
             yield return new WaitForSeconds(data.spawnInterval);
@@ -193,9 +205,10 @@ public class BlockManager : MonoBehaviour
 
     private void SpawnStemStartBlocks()
     {
-        foreach (StageBlockData.GrowthStemData stem in data.growthStems)
+        for (int i = 0; i < data.growthStems.Length; i++)
         {
-            SpawnBlock(stem.startCoord, data.defaultHp, false);
+            StageBlockData.GrowthStemData stem = data.growthStems[i];
+            SpawnBlock(stem.startCoord, data.defaultHp, false, i);
         }
     }
 
@@ -224,15 +237,16 @@ public class BlockManager : MonoBehaviour
 
     private void RespawnMissingStemStartBlocks()
     {
-        foreach (StageBlockData.GrowthStemData stem in data.growthStems)
+        for (int i = 0; i < data.growthStems.Length; i++)
         {
+            StageBlockData.GrowthStemData stem = data.growthStems[i];
             Vector2Int cell = stem.startCoord;
 
             if (!IsValidCoord(cell))
                 continue;
 
             if (!occupied[cell.x, cell.y])
-                SpawnBlock(cell, data.defaultHp, false);
+                SpawnBlock(cell, data.defaultHp, false, i);
         }
     }
 
@@ -241,7 +255,7 @@ public class BlockManager : MonoBehaviour
         SpawnBlock(coord, data.defaultHp, false);
     }
 
-    public void SpawnBlock(Vector2Int coord, float hp, bool isFixed)
+    public void SpawnBlock(Vector2Int coord, float hp, bool isFixed, int stemIndex = -1)
     {
         if (!IsValidCoord(coord))
             return;
@@ -251,6 +265,7 @@ public class BlockManager : MonoBehaviour
 
         occupied[coord.x, coord.y] = true;
         fixedOccupied[coord.x, coord.y] = isFixed;
+        stemOwner[coord.x, coord.y] = isFixed ? -1 : stemIndex;
 
         if (isFixed)
         {
@@ -277,6 +292,7 @@ public class BlockManager : MonoBehaviour
 
         bool wasFixed = fixedOccupied[coord.x, coord.y];
         fixedOccupied[coord.x, coord.y] = false;
+        stemOwner[coord.x, coord.y] = -1;
 
         if (wasFixed)
         {
@@ -339,8 +355,10 @@ public class BlockManager : MonoBehaviour
         if (data.onlyGrowFromStartConnectedBlocks)
             connected = GetStartConnectedCells();
 
-        foreach (StageBlockData.GrowthStemData stem in data.growthStems)
+        for (int stemIndex = 0; stemIndex < data.growthStems.Length; stemIndex++)
         {
+            StageBlockData.GrowthStemData stem = data.growthStems[stemIndex];
+
             if (stem.growWeight <= 0f)
                 continue;
 
@@ -377,13 +395,19 @@ public class BlockManager : MonoBehaviour
                         if (occupied[next.x, next.y])
                             continue;
 
+                        int rowLimit = Mathf.Max(1, stem.maxBlocksPerRow);
+
+                        if (CountStemBlocksInRow(stemIndex, stem, next.y) >= rowLimit)
+                            continue;
+
                         float finalWeight = dir.weight * stem.growWeight;
 
                         AddCandidate(
                             candidates,
                             next,
                             dir.priority,
-                            finalWeight
+                            finalWeight,
+                            stemIndex
                         );
                     }
                 }
@@ -524,6 +548,28 @@ public class BlockManager : MonoBehaviour
         return data.directions;
     }
 
+    private int CountStemBlocksInRow(
+        int stemIndex,
+        StageBlockData.GrowthStemData stem,
+        int y
+    )
+    {
+        if (y < 0 || y >= data.height)
+            return 0;
+
+        int count = 0;
+        int minX = Mathf.Max(0, stem.minX);
+        int maxX = Mathf.Min(data.width - 1, stem.maxX);
+
+        for (int x = minX; x <= maxX; x++)
+        {
+            if (stemOwner[x, y] == stemIndex)
+                count++;
+        }
+
+        return count;
+    }
+
     private bool IsStemGrowthCoord(
         Vector2Int coord,
         StageBlockData.GrowthStemData stem
@@ -542,7 +588,8 @@ public class BlockManager : MonoBehaviour
         List<GrowthCandidate> candidates,
         Vector2Int cell,
         int priority,
-        float weight
+        float weight,
+        int stemIndex = -1
     )
     {
         if (!IsValidCoord(cell))
@@ -560,14 +607,15 @@ public class BlockManager : MonoBehaviour
             {
                 if (priority < candidates[i].priority)
                 {
-                    candidates[i] = new GrowthCandidate(cell, priority, weight);
+                    candidates[i] = new GrowthCandidate(cell, priority, weight, stemIndex);
                 }
                 else if (priority == candidates[i].priority)
                 {
                     candidates[i] = new GrowthCandidate(
                         cell,
                         priority,
-                        candidates[i].weight + weight
+                        candidates[i].weight + weight,
+                        candidates[i].stemIndex
                     );
                 }
 
@@ -575,7 +623,7 @@ public class BlockManager : MonoBehaviour
             }
         }
 
-        candidates.Add(new GrowthCandidate(cell, priority, weight));
+        candidates.Add(new GrowthCandidate(cell, priority, weight, stemIndex));
     }
 
     private GrowthCandidate PickByPriorityAndWeight(List<GrowthCandidate> candidates)

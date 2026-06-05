@@ -29,6 +29,7 @@ public class StageBlockData : ScriptableObject
         public int maxLength;
         public int width = 1;
         public float growWeight = 1f;
+        public int maxBlocksPerRow = 2;
         public GrowthDirection[] preferredDirections = new GrowthDirection[0];
     }
 

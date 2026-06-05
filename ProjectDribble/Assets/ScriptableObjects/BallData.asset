@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BallData
   m_EditorClassIdentifier: Assembly-CSharp::BallData
   baseSpeed: 30
-  maxSpeed: 80
+  maxSpeed: 70
   ballDamage: 1
   outerPaddleSpeedIncrease: 10
   innerPaddleSpeedIncrease: 2

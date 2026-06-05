@@ -213,6 +213,8 @@ public class BallCollisionHandler : MonoBehaviour
         {
             if (IsFloorCollider(collider))
             {
+                options.ratio = 0f;
+                options.pitchScale = 0.85f;
                 return SoundId.BallGroundBounce;
             }
 

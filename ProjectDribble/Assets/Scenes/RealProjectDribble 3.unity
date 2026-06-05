@@ -1525,9 +1525,9 @@ MonoBehaviour:
   - id: 10
     clips:
     - {fileID: 8300000, guid: e80d903fd15ab2c42a23154416af3e59, type: 3}
-    legacyClip: {fileID: 8300000, guid: e80d903fd15ab2c42a23154416af3e59, type: 3}
+    legacyClip: {fileID: 8300000, guid: c8b76e3cb1a33c44fa79a52d9feeda88, type: 3}
     soundType: 1
-    baseVolume: 0.489
+    baseVolume: 0.769
     volumeRandomRange: 0.02
     basePitch: 1
     maxPitch: 2
@@ -4259,9 +4259,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallRecallInput
   ballRespawner: {fileID: 8720353550579785846}
-  minSwipeDistance: 220
-  verticalDominance: 1.5
-  holdDuration: 0.4
+  minSwipeDistance: 350
+  verticalDominance: 1.2
+  holdDuration: 0.8
 --- !u!4 &6097537737299600355
 Transform:
   m_ObjectHideFlags: 0
@@ -5677,7 +5677,7 @@ MonoBehaviour:
   upperPaddle: {fileID: 9059070479574643173}
   lowerPaddle: {fileID: 4311641027604904549}
   ballSpawnController: {fileID: 8720353550579785845}
-  recallStartSpeed: 8
+  recallStartSpeed: 30
   recallStartDirection: {x: 0, y: 1}
   ballController: {fileID: 8185791647005175377}
   ballMovement: {fileID: 2358190074791870190}

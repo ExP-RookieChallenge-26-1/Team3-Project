@@ -35,6 +35,7 @@ public class BlockManager : MonoBehaviour
     private float cellHeight;
 
     private Coroutine growRoutine;
+    private bool hasWarnedStemGrowthFallback;
 
     private void Awake()
     {
@@ -279,6 +280,27 @@ public class BlockManager : MonoBehaviour
     }
     
     private List<GrowthCandidate> GetGrowthCandidates()
+    {
+        if (data.UseStemGrowth)
+            return GetStemGrowthCandidatesPlaceholder();
+
+        return GetLegacyGrowthCandidates();
+    }
+
+    private List<GrowthCandidate> GetStemGrowthCandidatesPlaceholder()
+    {
+        if (!hasWarnedStemGrowthFallback)
+        {
+            Debug.LogWarning(
+                "Stem growth is enabled, but stem growth logic is not implemented yet. Falling back to legacy growth."
+            );
+            hasWarnedStemGrowthFallback = true;
+        }
+
+        return GetLegacyGrowthCandidates();
+    }
+
+    private List<GrowthCandidate> GetLegacyGrowthCandidates()
     {
         List<GrowthCandidate> candidates = new();
 

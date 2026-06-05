@@ -27,6 +27,10 @@ public class StageBlockData : ScriptableObject
     [Header("Flow Block")]
     public float defaultHp = 10;
 
+    [Header("Growth Mode")]
+    public bool useStemGrowth = false;
+    public bool UseStemGrowth => useStemGrowth;
+
     [Header("Fixed Blocks")]
     public List<FixedBlockData> fixedBlocks = new();
 
@@ -71,6 +75,13 @@ public class StageBlockData : ScriptableObject
         {
             name = "Right",
             direction = new Vector2Int(1, 0),
+            priority = 1,
+            weight = 1f
+        },
+        new GrowthDirection
+        {
+            name = "Up",
+            direction = new Vector2Int(0, -1),
             priority = 1,
             weight = 1f
         }

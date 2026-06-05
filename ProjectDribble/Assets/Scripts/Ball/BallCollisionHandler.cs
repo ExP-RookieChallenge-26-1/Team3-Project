@@ -75,7 +75,7 @@ public class BallCollisionHandler : MonoBehaviour
 
         if (isFloorHit)
         {
-            ballSpeedController.ResetToBaseSpeed();
+            ballSpeedController.ApplyGroundWeakened();
         }
 
         IDamageable damageable = hit.collider.GetComponentInParent<IDamageable>();

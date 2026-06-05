@@ -204,8 +204,8 @@ Transform:
   m_GameObject: {fileID: 8838073}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1.9938, z: 0}
+  m_LocalScale: {x: 1, y: 1.0004, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3121,7 +3121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BallMovement
   speed: 30
   skinWidth: 0.1
-  _outsideMaxBounceAngle: 70
+  _outsideMaxBounceAngle: 60
   _insideMaxBounceAngle: 50
   maxCollisionIterations: 6
   debugCollision: 0
@@ -3846,6 +3846,7 @@ MonoBehaviour:
   laserData: {fileID: 11400000, guid: 0379fc37ebdf6b94abba4c8925f4a626, type: 2}
   laserBlockEraser: {fileID: 5809704192425365442}
   ball: {fileID: 3171635610435208423}
+  ballSpeedController: {fileID: 0}
   firePoint: {fileID: 9059070479574643173}
 --- !u!4 &5265716868967427068
 Transform:
@@ -5295,6 +5296,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallSpeedController
   data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
+  normalMaxSpeed: 65
+  laserMinBoostSpeed: 80
+  laserMaxSpeed: 90
+  laserBoostAmount: 25
+  laserReturnThreshold: 60
+  weakenedSpeed: 20
+  weakenedDuration: 1
   currentSpeed: 0
 --- !u!4 &8279302420138287470
 Transform:
@@ -6003,7 +6011,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 2.2, y: -0.26}
+  m_Offset: {x: 2.34, y: -0.22}
   m_Radius: 0.13
 --- !u!58 &9119756324006937551
 CircleCollider2D:
@@ -6039,7 +6047,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -2.2, y: -0.26}
+  m_Offset: {x: -2.34, y: -0.22}
   m_Radius: 0.13
 --- !u!4 &9185332525003859952
 Transform:

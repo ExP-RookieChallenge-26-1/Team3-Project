@@ -25,6 +25,15 @@ public class BallData : ScriptableObject
     [Header("Speed")]
     [SerializeField] private float dribbleSpeedBonus = 5f;
 
+    [Header("Speed State")]
+    [SerializeField] private float normalMaxSpeed = 70f;
+    [SerializeField] private float laserMinBoostSpeed = 80f;
+    [SerializeField] private float laserMaxSpeed = 100f;
+    [SerializeField] private float laserBoostAmount = 20f;
+    [SerializeField] private float laserReturnThreshold = 70f;
+    [SerializeField] private float weakenedSpeed = 25f;
+    [SerializeField] private float weakenedDuration = 0.75f;
+
     [Header("Damage")]
     [SerializeField] private float baseDamage = 1f;
     [SerializeField] private float maxDamage = 3f;
@@ -69,6 +78,13 @@ public class BallData : ScriptableObject
     public float BlockDamageLoss => blockDamageLoss;
     public float BlockSpeedSlowCooldown => blockSpeedSlowCooldown;
     public float DribbleSpeedBonus => dribbleSpeedBonus;
+    public float NormalMaxSpeed => normalMaxSpeed;
+    public float LaserMinBoostSpeed => laserMinBoostSpeed;
+    public float LaserMaxSpeed => laserMaxSpeed;
+    public float LaserBoostAmount => laserBoostAmount;
+    public float LaserReturnThreshold => laserReturnThreshold;
+    public float WeakenedSpeed => weakenedSpeed;
+    public float WeakenedDuration => weakenedDuration;
     public float CaptureCooldown => captureCooldown;
     public float ReleaseRecaptureDelay => releaseRecaptureDelay;
     public float MinEntranceDirectionX => minEntranceDirectionX;
@@ -110,6 +126,13 @@ public class BallData : ScriptableObject
         blockDamageLoss = Mathf.Max(0f, blockDamageLoss);
         blockSpeedSlowCooldown = Mathf.Max(0f, blockSpeedSlowCooldown);
         dribbleSpeedBonus = Mathf.Max(0f, dribbleSpeedBonus);
+        normalMaxSpeed = Mathf.Max(baseSpeed, normalMaxSpeed);
+        laserReturnThreshold = Mathf.Max(0f, laserReturnThreshold);
+        laserMinBoostSpeed = Mathf.Max(laserReturnThreshold, laserMinBoostSpeed);
+        laserMaxSpeed = Mathf.Max(laserMinBoostSpeed, laserMaxSpeed);
+        laserBoostAmount = Mathf.Max(0f, laserBoostAmount);
+        weakenedSpeed = Mathf.Max(0f, weakenedSpeed);
+        weakenedDuration = Mathf.Max(0f, weakenedDuration);
         captureCooldown = Mathf.Max(0f, captureCooldown);
         releaseRecaptureDelay = Mathf.Max(0f, releaseRecaptureDelay);
         minEntranceDirectionX = Mathf.Max(0f, minEntranceDirectionX);

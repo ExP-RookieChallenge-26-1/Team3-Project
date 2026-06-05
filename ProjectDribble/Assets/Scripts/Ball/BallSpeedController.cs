@@ -1,4 +1,13 @@
+using System;
+using System.Collections;
 using UnityEngine;
+
+public enum BallSpeedState
+{
+    Normal,
+    LaserBoost,
+    Weakened
+}
 
 public class BallSpeedController : MonoBehaviour
 {
@@ -16,37 +25,46 @@ public class BallSpeedController : MonoBehaviour
     float maxSpeed;
     float PaddleSpeedIncrease;
     float BlockSpeedDecrease;
+
+    private float normalMaxSpeed;
+    private float laserMinBoostSpeed;
+    private float laserMaxSpeed;
+    private float laserBoostAmount;
+    private float laserReturnThreshold;
+    private float weakenedSpeed;
+    private float weakenedDuration;
     [SerializeField] private float currentSpeed;
+
+    private BallSpeedState currentSpeedState = BallSpeedState.Normal;
+    private Coroutine weakenedCoroutine;
     private float lastBlockSpeedSlowTime = -999f;
 
     public float CurrentSpeed => currentSpeed;
+    public BallSpeedState CurrentSpeedState => currentSpeedState;
+    public float CurrentMaxSpeed => GetCurrentMaxSpeed();
+    public bool IsLaserBoosted => currentSpeedState == BallSpeedState.LaserBoost;
+    public bool IsWeakened => currentSpeedState == BallSpeedState.Weakened;
+    public float SpeedRatio01 => GetSpeedRatio();
+    public event Action<BallSpeedState> OnSpeedStateChanged;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        baseSpeed = data.baseSpeed;
-        maxSpeed = data.maxSpeed;
-        PaddleSpeedIncrease = data.outerPaddleSpeedIncrease;
-        BlockSpeedDecrease = data.BlockSpeedDecrease;
+        LoadSpeedSettingsFromData();
 
         BallMovement = GetComponent<BallMovement>();
         BallController = GetComponent<BallController>();
         BallPowerController = GetComponent<BallPowerController>();
         tr = GetComponent<Transform>();
         cc = GetComponent<CircleCollider2D>();
+        currentSpeed = BallMovement.speed;
+        ClampSpeed();
     }
 
     // Update is called once per frame
     void Update()
     {
-       if (BallMovement.speed < baseSpeed)
-       {
-           BallMovement.SetBallSpeed(baseSpeed);
-       }
-       if (BallMovement.speed >= maxSpeed)
-       {
-           BallMovement.SetBallSpeed(maxSpeed);
-       }
+        ClampSpeed();
         currentSpeed = BallMovement.speed;
         moveDistance = BallMovement.moveDistance;
     }
@@ -89,6 +107,7 @@ public class BallSpeedController : MonoBehaviour
 
     public void ResetToBaseSpeed()
     {
+        SetSpeedState(BallSpeedState.Normal);
         BallMovement.SetBallSpeed(baseSpeed);
         currentSpeed = BallMovement.speed;
         BallPowerController?.ResetToBaseDamage();
@@ -126,6 +145,13 @@ public class BallSpeedController : MonoBehaviour
     
     public void AddSpeed(float amount)
     {
+        if (IsWeakened && amount > 0f)
+        {
+            BallMovement.SetBallSpeed(weakenedSpeed);
+            currentSpeed = BallMovement.speed;
+            return;
+        }
+
         BallMovement.AddBallSpeed(amount);
         ClampSpeed();
         currentSpeed = BallMovement.speed;
@@ -150,19 +176,118 @@ public class BallSpeedController : MonoBehaviour
 
     private void ClampSpeed()
     {
-        if (BallMovement.speed < baseSpeed)
+        if (IsWeakened)
         {
-            BallMovement.SetBallSpeed(baseSpeed);
+            BallMovement.SetBallSpeed(weakenedSpeed);
+            return;
         }
 
-        if (BallMovement.speed > maxSpeed)
+        if (IsLaserBoosted && BallMovement.speed <= laserReturnThreshold)
+            SetSpeedState(BallSpeedState.Normal);
+
+        float minSpeed = baseSpeed;
+        float maxAllowedSpeed = GetCurrentMaxSpeed();
+
+        if (BallMovement.speed < minSpeed)
         {
-            BallMovement.SetBallSpeed(maxSpeed);
+            BallMovement.SetBallSpeed(minSpeed);
+        }
+
+        if (BallMovement.speed > maxAllowedSpeed)
+        {
+            BallMovement.SetBallSpeed(maxAllowedSpeed);
         }
     }
 
     public float GetSpeedRatio()
     {
-        return Mathf.InverseLerp(baseSpeed, maxSpeed, currentSpeed);
+        switch (currentSpeedState)
+        {
+            case BallSpeedState.LaserBoost:
+                return Mathf.InverseLerp(laserReturnThreshold, laserMaxSpeed, currentSpeed);
+            case BallSpeedState.Weakened:
+                return Mathf.InverseLerp(weakenedSpeed, baseSpeed, currentSpeed);
+            default:
+                return Mathf.InverseLerp(baseSpeed, normalMaxSpeed, currentSpeed);
+        }
+    }
+
+    public void ApplyLaserBoost()
+    {
+        if (IsWeakened)
+            return;
+
+        SetSpeedState(BallSpeedState.LaserBoost);
+        float boostedSpeed = Mathf.Max(BallMovement.speed, laserMinBoostSpeed);
+        boostedSpeed = Mathf.Min(boostedSpeed + laserBoostAmount, laserMaxSpeed);
+        BallMovement.SetBallSpeed(boostedSpeed);
+        currentSpeed = BallMovement.speed;
+    }
+
+    public void ApplyGroundWeakened()
+    {
+        if (weakenedCoroutine != null)
+            StopCoroutine(weakenedCoroutine);
+
+        SetSpeedState(BallSpeedState.Weakened);
+        BallMovement.SetBallSpeed(weakenedSpeed);
+        currentSpeed = BallMovement.speed;
+        BallPowerController?.ResetToBaseDamage();
+        weakenedCoroutine = StartCoroutine(RecoverFromWeakened());
+    }
+
+    private IEnumerator RecoverFromWeakened()
+    {
+        yield return new WaitForSeconds(weakenedDuration);
+
+        SetSpeedState(BallSpeedState.Normal);
+        BallMovement.SetBallSpeed(baseSpeed);
+        currentSpeed = BallMovement.speed;
+        weakenedCoroutine = null;
+    }
+
+    private float GetCurrentMaxSpeed()
+    {
+        return IsLaserBoosted ? laserMaxSpeed : normalMaxSpeed;
+    }
+
+    private void SetSpeedState(BallSpeedState nextState)
+    {
+        if (currentSpeedState == nextState)
+            return;
+
+        currentSpeedState = nextState;
+        OnSpeedStateChanged?.Invoke(currentSpeedState);
+    }
+
+    private void LoadSpeedSettingsFromData()
+    {
+        if (data == null)
+        {
+            baseSpeed = 30f;
+            maxSpeed = 70f;
+            normalMaxSpeed = maxSpeed;
+            laserMinBoostSpeed = 80f;
+            laserMaxSpeed = 100f;
+            laserBoostAmount = 20f;
+            laserReturnThreshold = 70f;
+            weakenedSpeed = 25f;
+            weakenedDuration = 0.75f;
+            PaddleSpeedIncrease = 0f;
+            BlockSpeedDecrease = 0f;
+            return;
+        }
+
+        baseSpeed = data.baseSpeed;
+        maxSpeed = data.maxSpeed;
+        normalMaxSpeed = data.NormalMaxSpeed;
+        laserMinBoostSpeed = data.LaserMinBoostSpeed;
+        laserMaxSpeed = data.LaserMaxSpeed;
+        laserBoostAmount = data.LaserBoostAmount;
+        laserReturnThreshold = data.LaserReturnThreshold;
+        weakenedSpeed = data.WeakenedSpeed;
+        weakenedDuration = data.WeakenedDuration;
+        PaddleSpeedIncrease = data.outerPaddleSpeedIncrease;
+        BlockSpeedDecrease = data.BlockSpeedDecrease;
     }
 }

@@ -6,7 +6,9 @@ public class LaserShooter : MonoBehaviour
     [SerializeField] private LaserData laserData;
     [SerializeField] private LaserBlockEraser laserBlockEraser; 
     [SerializeField] private Transform ball;
+    [SerializeField] private BallSpeedController ballSpeedController;
     [SerializeField] private Transform firePoint;
+
     public void ShootLaser(int chargeCount)
     {
        
@@ -26,7 +28,20 @@ public class LaserShooter : MonoBehaviour
             laserEndPoint - Vector2.up * laserData.ballSpawnBackOffset;
 
         ball.position = newBallPosition;
+        GetBallSpeedController()?.ApplyLaserBoost();
         
+    }
+
+    private BallSpeedController GetBallSpeedController()
+    {
+        if (ballSpeedController != null)
+            return ballSpeedController;
+
+        if (ball == null)
+            return null;
+
+        ballSpeedController = ball.GetComponent<BallSpeedController>();
+        return ballSpeedController;
     }
     
     

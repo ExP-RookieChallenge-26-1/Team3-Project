@@ -30,6 +30,7 @@ public class BallCapturedDribbleController : MonoBehaviour
     private BallSpeedController speedController;
     private Transform pendingCaptureAnchor;
     private PaddleController pendingCapturePaddle;
+    private bool pendingCaptureBounceUp = true;
     private Transform captureAnchor;
     private PaddleController capturedPaddle;
     private CapturePhase capturePhase = CapturePhase.None;
@@ -44,7 +45,17 @@ public class BallCapturedDribbleController : MonoBehaviour
     public void Initialize(BallController ballController, BallSpeedController ballSpeedController)
     {
         ball = ballController;
+
+        if (speedController == ballSpeedController)
+            return;
+
+        if (speedController != null)
+            speedController.OnSpeedStateChanged -= HandleSpeedStateChanged;
+
         speedController = ballSpeedController;
+
+        if (speedController != null)
+            speedController.OnSpeedStateChanged += HandleSpeedStateChanged;
     }
 
     public bool IsInactivePaddleCaptureBlocked(PaddleController paddle)
@@ -60,6 +71,14 @@ public class BallCapturedDribbleController : MonoBehaviour
 
     public bool CanStartCapturedDribble()
     {
+        if (speedController != null && speedController.IsWeakened)
+        {
+            if (ShouldLogCapture())
+                Debug.Log("[CaptureBlocked] reason=ballWeakened");
+
+            return false;
+        }
+
         if (ball.CanCaptureNow)
             return true;
 
@@ -153,6 +172,7 @@ public class BallCapturedDribbleController : MonoBehaviour
         isInCaptureZone = true;
         pendingCaptureAnchor = anchor;
         pendingCapturePaddle = paddle;
+        pendingCaptureBounceUp = bounceUp;
 
         LogCapturePhase("[CaptureZone] Enter/Stay: pending candidate maintained");
     }
@@ -168,6 +188,7 @@ public class BallCapturedDribbleController : MonoBehaviour
         isInCaptureZone = false;
         pendingCaptureAnchor = null;
         pendingCapturePaddle = null;
+        pendingCaptureBounceUp = true;
 
         LogCapturePhase("[CaptureZone] Exit: pending candidate cleared");
     }
@@ -220,6 +241,24 @@ public class BallCapturedDribbleController : MonoBehaviour
 
         LogCapturePhase("[Capture] Pending -> Capture by paddle hit");
         BeginApproachAnchor(hitPaddle, bounceUp);
+    }
+
+    private void HandleSpeedStateChanged(BallSpeedState state)
+    {
+        if (state != BallSpeedState.Normal)
+            return;
+
+        if (!CanUsePendingCapture(pendingCapturePaddle))
+            return;
+
+        LogCapturePhase("[Capture] Weakened ended -> pending capture resumed");
+        StartApproachFromPendingCapture(pendingCapturePaddle, pendingCaptureBounceUp);
+    }
+
+    private void OnDestroy()
+    {
+        if (speedController != null)
+            speedController.OnSpeedStateChanged -= HandleSpeedStateChanged;
     }
 
     public void CancelPendingCapture(PaddleController paddle)

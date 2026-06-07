@@ -49,7 +49,7 @@ public class BallMovement : MonoBehaviour
             data = ballController.data;
 
         baseSpeed = data != null ? data.baseSpeed : speed;
-        maxSpeed = data != null ? data.maxSpeed : speed;
+        maxSpeed = data != null ? data.NormalMaxSpeed : speed;
         ballDamage = data != null ? data.ballDamage : 1f;
 
         initialSpeed = speed;

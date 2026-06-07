@@ -151,4 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66be2baf62e480c47b1b751225d9d032, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BlockCell
+  _gaugeManager: {fileID: 0}
   ballSpeedDecrease: 5
+  minAlpha: 0.2

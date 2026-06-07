@@ -11,11 +11,12 @@ public class LaserShooter : MonoBehaviour
 
     public void ShootLaser(int chargeCount)
     {
-       
+        if (laserData == null || chargeCount <= 0)
+            return;
 
         Vector2 origin = firePoint.position;
 
-        float width = laserData.baseWidth +laserData.widthPerCharge  * chargeCount;
+        float width = laserData.GetWidthForCharge(chargeCount);
 
         Vector2 laserEndPoint = laserBlockEraser.EraseByLaser(
             origin,

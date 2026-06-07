@@ -15,12 +15,14 @@ MonoBehaviour:
   width: 7
   height: 20
   defaultHp: 6
+  useStemGrowth: 0
+  growthStems: []
   fixedBlocks: []
   startCells:
   - {x: 0, y: 0}
   - {x: 3, y: 0}
   - {x: 6, y: 0}
-  spawnInterval: 1.3
+  spawnInterval: 1
   minGrowPerTick: 2
   maxGrowPerTick: 4
   rowWeightMultiplier: 0.2

@@ -15,14 +15,19 @@ public class BlockCell : MonoBehaviour,
     [SerializeField] private float ballSpeedDecrease = 2f;
 
     [Header("Visual")]
-    [SerializeField] private float minAlpha = 0.2f;
+    [SerializeField] private SpriteRenderer crackOverlayRenderer;
+    [SerializeField] private float minCrackAlpha = 0.25f;
+    [SerializeField] private float maxCrackAlpha = 0.85f;
+    [SerializeField] private Color disconnectedStemColor = new Color(0.45f, 0.5f, 0.42f, 1f);
 
     private SpriteRenderer sr;
+    private Color connectedStemColor = Color.white;
 
     private float hp;
     private float maxHp;
 
     private bool isFixed;
+    private bool isDisconnectedStem;
 
     public Vector2Int Coord => coord;
     public bool IsFixed => isFixed;
@@ -31,6 +36,9 @@ public class BlockCell : MonoBehaviour,
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+
+        if (sr != null)
+            connectedStemColor = sr.color;
     }
 
     public void Init(BlockManager manager, Vector2Int coord)
@@ -47,6 +55,7 @@ public class BlockCell : MonoBehaviour,
         this.maxHp = hp;
 
         this.isFixed = isFixed;
+        isDisconnectedStem = false;
 
         gameObject.SetActive(true);
 
@@ -55,7 +64,15 @@ public class BlockCell : MonoBehaviour,
 
     public void Deactivate()
     {
+        isDisconnectedStem = false;
+        UpdateVisual();
         gameObject.SetActive(false);
+    }
+
+    public void SetStemConnection(bool isConnected)
+    {
+        isDisconnectedStem = !isConnected;
+        UpdateStemConnectionVisual();
     }
 
     public void ModifySpeed(BallSpeedController speedController)
@@ -114,17 +131,37 @@ public class BlockCell : MonoBehaviour,
 
     private void UpdateVisual()
     {
+        UpdateStemConnectionVisual();
+        UpdateHpVisual();
+    }
+
+    private void UpdateStemConnectionVisual()
+    {
         if (sr == null)
             return;
 
-        float hpPercent = (float)hp / maxHp;
-
-        float alpha = Mathf.Lerp(minAlpha, 1f, hpPercent);
-
-        Color color = sr.color;
-        color.a = alpha;
+        Color color = isDisconnectedStem ? disconnectedStemColor : connectedStemColor;
+        color.a = 1f;
 
         sr.color = color;
+    }
+
+    private void UpdateHpVisual()
+    {
+        if (crackOverlayRenderer == null)
+            return;
+
+        float hpRatio = maxHp <= 0f ? 1f : Mathf.Clamp01(hp / maxHp);
+        bool damaged = hpRatio < 1f;
+
+        crackOverlayRenderer.gameObject.SetActive(damaged);
+
+        if (!damaged)
+            return;
+
+        Color crackColor = crackOverlayRenderer.color;
+        crackColor.a = Mathf.Lerp(minCrackAlpha, maxCrackAlpha, 1f - hpRatio);
+        crackOverlayRenderer.color = crackColor;
     }
 
     private void OnDrawGizmosSelected()

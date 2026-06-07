@@ -51,5 +51,13 @@ namespace ScriptableObjects
 
         [Min(0.001f)]
         public float previewLineWidth = 0.05f;
+
+        public float GetWidthForCharge(int chargeCount)
+        {
+            if (chargeCount <= 0)
+                return 0f;
+
+            return baseWidth + widthPerCharge * (chargeCount - 1);
+        }
     }
 }

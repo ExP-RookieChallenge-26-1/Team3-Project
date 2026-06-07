@@ -15,7 +15,7 @@ public class BallData : ScriptableObject
     }
 
     public float baseSpeed = 30f;
-    public float maxSpeed = 55f;
+
     public float ballDamage = 1f;
     public float outerPaddleSpeedIncrease = 5f;
     public float innerPaddleSpeedIncrease = 5f;

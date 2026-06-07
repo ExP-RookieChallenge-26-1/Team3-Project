@@ -116,13 +116,14 @@ public class LaserChargeController : MonoBehaviour
             return;
         }
 
-        int previewChargeCount = Mathf.Clamp(
-            chargeCount + 1,
-            1,
-            _data.maxChargeCount
-        );
+        float width = _data.GetWidthForCharge(chargeCount);
 
-        float width = _data.baseWidth + _data.widthPerCharge * previewChargeCount;
+        if (width <= 0f)
+        {
+            laserChargePreview.Hide();
+            return;
+        }
+
         float range = _data.range;
 
         laserChargePreview.Show(

@@ -279,7 +279,6 @@ public class BallSpeedController : MonoBehaviour
         }
 
         baseSpeed = data.baseSpeed;
-        maxSpeed = data.maxSpeed;
         normalMaxSpeed = data.NormalMaxSpeed;
         laserMinBoostSpeed = data.LaserMinBoostSpeed;
         laserMaxSpeed = data.LaserMaxSpeed;

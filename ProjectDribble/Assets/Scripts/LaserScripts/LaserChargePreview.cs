@@ -31,6 +31,12 @@ public class LaserChargePreview : MonoBehaviour
 
     public void Show(Vector2 startPosition, float width, float range)
     {
+        if (width <= 0f)
+        {
+            Hide();
+            return;
+        }
+
         gameObject.SetActive(true);
 
         float halfWidth = width * 0.5f;

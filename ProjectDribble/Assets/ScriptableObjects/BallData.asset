@@ -13,13 +13,19 @@ MonoBehaviour:
   m_Name: BallData
   m_EditorClassIdentifier: Assembly-CSharp::BallData
   baseSpeed: 30
-  maxSpeed: 70
   ballDamage: 1
   outerPaddleSpeedIncrease: 10
   innerPaddleSpeedIncrease: 2
   BlockSpeedDecrease: -5
   DamageMultiplier: 0.2
   dribbleSpeedBonus: 5
+  normalMaxSpeed: 70
+  laserMinBoostSpeed: 80
+  laserMaxSpeed: 90
+  laserBoostAmount: 20
+  laserReturnThreshold: 70
+  weakenedSpeed: 25
+  weakenedDuration: 0.75
   baseDamage: 5
   maxDamage: 10
   paddleDamageBonus: 1

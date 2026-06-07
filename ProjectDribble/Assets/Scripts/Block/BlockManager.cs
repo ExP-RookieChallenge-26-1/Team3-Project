@@ -275,6 +275,8 @@ public class BlockManager : MonoBehaviour
         {
             blockPool.ActivateBlock(coord, hp);
         }
+
+        RefreshStemConnectionVisuals();
     }
 
     public void RemoveBlock(Vector2Int coord, bool force = false)
@@ -304,6 +306,8 @@ public class BlockManager : MonoBehaviour
         {
             blockPool.DeactivateBlock(coord);
         }
+
+        RefreshStemConnectionVisuals();
     }
 
     public BlockCell GetBlockCell(Vector2Int coord)
@@ -522,6 +526,34 @@ public class BlockManager : MonoBehaviour
         }
 
         return connected;
+    }
+
+    private void RefreshStemConnectionVisuals()
+    {
+        if (occupied == null || fixedOccupied == null || blockPool == null)
+            return;
+
+        bool[,] connected = GetStartConnectedCells();
+
+        for (int y = 0; y < data.height; y++)
+        {
+            for (int x = 0; x < data.width; x++)
+            {
+                if (!occupied[x, y])
+                    continue;
+
+                if (fixedOccupied[x, y])
+                    continue;
+
+                Vector2Int coord = new Vector2Int(x, y);
+                BlockCell block = blockPool.GetBlock(coord);
+
+                if (block == null)
+                    continue;
+
+                block.SetStemConnection(connected[x, y]);
+            }
+        }
     }
 
     private IEnumerable<Vector2Int> GetActiveStartCoords()

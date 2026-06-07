@@ -80,7 +80,7 @@ public class SoundManager : MonoBehaviour
             return 0f;
 
         float baseSpeed = ballSpeedController.data.baseSpeed;
-        float maxSpeed = ballSpeedController.data.maxSpeed;
+        float maxSpeed = ballSpeedController.data.NormalMaxSpeed;
 
         if (Mathf.Approximately(baseSpeed, maxSpeed))
             return 0f;

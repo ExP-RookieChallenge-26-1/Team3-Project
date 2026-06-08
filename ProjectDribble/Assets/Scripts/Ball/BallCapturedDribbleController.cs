@@ -26,6 +26,10 @@ public class BallCapturedDribbleController : MonoBehaviour
     [SerializeField] private Color capturedTopEllipseGizmoColor = new Color(0.2f, 0.7f, 1f, 1f);
     [SerializeField] private Color capturedBottomEllipseGizmoColor = new Color(1f, 0.75f, 0.2f, 1f);
 
+    [Header("Release Alignment")]
+    [SerializeField] private float verticalAlignDelay = 0.35f;
+    [SerializeField] private float verticalAlignDuration = 0.25f;
+
     private BallController ball;
     private BallSpeedController speedController;
     private Transform pendingCaptureAnchor;
@@ -39,6 +43,7 @@ public class BallCapturedDribbleController : MonoBehaviour
     private float lastCapturedPaddleHitTime = -999f;
     private float lastDribbleSpeedIncreaseTime = -999f;
     private float capturedStartTime = -999f;
+    private float capturedHoldTime;
     private PaddleController inactiveCaptureSuppressedPaddle;
     private bool suppressInactiveCaptureUntilPaddleActive;
 
@@ -132,6 +137,7 @@ public class BallCapturedDribbleController : MonoBehaviour
         capturePhase = CapturePhase.Dribbling;
         lastDribbleSpeedIncreaseTime = -999f;
         capturedStartTime = Time.time;
+        capturedHoldTime = 0f;
 
         float paddleVelocityX = capturedPaddle != null ? capturedPaddle.VelocityX : 0f;
         ball.direction = GetDribbleBounceDirection(bounceUp, paddleVelocityX);
@@ -288,6 +294,8 @@ public class BallCapturedDribbleController : MonoBehaviour
         if (UpdateCapturedReleaseState())
             return;
 
+        capturedHoldTime += Time.deltaTime;
+
         Vector3 pos = transform.position;
         Vector3 anchorPos = captureAnchor.position;
 
@@ -433,6 +441,7 @@ public class BallCapturedDribbleController : MonoBehaviour
         captureAnchor = null;
         capturedPaddle = null;
         capturedStartTime = -999f;
+        capturedHoldTime = 0f;
     }
 
     public void RefreshInactiveCaptureSuppression()
@@ -534,6 +543,7 @@ public class BallCapturedDribbleController : MonoBehaviour
         transform.position = targetPos;
         capturePhase = CapturePhase.Dribbling;
         capturedStartTime = Time.time;
+        capturedHoldTime = 0f;
         lastDribbleSpeedIncreaseTime = -999f;
 
         float paddleVelocityX = capturedPaddle != null ? capturedPaddle.VelocityX : 0f;
@@ -562,9 +572,9 @@ public class BallCapturedDribbleController : MonoBehaviour
             return;
 
         PaddleController releasedPaddle = capturedPaddle;
-
-        if (ball.direction.sqrMagnitude < 0.0001f)
-            ball.direction = new Vector2(0f, capturedYDirection).normalized;
+        float releaseSpeed = GetCapturedReleaseSpeed();
+        Vector2 releaseDirection = GetAlignedReleaseDirection(ball.direction);
+        ball.Launch(releaseSpeed, releaseDirection);
 
         ResetCapture();
         ball.ReleaseCapturedStateFromDribble();
@@ -577,6 +587,29 @@ public class BallCapturedDribbleController : MonoBehaviour
 
         LogCapturePhase("[Capture] Release");
         ball.NotifyReleased();
+    }
+
+    private float GetCapturedReleaseSpeed()
+    {
+        if (speedController != null && speedController.CurrentSpeed > 0f)
+            return speedController.CurrentSpeed;
+
+        return ball != null ? ball.Velocity.magnitude : 0f;
+    }
+
+    private Vector2 GetAlignedReleaseDirection(Vector2 rawReleaseDirection)
+    {
+        Vector2 raw = rawReleaseDirection.sqrMagnitude > 0.0001f
+            ? rawReleaseDirection.normalized
+            : Vector2.up;
+
+        if (capturedHoldTime < verticalAlignDelay)
+            return raw;
+
+        float alignEndTime = verticalAlignDelay + Mathf.Max(0.0001f, verticalAlignDuration);
+        float t = Mathf.InverseLerp(verticalAlignDelay, alignEndTime, capturedHoldTime);
+
+        return Vector2.Lerp(raw, Vector2.up, Mathf.Clamp01(t)).normalized;
     }
 
     private void ApplyCapturedPaddleHit(bool isTopBound)

@@ -21,7 +21,7 @@ MonoBehaviour:
   dribbleSpeedBonus: 5
   normalMaxSpeed: 70
   laserMinBoostSpeed: 80
-  laserMaxSpeed: 90
+  laserMaxSpeed: 80
   laserBoostAmount: 20
   laserReturnThreshold: 70
   weakenedSpeed: 25
@@ -44,10 +44,10 @@ MonoBehaviour:
   debugCapturedDribbleLog: 0
   blockSlowRules:
   - minSpeed: 0
+    slowAmount: 7
+  - minSpeed: 50
     slowAmount: 5
-  - minSpeed: 55
-    slowAmount: 4
-  - minSpeed: 65
+  - minSpeed: 70
     slowAmount: 3
   minDirectionX: 0.25
   minDirectionY: 0

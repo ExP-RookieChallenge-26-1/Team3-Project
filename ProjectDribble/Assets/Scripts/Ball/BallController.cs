@@ -233,6 +233,28 @@ public class BallController : MonoBehaviour
         if (BallMovement != null)
             BallMovement.SetBallSpeed(speed);
     }
+    
+
+    public void Launch(float speed, Vector2 launchDirection)
+    {
+        if (launchDirection.sqrMagnitude < 0.0001f)
+            launchDirection = Vector2.up;
+
+        direction = launchDirection.normalized;
+
+        if (BallMovement == null)
+            BallMovement = GetComponent<BallMovement>();
+
+        if (BallMovement != null && speed >= 0f)
+            BallMovement.SetBallSpeed(speed);
+
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
+        if (rb != null)
+            rb.linearVelocity = Vector2.zero;
+    }
+
+    
 
     public void ReleaseUpward()
     {

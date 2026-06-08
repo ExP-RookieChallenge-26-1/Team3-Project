@@ -40,9 +40,7 @@ public class CeilingManager : MonoBehaviour
     [SerializeField] private int rightSegmentMaxHp;
 
     [Header("Ball Control")]
-    [SerializeField] private Transform ball;
-    [SerializeField] private float forceDownSpeed = 10f;
-    [SerializeField] private bool forceBallDownOnSegmentDestroyed = true;
+    [SerializeField] private BallRespawner ballRespawner;
 
     private readonly List<CeilingBrick> aliveBricks = new();
     private readonly List<CeilingSegment> segments = new();
@@ -186,7 +184,7 @@ public class CeilingManager : MonoBehaviour
             SoundManager.Instance.Play(SoundId.CeilingBreak);
             Debug.Log($"Ceiling segment {segment.SegmentName} destroyed.");
             BreakSegmentBricks(segment);
-            ForceBallDown();
+            ballRespawner.RecallBallToPaddle();
         }
         else
         {
@@ -273,46 +271,7 @@ public class CeilingManager : MonoBehaviour
             brick.Break();
         }
     }
-
-    public void ForceBallDown()
-    {
-        if (!forceBallDownOnSegmentDestroyed)
-            return;
-
-        if (ball == null)
-        {
-            Debug.LogWarning("CeilingManager: ball reference is missing. Cannot force ball down.");
-            return;
-        }
-
-        BallController ballController = ball.GetComponent<BallController>();
-        BallMovement ballMovement = ball.GetComponent<BallMovement>();
-
-        if (ballController != null)
-        {
-            ballController.SetBallDirection(Vector2.down.x, Vector2.down.y);
-        }
-
-        if (ballMovement != null)
-        {
-            float targetSpeed = Mathf.Max(ballMovement.speed, forceDownSpeed);
-            ballMovement.SetBallSpeed(targetSpeed);
-            Debug.Log($"CeilingManager: forced ball down. Speed {targetSpeed}.");
-            return;
-        }
-
-        Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
-
-        if (rb != null)
-        {
-            float targetSpeed = Mathf.Max(rb.linearVelocity.magnitude, forceDownSpeed);
-            rb.linearVelocity = Vector2.down * targetSpeed;
-            Debug.Log($"CeilingManager: forced Rigidbody2D ball down. Speed {targetSpeed}.");
-            return;
-        }
-
-        Debug.LogWarning("CeilingManager: ball has no BallMovement or Rigidbody2D component.");
-    }
+    
 
     private CeilingSegment GetSegmentByX(int x)
     {

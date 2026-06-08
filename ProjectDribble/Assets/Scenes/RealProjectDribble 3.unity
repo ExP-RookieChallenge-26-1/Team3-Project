@@ -1649,10 +1649,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.12962963
     y: 0
-    width: 1
-    height: 1
+    width: 0.3333333
+    height: 0.22222222
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -2743,9 +2743,7 @@ MonoBehaviour:
   leftSegmentMaxHp: 0
   centerSegmentMaxHp: 0
   rightSegmentMaxHp: 0
-  ball: {fileID: 0}
-  forceDownSpeed: 10
-  forceBallDownOnSegmentDestroyed: 1
+  ballRespawner: {fileID: 8720353550579785846}
 --- !u!114 &62054945342309618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5704,6 +5702,8 @@ MonoBehaviour:
   capturedEllipseHalfHeight: 3.93
   capturedTopEllipseGizmoColor: {r: 0.2, g: 0.7, b: 1, a: 1}
   capturedBottomEllipseGizmoColor: {r: 1, g: 0.75, b: 0.2, a: 1}
+  verticalAlignDelay: 0.35
+  verticalAlignDuration: 0.25
 --- !u!1 &8736495040494826391
 GameObject:
   m_ObjectHideFlags: 0

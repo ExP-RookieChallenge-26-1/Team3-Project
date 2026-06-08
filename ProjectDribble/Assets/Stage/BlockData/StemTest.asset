@@ -37,6 +37,14 @@ MonoBehaviour:
       direction: {x: 1, y: 0}
       priority: 0
       weight: 1
+    - name: RightDown
+      direction: {x: 1, y: 1}
+      priority: 0
+      weight: 1
+    - name: LeftDown
+      direction: {x: -1, y: 1}
+      priority: 0
+      weight: 1
   - startCoord: {x: 1, y: 0}
     minX: 0
     maxX: 2
@@ -57,6 +65,14 @@ MonoBehaviour:
       direction: {x: 1, y: 0}
       priority: 0
       weight: 1
+    - name: RightDown
+      direction: {x: 1, y: 1}
+      priority: 0
+      weight: 1
+    - name: LeftDown
+      direction: {x: -1, y: 1}
+      priority: 0
+      weight: 1
   fixedBlocks:
   - cell: {x: 0, y: 6}
     hp: 1
@@ -67,6 +83,10 @@ MonoBehaviour:
   - cell: {x: 4, y: 6}
     hp: 1
   - cell: {x: 6, y: 6}
+    hp: 1
+  - cell: {x: 2, y: 6}
+    hp: 1
+  - cell: {x: 5, y: 6}
     hp: 1
   - cell: {x: 7, y: 6}
     hp: 1

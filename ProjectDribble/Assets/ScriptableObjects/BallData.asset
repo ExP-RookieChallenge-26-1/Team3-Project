@@ -50,4 +50,4 @@ MonoBehaviour:
   - minSpeed: 70
     slowAmount: 3
   minDirectionX: 0
-  minDirectionY: 0.24
+  minDirectionY: 1

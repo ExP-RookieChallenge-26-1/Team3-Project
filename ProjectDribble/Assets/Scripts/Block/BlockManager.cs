@@ -494,10 +494,17 @@ public class BlockManager : MonoBehaviour
 
         Vector2Int[] checkDirs =
         {
+            // 상하좌우
             new Vector2Int(0, 1),
             new Vector2Int(0, -1),
             new Vector2Int(-1, 0),
-            new Vector2Int(1, 0)
+            new Vector2Int(1, 0),
+
+            // 대각선
+            new Vector2Int(-1, 1),
+            new Vector2Int(1, 1),
+            new Vector2Int(-1, -1),
+            new Vector2Int(1, -1)
         };
 
         while (queue.Count > 0)

@@ -141,7 +141,6 @@ public class BlockCell : MonoBehaviour,
             return;
 
         Color color = isDisconnectedStem ? disconnectedStemColor : connectedStemColor;
-        color.a = 1f;
 
         sr.color = color;
     }

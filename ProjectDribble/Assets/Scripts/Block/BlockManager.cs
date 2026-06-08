@@ -552,6 +552,7 @@ public class BlockManager : MonoBehaviour
                     continue;
 
                 block.SetStemConnection(connected[x, y]);
+                Debug.Log($"coord={coord}, occupied={occupied[x,y]}, fixed={fixedOccupied[x,y]}, connected={connected[x,y]}");
             }
         }
     }

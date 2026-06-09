@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BallData
   baseSpeed: 30
   ballDamage: 1
-  outerPaddleSpeedIncrease: 10
+  outerPaddleSpeedIncrease: 6
   innerPaddleSpeedIncrease: 2
   BlockSpeedDecrease: -5
   DamageMultiplier: 0.2
   dribbleSpeedBonus: 5
-  normalMaxSpeed: 70
+  normalMaxSpeed: 60
   laserMinBoostSpeed: 80
   laserMaxSpeed: 80
   laserBoostAmount: 20
@@ -29,8 +29,8 @@ MonoBehaviour:
   baseDamage: 5
   maxDamage: 10
   paddleDamageBonus: 1
-  dribbleDamageBonus: 0.2
-  blockDamageLoss: 0.5
+  dribbleDamageBonus: 0.3
+  blockDamageLoss: 0.4
   blockSpeedSlowCooldown: 0.25
   captureCooldown: 0.1
   releaseRecaptureDelay: 0.5

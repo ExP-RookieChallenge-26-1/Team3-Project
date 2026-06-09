@@ -31,6 +31,13 @@ public class StageBlockData : ScriptableObject
         public float growWeight = 1f;
         public int maxBlocksPerRow = 2;
         public GrowthDirection[] preferredDirections = new GrowthDirection[0];
+
+        [Header("Stem Timing")]
+        public bool enabled = true;
+        public float spawnInterval = -1f;
+        public int minGrowPerTick = -1;
+        public int maxGrowPerTick = -1;
+        public float initialDelay = 0f;
     }
 
     [Header("Grid Size")]

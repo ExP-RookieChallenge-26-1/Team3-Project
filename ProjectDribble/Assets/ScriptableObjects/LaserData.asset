@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea46879f60e416dbb81c55fda5eaa60, type: 3}
   m_Name: LaserData
   m_EditorClassIdentifier: Assembly-CSharp::ScriptableObjects.LaserData
-  startGaugeValue: 20
+  startGaugeValue: 0
   maxGaugeSegments: 2
-  gaugePerSegment: 10
+  gaugePerSegment: 20
   chargeTime: 2
   maxChargeCount: 2
   baseWidth: 1.5

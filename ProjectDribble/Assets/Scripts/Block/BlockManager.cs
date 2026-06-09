@@ -20,6 +20,12 @@ public class BlockManager : MonoBehaviour
         }
     }
 
+    private class StemGrowthRuntimeState
+    {
+        public int stemIndex;
+        public float timer;
+    }
+
     [Header("Stage Data")]
     [SerializeField] private StageBlockData data;
 
@@ -38,6 +44,7 @@ public class BlockManager : MonoBehaviour
     private float cellHeight;
 
     private Coroutine growRoutine;
+    private readonly List<StemGrowthRuntimeState> stemGrowthStates = new();
 
     private void Awake()
     {
@@ -93,6 +100,10 @@ public class BlockManager : MonoBehaviour
     public void StartGrowth()
     {
         StopGrowth();
+
+        if (data.UseStemGrowth)
+            InitializeStemGrowthStates();
+
         growRoutine = StartCoroutine(GrowRoutine());
     }
 
@@ -154,27 +165,230 @@ public class BlockManager : MonoBehaviour
     {
         while (true)
         {
-            RespawnMissingStartBlocks();
-
-            int growCount = Random.Range(
-                data.minGrowPerTick,
-                data.maxGrowPerTick + 1
-            );
-
-            for (int i = 0; i < growCount; i++)
+            if (data.UseStemGrowth)
             {
-                List<GrowthCandidate> candidates = GetGrowthCandidates();
-
-                if (candidates.Count <= 0)
-                    break;
-
-                GrowthCandidate selected = PickByPriorityAndWeight(candidates);
-                SpawnBlock(selected.cell, data.defaultHp, false, selected.stemIndex);
+                UpdateStemGrowth();
+                yield return null;
             }
-
-            yield return new WaitForSeconds(data.spawnInterval);
+            else
+            {
+                UpdateLegacyGrowth();
+                yield return new WaitForSeconds(data.spawnInterval);
+            }
         }
     }
+
+    private void UpdateLegacyGrowth()
+    {
+        RespawnMissingStartBlocks();
+
+        int growCount = Random.Range(
+            data.minGrowPerTick,
+            data.maxGrowPerTick + 1
+        );
+
+        for (int i = 0; i < growCount; i++)
+        {
+            List<GrowthCandidate> candidates = GetLegacyGrowthCandidates();
+
+            if (candidates.Count <= 0)
+                break;
+
+            GrowthCandidate selected = PickByPriorityAndWeight(candidates);
+            SpawnBlock(selected.cell, data.defaultHp, false, selected.stemIndex);
+        }
+    }
+
+    #region Stem Growth
+
+    private void InitializeStemGrowthStates()
+    {
+        stemGrowthStates.Clear();
+
+        if (data.growthStems == null)
+            return;
+
+        for (int i = 0; i < data.growthStems.Length; i++)
+        {
+            StageBlockData.GrowthStemData stem = data.growthStems[i];
+            float initialDelay = stem != null ? Mathf.Max(0f, stem.initialDelay) : 0f;
+
+            stemGrowthStates.Add(new StemGrowthRuntimeState
+            {
+                stemIndex = i,
+                timer = -initialDelay
+            });
+        }
+    }
+
+    private void UpdateStemGrowth()
+    {
+        RespawnMissingStartBlocks();
+
+        if (data == null || data.growthStems == null || data.growthStems.Length == 0)
+            return;
+
+        if (stemGrowthStates.Count != data.growthStems.Length)
+            InitializeStemGrowthStates();
+
+        for (int i = 0; i < stemGrowthStates.Count; i++)
+        {
+            StageBlockData.GrowthStemData stem = data.growthStems[i];
+
+            if (stem == null)
+                continue;
+
+            if (!stem.enabled)
+                continue;
+
+            StemGrowthRuntimeState state = stemGrowthStates[i];
+            state.timer += Time.deltaTime;
+
+            float interval = GetStemSpawnInterval(stem);
+
+            if (interval <= 0f)
+                continue;
+
+            if (state.timer < interval)
+                continue;
+
+            state.timer = 0f;
+
+            int growCount = GetStemGrowCount(stem);
+
+            for (int j = 0; j < growCount; j++)
+            {
+                bool spawned = TryGrowSingleStem(i);
+
+                if (!spawned)
+                    break;
+            }
+        }
+    }
+
+    private float GetStemSpawnInterval(StageBlockData.GrowthStemData stem)
+    {
+        return stem.spawnInterval > 0f
+            ? stem.spawnInterval
+            : data.spawnInterval;
+    }
+
+    private int GetStemMinGrowPerTick(StageBlockData.GrowthStemData stem)
+    {
+        return stem.minGrowPerTick >= 0
+            ? stem.minGrowPerTick
+            : data.minGrowPerTick;
+    }
+
+    private int GetStemMaxGrowPerTick(StageBlockData.GrowthStemData stem)
+    {
+        return stem.maxGrowPerTick >= 0
+            ? stem.maxGrowPerTick
+            : data.maxGrowPerTick;
+    }
+
+    private int GetStemGrowCount(StageBlockData.GrowthStemData stem)
+    {
+        int min = GetStemMinGrowPerTick(stem);
+        int max = GetStemMaxGrowPerTick(stem);
+
+        if (min < 0)
+            min = 0;
+
+        if (max < min)
+            max = min;
+
+        return Random.Range(min, max + 1);
+    }
+
+    private bool TryGrowSingleStem(int stemIndex)
+    {
+        List<GrowthCandidate> candidates = CollectStemGrowthCandidatesForStem(stemIndex);
+
+        if (candidates == null || candidates.Count == 0)
+            return false;
+
+        GrowthCandidate selected = PickByPriorityAndWeight(candidates);
+        SpawnBlock(selected.cell, data.defaultHp, false, stemIndex);
+
+        return true;
+    }
+
+    private List<GrowthCandidate> CollectStemGrowthCandidatesForStem(int stemIndex)
+    {
+        List<GrowthCandidate> candidates = new();
+
+        if (data.growthStems == null || stemIndex < 0 || stemIndex >= data.growthStems.Length)
+            return candidates;
+
+        StageBlockData.GrowthStemData stem = data.growthStems[stemIndex];
+
+        if (stem == null || stem.growWeight <= 0f)
+            return candidates;
+
+        bool[,] connected = null;
+
+        if (data.onlyGrowFromStartConnectedBlocks)
+            connected = GetStartConnectedCells();
+
+        IEnumerable<StageBlockData.GrowthDirection> directions = GetStemGrowthDirections(stem);
+
+        for (int y = 0; y < data.height; y++)
+        {
+            for (int x = 0; x < data.width; x++)
+            {
+                Vector2Int parent = new Vector2Int(x, y);
+
+                if (!IsStemGrowthCoord(parent, stem))
+                    continue;
+
+                if (!occupied[x, y])
+                    continue;
+
+                if (fixedOccupied[x, y])
+                    continue;
+
+                if (stemOwner[x, y] != stemIndex)
+                    continue;
+
+                if (data.onlyGrowFromStartConnectedBlocks && !connected[x, y])
+                    continue;
+
+                foreach (StageBlockData.GrowthDirection dir in directions)
+                {
+                    if (dir.weight <= 0f)
+                        continue;
+
+                    Vector2Int next = parent + dir.direction;
+
+                    if (!IsStemGrowthCoord(next, stem))
+                        continue;
+
+                    if (occupied[next.x, next.y])
+                        continue;
+
+                    int rowLimit = Mathf.Max(1, stem.maxBlocksPerRow);
+
+                    if (CountStemBlocksInRow(stemIndex, stem, next.y) >= rowLimit)
+                        continue;
+
+                    float finalWeight = dir.weight * stem.growWeight;
+
+                    AddCandidate(
+                        candidates,
+                        next,
+                        dir.priority,
+                        finalWeight,
+                        stemIndex
+                    );
+                }
+            }
+        }
+
+        return candidates;
+    }
+
+    #endregion
 
     private void SpawnFixedBlocks()
     {
@@ -208,6 +422,10 @@ public class BlockManager : MonoBehaviour
         for (int i = 0; i < data.growthStems.Length; i++)
         {
             StageBlockData.GrowthStemData stem = data.growthStems[i];
+
+            if (stem == null)
+                continue;
+
             SpawnBlock(stem.startCoord, data.defaultHp, false, i);
         }
     }
@@ -240,6 +458,10 @@ public class BlockManager : MonoBehaviour
         for (int i = 0; i < data.growthStems.Length; i++)
         {
             StageBlockData.GrowthStemData stem = data.growthStems[i];
+
+            if (stem == null)
+                continue;
+
             Vector2Int cell = stem.startCoord;
 
             if (!IsValidCoord(cell))
@@ -340,85 +562,6 @@ public class BlockManager : MonoBehaviour
     public void AddGauge()
     {
         gaugeManager.AddGauge();
-    }
-    
-    private List<GrowthCandidate> GetGrowthCandidates()
-    {
-        if (data.UseStemGrowth && data.HasStemGrowthData)
-            return GetStemGrowthCandidates();
-
-        return GetLegacyGrowthCandidates();
-    }
-
-    private List<GrowthCandidate> GetStemGrowthCandidates()
-    {
-        List<GrowthCandidate> candidates = new();
-
-        bool[,] connected = null;
-
-        if (data.onlyGrowFromStartConnectedBlocks)
-            connected = GetStartConnectedCells();
-
-        for (int stemIndex = 0; stemIndex < data.growthStems.Length; stemIndex++)
-        {
-            StageBlockData.GrowthStemData stem = data.growthStems[stemIndex];
-
-            if (stem.growWeight <= 0f)
-                continue;
-
-            IEnumerable<StageBlockData.GrowthDirection> directions = GetStemGrowthDirections(stem);
-
-            for (int y = 0; y < data.height; y++)
-            {
-                for (int x = 0; x < data.width; x++)
-                {
-                    Vector2Int parent = new Vector2Int(x, y);
-
-                    if (!IsStemGrowthCoord(parent, stem))
-                        continue;
-
-                    if (!occupied[x, y])
-                        continue;
-
-                    if (fixedOccupied[x, y])
-                        continue;
-
-                    if (data.onlyGrowFromStartConnectedBlocks && !connected[x, y])
-                        continue;
-
-                    foreach (StageBlockData.GrowthDirection dir in directions)
-                    {
-                        if (dir.weight <= 0f)
-                            continue;
-
-                        Vector2Int next = parent + dir.direction;
-
-                        if (!IsStemGrowthCoord(next, stem))
-                            continue;
-
-                        if (occupied[next.x, next.y])
-                            continue;
-
-                        int rowLimit = Mathf.Max(1, stem.maxBlocksPerRow);
-
-                        if (CountStemBlocksInRow(stemIndex, stem, next.y) >= rowLimit)
-                            continue;
-
-                        float finalWeight = dir.weight * stem.growWeight;
-
-                        AddCandidate(
-                            candidates,
-                            next,
-                            dir.priority,
-                            finalWeight,
-                            stemIndex
-                        );
-                    }
-                }
-            }
-        }
-
-        return candidates;
     }
 
     private List<GrowthCandidate> GetLegacyGrowthCandidates()
@@ -569,7 +712,12 @@ public class BlockManager : MonoBehaviour
         if (data.UseStemGrowth && data.HasStemGrowthData)
         {
             foreach (StageBlockData.GrowthStemData stem in data.growthStems)
+            {
+                if (stem == null)
+                    continue;
+
                 yield return stem.startCoord;
+            }
 
             yield break;
         }

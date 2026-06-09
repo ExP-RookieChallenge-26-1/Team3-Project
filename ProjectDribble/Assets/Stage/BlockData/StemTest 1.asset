@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d953c4d8f0723644096f01e564abfdbc, type: 3}
-  m_Name: StemTest
+  m_Name: StemTest 1
   m_EditorClassIdentifier: Assembly-CSharp::StageBlockData
   width: 7
   height: 20

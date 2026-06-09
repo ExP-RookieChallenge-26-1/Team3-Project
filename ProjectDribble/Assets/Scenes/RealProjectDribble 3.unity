@@ -1531,7 +1531,7 @@ MonoBehaviour:
     baseVolume: 0.769
     volumeRandomRange: 0.02
     basePitch: 1
-    maxPitch: 2
+    maxPitch: 1
     pitchRandomRange: 0.05
     mixerGroup: {fileID: 0}
     minInterval: 0.05
@@ -1649,10 +1649,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.12962963
+    x: 0
     y: 0
-    width: 0.3333333
-    height: 0.22222222
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -2740,9 +2740,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 68fc4066114af9a4ab61b7c6b1ee3328, type: 3}
   - {fileID: 21300000, guid: 68fc4066114af9a4ab61b7c6b1ee3328, type: 3}
   - {fileID: 21300000, guid: 68fc4066114af9a4ab61b7c6b1ee3328, type: 3}
-  leftSegmentMaxHp: 0
-  centerSegmentMaxHp: 0
-  rightSegmentMaxHp: 0
+  leftSegmentMaxHp: 40
+  centerSegmentMaxHp: 50
+  rightSegmentMaxHp: 40
   ballRespawner: {fileID: 8720353550579785846}
 --- !u!114 &62054945342309618
 MonoBehaviour:

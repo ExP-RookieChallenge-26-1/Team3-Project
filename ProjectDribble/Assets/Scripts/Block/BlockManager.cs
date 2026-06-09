@@ -24,6 +24,7 @@ public class BlockManager : MonoBehaviour
     {
         public int stemIndex;
         public float timer;
+        public bool enabled;
     }
 
     [Header("Stage Data")]
@@ -34,6 +35,9 @@ public class BlockManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private BlockPool blockPool;
+
+    [Header("Stem Danger Visual")]
+    [SerializeField] private int dangerWarningRows = 7;
 
     [SerializeField] private GaugeManager gaugeManager;
     private bool[,] occupied;
@@ -216,8 +220,43 @@ public class BlockManager : MonoBehaviour
             stemGrowthStates.Add(new StemGrowthRuntimeState
             {
                 stemIndex = i,
-                timer = -initialDelay
+                timer = -initialDelay,
+                enabled = stem == null || stem.enabled
             });
+        }
+    }
+
+    public void DisableStemGrowth(int stemIndex)
+    {
+        if (stemIndex < 0)
+            return;
+
+        if (stemGrowthStates == null || stemIndex >= stemGrowthStates.Count)
+            return;
+
+        stemGrowthStates[stemIndex].enabled = false;
+        RefreshStemConnectionVisuals();
+    }
+
+    public void DisableStemGrowthByStartXRange(int startX, int endX)
+    {
+        if (data == null || data.growthStems == null)
+            return;
+
+        int minX = Mathf.Min(startX, endX);
+        int maxX = Mathf.Max(startX, endX);
+
+        for (int i = 0; i < data.growthStems.Length; i++)
+        {
+            StageBlockData.GrowthStemData stem = data.growthStems[i];
+
+            if (stem == null)
+                continue;
+
+            if (stem.startCoord.x < minX || stem.startCoord.x > maxX)
+                continue;
+
+            DisableStemGrowth(i);
         }
     }
 
@@ -242,6 +281,10 @@ public class BlockManager : MonoBehaviour
                 continue;
 
             StemGrowthRuntimeState state = stemGrowthStates[i];
+
+            if (!state.enabled)
+                continue;
+
             state.timer += Time.deltaTime;
 
             float interval = GetStemSpawnInterval(stem);
@@ -462,6 +505,9 @@ public class BlockManager : MonoBehaviour
             if (stem == null)
                 continue;
 
+            if (!IsStemGrowthRuntimeEnabled(i))
+                continue;
+
             Vector2Int cell = stem.startCoord;
 
             if (!IsValidCoord(cell))
@@ -470,6 +516,14 @@ public class BlockManager : MonoBehaviour
             if (!occupied[cell.x, cell.y])
                 SpawnBlock(cell, data.defaultHp, false, i);
         }
+    }
+
+    private bool IsStemGrowthRuntimeEnabled(int stemIndex)
+    {
+        if (stemGrowthStates == null || stemIndex < 0 || stemIndex >= stemGrowthStates.Count)
+            return true;
+
+        return stemGrowthStates[stemIndex].enabled;
     }
 
     public void SpawnBlock(Vector2Int coord)
@@ -701,10 +755,30 @@ public class BlockManager : MonoBehaviour
                 if (block == null)
                     continue;
 
-                block.SetStemConnection(connected[x, y]);
-                Debug.Log($"coord={coord}, occupied={occupied[x,y]}, fixed={fixedOccupied[x,y]}, connected={connected[x,y]}");
+                float danger01 = connected[x, y]
+                    ? GetDanger01FromBottomDistance(GetDistanceFromBottom(y))
+                    : 0f;
+
+                block.SetStemVisual(connected[x, y], danger01);
             }
         }
+    }
+
+    private int GetDistanceFromBottom(int y)
+    {
+        int bottomY = data.height - 1;
+        return Mathf.Abs(bottomY - y);
+    }
+
+    private float GetDanger01FromBottomDistance(int distanceFromBottom)
+    {
+        if (dangerWarningRows <= 0)
+            return 0f;
+
+        if (distanceFromBottom > dangerWarningRows)
+            return 0f;
+
+        return 1f - Mathf.Clamp01(distanceFromBottom / (float)dangerWarningRows);
     }
 
     private IEnumerable<Vector2Int> GetActiveStartCoords()

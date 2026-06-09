@@ -249,3 +249,4 @@ MonoBehaviour:
   minCrackAlpha: 0.5
   maxCrackAlpha: 0.5
   disconnectedStemColor: {r: 1, g: 1, b: 1, a: 0.48235294}
+  dangerStemColor: {r: 0.21824735, g: 1, b: 0, a: 1}

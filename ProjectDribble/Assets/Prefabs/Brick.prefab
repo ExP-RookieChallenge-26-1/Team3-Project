@@ -153,4 +153,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BlockCell
   _gaugeManager: {fileID: 0}
   ballSpeedDecrease: 5
-  minAlpha: 0.2
+  crackOverlayRenderer: {fileID: 0}
+  minCrackAlpha: 0.25
+  maxCrackAlpha: 0.85
+  disconnectedStemColor: {r: 0.45, g: 0.5, b: 0.42, a: 1}
+  dangerStemColor: {r: 0.09571403, g: 1, b: 0, a: 1}

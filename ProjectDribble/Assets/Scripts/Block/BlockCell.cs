@@ -19,6 +19,7 @@ public class BlockCell : MonoBehaviour,
     [SerializeField] private float minCrackAlpha = 0.25f;
     [SerializeField] private float maxCrackAlpha = 0.85f;
     [SerializeField] private Color disconnectedStemColor = new Color(0.45f, 0.5f, 0.42f, 1f);
+    [SerializeField] private Color dangerStemColor = Color.red;
 
     private SpriteRenderer sr;
     private Color connectedStemColor = Color.white;
@@ -28,6 +29,7 @@ public class BlockCell : MonoBehaviour,
 
     private bool isFixed;
     private bool isDisconnectedStem;
+    private float danger01;
 
     public Vector2Int Coord => coord;
     public bool IsFixed => isFixed;
@@ -56,6 +58,7 @@ public class BlockCell : MonoBehaviour,
 
         this.isFixed = isFixed;
         isDisconnectedStem = false;
+        danger01 = 0f;
 
         gameObject.SetActive(true);
 
@@ -65,6 +68,7 @@ public class BlockCell : MonoBehaviour,
     public void Deactivate()
     {
         isDisconnectedStem = false;
+        danger01 = 0f;
         UpdateVisual();
         gameObject.SetActive(false);
     }
@@ -72,6 +76,19 @@ public class BlockCell : MonoBehaviour,
     public void SetStemConnection(bool isConnected)
     {
         isDisconnectedStem = !isConnected;
+        UpdateStemConnectionVisual();
+    }
+
+    public void SetDangerVisual(float danger01)
+    {
+        this.danger01 = Mathf.Clamp01(danger01);
+        UpdateStemConnectionVisual();
+    }
+
+    public void SetStemVisual(bool isConnected, float danger01)
+    {
+        isDisconnectedStem = !isConnected;
+        this.danger01 = Mathf.Clamp01(danger01);
         UpdateStemConnectionVisual();
     }
 
@@ -141,6 +158,7 @@ public class BlockCell : MonoBehaviour,
             return;
 
         Color color = isDisconnectedStem ? disconnectedStemColor : connectedStemColor;
+        color = Color.Lerp(color, dangerStemColor, danger01);
 
         sr.color = color;
     }

@@ -42,12 +42,18 @@ public class CeilingManager : MonoBehaviour
     [Header("Ball Control")]
     [SerializeField] private BallRespawner ballRespawner;
 
+    [Header("Block Growth")]
+    [SerializeField] private BlockManager blockManager;
+
     private readonly List<CeilingBrick> aliveBricks = new();
     private readonly List<CeilingSegment> segments = new();
 
     private void Awake()
     {
         runtimeMaxHp = Mathf.Max(1, healthData.ceilingMaxHp);
+
+        if (blockManager == null)
+            blockManager = FindAnyObjectByType<BlockManager>();
     }
 
     private void Start()
@@ -183,6 +189,7 @@ public class CeilingManager : MonoBehaviour
         {
             SoundManager.Instance.Play(SoundId.CeilingBreak);
             Debug.Log($"Ceiling segment {segment.SegmentName} destroyed.");
+            DisableStemGrowthForSegment(segment);
             BreakSegmentBricks(segment);
             ballRespawner.RecallBallToPaddle();
         }
@@ -270,6 +277,14 @@ public class CeilingManager : MonoBehaviour
             aliveBricks.RemoveAt(i);
             brick.Break();
         }
+    }
+
+    private void DisableStemGrowthForSegment(CeilingSegment segment)
+    {
+        if (segment == null || blockManager == null)
+            return;
+
+        blockManager.DisableStemGrowthByStartXRange(segment.StartX, segment.EndX);
     }
     
 

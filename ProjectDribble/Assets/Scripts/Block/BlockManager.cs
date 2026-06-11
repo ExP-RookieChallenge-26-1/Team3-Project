@@ -593,6 +593,90 @@ public class BlockManager : MonoBehaviour
         RefreshStemConnectionVisuals();
     }
 
+    public List<Vector2Int> GetAbsorbableFlowBlockCoords(
+        Vector3 centerWorld,
+        float radius,
+        int maxCount
+    )
+    {
+        List<Vector2Int> candidates = new();
+
+        if (maxCount <= 0)
+            return candidates;
+
+        if (data == null || occupied == null || fixedOccupied == null)
+            return candidates;
+
+        float radiusSqr = radius * radius;
+
+        for (int y = 0; y < data.height; y++)
+        {
+            for (int x = 0; x < data.width; x++)
+            {
+                Vector2Int coord = new Vector2Int(x, y);
+
+                if (!IsAbsorbableFlowBlock(coord))
+                    continue;
+
+                Vector3 worldPosition = GridToWorld(coord);
+
+                if (radius > 0f && (worldPosition - centerWorld).sqrMagnitude > radiusSqr)
+                    continue;
+
+                candidates.Add(coord);
+            }
+        }
+
+        candidates.Sort((a, b) =>
+        {
+            float distanceA = (GridToWorld(a) - centerWorld).sqrMagnitude;
+            float distanceB = (GridToWorld(b) - centerWorld).sqrMagnitude;
+            return distanceA.CompareTo(distanceB);
+        });
+
+        if (candidates.Count > maxCount)
+            candidates.RemoveRange(maxCount, candidates.Count - maxCount);
+
+        return candidates;
+    }
+
+    public bool TryRemoveAbsorbableFlowBlock(Vector2Int coord)
+    {
+        if (!IsAbsorbableFlowBlock(coord))
+            return false;
+
+        RemoveBlock(coord);
+        return true;
+    }
+
+    private bool IsAbsorbableFlowBlock(Vector2Int coord)
+    {
+        if (!IsValidCoord(coord))
+            return false;
+
+        if (!occupied[coord.x, coord.y])
+            return false;
+
+        if (fixedOccupied[coord.x, coord.y])
+            return false;
+
+        if (IsStartCoord(coord))
+            return false;
+
+        return true;
+    }
+
+    private bool IsStartCoord(Vector2Int coord)
+    {
+        foreach (Vector2Int startCoord in GetActiveStartCoords())
+        {
+            if (startCoord == coord)
+                return true;
+        }
+
+        return false;
+    }
+
     public BlockCell GetBlockCell(Vector2Int coord)
     {
         if (!IsValidCoord(coord))

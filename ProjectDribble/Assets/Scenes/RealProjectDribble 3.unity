@@ -1943,6 +1943,12 @@ MonoBehaviour:
   bossProjectilePrefab: {fileID: 6004112527036762349, guid: 15b28eeb64865224ea2ac07e46c73329, type: 3}
   projectileSpawnPoint: {fileID: 2059295551}
   projectileSpeed: -1
+  blockManager: {fileID: 4361603370357834238}
+  gatherPoint: {fileID: 2059295551}
+  absorbedBlockCountPerShot: 3
+  absorbSearchRadiusWorld: 6
+  gatherDuration: 0.35
+  gatherStagger: 0.05
   targetTransform: {fileID: 99345689}
   autoFindTarget: 1
   startPatternOnStart: 1

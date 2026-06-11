@@ -121,6 +121,11 @@ public class BlockCell : MonoBehaviour,
 
     public bool TakeDamage(float damage)
     {
+        return TakeDamage(damage, true);
+    }
+
+    public bool TakeDamage(float damage, bool addGauge)
+    {
         if (isFixed)
             return false;
 
@@ -131,7 +136,9 @@ public class BlockCell : MonoBehaviour,
         if (hp <= 0)
         {
 
-            manager.AddGauge();
+            if (addGauge)
+                manager.AddGauge();
+
             SoundManager.Instance.Play(SoundId.BlockBreak);
             manager.RemoveBlock(coord);
             

@@ -42,6 +42,8 @@ public class CeilingManager : MonoBehaviour
     [Header("Ball Control")]
     [SerializeField] private BallRespawner ballRespawner;
 
+    [Header("Gauge")]
+    [SerializeField] private GaugeManager _gaugeManager;
     [Header("Block Growth")]
     [SerializeField] private BlockManager blockManager;
 
@@ -192,6 +194,7 @@ public class CeilingManager : MonoBehaviour
             DisableStemGrowthForSegment(segment);
             BreakSegmentBricks(segment);
             ballRespawner.RecallBallToPaddle();
+            _gaugeManager.AddGauge(_gaugeManager.GaugePerSegment);
         }
         else
         {

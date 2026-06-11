@@ -83,7 +83,7 @@ public class PaddleController : MonoBehaviour
             moveSpeed * Time.deltaTime
         );
 
-        float clampedX = Mathf.Clamp(transform.position.x, -6.5f, 6.5f);
+        float clampedX = Mathf.Clamp(transform.position.x, -6.55f, 6.55f);
 
         transform.position = new Vector3(
             clampedX,

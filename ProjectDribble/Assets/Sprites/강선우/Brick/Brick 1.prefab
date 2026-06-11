@@ -175,7 +175,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: dbe49655569764b4997d0c93e1f35116, type: 3}
+  m_Sprite: {fileID: -5286548714486892102, guid: 7b8b65b5347644c40b7e1c322495ba41, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -246,7 +246,7 @@ MonoBehaviour:
   _gaugeManager: {fileID: 0}
   ballSpeedDecrease: 5
   crackOverlayRenderer: {fileID: 5779418759459765515}
-  minCrackAlpha: 0.5
-  maxCrackAlpha: 0.5
+  minCrackAlpha: 1
+  maxCrackAlpha: 1
   disconnectedStemColor: {r: 1, g: 1, b: 1, a: 0.48235294}
   dangerStemColor: {r: 0.21824735, g: 1, b: 0, a: 1}

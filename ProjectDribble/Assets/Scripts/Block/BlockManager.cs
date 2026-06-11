@@ -35,9 +35,13 @@ public class BlockManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private BlockPool blockPool;
+    [SerializeField] private BallController ballController;
 
     [Header("Stem Danger Visual")]
     [SerializeField] private int dangerWarningRows = 7;
+
+    [Header("Ball Spawn Safety")]
+    [SerializeField] private float ballSpawnSafetyMargin = 0.25f;
 
     [SerializeField] private GaugeManager gaugeManager;
     private bool[,] occupied;
@@ -52,6 +56,9 @@ public class BlockManager : MonoBehaviour
 
     private void Awake()
     {
+        if (ballController == null)
+            ballController = FindAnyObjectByType<BallController>();
+
         CreateGrid();
 
         blockPool.CreatePool(
@@ -863,6 +870,9 @@ public class BlockManager : MonoBehaviour
         if (occupied[cell.x, cell.y])
             return;
 
+        if (IsInsideBallSpawnSafetyArea(cell))
+            return;
+
         if (weight <= 0f)
             return;
 
@@ -889,6 +899,26 @@ public class BlockManager : MonoBehaviour
         }
 
         candidates.Add(new GrowthCandidate(cell, priority, weight, stemIndex));
+    }
+
+    private bool IsInsideBallSpawnSafetyArea(Vector2Int cell)
+    {
+        if (ballController == null)
+            return false;
+
+        CalculateGridSize();
+
+        Vector2 ballPosition = ballController.transform.position;
+        Vector2 cellCenter = GridToWorld(cell);
+        Vector2 halfCellSize = new Vector2(cellWidth, cellHeight) * 0.5f;
+        float safeRadius = Mathf.Max(0f, ballController.actualRadius + ballSpawnSafetyMargin);
+
+        Vector2 closestPoint = new Vector2(
+            Mathf.Clamp(ballPosition.x, cellCenter.x - halfCellSize.x, cellCenter.x + halfCellSize.x),
+            Mathf.Clamp(ballPosition.y, cellCenter.y - halfCellSize.y, cellCenter.y + halfCellSize.y)
+        );
+
+        return (ballPosition - closestPoint).sqrMagnitude <= safeRadius * safeRadius;
     }
 
     private GrowthCandidate PickByPriorityAndWeight(List<GrowthCandidate> candidates)

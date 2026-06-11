@@ -6,6 +6,7 @@ public class StageManager : MonoBehaviour
     [Header("Stage Data")]
     [SerializeField] private StageDefinition[] stages;
     [SerializeField] private int startStageIndex = 0;
+    [SerializeField] private int bossStageIndex = -1;
 
     [Header("System References")]
     [SerializeField] private CeilingManager ceilingManager;
@@ -13,6 +14,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] private BlockManager blockManager;
     [SerializeField] private GaugeManager gaugeManager;
     [SerializeField] private BallSpawnController ballSpawnController;
+    [SerializeField] private BossController bossController;
 
     private int currentStageIndex;
 
@@ -31,6 +33,9 @@ public class StageManager : MonoBehaviour
 
     private void Start()
     {
+        if (bossController == null)
+            bossController = FindAnyObjectByType<BossController>();
+
         if (StageCount <= 0)
         {
             Debug.LogWarning("StageManager: stages is empty.");
@@ -72,6 +77,12 @@ public class StageManager : MonoBehaviour
 
     private void HandleStageCleared()
     {
+        if (bossController == null)
+            bossController = FindAnyObjectByType<BossController>();
+
+        if (bossController != null)
+            bossController.StopBossPattern();
+
         SoundManager.Instance.Play(SoundId.StageClear);
 
         bool moved = TryStartNextStage();
@@ -148,10 +159,26 @@ public class StageManager : MonoBehaviour
                 data.ballStartDirection
             );
         }
+
+        ApplyBossPatternStateForCurrentStage();
     }
 
     private bool IsValidStageIndex(int index)
     {
         return stages != null && index >= 0 && index < stages.Length;
+    }
+
+    private void ApplyBossPatternStateForCurrentStage()
+    {
+        if (bossController == null)
+            bossController = FindAnyObjectByType<BossController>();
+
+        if (bossController == null)
+            return;
+
+        if (currentStageIndex == bossStageIndex)
+            bossController.StartBossPattern();
+        else
+            bossController.StopBossPattern();
     }
 }

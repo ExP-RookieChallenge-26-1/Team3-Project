@@ -17,6 +17,9 @@ public class BossController : MonoBehaviour
     [SerializeField] private float gatherDuration = 0.35f;
     [SerializeField] private float gatherStagger = 0.05f;
 
+    [Header("Boss Paddle")]
+    [SerializeField] private BossPaddleMover bossPaddleMover;
+
     [Header("Target")]
     [SerializeField] private Transform targetTransform;
     [SerializeField] private bool autoFindTarget = true;
@@ -27,8 +30,10 @@ public class BossController : MonoBehaviour
     [SerializeField] private bool fireImmediately = true;
 
     private Coroutine fireRoutine;
+    private Coroutine gatherRoutine;
     private bool isBossPatternActive;
     private bool isGathering;
+    private readonly List<GameObject> activeGatherClones = new();
 
     public bool IsBossPatternActive => isBossPatternActive;
 
@@ -40,7 +45,7 @@ public class BossController : MonoBehaviour
         if (targetTransform == null && autoFindTarget)
             targetTransform = FindDefaultTarget();
 
-        if (startPatternOnStart)
+        if (startPatternOnStart && FindAnyObjectByType<StageManager>() == null)
             StartBossPattern();
     }
 
@@ -50,6 +55,9 @@ public class BossController : MonoBehaviour
             return;
 
         isBossPatternActive = true;
+        if (bossPaddleMover != null)
+            bossPaddleMover.StartMoving();
+
         fireRoutine = StartCoroutine(FireRoutine());
     }
 
@@ -62,6 +70,18 @@ public class BossController : MonoBehaviour
             StopCoroutine(fireRoutine);
             fireRoutine = null;
         }
+
+        if (gatherRoutine != null)
+        {
+            StopCoroutine(gatherRoutine);
+            gatherRoutine = null;
+        }
+
+        ClearActiveGatherClones();
+        isGathering = false;
+
+        if (bossPaddleMover != null)
+            bossPaddleMover.StopMoving();
     }
 
     public void FireProjectile()
@@ -93,7 +113,7 @@ public class BossController : MonoBehaviour
             return;
         }
 
-        StartCoroutine(AbsorbBlocksAndFire(absorbableCoords));
+        gatherRoutine = StartCoroutine(AbsorbBlocksAndFire(absorbableCoords));
     }
 
     private IEnumerator AbsorbBlocksAndFire(List<Vector2Int> coords)
@@ -114,20 +134,20 @@ public class BossController : MonoBehaviour
             if (clone == null)
                 continue;
 
+            activeGatherClones.Add(clone);
             clones.Add(new BlockVisualClone(clone, snapshot.position));
         }
 
         if (clones.Count > 0)
             yield return MoveClonesToGatherPoint(clones);
 
-        for (int i = 0; i < clones.Count; i++)
-        {
-            if (clones[i].gameObject != null)
-                Destroy(clones[i].gameObject);
-        }
+        ClearActiveGatherClones();
 
-        LaunchProjectileAt(GetGatherPosition());
+        if (isBossPatternActive)
+            LaunchProjectileAt(GetGatherPosition());
+
         isGathering = false;
+        gatherRoutine = null;
     }
 
     private IEnumerator MoveClonesToGatherPoint(List<BlockVisualClone> clones)
@@ -307,6 +327,17 @@ public class BossController : MonoBehaviour
             renderer.sharedMaterial = snapshot.sharedMaterial;
 
         return clone;
+    }
+
+    private void ClearActiveGatherClones()
+    {
+        for (int i = 0; i < activeGatherClones.Count; i++)
+        {
+            if (activeGatherClones[i] != null)
+                Destroy(activeGatherClones[i]);
+        }
+
+        activeGatherClones.Clear();
     }
 
     private struct BlockVisualSnapshot

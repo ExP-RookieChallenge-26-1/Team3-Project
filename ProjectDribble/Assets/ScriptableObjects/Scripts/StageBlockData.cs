@@ -4,11 +4,29 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "StageBlockData", menuName = "Scriptable Objects/StageBlockData")]
 public class StageBlockData : ScriptableObject
 {
+    public enum StemDirectionType
+    {
+        Up,
+        Down,
+        Left,
+        Right,
+        DownLeft,
+        DownRight
+    }
+
     [System.Serializable]
     public class GrowthDirection
     {
         public string name;
         public Vector2Int direction;
+        public int priority = 0;
+        public float weight = 1f;
+    }
+
+    [System.Serializable]
+    public class StemDirectionOption
+    {
+        public StemDirectionType direction;
         public int priority = 0;
         public float weight = 1f;
     }
@@ -30,7 +48,9 @@ public class StageBlockData : ScriptableObject
         public int width = 1;
         public float growWeight = 1f;
         public int maxBlocksPerRow = 2;
-        public GrowthDirection[] preferredDirections = new GrowthDirection[0];
+
+        [Header("Direction Options")]
+        public StemDirectionOption[] directionOptions = new StemDirectionOption[0];
 
         [Header("Stem Timing")]
         public bool enabled = true;
@@ -38,6 +58,66 @@ public class StageBlockData : ScriptableObject
         public int minGrowPerTick = -1;
         public int maxGrowPerTick = -1;
         public float initialDelay = 0f;
+
+        public IEnumerable<GrowthDirection> GetPreferredDirections()
+        {
+            if (directionOptions != null && directionOptions.Length > 0)
+            {
+                for (int i = 0; i < directionOptions.Length; i++)
+                {
+                    StemDirectionOption option = directionOptions[i];
+
+                    if (option == null)
+                        continue;
+
+                    yield return CreateGrowthDirection(option.direction, option.priority, option.weight);
+                }
+
+                yield break;
+            }
+
+            yield return CreateGrowthDirection(StemDirectionType.Down, 0, 1f);
+            yield return CreateGrowthDirection(StemDirectionType.Left, 0, 1f);
+            yield return CreateGrowthDirection(StemDirectionType.Right, 0, 1f);
+            yield return CreateGrowthDirection(StemDirectionType.DownLeft, 0, 1f);
+            yield return CreateGrowthDirection(StemDirectionType.DownRight, 0, 1f);
+        }
+    }
+
+    private static GrowthDirection CreateGrowthDirection(
+        StemDirectionType directionType,
+        int priority,
+        float weight
+    )
+    {
+        return new GrowthDirection
+        {
+            name = directionType.ToString(),
+            direction = ToVector2Int(directionType),
+            priority = priority,
+            weight = weight
+        };
+    }
+
+    public static Vector2Int ToVector2Int(StemDirectionType directionType)
+    {
+        switch (directionType)
+        {
+            case StemDirectionType.Up:
+                return new Vector2Int(0, -1);
+            case StemDirectionType.Down:
+                return new Vector2Int(0, 1);
+            case StemDirectionType.Left:
+                return new Vector2Int(-1, 0);
+            case StemDirectionType.Right:
+                return new Vector2Int(1, 0);
+            case StemDirectionType.DownLeft:
+                return new Vector2Int(-1, 1);
+            case StemDirectionType.DownRight:
+                return new Vector2Int(1, 1);
+            default:
+                return Vector2Int.zero;
+        }
     }
 
     [Header("Grid Size")]

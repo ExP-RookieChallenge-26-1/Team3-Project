@@ -957,10 +957,26 @@ public class BlockManager : MonoBehaviour
         StageBlockData.GrowthStemData stem
     )
     {
-        if (stem.preferredDirections != null && stem.preferredDirections.Length > 0)
-            return stem.preferredDirections;
+        IEnumerable<StageBlockData.GrowthDirection> preferredDirections = stem.GetPreferredDirections();
+
+        if (HasAnyGrowthDirection(preferredDirections))
+            return stem.GetPreferredDirections();
 
         return data.directions;
+    }
+
+    private bool HasAnyGrowthDirection(IEnumerable<StageBlockData.GrowthDirection> directions)
+    {
+        if (directions == null)
+            return false;
+
+        foreach (StageBlockData.GrowthDirection direction in directions)
+        {
+            if (direction != null)
+                return true;
+        }
+
+        return false;
     }
 
     private int CountStemBlocksInRow(

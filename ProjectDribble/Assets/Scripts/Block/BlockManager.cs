@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BlockManager : MonoBehaviour
 {
+    public event System.Action OnNormalBlocksCleared;
+    public event System.Action OnTutorialTargetBlocksCleared;
+
     private struct GrowthCandidate
     {
         public Vector2Int cell;
@@ -46,6 +49,7 @@ public class BlockManager : MonoBehaviour
     [SerializeField] private GaugeManager gaugeManager;
     private bool[,] occupied;
     private bool[,] fixedOccupied;
+    private BlockType[,] blockTypes;
     private int[,] stemOwner;
 
     private float cellWidth;
@@ -53,6 +57,7 @@ public class BlockManager : MonoBehaviour
 
     private Coroutine growRoutine;
     private readonly List<StemGrowthRuntimeState> stemGrowthStates = new();
+    private bool normalBlocksClearedNotified;
 
     private void Awake()
     {
@@ -72,7 +77,9 @@ public class BlockManager : MonoBehaviour
 
     private void Start()
     {
+        ResetNormalBlockTracking();
         SpawnFixedBlocks();
+        SpawnNormalBlocks();
         SpawnStartBlocks();
 
         StartGrowth();
@@ -95,6 +102,7 @@ public class BlockManager : MonoBehaviour
         ClearAllSpawnedBlocks();
 
         CreateGrid();
+        ResetNormalBlockTracking();
 
         blockPool.CreatePool(
             data.width,
@@ -105,12 +113,16 @@ public class BlockManager : MonoBehaviour
         );
 
         SpawnFixedBlocks();
+        SpawnNormalBlocks();
         SpawnStartBlocks();
     }
 
     public void StartGrowth()
     {
         StopGrowth();
+
+        if (data == null || data.disableGrowth)
+            return;
 
         if (data.UseStemGrowth)
             InitializeStemGrowthStates();
@@ -131,6 +143,7 @@ public class BlockManager : MonoBehaviour
     {
         occupied = new bool[data.width, data.height];
         fixedOccupied = new bool[data.width, data.height];
+        blockTypes = new BlockType[data.width, data.height];
         stemOwner = new int[data.width, data.height];
 
         for (int x = 0; x < data.width; x++)
@@ -138,6 +151,7 @@ public class BlockManager : MonoBehaviour
             for (int y = 0; y < data.height; y++)
             {
                 stemOwner[x, y] = -1;
+                blockTypes[x, y] = BlockType.Empty;
             }
         }
     }
@@ -448,6 +462,17 @@ public class BlockManager : MonoBehaviour
         }
     }
 
+    private void SpawnNormalBlocks()
+    {
+        if (data == null || data.normalBlocks == null)
+            return;
+
+        for (int i = 0; i < data.normalBlocks.Count; i++)
+        {
+            SpawnNormalBlock(data.normalBlocks[i], data.defaultHp);
+        }
+    }
+
     private void SpawnStartBlocks()
     {
         if (data.UseStemGrowth && data.HasStemGrowthData)
@@ -482,6 +507,9 @@ public class BlockManager : MonoBehaviour
 
     private void RespawnMissingStartBlocks()
     {
+        if (data != null && !data.respawnMissingStartBlocks)
+            return;
+
         if (data.UseStemGrowth && data.HasStemGrowthData)
         {
             RespawnMissingStemStartBlocks();
@@ -540,6 +568,16 @@ public class BlockManager : MonoBehaviour
 
     public void SpawnBlock(Vector2Int coord, float hp, bool isFixed, int stemIndex = -1)
     {
+        SpawnBlock(coord, hp, isFixed ? BlockType.Fixed : BlockType.Flow, stemIndex);
+    }
+
+    private void SpawnNormalBlock(Vector2Int coord, float hp)
+    {
+        SpawnBlock(coord, hp, BlockType.Normal, -1);
+    }
+
+    private void SpawnBlock(Vector2Int coord, float hp, BlockType blockType, int stemIndex = -1)
+    {
         if (!IsValidCoord(coord))
             return;
 
@@ -547,12 +585,17 @@ public class BlockManager : MonoBehaviour
             return;
 
         occupied[coord.x, coord.y] = true;
-        fixedOccupied[coord.x, coord.y] = isFixed;
-        stemOwner[coord.x, coord.y] = isFixed ? -1 : stemIndex;
+        fixedOccupied[coord.x, coord.y] = blockType == BlockType.Fixed;
+        blockTypes[coord.x, coord.y] = blockType;
+        stemOwner[coord.x, coord.y] = blockType == BlockType.Flow ? stemIndex : -1;
 
-        if (isFixed)
+        if (blockType == BlockType.Fixed)
         {
             blockPool.CreateFixedBlock(coord, hp);
+        }
+        else if (blockType == BlockType.Normal)
+        {
+            blockPool.CreateNormalBlock(coord, hp);
         }
         else
         {
@@ -560,6 +603,7 @@ public class BlockManager : MonoBehaviour
         }
 
         RefreshStemConnectionVisuals();
+        CheckNormalBlocksCleared();
     }
 
     public void RemoveBlock(Vector2Int coord, bool force = false)
@@ -575,11 +619,13 @@ public class BlockManager : MonoBehaviour
 
         occupied[coord.x, coord.y] = false;
 
+        BlockType removedType = blockTypes[coord.x, coord.y];
         bool wasFixed = fixedOccupied[coord.x, coord.y];
         fixedOccupied[coord.x, coord.y] = false;
+        blockTypes[coord.x, coord.y] = BlockType.Empty;
         stemOwner[coord.x, coord.y] = -1;
 
-        if (wasFixed)
+        if (wasFixed || removedType == BlockType.Normal)
         {
             BlockCell block = GetBlockCell(coord); // 없다면 만들어야 함
             if (block != null)
@@ -591,6 +637,7 @@ public class BlockManager : MonoBehaviour
         }
 
         RefreshStemConnectionVisuals();
+        CheckNormalBlocksCleared();
     }
 
     public List<Vector2Int> GetAbsorbableFlowBlockCoords(
@@ -655,6 +702,9 @@ public class BlockManager : MonoBehaviour
             return false;
 
         if (!occupied[coord.x, coord.y])
+            return false;
+
+        if (blockTypes[coord.x, coord.y] != BlockType.Flow)
             return false;
 
         if (fixedOccupied[coord.x, coord.y])
@@ -729,6 +779,9 @@ public class BlockManager : MonoBehaviour
                 if (fixedOccupied[x, y])
                     continue;
 
+                if (blockTypes[x, y] != BlockType.Flow)
+                    continue;
+
                 if (data.onlyGrowFromStartConnectedBlocks && !connected[x, y])
                     continue;
 
@@ -776,6 +829,9 @@ public class BlockManager : MonoBehaviour
             if (fixedOccupied[startCell.x, startCell.y])
                 continue;
 
+            if (blockTypes[startCell.x, startCell.y] != BlockType.Flow)
+                continue;
+
             connected[startCell.x, startCell.y] = true;
             queue.Enqueue(startCell);
         }
@@ -812,6 +868,9 @@ public class BlockManager : MonoBehaviour
                 if (fixedOccupied[next.x, next.y])
                     continue;
 
+                if (blockTypes[next.x, next.y] != BlockType.Flow)
+                    continue;
+
                 if (connected[next.x, next.y])
                     continue;
 
@@ -838,6 +897,9 @@ public class BlockManager : MonoBehaviour
                     continue;
 
                 if (fixedOccupied[x, y])
+                    continue;
+
+                if (blockTypes[x, y] != BlockType.Flow)
                     continue;
 
                 Vector2Int coord = new Vector2Int(x, y);
@@ -1085,6 +1147,14 @@ public class BlockManager : MonoBehaviour
 
         return fixedOccupied[coord.x, coord.y];
     }
+
+    public bool IsNormal(Vector2Int coord)
+    {
+        if (!IsValidCoord(coord))
+            return false;
+
+        return blockTypes[coord.x, coord.y] == BlockType.Normal;
+    }
     
     public float GetTopBoundaryY()
     {
@@ -1148,5 +1218,34 @@ public class BlockManager : MonoBehaviour
                 Destroy(blocks[i].gameObject);
             }
         }
+    }
+
+    private void ResetNormalBlockTracking()
+    {
+        normalBlocksClearedNotified = false;
+    }
+
+    private void CheckNormalBlocksCleared()
+    {
+        if (normalBlocksClearedNotified)
+            return;
+
+        if (data == null || data.normalBlocks == null || data.normalBlocks.Count == 0)
+            return;
+
+        for (int i = 0; i < data.normalBlocks.Count; i++)
+        {
+            Vector2Int coord = data.normalBlocks[i];
+
+            if (!IsValidCoord(coord))
+                continue;
+
+            if (occupied[coord.x, coord.y])
+                return;
+        }
+
+        normalBlocksClearedNotified = true;
+        OnNormalBlocksCleared?.Invoke();
+        OnTutorialTargetBlocksCleared?.Invoke();
     }
 }

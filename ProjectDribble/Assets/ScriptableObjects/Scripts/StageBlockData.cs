@@ -48,6 +48,7 @@ public class StageBlockData : ScriptableObject
     public float defaultHp = 10;
 
     [Header("Growth Mode")]
+    public bool disableGrowth = false;
     public bool useStemGrowth = false;
     public bool UseStemGrowth => useStemGrowth;
 
@@ -58,11 +59,18 @@ public class StageBlockData : ScriptableObject
     [Header("Fixed Blocks")]
     public List<FixedBlockData> fixedBlocks = new();
 
+    [Header("Normal Blocks")]
+    public List<Vector2Int> normalBlocks = new();
+
     [Header("Start Blocks")]
+    public bool respawnMissingStartBlocks = true;
     public List<Vector2Int> startCells = new()
     {
         new Vector2Int(3, 0)
     };
+
+    [Header("Tutorial")]
+    public List<Vector2Int> tutorialTargetBlocks = new();
 
     [Header("Growth Timing")]
     public float spawnInterval = 1f;

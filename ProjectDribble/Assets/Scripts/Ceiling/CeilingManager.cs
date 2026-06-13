@@ -6,6 +6,7 @@ using UnityEngine;
 public class CeilingManager : MonoBehaviour
 {
     public event Action OnStageCleared;
+    public event Action<CeilingSegment> OnCeilingSegmentDestroyed;
 
     private const int LeftSegmentStartX = 0;
     private const int LeftSegmentEndX = 1;
@@ -19,6 +20,7 @@ public class CeilingManager : MonoBehaviour
 
     private float currentHp;
     private float runtimeMaxHp;
+    private CeilingSegmentMode ceilingSegmentMode = CeilingSegmentMode.ThreeSegments;
     private bool isStageCleared;
     private bool isInitialized;
 
@@ -68,7 +70,13 @@ public class CeilingManager : MonoBehaviour
 
     public void InitializeCeiling(float maxHp)
     {
+        InitializeCeiling(maxHp, ceilingSegmentMode);
+    }
+
+    public void InitializeCeiling(float maxHp, CeilingSegmentMode segmentMode)
+    {
         runtimeMaxHp = Mathf.Max(1, maxHp);
+        ceilingSegmentMode = segmentMode;
         isInitialized = true;
         ResetCeilingState();
     }
@@ -88,6 +96,54 @@ public class CeilingManager : MonoBehaviour
         segments.Clear();
 
         float maxHp = runtimeMaxHp > 0 ? runtimeMaxHp : Mathf.Max(1, healthData.ceilingMaxHp);
+
+        switch (ceilingSegmentMode)
+        {
+            case CeilingSegmentMode.OneSegment:
+                AddOneSegment(maxHp);
+                break;
+            case CeilingSegmentMode.TwoSegments:
+                AddTwoSegments(maxHp);
+                break;
+            default:
+                AddThreeSegments(maxHp);
+                break;
+        }
+
+        UpdateCurrentHpFromSegments();
+    }
+
+    private void AddOneSegment(float maxHp)
+    {
+        segments.Add(new CeilingSegment(
+            "All",
+            0,
+            Mathf.Max(0, columnCount - 1),
+            maxHp
+        ));
+    }
+
+    private void AddTwoSegments(float maxHp)
+    {
+        int splitX = Mathf.Max(1, columnCount / 2);
+        int leftStartX = 0;
+        int leftEndX = splitX - 1;
+        int rightStartX = splitX;
+        int rightEndX = Mathf.Max(rightStartX, columnCount - 1);
+
+        float leftHp = leftSegmentMaxHp > 0
+            ? leftSegmentMaxHp
+            : CalculateDefaultSegmentHp(maxHp, leftEndX - leftStartX + 1);
+        float rightHp = rightSegmentMaxHp > 0
+            ? rightSegmentMaxHp
+            : CalculateDefaultSegmentHp(maxHp, rightEndX - rightStartX + 1);
+
+        segments.Add(new CeilingSegment("Left", leftStartX, leftEndX, leftHp));
+        segments.Add(new CeilingSegment("Right", rightStartX, rightEndX, rightHp));
+    }
+
+    private void AddThreeSegments(float maxHp)
+    {
         float leftHp = leftSegmentMaxHp > 0 ? leftSegmentMaxHp : CalculateDefaultSegmentHp(maxHp, 2);
         float centerHp = centerSegmentMaxHp > 0 ? centerSegmentMaxHp : CalculateDefaultSegmentHp(maxHp, 3);
         float rightHp = rightSegmentMaxHp > 0 ? rightSegmentMaxHp : CalculateDefaultSegmentHp(maxHp, 2);
@@ -95,8 +151,6 @@ public class CeilingManager : MonoBehaviour
         segments.Add(new CeilingSegment("Left", LeftSegmentStartX, LeftSegmentEndX, leftHp));
         segments.Add(new CeilingSegment("Center", CenterSegmentStartX, CenterSegmentEndX, centerHp));
         segments.Add(new CeilingSegment("Right", RightSegmentStartX, RightSegmentEndX, rightHp));
-
-        UpdateCurrentHpFromSegments();
     }
 
     private int CalculateDefaultSegmentHp(float totalHp, int segmentWidth)
@@ -192,6 +246,7 @@ public class CeilingManager : MonoBehaviour
             SoundManager.Instance.Play(SoundId.CeilingBreak);
             Debug.Log($"Ceiling segment {segment.SegmentName} destroyed.");
             DisableStemGrowthForSegment(segment);
+            OnCeilingSegmentDestroyed?.Invoke(segment);
             BreakSegmentBricks(segment);
             ballRespawner.RecallBallToPaddle();
             _gaugeManager.AddGauge(_gaugeManager.GaugePerSegment);

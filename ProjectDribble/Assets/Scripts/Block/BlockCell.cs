@@ -2,6 +2,14 @@ using DefaultNamespace;
 using Interfaces;
 using UnityEngine;
 
+public enum BlockType
+{
+    Empty,
+    Flow,
+    Normal,
+    Fixed
+}
+
 public class BlockCell : MonoBehaviour,
     IBallHitReceiver,
     ILaserHittable,
@@ -27,12 +35,14 @@ public class BlockCell : MonoBehaviour,
     private float hp;
     private float maxHp;
 
-    private bool isFixed;
+    private BlockType blockType = BlockType.Flow;
     private bool isDisconnectedStem;
     private float danger01;
 
     public Vector2Int Coord => coord;
-    public bool IsFixed => isFixed;
+    public BlockType BlockType => blockType;
+    public bool IsFixed => blockType == BlockType.Fixed;
+    public bool IsNormal => blockType == BlockType.Normal;
     public bool IsAlive => gameObject.activeSelf;
 
     private void Awake()
@@ -51,12 +61,17 @@ public class BlockCell : MonoBehaviour,
 
     public void Activate(Vector2Int coord, float hp, bool isFixed)
     {
+        Activate(coord, hp, isFixed ? BlockType.Fixed : BlockType.Flow);
+    }
+
+    public void Activate(Vector2Int coord, float hp, BlockType blockType)
+    {
         this.coord = coord;
 
         this.hp = hp;
         this.maxHp = hp;
 
-        this.isFixed = isFixed;
+        this.blockType = blockType;
         isDisconnectedStem = false;
         danger01 = 0f;
 
@@ -67,6 +82,7 @@ public class BlockCell : MonoBehaviour,
 
     public void Deactivate()
     {
+        blockType = BlockType.Empty;
         isDisconnectedStem = false;
         danger01 = 0f;
         UpdateVisual();
@@ -116,7 +132,7 @@ public class BlockCell : MonoBehaviour,
             }
         );
         manager.RemoveBlock(coord, true);
-        return isFixed;
+        return IsFixed;
     }
 
     public bool TakeDamage(float damage)
@@ -126,7 +142,7 @@ public class BlockCell : MonoBehaviour,
 
     public bool TakeDamage(float damage, bool addGauge)
     {
-        if (isFixed)
+        if (IsFixed)
             return false;
 
         hp -= damage;

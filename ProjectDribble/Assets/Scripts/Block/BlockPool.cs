@@ -4,9 +4,13 @@ public class BlockPool : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private BlockCell flowBlockPrefab;
+    [SerializeField] private BlockCell normalBlockPrefab;
     [SerializeField] private BlockCell fixedBlockPrefab;
+    [SerializeField] private Transform normalBlockParent;
     [SerializeField] private Transform fixedBlockParent;
     [SerializeField] private Transform flowBlockParent;
+
+    private bool warnedNormalFallback;
 
     private BlockCell[,] pool;
 
@@ -60,7 +64,39 @@ public class BlockPool : MonoBehaviour
 
         ApplyBlockSize(block);
 
-        block.Activate(coord, hp, false);
+        block.Activate(coord, hp, BlockType.Flow);
+    }
+
+    public BlockCell CreateNormalBlock(Vector2Int coord, float hp)
+    {
+        BlockCell prefab = normalBlockPrefab;
+
+        if (prefab == null)
+        {
+            prefab = flowBlockPrefab;
+
+            if (!warnedNormalFallback)
+            {
+                Debug.LogWarning("BlockPool: normalBlockPrefab is null. Falling back to flowBlockPrefab.");
+                warnedNormalFallback = true;
+            }
+        }
+
+        Transform parent = normalBlockParent != null ? normalBlockParent : flowBlockParent;
+
+        BlockCell block = Instantiate(
+            prefab,
+            gridToWorld(coord),
+            Quaternion.identity,
+            parent
+        );
+
+        ApplyBlockSize(block);
+
+        block.Init(manager, coord);
+        block.Activate(coord, hp, BlockType.Normal);
+
+        return block;
     }
 
     public BlockCell CreateFixedBlock(Vector2Int coord, float hp)
@@ -75,7 +111,7 @@ public class BlockPool : MonoBehaviour
         ApplyBlockSize(block);
 
         block.Init(manager, coord);
-        block.Activate(coord, hp, true);
+        block.Activate(coord, hp, BlockType.Fixed);
 
         return block;
     }

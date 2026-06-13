@@ -15,6 +15,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] private GaugeManager gaugeManager;
     [SerializeField] private BallSpawnController ballSpawnController;
     [SerializeField] private BossController bossController;
+    [SerializeField] private TutorialManager tutorialManager;
 
     private int currentStageIndex;
 
@@ -139,7 +140,7 @@ public class StageManager : MonoBehaviour
 
         if (ceilingManager != null)
         {
-            ceilingManager.InitializeCeiling(data.ceilingMaxHpOverride);
+            ceilingManager.InitializeCeiling(data.ceilingMaxHpOverride, data.ceilingSegmentMode);
         }
 
         if (playerHealth != null)
@@ -161,6 +162,11 @@ public class StageManager : MonoBehaviour
         }
 
         ApplyBossPatternStateForCurrentStage();
+
+        if (tutorialManager != null)
+        {
+            tutorialManager.BeginStage(currentStageIndex, data);
+        }
     }
 
     private bool IsValidStageIndex(int index)

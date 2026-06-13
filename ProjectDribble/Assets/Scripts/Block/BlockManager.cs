@@ -5,6 +5,9 @@ using UnityEngine;
 public class BlockManager : MonoBehaviour
 {
     public event System.Action OnNormalBlocksCleared;
+
+    // Legacy compatibility event. New tutorial code should use OnNormalBlocksCleared.
+    // Candidate for removal after all old tutorial target block usages are gone.
     public event System.Action OnTutorialTargetBlocksCleared;
 
     private struct GrowthCandidate

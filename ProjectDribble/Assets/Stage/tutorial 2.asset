@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: tutorial 2
   m_EditorClassIdentifier: Assembly-CSharp::StageDefinition
   blockData: {fileID: 11400000, guid: 2ef2fc9963e41814e8b0d7b9ab05ea67, type: 2}
-  ceilingSegmentMode: 0
+  ceilingSegmentMode: 1
   ceilingMaxHpOverride: 100
   playerMaxHpOverride: 10
   startGaugeValue: 10

@@ -27,10 +27,10 @@ MonoBehaviour:
   weakenedSpeed: 25
   weakenedDuration: 0.75
   baseDamage: 5
-  maxDamage: 10
-  paddleDamageBonus: 1
+  maxDamage: 9
+  paddleDamageBonus: 0.8
   dribbleDamageBonus: 0.3
-  blockDamageLoss: 0.4
+  blockDamageLoss: 0.5
   blockSpeedSlowCooldown: 0.25
   captureCooldown: 0.1
   releaseRecaptureDelay: 0.5

@@ -58,6 +58,13 @@ public class BallData : ScriptableObject
     [SerializeField] private float capturedPaddleHitCooldown = 0.05f;
     [SerializeField] private bool debugCapturedDribbleLog = true;
 
+    [Header("Speed Color Visual")]
+    public bool useSpeedColorChange;
+    public Color normalSpeedColor = Color.white;
+    public Color maxSpeedColor = Color.red;
+    public float speedColorStartSpeed = 30f;
+    public float speedColorEndSpeed = 70f;
+
     [SerializeField] private List<SpeedSlowRule> blockSlowRules = new()
     {
         new SpeedSlowRule { minSpeed = 0f, slowAmount = 4f },

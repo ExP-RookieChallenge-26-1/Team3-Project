@@ -42,6 +42,7 @@ public class BlockManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private BlockPool blockPool;
     [SerializeField] private BallController ballController;
+    [SerializeField] private CeilingManager ceilingManager;
 
     [Header("Stem Danger Visual")]
     [SerializeField] private int dangerWarningRows = 7;
@@ -66,6 +67,9 @@ public class BlockManager : MonoBehaviour
     {
         if (ballController == null)
             ballController = FindAnyObjectByType<BallController>();
+
+        if (ceilingManager == null)
+            ceilingManager = FindAnyObjectByType<CeilingManager>();
 
         CreateGrid();
 
@@ -277,7 +281,29 @@ public class BlockManager : MonoBehaviour
             if (stem == null)
                 continue;
 
+            if (UsesCeilingSegment(stem))
+                continue;
+
             if (stem.startCoord.x < minX || stem.startCoord.x > maxX)
+                continue;
+
+            DisableStemGrowth(i);
+        }
+    }
+
+    public void DisableStemGrowthByCeilingSegment(int ceilingSegmentIndex)
+    {
+        if (data == null || data.growthStems == null)
+            return;
+
+        for (int i = 0; i < data.growthStems.Length; i++)
+        {
+            StageBlockData.GrowthStemData stem = data.growthStems[i];
+
+            if (stem == null)
+                continue;
+
+            if (stem.ceilingSegmentIndex != ceilingSegmentIndex)
                 continue;
 
             DisableStemGrowth(i);
@@ -393,6 +419,9 @@ public class BlockManager : MonoBehaviour
         if (stem == null || stem.growWeight <= 0f)
             return candidates;
 
+        if (UsesCeilingSegment(stem))
+            return CollectCeilingSegmentStemGrowthCandidates(stemIndex, stem);
+
         bool[,] connected = null;
 
         if (data.onlyGrowFromStartConnectedBlocks)
@@ -504,6 +533,9 @@ public class BlockManager : MonoBehaviour
             if (stem == null)
                 continue;
 
+            if (UsesCeilingSegment(stem))
+                continue;
+
             SpawnBlock(stem.startCoord, data.defaultHp, false, i);
         }
     }
@@ -544,6 +576,9 @@ public class BlockManager : MonoBehaviour
                 continue;
 
             if (!IsStemGrowthRuntimeEnabled(i))
+                continue;
+
+            if (UsesCeilingSegment(stem))
                 continue;
 
             Vector2Int cell = stem.startCoord;
@@ -839,6 +874,29 @@ public class BlockManager : MonoBehaviour
             queue.Enqueue(startCell);
         }
 
+        if (data.UseStemGrowth && data.HasStemGrowthData)
+        {
+            for (int stemIndex = 0; stemIndex < data.growthStems.Length; stemIndex++)
+            {
+                StageBlockData.GrowthStemData stem = data.growthStems[stemIndex];
+
+                if (stem == null || !UsesCeilingSegment(stem))
+                    continue;
+
+                if (!IsCeilingSegmentAliveForStem(stem))
+                    continue;
+
+                foreach (Vector2Int root in GetCeilingSegmentTouchingStemCells(stemIndex, stem))
+                {
+                    if (connected[root.x, root.y])
+                        continue;
+
+                    connected[root.x, root.y] = true;
+                    queue.Enqueue(root);
+                }
+            }
+        }
+
         Vector2Int[] checkDirs =
         {
             // 상하좌우
@@ -946,6 +1004,9 @@ public class BlockManager : MonoBehaviour
                 if (stem == null)
                     continue;
 
+                if (UsesCeilingSegment(stem))
+                    continue;
+
                 yield return stem.startCoord;
             }
 
@@ -1015,10 +1076,227 @@ public class BlockManager : MonoBehaviour
         if (!IsValidCoord(coord))
             return false;
 
+        int topY = UsesCeilingSegment(stem)
+            ? GetCeilingSegmentStemTopY(stem)
+            : stem.startCoord.y;
+
         return coord.x >= stem.minX &&
                coord.x <= stem.maxX &&
-               coord.y >= stem.startCoord.y &&
-               coord.y <= stem.startCoord.y + stem.maxLength;
+               coord.y >= topY &&
+               coord.y <= topY + stem.maxLength;
+    }
+
+    private List<GrowthCandidate> CollectCeilingSegmentStemGrowthCandidates(
+        int stemIndex,
+        StageBlockData.GrowthStemData stem
+    )
+    {
+        List<GrowthCandidate> candidates = new();
+
+        if (!IsCeilingSegmentAliveForStem(stem))
+            return candidates;
+
+        bool[,] connected = GetCeilingSegmentConnectedCellsForStem(stemIndex, stem);
+
+        if (!HasConnectedStemCell(connected))
+        {
+            foreach (Vector2Int spawnCoord in GetCeilingSegmentSpawnCandidates(stem))
+            {
+                AddCandidate(candidates, spawnCoord, 0, stem.growWeight, stemIndex);
+            }
+
+            return candidates;
+        }
+
+        IEnumerable<StageBlockData.GrowthDirection> directions = GetStemGrowthDirections(stem);
+
+        for (int y = 0; y < data.height; y++)
+        {
+            for (int x = 0; x < data.width; x++)
+            {
+                if (!connected[x, y])
+                    continue;
+
+                Vector2Int parent = new Vector2Int(x, y);
+
+                foreach (StageBlockData.GrowthDirection dir in directions)
+                {
+                    if (dir.weight <= 0f)
+                        continue;
+
+                    Vector2Int next = parent + dir.direction;
+
+                    if (!IsStemGrowthCoord(next, stem))
+                        continue;
+
+                    if (occupied[next.x, next.y])
+                        continue;
+
+                    int rowLimit = Mathf.Max(1, stem.maxBlocksPerRow);
+
+                    if (CountStemBlocksInRow(stemIndex, stem, next.y) >= rowLimit)
+                        continue;
+
+                    AddCandidate(
+                        candidates,
+                        next,
+                        dir.priority,
+                        dir.weight * stem.growWeight,
+                        stemIndex
+                    );
+                }
+            }
+        }
+
+        return candidates;
+    }
+
+    private bool UsesCeilingSegment(StageBlockData.GrowthStemData stem)
+    {
+        return stem != null && stem.ceilingSegmentIndex >= 0;
+    }
+
+    private bool IsCeilingSegmentAliveForStem(StageBlockData.GrowthStemData stem)
+    {
+        if (!UsesCeilingSegment(stem))
+            return true;
+
+        return ceilingManager != null && ceilingManager.IsSegmentAliveByIndex(stem.ceilingSegmentIndex);
+    }
+
+    private List<Vector2Int> GetCeilingSegmentSpawnCandidates(StageBlockData.GrowthStemData stem)
+    {
+        List<Vector2Int> candidates = new();
+
+        if (!UsesCeilingSegment(stem))
+            return candidates;
+
+        if (ceilingManager == null)
+            return candidates;
+
+        if (!ceilingManager.TryGetSegmentXRange(stem.ceilingSegmentIndex, out int segmentStartX, out int segmentEndX))
+            return candidates;
+
+        int minX = Mathf.Max(0, stem.minX, Mathf.Min(segmentStartX, segmentEndX));
+        int maxX = Mathf.Min(data.width - 1, stem.maxX, Mathf.Max(segmentStartX, segmentEndX));
+        int y = GetCeilingSegmentStemTopY(stem);
+
+        for (int x = minX; x <= maxX; x++)
+        {
+            Vector2Int coord = new Vector2Int(x, y);
+
+            if (!IsValidCoord(coord))
+                continue;
+
+            candidates.Add(coord);
+        }
+
+        return candidates;
+    }
+
+    private int GetCeilingSegmentStemTopY(StageBlockData.GrowthStemData stem)
+    {
+        return Mathf.Clamp(stem.startCoord.y, 0, data.height - 1);
+    }
+
+    private IEnumerable<Vector2Int> GetCeilingSegmentTouchingStemCells(
+        int stemIndex,
+        StageBlockData.GrowthStemData stem
+    )
+    {
+        foreach (Vector2Int coord in GetCeilingSegmentSpawnCandidates(stem))
+        {
+            if (!occupied[coord.x, coord.y])
+                continue;
+
+            if (fixedOccupied[coord.x, coord.y])
+                continue;
+
+            if (blockTypes[coord.x, coord.y] != BlockType.Flow)
+                continue;
+
+            if (stemOwner[coord.x, coord.y] != stemIndex)
+                continue;
+
+            yield return coord;
+        }
+    }
+
+    private bool[,] GetCeilingSegmentConnectedCellsForStem(
+        int stemIndex,
+        StageBlockData.GrowthStemData stem
+    )
+    {
+        bool[,] connected = new bool[data.width, data.height];
+        Queue<Vector2Int> queue = new();
+
+        foreach (Vector2Int root in GetCeilingSegmentTouchingStemCells(stemIndex, stem))
+        {
+            connected[root.x, root.y] = true;
+            queue.Enqueue(root);
+        }
+
+        Vector2Int[] checkDirs =
+        {
+            new Vector2Int(0, 1),
+            new Vector2Int(0, -1),
+            new Vector2Int(-1, 0),
+            new Vector2Int(1, 0),
+            new Vector2Int(-1, 1),
+            new Vector2Int(1, 1),
+            new Vector2Int(-1, -1),
+            new Vector2Int(1, -1)
+        };
+
+        while (queue.Count > 0)
+        {
+            Vector2Int current = queue.Dequeue();
+
+            foreach (Vector2Int dir in checkDirs)
+            {
+                Vector2Int next = current + dir;
+
+                if (!IsStemGrowthCoord(next, stem))
+                    continue;
+
+                if (!occupied[next.x, next.y])
+                    continue;
+
+                if (fixedOccupied[next.x, next.y])
+                    continue;
+
+                if (blockTypes[next.x, next.y] != BlockType.Flow)
+                    continue;
+
+                if (stemOwner[next.x, next.y] != stemIndex)
+                    continue;
+
+                if (connected[next.x, next.y])
+                    continue;
+
+                connected[next.x, next.y] = true;
+                queue.Enqueue(next);
+            }
+        }
+
+        return connected;
+    }
+
+    private bool HasConnectedStemCell(bool[,] connected)
+    {
+        if (connected == null)
+            return false;
+
+        for (int y = 0; y < data.height; y++)
+        {
+            for (int x = 0; x < data.width; x++)
+            {
+                if (connected[x, y])
+                    return true;
+            }
+        }
+
+        return false;
     }
 
     private void AddCandidate(

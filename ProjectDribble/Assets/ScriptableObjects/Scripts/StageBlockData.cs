@@ -51,6 +51,8 @@ public class StageBlockData : ScriptableObject
     public class GrowthStemData
     {
         [Header("Stem Layout")]
+        [Tooltip("Ceiling segment index this stem grows from. -1 keeps legacy startCoord based stem behavior.")]
+        public int ceilingSegmentIndex = -1;
         [Tooltip("Stem growth start coordinate. A Flow block at this coordinate becomes the start-connected root for this stem.")]
         public Vector2Int startCoord;
         [Tooltip("Minimum grid X coordinate this stem can grow within.")]

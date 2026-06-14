@@ -269,6 +269,28 @@ public class CeilingManager : MonoBehaviour
         return segment != null && segment.IsDestroyed;
     }
 
+    public bool IsSegmentAliveByIndex(int segmentIndex)
+    {
+        CeilingSegment segment = GetSegmentByIndex(segmentIndex);
+        return segment != null && !segment.IsDestroyed;
+    }
+
+    public bool TryGetSegmentXRange(int segmentIndex, out int startX, out int endX)
+    {
+        CeilingSegment segment = GetSegmentByIndex(segmentIndex);
+
+        if (segment == null)
+        {
+            startX = 0;
+            endX = -1;
+            return false;
+        }
+
+        startX = segment.StartX;
+        endX = segment.EndX;
+        return true;
+    }
+
     public float GetSegmentHpPercentByX(int x)
     {
         CeilingSegment segment = GetSegmentByX(x);
@@ -342,9 +364,21 @@ public class CeilingManager : MonoBehaviour
         if (segment == null || blockManager == null)
             return;
 
+        int segmentIndex = segments.IndexOf(segment);
+
+        if (segmentIndex >= 0)
+            blockManager.DisableStemGrowthByCeilingSegment(segmentIndex);
+
         blockManager.DisableStemGrowthByStartXRange(segment.StartX, segment.EndX);
     }
     
+    private CeilingSegment GetSegmentByIndex(int segmentIndex)
+    {
+        if (segmentIndex < 0 || segmentIndex >= segments.Count)
+            return null;
+
+        return segments[segmentIndex];
+    }
 
     private CeilingSegment GetSegmentByX(int x)
     {

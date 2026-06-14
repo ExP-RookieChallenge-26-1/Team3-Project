@@ -1112,8 +1112,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2a395577b2ffd574d94bf6be6e703fa4, type: 2}
+  m_sharedMaterial: {fileID: 5201780913048521103, guid: 2a395577b2ffd574d94bf6be6e703fa4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1239,7 +1239,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3dccf32ce1e6c4246a540dbb508f5f84, type: 2}
   - {fileID: 11400000, guid: 8ae0c39d1d0530b459af84cdf890cb69, type: 2}
   - {fileID: 11400000, guid: f6d0b059c7b03354a8259b6601fd6d0e, type: 2}
-  startStageIndex: 3
+  startStageIndex: 0
   bossStageIndex: 3
   ceilingManager: {fileID: 22802466009801029}
   playerHealth: {fileID: 5988251570761651997}

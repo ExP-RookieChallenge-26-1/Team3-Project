@@ -2136,10 +2136,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: -0.28125
+    x: 0
     y: 0
-    width: 0.5625
-    height: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -2379,8 +2379,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.21}
-  m_Size: {x: 8.24, y: 4.54}
+  m_Offset: {x: 0, y: 0.05}
+  m_Size: {x: 7.77, y: 3.98}
   m_Direction: 1
 --- !u!1 &1465136419
 GameObject:
@@ -5028,8 +5028,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.16}
-  m_Size: {x: 9, y: 6.53}
+  m_Offset: {x: 0, y: -0.15}
+  m_Size: {x: 8.45, y: 5.46}
   m_Direction: 1
 --- !u!1 &6886937213910100830
 GameObject:
@@ -6162,8 +6162,8 @@ MonoBehaviour:
   useEllipseCapturedBounds: 1
   capturedTopEllipseCenter: {fileID: 4311641027604904549}
   capturedBottomEllipseCenter: {fileID: 9059070479574643173}
-  capturedEllipseHalfWidth: 5.24
-  capturedEllipseHalfHeight: 3.93
+  capturedEllipseHalfWidth: 4.75
+  capturedEllipseHalfHeight: 3.67
   capturedTopEllipseGizmoColor: {r: 0.2, g: 0.7, b: 1, a: 1}
   capturedBottomEllipseGizmoColor: {r: 1, g: 0.75, b: 0.2, a: 1}
   verticalAlignDelay: 0.35

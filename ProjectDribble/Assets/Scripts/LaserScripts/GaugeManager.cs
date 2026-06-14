@@ -5,6 +5,7 @@ using UnityEngine;
 public class GaugeManager : MonoBehaviour
 {
     [SerializeField] private ScriptableObjects.LaserData _data;
+    [SerializeField] private LaserUnlockState laserUnlockState;
 
     [Header("Gauge")]
     [SerializeField] private int currentGaugeValue = 0;
@@ -18,16 +19,21 @@ public class GaugeManager : MonoBehaviour
     public event Action<int> OnGaugeValueChanged;
     public event Action<int> OnGaugeSegmentChanged;
 
+    private void Awake()
+    {
+        if (laserUnlockState == null)
+            laserUnlockState = FindAnyObjectByType<LaserUnlockState>();
+    }
+
     private void Start()
     {
-        MaxGaugeValue = _data.maxGaugeSegments * _data.gaugePerSegment;
-        SetGaugeValue(_data.startGaugeValue);
+        InitializeGauge(_data.startGaugeValue);
     }
 
     public void InitializeGauge(int startValue)
     {
         MaxGaugeValue = _data.maxGaugeSegments * _data.gaugePerSegment;
-        SetGaugeValue(startValue);
+        SetGaugeValue(IsLaserUnlocked() ? startValue : 0);
     }
 
     public void ResetGauge()
@@ -73,21 +79,35 @@ public class GaugeManager : MonoBehaviour
 
     public void AddGauge()
     {
+        if (!IsLaserUnlocked())
+            return;
+
         SetGaugeValue(currentGaugeValue + 1);
     }
 
     public void AddGauge(int amount)
     {
+        if (!IsLaserUnlocked())
+            return;
+
         SetGaugeValue(currentGaugeValue + amount);
     }
 
     public bool TryReduceGaugeLevel()
     {
+        if (!IsLaserUnlocked())
+            return false;
+
         if (FilledGaugeSegments < 1)
             return false;
 
         SetGaugeValue(currentGaugeValue - _data.gaugePerSegment);
 
         return true;
+    }
+
+    private bool IsLaserUnlocked()
+    {
+        return laserUnlockState != null && laserUnlockState.IsLaserUnlocked;
     }
 }

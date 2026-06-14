@@ -72,41 +72,41 @@ public class BlockManager : MonoBehaviour
 
         if (ceilingManager == null)
             ceilingManager = FindAnyObjectByType<CeilingManager>();
-
-        CreateGrid();
-
-        blockPool.CreatePool(
-            data.width,
-            data.height,
-            GridToWorld,
-            GetCellSize,
-            this
-        );
     }
 
     private void Start()
     {
-        ResetNormalBlockTracking();
-        SpawnFixedBlocks();
-        SpawnNormalBlocks();
-        SpawnStartBlocks();
-
-        StartGrowth();
+        if (data != null)
+            InitializeStageBlocks(data);
     }
 
     public void InitializeStageBlocks(StageBlockData stageData)
     {
-        if (stageData != null)
+        if (stageData == null)
         {
-            data = stageData;
+            Debug.LogWarning("BlockManager: StageBlockData is null. Block grid was not initialized.");
+            return;
         }
 
+        data = stageData;
         ResetBlocks();
         StartGrowth();
     }
 
     public void ResetBlocks()
     {
+        if (data == null)
+        {
+            Debug.LogWarning("BlockManager: Cannot reset blocks without StageBlockData.");
+            return;
+        }
+
+        if (blockPool == null)
+        {
+            Debug.LogWarning("BlockManager: Cannot reset blocks because BlockPool is missing.");
+            return;
+        }
+
         StopGrowth();
         ClearAllSpawnedBlocks();
 
@@ -150,6 +150,9 @@ public class BlockManager : MonoBehaviour
 
     private void CreateGrid()
     {
+        if (data == null)
+            return;
+
         occupied = new bool[data.width, data.height];
         fixedOccupied = new bool[data.width, data.height];
         blockTypes = new BlockType[data.width, data.height];
@@ -167,6 +170,13 @@ public class BlockManager : MonoBehaviour
 
     private void CalculateGridSize()
     {
+        if (data == null || gridArea == null)
+        {
+            cellWidth = 1f;
+            cellHeight = 1f;
+            return;
+        }
+
         Vector3 areaSize = gridArea.lossyScale;
 
         cellWidth = areaSize.x / data.width;
@@ -490,8 +500,14 @@ public class BlockManager : MonoBehaviour
 
     private void SpawnFixedBlocks()
     {
+        if (data == null || data.fixedBlocks == null)
+            return;
+
         foreach (StageBlockData.FixedBlockData fixedBlock in data.fixedBlocks)
         {
+            if (fixedBlock == null)
+                continue;
+
             SpawnBlock(fixedBlock.cell, fixedBlock.hp, true);
         }
     }
@@ -520,6 +536,9 @@ public class BlockManager : MonoBehaviour
 
     private void SpawnLegacyStartBlocks()
     {
+        if (data == null || data.startCells == null)
+            return;
+
         foreach (Vector2Int cell in data.startCells)
         {
             SpawnBlock(cell, data.defaultHp, false);
@@ -618,6 +637,12 @@ public class BlockManager : MonoBehaviour
 
     private void SpawnBlock(Vector2Int coord, float hp, BlockType blockType, int stemIndex = -1)
     {
+        if (data == null || occupied == null || fixedOccupied == null || blockTypes == null || stemOwner == null)
+            return;
+
+        if (blockPool == null)
+            return;
+
         if (!IsValidCoord(coord))
             return;
 
@@ -812,6 +837,9 @@ public class BlockManager : MonoBehaviour
 
     public void AddGauge()
     {
+        if (gaugeManager == null)
+            return;
+
         gaugeManager.AddGauge();
     }
 
@@ -1429,12 +1457,18 @@ public class BlockManager : MonoBehaviour
         if (!IsValidCoord(coord))
             return false;
 
+        if (occupied == null)
+            return false;
+
         return occupied[coord.x, coord.y];
     }
 
     // LaserBlockEraser에서 접근 필요
     public bool IsValidCoord(Vector2Int coord)
     {
+        if (data == null)
+            return false;
+
         return coord.x >= 0 &&
                coord.x < data.width &&
                coord.y >= 0 &&
@@ -1452,12 +1486,15 @@ public class BlockManager : MonoBehaviour
     }
 
     // 레이저 발사시 블록 탐지를 위한 참조
-    public int Width => data.width;
-    public int Height => data.height;
+    public int Width => data != null ? data.width : 0;
+    public int Height => data != null ? data.height : 0;
 
     public bool IsFixed(Vector2Int coord)
     {
         if (!IsValidCoord(coord))
+            return false;
+
+        if (fixedOccupied == null)
             return false;
 
         return fixedOccupied[coord.x, coord.y];
@@ -1468,6 +1505,9 @@ public class BlockManager : MonoBehaviour
         if (!IsValidCoord(coord))
             return false;
 
+        if (blockTypes == null)
+            return false;
+
         return blockTypes[coord.x, coord.y] == BlockType.Normal;
     }
     
@@ -1475,12 +1515,18 @@ public class BlockManager : MonoBehaviour
     {
         CalculateGridSize();
 
+        if (gridArea == null)
+            return 0f;
+
         float top = gridArea.position.y + gridArea.lossyScale.y * 0.5f;
         return top;
     }
     
     public int WorldXToGridX(float worldX)
     {
+        if (data == null || gridArea == null)
+            return 0;
+
         CalculateGridSize();
 
         float left = gridArea.position.x - gridArea.lossyScale.x * 0.5f;

@@ -18,7 +18,7 @@ MonoBehaviour:
   disableGrowth: 0
   useStemGrowth: 1
   growthStems:
-  - ceilingSegmentIndex: 1
+  - ceilingSegmentIndex: -1
     startCoord: {x: 3, y: 0}
     minX: 1
     maxX: 5
@@ -34,14 +34,14 @@ MonoBehaviour:
     initialDelay: 0
   fixedBlocks: []
   normalBlocks: []
-  respawnMissingStartBlocks: 1
+  respawnMissingStartBlocks: 0
   startCells: []
   spawnInterval: 1.3
   minGrowPerTick: 2
   maxGrowPerTick: 3
   rowWeightMultiplier: 1
   rowPriorityStep: 0
-  onlyGrowFromStartConnectedBlocks: 1
+  onlyGrowFromStartConnectedBlocks: 0
   directions:
   - name: Down
     direction: {x: 0, y: 1}

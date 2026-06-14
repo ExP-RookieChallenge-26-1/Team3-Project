@@ -4,6 +4,9 @@ using UnityEngine;
 public class GaugeUI : MonoBehaviour
 {
     [SerializeField] private GaugeManager gaugeManager;
+    [SerializeField] private LaserUnlockState laserUnlockState;
+    [SerializeField] private GameObject gaugeVisualRoot;
+    [SerializeField] private CanvasGroup gaugeCanvasGroup;
 
     [Header("Gauge Bar")]
     [SerializeField] private Transform gaugeBar;
@@ -16,6 +19,15 @@ public class GaugeUI : MonoBehaviour
 
     private void Awake()
     {
+        if (gaugeManager == null)
+            gaugeManager = FindAnyObjectByType<GaugeManager>();
+
+        if (laserUnlockState == null)
+            laserUnlockState = FindAnyObjectByType<LaserUnlockState>();
+
+        if (gaugeCanvasGroup == null)
+            gaugeCanvasGroup = GetComponent<CanvasGroup>();
+
         if (gaugeBar != null)
         {
             maxGaugeScale = gaugeBar.localScale;
@@ -24,22 +36,36 @@ public class GaugeUI : MonoBehaviour
 
     private void OnEnable()
     {
-        if (gaugeManager == null)
-            return;
+        if (gaugeManager != null)
+        {
+            gaugeManager.OnGaugeValueChanged += UpdateGaugeBar;
+            gaugeManager.OnGaugeValueChanged += UpdateGaugeValueText;
+            gaugeManager.OnGaugeSegmentChanged += UpdateGaugeSegmentText;
+        }
 
-        gaugeManager.OnGaugeValueChanged += UpdateGaugeBar;
-        gaugeManager.OnGaugeValueChanged += UpdateGaugeValueText;
-        gaugeManager.OnGaugeSegmentChanged += UpdateGaugeSegmentText;
+        if (laserUnlockState != null)
+        {
+            laserUnlockState.OnLaserUnlocked += HandleLaserUnlockChanged;
+            laserUnlockState.OnLaserLocked += HandleLaserUnlockChanged;
+        }
+
+        RefreshVisibility();
     }
 
     private void OnDisable()
     {
-        if (gaugeManager == null)
-            return;
+        if (gaugeManager != null)
+        {
+            gaugeManager.OnGaugeValueChanged -= UpdateGaugeBar;
+            gaugeManager.OnGaugeValueChanged -= UpdateGaugeValueText;
+            gaugeManager.OnGaugeSegmentChanged -= UpdateGaugeSegmentText;
+        }
 
-        gaugeManager.OnGaugeValueChanged -= UpdateGaugeBar;
-        gaugeManager.OnGaugeValueChanged -= UpdateGaugeValueText;
-        gaugeManager.OnGaugeSegmentChanged -= UpdateGaugeSegmentText;
+        if (laserUnlockState != null)
+        {
+            laserUnlockState.OnLaserUnlocked -= HandleLaserUnlockChanged;
+            laserUnlockState.OnLaserLocked -= HandleLaserUnlockChanged;
+        }
     }
 
     private void Start()
@@ -52,6 +78,7 @@ public class GaugeUI : MonoBehaviour
         if (gaugeManager == null)
             return;
 
+        RefreshVisibility();
         UpdateGaugeBar(gaugeManager.CurrentGaugeValue);
         UpdateGaugeValueText(gaugeManager.CurrentGaugeValue);
         UpdateGaugeSegmentText(gaugeManager.FilledGaugeSegments);
@@ -91,5 +118,37 @@ public class GaugeUI : MonoBehaviour
 
         gaugeSegmentText.text =
             $"Gauge Segments: {segment} / {gaugeManager.MaxGaugeSegments}";
+    }
+
+    private void HandleLaserUnlockChanged()
+    {
+        RefreshAll();
+    }
+
+    private void RefreshVisibility()
+    {
+        bool unlocked = laserUnlockState != null && laserUnlockState.IsLaserUnlocked;
+
+        if (gaugeCanvasGroup != null)
+        {
+            gaugeCanvasGroup.alpha = unlocked ? 1f : 0f;
+            gaugeCanvasGroup.interactable = unlocked;
+            gaugeCanvasGroup.blocksRaycasts = unlocked;
+        }
+
+        if (gaugeVisualRoot != null && gaugeVisualRoot != gameObject)
+            gaugeVisualRoot.SetActive(unlocked);
+
+        if (gaugeCanvasGroup == null && gaugeVisualRoot == null)
+        {
+            if (gaugeBar != null)
+                gaugeBar.gameObject.SetActive(unlocked);
+
+            if (gaugeSegmentText != null)
+                gaugeSegmentText.gameObject.SetActive(unlocked);
+
+            if (gaugeValueText != null)
+                gaugeValueText.gameObject.SetActive(unlocked);
+        }
     }
 }

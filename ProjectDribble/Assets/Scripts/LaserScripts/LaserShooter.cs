@@ -9,11 +9,21 @@ public class LaserShooter : MonoBehaviour
     [SerializeField] private Transform ball;
     [SerializeField] private BallSpeedController ballSpeedController;
     [SerializeField] private Transform firePoint;
+    [SerializeField] private LaserUnlockState laserUnlockState;
 
     public event Action OnLaserFired;
 
+    private void Awake()
+    {
+        if (laserUnlockState == null)
+            laserUnlockState = FindAnyObjectByType<LaserUnlockState>();
+    }
+
     public void ShootLaser(int chargeCount)
     {
+        if (laserUnlockState == null || !laserUnlockState.IsLaserUnlocked)
+            return;
+
         if (laserData == null || laserBlockEraser == null || ball == null || firePoint == null || chargeCount <= 0)
             return;
 

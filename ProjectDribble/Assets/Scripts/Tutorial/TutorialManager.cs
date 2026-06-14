@@ -4,14 +4,15 @@ using UnityEngine;
 public class TutorialManager : MonoBehaviour
 {
     private const string Stage1StartMessage =
-        "怨듭쓣 ?뺢린怨??쒕━釉뷀빐 蹂댁꽭??\n?쒕━釉???怨듭쓣 諛쒖궗???쇰컲 釉붾줉??紐⑤몢 遺?섏꽭??";
-    private const string Stage1CeilingMessage = "泥쒖옣???뚮━?몄슂!";
+        "기본 조작 설명 \n블록을 모두 부수세요!";
+    private const string Stage1CeilingMessage = 
+        "천장을 부수세요!";
     private const string Stage2StartMessage =
-        "?먮쫫 釉붾줉? ?꾨옒濡??먮엻?덈떎.\n諛붾떏???우쑝硫?移⑥떇?⑸땲??\n以묎컙 ?곌껐???딆쑝硫??깆옣??硫덉땅?덈떎.";
+        "흐름 블록 설명\n 천장을 부수세요!";
     private const string Stage3StartMessage =
-        "泥쒖옣? ?щ윭 媛쒕줈 ?섎돖 ???덉뒿?덈떎.\n泥쒖옣??遺?섎㈃ ?곌껐???먮쫫 釉붾줉???깆옣??硫덉땅?덈떎.";
+        "천장이 2개로 나눠졌음";
     private const string Stage3SegmentDestroyedMessage =
-        "泥쒖옣怨??곌껐???먮쫫 釉붾줉???깆옣??硫덉톬?듬땲??";
+        "천장을 부수면 줄기가 멈춘다는 설명";
     private const string Stage4StartMessage = "블록을 부수면 게이지가 찹니다.";
     private const string Stage4GaugeFullMessage =
         "게이지가 가득 찼습니다. 공을 잡고 차징한 뒤 레이저를 발사해보세요.";
@@ -25,7 +26,8 @@ public class TutorialManager : MonoBehaviour
     private const string Stage5FixedDestroyedMessage = "고정 블록을 제거했습니다.";
     private const string Stage6RecallGuideMessage =
         "공이 멀리 있거나 갇혔을 때는 공을 다시 불러올 수 있습니다.\n리스폰 버튼을 눌러 공을 불러오세요.";
-    private const string Stage6RecalledMessage = "공을 다시 불러왔습니다.";
+    private const string Stage6RecalledMessage = 
+        "공을 다시 불러왔습니다.";
 
     [Header("References")]
     [SerializeField] private TutorialUI tutorialUI;
@@ -34,6 +36,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GaugeManager gaugeManager;
     [SerializeField] private LaserShooter laserShooter;
     [SerializeField] private BallRespawner ballRespawner;
+    [SerializeField] private LaserUnlockState laserUnlockState;
 
     [Header("Message")]
     [SerializeField] private bool pauseOnMessage;
@@ -72,6 +75,9 @@ public class TutorialManager : MonoBehaviour
 
         if (ballRespawner == null)
             ballRespawner = FindAnyObjectByType<BallRespawner>();
+
+        if (laserUnlockState == null)
+            laserUnlockState = FindAnyObjectByType<LaserUnlockState>();
     }
 
     private void OnDisable()
@@ -82,6 +88,9 @@ public class TutorialManager : MonoBehaviour
     public void BeginStage(int stageIndex, StageDefinition stageDefinition)
     {
         ClearStageSubscriptions();
+
+        if (ceilingManager != null)
+            ceilingManager.SetDamageEnabled(true);
 
         currentTutorialStageId = ResolveTutorialStageId(stageIndex, stageDefinition);
 
@@ -97,7 +106,7 @@ public class TutorialManager : MonoBehaviour
                 BeginStage3();
                 break;
             case TutorialStageId.Stage4:
-                BeginStage4();
+                BeginStage4(stageDefinition);
                 break;
             case TutorialStageId.Stage5:
                 BeginStage5();
@@ -134,6 +143,9 @@ public class TutorialManager : MonoBehaviour
 
     private void BeginStage1()
     {
+        if (ceilingManager != null)
+            ceilingManager.SetDamageEnabled(false);
+
         ShowMessage(Stage1StartMessage);
 
         if (blockManager == null)
@@ -154,8 +166,14 @@ public class TutorialManager : MonoBehaviour
         isSubscribedToCeilingEvents = true;
     }
 
-    private void BeginStage4()
+    private void BeginStage4(StageDefinition stageDefinition)
     {
+        if (laserUnlockState != null)
+            laserUnlockState.UnlockLaser();
+
+        if (gaugeManager != null && stageDefinition != null)
+            gaugeManager.InitializeGauge(stageDefinition.startGaugeValue);
+
         ShowMessage(Stage4StartMessage);
 
         if (gaugeManager != null)
@@ -200,6 +218,9 @@ public class TutorialManager : MonoBehaviour
     {
         if (currentTutorialStageId != TutorialStageId.Stage1)
             return;
+
+        if (ceilingManager != null)
+            ceilingManager.SetDamageEnabled(true);
 
         ShowMessage(Stage1CeilingMessage);
     }
@@ -345,6 +366,9 @@ public class TutorialManager : MonoBehaviour
 
         if (isSubscribedToBallRespawnerEvents && ballRespawner != null)
             ballRespawner.OnBallRecalled -= HandleBallRecalled;
+
+        if (ceilingManager != null)
+            ceilingManager.SetDamageEnabled(true);
 
         if (pendingMessageRoutine != null)
         {

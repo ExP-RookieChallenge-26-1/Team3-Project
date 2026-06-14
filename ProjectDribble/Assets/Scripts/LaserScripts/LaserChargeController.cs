@@ -14,6 +14,7 @@ public class LaserChargeController : MonoBehaviour
     [SerializeField] private BallController ballController;
     [FormerlySerializedAs("guageManger")] [SerializeField] private GaugeManager guageManager;
     [SerializeField] private LaserShooter laserShoot;
+    [SerializeField] private LaserUnlockState laserUnlockState;
     
     private bool isDribbling = false;
     private float chargeTimer = 0f;
@@ -23,6 +24,9 @@ public class LaserChargeController : MonoBehaviour
     {
         if (ballController == null)
             ballController = FindAnyObjectByType<BallController>();
+
+        if (laserUnlockState == null)
+            laserUnlockState = FindAnyObjectByType<LaserUnlockState>();
     }
    
     private void OnEnable()
@@ -56,6 +60,13 @@ public class LaserChargeController : MonoBehaviour
         if (ballController != null)
             return;
 
+        if (!IsLaserUnlocked())
+        {
+            Reset();
+            isDribbling = false;
+            return;
+        }
+
         isDribbling = value;
         
         if (isDribbling == false)
@@ -77,6 +88,9 @@ public class LaserChargeController : MonoBehaviour
 
     private void HandleBallCaptured()
     {
+        if (!IsLaserUnlocked())
+            return;
+
         isDribbling = true;
         chargeTimer = 0f;
         
@@ -85,6 +99,13 @@ public class LaserChargeController : MonoBehaviour
 
     private void HandleBallReleased()
     {
+        if (!IsLaserUnlocked())
+        {
+            Reset();
+            isDribbling = false;
+            return;
+        }
+
         if (!isDribbling)
             return;
 
@@ -110,7 +131,7 @@ public class LaserChargeController : MonoBehaviour
         if (laserChargePreview == null)
             return;
 
-        if (!isDribbling)
+        if (!isDribbling || !IsLaserUnlocked())
         {
             laserChargePreview.Hide();
             return;
@@ -137,6 +158,9 @@ public class LaserChargeController : MonoBehaviour
     // 기준 시간 이상이면 true 반환
     private bool CheckTimer()
     {
+        if (!IsLaserUnlocked())
+            return false;
+
         if (isDribbling)
         {
             chargeTimer += Time.deltaTime;
@@ -153,6 +177,8 @@ public class LaserChargeController : MonoBehaviour
     // 차징 레벨 올리기 시도
     private void TryIncreaseChargeLevel()
     {
+        if (!IsLaserUnlocked() || guageManager == null)
+            return;
         
         if (guageManager.FilledGaugeSegments > 0)
         {
@@ -166,6 +192,8 @@ public class LaserChargeController : MonoBehaviour
     }
     private void IncreaseChargeLevel()
     {
+        if (!IsLaserUnlocked() || guageManager == null)
+            return;
         
         guageManager.TryReduceGaugeLevel();
         chargeTimer = 0f;
@@ -176,6 +204,9 @@ public class LaserChargeController : MonoBehaviour
 
     private void TryFireChargedLaser()
     {
+        if (!IsLaserUnlocked())
+            return;
+
         if (chargeCount > 0)
         {
             float chargeRatio = GetChargeRatio();
@@ -189,6 +220,10 @@ public class LaserChargeController : MonoBehaviour
     private void ReturnGauge()
     {
         SoundManager.Instance.StopLoop();
+
+        if (!IsLaserUnlocked() || guageManager == null)
+            return;
+
         int returnAmount = chargeCount * _data.gaugePerSegment;
 
         for (int i = 0; i < returnAmount; i++)
@@ -211,5 +246,10 @@ public class LaserChargeController : MonoBehaviour
             return 0f;
 
         return Mathf.Clamp01(chargeCount / (float)_data.maxChargeCount);
+    }
+
+    private bool IsLaserUnlocked()
+    {
+        return laserUnlockState != null && laserUnlockState.IsLaserUnlocked;
     }
 }

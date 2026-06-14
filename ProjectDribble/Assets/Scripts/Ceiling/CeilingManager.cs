@@ -23,6 +23,7 @@ public class CeilingManager : MonoBehaviour
     private CeilingSegmentMode ceilingSegmentMode = CeilingSegmentMode.ThreeSegments;
     private bool isStageCleared;
     private bool isInitialized;
+    private bool damageEnabled = true;
 
     [Header("Brick Spawn")]
     [SerializeField] private CeilingBrick ceilingBrickPrefab;
@@ -78,7 +79,13 @@ public class CeilingManager : MonoBehaviour
         runtimeMaxHp = Mathf.Max(1, maxHp);
         ceilingSegmentMode = segmentMode;
         isInitialized = true;
+        damageEnabled = true;
         ResetCeilingState();
+    }
+
+    public void SetDamageEnabled(bool enabled)
+    {
+        damageEnabled = enabled;
     }
 
     public void ResetCeilingState()
@@ -215,6 +222,9 @@ public class CeilingManager : MonoBehaviour
 
     public void DamageSegmentByX(int x, float damage)
     {
+        if (!damageEnabled)
+            return;
+
         if (isStageCleared)
             return;
 

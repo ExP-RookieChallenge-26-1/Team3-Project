@@ -901,6 +901,9 @@ MonoBehaviour:
   tutorialUI: {fileID: 1641508855}
   blockManager: {fileID: 4361603370357834238}
   ceilingManager: {fileID: 22802466009801029}
+  gaugeManager: {fileID: 3735814449434435070}
+  laserShooter: {fileID: 4979493474648238134}
+  ballRespawner: {fileID: 8720353550579785846}
   pauseOnMessage: 0
 --- !u!1 &856427652
 GameObject:
@@ -1039,6 +1042,7 @@ Transform:
   m_Children:
   - {fileID: 977133736}
   - {fileID: 625922474}
+  - {fileID: 1168435299}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &949227556
@@ -1238,8 +1242,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ab84b89afa5895f4e9b5115a311ee4f2, type: 2}
   - {fileID: 11400000, guid: 3dccf32ce1e6c4246a540dbb508f5f84, type: 2}
   - {fileID: 11400000, guid: 8ae0c39d1d0530b459af84cdf890cb69, type: 2}
-  - {fileID: 11400000, guid: f6d0b059c7b03354a8259b6601fd6d0e, type: 2}
-  startStageIndex: 0
+  - {fileID: 11400000, guid: 783fd3cbfa4565b4ab37fae4af13e9d3, type: 2}
+  - {fileID: 11400000, guid: 8e6a7d0e00ec1334fb27f387c642e623, type: 2}
+  - {fileID: 11400000, guid: 71aca186232a98b4fa1f48982aace1c2, type: 2}
+  startStageIndex: 4
   bossStageIndex: 3
   ceilingManager: {fileID: 22802466009801029}
   playerHealth: {fileID: 5988251570761651997}
@@ -1533,12 +1539,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1168435297}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3.02679, y: 6.28448, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 949227555}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1169768073
 GameObject:
@@ -6551,7 +6557,6 @@ SceneRoots:
   - {fileID: 1650851836}
   - {fileID: 5817911144973919479}
   - {fileID: 8838075}
-  - {fileID: 1168435299}
   - {fileID: 1247764185}
   - {fileID: 990277295}
   - {fileID: 145883133}

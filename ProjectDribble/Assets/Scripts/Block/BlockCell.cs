@@ -115,6 +115,8 @@ public class BlockCell : MonoBehaviour,
     
     public void OnBallHit(BallController ball)
     {
+        if (IsFixed)
+            manager?.NotifyFixedBlockHitByBall(this);
         
         // 일단 비워둬도 됨.
         // 반사는 BallCollisionHandler에서 기본 반사 처리함.
@@ -122,6 +124,8 @@ public class BlockCell : MonoBehaviour,
 
     public bool OnLaserHit()
     {
+        bool wasFixed = IsFixed;
+
         SoundManager.Instance.Play(
             SoundId.BlockBreak,
             new SoundPlayOptions
@@ -132,7 +136,11 @@ public class BlockCell : MonoBehaviour,
             }
         );
         manager.RemoveBlock(coord, true);
-        return IsFixed;
+
+        if (wasFixed)
+            manager?.NotifyFixedBlockDestroyedByLaser(this);
+
+        return wasFixed;
     }
 
     public bool TakeDamage(float damage)
@@ -143,7 +151,10 @@ public class BlockCell : MonoBehaviour,
     public bool TakeDamage(float damage, bool addGauge)
     {
         if (IsFixed)
+        {
+            manager?.NotifyFixedBlockHitByBall(this);
             return false;
+        }
 
         hp -= damage;
 

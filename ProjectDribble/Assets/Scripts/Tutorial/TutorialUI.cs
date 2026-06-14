@@ -10,6 +10,8 @@ public class TutorialUI : MonoBehaviour
     private bool pausedByTutorial;
     private float previousTimeScale = 1f;
 
+    public bool IsShowing => isShowing;
+
     private void Awake()
     {
         Hide();

@@ -5,6 +5,8 @@ using UnityEngine;
 public class BlockManager : MonoBehaviour
 {
     public event System.Action OnNormalBlocksCleared;
+    public event System.Action<BlockCell> OnFixedBlockHitByBall;
+    public event System.Action<BlockCell> OnFixedBlockDestroyedByLaser;
 
     // Legacy compatibility event. New tutorial code should use OnNormalBlocksCleared.
     // Candidate for removal after all old tutorial target block usages are gone.
@@ -790,6 +792,22 @@ public class BlockManager : MonoBehaviour
             return;
 
         RemoveBlock(coord);
+    }
+
+    public void NotifyFixedBlockHitByBall(BlockCell block)
+    {
+        if (block == null || !block.IsFixed)
+            return;
+
+        OnFixedBlockHitByBall?.Invoke(block);
+    }
+
+    public void NotifyFixedBlockDestroyedByLaser(BlockCell block)
+    {
+        if (block == null)
+            return;
+
+        OnFixedBlockDestroyedByLaser?.Invoke(block);
     }
 
     public void AddGauge()

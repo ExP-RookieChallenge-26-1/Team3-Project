@@ -1,4 +1,5 @@
 using ScriptableObjects;
+using System;
 using UnityEngine;
 
 public class LaserShooter : MonoBehaviour
@@ -9,9 +10,11 @@ public class LaserShooter : MonoBehaviour
     [SerializeField] private BallSpeedController ballSpeedController;
     [SerializeField] private Transform firePoint;
 
+    public event Action OnLaserFired;
+
     public void ShootLaser(int chargeCount)
     {
-        if (laserData == null || chargeCount <= 0)
+        if (laserData == null || laserBlockEraser == null || ball == null || firePoint == null || chargeCount <= 0)
             return;
 
         Vector2 origin = firePoint.position;
@@ -30,6 +33,7 @@ public class LaserShooter : MonoBehaviour
 
         ball.position = newBallPosition;
         GetBallSpeedController()?.ApplyLaserBoost();
+        OnLaserFired?.Invoke();
         
     }
 

@@ -18,7 +18,8 @@ MonoBehaviour:
   disableGrowth: 0
   useStemGrowth: 1
   growthStems:
-  - startCoord: {x: 3, y: 0}
+  - ceilingSegmentIndex: 1
+    startCoord: {x: 3, y: 0}
     minX: 1
     maxX: 5
     maxLength: 20

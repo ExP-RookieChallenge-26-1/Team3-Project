@@ -1,44 +1,41 @@
+using System;
 using TMPro;
 using UnityEngine;
 
-public class TutorialUI : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
+    [Header("Tutorial Popup")]
     [SerializeField] private GameObject messageRoot;
     [SerializeField] private TextMeshProUGUI messageText;
 
-    private bool isShowing;
-    private bool pausedByTutorial;
-    private float previousTimeScale = 1f;
+    private Action tutorialCloseCallback;
+    private bool isTutorialPopupOpen;
 
-    public bool IsShowing => isShowing;
+    public bool IsTutorialPopupOpen => isTutorialPopupOpen;
 
-    private void Awake()
+    protected virtual void Awake()
     {
-        Hide();
+        HideTutorialPopup(false);
     }
 
-    private void Update()
+    protected virtual void Update()
     {
-        if (!isShowing)
+        if (!isTutorialPopupOpen)
             return;
 
-        bool clicked = Input.GetMouseButtonDown(0);
-        bool touched = Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began;
-
-        if (clicked || touched)
-            Hide();
+        if (IsTutorialCloseInput())
+            HideTutorialPopup();
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
-        RestoreTimeScaleIfNeeded();
-        isShowing = false;
+        if (isTutorialPopupOpen)
+            HideTutorialPopup();
     }
 
-    public void ShowMessage(string message, bool pauseGame)
+    public void ShowTutorialPopup(string message, Action onClose = null)
     {
-        if (!pauseGame)
-            RestoreTimeScaleIfNeeded();
+        tutorialCloseCallback = onClose;
 
         if (messageText != null)
             messageText.text = message;
@@ -46,17 +43,30 @@ public class TutorialUI : MonoBehaviour
         if (messageRoot != null)
             messageRoot.SetActive(true);
 
-        isShowing = true;
+        isTutorialPopupOpen = true;
+    }
 
-        if (pauseGame && !pausedByTutorial)
-        {
-            previousTimeScale = Time.timeScale;
-            Time.timeScale = 0f;
-            pausedByTutorial = true;
-        }
+    public void HideTutorialPopup()
+    {
+        HideTutorialPopup(true);
+    }
+
+    public void Continue()
+    {
+        HideTutorialPopup();
+    }
+
+    public void ShowMessage(string message, bool pauseGame)
+    {
+        ShowTutorialPopup(message);
     }
 
     public void Hide()
+    {
+        HideTutorialPopup();
+    }
+
+    private void HideTutorialPopup(bool invokeCallback)
     {
         if (messageRoot != null)
             messageRoot.SetActive(false);
@@ -64,21 +74,29 @@ public class TutorialUI : MonoBehaviour
         if (messageText != null)
             messageText.text = string.Empty;
 
-        isShowing = false;
-        RestoreTimeScaleIfNeeded();
+        bool wasOpen = isTutorialPopupOpen;
+        Action callback = tutorialCloseCallback;
+        tutorialCloseCallback = null;
+        isTutorialPopupOpen = false;
+
+        if (invokeCallback && wasOpen)
+            callback?.Invoke();
     }
 
-    public void Continue()
+    private bool IsTutorialCloseInput()
     {
-        Hide();
-    }
+        if (Input.GetMouseButtonDown(0))
+            return true;
 
-    private void RestoreTimeScaleIfNeeded()
-    {
-        if (!pausedByTutorial)
-            return;
+        if (Input.GetKeyDown(KeyCode.Space) ||
+            Input.GetKeyDown(KeyCode.Return) ||
+            Input.GetKeyDown(KeyCode.KeypadEnter))
+            return true;
 
-        Time.timeScale = previousTimeScale;
-        pausedByTutorial = false;
+        return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began;
     }
+}
+
+public class TutorialUI : UIManager
+{
 }

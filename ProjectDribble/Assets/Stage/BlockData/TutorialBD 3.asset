@@ -18,7 +18,7 @@ MonoBehaviour:
   disableGrowth: 0
   useStemGrowth: 1
   growthStems:
-  - ceilingSegmentIndex: 1
+  - ceilingSegmentIndex: 0
     startCoord: {x: 1, y: 0}
     minX: 0
     maxX: 2
@@ -32,7 +32,7 @@ MonoBehaviour:
     minGrowPerTick: 0
     maxGrowPerTick: 0
     initialDelay: 0
-  - ceilingSegmentIndex: 2
+  - ceilingSegmentIndex: 1
     startCoord: {x: 4, y: 0}
     minX: 4
     maxX: 6

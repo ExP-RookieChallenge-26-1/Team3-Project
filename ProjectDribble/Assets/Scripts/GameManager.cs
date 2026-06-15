@@ -1,12 +1,23 @@
 using UnityEngine;
-using System.Collections.Generic;
-using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
-    
-    void Awake()
+    public static GameManager Instance { get; private set; }
+
+    private bool isPausedByTutorial;
+    private float timeScaleBeforeTutorial = 1f;
+
+    public bool IsPausedByTutorial => isPausedByTutorial;
+
+    private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogWarning("GameManager: more than one GameManager exists. Keeping the first instance.");
+            return;
+        }
+
+        Instance = this;
         QualitySettings.vSyncCount = 1;
         Application.targetFrameRate = 60;
     }
@@ -37,5 +48,24 @@ public class GameManager : MonoBehaviour
 
     public void ResumeGame()
     {
+    }
+
+    public void PauseForTutorial()
+    {
+        if (isPausedByTutorial)
+            return;
+
+        timeScaleBeforeTutorial = Time.timeScale;
+        Time.timeScale = 0f;
+        isPausedByTutorial = true;
+    }
+
+    public void ResumeFromTutorial()
+    {
+        if (!isPausedByTutorial)
+            return;
+
+        Time.timeScale = timeScaleBeforeTutorial;
+        isPausedByTutorial = false;
     }
 }

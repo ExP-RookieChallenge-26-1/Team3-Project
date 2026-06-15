@@ -1,5 +1,26 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+
+public enum TutorialId
+{
+    None,
+    Stage1Start,
+    Stage1Ceiling,
+    Stage2Start,
+    Stage3Start,
+    Stage3SegmentDestroyed,
+    Stage4Start,
+    Stage4GaugeFull,
+    Stage4LaserFired,
+    Stage5Start,
+    Stage5FixedHit,
+    Stage5LaserGuide,
+    Stage5FixedDestroyed,
+    Stage6RecallGuide,
+    Stage6Recalled
+}
 
 public class TutorialManager : MonoBehaviour
 {
@@ -30,7 +51,9 @@ public class TutorialManager : MonoBehaviour
         "공을 다시 불러왔습니다.";
 
     [Header("References")]
-    [SerializeField] private TutorialUI tutorialUI;
+    [FormerlySerializedAs("tutorialUI")]
+    [SerializeField] private UIManager uiManager;
+    [SerializeField] private GameManager gameManager;
     [SerializeField] private BlockManager blockManager;
     [SerializeField] private CeilingManager ceilingManager;
     [SerializeField] private GaugeManager gaugeManager;
@@ -41,6 +64,7 @@ public class TutorialManager : MonoBehaviour
     [Header("Message")]
     [SerializeField] private bool pauseOnMessage;
 
+    private readonly HashSet<TutorialId> shownTutorials = new();
     private TutorialStageId currentTutorialStageId = TutorialStageId.None;
     private bool isSubscribedToBlockEvents;
     private bool isSubscribedToCeilingEvents;
@@ -58,8 +82,11 @@ public class TutorialManager : MonoBehaviour
 
     private void Awake()
     {
-        if (tutorialUI == null)
-            tutorialUI = FindAnyObjectByType<TutorialUI>();
+        if (uiManager == null)
+            uiManager = FindAnyObjectByType<UIManager>();
+
+        if (gameManager == null)
+            gameManager = GameManager.Instance != null ? GameManager.Instance : FindAnyObjectByType<GameManager>();
 
         if (blockManager == null)
             blockManager = FindAnyObjectByType<BlockManager>();
@@ -100,7 +127,7 @@ public class TutorialManager : MonoBehaviour
                 BeginStage1();
                 break;
             case TutorialStageId.Stage2:
-                ShowMessage(Stage2StartMessage);
+                TryShowTutorial(TutorialId.Stage2Start);
                 break;
             case TutorialStageId.Stage3:
                 BeginStage3();
@@ -146,7 +173,7 @@ public class TutorialManager : MonoBehaviour
         if (ceilingManager != null)
             ceilingManager.SetDamageEnabled(false);
 
-        ShowMessage(Stage1StartMessage);
+        TryShowTutorial(TutorialId.Stage1Start);
 
         if (blockManager == null)
             return;
@@ -157,7 +184,7 @@ public class TutorialManager : MonoBehaviour
 
     private void BeginStage3()
     {
-        ShowMessage(Stage3StartMessage);
+        TryShowTutorial(TutorialId.Stage3Start);
 
         if (ceilingManager == null)
             return;
@@ -174,7 +201,7 @@ public class TutorialManager : MonoBehaviour
         if (gaugeManager != null && stageDefinition != null)
             gaugeManager.InitializeGauge(stageDefinition.startGaugeValue);
 
-        ShowMessage(Stage4StartMessage);
+        TryShowTutorial(TutorialId.Stage4Start);
 
         if (gaugeManager != null)
         {
@@ -190,12 +217,12 @@ public class TutorialManager : MonoBehaviour
         }
 
         if (IsGaugeFull())
-            ShowMessageAfterCurrentCloses(Stage4GaugeFullMessage, MarkStage4GaugeFullMessageShown);
+            ShowTutorialAfterCurrentCloses(TutorialId.Stage4GaugeFull, MarkStage4GaugeFullMessageShown);
     }
 
     private void BeginStage5()
     {
-        ShowMessage(Stage5StartMessage);
+        TryShowTutorial(TutorialId.Stage5Start);
 
         if (blockManager == null)
             return;
@@ -222,7 +249,7 @@ public class TutorialManager : MonoBehaviour
         if (ceilingManager != null)
             ceilingManager.SetDamageEnabled(true);
 
-        ShowMessage(Stage1CeilingMessage);
+        TryShowTutorial(TutorialId.Stage1Ceiling);
     }
 
     private void HandleCeilingSegmentDestroyed(CeilingSegment segment)
@@ -230,7 +257,7 @@ public class TutorialManager : MonoBehaviour
         if (currentTutorialStageId != TutorialStageId.Stage3)
             return;
 
-        ShowMessage(Stage3SegmentDestroyedMessage);
+        TryShowTutorial(TutorialId.Stage3SegmentDestroyed);
     }
 
     private void HandleGaugeValueChanged(int value)
@@ -257,7 +284,7 @@ public class TutorialManager : MonoBehaviour
             return;
 
         stage4GaugeFullMessageShown = true;
-        ShowMessage(Stage4GaugeFullMessage);
+        TryShowTutorial(TutorialId.Stage4GaugeFull);
     }
 
     private bool IsGaugeFull()
@@ -281,7 +308,7 @@ public class TutorialManager : MonoBehaviour
             return;
 
         stage4LaserFiredMessageShown = true;
-        ShowMessage(Stage4LaserFiredMessage);
+        TryShowTutorial(TutorialId.Stage4LaserFired);
     }
 
     private void HandleFixedBlockHitByBall(BlockCell block)
@@ -292,15 +319,15 @@ public class TutorialManager : MonoBehaviour
         if (!stage5FixedHitMessageShown)
         {
             stage5FixedHitMessageShown = true;
-            ShowMessage(Stage5FixedHitMessage);
-            ShowMessageAfterCurrentCloses(Stage5LaserGuideMessage, MarkStage5LaserGuideMessageShown);
+            TryShowTutorial(TutorialId.Stage5FixedHit);
+            ShowTutorialAfterCurrentCloses(TutorialId.Stage5LaserGuide, MarkStage5LaserGuideMessageShown);
             return;
         }
 
         if (!stage5LaserGuideMessageShown)
         {
             stage5LaserGuideMessageShown = true;
-            ShowMessage(Stage5LaserGuideMessage);
+            TryShowTutorial(TutorialId.Stage5LaserGuide);
         }
     }
 
@@ -313,7 +340,7 @@ public class TutorialManager : MonoBehaviour
             return;
 
         stage5FixedDestroyedMessageShown = true;
-        ShowMessage(Stage5FixedDestroyedMessage);
+        TryShowTutorial(TutorialId.Stage5FixedDestroyed);
     }
 
     public void NotifyTriggerEntered(TutorialStageId tutorialStageId, string triggerId)
@@ -328,7 +355,7 @@ public class TutorialManager : MonoBehaviour
             return;
 
         stage6RecallGuideMessageShown = true;
-        ShowMessage(Stage6RecallGuideMessage, false);
+        TryShowTutorial(TutorialId.Stage6RecallGuide, false);
     }
 
     private void HandleBallRecalled()
@@ -340,7 +367,7 @@ public class TutorialManager : MonoBehaviour
             return;
 
         stage6RecalledMessageShown = true;
-        ShowMessage(Stage6RecalledMessage);
+        TryShowTutorial(TutorialId.Stage6Recalled);
     }
 
     private void ClearStageSubscriptions()
@@ -385,25 +412,58 @@ public class TutorialManager : MonoBehaviour
         ResetStageFlags();
     }
 
-    private void ShowMessage(string message)
+    public bool TryShowTutorial(TutorialId id)
     {
-        ShowMessage(message, pauseOnMessage);
+        return TryShowTutorial(id, pauseOnMessage);
+    }
+
+    public void MarkShown(TutorialId id)
+    {
+        if (id == TutorialId.None)
+            return;
+
+        shownTutorials.Add(id);
+    }
+
+    public bool HasShown(TutorialId id)
+    {
+        return shownTutorials.Contains(id);
+    }
+
+    private bool TryShowTutorial(TutorialId id, bool pauseGame)
+    {
+        if (id == TutorialId.None || HasShown(id))
+            return false;
+
+        string message = GetTutorialMessage(id);
+        if (string.IsNullOrWhiteSpace(message))
+        {
+            Debug.LogWarning($"TutorialManager: message is empty for {id}.");
+            return false;
+        }
+
+        MarkShown(id);
+        ShowMessage(message, pauseGame);
+        return true;
     }
 
     private void ShowMessage(string message, bool pauseGame)
     {
-        if (tutorialUI == null)
+        if (uiManager == null)
             return;
 
-        tutorialUI.ShowMessage(message, pauseGame);
+        if (pauseGame && gameManager != null)
+            gameManager.PauseForTutorial();
+
+        uiManager.ShowTutorialPopup(message, pauseGame ? ResumeTutorial : null);
     }
 
     private void HideMessage()
     {
-        if (tutorialUI == null)
+        if (uiManager == null)
             return;
 
-        tutorialUI.Hide();
+        uiManager.HideTutorialPopup();
     }
 
     private void ResetStageFlags()
@@ -417,26 +477,72 @@ public class TutorialManager : MonoBehaviour
         stage6RecalledMessageShown = false;
     }
 
-    private void ShowMessageAfterCurrentCloses(string message, System.Action markShown)
+    private void ShowTutorialAfterCurrentCloses(TutorialId id, System.Action markShown)
     {
-        if (tutorialUI == null)
+        if (uiManager == null || id == TutorialId.None || HasShown(id))
             return;
 
         markShown?.Invoke();
+        MarkShown(id);
 
         if (pendingMessageRoutine != null)
             StopCoroutine(pendingMessageRoutine);
 
-        pendingMessageRoutine = StartCoroutine(ShowMessageAfterCurrentClosesRoutine(message, markShown));
+        pendingMessageRoutine = StartCoroutine(ShowTutorialAfterCurrentClosesRoutine(id));
     }
 
-    private IEnumerator ShowMessageAfterCurrentClosesRoutine(string message, System.Action markShown)
+    private IEnumerator ShowTutorialAfterCurrentClosesRoutine(TutorialId id)
     {
-        while (tutorialUI != null && tutorialUI.IsShowing)
+        while (uiManager != null && uiManager.IsTutorialPopupOpen)
             yield return null;
 
-        ShowMessage(message);
+        ShowMessage(GetTutorialMessage(id), pauseOnMessage);
         pendingMessageRoutine = null;
+    }
+
+    private void ResumeTutorial()
+    {
+        if (gameManager == null)
+            return;
+
+        gameManager.ResumeFromTutorial();
+    }
+
+    private string GetTutorialMessage(TutorialId id)
+    {
+        switch (id)
+        {
+            case TutorialId.Stage1Start:
+                return Stage1StartMessage;
+            case TutorialId.Stage1Ceiling:
+                return Stage1CeilingMessage;
+            case TutorialId.Stage2Start:
+                return Stage2StartMessage;
+            case TutorialId.Stage3Start:
+                return Stage3StartMessage;
+            case TutorialId.Stage3SegmentDestroyed:
+                return Stage3SegmentDestroyedMessage;
+            case TutorialId.Stage4Start:
+                return Stage4StartMessage;
+            case TutorialId.Stage4GaugeFull:
+                return Stage4GaugeFullMessage;
+            case TutorialId.Stage4LaserFired:
+                return Stage4LaserFiredMessage;
+            case TutorialId.Stage5Start:
+                return Stage5StartMessage;
+            case TutorialId.Stage5FixedHit:
+                return Stage5FixedHitMessage;
+            case TutorialId.Stage5LaserGuide:
+                return Stage5LaserGuideMessage;
+            case TutorialId.Stage5FixedDestroyed:
+                return Stage5FixedDestroyedMessage;
+            case TutorialId.Stage6RecallGuide:
+                return Stage6RecallGuideMessage;
+            case TutorialId.Stage6Recalled:
+                return Stage6RecalledMessage;
+            default:
+                return string.Empty;
+        }
     }
 
     private void MarkStage4GaugeFullMessageShown()

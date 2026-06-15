@@ -883,7 +883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a8db2aa52c49709e52861a4d0f7ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaserUnlockState
-  isLaserUnlocked: 0
+  isLaserUnlocked: 1
 --- !u!4 &487274948
 Transform:
   m_ObjectHideFlags: 0

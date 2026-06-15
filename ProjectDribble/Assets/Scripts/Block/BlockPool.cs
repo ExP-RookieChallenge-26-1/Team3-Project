@@ -26,6 +26,12 @@ public class BlockPool : MonoBehaviour
         BlockManager manager
     )
     {
+        if (flowBlockPrefab == null)
+        {
+            Debug.LogWarning("BlockPool: flowBlockPrefab is null. Flow block pool was not created.");
+            return;
+        }
+
         this.gridToWorld = gridToWorld;
         this.manager = manager;
 
@@ -57,6 +63,12 @@ public class BlockPool : MonoBehaviour
 
     public void ActivateBlock(Vector2Int coord, float hp)
     {
+        if (pool == null)
+        {
+            Debug.LogWarning("BlockPool: Cannot activate flow block because pool is null.");
+            return;
+        }
+
         BlockCell block = pool[coord.x, coord.y];
 
         block.transform.position = gridToWorld(coord);
@@ -101,6 +113,12 @@ public class BlockPool : MonoBehaviour
 
     public BlockCell CreateFixedBlock(Vector2Int coord, float hp)
     {
+        if (fixedBlockPrefab == null)
+        {
+            Debug.LogWarning("BlockPool: fixedBlockPrefab is null. Fixed block was not created.");
+            return null;
+        }
+
         BlockCell block = Instantiate(
             fixedBlockPrefab,
             gridToWorld(coord),

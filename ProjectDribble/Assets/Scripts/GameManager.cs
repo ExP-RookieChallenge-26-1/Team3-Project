@@ -44,10 +44,12 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
+        
     }
 
     public void ResumeGame()
     {
+        
     }
 
     public void PauseForTutorial()

@@ -133,14 +133,18 @@ public class StageManager : MonoBehaviour
             return;
         }
 
+        if (ceilingManager != null)
+        {
+            ceilingManager.InitializeCeiling(data.ceilingMaxHpOverride, data.ceilingSegmentMode);
+        }
+
         if (blockManager != null)
         {
             blockManager.InitializeStageBlocks(data.blockData);
         }
-
-        if (ceilingManager != null)
+        else
         {
-            ceilingManager.InitializeCeiling(data.ceilingMaxHpOverride, data.ceilingSegmentMode);
+            Debug.LogWarning("StageManager: BlockManager is missing.");
         }
 
         if (playerHealth != null)

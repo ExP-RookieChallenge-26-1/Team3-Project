@@ -76,7 +76,7 @@ public class BlockManager : MonoBehaviour
 
     private void Start()
     {
-        if (data != null)
+        if (data != null && occupied == null)
             InitializeStageBlocks(data);
     }
 
@@ -89,6 +89,12 @@ public class BlockManager : MonoBehaviour
         }
 
         data = stageData;
+        Debug.Log(
+            $"BlockManager: InitializeStageBlocks data={data.name}, size={data.width}x{data.height}, " +
+            $"fixed={data.fixedBlocks?.Count ?? 0}, normal={data.normalBlocks?.Count ?? 0}, " +
+            $"stems={data.growthStems?.Length ?? 0}, startCells={data.startCells?.Count ?? 0}, " +
+            $"useStemGrowth={data.UseStemGrowth}."
+        );
         ResetBlocks();
         StartGrowth();
     }
@@ -547,6 +553,9 @@ public class BlockManager : MonoBehaviour
 
     private void SpawnStemStartBlocks()
     {
+        int spawned = 0;
+        int ceilingSegmentStemCount = 0;
+
         for (int i = 0; i < data.growthStems.Length; i++)
         {
             StageBlockData.GrowthStemData stem = data.growthStems[i];
@@ -555,9 +564,21 @@ public class BlockManager : MonoBehaviour
                 continue;
 
             if (UsesCeilingSegment(stem))
+            {
+                ceilingSegmentStemCount++;
                 continue;
+            }
 
             SpawnBlock(stem.startCoord, data.defaultHp, false, i);
+            spawned++;
+        }
+
+        if (spawned == 0 && ceilingSegmentStemCount > 0)
+        {
+            Debug.Log(
+                "BlockManager: No stem start blocks spawned immediately because all stems use ceilingSegmentIndex. " +
+                "Flow blocks will spawn from CeilingManager segment candidates during growth."
+            );
         }
     }
 

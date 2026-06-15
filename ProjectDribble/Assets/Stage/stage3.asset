@@ -10,12 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce5f614b448eead419bad4017a2d335c, type: 3}
-  m_Name: stage1 1
+  m_Name: stage3
   m_EditorClassIdentifier: Assembly-CSharp::StageDefinition
-  blockData: {fileID: 11400000, guid: f6a2d9c57c2648f4ca3e27a8e778c65a, type: 2}
-  ceilingMaxHpOverride: 100
+  blockData: {fileID: 11400000, guid: 86579fa2ad9c89240bb1c86a684bc197, type: 2}
+  ceilingSegmentMode: 0
+  ceilingMaxHpOverride: 80
   playerMaxHpOverride: 10
-  startGaugeValue: 10
-  ballStartPosition: {x: 0, y: -11.3}
+  startGaugeValue: 20
+  ballStartPosition: {x: 0, y: -11.5}
   ballStartDirection: {x: 0, y: -1}
   ballStartSpeed: 30
+  isTutorialStage: 0
+  tutorialStageId: 0

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d953c4d8f0723644096f01e564abfdbc, type: 3}
-  m_Name: TutorialBD 3
+  m_Name: 2
   m_EditorClassIdentifier: Assembly-CSharp::StageBlockData
   width: 7
   height: 20
@@ -24,29 +24,41 @@ MonoBehaviour:
     maxX: 2
     maxLength: 20
     width: 0
-    growWeight: 2
-    maxBlocksPerRow: 2
+    growWeight: 1
+    maxBlocksPerRow: 3
     directionOptions: []
-    enabled: 0
-    spawnInterval: 0
-    minGrowPerTick: 0
-    maxGrowPerTick: 0
-    initialDelay: 0
-  - ceilingSegmentIndex: 2
-    startCoord: {x: 4, y: 0}
+    enabled: 1
+    spawnInterval: 1.2
+    minGrowPerTick: 1
+    maxGrowPerTick: 2
+    initialDelay: 1
+  - ceilingSegmentIndex: 1
+    startCoord: {x: 5, y: 0}
     minX: 4
     maxX: 6
     maxLength: 20
     width: 0
-    growWeight: 2
-    maxBlocksPerRow: 2
+    growWeight: 1
+    maxBlocksPerRow: 3
     directionOptions: []
-    enabled: 0
-    spawnInterval: 0
-    minGrowPerTick: 0
-    maxGrowPerTick: 0
-    initialDelay: 0
-  fixedBlocks: []
+    enabled: 1
+    spawnInterval: 1.2
+    minGrowPerTick: 1
+    maxGrowPerTick: 2
+    initialDelay: 1
+  fixedBlocks:
+  - cell: {x: 0, y: 6}
+    hp: 1
+  - cell: {x: 1, y: 6}
+    hp: 1
+  - cell: {x: 3, y: 6}
+    hp: 1
+  - cell: {x: 4, y: 6}
+    hp: 1
+  - cell: {x: 6, y: 6}
+    hp: 1
+  - cell: {x: 4, y: 6}
+    hp: 1
   normalBlocks: []
   respawnMissingStartBlocks: 1
   startCells: []
@@ -56,20 +68,4 @@ MonoBehaviour:
   rowWeightMultiplier: 1
   rowPriorityStep: 0
   onlyGrowFromStartConnectedBlocks: 1
-  directions:
-  - name: Down
-    direction: {x: 0, y: 1}
-    priority: 1
-    weight: 2
-  - name: Left
-    direction: {x: -1, y: 0}
-    priority: 1
-    weight: 2
-  - name: Right
-    direction: {x: 1, y: 0}
-    priority: 1
-    weight: 2
-  - name: Up
-    direction: {x: 1, y: 0}
-    priority: 1
-    weight: 2
+  directions: []

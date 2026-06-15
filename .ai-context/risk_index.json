@@ -27,27 +27,27 @@
     "risk_score": 100
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
-    "class_name": "PaddleMovement",
+    "file_id": "ProjectDribble/Assets/Scripts/Ball/BallController.cs",
+    "class_name": "BallController",
     "risk_flags": [
       "update-heavy",
       "high-coupling",
+      "public-field-heavy",
       "getcomponent-heavy",
-      "find-heavy",
       "magic-number-heavy",
+      "large-class",
       "init-order-sensitive",
-      "save-load-sensitive",
       "ui-runtime-mixed",
       "state-owner"
     ],
     "risk_reasons": [
       "Unity 업데이트 루프 사용",
       "참조 타입 또는 관계 수가 많음",
+      "public 필드 노출 수가 많음",
       "GetComponent/TryGetComponent 호출이 많음",
-      "Find 계열 탐색 사용",
       "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "파일/메서드/필드 수가 많아 책임이 커질 가능성",
       "초기화 순서에 민감할 가능성",
-      "저장/불러오기 관련 로직 포함",
       "UI와 런타임 책임이 한 파일에 섞였을 가능성",
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
@@ -79,6 +79,81 @@
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 100
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Ball/BallMovement.cs",
+    "class_name": "BallMovement",
+    "risk_flags": [
+      "high-coupling",
+      "public-field-heavy",
+      "getcomponent-heavy",
+      "magic-number-heavy",
+      "large-class",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "public 필드 노출 수가 많음",
+      "GetComponent/TryGetComponent 호출이 많음",
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 93
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
+    "class_name": "BallSpeedController",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "getcomponent-heavy",
+      "magic-number-heavy",
+      "large-class",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
+      "GetComponent/TryGetComponent 호출이 많음",
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 93
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/BossController.cs",
+    "class_name": "BossController",
+    "risk_flags": [
+      "high-coupling",
+      "public-field-heavy",
+      "find-heavy",
+      "magic-number-heavy",
+      "large-class",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "public 필드 노출 수가 많음",
+      "Find 계열 탐색 사용",
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 93
   },
   {
     "file_id": "Old Scripts/enemy.cs",
@@ -126,6 +201,31 @@
       "파일/메서드/필드 수가 많아 책임이 커질 가능성",
       "초기화 순서에 민감할 가능성",
       "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 91
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/BossProjectile.cs",
+    "class_name": "BossProjectile",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "find-heavy",
+      "magic-number-heavy",
+      "large-class",
+      "init-order-sensitive",
+      "ui-runtime-mixed",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
+      "Find 계열 탐색 사용",
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+      "초기화 순서에 민감할 가능성",
+      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 91
@@ -198,6 +298,29 @@
       "참조 타입 또는 관계 수가 많음",
       "GetComponent/TryGetComponent 호출이 많음",
       "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 88
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "class_name": "SoundManager",
+    "risk_flags": [
+      "singleton-candidate",
+      "high-coupling",
+      "large-class",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "ui-runtime-mixed",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Instance 또는 DontDestroyOnLoad 패턴 감지",
+      "참조 타입 또는 관계 수가 많음",
+      "파일/메서드/필드 수가 많아 책임이 커질 가능성",
       "초기화 순서에 민감할 가능성",
       "저장/불러오기 관련 로직 포함",
       "UI와 런타임 책임이 한 파일에 섞였을 가능성",
@@ -304,6 +427,52 @@
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 86
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "class_name": "TutorialManager",
+    "risk_flags": [
+      "high-coupling",
+      "find-heavy",
+      "large-class",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "ui-runtime-mixed",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "Find 계열 탐색 사용",
+      "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 85
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
+    "class_name": "PaddleController",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "getcomponent-heavy",
+      "find-heavy",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
+      "GetComponent/TryGetComponent 호출이 많음",
+      "Find 계열 탐색 사용",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 82
   },
   {
     "file_id": "Old Scripts/ball_movement.cs",
@@ -490,29 +659,6 @@
     "risk_score": 80
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/Ball/BallController.cs",
-    "class_name": "BallController",
-    "risk_flags": [
-      "update-heavy",
-      "high-coupling",
-      "public-field-heavy",
-      "getcomponent-heavy",
-      "init-order-sensitive",
-      "save-load-sensitive",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "Unity 업데이트 루프 사용",
-      "참조 타입 또는 관계 수가 많음",
-      "public 필드 노출 수가 많음",
-      "GetComponent/TryGetComponent 호출이 많음",
-      "초기화 순서에 민감할 가능성",
-      "저장/불러오기 관련 로직 포함",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 80
-  },
-  {
     "file_id": "PaddlePrototype/Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextSelector_B.cs",
     "class_name": "TMP_TextSelector_B",
     "risk_flags": [
@@ -649,29 +795,6 @@
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 79
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Scripts/Ball/BallMovement.cs",
-    "class_name": "BallMovement",
-    "risk_flags": [
-      "update-heavy",
-      "high-coupling",
-      "getcomponent-heavy",
-      "magic-number-heavy",
-      "init-order-sensitive",
-      "save-load-sensitive",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "Unity 업데이트 루프 사용",
-      "참조 타입 또는 관계 수가 많음",
-      "GetComponent/TryGetComponent 호출이 많음",
-      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
-      "초기화 순서에 민감할 가능성",
-      "저장/불러오기 관련 로직 포함",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 78
   },
   {
     "file_id": "PaddlePrototype/Assets/Scripts/paddle_movement_ground.cs",
@@ -881,29 +1004,6 @@
     "risk_score": 76
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/GroundHp1.cs",
-    "class_name": "GroundHp",
-    "risk_flags": [
-      "update-heavy",
-      "high-coupling",
-      "magic-number-heavy",
-      "init-order-sensitive",
-      "save-load-sensitive",
-      "ui-runtime-mixed",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "Unity 업데이트 루프 사용",
-      "참조 타입 또는 관계 수가 많음",
-      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
-      "초기화 순서에 민감할 가능성",
-      "저장/불러오기 관련 로직 포함",
-      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 76
-  },
-  {
     "file_id": "ProjectDribble/Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark02.cs",
     "class_name": "Benchmark02",
     "risk_flags": [
@@ -1063,6 +1163,132 @@
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 76
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
+    "class_name": "BlockManager",
+    "risk_flags": [
+      "high-coupling",
+      "public-field-heavy",
+      "find-heavy",
+      "large-class",
+      "init-order-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "public 필드 노출 수가 많음",
+      "Find 계열 탐색 사용",
+      "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+      "초기화 순서에 민감할 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 73
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "class_name": "CeilingManager",
+    "risk_flags": [
+      "high-coupling",
+      "find-heavy",
+      "magic-number-heavy",
+      "large-class",
+      "init-order-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "Find 계열 탐색 사용",
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+      "초기화 순서에 민감할 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 71
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Ball/BallSpeedColorController.cs",
+    "class_name": "BallSpeedColorController",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "getcomponent-heavy",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
+      "GetComponent/TryGetComponent 호출이 많음",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 70
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
+    "class_name": "GaugeUI",
+    "risk_flags": [
+      "high-coupling",
+      "find-heavy",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "ui-runtime-mixed",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "Find 계열 탐색 사용",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 70
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "class_name": "LaserChargeController",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "find-heavy",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
+      "Find 계열 탐색 사용",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 70
+  },
+  {
+    "file_id": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
+    "class_name": "StageBlockData",
+    "risk_flags": [
+      "high-coupling",
+      "public-field-heavy",
+      "magic-number-heavy",
+      "large-class",
+      "ui-runtime-mixed",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "public 필드 노출 수가 많음",
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 69
   },
   {
     "file_id": "Old Scripts/ForRazer/ChargingLaserManager.cs",
@@ -1464,23 +1690,61 @@
     "risk_score": 64
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
-    "class_name": "BlockManager",
+    "file_id": "ProjectDribble/Assets/Scripts/Ball/BallCapturedDribbleController.cs",
+    "class_name": "BallCapturedDribbleController",
     "risk_flags": [
       "high-coupling",
-      "public-field-heavy",
+      "magic-number-heavy",
       "large-class",
-      "init-order-sensitive",
+      "save-load-sensitive",
       "state-owner"
     ],
     "risk_reasons": [
       "참조 타입 또는 관계 수가 많음",
-      "public 필드 노출 수가 많음",
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
       "파일/메서드/필드 수가 많아 책임이 커질 가능성",
-      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 61
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
+    "class_name": "GaugeManager",
+    "risk_flags": [
+      "high-coupling",
+      "find-heavy",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "Find 계열 탐색 사용",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 60
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserShooter.cs",
+    "class_name": "LaserShooter",
+    "risk_flags": [
+      "high-coupling",
+      "find-heavy",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "Find 계열 탐색 사용",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 60
   },
   {
     "file_id": "PaddlePrototype/Assets/TextMesh Pro/Examples & Extras/Scripts/TMPro_InstructionOverlay.cs",
@@ -1497,63 +1761,6 @@
       "초기화 순서에 민감할 가능성",
       "저장/불러오기 관련 로직 포함",
       "UI와 런타임 책임이 한 파일에 섞였을 가능성",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 58
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
-    "class_name": "BallSpeedController",
-    "risk_flags": [
-      "update-heavy",
-      "high-coupling",
-      "getcomponent-heavy",
-      "init-order-sensitive",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "Unity 업데이트 루프 사용",
-      "참조 타입 또는 관계 수가 많음",
-      "GetComponent/TryGetComponent 호출이 많음",
-      "초기화 순서에 민감할 가능성",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 58
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
-    "class_name": "GaugeUI",
-    "risk_flags": [
-      "high-coupling",
-      "init-order-sensitive",
-      "save-load-sensitive",
-      "ui-runtime-mixed",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "참조 타입 또는 관계 수가 많음",
-      "초기화 순서에 민감할 가능성",
-      "저장/불러오기 관련 로직 포함",
-      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 58
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
-    "class_name": "LaserChargeController",
-    "risk_flags": [
-      "update-heavy",
-      "high-coupling",
-      "init-order-sensitive",
-      "save-load-sensitive",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "Unity 업데이트 루프 사용",
-      "참조 타입 또는 관계 수가 많음",
-      "초기화 순서에 민감할 가능성",
-      "저장/불러오기 관련 로직 포함",
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 58
@@ -1635,6 +1842,63 @@
     "risk_score": 56
   },
   {
+    "file_id": "ProjectDribble/Assets/ScriptableObjects/Scripts/BallData.cs",
+    "class_name": "BallData",
+    "risk_flags": [
+      "high-coupling",
+      "public-field-heavy",
+      "magic-number-heavy",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "public 필드 노출 수가 많음",
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 56
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
+    "class_name": "BallCollisionHandler",
+    "risk_flags": [
+      "high-coupling",
+      "getcomponent-heavy",
+      "magic-number-heavy",
+      "init-order-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "GetComponent/TryGetComponent 호출이 많음",
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "초기화 순서에 민감할 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 56
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
+    "class_name": "UIManager",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "init-order-sensitive",
+      "ui-runtime-mixed",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
+      "초기화 순서에 민감할 가능성",
+      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 56
+  },
+  {
     "file_id": "ProjectDribble/Assets/TextMesh Pro/Examples & Extras/Scripts/ChatController.cs",
     "class_name": "ChatController",
     "risk_flags": [
@@ -1673,6 +1937,23 @@
     "risk_score": 56
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "class_name": "GameManager",
+    "risk_flags": [
+      "singleton-candidate",
+      "high-coupling",
+      "init-order-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Instance 또는 DontDestroyOnLoad 패턴 감지",
+      "참조 타입 또는 관계 수가 많음",
+      "초기화 순서에 민감할 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 51
+  },
+  {
     "file_id": "Old Scripts/ForRazer/GaugeManager.cs",
     "class_name": "GaugeManager",
     "risk_flags": [
@@ -1692,25 +1973,46 @@
     "risk_score": 50
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
-    "class_name": "BallCollisionHandler",
+    "file_id": "ProjectDribble/Assets/Scripts/etc/CameraAspectFitter.cs",
+    "class_name": "CameraAspectFitter",
     "risk_flags": [
-      "high-coupling",
-      "getcomponent-heavy",
+      "update-heavy",
       "init-order-sensitive",
+      "save-load-sensitive",
+      "ui-runtime-mixed",
       "state-owner"
     ],
     "risk_reasons": [
-      "참조 타입 또는 관계 수가 많음",
-      "GetComponent/TryGetComponent 호출이 많음",
+      "Unity 업데이트 루프 사용",
       "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
-    "risk_score": 48
+    "risk_score": 50
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/CeilingManager.cs",
-    "class_name": "CeilingManager",
+    "file_id": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
+    "class_name": "PlayTestUI",
+    "risk_flags": [
+      "update-heavy",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "ui-runtime-mixed",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 50
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Ball/BallPowerController.cs",
+    "class_name": "BallPowerController",
     "risk_flags": [
       "high-coupling",
       "init-order-sensitive",
@@ -1726,8 +2028,25 @@
     "risk_score": 48
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
-    "class_name": "GaugeManager",
+    "file_id": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
+    "class_name": "BallRecallInput",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 48
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Paddle/PaddleBallReflector.cs",
+    "class_name": "PaddleBallReflector",
     "risk_flags": [
       "high-coupling",
       "init-order-sensitive",
@@ -1738,6 +2057,74 @@
       "참조 타입 또는 관계 수가 많음",
       "초기화 순서에 민감할 가능성",
       "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 48
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Paddle/PaddleCaptureZone.cs",
+    "class_name": "PaddleCaptureZone",
+    "risk_flags": [
+      "high-coupling",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 48
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Paddle/PaddleInactiveCaptureTrigger.cs",
+    "class_name": "PaddleInactiveCaptureTrigger",
+    "risk_flags": [
+      "high-coupling",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 48
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Sound/SoundData.cs",
+    "class_name": "SoundData",
+    "risk_flags": [
+      "high-coupling",
+      "public-field-heavy",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "public 필드 노출 수가 많음",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 48
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "class_name": "StageManager",
+    "risk_flags": [
+      "high-coupling",
+      "find-heavy",
+      "init-order-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "Find 계열 탐색 사용",
+      "초기화 순서에 민감할 가능성",
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 48
@@ -1964,8 +2351,25 @@
     "risk_score": 44
   },
   {
-    "file_id": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "class_name": "StageBlockData",
+    "file_id": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
+    "class_name": "BlockCell",
+    "risk_flags": [
+      "high-coupling",
+      "magic-number-heavy",
+      "init-order-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "초기화 순서에 민감할 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 44
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
+    "class_name": "StageDefinition",
     "risk_flags": [
       "high-coupling",
       "public-field-heavy",
@@ -1996,6 +2400,23 @@
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 44
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialTrigger.cs",
+    "class_name": "TutorialTrigger",
+    "risk_flags": [
+      "find-heavy",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Find 계열 탐색 사용",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 42
   },
   {
     "file_id": "PaddlePrototype/Assets/Scripts/CeilingManager.cs",
@@ -2041,6 +2462,21 @@
     "risk_reasons": [
       "public 필드 노출 수가 많음",
       "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 38
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Ball/BallRespawner.cs",
+    "class_name": "BallRespawner",
+    "risk_flags": [
+      "high-coupling",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
       "저장/불러오기 관련 로직 포함",
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
@@ -2094,6 +2530,21 @@
     "risk_score": 38
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/WallBallHitReceiver.cs",
+    "class_name": "WallBallHitReceiver",
+    "risk_flags": [
+      "high-coupling",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 38
+  },
+  {
     "file_id": "Old Scripts/brick_cell.cs",
     "class_name": "BrickCell",
     "risk_flags": [
@@ -2139,8 +2590,8 @@
     "risk_score": 36
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
-    "class_name": "BlockCell",
+    "file_id": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
+    "class_name": "PlayerHealth",
     "risk_flags": [
       "high-coupling",
       "init-order-sensitive",
@@ -2149,6 +2600,21 @@
     "risk_reasons": [
       "참조 타입 또는 관계 수가 많음",
       "초기화 순서에 민감할 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 36
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Sound/SoundId.cs",
+    "class_name": "SoundId",
+    "risk_flags": [
+      "high-coupling",
+      "ui-runtime-mixed",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 36
@@ -2199,8 +2665,8 @@
     "risk_score": 30
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/Paddle/PaddleBallReflector.cs",
-    "class_name": "PaddleBallReflector",
+    "file_id": "ProjectDribble/Assets/Scripts/Ball/BallSpawnController.cs",
+    "class_name": "BallSpawnController",
     "risk_flags": [
       "init-order-sensitive",
       "save-load-sensitive",
@@ -2212,6 +2678,36 @@
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 30
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/etc/PlaytestStageDebug.cs",
+    "class_name": "PlaytestStageDebug",
+    "risk_flags": [
+      "update-heavy",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 30
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
+    "class_name": "PointerInputReader",
+    "risk_flags": [
+      "update-heavy",
+      "ui-runtime-mixed",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 28
   },
   {
     "file_id": "PaddlePrototype/Assets/Scripts/ScriptableObjectScripts/BallBalanceData.cs",
@@ -2257,15 +2753,15 @@
     "risk_score": 22
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/Guage.cs",
-    "class_name": "Gauge",
+    "file_id": "ProjectDribble/Assets/Scripts/BossPaddleMover.cs",
+    "class_name": "BossPaddleMover",
     "risk_flags": [
-      "save-load-sensitive",
-      "ui-runtime-mixed"
+      "update-heavy",
+      "save-load-sensitive"
     ],
     "risk_reasons": [
-      "저장/불러오기 관련 로직 포함",
-      "UI와 런타임 책임이 한 파일에 섞였을 가능성"
+      "Unity 업데이트 루프 사용",
+      "저장/불러오기 관련 로직 포함"
     ],
     "risk_score": 22
   },
@@ -2283,7 +2779,7 @@
     "risk_score": 22
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/CeilingBrick.cs",
+    "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingBrick.cs",
     "class_name": "CeilingBrick",
     "risk_flags": [
       "save-load-sensitive",
@@ -2296,8 +2792,8 @@
     "risk_score": 20
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserShooter.cs",
-    "class_name": "LaserShoot",
+    "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegment.cs",
+    "class_name": "CeilingSegment",
     "risk_flags": [
       "save-load-sensitive",
       "state-owner"
@@ -2309,15 +2805,15 @@
     "risk_score": 20
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/WallBallHitReceiver.cs",
-    "class_name": "WallBallHitReceiver",
+    "file_id": "ProjectDribble/Assets/Scripts/etc/TouchDebugTest.cs",
+    "class_name": "TouchDebugTest",
     "risk_flags": [
-      "save-load-sensitive",
-      "state-owner"
+      "update-heavy",
+      "ui-runtime-mixed"
     ],
     "risk_reasons": [
-      "저장/불러오기 관련 로직 포함",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
+      "Unity 업데이트 루프 사용",
+      "UI와 런타임 책임이 한 파일에 섞였을 가능성"
     ],
     "risk_score": 20
   },
@@ -2335,14 +2831,27 @@
     "risk_score": 18
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/Ball/BallPowerController.cs",
-    "class_name": "BallPowerController",
+    "file_id": "ProjectDribble/Assets/ScriptableObjects/Scripts/HealthData.cs",
+    "class_name": "HealthData",
     "risk_flags": [
-      "init-order-sensitive",
+      "public-field-heavy",
       "state-owner"
     ],
     "risk_reasons": [
-      "초기화 순서에 민감할 가능성",
+      "public 필드 노출 수가 많음",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 18
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/PlayerDamagedManager.cs",
+    "class_name": "PlayerDamagedManager",
+    "risk_flags": [
+      "update-heavy",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 18
@@ -2361,8 +2870,19 @@
     "risk_score": 18
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/CeilingDamager.cs",
+    "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingDamager.cs",
     "class_name": "CeilingDamager",
+    "risk_flags": [
+      "save-load-sensitive"
+    ],
+    "risk_reasons": [
+      "저장/불러오기 관련 로직 포함"
+    ],
+    "risk_score": 12
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserUnlockState.cs",
+    "class_name": "LaserUnlockState",
     "risk_flags": [
       "save-load-sensitive"
     ],
@@ -2427,17 +2947,6 @@
     "risk_score": 10
   },
   {
-    "file_id": "ProjectDribble/Assets/ScriptableObjects/Scripts/BallData.cs",
-    "class_name": "BallData",
-    "risk_flags": [
-      "public-field-heavy"
-    ],
-    "risk_reasons": [
-      "public 필드 노출 수가 많음"
-    ],
-    "risk_score": 10
-  },
-  {
     "file_id": "ProjectDribble/Assets/ScriptableObjects/Scripts/PaddleData.cs",
     "class_name": "PaddleData",
     "risk_flags": [
@@ -2449,8 +2958,19 @@
     "risk_score": 10
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/GameManager.cs",
-    "class_name": "GameManager",
+    "file_id": "ProjectDribble/Assets/Scripts/Sound/SoundPlayOptions.cs",
+    "class_name": "SoundPlayOptions",
+    "risk_flags": [
+      "public-field-heavy"
+    ],
+    "risk_reasons": [
+      "public 필드 노출 수가 많음"
+    ],
+    "risk_score": 10
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Ball/CapturedEllipseBounds.cs",
+    "class_name": "CapturedEllipseBounds",
     "risk_flags": [
       "state-owner"
     ],

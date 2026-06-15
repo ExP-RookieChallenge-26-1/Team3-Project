@@ -114,7 +114,7 @@
       "risk_score": 100
     },
     {
-      "file_id": "ProjectDribble/Assets/Scripts/PaddleController.cs",
+      "file_id": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
       "class_name": "PaddleMovement",
       "risk_flags": [
         "update-heavy",

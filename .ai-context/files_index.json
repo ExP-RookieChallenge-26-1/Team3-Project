@@ -21495,9 +21495,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "path": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "file_name": "GameManager.cs",
-    "content_hash": "c42d937d9c507c63e94712dfac43032c5af09683",
-    "size": 1341,
-    "line_count": 74,
+    "content_hash": "f3f385c09b8a215a4cf85474f5df141225b07f49",
+    "size": 1680,
+    "line_count": 87,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -21544,6 +21544,20 @@
         "access": "private",
         "serialized": false,
         "is_static": false
+      },
+      {
+        "name": "isPaused",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "timeScaleBefore",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
       }
     ],
     "properties": [
@@ -21578,6 +21592,7 @@
       "UnityEngine",
       "Instance",
       "IsPausedByTutorial",
+      "IsPaused",
       "Awake",
       "LogWarning",
       "Keeping",

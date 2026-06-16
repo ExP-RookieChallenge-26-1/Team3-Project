@@ -7,7 +7,11 @@ public class GameManager : MonoBehaviour
     private bool isPausedByTutorial;
     private float timeScaleBeforeTutorial = 1f;
 
+    private bool isPaused;
+    private float timeScaleBefore = 1f;
+
     public bool IsPausedByTutorial => isPausedByTutorial;
+    public bool IsPaused => isPaused;
 
     private void Awake()
     {
@@ -44,12 +48,21 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        
+        if (isPaused)
+            return;
+
+        timeScaleBefore = Time.timeScale;
+        Time.timeScale = 0f;
+        isPaused = true;
     }
 
     public void ResumeGame()
     {
-        
+        if (!isPaused)
+            return;
+
+        Time.timeScale = timeScaleBefore;
+        isPaused = false;
     }
 
     public void PauseForTutorial()

@@ -25844,6 +25844,236 @@
     ]
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "path": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "file_name": "BGMSlider.cs",
+    "content_hash": "eb24f91aeab54548a8f64558a625d1771430b766",
+    "size": 268,
+    "line_count": 13,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine",
+      "UnityEngine.UI"
+    ],
+    "classes": [
+      {
+        "name": "BGMSlider",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "BGMSlider",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "OnBGMSliderValueChanged"
+    ],
+    "fields": [],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "UnityEngine",
+      "UI",
+      "SoundManager",
+      "OnBGMSliderValueChanged",
+      "SetVolume",
+      "SoundType",
+      "BGM"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "ui",
+      "manager",
+      "save-load",
+      "runtime"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "UI 관련 로직 포함",
+      "저장/불러오기 관련 로직 포함"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "path": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "file_name": "SettingsUI.cs",
+    "content_hash": "94434df24dfc6862d1a1cdf0c2cec9bd62e7747e",
+    "size": 396,
+    "line_count": 28,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "SettingsUI",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "SettingsUI",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Start",
+      "Update",
+      "OpenSettings",
+      "CloseSettings"
+    ],
+    "fields": [],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Start",
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": true,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "UnityEngine",
+      "Start",
+      "Update",
+      "OpenSettings",
+      "SetActive",
+      "CloseSettings"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "runtime",
+      "ui",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재",
+      "UI 관련 로직 포함",
+      "저장/불러오기 관련 로직 포함"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "path": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "file_name": "SFXSlider.cs",
+    "content_hash": "d26144e8cacf3dfd09c3a3862b831a86ec26a043",
+    "size": 246,
+    "line_count": 12,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "SFXSlider",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "SFXSlider",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "OnSFXSliderValueChanged"
+    ],
+    "fields": [],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "UnityEngine",
+      "SoundManager",
+      "OnSFXSliderValueChanged",
+      "SetVolume",
+      "SoundType",
+      "SFX"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "ui",
+      "manager",
+      "save-load",
+      "runtime"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "UI 관련 로직 포함",
+      "저장/불러오기 관련 로직 포함"
+    ]
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/WallBallHitReceiver.cs",
     "path": "ProjectDribble/Assets/Scripts/WallBallHitReceiver.cs",
     "file_name": "WallBallHitReceiver.cs",

@@ -38185,6 +38185,160 @@
     "strength": 1
   },
   {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
+    "to_type": "BGM",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
+    "to_type": "OnBGMSliderValueChanged",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
+    "to_type": "SetVolume",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
+    "to_type": "SoundManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
+    "to_type": "SoundType",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
+    "to_type": "UI",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "CloseSettings",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "OpenSettings",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "SetActive",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "Start",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "Update",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
+    "to_type": "OnSFXSliderValueChanged",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
+    "to_type": "SetVolume",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
+    "to_type": "SFX",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
+    "to_type": "SoundManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
+    "to_type": "SoundType",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
     "from_file": "ProjectDribble/Assets/Scripts/WallBallHitReceiver.cs",
     "from_class": "WallBallHitReceiver",
     "to_type": "IBallHitReceiver",

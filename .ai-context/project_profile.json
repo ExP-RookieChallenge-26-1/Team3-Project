@@ -2,26 +2,26 @@
   "project_name": "unknown",
   "language": "C#",
   "engine_guess": "Unity",
-  "total_cs_files": 166,
-  "mono_behaviour_files": 137,
+  "total_cs_files": 168,
+  "mono_behaviour_files": 138,
   "scriptable_object_files": 10,
   "files_with_update": 47,
   "files_with_fixed_update": 1,
   "files_with_late_update": 8,
-  "singleton_candidates": 2,
-  "manager_like_classes": 56,
-  "ui_related_classes": 86,
-  "save_load_related_classes": 84,
+  "singleton_candidates": 3,
+  "manager_like_classes": 57,
+  "ui_related_classes": 87,
+  "save_load_related_classes": 87,
   "role_counts": {
-    "runtime": 146,
-    "player": 79,
+    "runtime": 147,
+    "player": 80,
     "combat": 103,
-    "save-load": 84,
-    "manager": 54,
-    "data": 55,
-    "ui": 86,
+    "save-load": 87,
+    "manager": 55,
+    "data": 57,
+    "ui": 87,
     "scene": 2,
-    "network": 3
+    "network": 2
   },
   "high_coupling_classes": [
     {
@@ -347,6 +347,7 @@
     "MonoBehaviour 중심 구조",
     "Update 사용 빈도 높음",
     "Manager 성격 클래스 다수",
+    "싱글톤 후보 클래스 다수",
     "고결합 클래스 존재"
   ]
 }

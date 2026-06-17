@@ -21495,11 +21495,12 @@
     "file_id": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "path": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "file_name": "GameManager.cs",
-    "content_hash": "f3f385c09b8a215a4cf85474f5df141225b07f49",
-    "size": 1680,
-    "line_count": 87,
+    "content_hash": "3629809d1521a802e5eda5d9d57747822dfd7902",
+    "size": 4426,
+    "line_count": 174,
     "namespace": "",
     "using_list": [
+      "DefaultNamespace",
       "UnityEngine"
     ],
     "classes": [
@@ -21520,13 +21521,14 @@
     "unity_type": "MonoBehaviour",
     "methods": [
       "Awake",
-      "StartGame",
       "RequestStageClear",
       "RequestGameOver",
+      "StartGame",
       "RetryStage",
       "NextStage",
       "PauseGame",
       "ResumeGame",
+      "ToTitle",
       "PauseForTutorial",
       "ResumeFromTutorial"
     ],
@@ -21556,6 +21558,13 @@
         "name": "timeScaleBefore",
         "type": "float",
         "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "currentStage",
+        "type": "int",
+        "access": "internal",
         "serialized": false,
         "is_static": false
       }
@@ -21589,8 +21598,18 @@
     "referenced_types": [
       "bool",
       "float",
+      "int",
+      "DefaultNamespace",
       "UnityEngine",
       "Instance",
+      "System",
+      "References",
+      "CeilingManager",
+      "TutorialManager",
+      "StageManager",
+      "SaveManager",
+      "LaserUnlockState",
+      "UI",
       "IsPausedByTutorial",
       "IsPaused",
       "Awake",
@@ -21598,21 +21617,46 @@
       "Keeping",
       "QualitySettings",
       "Application",
-      "StartGame",
+      "SetActive",
       "RequestStageClear",
+      "CurrentStageIndex",
+      "MarkStageCleared",
+      "SetLaserUnlocked",
+      "IsLaserUnlocked",
+      "SetTutorialCleared",
+      "Save",
+      "SoundManager",
+      "Play",
+      "SoundId",
+      "StageClear",
       "RequestGameOver",
+      "GameOver",
+      "StartGame",
       "RetryStage",
-      "NextStage",
-      "PauseGame",
+      "RestartCurrentStage",
       "ResumeGame",
+      "NextStage",
+      "Hide",
+      "UIType",
+      "StageClearPopup",
+      "TryStartNextStage",
+      "Log",
+      "All",
+      "PauseGame",
+      "ToTitle",
       "PauseForTutorial",
       "ResumeFromTutorial"
     ],
     "component_access_types": [],
     "created_types": [],
-    "singleton_access_types": [],
+    "singleton_access_types": [
+      "SoundManager"
+    ],
     "string_literals": [
-      "GameManager: more than one GameManager exists. Keeping the first instance."
+      "System References",
+      "UI",
+      "GameManager: more than one GameManager exists. Keeping the first instance.",
+      "All stages cleared."
     ],
     "numeric_literals": [
       1,
@@ -21622,11 +21666,15 @@
     "guessed_roles": [
       "runtime",
       "manager",
-      "network"
+      "save-load",
+      "ui",
+      "player"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
-      "싱글톤 후보"
+      "싱글톤 후보",
+      "UI 관련 로직 포함",
+      "저장/불러오기 관련 로직 포함"
     ]
   },
   {
@@ -23921,6 +23969,223 @@
     ]
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/SaveData.cs",
+    "path": "ProjectDribble/Assets/Scripts/SaveData.cs",
+    "file_name": "SaveData.cs",
+    "content_hash": "b602829e2f5fa50c869702abc256f2f0bc15a08c",
+    "size": 181,
+    "line_count": 9,
+    "namespace": "",
+    "using_list": [
+      "System"
+    ],
+    "classes": [
+      {
+        "name": "SaveData",
+        "kind": "class",
+        "access": "public",
+        "base_types": [],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "SaveData",
+    "unity_type": "None",
+    "methods": [],
+    "fields": [
+      {
+        "name": "highestClearedStageIndex",
+        "type": "int",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "laserUnlocked",
+        "type": "bool",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "tutorialCleared",
+        "type": "bool",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 3,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "int",
+      "bool",
+      "System",
+      "Serializable"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "save-load",
+      "data"
+    ],
+    "summary_signals": [
+      "저장/불러오기 관련 로직 포함"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/SaveManager.cs",
+    "path": "ProjectDribble/Assets/Scripts/SaveManager.cs",
+    "file_name": "SaveManager.cs",
+    "content_hash": "497652822499b64729a8ed16b7753328dc689444",
+    "size": 1660,
+    "line_count": 75,
+    "namespace": "",
+    "using_list": [
+      "System.IO",
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "SaveManager",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "SaveManager",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Awake",
+      "Load",
+      "SaveData",
+      "Save",
+      "MarkStageCleared",
+      "SetLaserUnlocked",
+      "SetTutorialCleared",
+      "GetStartStageIndex",
+      "ResetSave"
+    ],
+    "fields": [
+      {
+        "name": "nextStage",
+        "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [
+      {
+        "access": "internal",
+        "type": "SaveManager",
+        "name": "Instance"
+      },
+      {
+        "access": "public",
+        "type": "SaveData",
+        "name": "Current"
+      }
+    ],
+    "events": [],
+    "unity_messages": [
+      "Awake"
+    ],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 3,
+    "coroutine_count": 0,
+    "singleton_candidate": true,
+    "dont_destroy_on_load": true,
+    "referenced_types": [
+      "int",
+      "SaveData",
+      "System",
+      "IO",
+      "UnityEngine",
+      "Instance",
+      "Current",
+      "SavePath",
+      "Path",
+      "Combine",
+      "Application",
+      "Awake",
+      "Destroy",
+      "DontDestroyOnLoad",
+      "Load",
+      "File",
+      "Exists",
+      "Save",
+      "ReadAllText",
+      "JsonUtility",
+      "FromJson",
+      "ToJson",
+      "WriteAllText",
+      "MarkStageCleared",
+      "SetLaserUnlocked",
+      "SetTutorialCleared",
+      "GetStartStageIndex",
+      "Clamp",
+      "ResetSave"
+    ],
+    "component_access_types": [],
+    "created_types": [
+      "SaveData"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "save.json"
+    ],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "save-load",
+      "manager",
+      "runtime",
+      "data"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "싱글톤 후보",
+      "저장/불러오기 관련 로직 포함"
+    ]
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/Sound/SoundData.cs",
     "path": "ProjectDribble/Assets/Scripts/Sound/SoundData.cs",
     "file_name": "SoundData.cs",
@@ -24702,9 +24967,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "file_name": "StageManager.cs",
-    "content_hash": "53e67d7e1cb78bda443c4f0392d037b3cd70342b",
-    "size": 4775,
-    "line_count": 195,
+    "content_hash": "e86c0ead8139a5cb2f63195ea3c4b98c39948422",
+    "size": 4667,
+    "line_count": 188,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -24812,12 +25077,11 @@
       "TryStartNextStage",
       "HandleStageCleared",
       "StopBossPattern",
-      "SoundManager",
+      "GameManager",
       "Instance",
-      "Play",
-      "SoundId",
-      "StageClear",
+      "RequestStageClear",
       "HandlePlayerDead",
+      "RequestGameOver",
       "OnStageCleared",
       "OnPlayerDead",
       "InitializeCeiling",
@@ -24832,7 +25096,7 @@
     "component_access_types": [],
     "created_types": [],
     "singleton_access_types": [
-      "SoundManager"
+      "GameManager"
     ],
     "string_literals": [
       "Stage Data",
@@ -24845,8 +25109,8 @@
     "numeric_literals": [],
     "guessed_roles": [
       "manager",
-      "player",
       "runtime",
+      "player",
       "data",
       "combat"
     ],

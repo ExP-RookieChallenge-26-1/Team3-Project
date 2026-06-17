@@ -84,19 +84,12 @@ public class StageManager : MonoBehaviour
         if (bossController != null)
             bossController.StopBossPattern();
 
-        SoundManager.Instance.Play(SoundId.StageClear);
-
-        bool moved = TryStartNextStage();
-
-        if (!moved)
-        {
-            RestartCurrentStage();
-        }
+        GameManager.Instance.RequestStageClear();
     }
 
     private void HandlePlayerDead()
     {
-        RestartCurrentStage();
+        GameManager.Instance.RequestGameOver();
     }
 
     private void BindStageEvents()

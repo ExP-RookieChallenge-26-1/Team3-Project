@@ -6,7 +6,7 @@ public class BGMSlider : MonoBehaviour
     [SerializeField] private SoundManager SoundManager;
     public void OnBGMSliderValueChanged(float value)
     {
-        
+        Debug.Log($"bgm 조절: {value}");
         SoundManager.SetVolume(SoundType.BGM,value);
     }
 }

@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject stageClearUI;
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private GameObject gameClearUI;
+    [SerializeField] private GameObject pauseButton;
 
     private bool isPausedByTutorial;
     private float timeScaleBeforeTutorial = 1f;
@@ -72,6 +73,7 @@ public class GameManager : MonoBehaviour
             gameClearUI.SetActive(true);
             SoundManager.Instance.Play(SoundId.StageClear); //아직 게임클리어 사운드 없음 
         }
+        pauseButton.SetActive(false);
     }
 
     public void RequestGameOver()
@@ -81,6 +83,7 @@ public class GameManager : MonoBehaviour
         isPaused = true;
         gameOverUI.SetActive(true);
         SoundManager.Instance.Play(SoundId.GameOver);
+        pauseButton.SetActive(false);
     }
 
     public void StartGame()
@@ -95,6 +98,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = timeScaleBefore;
         isPaused = false;
         titleUI.SetActive(false);
+        pauseButton.SetActive(true);
     }
 
     public void RetryStage()
@@ -137,6 +141,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         isPaused = true;
         pauseUI.SetActive(true);
+        pauseButton.SetActive(false);
     }
 
     public void ResumeGame()
@@ -147,6 +152,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = timeScaleBefore;
         isPaused = false;
         pauseUI.SetActive(false);
+        pauseButton.SetActive(true);
     }
 
     public void ToTitle()
@@ -166,6 +172,7 @@ public class GameManager : MonoBehaviour
             gameOverUI.SetActive(false);
 
         titleUI.SetActive(true);
+        pauseButton.SetActive(false);
     }
 
     public void PauseForTutorial()

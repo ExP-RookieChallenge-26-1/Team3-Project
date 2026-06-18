@@ -25587,6 +25587,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "from_class": "BallRecallInput",
+    "to_type": "EventSystem",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
+    "from_class": "BallRecallInput",
+    "to_type": "EventSystems",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
+    "from_class": "BallRecallInput",
     "to_type": "float",
     "relation_type": "uses",
     "strength": 1
@@ -25630,6 +25644,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "from_class": "BallRecallInput",
     "to_type": "InputSystem",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
+    "from_class": "BallRecallInput",
+    "to_type": "IsPointerOverGameObject",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
+    "from_class": "BallRecallInput",
+    "to_type": "IsPointerOverUI",
     "relation_type": "uses",
     "strength": 1
   },
@@ -31656,7 +31684,35 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
     "from_class": "PointerInputReader",
+    "to_type": "EventSystem",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
+    "from_class": "PointerInputReader",
+    "to_type": "EventSystems",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
+    "from_class": "PointerInputReader",
     "to_type": "InputSystem",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
+    "from_class": "PointerInputReader",
+    "to_type": "IsPointerOverGameObject",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
+    "from_class": "PointerInputReader",
+    "to_type": "IsPointerOverUI",
     "relation_type": "uses",
     "strength": 1
   },
@@ -33168,6 +33224,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "from_class": "LaserChargeController",
+    "to_type": "EventSystem",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
+    "to_type": "EventSystems",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
     "to_type": "FilledGaugeSegments",
     "relation_type": "uses",
     "strength": 1
@@ -33280,6 +33350,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "from_class": "LaserChargeController",
+    "to_type": "IsPointerOverGameObject",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
+    "to_type": "IsPointerOverUI",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
     "to_type": "LaserCharge",
     "relation_type": "uses",
     "strength": 1
@@ -33385,6 +33469,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "from_class": "LaserChargeController",
+    "to_type": "ReadValue",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
     "to_type": "Reset",
     "relation_type": "uses",
     "strength": 1
@@ -33463,6 +33554,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "from_class": "LaserChargeController",
     "to_type": "StopLoop",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
+    "to_type": "Touchscreen",
     "relation_type": "uses",
     "strength": 1
   },
@@ -38201,7 +38299,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
     "from_class": "BGMSlider",
+    "to_type": "Clamp01",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
     "to_type": "Log",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
+    "to_type": "NormalizeSliderValue",
     "relation_type": "uses",
     "strength": 1
   },
@@ -38306,7 +38418,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
     "from_class": "SFXSlider",
+    "to_type": "Clamp01",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
     "to_type": "Log",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
+    "to_type": "NormalizeSliderValue",
     "relation_type": "uses",
     "strength": 1
   },

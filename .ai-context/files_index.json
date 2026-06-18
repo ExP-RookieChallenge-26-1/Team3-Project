@@ -17315,12 +17315,13 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "file_name": "BallRecallInput.cs",
-    "content_hash": "357738e5b4f6c0299e4565a28015c6c218c9b459",
-    "size": 3430,
-    "line_count": 158,
+    "content_hash": "f5077d6fbcbe481f7587836734b487ef146e5a11",
+    "size": 4163,
+    "line_count": 188,
     "namespace": "",
     "using_list": [
       "UnityEngine",
+      "UnityEngine.EventSystems",
       "UnityEngine.InputSystem"
     ],
     "classes": [
@@ -17348,7 +17349,8 @@
       "HoldDownSwipe",
       "CancelHold",
       "EndPointer",
-      "RecallBall"
+      "RecallBall",
+      "IsPointerOverUI"
     ],
     "fields": [
       {
@@ -17433,6 +17435,7 @@
       "bool",
       "float",
       "UnityEngine",
+      "EventSystems",
       "InputSystem",
       "References",
       "BallRespawner",
@@ -17445,22 +17448,25 @@
       "UNITY_STANDALONE",
       "HandlePointerInput",
       "Touchscreen",
-      "BeginPointer",
+      "IsPointerOverUI",
       "ReadValue",
+      "BeginPointer",
+      "CancelHold",
       "MovePointer",
       "EndPointer",
       "Pointer",
       "Log",
       "Abs",
       "HoldDownSwipe",
-      "CancelHold",
       "Holding",
       "Down",
       "RecallBall",
       "Recall",
       "Ball",
       "LogWarning",
-      "RecallBallToPaddle"
+      "RecallBallToPaddle",
+      "EventSystem",
+      "IsPointerOverGameObject"
     ],
     "component_access_types": [],
     "created_types": [],
@@ -17484,11 +17490,13 @@
     "guessed_roles": [
       "runtime",
       "player",
+      "ui",
       "save-load"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
       "Update 기반 처리 존재",
+      "UI 관련 로직 포함",
       "저장/불러오기 관련 로직 포함"
     ]
   },
@@ -21294,12 +21302,13 @@
     "file_id": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
     "path": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
     "file_name": "PointerInputReader.cs",
-    "content_hash": "62e3c5eb058ac36fbbfb18cb3365f96a4860ddc1",
-    "size": 1342,
-    "line_count": 50,
+    "content_hash": "35d67d57b1d6624db917343cd00312ebd5666a0c",
+    "size": 1722,
+    "line_count": 62,
     "namespace": "",
     "using_list": [
       "UnityEngine",
+      "UnityEngine.EventSystems",
       "UnityEngine.InputSystem"
     ],
     "classes": [
@@ -21320,7 +21329,8 @@
     "unity_type": "MonoBehaviour",
     "methods": [
       "Update",
-      "TryReadPointer"
+      "TryReadPointer",
+      "IsPointerOverUI"
     ],
     "fields": [
       {
@@ -21383,6 +21393,7 @@
       "bool",
       "Vector2",
       "UnityEngine",
+      "EventSystems",
       "InputSystem",
       "IsPressed",
       "ScreenPosition",
@@ -21392,8 +21403,11 @@
       "TryReadPointer",
       "Touchscreen",
       "ReadValue",
+      "IsPointerOverUI",
       "PC",
-      "Mouse"
+      "Mouse",
+      "EventSystem",
+      "IsPointerOverGameObject"
     ],
     "component_access_types": [],
     "created_types": [],
@@ -21401,9 +21415,9 @@
     "string_literals": [],
     "numeric_literals": [],
     "guessed_roles": [
+      "ui",
       "runtime",
-      "player",
-      "ui"
+      "player"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
@@ -22513,14 +22527,15 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "file_name": "LaserChargeController.cs",
-    "content_hash": "b2cf93cb4d71264686fa6e9d424ea816cb506ba9",
-    "size": 6117,
-    "line_count": 256,
+    "content_hash": "d13e3582533e3b3d58725f3dce038e4f16cc12eb",
+    "size": 6984,
+    "line_count": 295,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
       "ScriptableObjects",
       "UnityEngine",
+      "UnityEngine.EventSystems",
       "UnityEngine.InputSystem",
       "UnityEngine.Serialization"
     ],
@@ -22556,7 +22571,8 @@
       "TryFireChargedLaser",
       "ReturnGauge",
       "Reset",
-      "IsLaserUnlocked"
+      "IsLaserUnlocked",
+      "IsPointerOverUI"
     ],
     "fields": [
       {
@@ -22581,6 +22597,13 @@
         "is_static": false
       },
       {
+        "name": "mousePressed",
+        "type": "bool",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "range",
         "type": "float",
         "access": "internal",
@@ -22590,6 +22613,13 @@
       {
         "name": "returnAmount",
         "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "touch",
+        "type": "var",
         "access": "internal",
         "serialized": false,
         "is_static": false
@@ -22625,6 +22655,7 @@
       "DefaultNamespace",
       "ScriptableObjects",
       "UnityEngine",
+      "EventSystems",
       "InputSystem",
       "Serialization",
       "LaserData",
@@ -22650,6 +22681,7 @@
       "StopLoop",
       "IsLaserUnlocked",
       "Reset",
+      "IsPointerOverUI",
       "Mouse",
       "TryFireChargedLaser",
       "ReturnGauge",
@@ -22677,7 +22709,11 @@
       "LaserFire",
       "ShootLaser",
       "AddGauge",
-      "Clamp01"
+      "Clamp01",
+      "EventSystem",
+      "Touchscreen",
+      "IsPointerOverGameObject",
+      "ReadValue"
     ],
     "component_access_types": [],
     "created_types": [],
@@ -22696,13 +22732,13 @@
       "runtime",
       "data",
       "manager",
-      "player",
-      "save-load"
+      "ui",
+      "player"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
       "Update 기반 처리 존재",
-      "저장/불러오기 관련 로직 포함",
+      "UI 관련 로직 포함",
       "Find 계열 탐색 사용"
     ]
   },
@@ -25847,9 +25883,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
     "path": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
     "file_name": "BGMSlider.cs",
-    "content_hash": "d01c4a78c757c0cc476ef7ad9e34a390402bf129",
-    "size": 302,
-    "line_count": 13,
+    "content_hash": "0adc550de512fdcb67f6d086bd34e3ebc3eeae10",
+    "size": 455,
+    "line_count": 18,
     "namespace": "",
     "using_list": [
       "UnityEngine",
@@ -25872,7 +25908,8 @@
     "main_class_name": "BGMSlider",
     "unity_type": "MonoBehaviour",
     "methods": [
-      "OnBGMSliderValueChanged"
+      "OnBGMSliderValueChanged",
+      "NormalizeSliderValue"
     ],
     "fields": [],
     "properties": [],
@@ -25901,7 +25938,9 @@
       "Log",
       "SetVolume",
       "SoundType",
-      "BGM"
+      "BGM",
+      "NormalizeSliderValue",
+      "Clamp01"
     ],
     "component_access_types": [],
     "created_types": [],
@@ -25909,7 +25948,10 @@
     "string_literals": [
       "bgm 조절: {value}"
     ],
-    "numeric_literals": [],
+    "numeric_literals": [
+      1,
+      100
+    ],
     "guessed_roles": [
       "ui",
       "manager",
@@ -26006,9 +26048,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
     "path": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
     "file_name": "SFXSlider.cs",
-    "content_hash": "59ae66ffaa34232d92f76cf4689a6ed98e719f2d",
-    "size": 280,
-    "line_count": 12,
+    "content_hash": "f11f4a9d18cdd23032d476aa2555b2d22de06e47",
+    "size": 433,
+    "line_count": 17,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -26030,7 +26072,8 @@
     "main_class_name": "SFXSlider",
     "unity_type": "MonoBehaviour",
     "methods": [
-      "OnSFXSliderValueChanged"
+      "OnSFXSliderValueChanged",
+      "NormalizeSliderValue"
     ],
     "fields": [],
     "properties": [],
@@ -26058,7 +26101,9 @@
       "Log",
       "SetVolume",
       "SoundType",
-      "SFX"
+      "SFX",
+      "NormalizeSliderValue",
+      "Clamp01"
     ],
     "component_access_types": [],
     "created_types": [],
@@ -26066,7 +26111,10 @@
     "string_literals": [
       "sfx 조절: {value}"
     ],
-    "numeric_literals": [],
+    "numeric_literals": [
+      1,
+      100
+    ],
     "guessed_roles": [
       "ui",
       "manager",

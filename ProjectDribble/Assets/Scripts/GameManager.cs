@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject pauseUI;
     [SerializeField] private GameObject stageClearUI;
     [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private GameObject gameClearUI;
 
     private bool isPausedByTutorial;
     private float timeScaleBeforeTutorial = 1f;
@@ -60,9 +61,17 @@ public class GameManager : MonoBehaviour
         timeScaleBefore = Time.timeScale;
         Time.timeScale = 0f;
         isPaused = true;
-        stageClearUI.SetActive(true);
-        SoundManager.Instance.Play(SoundId.StageClear);
-        //ui
+
+        if (stageManager.IsValidStageIndex(currentStage + 1))
+        {
+            stageClearUI.SetActive(true);
+            SoundManager.Instance.Play(SoundId.StageClear);
+        }
+        else
+        {
+            gameClearUI.SetActive(true);
+            SoundManager.Instance.Play(SoundId.StageClear); //아직 게임클리어 사운드 없음 
+        }
     }
 
     public void RequestGameOver()
@@ -76,6 +85,13 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        int startStageIndex = saveManager.GetStartStageIndex(stageManager.StageCount);
+
+        if (saveManager.Current.laserUnlocked)
+            laserUnlockState.UnlockLaser();
+
+        stageManager.StartStage(startStageIndex);
+
         Time.timeScale = timeScaleBefore;
         isPaused = false;
         titleUI.SetActive(false);
@@ -99,16 +115,11 @@ public class GameManager : MonoBehaviour
 
     public void NextStage()
     {
-        // 나중에 UI 생기면 여기서 클리어 팝업 닫기
-        // uiManager.Hide(UIType.StageClearPopup);
-
         bool moved = stageManager.TryStartNextStage();
 
         if (!moved)
         {
-            // 마지막 스테이지를 깬 경우
-            // 엔딩 UI or 메인 메뉴 이동
-            Debug.Log("All stages cleared.");
+            ToTitle();
             return;
         }
 
@@ -140,11 +151,16 @@ public class GameManager : MonoBehaviour
 
     public void ToTitle()
     {
+        stageManager.RestartCurrentStage();
+
         if (pauseUI != null)
             pauseUI.SetActive(false);
 
         if (stageClearUI != null)
             stageClearUI.SetActive(false);
+
+        if (gameClearUI != null)
+            gameClearUI.SetActive(false);
 
         if (gameOverUI != null)
             gameOverUI.SetActive(false);

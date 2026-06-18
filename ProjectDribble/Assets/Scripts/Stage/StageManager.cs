@@ -166,7 +166,7 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    private bool IsValidStageIndex(int index)
+    public bool IsValidStageIndex(int index)
     {
         return stages != null && index >= 0 && index < stages.Length;
     }

@@ -31880,13 +31880,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
-    "to_type": "All",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
-    "from_class": "GameManager",
     "to_type": "Application",
     "relation_type": "uses",
     "strength": 1
@@ -31909,6 +31902,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "CeilingManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "Current",
     "relation_type": "uses",
     "strength": 1
   },
@@ -31943,7 +31943,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
-    "to_type": "Hide",
+    "to_type": "GetStartStageIndex",
     "relation_type": "uses",
     "strength": 1
   },
@@ -31985,6 +31985,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
+    "to_type": "IsValidStageIndex",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
     "to_type": "Keeping",
     "relation_type": "uses",
     "strength": 1
@@ -31993,13 +32000,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "LaserUnlockState",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
-    "from_class": "GameManager",
-    "to_type": "Log",
     "relation_type": "uses",
     "strength": 1
   },
@@ -32160,7 +32160,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
-    "to_type": "StageClearPopup",
+    "to_type": "StageCount",
     "relation_type": "uses",
     "strength": 1
   },
@@ -32175,6 +32175,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "StartGame",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "StartStage",
     "relation_type": "uses",
     "strength": 1
   },
@@ -32216,14 +32223,14 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
-    "to_type": "UIType",
+    "to_type": "UnityEngine",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
-    "to_type": "UnityEngine",
+    "to_type": "UnlockLaser",
     "relation_type": "uses",
     "strength": 1
   },

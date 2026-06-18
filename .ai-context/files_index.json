@@ -18352,9 +18352,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "path": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "file_name": "BlockCell.cs",
-    "content_hash": "52d7d17a9adb0f51dc9407e200c6f882313bc700",
-    "size": 5670,
-    "line_count": 236,
+    "content_hash": "160493701f5d7d951410215a16d8c8b0c11ea4b0",
+    "size": 5990,
+    "line_count": 247,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -18393,6 +18393,7 @@
       "UpdateVisual",
       "UpdateStemConnectionVisual",
       "UpdateHpVisual",
+      "ResetTransientVisuals",
       "OnDrawGizmosSelected"
     ],
     "fields": [
@@ -18474,14 +18475,14 @@
         "is_static": false
       },
       {
-        "name": "damaged",
+        "name": "showGlitch",
         "type": "bool",
         "access": "internal",
         "serialized": false,
         "is_static": false
       },
       {
-        "name": "crackColor",
+        "name": "color",
         "type": "Color",
         "access": "internal",
         "serialized": false,
@@ -18545,6 +18546,8 @@
       "IBallSpeedModifier",
       "GaugeManager",
       "Visual",
+      "GlitchOverlayVisual",
+      "DamageFlashVisual",
       "Coord",
       "IsFixed",
       "IsNormal",
@@ -18554,6 +18557,7 @@
       "Init",
       "Activate",
       "SetActive",
+      "ResetTransientVisuals",
       "UpdateVisual",
       "Deactivate",
       "SetStemConnection",
@@ -18578,9 +18582,12 @@
       "RemoveBlock",
       "NotifyFixedBlockDestroyedByLaser",
       "TakeDamage",
+      "PlayFlash",
       "AddGauge",
       "UpdateHpVisual",
       "Lerp",
+      "SetState",
+      "ResetVisual",
       "OnDrawGizmosSelected",
       "GetComponentsInChildren",
       "Gizmos",
@@ -18628,9 +18635,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "file_name": "BlockManager.cs",
-    "content_hash": "7c0f8972d568870f3ae55ab32bafac18262f7aba",
-    "size": 43516,
-    "line_count": 1634,
+    "content_hash": "9b42107c59f57ab6bc83f55eb3aba3cf5a805d8c",
+    "size": 45150,
+    "line_count": 1692,
     "namespace": "",
     "using_list": [
       "System.Collections",
@@ -18728,6 +18735,8 @@
       "GetStartConnectedCells",
       "GetCeilingSegmentTouchingStemCells",
       "RefreshStemConnectionVisuals",
+      "CreateCoreConnectionStateList",
+      "MarkConnectedCeilingCore",
       "GetDistanceFromBottom",
       "GetDanger01FromBottomDistance",
       "GetStemGrowthDirections",
@@ -19048,6 +19057,34 @@
         "is_static": false
       },
       {
+        "name": "segmentCount",
+        "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "stem",
+        "type": "StageBlockData.GrowthStemData",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "stem",
+        "type": "StageBlockData.GrowthStemData",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "segmentIndex",
+        "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "bottomY",
         "type": "int",
         "access": "internal",
@@ -19304,10 +19341,14 @@
       "IsCeilingSegmentAliveForStem",
       "GetCeilingSegmentTouchingStemCells",
       "Dequeue",
+      "CreateCoreConnectionStateList",
       "GetBlock",
       "GetDanger01FromBottomDistance",
       "GetDistanceFromBottom",
       "SetStemVisual",
+      "MarkConnectedCeilingCore",
+      "SetCoreConnections",
+      "ToArray",
       "Abs",
       "Clamp01",
       "GetPreferredDirections",
@@ -20504,6 +20545,155 @@
     ]
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingCore.cs",
+    "path": "ProjectDribble/Assets/Scripts/Ceiling/CeilingCore.cs",
+    "file_name": "CeilingCore.cs",
+    "content_hash": "913dd7615655afa437d1fbd6b372228802407f97",
+    "size": 2089,
+    "line_count": 92,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "CeilingCore",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "CeilingCore",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Awake",
+      "Initialize",
+      "SetConnectedState",
+      "SetAliveState",
+      "PlayDamageFlash",
+      "ResetVisual",
+      "ApplyState",
+      "SetAlpha"
+    ],
+    "fields": [
+      {
+        "name": "segmentIndex",
+        "type": "int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "isAlive",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "isConnected",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "activePulse",
+        "type": "bool",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "alpha",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "color",
+        "type": "Color",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Awake"
+    ],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 3,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "int",
+      "bool",
+      "float",
+      "Color",
+      "UnityEngine",
+      "SpriteRenderer",
+      "PulseVisual",
+      "DamageFlashVisual",
+      "SegmentIndex",
+      "Awake",
+      "GetComponent",
+      "Initialize",
+      "ResetVisual",
+      "SetConnectedState",
+      "ApplyState",
+      "SetAliveState",
+      "PlayDamageFlash",
+      "PlayFlash",
+      "SetAlpha",
+      "SetBaseAlpha",
+      "SetPulsing",
+      "Clamp01"
+    ],
+    "component_access_types": [
+      "SpriteRenderer",
+      "PulseVisual",
+      "DamageFlashVisual"
+    ],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [
+      1,
+      0.25
+    ],
+    "guessed_roles": [
+      "runtime",
+      "combat",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
+    ]
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingDamager.cs",
     "path": "ProjectDribble/Assets/Scripts/Ceiling/CeilingDamager.cs",
     "file_name": "CeilingDamager.cs",
@@ -20588,9 +20778,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "file_name": "CeilingManager.cs",
-    "content_hash": "b0d88b1663c3426d41f4476cd09c07c1eb282d7a",
-    "size": 13323,
-    "line_count": 458,
+    "content_hash": "25ef79f9d3b9aa54a02a67778a644df2d1ed5e05",
+    "size": 16621,
+    "line_count": 569,
     "namespace": "",
     "using_list": [
       "System",
@@ -20638,9 +20828,18 @@
       "TryGetSegmentXRange",
       "GetSegmentHpPercentByX",
       "AreAllSegmentsDestroyed",
+      "SetCoreConnected",
+      "SetCoreConnections",
       "UpdateSegmentBlockVisuals",
       "DestroyRandomBlocksInSegment",
       "BreakSegmentBricks",
+      "CreateCeilingCores",
+      "GetCorePosition",
+      "ClearCeilingCores",
+      "Vector3",
+      "GetCoreByIndex",
+      "PlayCoreDamageFlash",
+      "SetCoreAlive",
       "DisableStemGrowthForSegment",
       "GetSegmentByIndex",
       "GetSegmentByX",
@@ -20771,6 +20970,13 @@
         "is_static": false
       },
       {
+        "name": "core",
+        "type": "CeilingCore",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "brick",
         "type": "CeilingBrick",
         "access": "internal",
@@ -20780,6 +20986,27 @@
       {
         "name": "brick",
         "type": "CeilingBrick",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "parent",
+        "type": "Transform",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "segment",
+        "type": "CeilingSegment",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "core",
+        "type": "CeilingCore",
         "access": "internal",
         "serialized": false,
         "is_static": false
@@ -20809,7 +21036,7 @@
     "public_field_count": 0,
     "get_component_count": 0,
     "find_call_count": 1,
-    "new_keyword_count": 9,
+    "new_keyword_count": 11,
     "coroutine_count": 0,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
@@ -20819,14 +21046,15 @@
       "CeilingSegmentMode",
       "bool",
       "Sprite",
+      "CeilingCore",
       "CeilingBrick",
+      "CeilingSegment",
       "System",
       "Collections",
       "Generic",
       "DefaultNamespace",
       "UnityEngine",
       "OnStageCleared",
-      "CeilingSegment",
       "OnCeilingSegmentDestroyed",
       "LeftSegmentStartX",
       "LeftSegmentEndX",
@@ -20841,6 +21069,8 @@
       "Spawn",
       "Vector2",
       "Sprites",
+      "Ceiling",
+      "Core",
       "Segments",
       "Ball",
       "Control",
@@ -20857,9 +21087,11 @@
       "InitializeCeiling",
       "ResetCeilingState",
       "SetDamageEnabled",
+      "ClearCeilingCores",
       "ClearCeilingBricks",
       "ResetSegments",
       "CreateCeilingBricks",
+      "CreateCeilingCores",
       "Clear",
       "OneSegment",
       "AddOneSegment",
@@ -20879,8 +21111,8 @@
       "Length",
       "Init",
       "Vector2Int",
-      "Destroy",
       "GetChild",
+      "Destroy",
       "TakeDamage",
       "DamageSegmentByCoord",
       "Coord",
@@ -20889,13 +21121,15 @@
       "LogWarning",
       "IsDestroyed",
       "Log",
-      "Ceiling",
       "SegmentName",
       "ApplyDamage",
+      "IndexOf",
       "HP",
       "CurrentHp",
       "MaxHp",
+      "PlayCoreDamageFlash",
       "UpdateSegmentBlockVisuals",
+      "SetCoreAlive",
       "SoundManager",
       "Instance",
       "Play",
@@ -20921,6 +21155,10 @@
       "GetSegmentHpPercentByX",
       "Count",
       "TrueForAll",
+      "SetCoreConnected",
+      "GetCoreByIndex",
+      "SetConnectedState",
+      "SetCoreConnections",
       "GetSegmentTotalBlockCount",
       "CeilToInt",
       "Clamp",
@@ -20932,7 +21170,11 @@
       "Remove",
       "Break",
       "ContainsX",
-      "IndexOf",
+      "GetCorePosition",
+      "Initialize",
+      "SetAliveState",
+      "Vector3",
+      "PlayDamageFlash",
       "DisableStemGrowthByCeilingSegment",
       "DisableStemGrowthByStartXRange",
       "Stage"
@@ -20941,7 +21183,8 @@
     "created_types": [
       "Vector2",
       "CeilingSegment",
-      "Vector2Int"
+      "Vector2Int",
+      "Vector3"
     ],
     "singleton_access_types": [
       "SoundManager"
@@ -20950,6 +21193,7 @@
       "Data",
       "Brick Spawn",
       "Sprites",
+      "Ceiling Core",
       "Segments",
       "Ball Control",
       "Gauge",
@@ -26125,6 +26369,387 @@
       "런타임 컴포넌트",
       "UI 관련 로직 포함",
       "저장/불러오기 관련 로직 포함"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Visual/DamageFlashVisual.cs",
+    "path": "ProjectDribble/Assets/Scripts/Visual/DamageFlashVisual.cs",
+    "file_name": "DamageFlashVisual.cs",
+    "content_hash": "22373989ad00cf22f2ef1bac1a63d6393ec9b1a9",
+    "size": 2200,
+    "line_count": 90,
+    "namespace": "",
+    "using_list": [
+      "System.Collections",
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "DamageFlashVisual",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "DamageFlashVisual",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Color",
+      "Awake",
+      "PlayFlash",
+      "ResetVisual",
+      "CaptureBaseColor",
+      "FlashRoutine",
+      "WaitForSeconds",
+      "ApplyRgb"
+    ],
+    "fields": [
+      {
+        "name": "flashRoutine",
+        "type": "Coroutine",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "baseColor",
+        "type": "Color",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "startColor",
+        "type": "Color",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "elapsed",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "color",
+        "type": "Color",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Awake"
+    ],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 1,
+    "find_call_count": 0,
+    "new_keyword_count": 2,
+    "coroutine_count": 2,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "Coroutine",
+      "Color",
+      "float",
+      "System",
+      "Collections",
+      "UnityEngine",
+      "SpriteRenderer",
+      "Awake",
+      "GetComponent",
+      "CaptureBaseColor",
+      "PlayFlash",
+      "StopCoroutine",
+      "StartCoroutine",
+      "FlashRoutine",
+      "ResetVisual",
+      "ApplyRgb",
+      "WaitForSeconds",
+      "Max",
+      "Clamp01",
+      "Lerp"
+    ],
+    "component_access_types": [
+      "SpriteRenderer"
+    ],
+    "created_types": [
+      "Color",
+      "WaitForSeconds"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [
+      0.35,
+      1,
+      0.08,
+      0.12,
+      0,
+      0.0001
+    ],
+    "guessed_roles": [
+      "runtime",
+      "combat",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
+    "path": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
+    "file_name": "GlitchOverlayVisual.cs",
+    "content_hash": "993c2f9e2942b992b88206051df0a02cd443c171",
+    "size": 2483,
+    "line_count": 94,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "GlitchOverlayVisual",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "GlitchOverlayVisual",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Awake",
+      "SetState",
+      "ResetVisual",
+      "GetSpriteForDanger",
+      "SetAlpha"
+    ],
+    "fields": [
+      {
+        "name": "alpha",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "color",
+        "type": "Color",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Awake"
+    ],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 2,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "float",
+      "Color",
+      "UnityEngine",
+      "SpriteRenderer",
+      "PulseVisual",
+      "Sprite",
+      "Awake",
+      "GetComponent",
+      "ResetVisual",
+      "SetState",
+      "SetPulsing",
+      "GetSpriteForDanger",
+      "SetAlpha",
+      "SetBaseAlpha",
+      "Clamp01"
+    ],
+    "component_access_types": [
+      "SpriteRenderer",
+      "PulseVisual"
+    ],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [
+      1,
+      0.25,
+      0.34,
+      0.67
+    ],
+    "guessed_roles": [
+      "runtime",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Visual/PulseVisual.cs",
+    "path": "ProjectDribble/Assets/Scripts/Visual/PulseVisual.cs",
+    "file_name": "PulseVisual.cs",
+    "content_hash": "b93978ff9a2c956e449817a908966768e533274b",
+    "size": 1534,
+    "line_count": 65,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "PulseVisual",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "PulseVisual",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Awake",
+      "Update",
+      "SetPulsing",
+      "SetBaseAlpha",
+      "ResetVisual",
+      "SetAlpha"
+    ],
+    "fields": [
+      {
+        "name": "isPulsing",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "baseAlpha",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "time",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "color",
+        "type": "Color",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Awake",
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 1,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "bool",
+      "float",
+      "Color",
+      "UnityEngine",
+      "SpriteRenderer",
+      "Awake",
+      "GetComponent",
+      "Update",
+      "Sin",
+      "SetAlpha",
+      "Lerp",
+      "SetPulsing",
+      "SetBaseAlpha",
+      "Clamp01",
+      "ResetVisual"
+    ],
+    "component_access_types": [
+      "SpriteRenderer"
+    ],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [
+      2,
+      0.5,
+      1
+    ],
+    "guessed_roles": [
+      "runtime",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
     ]
   },
   {

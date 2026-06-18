@@ -2,21 +2,21 @@
   "project_name": "unknown",
   "language": "C#",
   "engine_guess": "Unity",
-  "total_cs_files": 171,
-  "mono_behaviour_files": 141,
+  "total_cs_files": 175,
+  "mono_behaviour_files": 145,
   "scriptable_object_files": 10,
-  "files_with_update": 48,
+  "files_with_update": 49,
   "files_with_fixed_update": 1,
   "files_with_late_update": 8,
   "singleton_candidates": 3,
   "manager_like_classes": 59,
   "ui_related_classes": 92,
-  "save_load_related_classes": 89,
+  "save_load_related_classes": 93,
   "role_counts": {
-    "runtime": 150,
+    "runtime": 154,
     "player": 80,
-    "combat": 103,
-    "save-load": 89,
+    "combat": 105,
+    "save-load": 93,
     "manager": 57,
     "data": 57,
     "ui": 92,
@@ -27,8 +27,8 @@
     {
       "class_name": "BlockManager",
       "file_id": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
-      "relation_count": 183,
-      "referenced_type_count": 177
+      "relation_count": 187,
+      "referenced_type_count": 181
     },
     {
       "class_name": "BallCapturedDribbleController",
@@ -49,6 +49,12 @@
       "referenced_type_count": 137
     },
     {
+      "class_name": "CeilingManager",
+      "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+      "relation_count": 143,
+      "referenced_type_count": 137
+    },
+    {
       "class_name": "TMP_TextInfoDebugTool",
       "file_id": "PaddlePrototype/Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextInfoDebugTool.cs",
       "relation_count": 131,
@@ -59,12 +65,6 @@
       "file_id": "ProjectDribble/Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextInfoDebugTool.cs",
       "relation_count": 131,
       "referenced_type_count": 124
-    },
-    {
-      "class_name": "CeilingManager",
-      "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
-      "relation_count": 127,
-      "referenced_type_count": 122
     },
     {
       "class_name": "BallController",

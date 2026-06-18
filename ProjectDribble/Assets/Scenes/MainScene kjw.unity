@@ -4381,7 +4381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &842887597
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4399,7 +4399,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: 600}
+  m_AnchoredPosition: {x: 489, y: 1012.9}
   m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &842887598
@@ -5061,6 +5061,7 @@ MonoBehaviour:
   stageClearUI: {fileID: 2030120727}
   gameOverUI: {fileID: 1779464681}
   gameClearUI: {fileID: 1455427972}
+  pauseButton: {fileID: 842887596}
 --- !u!1 &962351957
 GameObject:
   m_ObjectHideFlags: 0

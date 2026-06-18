@@ -157,7 +157,7 @@ public class GameManager : MonoBehaviour
 
     public void ToTitle()
     {
-        stageManager.RestartCurrentStage();
+        stageManager.StartStage(0);
 
         if (pauseUI != null)
             pauseUI.SetActive(false);

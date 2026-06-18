@@ -38201,6 +38201,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
     "from_class": "BGMSlider",
+    "to_type": "Log",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
     "to_type": "OnBGMSliderValueChanged",
     "relation_type": "uses",
     "strength": 1
@@ -38295,6 +38302,13 @@
     "to_type": "MonoBehaviour",
     "relation_type": "inherits",
     "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
+    "to_type": "Log",
+    "relation_type": "uses",
+    "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",

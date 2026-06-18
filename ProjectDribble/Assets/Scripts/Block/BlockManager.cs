@@ -1016,6 +1016,7 @@ public class BlockManager : MonoBehaviour
             return;
 
         bool[,] connected = GetStartConnectedCells();
+        List<bool> coreConnections = CreateCoreConnectionStateList();
 
         for (int y = 0; y < data.height; y++)
         {
@@ -1041,8 +1042,65 @@ public class BlockManager : MonoBehaviour
                     : 0f;
 
                 block.SetStemVisual(connected[x, y], danger01);
+
+                if (connected[x, y])
+                    MarkConnectedCeilingCore(coreConnections, stemOwner[x, y]);
             }
         }
+
+        ceilingManager?.SetCoreConnections(coreConnections.ToArray());
+    }
+
+    private List<bool> CreateCoreConnectionStateList()
+    {
+        int segmentCount = 0;
+
+        if (data != null && data.growthStems != null)
+        {
+            for (int i = 0; i < data.growthStems.Length; i++)
+            {
+                StageBlockData.GrowthStemData stem = data.growthStems[i];
+
+                if (!UsesCeilingSegment(stem))
+                    continue;
+
+                segmentCount = Mathf.Max(segmentCount, stem.ceilingSegmentIndex + 1);
+            }
+        }
+
+        List<bool> states = new(segmentCount);
+
+        for (int i = 0; i < segmentCount; i++)
+            states.Add(false);
+
+        return states;
+    }
+
+    private void MarkConnectedCeilingCore(List<bool> coreConnections, int stemIndex)
+    {
+        if (coreConnections == null)
+            return;
+
+        if (stemOwner == null || data == null || data.growthStems == null)
+            return;
+
+        if (stemIndex < 0 || stemIndex >= data.growthStems.Length)
+            return;
+
+        StageBlockData.GrowthStemData stem = data.growthStems[stemIndex];
+
+        if (!UsesCeilingSegment(stem))
+            return;
+
+        int segmentIndex = stem.ceilingSegmentIndex;
+
+        if (segmentIndex < 0)
+            return;
+
+        while (coreConnections.Count <= segmentIndex)
+            coreConnections.Add(false);
+
+        coreConnections[segmentIndex] = true;
     }
 
     private int GetDistanceFromBottom(int y)

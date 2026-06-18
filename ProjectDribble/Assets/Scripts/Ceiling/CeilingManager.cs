@@ -37,6 +37,11 @@ public class CeilingManager : MonoBehaviour
     [Header("Sprites")]
     [SerializeField] private Sprite[] ceilingSprites;
 
+    [Header("Ceiling Core")]
+    [SerializeField] private CeilingCore ceilingCorePrefab;
+    [SerializeField] private Transform ceilingCoreParent;
+    [SerializeField] private Vector2 ceilingCoreOffset;
+
     [Header("Segments")]
     [SerializeField] private int leftSegmentMaxHp;
     [SerializeField] private int centerSegmentMaxHp;
@@ -52,6 +57,7 @@ public class CeilingManager : MonoBehaviour
 
     private readonly List<CeilingBrick> aliveBricks = new();
     private readonly List<CeilingSegment> segments = new();
+    private readonly List<CeilingCore> ceilingCores = new();
 
     private void Awake()
     {
@@ -93,9 +99,11 @@ public class CeilingManager : MonoBehaviour
         isStageCleared = false;
         currentHp = 0;
 
+        ClearCeilingCores();
         ClearCeilingBricks();
         ResetSegments();
         CreateCeilingBricks();
+        CreateCeilingCores();
     }
 
     private void ResetSegments()
@@ -201,7 +209,12 @@ public class CeilingManager : MonoBehaviour
     {
         for (int i = transform.childCount - 1; i >= 0; i--)
         {
-            Destroy(transform.GetChild(i).gameObject);
+            Transform child = transform.GetChild(i);
+
+            if (ceilingCoreParent != null && child == ceilingCoreParent)
+                continue;
+
+            Destroy(child.gameObject);
         }
 
         aliveBricks.Clear();
@@ -243,16 +256,19 @@ public class CeilingManager : MonoBehaviour
         }
 
         bool destroyed = segment.ApplyDamage(damage);
+        int segmentIndex = segments.IndexOf(segment);
         UpdateCurrentHpFromSegments();
 
         Debug.Log(
             $"Ceiling segment {segment.SegmentName} damaged by {damage}. HP {segment.CurrentHp}/{segment.MaxHp}"
         );
 
+        PlayCoreDamageFlash(segmentIndex);
         UpdateSegmentBlockVisuals(segment);
 
         if (destroyed)
         {
+            SetCoreAlive(segmentIndex, false);
             SoundManager.Instance.Play(SoundId.CeilingBreak);
             Debug.Log($"Ceiling segment {segment.SegmentName} destroyed.");
             DisableStemGrowthForSegment(segment);
@@ -312,6 +328,33 @@ public class CeilingManager : MonoBehaviour
         return segments.Count > 0 && segments.TrueForAll(segment => segment.IsDestroyed);
     }
 
+    public void SetCoreConnected(int segmentIndex, bool connected)
+    {
+        CeilingCore core = GetCoreByIndex(segmentIndex);
+
+        if (core == null)
+            return;
+
+        core.SetConnectedState(connected && IsSegmentAliveByIndex(segmentIndex));
+    }
+
+    public void SetCoreConnections(bool[] connectedSegments)
+    {
+        for (int i = 0; i < ceilingCores.Count; i++)
+        {
+            CeilingCore core = ceilingCores[i];
+
+            if (core == null)
+                continue;
+
+            bool connected = connectedSegments != null &&
+                             i < connectedSegments.Length &&
+                             connectedSegments[i];
+
+            core.SetConnectedState(connected && IsSegmentAliveByIndex(i));
+        }
+    }
+
     public void UpdateSegmentBlockVisuals(CeilingSegment segment)
     {
         if (segment == null)
@@ -367,6 +410,74 @@ public class CeilingManager : MonoBehaviour
             aliveBricks.RemoveAt(i);
             brick.Break();
         }
+    }
+
+    private void CreateCeilingCores()
+    {
+        if (ceilingCorePrefab == null)
+            return;
+
+        Transform parent = ceilingCoreParent != null ? ceilingCoreParent : transform;
+
+        for (int i = 0; i < segments.Count; i++)
+        {
+            CeilingSegment segment = segments[i];
+
+            if (segment == null)
+                continue;
+
+            CeilingCore core = Instantiate(
+                ceilingCorePrefab,
+                GetCorePosition(segment),
+                Quaternion.identity,
+                parent
+            );
+
+            core.Initialize(i);
+            core.SetAliveState(!segment.IsDestroyed);
+            ceilingCores.Add(core);
+        }
+    }
+
+    private void ClearCeilingCores()
+    {
+        for (int i = ceilingCores.Count - 1; i >= 0; i--)
+        {
+            CeilingCore core = ceilingCores[i];
+
+            if (core != null)
+                Destroy(core.gameObject);
+        }
+
+        ceilingCores.Clear();
+    }
+
+    private Vector3 GetCorePosition(CeilingSegment segment)
+    {
+        float centerX = startPosition.x + ((segment.StartX + segment.EndX) * 0.5f * brickSize.x);
+        float centerY = startPosition.y - ((Mathf.Max(1, rowCount) - 1) * 0.5f * brickSize.y);
+        Vector2 position = new Vector2(centerX, centerY) + ceilingCoreOffset;
+        return new Vector3(position.x, position.y, transform.position.z);
+    }
+
+    private CeilingCore GetCoreByIndex(int segmentIndex)
+    {
+        if (segmentIndex < 0 || segmentIndex >= ceilingCores.Count)
+            return null;
+
+        return ceilingCores[segmentIndex];
+    }
+
+    private void PlayCoreDamageFlash(int segmentIndex)
+    {
+        CeilingCore core = GetCoreByIndex(segmentIndex);
+        core?.PlayDamageFlash();
+    }
+
+    private void SetCoreAlive(int segmentIndex, bool alive)
+    {
+        CeilingCore core = GetCoreByIndex(segmentIndex);
+        core?.SetAliveState(alive);
     }
 
     private void DisableStemGrowthForSegment(CeilingSegment segment)

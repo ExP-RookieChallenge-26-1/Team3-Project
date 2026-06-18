@@ -28,6 +28,8 @@ public class BlockCell : MonoBehaviour,
     [SerializeField] private float maxCrackAlpha = 0.85f;
     [SerializeField] private Color disconnectedStemColor = new Color(0.45f, 0.5f, 0.42f, 1f);
     [SerializeField] private Color dangerStemColor = Color.red;
+    [SerializeField] private GlitchOverlayVisual glitchOverlay;
+    [SerializeField] private DamageFlashVisual damageFlashVisual;
 
     private SpriteRenderer sr;
     private Color connectedStemColor = Color.white;
@@ -77,6 +79,7 @@ public class BlockCell : MonoBehaviour,
 
         gameObject.SetActive(true);
 
+        ResetTransientVisuals();
         UpdateVisual();
     }
 
@@ -85,6 +88,7 @@ public class BlockCell : MonoBehaviour,
         blockType = BlockType.Empty;
         isDisconnectedStem = false;
         danger01 = 0f;
+        ResetTransientVisuals();
         UpdateVisual();
         gameObject.SetActive(false);
     }
@@ -159,6 +163,7 @@ public class BlockCell : MonoBehaviour,
         hp -= damage;
 
         UpdateVisual();
+        damageFlashVisual?.PlayFlash();
 
         if (hp <= 0)
         {
@@ -195,6 +200,9 @@ public class BlockCell : MonoBehaviour,
         color = Color.Lerp(color, dangerStemColor, danger01);
 
         sr.color = color;
+
+        bool showGlitch = blockType == BlockType.Flow;
+        glitchOverlay?.SetState(showGlitch, !isDisconnectedStem, danger01);
     }
 
     private void UpdateHpVisual()
@@ -202,17 +210,20 @@ public class BlockCell : MonoBehaviour,
         if (crackOverlayRenderer == null)
             return;
 
-        float hpRatio = maxHp <= 0f ? 1f : Mathf.Clamp01(hp / maxHp);
-        bool damaged = hpRatio < 1f;
+        crackOverlayRenderer.gameObject.SetActive(false);
+    }
 
-        crackOverlayRenderer.gameObject.SetActive(damaged);
+    private void ResetTransientVisuals()
+    {
+        glitchOverlay?.ResetVisual();
+        damageFlashVisual?.ResetVisual();
 
-        if (!damaged)
-            return;
-
-        Color crackColor = crackOverlayRenderer.color;
-        crackColor.a = Mathf.Lerp(minCrackAlpha, maxCrackAlpha, 1f - hpRatio);
-        crackOverlayRenderer.color = crackColor;
+        if (sr != null)
+        {
+            Color color = sr.color;
+            color.a = connectedStemColor.a;
+            sr.color = color;
+        }
     }
 
     private void OnDrawGizmosSelected()

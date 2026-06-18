@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class BallRecallInput : MonoBehaviour
@@ -39,11 +40,20 @@ public class BallRecallInput : MonoBehaviour
 
         if (touch.press.wasPressedThisFrame)
         {
+            if (IsPointerOverUI(touch.touchId.ReadValue()))
+                return;
+
             BeginPointer(touch.position.ReadValue());
         }
 
         if (touch.press.isPressed)
         {
+            if (IsPointerOverUI(touch.touchId.ReadValue()))
+            {
+                CancelHold();
+                return;
+            }
+
             MovePointer(touch.position.ReadValue());
         }
 
@@ -62,11 +72,20 @@ public class BallRecallInput : MonoBehaviour
 
         if (Pointer.current.press.wasPressedThisFrame)
         {
+            if (IsPointerOverUI())
+                return;
+
             BeginPointer(currentPosition);
         }
 
         if (Pointer.current.press.isPressed)
         {
+            if (IsPointerOverUI())
+            {
+                CancelHold();
+                return;
+            }
+
             MovePointer(currentPosition);
         }
 
@@ -154,5 +173,15 @@ public class BallRecallInput : MonoBehaviour
         }
 
         ballRespawner.RecallBallToPaddle();
+    }
+
+    private bool IsPointerOverUI(int pointerId = -1)
+    {
+        if (EventSystem.current == null)
+            return false;
+
+        return pointerId >= 0
+            ? EventSystem.current.IsPointerOverGameObject(pointerId)
+            : EventSystem.current.IsPointerOverGameObject();
     }
 }

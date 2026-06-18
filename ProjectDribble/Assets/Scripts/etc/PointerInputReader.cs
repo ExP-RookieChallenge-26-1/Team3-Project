@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PointerInputReader : MonoBehaviour
@@ -34,7 +35,7 @@ public class PointerInputReader : MonoBehaviour
             if (touch.press.isPressed)
             {
                 screenPosition = touch.position.ReadValue();
-                return true;
+                return !IsPointerOverUI(touch.touchId.ReadValue());
             }
         }
 
@@ -42,9 +43,19 @@ public class PointerInputReader : MonoBehaviour
         if (Mouse.current != null && Mouse.current.leftButton.isPressed)
         {
             screenPosition = Mouse.current.position.ReadValue();
-            return true;
+            return !IsPointerOverUI();
         }
 
         return false;
+    }
+
+    private bool IsPointerOverUI(int pointerId = -1)
+    {
+        if (EventSystem.current == null)
+            return false;
+
+        return pointerId >= 0
+            ? EventSystem.current.IsPointerOverGameObject(pointerId)
+            : EventSystem.current.IsPointerOverGameObject();
     }
 }

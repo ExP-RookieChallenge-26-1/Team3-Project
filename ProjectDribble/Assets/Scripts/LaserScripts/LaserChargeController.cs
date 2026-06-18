@@ -1,6 +1,7 @@
 using DefaultNamespace;
 using ScriptableObjects;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
@@ -67,11 +68,20 @@ public class LaserChargeController : MonoBehaviour
             return;
         }
 
+        if (IsPointerOverUI())
+        {
+            Reset();
+            isDribbling = false;
+            return;
+        }
+
         isDribbling = value;
         
         if (isDribbling == false)
         {
-            if(!Mouse.current.leftButton.isPressed)
+            bool mousePressed = Mouse.current != null && Mouse.current.leftButton.isPressed;
+
+            if(!mousePressed)
             {
                 TryFireChargedLaser();
             }
@@ -89,6 +99,9 @@ public class LaserChargeController : MonoBehaviour
     private void HandleBallCaptured()
     {
         if (!IsLaserUnlocked())
+            return;
+
+        if (IsPointerOverUI())
             return;
 
         isDribbling = true;
@@ -110,6 +123,13 @@ public class LaserChargeController : MonoBehaviour
             return;
 
         isDribbling = false;
+
+        if (IsPointerOverUI())
+        {
+            Reset();
+            return;
+        }
+
         Debug.Log("[LaserCharge] Stop charging by BallReleased event");
         TryFireChargedLaser();
         Reset();
@@ -159,6 +179,9 @@ public class LaserChargeController : MonoBehaviour
     private bool CheckTimer()
     {
         if (!IsLaserUnlocked())
+            return false;
+
+        if (IsPointerOverUI())
             return false;
 
         if (isDribbling)
@@ -251,5 +274,21 @@ public class LaserChargeController : MonoBehaviour
     private bool IsLaserUnlocked()
     {
         return laserUnlockState != null && laserUnlockState.IsLaserUnlocked;
+    }
+
+    private bool IsPointerOverUI()
+    {
+        if (EventSystem.current == null)
+            return false;
+
+        if (Touchscreen.current != null)
+        {
+            var touch = Touchscreen.current.primaryTouch;
+
+            if (touch.press.isPressed)
+                return EventSystem.current.IsPointerOverGameObject(touch.touchId.ReadValue());
+        }
+
+        return EventSystem.current.IsPointerOverGameObject();
     }
 }

@@ -25847,8 +25847,8 @@
     "file_id": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
     "path": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
     "file_name": "BGMSlider.cs",
-    "content_hash": "eb24f91aeab54548a8f64558a625d1771430b766",
-    "size": 268,
+    "content_hash": "d01c4a78c757c0cc476ef7ad9e34a390402bf129",
+    "size": 302,
     "line_count": 13,
     "namespace": "",
     "using_list": [
@@ -25898,6 +25898,7 @@
       "UI",
       "SoundManager",
       "OnBGMSliderValueChanged",
+      "Log",
       "SetVolume",
       "SoundType",
       "BGM"
@@ -25905,7 +25906,9 @@
     "component_access_types": [],
     "created_types": [],
     "singleton_access_types": [],
-    "string_literals": [],
+    "string_literals": [
+      "bgm 조절: {value}"
+    ],
     "numeric_literals": [],
     "guessed_roles": [
       "ui",
@@ -26003,8 +26006,8 @@
     "file_id": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
     "path": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
     "file_name": "SFXSlider.cs",
-    "content_hash": "d26144e8cacf3dfd09c3a3862b831a86ec26a043",
-    "size": 246,
+    "content_hash": "59ae66ffaa34232d92f76cf4689a6ed98e719f2d",
+    "size": 280,
     "line_count": 12,
     "namespace": "",
     "using_list": [
@@ -26052,6 +26055,7 @@
       "UnityEngine",
       "SoundManager",
       "OnSFXSliderValueChanged",
+      "Log",
       "SetVolume",
       "SoundType",
       "SFX"
@@ -26059,7 +26063,9 @@
     "component_access_types": [],
     "created_types": [],
     "singleton_access_types": [],
-    "string_literals": [],
+    "string_literals": [
+      "sfx 조절: {value}"
+    ],
     "numeric_literals": [],
     "guessed_roles": [
       "ui",

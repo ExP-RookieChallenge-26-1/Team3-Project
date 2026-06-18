@@ -3543,7 +3543,7 @@ GameObject:
   - component: {fileID: 497728411}
   - component: {fileID: 497728410}
   m_Layer: 5
-  m_Name: NextStageButton
+  m_Name: QuitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8210,7 +8210,7 @@ GameObject:
   - component: {fileID: 1862530192}
   - component: {fileID: 1862530191}
   m_Layer: 5
-  m_Name: StageClearBackground
+  m_Name: GameOverBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8918,7 +8918,7 @@ GameObject:
   - component: {fileID: 1993188785}
   - component: {fileID: 1993188784}
   m_Layer: 5
-  m_Name: NextStageButton (1)
+  m_Name: RetryButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

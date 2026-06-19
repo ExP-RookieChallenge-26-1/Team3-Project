@@ -10,8 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1450426535207122254}
   - component: {fileID: 5779418759459765515}
+  - component: {fileID: 8008601955375370094}
+  - component: {fileID: 5126134319728496029}
   m_Layer: 3
-  m_Name: Crack
+  m_Name: GlitchOverlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 60
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 40525ecc1b771c149a8095699d00adcd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 82a845e4f21a7a14f8284875a6c12286, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -91,6 +93,79 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &8008601955375370094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513949279411316045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 592d73172702ede498323438a0ffeac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlitchOverlayVisual
+  glitchRenderer: {fileID: 5779418759459765515}
+  pulseVisual: {fileID: 5126134319728496029}
+  glitchStage1: {fileID: 21300000, guid: 82a845e4f21a7a14f8284875a6c12286, type: 3}
+  glitchStage2: {fileID: 21300000, guid: 9f1cd35e55d7aa549ae19f4430b44c6a, type: 3}
+  glitchStage3: {fileID: 21300000, guid: 2b4607e8b29b3a543a754c61d3bd0878, type: 3}
+  connectedAlpha: 1
+  disconnectedAlpha: 0.25
+  stage2Threshold: 0.2
+  stage3Threshold: 0.4
+--- !u!114 &5126134319728496029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513949279411316045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a22519613094dd439ad7f852fd84133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PulseVisual
+  targetRenderer: {fileID: 5779418759459765515}
+  pulseCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.21666566
+      value: 0.9928589
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  pulseSpeed: 1
+  minAlpha: 0.5
+  maxAlpha: 1
+  pulseColor: {r: 1, g: 1, b: 1, a: 1}
+  scaleAmount: 0.06
+  useUnscaledTime: 0
 --- !u!1 &7211861392728797942
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,8 +178,9 @@ GameObject:
   - component: {fileID: 2735149166923990631}
   - component: {fileID: 1941153006097989576}
   - component: {fileID: -3824261130330139456}
+  - component: {fileID: 3677851521251101403}
   m_Layer: 3
-  m_Name: Brick 2
+  m_Name: Brick 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -175,8 +251,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -5286548714486892102, guid: 7b8b65b5347644c40b7e1c322495ba41, type: 3}
-  m_Color: {r: 0.4056604, g: 0.2028302, b: 0.2028302, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c776e09157ef6114d8b0c6c9cdfba5dd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -229,7 +305,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3, y: 1}
+  m_Size: {x: 3, y: 1.5}
   m_EdgeRadius: 0
 --- !u!114 &-3824261130330139456
 MonoBehaviour:
@@ -245,8 +321,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BlockCell
   _gaugeManager: {fileID: 0}
   ballSpeedDecrease: 5
-  crackOverlayRenderer: {fileID: 5779418759459765515}
-  minCrackAlpha: 1
+  crackOverlayRenderer: {fileID: 0}
+  minCrackAlpha: 0.69
   maxCrackAlpha: 1
   disconnectedStemColor: {r: 1, g: 1, b: 1, a: 0.48235294}
-  dangerStemColor: {r: 0.21824735, g: 1, b: 0, a: 1}
+  dangerStemColor: {r: 0.33909282, g: 0.7075472, b: 0.25031152, a: 1}
+  glitchOverlay: {fileID: 8008601955375370094}
+  damageFlashVisual: {fileID: 3677851521251101403}
+--- !u!114 &3677851521251101403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7211861392728797942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c5c5f6da0f7dee4d94d51c02f26ab82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageFlashVisual
+  targetRenderer: {fileID: 2735149166923990631}
+  flashColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
+  flashDuration: 0.08
+  recoverDuration: 0.12

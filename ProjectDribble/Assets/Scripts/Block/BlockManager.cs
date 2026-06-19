@@ -69,6 +69,18 @@ public class BlockManager : MonoBehaviour
     private readonly List<StemGrowthRuntimeState> stemGrowthStates = new();
     private bool normalBlocksClearedNotified;
 
+    private static readonly Vector2Int[] StemConnectionDirections =
+    {
+        new Vector2Int(0, 1),
+        new Vector2Int(0, -1),
+        new Vector2Int(-1, 0),
+        new Vector2Int(1, 0),
+        new Vector2Int(-1, 1),
+        new Vector2Int(1, 1),
+        new Vector2Int(-1, -1),
+        new Vector2Int(1, -1)
+    };
+
     private void Awake()
     {
         if (ballController == null)
@@ -689,7 +701,7 @@ public class BlockManager : MonoBehaviour
         }
         else
         {
-            blockPool.ActivateBlock(coord, hp);
+            blockPool.ActivateBlock(coord, hp, GetStemFlowBlockPrefabOverride(stemIndex));
         }
 
         RefreshStemConnectionVisuals();
@@ -925,25 +937,6 @@ public class BlockManager : MonoBehaviour
     public bool[,] GetStartConnectedCells()
     {
         bool[,] connected = new bool[data.width, data.height];
-        Queue<Vector2Int> queue = new();
-
-        foreach (Vector2Int startCell in GetActiveStartCoords())
-        {
-            if (!IsValidCoord(startCell))
-                continue;
-
-            if (!occupied[startCell.x, startCell.y])
-                continue;
-
-            if (fixedOccupied[startCell.x, startCell.y])
-                continue;
-
-            if (blockTypes[startCell.x, startCell.y] != BlockType.Flow)
-                continue;
-
-            connected[startCell.x, startCell.y] = true;
-            queue.Enqueue(startCell);
-        }
 
         if (data.UseStemGrowth && data.HasStemGrowthData)
         {
@@ -951,56 +944,47 @@ public class BlockManager : MonoBehaviour
             {
                 StageBlockData.GrowthStemData stem = data.growthStems[stemIndex];
 
-                if (stem == null || !UsesCeilingSegment(stem))
+                if (!IsStemConnectionRootActive(stemIndex, stem))
                     continue;
 
-                if (!IsCeilingSegmentAliveForStem(stem))
-                    continue;
-
-                foreach (Vector2Int root in GetCeilingSegmentTouchingStemCells(stemIndex, stem))
+                if (UsesCeilingSegment(stem))
                 {
-                    if (connected[root.x, root.y])
-                        continue;
-
-                    connected[root.x, root.y] = true;
-                    queue.Enqueue(root);
+                    foreach (Vector2Int root in GetCeilingSegmentTouchingStemCells(stemIndex, stem))
+                        AddConnectedStemCells(root, stemIndex, connected);
+                }
+                else
+                {
+                    AddConnectedStemCells(stem.startCoord, stemIndex, connected);
                 }
             }
         }
-
-        Vector2Int[] checkDirs =
+        else
         {
-            // 상하좌우
-            new Vector2Int(0, 1),
-            new Vector2Int(0, -1),
-            new Vector2Int(-1, 0),
-            new Vector2Int(1, 0),
+            foreach (Vector2Int startCell in data.startCells)
+                AddConnectedStemCells(startCell, -1, connected);
+        }
 
-            // 대각선
-            new Vector2Int(-1, 1),
-            new Vector2Int(1, 1),
-            new Vector2Int(-1, -1),
-            new Vector2Int(1, -1)
-        };
+        return connected;
+    }
+
+    private void AddConnectedStemCells(Vector2Int root, int ownerIndex, bool[,] connected)
+    {
+        if (!IsValidConnectedStemCell(root, ownerIndex))
+            return;
+
+        Queue<Vector2Int> queue = new();
+        connected[root.x, root.y] = true;
+        queue.Enqueue(root);
 
         while (queue.Count > 0)
         {
             Vector2Int current = queue.Dequeue();
 
-            foreach (Vector2Int dir in checkDirs)
+            foreach (Vector2Int dir in StemConnectionDirections)
             {
                 Vector2Int next = current + dir;
 
-                if (!IsValidCoord(next))
-                    continue;
-
-                if (!occupied[next.x, next.y])
-                    continue;
-
-                if (fixedOccupied[next.x, next.y])
-                    continue;
-
-                if (blockTypes[next.x, next.y] != BlockType.Flow)
+                if (!IsValidConnectedStemCell(next, ownerIndex))
                     continue;
 
                 if (connected[next.x, next.y])
@@ -1010,8 +994,15 @@ public class BlockManager : MonoBehaviour
                 queue.Enqueue(next);
             }
         }
+    }
 
-        return connected;
+    private bool IsValidConnectedStemCell(Vector2Int coord, int ownerIndex)
+    {
+        return IsValidCoord(coord) &&
+               occupied[coord.x, coord.y] &&
+               !fixedOccupied[coord.x, coord.y] &&
+               blockTypes[coord.x, coord.y] == BlockType.Flow &&
+               stemOwner[coord.x, coord.y] == ownerIndex;
     }
 
     private void RefreshStemConnectionVisuals()
@@ -1151,12 +1142,11 @@ public class BlockManager : MonoBehaviour
     {
         if (data.UseStemGrowth && data.HasStemGrowthData)
         {
-            foreach (StageBlockData.GrowthStemData stem in data.growthStems)
+            for (int stemIndex = 0; stemIndex < data.growthStems.Length; stemIndex++)
             {
-                if (stem == null)
-                    continue;
+                StageBlockData.GrowthStemData stem = data.growthStems[stemIndex];
 
-                if (UsesCeilingSegment(stem))
+                if (!IsStemConnectionRootActive(stemIndex, stem) || UsesCeilingSegment(stem))
                     continue;
 
                 yield return stem.startCoord;
@@ -1167,6 +1157,29 @@ public class BlockManager : MonoBehaviour
 
         foreach (Vector2Int startCell in data.startCells)
             yield return startCell;
+    }
+
+    private bool IsStemConnectionRootActive(
+        int stemIndex,
+        StageBlockData.GrowthStemData stem
+    )
+    {
+        if (stem == null || !stem.enabled || !IsStemGrowthRuntimeEnabled(stemIndex))
+            return false;
+
+        return !UsesCeilingSegment(stem) || IsCeilingSegmentAliveForStem(stem);
+    }
+
+    private BlockCell GetStemFlowBlockPrefabOverride(int stemIndex)
+    {
+        if (data == null || data.growthStems == null)
+            return null;
+
+        if (stemIndex < 0 || stemIndex >= data.growthStems.Length)
+            return null;
+
+        StageBlockData.GrowthStemData stem = data.growthStems[stemIndex];
+        return stem != null ? stem.flowBlockPrefabOverride : null;
     }
 
     private IEnumerable<StageBlockData.GrowthDirection> GetStemGrowthDirections(
@@ -1388,23 +1401,11 @@ public class BlockManager : MonoBehaviour
             queue.Enqueue(root);
         }
 
-        Vector2Int[] checkDirs =
-        {
-            new Vector2Int(0, 1),
-            new Vector2Int(0, -1),
-            new Vector2Int(-1, 0),
-            new Vector2Int(1, 0),
-            new Vector2Int(-1, 1),
-            new Vector2Int(1, 1),
-            new Vector2Int(-1, -1),
-            new Vector2Int(1, -1)
-        };
-
         while (queue.Count > 0)
         {
             Vector2Int current = queue.Dequeue();
 
-            foreach (Vector2Int dir in checkDirs)
+            foreach (Vector2Int dir in StemConnectionDirections)
             {
                 Vector2Int next = current + dir;
 

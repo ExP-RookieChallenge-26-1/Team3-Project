@@ -13,6 +13,7 @@ public class BlockPool : MonoBehaviour
     private bool warnedNormalFallback;
 
     private BlockCell[,] pool;
+    private BlockCell[,] activeFlowBlocks;
 
     private System.Func<Vector2Int, Vector3> gridToWorld;
     private Vector2 cellSize;
@@ -36,6 +37,7 @@ public class BlockPool : MonoBehaviour
         this.manager = manager;
 
         pool = new BlockCell[width, height];
+        activeFlowBlocks = new BlockCell[width, height];
         cellSize = getCellSize();
 
         for (int y = 0; y < height; y++)
@@ -61,7 +63,7 @@ public class BlockPool : MonoBehaviour
         }
     }
 
-    public void ActivateBlock(Vector2Int coord, float hp)
+    public void ActivateBlock(Vector2Int coord, float hp, BlockCell prefabOverride = null)
     {
         if (pool == null)
         {
@@ -69,14 +71,25 @@ public class BlockPool : MonoBehaviour
             return;
         }
 
-        BlockCell block = pool[coord.x, coord.y];
+        BlockCell block = prefabOverride == null
+            ? pool[coord.x, coord.y]
+            : Instantiate(
+                prefabOverride,
+                gridToWorld(coord),
+                Quaternion.identity,
+                flowBlockParent
+            );
 
         block.transform.position = gridToWorld(coord);
         block.transform.SetParent(flowBlockParent, false);
 
         ApplyBlockSize(block);
 
+        if (prefabOverride != null)
+            block.Init(manager, coord);
+
         block.Activate(coord, hp, BlockType.Flow);
+        activeFlowBlocks[coord.x, coord.y] = block;
     }
 
     public BlockCell CreateNormalBlock(Vector2Int coord, float hp)
@@ -136,14 +149,26 @@ public class BlockPool : MonoBehaviour
 
     public void DeactivateBlock(Vector2Int coord)
     {
-        BlockCell block = pool[coord.x, coord.y];
+        BlockCell block = GetBlock(coord);
+
+        if (block == null)
+            return;
 
         block.Deactivate();
-        block.transform.SetParent(flowBlockParent, false);
+
+        if (block == pool[coord.x, coord.y])
+            block.transform.SetParent(flowBlockParent, false);
+        else
+            Destroy(block.gameObject);
+
+        activeFlowBlocks[coord.x, coord.y] = null;
     }
 
     public BlockCell GetBlock(Vector2Int coord)
     {
+        if (activeFlowBlocks != null && activeFlowBlocks[coord.x, coord.y] != null)
+            return activeFlowBlocks[coord.x, coord.y];
+
         return pool[coord.x, coord.y];
     }
 

@@ -50,6 +50,10 @@ public class StageBlockData : ScriptableObject
     [System.Serializable]
     public class GrowthStemData
     {
+        [Header("Stem Visual")]
+        [Tooltip("Optional Flow block prefab used only by this stem. If empty, BlockPool's default Flow prefab is used.")]
+        public BlockCell flowBlockPrefabOverride;
+
         [Header("Stem Layout")]
         [Tooltip("Ceiling segment index this stem grows from. -1 keeps legacy startCoord based stem behavior.")]
         public int ceilingSegmentIndex = -1;

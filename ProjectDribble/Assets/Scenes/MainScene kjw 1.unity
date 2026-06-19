@@ -5454,8 +5454,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageManager
   stages:
-  - {fileID: 11400000, guid: 6f9f7bebaa6fdb843bd33df6a9f38dbd, type: 2}
   - {fileID: 11400000, guid: f6d0b059c7b03354a8259b6601fd6d0e, type: 2}
+  - {fileID: 11400000, guid: 6f9f7bebaa6fdb843bd33df6a9f38dbd, type: 2}
   - {fileID: 11400000, guid: c444d90c7e5121947a5593126289f6e1, type: 2}
   startStageIndex: 0
   bossStageIndex: 3

@@ -27106,6 +27106,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "from_class": "BlockCell",
+    "to_type": "Clamp",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
+    "from_class": "BlockCell",
     "to_type": "Clamp01",
     "relation_type": "uses",
     "strength": 1
@@ -27261,6 +27268,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "from_class": "BlockCell",
     "to_type": "Instance",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
+    "from_class": "BlockCell",
+    "to_type": "int",
     "relation_type": "uses",
     "strength": 1
   },
@@ -27653,6 +27667,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "from_class": "BlockManager",
     "to_type": "bool[,]",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
+    "from_class": "BlockManager",
+    "to_type": "By",
     "relation_type": "uses",
     "strength": 1
   },
@@ -28058,6 +28079,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "from_class": "BlockManager",
+    "to_type": "GetGlitchStageFromBottomDistance",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
+    "from_class": "BlockManager",
     "to_type": "GetLegacyGrowthCandidates",
     "relation_type": "uses",
     "strength": 1
@@ -28122,6 +28150,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "from_class": "BlockManager",
     "to_type": "Gizmos",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
+    "from_class": "BlockManager",
+    "to_type": "Glitch",
     "relation_type": "uses",
     "strength": 1
   },
@@ -28542,6 +28577,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "from_class": "BlockManager",
     "to_type": "RespawnMissingStemStartBlocks",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
+    "from_class": "BlockManager",
+    "to_type": "Row",
     "relation_type": "uses",
     "strength": 1
   },
@@ -39111,7 +39153,14 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
     "from_class": "GlitchOverlayVisual",
-    "to_type": "GetSpriteForDanger",
+    "to_type": "GetSpriteByStage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
+    "from_class": "GlitchOverlayVisual",
+    "to_type": "Legacy",
     "relation_type": "uses",
     "strength": 1
   },

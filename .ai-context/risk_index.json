@@ -590,6 +590,29 @@
     "risk_score": 81
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
+    "class_name": "BlockManager",
+    "risk_flags": [
+      "high-coupling",
+      "public-field-heavy",
+      "find-heavy",
+      "magic-number-heavy",
+      "large-class",
+      "init-order-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "public 필드 노출 수가 많음",
+      "Find 계열 탐색 사용",
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+      "초기화 순서에 민감할 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 81
+  },
+  {
     "file_id": "ProjectDribble/Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextInfoDebugTool.cs",
     "class_name": "TMP_TextInfoDebugTool",
     "risk_flags": [
@@ -1163,27 +1186,6 @@
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 76
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
-    "class_name": "BlockManager",
-    "risk_flags": [
-      "high-coupling",
-      "public-field-heavy",
-      "find-heavy",
-      "large-class",
-      "init-order-sensitive",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "참조 타입 또는 관계 수가 많음",
-      "public 필드 노출 수가 많음",
-      "Find 계열 탐색 사용",
-      "파일/메서드/필드 수가 많아 책임이 커질 가능성",
-      "초기화 순서에 민감할 가능성",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 73
   },
   {
     "file_id": "ProjectDribble/Assets/Scripts/GameManager.cs",
@@ -2610,6 +2612,23 @@
     "risk_score": 38
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
+    "class_name": "GlitchOverlayVisual",
+    "risk_flags": [
+      "magic-number-heavy",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 38
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/WallBallHitReceiver.cs",
     "class_name": "WallBallHitReceiver",
     "risk_flags": [
@@ -2815,21 +2834,6 @@
     "risk_reasons": [
       "저장/불러오기 관련 로직 포함",
       "UI와 런타임 책임이 한 파일에 섞였을 가능성",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 30
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
-    "class_name": "GlitchOverlayVisual",
-    "risk_flags": [
-      "init-order-sensitive",
-      "save-load-sensitive",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "초기화 순서에 민감할 가능성",
-      "저장/불러오기 관련 로직 포함",
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 30

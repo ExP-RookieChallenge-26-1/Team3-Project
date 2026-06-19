@@ -18352,9 +18352,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "path": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "file_name": "BlockCell.cs",
-    "content_hash": "160493701f5d7d951410215a16d8c8b0c11ea4b0",
-    "size": 5990,
-    "line_count": 247,
+    "content_hash": "73a0152deba64cdc411bef6fad34d367fc0e0511",
+    "size": 6288,
+    "line_count": 256,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -18461,6 +18461,13 @@
         "is_static": false
       },
       {
+        "name": "glitchStage",
+        "type": "int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "wasFixed",
         "type": "bool",
         "access": "internal",
@@ -18531,6 +18538,7 @@
       "float",
       "BlockType",
       "bool",
+      "int",
       "Collider2D",
       "Bounds",
       "DefaultNamespace",
@@ -18565,6 +18573,7 @@
       "SetDangerVisual",
       "Clamp01",
       "SetStemVisual",
+      "Clamp",
       "ModifySpeed",
       "BallSpeedController",
       "ApplyBlockSlow",
@@ -18615,6 +18624,7 @@
       0.42,
       1,
       0,
+      3,
       1.05,
       0.3
     ],
@@ -18635,9 +18645,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "file_name": "BlockManager.cs",
-    "content_hash": "9b42107c59f57ab6bc83f55eb3aba3cf5a805d8c",
-    "size": 45150,
-    "line_count": 1692,
+    "content_hash": "ae30fa07143c56be318746a60ecbaaa7a8b2e607",
+    "size": 46017,
+    "line_count": 1719,
     "namespace": "",
     "using_list": [
       "System.Collections",
@@ -18739,6 +18749,7 @@
       "MarkConnectedCeilingCore",
       "GetDistanceFromBottom",
       "GetDanger01FromBottomDistance",
+      "GetGlitchStageFromBottomDistance",
       "GetStemGrowthDirections",
       "HasAnyGrowthDirection",
       "CountStemBlocksInRow",
@@ -19092,6 +19103,13 @@
         "is_static": false
       },
       {
+        "name": "temp",
+        "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "break",
         "type": "yield",
         "access": "internal",
@@ -19234,6 +19252,9 @@
       "Stem",
       "Danger",
       "Visual",
+      "Glitch",
+      "By",
+      "Row",
       "Ball",
       "Spawn",
       "Safety",
@@ -19343,8 +19364,9 @@
       "Dequeue",
       "CreateCoreConnectionStateList",
       "GetBlock",
-      "GetDanger01FromBottomDistance",
       "GetDistanceFromBottom",
+      "GetDanger01FromBottomDistance",
+      "GetGlitchStageFromBottomDistance",
       "SetStemVisual",
       "MarkConnectedCeilingCore",
       "SetCoreConnections",
@@ -19394,6 +19416,7 @@
       "Grid Area",
       "References",
       "Stem Danger Visual",
+      "Glitch Stage By Row",
       "Ball Spawn Safety",
       "BlockManager: StageBlockData is null. Block grid was not initialized.",
       "fixed={data.fixedBlocks?.Count ?? 0}, normal={data.normalBlocks?.Count ?? 0}, ",
@@ -19404,10 +19427,14 @@
     ],
     "numeric_literals": [
       7,
+      8,
+      4,
       0.25,
       1,
       0.5,
-      0
+      0,
+      3,
+      2
     ],
     "guessed_roles": [
       "runtime",
@@ -25263,8 +25290,8 @@
     "file_id": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "file_name": "StageManager.cs",
-    "content_hash": "6345046003038c1ed68799f821385c44f34a7849",
-    "size": 4666,
+    "content_hash": "602f304176b19ffe35d45afed74105249e8202c9",
+    "size": 4667,
     "line_count": 188,
     "namespace": "",
     "using_list": [
@@ -26537,9 +26564,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
     "path": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
     "file_name": "GlitchOverlayVisual.cs",
-    "content_hash": "993c2f9e2942b992b88206051df0a02cd443c171",
-    "size": 2483,
-    "line_count": 94,
+    "content_hash": "c278bf457f94397a3e613d4b3fa9c55958c9fa07",
+    "size": 2987,
+    "line_count": 108,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -26564,7 +26591,7 @@
       "Awake",
       "SetState",
       "ResetVisual",
-      "GetSpriteForDanger",
+      "GetSpriteByStage",
       "SetAlpha"
     ],
     "fields": [
@@ -26610,12 +26637,13 @@
       "SpriteRenderer",
       "PulseVisual",
       "Sprite",
+      "Legacy",
       "Awake",
       "GetComponent",
       "ResetVisual",
       "SetState",
       "SetPulsing",
-      "GetSpriteForDanger",
+      "GetSpriteByStage",
       "SetAlpha",
       "SetBaseAlpha",
       "Clamp01"
@@ -26630,8 +26658,11 @@
     "numeric_literals": [
       1,
       0.25,
+      414,
       0.34,
-      0.67
+      0.67,
+      3,
+      2
     ],
     "guessed_roles": [
       "runtime",

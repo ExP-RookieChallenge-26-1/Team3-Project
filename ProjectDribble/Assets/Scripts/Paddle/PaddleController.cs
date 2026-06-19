@@ -21,6 +21,13 @@ public class PaddleController : MonoBehaviour
     public float VelocityX => velocityX;
     public Vector2 Velocity => new Vector2(velocityX, 0f);
 
+    private Vector3 initialPosition;
+
+    private void Awake()
+    {
+        initialPosition = transform.position;
+    }
+
     private void Start()
     {
         moveSpeed = data.moveSpeed;
@@ -59,6 +66,11 @@ public class PaddleController : MonoBehaviour
         velocityX = (transform.position.x - xBeforeMove) / deltaTime;
 
         LogPaddleStateIfChanged();
+    }
+
+    public void ResetPosition()
+    {
+        transform.position = initialPosition;
     }
 
     private void MovePad(Vector2 screenPosition)

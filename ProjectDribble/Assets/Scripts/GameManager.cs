@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private StageManager stageManager;
     [SerializeField] private SaveManager saveManager;
     [SerializeField] private LaserUnlockState laserUnlockState;
+    [SerializeField] private PaddleController paddleController;
 
     [Header("UI")]
     [SerializeField] private GameObject titleUI;
@@ -41,10 +42,7 @@ public class GameManager : MonoBehaviour
         QualitySettings.vSyncCount = 1;
         Application.targetFrameRate = 60;
 
-        timeScaleBefore = Time.timeScale;
-        Time.timeScale = 0f;
-        isPaused = true;
-        titleUI.SetActive(true);
+        Initialize();
     }
 
     public void RequestStageClear()
@@ -114,6 +112,9 @@ public class GameManager : MonoBehaviour
 
         stageManager.RestartCurrentStage();
 
+        if (paddleController != null)
+            paddleController.ResetPosition();
+
         ResumeGame();
     }
 
@@ -126,6 +127,9 @@ public class GameManager : MonoBehaviour
             ToTitle();
             return;
         }
+
+        if (paddleController != null)
+            paddleController.ResetPosition();
 
         stageClearUI.SetActive(false);
 
@@ -157,7 +161,22 @@ public class GameManager : MonoBehaviour
 
     public void ToTitle()
     {
-        stageManager.StartStage(0);
+        Initialize();
+    }
+
+    public void Initialize()
+    {
+        Time.timeScale = 0f;
+        isPaused = true;
+        isPausedByTutorial = false;
+        timeScaleBefore = 1f;
+        timeScaleBeforeTutorial = 1f;
+
+        if (stageManager != null)
+            stageManager.StartStage(0);
+
+        if (paddleController != null)
+            paddleController.ResetPosition();
 
         if (pauseUI != null)
             pauseUI.SetActive(false);
@@ -165,14 +184,17 @@ public class GameManager : MonoBehaviour
         if (stageClearUI != null)
             stageClearUI.SetActive(false);
 
-        if (gameClearUI != null)
-            gameClearUI.SetActive(false);
-
         if (gameOverUI != null)
             gameOverUI.SetActive(false);
 
-        titleUI.SetActive(true);
-        pauseButton.SetActive(false);
+        if (gameClearUI != null)
+            gameClearUI.SetActive(false);
+
+        if (titleUI != null)
+            titleUI.SetActive(true);
+
+        if (pauseButton != null)
+            pauseButton.SetActive(false);
     }
 
     public void PauseForTutorial()

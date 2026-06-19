@@ -281,7 +281,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.9938, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.0004, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -5454,8 +5454,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageManager
   stages:
-  - {fileID: 11400000, guid: f6d0b059c7b03354a8259b6601fd6d0e, type: 2}
   - {fileID: 11400000, guid: 6f9f7bebaa6fdb843bd33df6a9f38dbd, type: 2}
+  - {fileID: 11400000, guid: f6d0b059c7b03354a8259b6601fd6d0e, type: 2}
   - {fileID: 11400000, guid: c444d90c7e5121947a5593126289f6e1, type: 2}
   startStageIndex: 0
   bossStageIndex: 3
@@ -10460,7 +10460,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 3d97cb9a886429c4c87774e1754ca81c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2b660db92b10ffc46850fee95a8cfb42, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10590,7 +10590,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: -11.4, z: 0}
-  m_LocalScale: {x: 1.47, y: 1.47, z: 1.47}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4970976747851473168}
@@ -11998,7 +11998,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.37
+  m_Radius: 0.5
 --- !u!212 &7252679309957016636
 SpriteRenderer:
   serializedVersion: 2

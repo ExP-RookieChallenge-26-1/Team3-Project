@@ -363,6 +363,14 @@ public class CeilingManager : MonoBehaviour
         float hpRatio = Mathf.Clamp01(segment.GetHpPercent());
         int totalBlockCount = GetSegmentTotalBlockCount(segment);
         int targetAliveCount = Mathf.CeilToInt(totalBlockCount * hpRatio);
+
+        int minVisibleCount = GetMinVisibleBlockCount(segment, totalBlockCount);
+
+        if (segment.CurrentHp > 0)
+            targetAliveCount = Mathf.Max(targetAliveCount, minVisibleCount);
+        else
+            targetAliveCount = 0;
+
         targetAliveCount = Mathf.Clamp(targetAliveCount, 0, totalBlockCount);
 
         int currentAliveCount = GetAliveBlockCountInSegment(segment);
@@ -378,6 +386,60 @@ public class CeilingManager : MonoBehaviour
         }
     }
 
+    private int GetMinVisibleBlockCount(CeilingSegment segment, int totalBlockCount)
+    {
+        int segmentWidth = Mathf.Max(0, segment.EndX - segment.StartX + 1);
+        int minVisibleCount = segments.Count == 1
+            ? 5
+            : segmentWidth <= 2 ? 2 : 3;
+        return Mathf.Clamp(minVisibleCount, 0, totalBlockCount);
+    }
+
+    private List<CeilingBrick> SelectDistributedAnchorBricks(
+        CeilingSegment segment,
+        List<CeilingBrick> candidates,
+        int anchorCount
+    )
+    {
+        List<CeilingBrick> selected = new();
+
+        for (int anchorIndex = 0; anchorIndex < anchorCount; anchorIndex++)
+        {
+            float anchorRatio = anchorCount <= 1
+                ? 0.5f
+                : anchorIndex / (float)(anchorCount - 1);
+            float anchorX = Mathf.Lerp(segment.StartX, segment.EndX, anchorRatio);
+            int preferredRow = rowCount > 0 ? anchorIndex % rowCount : 0;
+            CeilingBrick closestBrick = null;
+            float closestXDistance = float.MaxValue;
+            int closestRowDistance = int.MaxValue;
+
+            for (int i = 0; i < candidates.Count; i++)
+            {
+                CeilingBrick candidate = candidates[i];
+
+                if (selected.Contains(candidate))
+                    continue;
+
+                float xDistance = Mathf.Abs(candidate.Coord.x - anchorX);
+                int rowDistance = Mathf.Abs(candidate.Coord.y - preferredRow);
+
+                if (xDistance < closestXDistance ||
+                    (Mathf.Approximately(xDistance, closestXDistance) && rowDistance < closestRowDistance))
+                {
+                    closestBrick = candidate;
+                    closestXDistance = xDistance;
+                    closestRowDistance = rowDistance;
+                }
+            }
+
+            if (closestBrick != null)
+                selected.Add(closestBrick);
+        }
+
+        return selected;
+    }
+
     public void DestroyRandomBlocksInSegment(CeilingSegment segment, int count)
     {
         if (segment == null || count <= 0)
@@ -385,6 +447,22 @@ public class CeilingManager : MonoBehaviour
 
         List<CeilingBrick> segmentAliveBricks = GetAliveBricksInSegment(segment);
         int destroyCount = Mathf.Clamp(count, 0, segmentAliveBricks.Count);
+        int anchorCount = 0;
+
+        if (segment.CurrentHp > 0)
+        {
+            anchorCount = GetMinVisibleBlockCount(segment, segmentAliveBricks.Count);
+            destroyCount = Mathf.Min(destroyCount, segmentAliveBricks.Count - anchorCount);
+        }
+
+        List<CeilingBrick> protectedBricks = SelectDistributedAnchorBricks(
+            segment,
+            segmentAliveBricks,
+            anchorCount
+        );
+
+        for (int i = 0; i < protectedBricks.Count; i++)
+            segmentAliveBricks.Remove(protectedBricks[i]);
 
         for (int i = 0; i < destroyCount; i++)
         {

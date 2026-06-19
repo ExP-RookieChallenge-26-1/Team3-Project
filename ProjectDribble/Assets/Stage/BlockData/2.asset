@@ -24,7 +24,7 @@ MonoBehaviour:
     maxX: 2
     maxLength: 20
     width: 0
-    growWeight: 1
+    growWeight: 0
     maxBlocksPerRow: 3
     directionOptions: []
     enabled: 1
@@ -38,7 +38,7 @@ MonoBehaviour:
     maxX: 6
     maxLength: 20
     width: 0
-    growWeight: 1
+    growWeight: 0
     maxBlocksPerRow: 3
     directionOptions: []
     enabled: 1

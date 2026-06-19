@@ -40,6 +40,7 @@ public class BlockCell : MonoBehaviour,
     private BlockType blockType = BlockType.Flow;
     private bool isDisconnectedStem;
     private float danger01;
+    private int glitchStage = 1;
 
     public Vector2Int Coord => coord;
     public BlockType BlockType => blockType;
@@ -76,6 +77,7 @@ public class BlockCell : MonoBehaviour,
         this.blockType = blockType;
         isDisconnectedStem = false;
         danger01 = 0f;
+        glitchStage = 1;
 
         gameObject.SetActive(true);
 
@@ -88,6 +90,7 @@ public class BlockCell : MonoBehaviour,
         blockType = BlockType.Empty;
         isDisconnectedStem = false;
         danger01 = 0f;
+        glitchStage = 1;
         ResetTransientVisuals();
         UpdateVisual();
         gameObject.SetActive(false);
@@ -107,8 +110,14 @@ public class BlockCell : MonoBehaviour,
 
     public void SetStemVisual(bool isConnected, float danger01)
     {
+        SetStemVisual(isConnected, danger01, 1);
+    }
+
+    public void SetStemVisual(bool isConnected, float danger01, int glitchStage)
+    {
         isDisconnectedStem = !isConnected;
         this.danger01 = Mathf.Clamp01(danger01);
+        this.glitchStage = Mathf.Clamp(glitchStage, 1, 3);
         UpdateStemConnectionVisual();
     }
 
@@ -202,7 +211,7 @@ public class BlockCell : MonoBehaviour,
         sr.color = color;
 
         bool showGlitch = blockType == BlockType.Flow;
-        glitchOverlay?.SetState(showGlitch, !isDisconnectedStem, danger01);
+        glitchOverlay?.SetState(showGlitch, !isDisconnectedStem, danger01, glitchStage);
     }
 
     private void UpdateHpVisual()

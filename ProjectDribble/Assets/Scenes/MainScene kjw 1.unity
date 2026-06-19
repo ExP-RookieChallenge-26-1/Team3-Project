@@ -281,7 +281,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.9938, z: 0}
-  m_LocalScale: {x: 1, y: 1.0004, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -6665,9 +6665,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.35937503
+    x: 0
     y: 0
-    width: 0.28125
+    width: 1
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -10097,8 +10097,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 68fc4066114af9a4ab61b7c6b1ee3328, type: 3}
   - {fileID: 21300000, guid: 68fc4066114af9a4ab61b7c6b1ee3328, type: 3}
   - {fileID: 21300000, guid: 68fc4066114af9a4ab61b7c6b1ee3328, type: 3}
-  ceilingCorePrefab: {fileID: 0}
-  ceilingCoreParent: {fileID: 0}
+  ceilingCorePrefab: {fileID: 3008409919184172545, guid: 6264e087cebf290489c6eb15a6747dba, type: 3}
+  ceilingCoreParent: {fileID: 5817911144973919479}
   ceilingCoreOffset: {x: 0, y: 0}
   leftSegmentMaxHp: 40
   centerSegmentMaxHp: 50
@@ -10460,7 +10460,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3d97cb9a886429c4c87774e1754ca81c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10557,7 +10557,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5817911144973919479}
+  m_Father: {fileID: 8279302420138287470}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3019606844128198322
 Transform:
@@ -10590,7 +10590,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: -11.4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.47, y: 1.47, z: 1.47}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4970976747851473168}
@@ -11101,6 +11101,8 @@ MonoBehaviour:
   ballController: {fileID: 8185791647005175377}
   ceilingManager: {fileID: 0}
   dangerWarningRows: 7
+  glitchStage2RowsFromBottom: 8
+  glitchStage3RowsFromBottom: 4
   ballSpawnSafetyMargin: 0.25
   gaugeManager: {fileID: 3735814449434435070}
 --- !u!4 &4626840519418612361
@@ -11439,8 +11441,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2832640441850570119}
-  - {fileID: 7020583152394317897}
   - {fileID: 4626840519418612361}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11858,7 +11858,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5817911144973919479}
+  m_Father: {fileID: 8279302420138287470}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &7023157488010790943
 Transform:
@@ -11998,7 +11998,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 0.37
 --- !u!212 &7252679309957016636
 SpriteRenderer:
   serializedVersion: 2
@@ -12578,6 +12578,8 @@ Transform:
   - {fileID: 7104261695393740349}
   - {fileID: 7756491226887793325}
   - {fileID: 3601250980634238498}
+  - {fileID: 2832640441850570119}
+  - {fileID: 7020583152394317897}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &8285537673710809277

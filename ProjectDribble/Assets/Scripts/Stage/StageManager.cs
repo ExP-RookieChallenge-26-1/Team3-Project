@@ -1,7 +1,7 @@
 using DefaultNamespace;
 using UnityEngine;
 
-public class StageManager : MonoBehaviour
+public class StageManager : MonoBehaviour 
 {
     [Header("Stage Data")]
     [SerializeField] private StageDefinition[] stages;

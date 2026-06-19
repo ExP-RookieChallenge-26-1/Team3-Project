@@ -12,8 +12,11 @@ public class GlitchOverlayVisual : MonoBehaviour
     [SerializeField] private float connectedAlpha = 1f;
     [SerializeField] private float disconnectedAlpha = 0.25f;
 
+    // Legacy danger thresholds are kept for prefab compatibility, but sprite stage is now selected by row distance.
+#pragma warning disable 0414
     [SerializeField] private float stage2Threshold = 0.34f;
     [SerializeField] private float stage3Threshold = 0.67f;
+#pragma warning restore 0414
 
     private void Awake()
     {
@@ -28,6 +31,11 @@ public class GlitchOverlayVisual : MonoBehaviour
 
     public void SetState(bool visible, bool connected, float danger01)
     {
+        SetState(visible, connected, danger01, 1);
+    }
+
+    public void SetState(bool visible, bool connected, float danger01, int glitchStage)
+    {
         if (glitchRenderer == null)
             return;
 
@@ -40,7 +48,7 @@ public class GlitchOverlayVisual : MonoBehaviour
         }
 
         glitchRenderer.enabled = true;
-        glitchRenderer.sprite = GetSpriteForDanger(danger01);
+        glitchRenderer.sprite = GetSpriteByStage(glitchStage);
 
         float alpha = connected ? connectedAlpha : disconnectedAlpha;
         SetAlpha(alpha);
@@ -68,17 +76,23 @@ public class GlitchOverlayVisual : MonoBehaviour
             pulseVisual.SetBaseAlpha(disconnectedAlpha);
     }
 
-    private Sprite GetSpriteForDanger(float danger01)
+    private Sprite GetSpriteByStage(int glitchStage)
     {
-        float clampedDanger = Mathf.Clamp01(danger01);
-
-        if (clampedDanger >= stage3Threshold && glitchStage3 != null)
-            return glitchStage3;
-
-        if (clampedDanger >= stage2Threshold && glitchStage2 != null)
-            return glitchStage2;
-
-        return glitchStage1;
+        switch (glitchStage)
+        {
+            case 3:
+                if (glitchStage3 != null)
+                    return glitchStage3;
+                if (glitchStage2 != null)
+                    return glitchStage2;
+                return glitchStage1;
+            case 2:
+                if (glitchStage2 != null)
+                    return glitchStage2;
+                return glitchStage1;
+            default:
+                return glitchStage1;
+        }
     }
 
     private void SetAlpha(float alpha)

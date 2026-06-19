@@ -49,6 +49,10 @@ public class BlockManager : MonoBehaviour
     [Header("Stem Danger Visual")]
     [SerializeField] private int dangerWarningRows = 7;
 
+    [Header("Glitch Stage By Row")]
+    [SerializeField] private int glitchStage2RowsFromBottom = 8;
+    [SerializeField] private int glitchStage3RowsFromBottom = 4;
+
     [Header("Ball Spawn Safety")]
     [SerializeField] private float ballSpawnSafetyMargin = 0.25f;
 
@@ -1037,11 +1041,13 @@ public class BlockManager : MonoBehaviour
                 if (block == null)
                     continue;
 
+                int distanceFromBottom = GetDistanceFromBottom(y);
                 float danger01 = connected[x, y]
-                    ? GetDanger01FromBottomDistance(GetDistanceFromBottom(y))
+                    ? GetDanger01FromBottomDistance(distanceFromBottom)
                     : 0f;
+                int glitchStage = GetGlitchStageFromBottomDistance(distanceFromBottom);
 
-                block.SetStemVisual(connected[x, y], danger01);
+                block.SetStemVisual(connected[x, y], danger01, glitchStage);
 
                 if (connected[x, y])
                     MarkConnectedCeilingCore(coreConnections, stemOwner[x, y]);
@@ -1118,6 +1124,27 @@ public class BlockManager : MonoBehaviour
             return 0f;
 
         return 1f - Mathf.Clamp01(distanceFromBottom / (float)dangerWarningRows);
+    }
+
+    private int GetGlitchStageFromBottomDistance(int distanceFromBottom)
+    {
+        int stage2Rows = Mathf.Max(0, glitchStage2RowsFromBottom);
+        int stage3Rows = Mathf.Max(0, glitchStage3RowsFromBottom);
+
+        if (stage3Rows > stage2Rows)
+        {
+            int temp = stage2Rows;
+            stage2Rows = stage3Rows;
+            stage3Rows = temp;
+        }
+
+        if (distanceFromBottom <= stage3Rows)
+            return 3;
+
+        if (distanceFromBottom <= stage2Rows)
+            return 2;
+
+        return 1;
     }
 
     private IEnumerable<Vector2Int> GetActiveStartCoords()

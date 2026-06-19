@@ -28,7 +28,7 @@ MonoBehaviour:
     maxBlocksPerRow: 3
     directionOptions: []
     enabled: 1
-    spawnInterval: 1
+    spawnInterval: 0.05
     minGrowPerTick: 1
     maxGrowPerTick: 2
     initialDelay: 0

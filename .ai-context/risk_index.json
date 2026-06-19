@@ -1461,6 +1461,27 @@
     "risk_score": 66
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/Visual/PulseVisual.cs",
+    "class_name": "PulseVisual",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "magic-number-heavy",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 66
+  },
+  {
     "file_id": "ProjectDribble/Assets/TextMesh Pro/Examples & Extras/Scripts/SkewTextExample.cs",
     "class_name": "SkewTextExample",
     "risk_flags": [
@@ -2496,23 +2517,6 @@
       "초기화 순서에 민감할 가능성",
       "저장/불러오기 관련 로직 포함",
       "UI와 런타임 책임이 한 파일에 섞였을 가능성",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 40
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Scripts/Visual/PulseVisual.cs",
-    "class_name": "PulseVisual",
-    "risk_flags": [
-      "update-heavy",
-      "init-order-sensitive",
-      "save-load-sensitive",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "Unity 업데이트 루프 사용",
-      "초기화 순서에 민감할 가능성",
-      "저장/불러오기 관련 로직 포함",
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 40

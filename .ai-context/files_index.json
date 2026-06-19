@@ -15027,9 +15027,9 @@
     "file_id": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
     "path": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
     "file_name": "StageBlockData.cs",
-    "content_hash": "c5b3d0823860f8a6a7a6741d0d10a96b745e7332",
-    "size": 10616,
-    "line_count": 245,
+    "content_hash": "8d5adc57775390841d0fbc3faee7a70c7cab37e2",
+    "size": 10822,
+    "line_count": 249,
     "namespace": "",
     "using_list": [
       "System.Collections.Generic",
@@ -15157,6 +15157,13 @@
       {
         "name": "hp",
         "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "flowBlockPrefabOverride",
+        "type": "BlockCell",
         "access": "public",
         "serialized": false,
         "is_static": false
@@ -15376,7 +15383,7 @@
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 0,
-    "public_field_count": 36,
+    "public_field_count": 37,
     "get_component_count": 0,
     "find_call_count": 0,
     "new_keyword_count": 18,
@@ -15389,6 +15396,7 @@
       "int",
       "float",
       "StemDirectionType",
+      "BlockCell",
       "bool",
       "System",
       "Collections",
@@ -15416,6 +15424,10 @@
       "Fixed",
       "Flow",
       "HP",
+      "Visual",
+      "Optional",
+      "If",
+      "BlockPool",
       "Layout",
       "Ceiling",
       "Minimum",
@@ -15431,7 +15443,6 @@
       "Options",
       "Timing",
       "Initial",
-      "If",
       "Delay",
       "Negative",
       "GetPreferredDirections",
@@ -15471,6 +15482,7 @@
       "Weighted random selection value. Values less than or equal to 0 are ignored.",
       "Stem growth direction option used when useStemGrowth is true.",
       "Lower priority values are selected before higher priority values for this stem.",
+      "Stem Visual",
       "Stem Layout",
       "Minimum grid X coordinate this stem can grow within.",
       "Maximum grid X coordinate this stem can grow within.",
@@ -15482,8 +15494,7 @@
       "Grid",
       "Grid width in cells.",
       "Grid height in cells.",
-      "Block Layout",
-      "Growth Mode"
+      "Block Layout"
     ],
     "numeric_literals": [
       1,
@@ -18645,9 +18656,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "file_name": "BlockManager.cs",
-    "content_hash": "ae30fa07143c56be318746a60ecbaaa7a8b2e607",
-    "size": 46017,
-    "line_count": 1719,
+    "content_hash": "dde6052e8edbb9098666339d72c238c675e5dbca",
+    "size": 46503,
+    "line_count": 1720,
     "namespace": "",
     "using_list": [
       "System.Collections",
@@ -18692,6 +18703,7 @@
     "unity_type": "MonoBehaviour",
     "methods": [
       "GrowthCandidate",
+      "Vector2Int",
       "Awake",
       "Start",
       "InitializeStageBlocks",
@@ -18718,7 +18730,6 @@
       "GetStemGrowCount",
       "TryGrowSingleStem",
       "CollectStemGrowthCandidatesForStem",
-      "Vector2Int",
       "SpawnFixedBlocks",
       "SpawnNormalBlocks",
       "SpawnStartBlocks",
@@ -18730,6 +18741,7 @@
       "IsStemGrowthRuntimeEnabled",
       "SpawnBlock",
       "SpawnNormalBlock",
+      "GetStemFlowBlockPrefabOverride",
       "RemoveBlock",
       "GetAbsorbableFlowBlockCoords",
       "TryRemoveAbsorbableFlowBlock",
@@ -18744,12 +18756,15 @@
       "GetLegacyGrowthCandidates",
       "GetStartConnectedCells",
       "GetCeilingSegmentTouchingStemCells",
+      "AddConnectedStemCells",
+      "IsValidConnectedStemCell",
       "RefreshStemConnectionVisuals",
       "CreateCoreConnectionStateList",
       "MarkConnectedCeilingCore",
       "GetDistanceFromBottom",
       "GetDanger01FromBottomDistance",
       "GetGlitchStageFromBottomDistance",
+      "IsStemConnectionRootActive",
       "GetStemGrowthDirections",
       "HasAnyGrowthDirection",
       "CountStemBlocksInRow",
@@ -19110,8 +19125,22 @@
         "is_static": false
       },
       {
+        "name": "stem",
+        "type": "StageBlockData.GrowthStemData",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "break",
         "type": "yield",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "stem",
+        "type": "StageBlockData.GrowthStemData",
         "access": "internal",
         "serialized": false,
         "is_static": false
@@ -19211,7 +19240,7 @@
     "public_field_count": 7,
     "get_component_count": 0,
     "find_call_count": 2,
-    "new_keyword_count": 35,
+    "new_keyword_count": 27,
     "coroutine_count": 2,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
@@ -19259,6 +19288,7 @@
       "Spawn",
       "Safety",
       "GaugeManager",
+      "StemConnectionDirections",
       "Awake",
       "FindAnyObjectByType",
       "Start",
@@ -19335,6 +19365,7 @@
       "CreateFixedBlock",
       "CreateNormalBlock",
       "ActivateBlock",
+      "GetStemFlowBlockPrefabOverride",
       "CheckNormalBlocksCleared",
       "RemoveBlock",
       "GetBlockCell",
@@ -19358,9 +19389,11 @@
       "Invoke",
       "NotifyFixedBlockDestroyedByLaser",
       "AddGauge",
-      "Enqueue",
-      "IsCeilingSegmentAliveForStem",
+      "IsStemConnectionRootActive",
       "GetCeilingSegmentTouchingStemCells",
+      "AddConnectedStemCells",
+      "IsValidConnectedStemCell",
+      "Enqueue",
       "Dequeue",
       "CreateCoreConnectionStateList",
       "GetBlock",
@@ -19373,6 +19406,7 @@
       "ToArray",
       "Abs",
       "Clamp01",
+      "IsCeilingSegmentAliveForStem",
       "GetPreferredDirections",
       "HasAnyGrowthDirection",
       "GetCeilingSegmentStemTopY",
@@ -19404,10 +19438,10 @@
     ],
     "component_access_types": [],
     "created_types": [
+      "Vector2Int",
       "Vector3",
       "Vector2",
       "WaitForSeconds",
-      "Vector2Int",
       "GrowthCandidate"
     ],
     "singleton_access_types": [],
@@ -19454,9 +19488,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Block/BlockPool.cs",
     "path": "ProjectDribble/Assets/Scripts/Block/BlockPool.cs",
     "file_name": "BlockPool.cs",
-    "content_hash": "3ae88a4c6b0be3b75885ab788298090f32dc739b",
-    "size": 4084,
-    "line_count": 155,
+    "content_hash": "036d87e10c95d19080b9fe5b474a017fb4e533b6",
+    "size": 4896,
+    "line_count": 180,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -19485,6 +19519,7 @@
       "CreateNormalBlock",
       "CreateFixedBlock",
       "DeactivateBlock",
+      "Destroy",
       "GetBlock",
       "ApplyBlockSize",
       "Vector3"
@@ -19505,6 +19540,13 @@
         "is_static": false
       },
       {
+        "name": "activeFlowBlocks",
+        "type": "BlockCell[,]",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "cellSize",
         "type": "Vector2",
         "access": "private",
@@ -19519,13 +19561,6 @@
         "is_static": false
       },
       {
-        "name": "block",
-        "type": "BlockCell",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
         "name": "prefab",
         "type": "BlockCell",
         "access": "internal",
@@ -19535,13 +19570,6 @@
       {
         "name": "parent",
         "type": "Transform",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "block",
-        "type": "BlockCell",
         "access": "internal",
         "serialized": false,
         "is_static": false
@@ -19561,7 +19589,7 @@
     "public_field_count": 0,
     "get_component_count": 0,
     "find_call_count": 0,
-    "new_keyword_count": 3,
+    "new_keyword_count": 4,
     "coroutine_count": 0,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
@@ -19595,8 +19623,9 @@
       "CreateFixedBlock",
       "Fixed",
       "DeactivateBlock",
+      "GetBlock",
       "Deactivate",
-      "GetBlock"
+      "Destroy"
     ],
     "component_access_types": [],
     "created_types": [
@@ -26730,9 +26759,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Visual/PulseVisual.cs",
     "path": "ProjectDribble/Assets/Scripts/Visual/PulseVisual.cs",
     "file_name": "PulseVisual.cs",
-    "content_hash": "b93978ff9a2c956e449817a908966768e533274b",
-    "size": 1534,
-    "line_count": 65,
+    "content_hash": "2f21a0ec491f1f06d1214bbf5095778a885e751d",
+    "size": 2982,
+    "line_count": 112,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -26754,12 +26783,16 @@
     "main_class_name": "PulseVisual",
     "unity_type": "MonoBehaviour",
     "methods": [
+      "AnimationCurve",
+      "Keyframe",
       "Awake",
       "Update",
       "SetPulsing",
       "SetBaseAlpha",
       "ResetVisual",
-      "SetAlpha"
+      "OnDisable",
+      "ApplyPulse",
+      "RestoreVisual"
     ],
     "fields": [
       {
@@ -26772,6 +26805,27 @@
       {
         "name": "baseAlpha",
         "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "baseColor",
+        "type": "Color",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "baseScale",
+        "type": "Vector3",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "canScaleTarget",
+        "type": "bool",
         "access": "private",
         "serialized": false,
         "is_static": false
@@ -26795,7 +26849,8 @@
     "events": [],
     "unity_messages": [
       "Awake",
-      "Update"
+      "Update",
+      "OnDisable"
     ],
     "has_update": true,
     "has_fixed_update": false,
@@ -26803,12 +26858,12 @@
     "has_awake": true,
     "has_start": false,
     "has_on_enable": false,
-    "has_on_disable": false,
+    "has_on_disable": true,
     "serialize_field_count": 0,
     "public_field_count": 0,
     "get_component_count": 1,
     "find_call_count": 0,
-    "new_keyword_count": 0,
+    "new_keyword_count": 8,
     "coroutine_count": 0,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
@@ -26816,37 +26871,55 @@
       "bool",
       "float",
       "Color",
+      "Vector3",
       "UnityEngine",
       "SpriteRenderer",
+      "AnimationCurve",
+      "Keyframe",
       "Awake",
       "GetComponent",
+      "GetComponentsInChildren",
+      "Collider2D",
+      "Length",
       "Update",
-      "Sin",
-      "SetAlpha",
-      "Lerp",
-      "SetPulsing",
-      "SetBaseAlpha",
+      "Repeat",
+      "Max",
       "Clamp01",
-      "ResetVisual"
+      "Evaluate",
+      "ApplyPulse",
+      "SetPulsing",
+      "RestoreVisual",
+      "SetBaseAlpha",
+      "ResetVisual",
+      "OnDisable",
+      "Lerp"
     ],
     "component_access_types": [
       "SpriteRenderer"
     ],
-    "created_types": [],
+    "created_types": [
+      "AnimationCurve",
+      "Keyframe"
+    ],
     "singleton_access_types": [],
     "string_literals": [],
     "numeric_literals": [
-      2,
-      0.5,
-      1
+      0,
+      0.15,
+      1,
+      2.5,
+      0.35,
+      0.06
     ],
     "guessed_roles": [
       "runtime",
+      "combat",
       "save-load"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
       "Update 기반 처리 존재",
+      "전투 계열 로직 포함",
       "저장/불러오기 관련 로직 포함",
       "컴포넌트 조회 사용"
     ]

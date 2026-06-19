@@ -20805,9 +20805,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "file_name": "CeilingManager.cs",
-    "content_hash": "25ef79f9d3b9aa54a02a67778a644df2d1ed5e05",
-    "size": 16621,
-    "line_count": 569,
+    "content_hash": "86c98058951de6d5d06340e032bf34b0ef154a2a",
+    "size": 19340,
+    "line_count": 647,
     "namespace": "",
     "using_list": [
       "System",
@@ -20858,6 +20858,8 @@
       "SetCoreConnected",
       "SetCoreConnections",
       "UpdateSegmentBlockVisuals",
+      "GetMinVisibleBlockCount",
+      "SelectDistributedAnchorBricks",
       "DestroyRandomBlocksInSegment",
       "BreakSegmentBricks",
       "CreateCeilingCores",
@@ -20999,6 +21001,48 @@
       {
         "name": "core",
         "type": "CeilingCore",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "preferredRow",
+        "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "closestBrick",
+        "type": "CeilingBrick",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "closestXDistance",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "closestRowDistance",
+        "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "candidate",
+        "type": "CeilingBrick",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "anchorCount",
+        "type": "int",
         "access": "internal",
         "serialized": false,
         "is_static": false
@@ -21188,13 +21232,21 @@
       "SetCoreConnections",
       "GetSegmentTotalBlockCount",
       "CeilToInt",
+      "GetMinVisibleBlockCount",
       "Clamp",
       "GetAliveBlockCountInSegment",
       "F2",
       "DestroyRandomBlocksInSegment",
+      "SelectDistributedAnchorBricks",
+      "Lerp",
+      "MaxValue",
+      "Contains",
+      "Abs",
+      "Approximately",
       "GetAliveBricksInSegment",
-      "RemoveAt",
+      "Min",
       "Remove",
+      "RemoveAt",
       "Break",
       "ContainsX",
       "GetCorePosition",

@@ -161,6 +161,7 @@ MonoBehaviour:
   maxAlpha: 1
   pulseColor: {r: 0, g: 1, b: 0, a: 1}
   scaleAmount: 0.06
+  useScalePulse: 1
   useUnscaledTime: 0
 --- !u!114 &3008409919184172545
 MonoBehaviour:

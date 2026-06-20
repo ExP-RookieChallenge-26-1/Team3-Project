@@ -47,6 +47,12 @@ public class CeilingManager : MonoBehaviour
     [SerializeField] private int centerSegmentMaxHp;
     [SerializeField] private int rightSegmentMaxHp;
 
+    [Header("Segment Root Visuals")]
+    [SerializeField] private CeilingSegmentRootVisual segmentRootVisualPrefab;
+    [SerializeField] private Transform segmentRootVisualParent;
+    [SerializeField] private float segmentRootVisualYOffset = -0.3f;
+    [SerializeField] private float segmentRootVisualEdgePadding;
+
     [Header("Ball Control")]
     [SerializeField] private BallRespawner ballRespawner;
 
@@ -58,6 +64,7 @@ public class CeilingManager : MonoBehaviour
     private readonly List<CeilingBrick> aliveBricks = new();
     private readonly List<CeilingSegment> segments = new();
     private readonly List<CeilingCore> ceilingCores = new();
+    private readonly List<CeilingSegmentRootVisual> segmentRootVisuals = new();
 
     private void Awake()
     {
@@ -100,10 +107,12 @@ public class CeilingManager : MonoBehaviour
         currentHp = 0;
 
         ClearCeilingCores();
+        ClearSegmentRootVisuals();
         ClearCeilingBricks();
         ResetSegments();
         CreateCeilingBricks();
         CreateCeilingCores();
+        CreateSegmentRootVisuals();
     }
 
     private void ResetSegments()
@@ -214,6 +223,9 @@ public class CeilingManager : MonoBehaviour
             if (ceilingCoreParent != null && child == ceilingCoreParent)
                 continue;
 
+            if (segmentRootVisualParent != null && child == segmentRootVisualParent)
+                continue;
+
             Destroy(child.gameObject);
         }
 
@@ -269,6 +281,7 @@ public class CeilingManager : MonoBehaviour
         if (destroyed)
         {
             SetCoreAlive(segmentIndex, false);
+            SetSegmentRootVisualState(segmentIndex, false);
             SoundManager.Instance.Play(SoundId.CeilingBreak);
             Debug.Log($"Ceiling segment {segment.SegmentName} destroyed.");
             DisableStemGrowthForSegment(segment);
@@ -528,6 +541,96 @@ public class CeilingManager : MonoBehaviour
         }
 
         ceilingCores.Clear();
+    }
+
+    private void CreateSegmentRootVisuals()
+    {
+        if (segmentRootVisualPrefab == null)
+            return;
+
+        Transform parent = segmentRootVisualParent != null ? segmentRootVisualParent : transform;
+
+        for (int i = 0; i < segments.Count; i++)
+        {
+            CeilingSegment segment = segments[i];
+
+            if (segment == null)
+                continue;
+
+            CeilingSegmentRootVisual visual = Instantiate(
+                segmentRootVisualPrefab,
+                GetSegmentRootVisualPosition(segment),
+                Quaternion.identity,
+                parent
+            );
+
+            visual.Initialize(i);
+            visual.BuildTiles(GetSegmentRootVisualTilePositions(segment));
+            segmentRootVisuals.Add(visual);
+        }
+
+        RefreshSegmentRootVisuals();
+    }
+
+    private void ClearSegmentRootVisuals()
+    {
+        for (int i = segmentRootVisuals.Count - 1; i >= 0; i--)
+        {
+            CeilingSegmentRootVisual visual = segmentRootVisuals[i];
+
+            if (visual != null)
+                Destroy(visual.gameObject);
+        }
+
+        segmentRootVisuals.Clear();
+    }
+
+    public void RefreshSegmentRootVisuals()
+    {
+        for (int i = 0; i < segmentRootVisuals.Count; i++)
+            SetSegmentRootVisualState(i, IsSegmentAliveByIndex(i));
+    }
+
+    public void SetSegmentRootVisualState(int segmentIndex, bool active)
+    {
+        if (segmentIndex < 0 || segmentIndex >= segmentRootVisuals.Count)
+            return;
+
+        CeilingSegmentRootVisual visual = segmentRootVisuals[segmentIndex];
+        visual?.SetActiveState(active && IsSegmentAliveByIndex(segmentIndex));
+    }
+
+    private Vector3 GetSegmentRootVisualPosition(CeilingSegment segment)
+    {
+        float centerX = startPosition.x + ((segment.StartX + segment.EndX) * 0.5f * brickSize.x);
+        float bottomY = startPosition.y - (Mathf.Max(1, rowCount) - 1) * brickSize.y;
+        return new Vector3(centerX, bottomY + segmentRootVisualYOffset, transform.position.z);
+    }
+
+    private List<Vector3> GetSegmentRootVisualTilePositions(CeilingSegment segment)
+    {
+        int tileCount = Mathf.Max(0, segment.EndX - segment.StartX + 1);
+        List<Vector3> positions = new(tileCount);
+        float bottomY = startPosition.y - (Mathf.Max(1, rowCount) - 1) * brickSize.y;
+
+        for (int x = segment.StartX; x <= segment.EndX; x++)
+        {
+            float edgeOffset = 0f;
+
+            if (tileCount > 1 && x == segment.StartX)
+                edgeOffset = segmentRootVisualEdgePadding;
+            else if (tileCount > 1 && x == segment.EndX)
+                edgeOffset = -segmentRootVisualEdgePadding;
+
+            float columnCenterX = startPosition.x + x * brickSize.x + edgeOffset;
+            positions.Add(new Vector3(
+                columnCenterX,
+                bottomY + segmentRootVisualYOffset,
+                transform.position.z
+            ));
+        }
+
+        return positions;
     }
 
     private Vector3 GetCorePosition(CeilingSegment segment)

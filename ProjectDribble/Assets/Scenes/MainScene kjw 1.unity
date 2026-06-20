@@ -10103,6 +10103,11 @@ MonoBehaviour:
   leftSegmentMaxHp: 40
   centerSegmentMaxHp: 50
   rightSegmentMaxHp: 40
+  segmentRootVisualPrefab: {fileID: 0}
+  segmentRootVisualParent: {fileID: 0}
+  segmentRootVisualYOffset: -0.3
+  fitSegmentRootVisualToWidth: 1
+  segmentRootVisualHorizontalPadding: 0.2
   ballRespawner: {fileID: 8720353550579785846}
   _gaugeManager: {fileID: 3735814449434435070}
   blockManager: {fileID: 4361603370357834238}
@@ -10168,6 +10173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::paddle_movement
   inputReader: {fileID: 1168435298}
+  upPaddleSpriteRenderer: {fileID: 0}
   debugPaddleActiveState: 0
   data: {fileID: 11400000, guid: 553479fb14815704aac8e148ffd42d28, type: 2}
 --- !u!1 &526203435449708055
@@ -10460,7 +10466,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 2b660db92b10ffc46850fee95a8cfb42, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1f3a696f435bb2f4190de3d8ea9e3fbb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -11017,7 +11023,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 9623fcd13f46c2045be3c775b5be0b59, type: 3}
-  m_Color: {r: 0.078431375, g: 0.8117648, b: 0.003921569, a: 1}
+  m_Color: {r: 0.27369308, g: 0.8584906, b: 0.21462265, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -11098,9 +11104,9 @@ MonoBehaviour:
   blockPool: {fileID: 1815667933250341828}
   ballController: {fileID: 8185791647005175377}
   ceilingManager: {fileID: 0}
-  dangerWarningRows: 7
-  glitchStage2RowsFromBottom: 8
-  glitchStage3RowsFromBottom: 4
+  dangerWarningRows: 10
+  glitchStage2RowsFromBottom: 14
+  glitchStage3RowsFromBottom: 5
   ballSpawnSafetyMargin: 0.25
   gaugeManager: {fileID: 3735814449434435070}
 --- !u!4 &4626840519418612361

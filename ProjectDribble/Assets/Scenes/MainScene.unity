@@ -3362,6 +3362,10 @@ MonoBehaviour:
   leftSegmentMaxHp: 40
   centerSegmentMaxHp: 50
   rightSegmentMaxHp: 40
+  segmentRootVisualPrefab: {fileID: 11400000, guid: b7d3457ab2614e1bbd4e9c2619a02e4f, type: 3}
+  segmentRootVisualParent: {fileID: 0}
+  segmentRootVisualYOffset: -0.3
+  segmentRootVisualEdgePadding: 0
   ballRespawner: {fileID: 8720353550579785846}
   _gaugeManager: {fileID: 3735814449434435070}
   blockManager: {fileID: 4361603370357834238}

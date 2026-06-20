@@ -13,6 +13,7 @@ public class PulseVisual : MonoBehaviour
     [SerializeField] private float maxAlpha = 1f;
     [SerializeField] private Color pulseColor = Color.green;
     [SerializeField] private float scaleAmount = 0.06f;
+    [SerializeField] private bool useScalePulse = true;
     [SerializeField] private bool useUnscaledTime;
 
     private bool isPulsing;
@@ -92,7 +93,7 @@ public class PulseVisual : MonoBehaviour
         color.a = Mathf.Lerp(minAlpha, maxAlpha, value);
         targetRenderer.color = color;
 
-        if (canScaleTarget)
+        if (useScalePulse && canScaleTarget)
             targetRenderer.transform.localScale = baseScale * (1f + scaleAmount * value);
     }
 

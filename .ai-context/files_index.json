@@ -20834,9 +20834,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "file_name": "CeilingManager.cs",
-    "content_hash": "86c98058951de6d5d06340e032bf34b0ef154a2a",
-    "size": 19340,
-    "line_count": 647,
+    "content_hash": "17977856cb47e4ab1985b610e5d25a9107e53a72",
+    "size": 22949,
+    "line_count": 750,
     "namespace": "",
     "using_list": [
       "System",
@@ -20894,7 +20894,13 @@
       "CreateCeilingCores",
       "GetCorePosition",
       "ClearCeilingCores",
+      "CreateSegmentRootVisuals",
+      "GetSegmentRootVisualPosition",
+      "ClearSegmentRootVisuals",
+      "RefreshSegmentRootVisuals",
+      "SetSegmentRootVisualState",
       "Vector3",
+      "GetSegmentRootVisualTilePositions",
       "GetCoreByIndex",
       "PlayCoreDamageFlash",
       "SetCoreAlive",
@@ -21112,6 +21118,48 @@
         "is_static": false
       },
       {
+        "name": "parent",
+        "type": "Transform",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "segment",
+        "type": "CeilingSegment",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "visual",
+        "type": "CeilingSegmentRootVisual",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "visual",
+        "type": "CeilingSegmentRootVisual",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "edgeOffset",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "columnCenterX",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "brick",
         "type": "CeilingBrick",
         "access": "internal",
@@ -21136,7 +21184,7 @@
     "public_field_count": 0,
     "get_component_count": 0,
     "find_call_count": 1,
-    "new_keyword_count": 11,
+    "new_keyword_count": 13,
     "coroutine_count": 0,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
@@ -21149,6 +21197,7 @@
       "CeilingCore",
       "CeilingBrick",
       "CeilingSegment",
+      "CeilingSegmentRootVisual",
       "System",
       "Collections",
       "Generic",
@@ -21172,6 +21221,9 @@
       "Ceiling",
       "Core",
       "Segments",
+      "Segment",
+      "Root",
+      "Visuals",
       "Ball",
       "Control",
       "BallRespawner",
@@ -21188,10 +21240,12 @@
       "ResetCeilingState",
       "SetDamageEnabled",
       "ClearCeilingCores",
+      "ClearSegmentRootVisuals",
       "ClearCeilingBricks",
       "ResetSegments",
       "CreateCeilingBricks",
       "CreateCeilingCores",
+      "CreateSegmentRootVisuals",
       "Clear",
       "OneSegment",
       "AddOneSegment",
@@ -21230,6 +21284,7 @@
       "PlayCoreDamageFlash",
       "UpdateSegmentBlockVisuals",
       "SetCoreAlive",
+      "SetSegmentRootVisualState",
       "SoundManager",
       "Instance",
       "Play",
@@ -21281,6 +21336,11 @@
       "GetCorePosition",
       "Initialize",
       "SetAliveState",
+      "GetSegmentRootVisualPosition",
+      "BuildTiles",
+      "GetSegmentRootVisualTilePositions",
+      "RefreshSegmentRootVisuals",
+      "SetActiveState",
       "Vector3",
       "PlayDamageFlash",
       "DisableStemGrowthByCeilingSegment",
@@ -21303,6 +21363,7 @@
       "Sprites",
       "Ceiling Core",
       "Segments",
+      "Segment Root Visuals",
       "Ball Control",
       "Gauge",
       "Block Growth",
@@ -21324,6 +21385,7 @@
       7,
       1,
       0.5,
+      0.3,
       3,
       0
     ],
@@ -21331,11 +21393,12 @@
       "runtime",
       "combat",
       "manager",
-      "player",
-      "data"
+      "ui",
+      "player"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
+      "UI 관련 로직 포함",
       "전투 계열 로직 포함",
       "Find 계열 탐색 사용"
     ]
@@ -21424,6 +21487,176 @@
     ],
     "summary_signals": [
       "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
+    "path": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
+    "file_name": "CeilingSegmentRootVisual.cs",
+    "content_hash": "c959a3a40fd9616325ea260275e2dacc513c3256",
+    "size": 3776,
+    "line_count": 144,
+    "namespace": "",
+    "using_list": [
+      "System.Collections.Generic",
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "CeilingSegmentRootVisual",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "CeilingSegmentRootVisual",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "AnimationCurve",
+      "Keyframe",
+      "Awake",
+      "Update",
+      "Initialize",
+      "BuildTiles",
+      "SetActiveState",
+      "ApplyPulse",
+      "RestoreVisual",
+      "ClearTiles",
+      "OnDisable"
+    ],
+    "fields": [
+      {
+        "name": "segmentIndex",
+        "type": "int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "isPulsing",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "time",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "originalScale",
+        "type": "Vector3",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "tile",
+        "type": "SpriteRenderer",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Awake",
+      "Update",
+      "OnDisable"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": true,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 8,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "int",
+      "bool",
+      "float",
+      "Vector3",
+      "SpriteRenderer",
+      "System",
+      "Collections",
+      "Generic",
+      "UnityEngine",
+      "Tiles",
+      "Pulse",
+      "AnimationCurve",
+      "Keyframe",
+      "Color",
+      "SegmentIndex",
+      "TileCount",
+      "Count",
+      "Awake",
+      "GetComponentInChildren",
+      "SetActive",
+      "Update",
+      "Repeat",
+      "Max",
+      "ApplyPulse",
+      "Clamp01",
+      "Evaluate",
+      "Initialize",
+      "BuildTiles",
+      "IReadOnlyList",
+      "ClearTiles",
+      "Instantiate",
+      "RootTile_",
+      "Add",
+      "SetActiveState",
+      "RestoreVisual",
+      "Lerp",
+      "Destroy",
+      "Clear",
+      "OnDisable"
+    ],
+    "component_access_types": [],
+    "created_types": [
+      "AnimationCurve",
+      "Keyframe"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Tiles",
+      "Pulse",
+      "RootTile_{i}"
+    ],
+    "numeric_literals": [
+      0,
+      0.15,
+      1,
+      0.55
+    ],
+    "guessed_roles": [
+      "runtime",
+      "ui",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재",
+      "UI 관련 로직 포함",
       "저장/불러오기 관련 로직 포함"
     ]
   },
@@ -26776,9 +27009,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Visual/PulseVisual.cs",
     "path": "ProjectDribble/Assets/Scripts/Visual/PulseVisual.cs",
     "file_name": "PulseVisual.cs",
-    "content_hash": "2f21a0ec491f1f06d1214bbf5095778a885e751d",
-    "size": 2982,
-    "line_count": 112,
+    "content_hash": "37cdb9c72c64d49ae628598deeec344cb48806e8",
+    "size": 3055,
+    "line_count": 113,
     "namespace": "",
     "using_list": [
       "UnityEngine"

@@ -81,6 +81,31 @@
     "risk_score": 100
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
+    "class_name": "PaddleController",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "getcomponent-heavy",
+      "find-heavy",
+      "large-class",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
+      "GetComponent/TryGetComponent 호출이 많음",
+      "Find 계열 탐색 사용",
+      "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 97
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallMovement.cs",
     "class_name": "BallMovement",
     "risk_flags": [
@@ -450,29 +475,6 @@
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 85
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
-    "class_name": "PaddleController",
-    "risk_flags": [
-      "update-heavy",
-      "high-coupling",
-      "getcomponent-heavy",
-      "find-heavy",
-      "init-order-sensitive",
-      "save-load-sensitive",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "Unity 업데이트 루프 사용",
-      "참조 타입 또는 관계 수가 많음",
-      "GetComponent/TryGetComponent 호출이 많음",
-      "Find 계열 탐색 사용",
-      "초기화 순서에 민감할 가능성",
-      "저장/불러오기 관련 로직 포함",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 82
   },
   {
     "file_id": "Old Scripts/ball_movement.cs",

@@ -23670,14 +23670,13 @@
     "file_id": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
     "path": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
     "file_name": "PaddleController.cs",
-    "content_hash": "9d848701fc72469c488c277374c6248db3e6933a",
-    "size": 7008,
-    "line_count": 249,
+    "content_hash": "f43d58aa2adad0bb2de5ae973811143914c721fc",
+    "size": 7595,
+    "line_count": 265,
     "namespace": "",
     "using_list": [
       "UnityEngine",
-      "UnityEngine.InputSystem",
-      "UnityEngine.U2D"
+      "UnityEngine.InputSystem"
     ],
     "classes": [
       {
@@ -23703,7 +23702,9 @@
       "ResetPosition",
       "MovePad",
       "Vector3",
-      "SetPaddleAlpha",
+      "ResolveUpPaddleSpriteRenderer",
+      "SetUpPaddleAlpha",
+      "Color",
       "SetPaddleCollider",
       "SetReflectColliderEnabled",
       "EnsureCaptureTriggersEnabled",
@@ -23765,6 +23766,20 @@
         "is_static": false
       },
       {
+        "name": "hasAttemptedUpPaddleSpriteRendererResolve",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "hasLoggedMissingUpPaddleSpriteRenderer",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "initialPosition",
         "type": "Vector3",
         "access": "private",
@@ -23779,7 +23794,7 @@
         "is_static": false
       },
       {
-        "name": "currentColor",
+        "name": "color",
         "type": "Color",
         "access": "internal",
         "serialized": false,
@@ -23802,9 +23817,9 @@
     "has_on_disable": false,
     "serialize_field_count": 0,
     "public_field_count": 1,
-    "get_component_count": 7,
-    "find_call_count": 3,
-    "new_keyword_count": 4,
+    "get_component_count": 6,
+    "find_call_count": 2,
+    "new_keyword_count": 5,
     "coroutine_count": 0,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
@@ -23817,8 +23832,8 @@
       "Color",
       "UnityEngine",
       "InputSystem",
-      "U2D",
       "PointerInputReader",
+      "SpriteRenderer",
       "TransparentAlpha",
       "IsPaddleActive",
       "IsPressed",
@@ -23826,6 +23841,7 @@
       "Vector2",
       "Velocity",
       "Awake",
+      "ResolveUpPaddleSpriteRenderer",
       "Start",
       "SetReflectColliderEnabled",
       "EnsureCaptureTriggersEnabled",
@@ -23833,23 +23849,23 @@
       "Update",
       "MovePad",
       "ScreenPosition",
-      "SetPaddleAlpha",
+      "SetUpPaddleAlpha",
       "Max",
       "ResetPosition",
       "ScreenToWorldPoint",
       "MoveTowards",
       "Clamp",
-      "Find",
+      "GetComponentsInChildren",
+      "Length",
+      "UpPaddleSprite",
       "LogWarning",
-      "SpriteShapeRenderer",
-      "GetComponent",
       "SetPaddleCollider",
+      "Find",
       "Collider2D",
       "GetComponents",
       "PaddleCaptureZone",
-      "GetComponentsInChildren",
-      "Length",
       "EnsureTriggerEnabled",
+      "GetComponent",
       "PaddleInactiveCaptureTrigger",
       "IsColliderEnabled",
       "IsAnyCaptureTriggerEnabled",
@@ -23859,19 +23875,20 @@
       "AddPaddleSpeed"
     ],
     "component_access_types": [
-      "SpriteShapeRenderer",
       "Collider2D"
     ],
     "created_types": [
       "Vector2",
-      "Vector3"
+      "Vector3",
+      "Color"
     ],
     "singleton_access_types": [],
     "string_literals": [
       "paddle_up",
       "roof_paddle",
+      "UpPaddleSprite",
+      "UpPaddleSprite SpriteRenderer was not assigned or found.",
       "{childName} child object was not found.",
-      "{childName} has no SpriteShapeRenderer.",
       "{childName} has no Collider2D."
     ],
     "numeric_literals": [

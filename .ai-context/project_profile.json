@@ -15,7 +15,7 @@
   "role_counts": {
     "runtime": 154,
     "player": 80,
-    "combat": 105,
+    "combat": 106,
     "save-load": 93,
     "manager": 57,
     "data": 57,
@@ -27,8 +27,8 @@
     {
       "class_name": "BlockManager",
       "file_id": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
-      "relation_count": 191,
-      "referenced_type_count": 185
+      "relation_count": 196,
+      "referenced_type_count": 190
     },
     {
       "class_name": "BallCapturedDribbleController",

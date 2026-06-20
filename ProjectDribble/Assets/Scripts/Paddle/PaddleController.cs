@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.U2D;
 
 public class PaddleController : MonoBehaviour
 {
     [SerializeField] private PointerInputReader inputReader;
+    [SerializeField] private SpriteRenderer upPaddleSpriteRenderer;
     [SerializeField] private bool debugPaddleActiveState;
 
     private const float TransparentAlpha = 0.3f;
@@ -16,6 +16,8 @@ public class PaddleController : MonoBehaviour
     private float paddleWidth;
     private float velocityX;
     private bool lastLoggedPaddleActive;
+    private bool hasAttemptedUpPaddleSpriteRendererResolve;
+    private bool hasLoggedMissingUpPaddleSpriteRenderer;
 
     public bool IsPaddleActive => inputReader != null && inputReader.IsPressed;
     public float VelocityX => velocityX;
@@ -26,6 +28,7 @@ public class PaddleController : MonoBehaviour
     private void Awake()
     {
         initialPosition = transform.position;
+        ResolveUpPaddleSpriteRenderer();
     }
 
     private void Start()
@@ -49,13 +52,11 @@ public class PaddleController : MonoBehaviour
         if (IsPaddleActive)
         {
             MovePad(inputReader.ScreenPosition);
-            SetPaddleAlpha("paddle_up", 1f);
-            SetPaddleAlpha("roof_paddle", 1f);
+            SetUpPaddleAlpha(1f);
         }
         else
         {
-            SetPaddleAlpha("paddle_up", TransparentAlpha);
-            SetPaddleAlpha("roof_paddle", TransparentAlpha);
+            SetUpPaddleAlpha(TransparentAlpha);
         }
 
         SetReflectColliderEnabled("paddle_up", IsPaddleActive);
@@ -104,27 +105,42 @@ public class PaddleController : MonoBehaviour
         );
     }
 
-    public void SetPaddleAlpha(string childName, float alpha)
+    private void ResolveUpPaddleSpriteRenderer()
     {
-        Transform childTransform = transform.Find(childName);
+        if (upPaddleSpriteRenderer != null || hasAttemptedUpPaddleSpriteRendererResolve)
+            return;
 
-        if (childTransform == null)
+        hasAttemptedUpPaddleSpriteRendererResolve = true;
+        SpriteRenderer[] childRenderers = GetComponentsInChildren<SpriteRenderer>(true);
+
+        for (int i = 0; i < childRenderers.Length; i++)
         {
-            Debug.LogWarning($"{childName} child object was not found.");
+            if (childRenderers[i].name == "UpPaddleSprite")
+            {
+                upPaddleSpriteRenderer = childRenderers[i];
+                return;
+            }
+        }
+    }
+
+    private void SetUpPaddleAlpha(float targetAlpha)
+    {
+        if (upPaddleSpriteRenderer == null)
+            ResolveUpPaddleSpriteRenderer();
+
+        if (upPaddleSpriteRenderer == null)
+        {
+            if (!hasLoggedMissingUpPaddleSpriteRenderer)
+            {
+                Debug.LogWarning("UpPaddleSprite SpriteRenderer was not assigned or found.", this);
+                hasLoggedMissingUpPaddleSpriteRenderer = true;
+            }
+
             return;
         }
 
-        SpriteShapeRenderer spriteShapeRenderer = childTransform.GetComponent<SpriteShapeRenderer>();
-
-        if (spriteShapeRenderer == null)
-        {
-            Debug.LogWarning($"{childName} has no SpriteShapeRenderer.");
-            return;
-        }
-
-        Color currentColor = spriteShapeRenderer.color;
-        currentColor.a = alpha;
-        spriteShapeRenderer.color = currentColor;
+        Color color = upPaddleSpriteRenderer.color;
+        upPaddleSpriteRenderer.color = new Color(color.r, color.g, color.b, targetAlpha);
     }
 
     public void SetPaddleCollider(string childName, bool isActive)

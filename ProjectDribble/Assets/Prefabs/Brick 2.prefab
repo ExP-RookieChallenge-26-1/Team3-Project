@@ -107,9 +107,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GlitchOverlayVisual
   glitchRenderer: {fileID: 5779418759459765515}
   pulseVisual: {fileID: 5126134319728496029}
-  glitchStage1: {fileID: 21300000, guid: 82a845e4f21a7a14f8284875a6c12286, type: 3}
-  glitchStage2: {fileID: 21300000, guid: 9f1cd35e55d7aa549ae19f4430b44c6a, type: 3}
-  glitchStage3: {fileID: 21300000, guid: 2b4607e8b29b3a543a754c61d3bd0878, type: 3}
+  glitchStage1: {fileID: 21300000, guid: e68dd8c9a2fdf584798482659b0f3247, type: 3}
+  glitchStage2: {fileID: 21300000, guid: 086c4d2f1c3f2574c9ab8a7979c851a0, type: 3}
+  glitchStage3: {fileID: 21300000, guid: 300700723933f144db6804bcdb55701e, type: 3}
   connectedAlpha: 1
   disconnectedAlpha: 0.25
   stage2Threshold: 0.2

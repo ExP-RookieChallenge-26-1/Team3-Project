@@ -10,6 +10,8 @@ public class GaugeManager : MonoBehaviour
     [Header("Gauge")]
     [SerializeField] private int currentGaugeValue = 0;
 
+    private bool allowGaugeGainWhileLaserLocked;
+
     public int CurrentGaugeValue => currentGaugeValue;
     public int FilledGaugeSegments { get; private set; }
     public int MaxGaugeValue { get; private set; }
@@ -27,7 +29,8 @@ public class GaugeManager : MonoBehaviour
 
     private void Start()
     {
-        InitializeGauge(_data.startGaugeValue);
+        if (MaxGaugeValue <= 0)
+            InitializeGauge(_data.startGaugeValue);
     }
 
     public void InitializeGauge(int startValue)
@@ -79,7 +82,7 @@ public class GaugeManager : MonoBehaviour
 
     public void AddGauge()
     {
-        if (!IsLaserUnlocked())
+        if (!CanGainGauge())
             return;
 
         SetGaugeValue(currentGaugeValue + 1);
@@ -87,7 +90,7 @@ public class GaugeManager : MonoBehaviour
 
     public void AddGauge(int amount)
     {
-        if (!IsLaserUnlocked())
+        if (!CanGainGauge())
             return;
 
         SetGaugeValue(currentGaugeValue + amount);
@@ -104,6 +107,16 @@ public class GaugeManager : MonoBehaviour
         SetGaugeValue(currentGaugeValue - _data.gaugePerSegment);
 
         return true;
+    }
+
+    public void SetGaugeGainWhileLaserLockedEnabled(bool enabled)
+    {
+        allowGaugeGainWhileLaserLocked = enabled;
+    }
+
+    private bool CanGainGauge()
+    {
+        return IsLaserUnlocked() || allowGaugeGainWhileLaserLocked;
     }
 
     private bool IsLaserUnlocked()

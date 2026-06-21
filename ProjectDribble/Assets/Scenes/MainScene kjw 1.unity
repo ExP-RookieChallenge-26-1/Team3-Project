@@ -3856,6 +3856,7 @@ MonoBehaviour:
   ballController: {fileID: 8185791647005175377}
   tutorialTopBoundary: {fileID: 910000000000000001}
   pauseOnMessage: 1
+  requiredLaserTutorialGaugeSegments: 2
 --- !u!1 &666438759
 GameObject:
   m_ObjectHideFlags: 0

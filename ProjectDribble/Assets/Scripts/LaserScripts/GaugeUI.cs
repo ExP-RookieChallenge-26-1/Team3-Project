@@ -49,7 +49,7 @@ public class GaugeUI : MonoBehaviour
             laserUnlockState.OnLaserLocked += HandleLaserUnlockChanged;
         }
 
-        RefreshVisibility();
+        RefreshAll();
     }
 
     private void OnDisable()
@@ -68,11 +68,6 @@ public class GaugeUI : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        RefreshAll();
-    }
-
     private void RefreshAll()
     {
         if (gaugeManager == null)
@@ -89,15 +84,12 @@ public class GaugeUI : MonoBehaviour
         if (gaugeBar == null)
             return;
 
-        float percent = 0f;
-
-        if (gaugeManager.MaxGaugeValue > 0)
-        {
-            percent = (float)value / gaugeManager.MaxGaugeValue;
-        }
+        float normalized = gaugeManager.MaxGaugeValue > 0
+            ? Mathf.Clamp01((float)value / gaugeManager.MaxGaugeValue)
+            : 0f;
 
         gaugeBar.localScale = new Vector3(
-            maxGaugeScale.x * (1 - percent),
+            maxGaugeScale.x * (1f - normalized),
             maxGaugeScale.y,
             maxGaugeScale.z
         );
@@ -142,7 +134,7 @@ public class GaugeUI : MonoBehaviour
         if (gaugeCanvasGroup == null && gaugeVisualRoot == null)
         {
             if (gaugeBar != null)
-                gaugeBar.gameObject.SetActive(unlocked);
+                gaugeBar.gameObject.SetActive(true);
 
             if (gaugeSegmentText != null)
                 gaugeSegmentText.gameObject.SetActive(unlocked);

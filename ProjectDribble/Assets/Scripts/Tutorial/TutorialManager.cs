@@ -45,6 +45,8 @@ public class TutorialManager : MonoBehaviour
         "천장을 부수면 연결된 흐름 블록의 성장이 멈춥니다.";
     private const float DribbleGuideDetectionDelay = 3f;
     private const float DribbleGuideForceDelay = 10f;
+    private const string LaserGuideMessage =
+        "게이지가 가득 찼습니다.\n공을 패들 사이에 붙잡은 동안 레이저를 차징할 수 있습니다.";
 
     private const string Stage1StartMessage =
         "기본 조작 설명 \n블록을 모두 부수세요!";
@@ -88,6 +90,10 @@ public class TutorialManager : MonoBehaviour
     [Header("Message")]
     [SerializeField] private bool pauseOnMessage;
 
+    [Header("Laser Tutorial")]
+    [Min(1)]
+    [SerializeField] private int requiredLaserTutorialGaugeSegments = 2;
+
     private readonly HashSet<TutorialId> shownTutorials = new();
     private TutorialStageId currentTutorialStageId = TutorialStageId.None;
     private bool isSubscribedToBlockEvents;
@@ -99,6 +105,7 @@ public class TutorialManager : MonoBehaviour
     private TutorialPhase currentPhase = TutorialPhase.None;
     private bool hasShownDribbleGuide;
     private bool hasShownCeilingSegmentGuide;
+    private bool hasShownLaserGuide;
     private float breakNormalBlocksElapsed;
     private bool stage4GaugeFullMessageShown;
     private bool stage4LaserFiredMessageShown;
@@ -108,6 +115,7 @@ public class TutorialManager : MonoBehaviour
     private bool stage6RecallGuideMessageShown;
     private bool stage6RecalledMessageShown;
     private Coroutine pendingMessageRoutine;
+    private Coroutine laserGuideRoutine;
 
     private void Awake()
     {
@@ -234,7 +242,17 @@ public class TutorialManager : MonoBehaviour
         SetTutorialTopBoundaryActive(true);
         hasShownDribbleGuide = false;
         hasShownCeilingSegmentGuide = false;
+        hasShownLaserGuide = false;
         breakNormalBlocksElapsed = 0f;
+
+        if (laserUnlockState != null)
+            laserUnlockState.LockLaser();
+
+        if (gaugeManager != null)
+        {
+            gaugeManager.OnGaugeSegmentChanged += HandleGaugeSegmentChanged;
+            isSubscribedToGaugeEvents = true;
+        }
 
         if (ceilingManager != null)
         {
@@ -380,6 +398,11 @@ public class TutorialManager : MonoBehaviour
             blockManager.StartGrowth();
 
         currentPhase = TutorialPhase.AttackCeiling;
+
+        if (gaugeManager != null)
+            gaugeManager.SetGaugeGainWhileLaserLockedEnabled(true);
+
+        TryShowLaserGuide(gaugeManager != null ? gaugeManager.FilledGaugeSegments : 0);
     }
 
     private void HandleCeilingSegmentDestroyed(CeilingSegment segment)
@@ -420,11 +443,56 @@ public class TutorialManager : MonoBehaviour
 
     private void HandleGaugeSegmentChanged(int filledSegments)
     {
+        if (currentTutorialStageId == TutorialStageId.Stage1)
+        {
+            TryShowLaserGuide(filledSegments);
+            return;
+        }
+
         if (currentTutorialStageId != TutorialStageId.Stage4)
             return;
 
         if (IsGaugeFull())
             HandleGaugeFull();
+    }
+
+    private void TryShowLaserGuide(int filledSegments)
+    {
+        if (currentTutorialStageId != TutorialStageId.Stage1 ||
+            currentPhase != TutorialPhase.AttackCeiling ||
+            hasShownLaserGuide ||
+            filledSegments < requiredLaserTutorialGaugeSegments)
+        {
+            return;
+        }
+
+        hasShownLaserGuide = true;
+        laserGuideRoutine = StartCoroutine(ShowLaserGuideWhenAvailable());
+    }
+
+    private IEnumerator ShowLaserGuideWhenAvailable()
+    {
+        yield return null;
+
+        while (uiManager != null && uiManager.IsTutorialPopupOpen)
+            yield return null;
+
+        if (currentTutorialStageId == TutorialStageId.Stage1 &&
+            currentPhase == TutorialPhase.AttackCeiling)
+        {
+            ShowPausedTutorialMessage(LaserGuideMessage, CompleteLaserGuide);
+        }
+
+        laserGuideRoutine = null;
+    }
+
+    private void CompleteLaserGuide()
+    {
+        if (gaugeManager != null)
+            gaugeManager.SetGaugeGainWhileLaserLockedEnabled(false);
+
+        if (laserUnlockState != null)
+            laserUnlockState.UnlockLaser();
     }
 
     private void HandleGaugeFull()
@@ -523,6 +591,9 @@ public class TutorialManager : MonoBehaviour
     {
         SetTutorialTopBoundaryActive(false);
 
+        if (gaugeManager != null)
+            gaugeManager.SetGaugeGainWhileLaserLockedEnabled(false);
+
         if (isSubscribedToBlockEvents && blockManager != null)
         {
             blockManager.OnNormalBlocksCleared -= HandleNormalBlocksCleared;
@@ -558,6 +629,12 @@ public class TutorialManager : MonoBehaviour
         {
             StopCoroutine(pendingMessageRoutine);
             pendingMessageRoutine = null;
+        }
+
+        if (laserGuideRoutine != null)
+        {
+            StopCoroutine(laserGuideRoutine);
+            laserGuideRoutine = null;
         }
 
         isSubscribedToBlockEvents = false;

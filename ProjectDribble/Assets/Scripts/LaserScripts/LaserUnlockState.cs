@@ -19,13 +19,18 @@ public class LaserUnlockState : MonoBehaviour
         OnLaserUnlocked?.Invoke();
     }
 
-    public void ResetProgressForNewGame()
+    public void LockLaser()
     {
-        // TODO: Call this from the real new-game/progress-reset flow when that system is added.
         if (!isLaserUnlocked)
             return;
 
         isLaserUnlocked = false;
         OnLaserLocked?.Invoke();
+    }
+
+    public void ResetProgressForNewGame()
+    {
+        // TODO: Call this from the real new-game/progress-reset flow when that system is added.
+        LockLaser();
     }
 }

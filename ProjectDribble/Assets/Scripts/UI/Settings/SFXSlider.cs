@@ -6,7 +6,7 @@ public class SFXSlider : MonoBehaviour
     public void OnSFXSliderValueChanged(float value)
     {
         Debug.Log($"sfx 조절: {value}");
-        SoundManager.SetVolume(SoundType.SFX, NormalizeSliderValue(value));
+        SoundManager.SetSfxVolume(NormalizeSliderValue(value));
     }
 
     private float NormalizeSliderValue(float value)

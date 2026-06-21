@@ -6444,6 +6444,9 @@ MonoBehaviour:
   defaultSfxSource: {fileID: 179826586}
   loopSource: {fileID: 1894080214}
   uiSfxSource: {fileID: 237588459}
+  audioMixer: {fileID: 24100000, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
+  normalLowPassCutoff: 22000
+  muffledLowPassCutoff: 80
   soundDatas:
   - id: 1
     clips:
@@ -6455,7 +6458,7 @@ MonoBehaviour:
     basePitch: 0.9
     maxPitch: 2
     pitchRandomRange: 0.04
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: -2828534213274750351, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
     minInterval: 0.03
     usePitchByRatio: 1
     minPitch: 0.8
@@ -6511,7 +6514,7 @@ MonoBehaviour:
     basePitch: 0.8
     maxPitch: 0.8
     pitchRandomRange: 0.05
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: -2828534213274750351, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
     minInterval: 0.03
     usePitchByRatio: 1
     minPitch: 0.8
@@ -6525,7 +6528,7 @@ MonoBehaviour:
     basePitch: 1
     maxPitch: 2
     pitchRandomRange: 0
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: -2828534213274750351, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
     minInterval: 0
     usePitchByRatio: 1
     minPitch: 0.8
@@ -6539,7 +6542,7 @@ MonoBehaviour:
     basePitch: 1
     maxPitch: 2
     pitchRandomRange: 0.03
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: -2828534213274750351, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
     minInterval: 0
     usePitchByRatio: 1
     minPitch: 0.8
@@ -6553,7 +6556,7 @@ MonoBehaviour:
     basePitch: 7
     maxPitch: 10
     pitchRandomRange: 0.03
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: -2828534213274750351, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
     minInterval: 0
     usePitchByRatio: 1
     minPitch: 0.8
@@ -6567,7 +6570,7 @@ MonoBehaviour:
     basePitch: 1
     maxPitch: 1
     pitchRandomRange: 0.05
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: -2828534213274750351, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
     minInterval: 0.05
     usePitchByRatio: 1
     minPitch: 0.8
@@ -6581,7 +6584,7 @@ MonoBehaviour:
     basePitch: 1
     maxPitch: 1
     pitchRandomRange: 0.03
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: -2828534213274750351, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
     minInterval: 0
     usePitchByRatio: 1
     minPitch: 0.8
@@ -6595,7 +6598,7 @@ MonoBehaviour:
     basePitch: 1
     maxPitch: 2
     pitchRandomRange: 0.03
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: -2828534213274750351, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
     minInterval: 0
     usePitchByRatio: 1
     minPitch: 0.8
@@ -6609,7 +6612,7 @@ MonoBehaviour:
     basePitch: 1
     maxPitch: 2
     pitchRandomRange: 0.03
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: -2828534213274750351, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
     minInterval: 0
     usePitchByRatio: 1
     minPitch: 0.8
@@ -6623,7 +6626,35 @@ MonoBehaviour:
     basePitch: 1
     maxPitch: 2
     pitchRandomRange: 0.03
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: -2828534213274750351, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
+    minInterval: 0
+    usePitchByRatio: 1
+    minPitch: 0.8
+  - id: 17
+    clips:
+    - {fileID: 8300000, guid: 51844ac1348df5746b7295bae0f6681a, type: 3}
+    legacyClip: {fileID: 8300000, guid: 51844ac1348df5746b7295bae0f6681a, type: 3}
+    soundType: 0
+    baseVolume: 1
+    volumeRandomRange: 0
+    basePitch: 1
+    maxPitch: 1
+    pitchRandomRange: 0
+    mixerGroup: {fileID: -6424471294437657134, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
+    minInterval: 0
+    usePitchByRatio: 1
+    minPitch: 0.8
+  - id: 18
+    clips:
+    - {fileID: 8300000, guid: 2b9274ab295a09b4b836eb0aa9fb5681, type: 3}
+    legacyClip: {fileID: 8300000, guid: 2b9274ab295a09b4b836eb0aa9fb5681, type: 3}
+    soundType: 0
+    baseVolume: 1
+    volumeRandomRange: 0
+    basePitch: 1
+    maxPitch: 1
+    pitchRandomRange: 0
+    mixerGroup: {fileID: -6424471294437657134, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
     minInterval: 0
     usePitchByRatio: 1
     minPitch: 0.8

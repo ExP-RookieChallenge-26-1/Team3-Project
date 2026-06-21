@@ -47,6 +47,12 @@ public class GameManager : MonoBehaviour
         Initialize();
     }
 
+    private void Start()
+    {
+        if (!isGameStarted)
+            SoundManager.Instance?.PlayTitleBgm();
+    }
+
     public void RequestStageClear()
     {
         int currentStage = stageManager.CurrentStageIndex;
@@ -96,6 +102,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = timeScaleBefore;
         isPaused = false;
         isGameStarted = true;
+        SoundManager.Instance?.ClearBgmMuffles();
+        SoundManager.Instance?.PlayGameplayBgm();
         titleUI.SetActive(false);
         pauseButton.SetActive(true);
 
@@ -147,6 +155,7 @@ public class GameManager : MonoBehaviour
         timeScaleBefore = Time.timeScale;
         Time.timeScale = 0f;
         isPaused = true;
+        SoundManager.Instance?.SetBgmMuffled(BgmMuffleReason.Pause, true);
         pauseUI.SetActive(true);
         pauseButton.SetActive(false);
     }
@@ -158,6 +167,7 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = timeScaleBefore;
         isPaused = false;
+        SoundManager.Instance?.SetBgmMuffled(BgmMuffleReason.Pause, false);
         pauseUI.SetActive(false);
         pauseButton.SetActive(true);
     }
@@ -175,6 +185,8 @@ public class GameManager : MonoBehaviour
         isPausedByTutorial = false;
         timeScaleBefore = 1f;
         timeScaleBeforeTutorial = 1f;
+        SoundManager.Instance?.ClearBgmMuffles();
+        SoundManager.Instance?.PlayTitleBgm();
 
         if (stageManager != null)
             stageManager.StartStage(0);

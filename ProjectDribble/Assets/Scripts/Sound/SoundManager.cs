@@ -10,6 +10,12 @@ public enum SoundType
     SFX
 }
 
+public enum BgmMuffleReason
+{
+    Pause,
+    Settings
+}
+
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
@@ -25,6 +31,11 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource loopSource;
     [SerializeField] private AudioSource uiSfxSource;
 
+    [Header("Audio Mixer")]
+    [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private float normalLowPassCutoff = 22000f;
+    [SerializeField] private float muffledLowPassCutoff = 1000f;
+
     [Header("Sound Data")]
     [SerializeField] private SoundData[] soundDatas;
 
@@ -33,6 +44,15 @@ public class SoundManager : MonoBehaviour
     private SoundData currentLoopData;
     private SoundPlayOptions currentLoopOptions;
     private SoundId currentLoopId = SoundId.None;
+    private float currentLoopBaseVolume = 1f;
+    private SoundId currentBgmId = SoundId.None;
+    private readonly HashSet<BgmMuffleReason> bgmMuffleReasons = new();
+    private float userBgmVolume = 1f;
+    private float userSfxVolume = 1f;
+
+    private const string BgmVolumeParameter = "BGMVolume";
+    private const string SfxVolumeParameter = "SFXVolume";
+    private const string BgmLowPassCutoffParameter = "BGMLowPassCutoff";
 
     private void Awake()
     {
@@ -55,6 +75,8 @@ public class SoundManager : MonoBehaviour
 
         if (loopSource != null)
             loopSource.loop = true;
+
+        ApplyBgmMuffleState();
 
         soundMap.Clear();
         lastPlayTimes.Clear();
@@ -120,14 +142,14 @@ public class SoundManager : MonoBehaviour
         if (clip == null)
             return;
 
-        float pitch = CalculatePitch(data, options);
-        float volume = CalculateVolume(data, options);
-
         if (data.soundType == SoundType.BGM)
         {
-            PlayBGM(clip, pitch, volume, data.mixerGroup);
+            PlayBgmInternal(id, data, clip);
             return;
         }
+
+        float pitch = CalculatePitch(data, options);
+        float volume = CalculateVolume(data, options);
 
         AudioSource source = GetSourceFor(id);
         if (source == null)
@@ -184,7 +206,11 @@ public class SoundManager : MonoBehaviour
         loopSource.clip = clip;
         loopSource.loop = true;
         loopSource.pitch = CalculatePitch(data, options);
-        loopSource.volume = CalculateVolume(data, options);
+        float loopVolume = CalculateVolume(data, options);
+        currentLoopBaseVolume = loopVolume;
+        loopSource.volume = audioMixer == null
+            ? loopVolume * userSfxVolume
+            : loopVolume;
         loopSource.Play();
     }
 
@@ -193,6 +219,7 @@ public class SoundManager : MonoBehaviour
         currentLoopData = null;
         currentLoopOptions = SoundPlayOptions.Default;
         currentLoopId = SoundId.None;
+        currentLoopBaseVolume = 1f;
 
         if (loopSource == null)
             return;
@@ -276,7 +303,38 @@ public class SoundManager : MonoBehaviour
             source.outputAudioMixerGroup = mixerGroup;
     }
 
-    private void PlayBGM(AudioClip clip, float pitch, float volume, AudioMixerGroup mixerGroup = null)
+    public void PlayTitleBgm()
+    {
+        PlayBgm(SoundId.TitleBGM);
+    }
+
+    public void PlayGameplayBgm()
+    {
+        PlayBgm(SoundId.GameplayBGM);
+    }
+
+    public void PlayBgm(SoundId id)
+    {
+        if (currentBgmId == id && bgmSource != null && bgmSource.isPlaying)
+            return;
+
+        if (!TryGetSoundData(id, out SoundData data))
+            return;
+
+        if (data.soundType != SoundType.BGM)
+        {
+            Debug.LogWarning($"SoundManager: {id} is not configured as BGM.");
+            return;
+        }
+
+        AudioClip clip = GetRandomClip(data);
+        if (clip == null)
+            return;
+
+        PlayBgmInternal(id, data, clip);
+    }
+
+    private void PlayBgmInternal(SoundId id, SoundData data, AudioClip clip)
     {
         if (bgmSource == null)
         {
@@ -284,43 +342,122 @@ public class SoundManager : MonoBehaviour
             return;
         }
 
+        if (currentBgmId == id && bgmSource.isPlaying)
+            return;
+
         if (bgmSource.isPlaying)
             bgmSource.Stop();
 
-        ApplyMixerGroup(bgmSource, mixerGroup);
-        bgmSource.pitch = pitch;
-        bgmSource.volume = volume;
+        ApplyMixerGroup(bgmSource, data.mixerGroup);
+        bgmSource.loop = true;
+        bgmSource.pitch = Mathf.Clamp(data.basePitch, 0.1f, 3f);
+        float baseVolume = Mathf.Clamp01(data.baseVolume);
+        bgmSource.volume = audioMixer == null
+            ? baseVolume * userBgmVolume
+            : baseVolume;
         bgmSource.clip = clip;
         bgmSource.Play();
+        currentBgmId = id;
+        ApplyBgmMuffleState();
     }
 
-    public void StopBGM()
+    public void StopBgm()
     {
+        currentBgmId = SoundId.None;
+
         if (bgmSource == null)
             return;
 
         bgmSource.Stop();
+        bgmSource.clip = null;
+    }
+
+    public void StopBGM()
+    {
+        StopBgm();
     }
 
     public void SetVolume(SoundType type, float volume)
     {
-        volume = Mathf.Clamp01(volume);
-
         if (type == SoundType.BGM)
-        {
-            if (bgmSource != null)
-                bgmSource.volume = volume;
-        }
+            SetBgmVolume(volume);
         else
+            SetSfxVolume(volume);
+    }
+
+    public void SetBgmVolume(float normalizedVolume)
+    {
+        userBgmVolume = Mathf.Clamp01(normalizedVolume);
+
+        if (audioMixer != null)
         {
-            if (defaultSfxSource != null)
-                defaultSfxSource.volume = volume;
-
-            if (uiSfxSource != null)
-                uiSfxSource.volume = volume;
-
-            if (loopSource != null)
-                loopSource.volume = volume;
+            audioMixer.SetFloat(BgmVolumeParameter, LinearToDb(userBgmVolume));
+            return;
         }
+
+        if (bgmSource != null)
+        {
+            float baseVolume = currentBgmId != SoundId.None &&
+                               soundMap.TryGetValue(currentBgmId, out SoundData data)
+                ? Mathf.Clamp01(data.baseVolume)
+                : 1f;
+            bgmSource.volume = baseVolume * userBgmVolume;
+        }
+    }
+
+    public void SetSfxVolume(float normalizedVolume)
+    {
+        userSfxVolume = Mathf.Clamp01(normalizedVolume);
+
+        if (audioMixer != null)
+        {
+            audioMixer.SetFloat(SfxVolumeParameter, LinearToDb(userSfxVolume));
+            return;
+        }
+
+        if (defaultSfxSource != null)
+            defaultSfxSource.volume = userSfxVolume;
+
+        if (uiSfxSource != null)
+            uiSfxSource.volume = userSfxVolume;
+
+        if (loopSource != null)
+        {
+            loopSource.volume = currentLoopData != null && loopSource.isPlaying
+                ? currentLoopBaseVolume * userSfxVolume
+                : userSfxVolume;
+        }
+    }
+
+    public void SetBgmMuffled(BgmMuffleReason reason, bool enabled)
+    {
+        if (enabled)
+            bgmMuffleReasons.Add(reason);
+        else
+            bgmMuffleReasons.Remove(reason);
+
+        ApplyBgmMuffleState();
+    }
+
+    public void ClearBgmMuffles()
+    {
+        bgmMuffleReasons.Clear();
+        ApplyBgmMuffleState();
+    }
+
+    private void ApplyBgmMuffleState()
+    {
+        if (audioMixer == null)
+            return;
+
+        float cutoff = bgmMuffleReasons.Count > 0
+            ? muffledLowPassCutoff
+            : normalLowPassCutoff;
+        audioMixer.SetFloat(BgmLowPassCutoffParameter, cutoff);
+    }
+
+    private float LinearToDb(float value)
+    {
+        return value <= 0.0001f ? -80f : Mathf.Log10(value) * 20f;
     }
 }

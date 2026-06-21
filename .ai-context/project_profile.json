@@ -45,8 +45,8 @@
     {
       "class_name": "TutorialManager",
       "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-      "relation_count": 152,
-      "referenced_type_count": 150
+      "relation_count": 157,
+      "referenced_type_count": 155
     },
     {
       "class_name": "TMP_TextSelector_B",

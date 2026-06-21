@@ -25419,6 +25419,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallPowerController.cs",
     "from_class": "BallPowerController",
+    "to_type": "ApplyStageTuning",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallPowerController.cs",
+    "from_class": "BallPowerController",
     "to_type": "BallDamage",
     "relation_type": "uses",
     "strength": 1
@@ -25454,7 +25461,28 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallPowerController.cs",
     "from_class": "BallPowerController",
+    "to_type": "bool",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallPowerController.cs",
+    "from_class": "BallPowerController",
     "to_type": "Clamp",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallPowerController.cs",
+    "from_class": "BallPowerController",
+    "to_type": "ClampCurrentDamage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallPowerController.cs",
+    "from_class": "BallPowerController",
+    "to_type": "ClearStageTuning",
     "relation_type": "uses",
     "strength": 1
   },
@@ -25524,7 +25552,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallPowerController.cs",
     "from_class": "BallPowerController",
+    "to_type": "Min",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallPowerController.cs",
+    "from_class": "BallPowerController",
     "to_type": "PaddleDamageBonus",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallPowerController.cs",
+    "from_class": "BallPowerController",
+    "to_type": "PositiveInfinity",
     "relation_type": "uses",
     "strength": 1
   },
@@ -26266,13 +26308,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
     "from_class": "BallSpeedController",
-    "to_type": "Transform",
-    "relation_type": "component-access",
-    "strength": 3
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
-    "from_class": "BallSpeedController",
     "to_type": "WaitForSeconds",
     "relation_type": "creates",
     "strength": 2
@@ -26365,6 +26400,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
     "from_class": "BallSpeedController",
     "to_type": "ApplyLaserBoost",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "ApplyStageTuning",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "Awake",
     "relation_type": "uses",
     "strength": 1
   },
@@ -26476,6 +26525,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
     "from_class": "BallSpeedController",
+    "to_type": "ClearStageTuning",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
     "to_type": "Collections",
     "relation_type": "uses",
     "strength": 1
@@ -26540,6 +26596,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
     "from_class": "BallSpeedController",
     "to_type": "DribbleSpeedBonus",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "EnsureInitialized",
     "relation_type": "uses",
     "strength": 1
   },
@@ -32986,6 +33049,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
+    "to_type": "Log",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
     "to_type": "LogWarning",
     "relation_type": "uses",
     "strength": 1
@@ -33197,6 +33267,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "TryStartNextStage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "Tutorial",
     "relation_type": "uses",
     "strength": 1
   },
@@ -37543,6 +37620,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
     "from_class": "StageDefinition",
+    "to_type": "Max",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
+    "from_class": "StageDefinition",
+    "to_type": "Min",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
+    "from_class": "StageDefinition",
     "to_type": "None",
     "relation_type": "uses",
     "strength": 1
@@ -37551,6 +37642,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
     "from_class": "StageDefinition",
     "to_type": "OneSegment",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
+    "from_class": "StageDefinition",
+    "to_type": "OnValidate",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
+    "from_class": "StageDefinition",
+    "to_type": "Override",
     "relation_type": "uses",
     "strength": 1
   },
@@ -37634,6 +37739,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
     "from_class": "StageDefinition",
+    "to_type": "Tuning",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
+    "from_class": "StageDefinition",
     "to_type": "Tutorial",
     "relation_type": "uses",
     "strength": 1
@@ -37683,6 +37795,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "ApplyBallTuning",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "ApplyBossPatternStateForCurrentStage",
     "relation_type": "uses",
     "strength": 1
@@ -37697,7 +37816,28 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "ApplyStageTuning",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "BallPowerController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "BallSpawnController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "BallSpeedController",
     "relation_type": "uses",
     "strength": 1
   },
@@ -37733,6 +37873,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
     "to_type": "CeilingManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "ClearStageTuning",
     "relation_type": "uses",
     "strength": 1
   },
@@ -38474,6 +38621,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "Log",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "LogWarning",
     "relation_type": "uses",
     "strength": 1
@@ -38621,6 +38775,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "Popup",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "References",
     "relation_type": "uses",
     "strength": 1
@@ -38677,6 +38838,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "SetActive",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "SetCeilingCollisionEnabled",
     "relation_type": "uses",
     "strength": 1
@@ -38692,6 +38860,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
     "to_type": "SetDamageEnabled",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "SetTutorialTopBoundaryActive",
     "relation_type": "uses",
     "strength": 1
   },
@@ -39034,6 +39209,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "Tutorial",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "TutorialId",
     "relation_type": "uses",
     "strength": 1
@@ -39265,6 +39447,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
+    "to_type": "IsNullOrWhiteSpace",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
+    "from_class": "UIManager",
     "to_type": "IsTutorialCloseInput",
     "relation_type": "uses",
     "strength": 1
@@ -39287,6 +39476,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
     "to_type": "KeypadEnter",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
+    "from_class": "UIManager",
+    "to_type": "Log",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
+    "from_class": "UIManager",
+    "to_type": "LogWarning",
     "relation_type": "uses",
     "strength": 1
   },

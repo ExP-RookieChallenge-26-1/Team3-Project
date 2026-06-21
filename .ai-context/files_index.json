@@ -17201,9 +17201,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallPowerController.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallPowerController.cs",
     "file_name": "BallPowerController.cs",
-    "content_hash": "a809b799a2d6f3f4c7791bcec0534205adbc3c90",
-    "size": 1328,
-    "line_count": 58,
+    "content_hash": "2ca2306c7ebfa636ee2c11f4ee178c209139bb86",
+    "size": 2365,
+    "line_count": 89,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -17231,13 +17231,44 @@
       "AddDamage",
       "AddPaddleDamage",
       "AddDribbleDamage",
-      "ApplyBlockDamageLoss"
+      "ApplyBlockDamageLoss",
+      "ApplyStageTuning",
+      "ClearStageTuning",
+      "ClampCurrentDamage"
     ],
     "fields": [
       {
         "name": "data",
         "type": "BallData",
         "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "hasStageMaxDamageOverride",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "stageMaxDamageOverride",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "powerGainMultiplier",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "baseDamage",
+        "type": "float",
+        "access": "internal",
         "serialized": false,
         "is_static": false
       },
@@ -17250,6 +17281,13 @@
       },
       {
         "name": "lossAmount",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "baseDamage",
         "type": "float",
         "access": "internal",
         "serialized": false,
@@ -17278,17 +17316,17 @@
     "dont_destroy_on_load": false,
     "referenced_types": [
       "BallData",
+      "bool",
       "float",
       "UnityEngine",
       "CurrentDamageValue",
       "Start",
       "ResetToBaseDamage",
       "CurrentDamage",
+      "ClampCurrentDamage",
       "BaseDamage",
+      "Min",
       "AddDamage",
-      "Max",
-      "Clamp",
-      "MaxDamage",
       "AddPaddleDamage",
       "PaddleDamageBonus",
       "AddDribbleDamage",
@@ -17300,7 +17338,13 @@
       "Damage",
       "Loss",
       "Before",
-      "After"
+      "After",
+      "ApplyStageTuning",
+      "Max",
+      "ClearStageTuning",
+      "MaxDamage",
+      "PositiveInfinity",
+      "Clamp"
     ],
     "component_access_types": [],
     "created_types": [],
@@ -17863,9 +17907,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
     "file_name": "BallSpeedController.cs",
-    "content_hash": "9747818448b6332369fb1da85112c9df09cb7532",
-    "size": 8826,
-    "line_count": 293,
+    "content_hash": "6a2d1597f3a5d66556de1b99b50a81141210a5f6",
+    "size": 9958,
+    "line_count": 334,
     "namespace": "",
     "using_list": [
       "System",
@@ -17889,6 +17933,7 @@
     "main_class_name": "BallSpeedController",
     "unity_type": "MonoBehaviour",
     "methods": [
+      "Awake",
       "Start",
       "Update",
       "AdjustSpeed",
@@ -17906,8 +17951,11 @@
       "RecoverFromWeakened",
       "WaitForSeconds",
       "GetCurrentMaxSpeed",
+      "ApplyStageTuning",
+      "ClearStageTuning",
       "SetSpeedState",
-      "LoadSpeedSettingsFromData"
+      "LoadSpeedSettingsFromData",
+      "EnsureInitialized"
     ],
     "fields": [
       {
@@ -18058,6 +18106,34 @@
         "is_static": false
       },
       {
+        "name": "isInitialized",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "hasStageMaxSpeedOverride",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "stageMaxSpeedOverride",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "speedGainMultiplier",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "cooldown",
         "type": "float",
         "access": "internal",
@@ -18098,24 +18174,32 @@
         "access": "internal",
         "serialized": false,
         "is_static": false
+      },
+      {
+        "name": "stateMaxSpeed",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
       }
     ],
     "properties": [],
     "events": [],
     "unity_messages": [
+      "Awake",
       "Start",
       "Update"
     ],
     "has_update": true,
     "has_fixed_update": false,
     "has_late_update": false,
-    "has_awake": false,
+    "has_awake": true,
     "has_start": true,
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 0,
     "public_field_count": 1,
-    "get_component_count": 5,
+    "get_component_count": 4,
     "find_call_count": 0,
     "new_keyword_count": 1,
     "coroutine_count": 2,
@@ -18148,10 +18232,10 @@
       "SpeedRatio01",
       "GetSpeedRatio",
       "OnSpeedStateChanged",
+      "Awake",
+      "EnsureInitialized",
       "Start",
       "Update",
-      "LoadSpeedSettingsFromData",
-      "GetComponent",
       "ClampSpeed",
       "AdjustSpeed",
       "Vector2",
@@ -18201,20 +18285,23 @@
       "StartCoroutine",
       "RecoverFromWeakened",
       "WaitForSeconds",
+      "ApplyStageTuning",
+      "ClearStageTuning",
       "Invoke",
+      "LoadSpeedSettingsFromData",
       "NormalMaxSpeed",
       "LaserMinBoostSpeed",
       "LaserMaxSpeed",
       "LaserBoostAmount",
       "LaserReturnThreshold",
       "WeakenedSpeed",
-      "WeakenedDuration"
+      "WeakenedDuration",
+      "GetComponent"
     ],
     "component_access_types": [
       "BallMovement",
       "BallController",
       "BallPowerController",
-      "Transform",
       "CircleCollider2D"
     ],
     "created_types": [
@@ -18227,6 +18314,7 @@
     ],
     "numeric_literals": [
       999,
+      1,
       5,
       0,
       30,
@@ -22132,9 +22220,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "path": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "file_name": "GameManager.cs",
-    "content_hash": "c227f55c5f576360eedac05d5630c11746ed23de",
-    "size": 5658,
-    "line_count": 223,
+    "content_hash": "ac66026962a880f101b4eddc4f32dc6a04bea7d1",
+    "size": 6192,
+    "line_count": 233,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -22296,6 +22384,8 @@
       "ToTitle",
       "PauseGame",
       "PauseForTutorial",
+      "Log",
+      "Tutorial",
       "ResumeFromTutorial"
     ],
     "component_access_types": [],
@@ -22306,7 +22396,10 @@
     "string_literals": [
       "System References",
       "UI",
-      "GameManager: more than one GameManager exists. Keeping the first instance."
+      "GameManager: more than one GameManager exists. Keeping the first instance.",
+      "[Tutorial] PauseForTutorial called. ",
+      "previousTimeScale={timeScaleBeforeTutorial}, Time.timeScale={Time.timeScale}",
+      "[Tutorial] ResumeFromTutorial called. Time.timeScale={Time.timeScale}"
     ],
     "numeric_literals": [
       1,
@@ -25489,9 +25582,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
     "path": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
     "file_name": "StageDefinition.cs",
-    "content_hash": "243712f68bf62ec6e64b01b4e4ff59e7575d3058",
-    "size": 1065,
-    "line_count": 45,
+    "content_hash": "f29f3500b987f248c36ab0cebfbfee25d181bfeb",
+    "size": 1702,
+    "line_count": 60,
     "namespace": "",
     "using_list": [
       "ScriptableObjects",
@@ -25514,7 +25607,8 @@
     "main_class_name": "StageDefinition",
     "unity_type": "ScriptableObject",
     "methods": [
-      "Vector2"
+      "Vector2",
+      "OnValidate"
     ],
     "fields": [
       {
@@ -25567,6 +25661,13 @@
         "is_static": false
       },
       {
+        "name": "overrideBallTuning",
+        "type": "bool",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "isTutorialStage",
         "type": "bool",
         "access": "public",
@@ -25592,7 +25693,7 @@
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 0,
-    "public_field_count": 9,
+    "public_field_count": 10,
     "get_component_count": 0,
     "find_call_count": 0,
     "new_keyword_count": 1,
@@ -25626,7 +25727,12 @@
       "Gauge",
       "Ball",
       "Spawn",
-      "Tutorial"
+      "Tuning",
+      "Override",
+      "Min",
+      "Tutorial",
+      "OnValidate",
+      "Max"
     ],
     "component_access_types": [],
     "created_types": [
@@ -25640,6 +25746,7 @@
       "Ceiling / Player",
       "Gauge",
       "Ball Spawn",
+      "Ball Tuning Override",
       "Tutorial"
     ],
     "numeric_literals": [
@@ -25651,12 +25758,17 @@
       100,
       10,
       11.5,
-      30
+      30,
+      0.01,
+      45,
+      0,
+      5,
+      0.5
     ],
     "guessed_roles": [
       "data",
-      "player",
       "combat",
+      "player",
       "runtime"
     ],
     "summary_signals": [
@@ -25668,9 +25780,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "file_name": "StageManager.cs",
-    "content_hash": "88e6431c81b4e20288b4086e1518f129c06a592d",
-    "size": 4853,
-    "line_count": 192,
+    "content_hash": "fe87b28e987f3c85bac73c2fbf19646ad3195f22",
+    "size": 5768,
+    "line_count": 220,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -25704,6 +25816,7 @@
       "BindStageEvents",
       "UnbindStageEvents",
       "ApplyStageData",
+      "ApplyBallTuning",
       "IsValidStageIndex",
       "ApplyBossPatternStateForCurrentStage"
     ],
@@ -25740,7 +25853,7 @@
     "serialize_field_count": 0,
     "public_field_count": 0,
     "get_component_count": 0,
-    "find_call_count": 3,
+    "find_call_count": 5,
     "new_keyword_count": 0,
     "coroutine_count": 0,
     "singleton_candidate": false,
@@ -25759,6 +25872,8 @@
       "BlockManager",
       "GaugeManager",
       "BallSpawnController",
+      "BallSpeedController",
+      "BallPowerController",
       "BossController",
       "TutorialManager",
       "CurrentStageIndex",
@@ -25786,6 +25901,7 @@
       "RequestGameOver",
       "OnStageCleared",
       "OnPlayerDead",
+      "ApplyBallTuning",
       "InitializeCeiling",
       "InitializeStageBlocks",
       "InitializePlayerHealth",
@@ -25793,6 +25909,8 @@
       "InitializeBall",
       "ApplyBossPatternStateForCurrentStage",
       "BeginStage",
+      "ClearStageTuning",
+      "ApplyStageTuning",
       "StartBossPattern"
     ],
     "component_access_types": [],
@@ -25812,9 +25930,9 @@
     "guessed_roles": [
       "manager",
       "runtime",
+      "combat",
       "player",
-      "data",
-      "combat"
+      "data"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
@@ -25826,9 +25944,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "file_name": "TutorialManager.cs",
-    "content_hash": "994b8abfcc166fb31a63d1608c65a652da3274a3",
-    "size": 22848,
-    "line_count": 727,
+    "content_hash": "8b3ff848c17df890d61d821c4ae11004ce5befe9",
+    "size": 24569,
+    "line_count": 783,
     "namespace": "",
     "using_list": [
       "System.Collections",
@@ -25880,6 +25998,7 @@
       "NotifyTriggerEntered",
       "HandleBallRecalled",
       "ClearStageSubscriptions",
+      "SetTutorialTopBoundaryActive",
       "ShowPausedTutorialMessage",
       "TryShowTutorial",
       "MarkShown",
@@ -26185,6 +26304,7 @@
       "BeginStage5",
       "Stage6",
       "BeginStage6",
+      "SetTutorialTopBoundaryActive",
       "OnCeilingSegmentDestroyed",
       "HandleCeilingSegmentDestroyed",
       "OnStageCleared",
@@ -26226,17 +26346,21 @@
       "NotifyTriggerEntered",
       "StopCoroutine",
       "ResetStageFlags",
+      "SetActive",
+      "Log",
+      "Tutorial",
+      "Popup",
+      "LogWarning",
       "Invoke",
-      "PauseForTutorial",
       "ShowTutorialPopup",
       "ResumeFromTutorial",
+      "PauseForTutorial",
       "MarkShown",
       "Add",
       "HasShown",
       "Contains",
       "GetTutorialMessage",
       "IsNullOrWhiteSpace",
-      "LogWarning",
       "ShowMessage",
       "ResumeTutorial",
       "HideTutorialPopup",
@@ -26379,9 +26503,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "path": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "file_name": "TutorialUI.cs",
-    "content_hash": "8c005e90fe3cbdd79b79d502af2d7d602a3a371f",
-    "size": 2266,
-    "line_count": 103,
+    "content_hash": "8bc5d7284504404c8d8ac6bdaa7e21223915121d",
+    "size": 4019,
+    "line_count": 153,
     "namespace": "",
     "using_list": [
       "System",
@@ -26494,6 +26618,9 @@
       "IsTutorialCloseInput",
       "OnDisable",
       "ShowTutorialPopup",
+      "Log",
+      "LogWarning",
+      "IsNullOrWhiteSpace",
       "SetActive",
       "Continue",
       "ShowMessage",
@@ -26515,14 +26642,25 @@
     "created_types": [],
     "singleton_access_types": [],
     "string_literals": [
-      "Tutorial Popup"
+      "Tutorial Popup",
+      "[Tutorial] TutorialUI.ShowTutorialPopup called. ",
+      "panelActiveSelf={(messageRoot != null && messageRoot.activeSelf)}, ",
+      "panelActiveInHierarchy={(messageRoot != null && messageRoot.activeInHierarchy)}",
+      "[Tutorial] Popup was not shown: another tutorial popup is already open.",
+      "[Tutorial] Popup was not shown: messageRoot is not assigned.",
+      "[Tutorial] Popup was not shown: messageText is not assigned.",
+      "[Tutorial] Popup was not shown: message is empty.",
+      "[Tutorial] Popup was not shown: TutorialUI has an inactive parent.",
+      "[Tutorial] Popup was not shown: messageRoot has an inactive parent.",
+      "[Tutorial] Popup shown. rootActive={gameObject.activeInHierarchy}, ",
+      "panelActive={messageRoot.activeInHierarchy}"
     ],
     "numeric_literals": [],
     "guessed_roles": [
       "ui",
       "runtime",
-      "player",
       "combat",
+      "player",
       "manager"
     ],
     "summary_signals": [

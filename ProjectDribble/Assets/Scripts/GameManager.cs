@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public bool IsPausedByTutorial => isPausedByTutorial;
     public bool IsPaused => isPaused;
     public bool IsGameStarted => isGameStarted;
+    public bool IsRecallTutorialActive { get; private set; }
 
     private void Awake()
     {
@@ -183,6 +184,7 @@ public class GameManager : MonoBehaviour
         isPaused = true;
         isGameStarted = false;
         isPausedByTutorial = false;
+        IsRecallTutorialActive = false;
         timeScaleBefore = 1f;
         timeScaleBeforeTutorial = 1f;
         SoundManager.Instance?.ClearBgmMuffles();
@@ -227,6 +229,24 @@ public class GameManager : MonoBehaviour
         Debug.Log(
             $"[Tutorial] PauseForTutorial called. " +
             $"previousTimeScale={timeScaleBeforeTutorial}, Time.timeScale={Time.timeScale}");
+    }
+
+    public void BeginRecallTutorial()
+    {
+        if (IsRecallTutorialActive)
+            return;
+
+        IsRecallTutorialActive = true;
+        PauseForTutorial();
+    }
+
+    public void EndRecallTutorial()
+    {
+        if (!IsRecallTutorialActive)
+            return;
+
+        IsRecallTutorialActive = false;
+        ResumeFromTutorial();
     }
 
     public void ResumeFromTutorial()

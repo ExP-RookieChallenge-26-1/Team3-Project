@@ -3811,6 +3811,7 @@ GameObject:
   m_Component:
   - component: {fileID: 625922474}
   - component: {fileID: 625922475}
+  - component: {fileID: 625922476}
   m_Layer: 0
   m_Name: TutorialManager
   m_TagString: Untagged
@@ -3857,6 +3858,29 @@ MonoBehaviour:
   tutorialTopBoundary: {fileID: 910000000000000001}
   pauseOnMessage: 1
   requiredLaserTutorialGaugeSegments: 2
+--- !u!114 &625922476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625922473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec235c3ed0a4e8f9ea0dad6b8bba516, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::RecallTutorialManager
+  enableRecallTutorial: 1
+  watchMinY: 0
+  watchMaxY: 16
+  observeDuration: 5
+  maxYDeviation: 8
+  saveRecallTutorialSeen: 1
+  ballController: {fileID: 8185791647005175377}
+  ballRespawner: {fileID: 8720353550579785846}
+  uiManager: {fileID: 1641508855}
+  gameManager: {fileID: 949227556}
+  saveManager: {fileID: 1304030403}
 --- !u!1 &666438759
 GameObject:
   m_ObjectHideFlags: 0

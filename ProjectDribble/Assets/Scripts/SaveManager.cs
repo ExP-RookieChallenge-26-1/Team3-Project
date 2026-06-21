@@ -61,6 +61,11 @@ public class SaveManager : MonoBehaviour
         Current.tutorialCleared = value;
     }
 
+    public void SetRecallTutorialSeen(bool value)
+    {
+        Current.recallTutorialSeen = value;
+    }
+
     public int GetStartStageIndex(int stageCount)
     {
         int nextStage = Current.highestClearedStageIndex + 1;

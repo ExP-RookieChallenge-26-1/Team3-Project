@@ -58,6 +58,15 @@ public class LaserChargeController : MonoBehaviour
     // 차징존에 공이 들어오고 나갈 때 호출되는 이벤트 핸들러
     private void HandleDribblingChanged(bool value)
     {
+        if (IsRecallTutorialActive())
+        {
+            if (isDribbling || chargeTimer > 0f || chargeCount > 0)
+                Reset();
+
+            isDribbling = false;
+            return;
+        }
+
         if (ballController != null)
             return;
 
@@ -98,6 +107,9 @@ public class LaserChargeController : MonoBehaviour
 
     private void HandleBallCaptured()
     {
+        if (IsRecallTutorialActive())
+            return;
+
         if (!IsLaserUnlocked())
             return;
 
@@ -112,6 +124,13 @@ public class LaserChargeController : MonoBehaviour
 
     private void HandleBallReleased()
     {
+        if (IsRecallTutorialActive())
+        {
+            Reset();
+            isDribbling = false;
+            return;
+        }
+
         if (!IsLaserUnlocked())
         {
             Reset();
@@ -138,6 +157,19 @@ public class LaserChargeController : MonoBehaviour
     
     void Update()
     {
+        if (IsRecallTutorialActive())
+        {
+            if (isDribbling || chargeTimer > 0f || chargeCount > 0)
+                Reset();
+
+            isDribbling = false;
+
+            if (laserChargePreview != null)
+                laserChargePreview.Hide();
+
+            return;
+        }
+
         UpdateChargePreview();
 
         if (CheckTimer())
@@ -274,6 +306,11 @@ public class LaserChargeController : MonoBehaviour
     private bool IsLaserUnlocked()
     {
         return laserUnlockState != null && laserUnlockState.IsLaserUnlocked;
+    }
+
+    private bool IsRecallTutorialActive()
+    {
+        return GameManager.Instance != null && GameManager.Instance.IsRecallTutorialActive;
     }
 
     private bool IsPointerOverUI()

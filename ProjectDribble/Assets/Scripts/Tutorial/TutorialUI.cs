@@ -2,6 +2,12 @@ using System;
 using TMPro;
 using UnityEngine;
 
+public enum TutorialPopupCloseMode
+{
+    ClickToClose,
+    ExternalOnly
+}
+
 public class UIManager : MonoBehaviour
 {
     [Header("Tutorial Popup")]
@@ -10,6 +16,7 @@ public class UIManager : MonoBehaviour
 
     private Action tutorialCloseCallback;
     private bool isTutorialPopupOpen;
+    private TutorialPopupCloseMode tutorialPopupCloseMode = TutorialPopupCloseMode.ClickToClose;
 
     public bool IsTutorialPopupOpen => isTutorialPopupOpen;
 
@@ -21,6 +28,9 @@ public class UIManager : MonoBehaviour
     protected virtual void Update()
     {
         if (!isTutorialPopupOpen)
+            return;
+
+        if (tutorialPopupCloseMode == TutorialPopupCloseMode.ExternalOnly)
             return;
 
         if (IsTutorialCloseInput())
@@ -38,7 +48,10 @@ public class UIManager : MonoBehaviour
         SoundManager.Instance?.SetBgmMuffled(BgmMuffleReason.Tutorial, false);
     }
 
-    public bool ShowTutorialPopup(string message, Action onClose = null)
+    public bool ShowTutorialPopup(
+        string message,
+        Action onClose = null,
+        TutorialPopupCloseMode closeMode = TutorialPopupCloseMode.ClickToClose)
     {
         Debug.Log(
             $"[Tutorial] TutorialUI.ShowTutorialPopup called. " +
@@ -93,6 +106,7 @@ public class UIManager : MonoBehaviour
 
         messageText.text = message;
         tutorialCloseCallback = onClose;
+        tutorialPopupCloseMode = closeMode;
 
         isTutorialPopupOpen = true;
         SoundManager.Instance?.SetBgmMuffled(BgmMuffleReason.Tutorial, true);
@@ -109,6 +123,9 @@ public class UIManager : MonoBehaviour
 
     public void Continue()
     {
+        if (tutorialPopupCloseMode == TutorialPopupCloseMode.ExternalOnly)
+            return;
+
         HideTutorialPopup();
     }
 
@@ -133,6 +150,7 @@ public class UIManager : MonoBehaviour
         bool wasOpen = isTutorialPopupOpen;
         Action callback = tutorialCloseCallback;
         tutorialCloseCallback = null;
+        tutorialPopupCloseMode = TutorialPopupCloseMode.ClickToClose;
         isTutorialPopupOpen = false;
         SoundManager.Instance?.SetBgmMuffled(BgmMuffleReason.Tutorial, false);
 

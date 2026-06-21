@@ -134,7 +134,9 @@ public class BallRecallInput : MonoBehaviour
     private void HoldDownSwipe()
     {
         isDownSwipeHolding = true;
-        holdTimer += Time.deltaTime;
+        holdTimer += IsRecallTutorialActive()
+            ? Time.unscaledDeltaTime
+            : Time.deltaTime;
 
         Debug.Log("Holding Down Swipe: " + holdTimer);
 
@@ -175,8 +177,16 @@ public class BallRecallInput : MonoBehaviour
         ballRespawner.RecallBallToPaddle();
     }
 
+    private bool IsRecallTutorialActive()
+    {
+        return GameManager.Instance != null && GameManager.Instance.IsRecallTutorialActive;
+    }
+
     private bool IsPointerOverUI(int pointerId = -1)
     {
+        if (IsRecallTutorialActive())
+            return false;
+
         if (EventSystem.current == null)
             return false;
 

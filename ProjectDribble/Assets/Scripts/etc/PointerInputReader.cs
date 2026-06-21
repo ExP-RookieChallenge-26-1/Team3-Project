@@ -14,6 +14,16 @@ public class PointerInputReader : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance != null && GameManager.Instance.IsRecallTutorialActive)
+        {
+            IsPressed = false;
+            ScreenPosition = Vector2.zero;
+            WasPressedThisFrame = false;
+            WasReleasedThisFrame = wasPressedLastFrame;
+            wasPressedLastFrame = false;
+            return;
+        }
+
         IsPressed = TryReadPointer(out Vector2 screenPosition);
         ScreenPosition = screenPosition;
 

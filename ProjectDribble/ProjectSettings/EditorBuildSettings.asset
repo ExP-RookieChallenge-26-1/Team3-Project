@@ -11,8 +11,11 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/RealProjectDribble 2.unity
     guid: d3fa0e55025bcfc4986607744ce76515
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainScene.unity
     guid: 4fe24d64bc2fbbe4ca127c83c2a7a7d2
+  - enabled: 1
+    path: Assets/Scenes/MainScene kjw 1.unity
+    guid: 24c69475e3205cb41837dd3b0aca8bfa
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

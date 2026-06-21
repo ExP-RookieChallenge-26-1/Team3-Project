@@ -25601,6 +25601,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "from_class": "BallRecallInput",
+    "to_type": "GameManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
+    "from_class": "BallRecallInput",
     "to_type": "Abs",
     "relation_type": "uses",
     "strength": 1
@@ -25678,6 +25685,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "from_class": "BallRecallInput",
+    "to_type": "GameManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
+    "from_class": "BallRecallInput",
     "to_type": "HandlePointerInput",
     "relation_type": "uses",
     "strength": 1
@@ -25720,6 +25734,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "from_class": "BallRecallInput",
+    "to_type": "Instance",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
+    "from_class": "BallRecallInput",
     "to_type": "IsPointerOverGameObject",
     "relation_type": "uses",
     "strength": 1
@@ -25728,6 +25749,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "from_class": "BallRecallInput",
     "to_type": "IsPointerOverUI",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
+    "from_class": "BallRecallInput",
+    "to_type": "IsRecallTutorialActive",
     "relation_type": "uses",
     "strength": 1
   },
@@ -32699,6 +32727,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
     "from_class": "PointerInputReader",
+    "to_type": "GameManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
+    "from_class": "PointerInputReader",
     "to_type": "bool",
     "relation_type": "uses",
     "strength": 1
@@ -32720,7 +32755,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
     "from_class": "PointerInputReader",
+    "to_type": "GameManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
+    "from_class": "PointerInputReader",
     "to_type": "InputSystem",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
+    "from_class": "PointerInputReader",
+    "to_type": "Instance",
     "relation_type": "uses",
     "strength": 1
   },
@@ -32742,6 +32791,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
     "from_class": "PointerInputReader",
     "to_type": "IsPressed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
+    "from_class": "PointerInputReader",
+    "to_type": "IsRecallTutorialActive",
     "relation_type": "uses",
     "strength": 1
   },
@@ -32916,6 +32972,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
+    "to_type": "BeginRecallTutorial",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
     "to_type": "BgmMuffleReason",
     "relation_type": "uses",
     "strength": 1
@@ -32959,6 +33022,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "DefaultNamespace",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "EndRecallTutorial",
     "relation_type": "uses",
     "strength": 1
   },
@@ -33036,6 +33106,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "IsPausedByTutorial",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "IsRecallTutorialActive",
     "relation_type": "uses",
     "strength": 1
   },
@@ -33588,6 +33665,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
     "from_class": "GaugeManager",
+    "to_type": "bool",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
+    "from_class": "GaugeManager",
+    "to_type": "CanGainGauge",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
+    "from_class": "GaugeManager",
     "to_type": "Clamp",
     "relation_type": "uses",
     "strength": 1
@@ -33742,6 +33833,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
     "from_class": "GaugeManager",
+    "to_type": "SetGaugeGainWhileLaserLockedEnabled",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
+    "from_class": "GaugeManager",
     "to_type": "SetGaugeValue",
     "relation_type": "uses",
     "strength": 1
@@ -33847,6 +33945,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
     "from_class": "GaugeUI",
+    "to_type": "Clamp01",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
+    "from_class": "GaugeUI",
     "to_type": "CurrentGaugeValue",
     "relation_type": "uses",
     "strength": 1
@@ -33862,13 +33967,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
     "from_class": "GaugeUI",
     "to_type": "FindAnyObjectByType",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
-    "from_class": "GaugeUI",
-    "to_type": "float",
     "relation_type": "uses",
     "strength": 1
   },
@@ -33995,13 +34093,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
     "from_class": "GaugeUI",
     "to_type": "SetActive",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
-    "from_class": "GaugeUI",
-    "to_type": "Start",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34274,6 +34365,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "from_class": "LaserChargeController",
+    "to_type": "GameManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
     "to_type": "SoundManager",
     "relation_type": "singleton-access",
     "strength": 4
@@ -34393,6 +34491,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "from_class": "LaserChargeController",
+    "to_type": "GameManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
     "to_type": "GaugeManager",
     "relation_type": "uses",
     "strength": 1
@@ -34485,6 +34590,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "from_class": "LaserChargeController",
     "to_type": "IsPointerOverUI",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
+    "to_type": "IsRecallTutorialActive",
     "relation_type": "uses",
     "strength": 1
   },
@@ -35017,6 +35129,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserUnlockState.cs",
     "from_class": "LaserUnlockState",
     "to_type": "IsLaserUnlocked",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserUnlockState.cs",
+    "from_class": "LaserUnlockState",
+    "to_type": "LockLaser",
     "relation_type": "uses",
     "strength": 1
   },
@@ -36718,6 +36837,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/SaveManager.cs",
     "from_class": "SaveManager",
     "to_type": "SetLaserUnlocked",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/SaveManager.cs",
+    "from_class": "SaveManager",
+    "to_type": "SetRecallTutorialSeen",
     "relation_type": "uses",
     "strength": 1
   },
@@ -38430,6 +38556,356 @@
     "strength": 1
   },
   {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "GameManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "SaveManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "Approximately",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "Awake",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "BallController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "BallRespawner",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "BeginRecallTutorial",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "bool",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "CanObserveBall",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "Current",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "EndRecallTutorial",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "ExternalOnly",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "FindAnyObjectByType",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "float",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "GameManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "HandleBallRecalled",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "HasSeenRecallTutorial",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "HideTutorialPopup",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "Instance",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "IsCaptured",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "IsGameStarted",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "IsPaused",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "IsPausedByTutorial",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "IsRecallTutorialActive",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "IsTutorialPopupOpen",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "LogWarning",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "Max",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "Min",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "ObserveY",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "OnBallRecalled",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "OnDisable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "OnEnable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "RecallGuideMessage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "RecallTutorial",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "References",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "Required",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "ResetObservation",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "ResolveReferences",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "Save",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "SaveManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "SetRecallTutorialSeen",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "Settings",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "ShowTutorialPopup",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "StartObservation",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "TryBeginRecallTutorial",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "TutorialPopupCloseMode",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "UIManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "from_class": "RecallTutorialManager",
+    "to_type": "Update",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
     "to_type": "MonoBehaviour",
@@ -38601,6 +39077,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
     "to_type": "Completed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "CompleteLaserGuide",
     "relation_type": "uses",
     "strength": 1
   },
@@ -38873,6 +39356,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "Laser",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "LaserGuideMessage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "LaserShooter",
     "relation_type": "uses",
     "strength": 1
@@ -38881,6 +39378,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
     "to_type": "LaserUnlockState",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "LockLaser",
     "relation_type": "uses",
     "strength": 1
   },
@@ -38937,6 +39441,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
     "to_type": "Message",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "Min",
     "relation_type": "uses",
     "strength": 1
   },
@@ -39132,6 +39643,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "SetGaugeGainWhileLaserLockedEnabled",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "SetTutorialTopBoundaryActive",
     "relation_type": "uses",
     "strength": 1
@@ -39140,6 +39658,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
     "to_type": "ShowDribbleGuide",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "ShowLaserGuideWhenAvailable",
     "relation_type": "uses",
     "strength": 1
   },
@@ -39468,6 +39993,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "TryShowLaserGuide",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "TryShowTutorial",
     "relation_type": "uses",
     "strength": 1
@@ -39664,6 +40196,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
+    "to_type": "ClickToClose",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
+    "from_class": "UIManager",
     "to_type": "Continue",
     "relation_type": "uses",
     "strength": 1
@@ -39672,6 +40211,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
     "to_type": "Empty",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
+    "from_class": "UIManager",
+    "to_type": "ExternalOnly",
     "relation_type": "uses",
     "strength": 1
   },
@@ -39875,6 +40421,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
     "to_type": "Tutorial",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
+    "from_class": "UIManager",
+    "to_type": "TutorialPopupCloseMode",
     "relation_type": "uses",
     "strength": 1
   },

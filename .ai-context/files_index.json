@@ -17370,9 +17370,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "file_name": "BallRecallInput.cs",
-    "content_hash": "f5077d6fbcbe481f7587836734b487ef146e5a11",
-    "size": 4163,
-    "line_count": 188,
+    "content_hash": "1cf9bc560cd34d4fa0bc58651e7478cfcae68f93",
+    "size": 4451,
+    "line_count": 198,
     "namespace": "",
     "using_list": [
       "UnityEngine",
@@ -17405,6 +17405,7 @@
       "CancelHold",
       "EndPointer",
       "RecallBall",
+      "IsRecallTutorialActive",
       "IsPointerOverUI"
     ],
     "fields": [
@@ -17513,6 +17514,7 @@
       "Log",
       "Abs",
       "HoldDownSwipe",
+      "IsRecallTutorialActive",
       "Holding",
       "Down",
       "RecallBall",
@@ -17520,12 +17522,16 @@
       "Ball",
       "LogWarning",
       "RecallBallToPaddle",
+      "GameManager",
+      "Instance",
       "EventSystem",
       "IsPointerOverGameObject"
     ],
     "component_access_types": [],
     "created_types": [],
-    "singleton_access_types": [],
+    "singleton_access_types": [
+      "GameManager"
+    ],
     "string_literals": [
       "References",
       "Swipe Setting",
@@ -17545,6 +17551,7 @@
     "guessed_roles": [
       "runtime",
       "player",
+      "manager",
       "ui",
       "save-load"
     ],
@@ -22013,9 +22020,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
     "path": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
     "file_name": "PointerInputReader.cs",
-    "content_hash": "35d67d57b1d6624db917343cd00312ebd5666a0c",
-    "size": 1722,
-    "line_count": 62,
+    "content_hash": "42d6877defa23b9e20da36ee78d29dd1bc4ea96d",
+    "size": 2064,
+    "line_count": 72,
     "namespace": "",
     "using_list": [
       "UnityEngine",
@@ -22111,6 +22118,9 @@
       "WasPressedThisFrame",
       "WasReleasedThisFrame",
       "Update",
+      "GameManager",
+      "Instance",
+      "IsRecallTutorialActive",
       "TryReadPointer",
       "Touchscreen",
       "ReadValue",
@@ -22122,10 +22132,13 @@
     ],
     "component_access_types": [],
     "created_types": [],
-    "singleton_access_types": [],
+    "singleton_access_types": [
+      "GameManager"
+    ],
     "string_literals": [],
     "numeric_literals": [],
     "guessed_roles": [
+      "manager",
       "ui",
       "runtime",
       "player"
@@ -22220,9 +22233,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "path": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "file_name": "GameManager.cs",
-    "content_hash": "d97f0a42707c4ebaf8f236d7fbc0a4a90c58aa96",
-    "size": 6657,
-    "line_count": 245,
+    "content_hash": "9f9eb0615633a771d71797aee380b98c4ea5e5f3",
+    "size": 7110,
+    "line_count": 265,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -22257,6 +22270,8 @@
       "ToTitle",
       "Initialize",
       "PauseForTutorial",
+      "BeginRecallTutorial",
+      "EndRecallTutorial",
       "ResumeFromTutorial"
     ],
     "fields": [
@@ -22308,6 +22323,11 @@
         "access": "internal",
         "type": "GameManager",
         "name": "Instance"
+      },
+      {
+        "access": "public",
+        "type": "bool",
+        "name": "IsRecallTutorialActive"
       }
     ],
     "events": [],
@@ -22349,6 +22369,7 @@
       "IsPausedByTutorial",
       "IsPaused",
       "IsGameStarted",
+      "IsRecallTutorialActive",
       "Awake",
       "LogWarning",
       "Keeping",
@@ -22395,6 +22416,8 @@
       "PauseForTutorial",
       "Log",
       "Tutorial",
+      "BeginRecallTutorial",
+      "EndRecallTutorial",
       "ResumeFromTutorial"
     ],
     "component_access_types": [],
@@ -22832,9 +22855,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
     "file_name": "GaugeManager.cs",
-    "content_hash": "540973dcf43cd0cf58667289e18ef9c07a7d6187",
-    "size": 2890,
-    "line_count": 114,
+    "content_hash": "8ac48475ed20e5929ce88abd415cf62204eb3643",
+    "size": 3212,
+    "line_count": 127,
     "namespace": "",
     "using_list": [
       "System",
@@ -22866,9 +22889,18 @@
       "UpdateGaugeSegmentByValue",
       "AddGauge",
       "TryReduceGaugeLevel",
+      "SetGaugeGainWhileLaserLockedEnabled",
+      "CanGainGauge",
       "IsLaserUnlocked"
     ],
     "fields": [
+      {
+        "name": "allowGaugeGainWhileLaserLocked",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
       {
         "name": "previousSegments",
         "type": "int",
@@ -22910,6 +22942,7 @@
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
+      "bool",
       "int",
       "System",
       "DefaultNamespace",
@@ -22941,7 +22974,9 @@
       "SoundId",
       "GaugeSegmentFilled",
       "AddGauge",
-      "TryReduceGaugeLevel"
+      "CanGainGauge",
+      "TryReduceGaugeLevel",
+      "SetGaugeGainWhileLaserLockedEnabled"
     ],
     "component_access_types": [],
     "created_types": [],
@@ -22970,9 +23005,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
     "file_name": "GaugeUI.cs",
-    "content_hash": "47177ad9b03ca1a9db7333178fa5d7b59fa9f5e9",
-    "size": 4214,
-    "line_count": 155,
+    "content_hash": "c0f9800a3307c713dd9ee8b7f7b9c327a7ba1fbf",
+    "size": 4136,
+    "line_count": 147,
     "namespace": "",
     "using_list": [
       "TMPro",
@@ -22998,7 +23033,6 @@
       "Awake",
       "OnEnable",
       "OnDisable",
-      "Start",
       "RefreshAll",
       "UpdateGaugeBar",
       "Vector3",
@@ -23016,13 +23050,6 @@
         "is_static": false
       },
       {
-        "name": "percent",
-        "type": "float",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
         "name": "unlocked",
         "type": "bool",
         "access": "internal",
@@ -23035,14 +23062,13 @@
     "unity_messages": [
       "Awake",
       "OnEnable",
-      "OnDisable",
-      "Start"
+      "OnDisable"
     ],
     "has_update": false,
     "has_fixed_update": false,
     "has_late_update": false,
     "has_awake": true,
-    "has_start": true,
+    "has_start": false,
     "has_on_enable": true,
     "has_on_disable": true,
     "serialize_field_count": 0,
@@ -23055,7 +23081,6 @@
     "dont_destroy_on_load": false,
     "referenced_types": [
       "Vector3",
-      "float",
       "bool",
       "TMPro",
       "UnityEngine",
@@ -23078,13 +23103,13 @@
       "OnLaserUnlocked",
       "HandleLaserUnlockChanged",
       "OnLaserLocked",
-      "RefreshVisibility",
-      "OnDisable",
-      "Start",
       "RefreshAll",
+      "OnDisable",
+      "RefreshVisibility",
       "CurrentGaugeValue",
       "FilledGaugeSegments",
       "MaxGaugeValue",
+      "Clamp01",
       "Value",
       "Segments",
       "MaxGaugeSegments",
@@ -23109,8 +23134,8 @@
       1
     ],
     "guessed_roles": [
-      "runtime",
       "ui",
+      "runtime",
       "combat",
       "manager",
       "save-load"
@@ -23265,9 +23290,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "file_name": "LaserChargeController.cs",
-    "content_hash": "d13e3582533e3b3d58725f3dce038e4f16cc12eb",
-    "size": 6984,
-    "line_count": 295,
+    "content_hash": "2e2567948efa04ef4edf91a6feb55bcdf019a3a6",
+    "size": 7824,
+    "line_count": 332,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -23310,6 +23335,7 @@
       "ReturnGauge",
       "Reset",
       "IsLaserUnlocked",
+      "IsRecallTutorialActive",
       "IsPointerOverUI"
     ],
     "fields": [
@@ -23417,8 +23443,9 @@
       "SoundManager",
       "Instance",
       "StopLoop",
-      "IsLaserUnlocked",
+      "IsRecallTutorialActive",
       "Reset",
+      "IsLaserUnlocked",
       "IsPointerOverUI",
       "Mouse",
       "TryFireChargedLaser",
@@ -23430,10 +23457,10 @@
       "Stop",
       "BallReleased",
       "Update",
+      "Hide",
       "UpdateChargePreview",
       "CheckTimer",
       "TryIncreaseChargeLevel",
-      "Hide",
       "GetWidthForCharge",
       "Show",
       "FilledGaugeSegments",
@@ -23448,6 +23475,7 @@
       "ShootLaser",
       "AddGauge",
       "Clamp01",
+      "GameManager",
       "EventSystem",
       "Touchscreen",
       "IsPointerOverGameObject",
@@ -23456,7 +23484,8 @@
     "component_access_types": [],
     "created_types": [],
     "singleton_access_types": [
-      "SoundManager"
+      "SoundManager",
+      "GameManager"
     ],
     "string_literals": [
       "guageManger",
@@ -23692,9 +23721,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserUnlockState.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserUnlockState.cs",
     "file_name": "LaserUnlockState.cs",
-    "content_hash": "788fc3cfd750289971cb019bc4c5708ba7677002",
-    "size": 698,
-    "line_count": 32,
+    "content_hash": "acd78d41ee413f9f1e69e547a105ae67626e88ad",
+    "size": 760,
+    "line_count": 37,
     "namespace": "",
     "using_list": [
       "System",
@@ -23718,6 +23747,7 @@
     "unity_type": "MonoBehaviour",
     "methods": [
       "UnlockLaser",
+      "LockLaser",
       "ResetProgressForNewGame"
     ],
     "fields": [],
@@ -23747,6 +23777,7 @@
       "OnLaserLocked",
       "UnlockLaser",
       "Invoke",
+      "LockLaser",
       "ResetProgressForNewGame",
       "TODO",
       "Call"
@@ -24775,9 +24806,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/SaveData.cs",
     "path": "ProjectDribble/Assets/Scripts/SaveData.cs",
     "file_name": "SaveData.cs",
-    "content_hash": "b602829e2f5fa50c869702abc256f2f0bc15a08c",
-    "size": 181,
-    "line_count": 9,
+    "content_hash": "3042d0486a47b240739736e3f56f22976622e869",
+    "size": 226,
+    "line_count": 11,
     "namespace": "",
     "using_list": [
       "System"
@@ -24818,6 +24849,13 @@
         "access": "public",
         "serialized": false,
         "is_static": false
+      },
+      {
+        "name": "recallTutorialSeen",
+        "type": "bool",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
       }
     ],
     "properties": [],
@@ -24831,7 +24869,7 @@
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 0,
-    "public_field_count": 3,
+    "public_field_count": 4,
     "get_component_count": 0,
     "find_call_count": 0,
     "new_keyword_count": 0,
@@ -24861,9 +24899,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/SaveManager.cs",
     "path": "ProjectDribble/Assets/Scripts/SaveManager.cs",
     "file_name": "SaveManager.cs",
-    "content_hash": "497652822499b64729a8ed16b7753328dc689444",
-    "size": 1660,
-    "line_count": 75,
+    "content_hash": "923ea9cbec48b16796585fcfd7da843c5a57d221",
+    "size": 1768,
+    "line_count": 81,
     "namespace": "",
     "using_list": [
       "System.IO",
@@ -24893,6 +24931,7 @@
       "MarkStageCleared",
       "SetLaserUnlocked",
       "SetTutorialCleared",
+      "SetRecallTutorialSeen",
       "GetStartStageIndex",
       "ResetSave"
     ],
@@ -24963,6 +25002,7 @@
       "MarkStageCleared",
       "SetLaserUnlocked",
       "SetTutorialCleared",
+      "SetRecallTutorialSeen",
       "GetStartStageIndex",
       "Clamp",
       "ResetSave"
@@ -26071,12 +26111,202 @@
     ]
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "path": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "file_name": "RecallTutorialManager.cs",
+    "content_hash": "46ed82a2cdf5c429326d6a065e931f40a9312237",
+    "size": 5571,
+    "line_count": 213,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "RecallTutorialManager",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "RecallTutorialManager",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Awake",
+      "OnEnable",
+      "OnDisable",
+      "Update",
+      "ObserveY",
+      "CanObserveBall",
+      "HasSeenRecallTutorial",
+      "TryBeginRecallTutorial",
+      "HandleBallRecalled",
+      "StartObservation",
+      "ResetObservation",
+      "ResolveReferences"
+    ],
+    "fields": [
+      {
+        "name": "hasObservation",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "recallTutorialSeenThisSession",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "observedTime",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "observedMinY",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "observedMaxY",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "currentY",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Awake",
+      "OnEnable",
+      "OnDisable",
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": false,
+    "has_on_enable": true,
+    "has_on_disable": true,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 5,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "bool",
+      "float",
+      "UnityEngine",
+      "RecallGuideMessage",
+      "Settings",
+      "Min",
+      "References",
+      "BallController",
+      "BallRespawner",
+      "UIManager",
+      "GameManager",
+      "SaveManager",
+      "IsRecallTutorialActive",
+      "Awake",
+      "ResolveReferences",
+      "OnEnable",
+      "OnBallRecalled",
+      "HandleBallRecalled",
+      "OnDisable",
+      "HideTutorialPopup",
+      "EndRecallTutorial",
+      "ResetObservation",
+      "Update",
+      "CanObserveBall",
+      "ObserveY",
+      "StartObservation",
+      "Max",
+      "TryBeginRecallTutorial",
+      "HasSeenRecallTutorial",
+      "IsCaptured",
+      "IsGameStarted",
+      "IsPaused",
+      "IsPausedByTutorial",
+      "Approximately",
+      "IsTutorialPopupOpen",
+      "Current",
+      "LogWarning",
+      "RecallTutorial",
+      "Required",
+      "ShowTutorialPopup",
+      "TutorialPopupCloseMode",
+      "ExternalOnly",
+      "BeginRecallTutorial",
+      "SetRecallTutorialSeen",
+      "Save",
+      "FindAnyObjectByType",
+      "Instance"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [
+      "GameManager",
+      "SaveManager"
+    ],
+    "string_literals": [
+      "공이 막혔을 때는 아래로 길게 드래그해 공을 끌어올 수 있습니다.",
+      "Settings",
+      "References",
+      "[RecallTutorial] Required UIManager or GameManager reference is missing."
+    ],
+    "numeric_literals": [
+      0,
+      16,
+      5,
+      8,
+      1
+    ],
+    "guessed_roles": [
+      "runtime",
+      "manager",
+      "save-load",
+      "ui"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재",
+      "UI 관련 로직 포함",
+      "저장/불러오기 관련 로직 포함",
+      "Find 계열 탐색 사용"
+    ]
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "file_name": "TutorialManager.cs",
-    "content_hash": "8b3ff848c17df890d61d821c4ae11004ce5befe9",
-    "size": 24569,
-    "line_count": 783,
+    "content_hash": "a3fb1b79ada091d1710e0643095c414aa693eea9",
+    "size": 26949,
+    "line_count": 860,
     "namespace": "",
     "using_list": [
       "System.Collections",
@@ -26120,6 +26350,9 @@
       "HandleTutorialStageCleared",
       "HandleGaugeValueChanged",
       "HandleGaugeSegmentChanged",
+      "TryShowLaserGuide",
+      "ShowLaserGuideWhenAvailable",
+      "CompleteLaserGuide",
       "HandleGaugeFull",
       "IsGaugeFull",
       "HandleLaserFired",
@@ -26257,6 +26490,13 @@
         "is_static": false
       },
       {
+        "name": "hasShownLaserGuide",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "breakNormalBlocksElapsed",
         "type": "float",
         "access": "private",
@@ -26318,6 +26558,13 @@
         "access": "private",
         "serialized": false,
         "is_static": false
+      },
+      {
+        "name": "laserGuideRoutine",
+        "type": "Coroutine",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
       }
     ],
     "properties": [],
@@ -26339,7 +26586,7 @@
     "get_component_count": 0,
     "find_call_count": 9,
     "new_keyword_count": 0,
-    "coroutine_count": 2,
+    "coroutine_count": 4,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
@@ -26381,6 +26628,7 @@
       "CeilingSegmentGuideMessage",
       "DribbleGuideDetectionDelay",
       "DribbleGuideForceDelay",
+      "LaserGuideMessage",
       "Stage1StartMessage",
       "Stage1CeilingMessage",
       "Stage2StartMessage",
@@ -26407,6 +26655,9 @@
       "LaserUnlockState",
       "BallController",
       "Message",
+      "Laser",
+      "Tutorial",
+      "Min",
       "Awake",
       "FindAnyObjectByType",
       "Instance",
@@ -26435,6 +26686,9 @@
       "Stage6",
       "BeginStage6",
       "SetTutorialTopBoundaryActive",
+      "LockLaser",
+      "OnGaugeSegmentChanged",
+      "HandleGaugeSegmentChanged",
       "OnCeilingSegmentDestroyed",
       "HandleCeilingSegmentDestroyed",
       "OnStageCleared",
@@ -26450,8 +26704,6 @@
       "InitializeGauge",
       "OnGaugeValueChanged",
       "HandleGaugeValueChanged",
-      "OnGaugeSegmentChanged",
-      "HandleGaugeSegmentChanged",
       "OnLaserFired",
       "HandleLaserFired",
       "IsGaugeFull",
@@ -26465,12 +26717,18 @@
       "HandleBallRecalled",
       "BeginAttackCeilingPhase",
       "StartGrowth",
+      "SetGaugeGainWhileLaserLockedEnabled",
+      "TryShowLaserGuide",
+      "FilledGaugeSegments",
       "CeilingSegment",
       "HandleGaugeFull",
+      "StartCoroutine",
+      "ShowLaserGuideWhenAvailable",
+      "IsTutorialPopupOpen",
+      "CompleteLaserGuide",
       "MaxGaugeValue",
       "CurrentGaugeValue",
       "MaxGaugeSegments",
-      "FilledGaugeSegments",
       "BlockCell",
       "MarkStage5LaserGuideMessageShown",
       "NotifyTriggerEntered",
@@ -26478,7 +26736,6 @@
       "ResetStageFlags",
       "SetActive",
       "Log",
-      "Tutorial",
       "Popup",
       "LogWarning",
       "Invoke",
@@ -26494,9 +26751,7 @@
       "ShowMessage",
       "ResumeTutorial",
       "HideTutorialPopup",
-      "StartCoroutine",
       "ShowTutorialAfterCurrentClosesRoutine",
-      "IsTutorialPopupOpen",
       "Empty"
     ],
     "component_access_types": [],
@@ -26511,6 +26766,7 @@
       "위에 나타난 천장을 노리세요.\\n",
       "초록 흐름 블록은 아래로 자라나며, 바닥에 닿으면 위험합니다.",
       "천장을 부수면 연결된 흐름 블록의 성장이 멈춥니다.",
+      "게이지가 가득 찼습니다.\\n공을 패들 사이에 붙잡은 동안 레이저를 차징할 수 있습니다.",
       "기본 조작 설명 \\n블록을 모두 부수세요!",
       "천장을 부수세요!",
       "흐름 블록 설명\\n 천장을 부수세요!",
@@ -26523,8 +26779,7 @@
       "고정 블록은 공으로는 부술 수 없습니다.",
       "레이저를 사용하면 고정 블록을 부술 수 있습니다.",
       "고정 블록을 제거했습니다.",
-      "공이 멀리 있거나 갇혔을 때는 공을 다시 불러올 수 있습니다.\\n리스폰 버튼을 눌러 공을 불러오세요.",
-      "공을 다시 불러왔습니다."
+      "공이 멀리 있거나 갇혔을 때는 공을 다시 불러올 수 있습니다.\\n리스폰 버튼을 눌러 공을 불러오세요."
     ],
     "numeric_literals": [
       3,
@@ -26633,9 +26888,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "path": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "file_name": "TutorialUI.cs",
-    "content_hash": "b67471e0f36be30385e25c3b765a10f67068391c",
-    "size": 4296,
-    "line_count": 160,
+    "content_hash": "82ca3ce3de5050a881b9a171d8063088841b37d8",
+    "size": 4871,
+    "line_count": 178,
     "namespace": "",
     "using_list": [
       "System",
@@ -26697,6 +26952,13 @@
         "is_static": false
       },
       {
+        "name": "tutorialPopupCloseMode",
+        "type": "TutorialPopupCloseMode",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "wasOpen",
         "type": "bool",
         "access": "internal",
@@ -26735,9 +26997,12 @@
     "dont_destroy_on_load": false,
     "referenced_types": [
       "bool",
+      "TutorialPopupCloseMode",
       "System",
       "TMPro",
       "UnityEngine",
+      "ClickToClose",
+      "ExternalOnly",
       "Tutorial",
       "Popup",
       "TextMeshProUGUI",

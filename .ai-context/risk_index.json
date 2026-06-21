@@ -481,6 +481,29 @@
     "risk_score": 86
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "class_name": "LaserChargeController",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "find-heavy",
+      "large-class",
+      "init-order-sensitive",
+      "ui-runtime-mixed",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
+      "Find 계열 탐색 사용",
+      "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+      "초기화 순서에 민감할 가능성",
+      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 83
+  },
+  {
     "file_id": "Old Scripts/ball_movement.cs",
     "class_name": "Balmove",
     "risk_flags": [
@@ -702,6 +725,29 @@
     "risk_reasons": [
       "참조 타입 또는 관계 수가 많음",
       "public 필드 노출 수가 많음",
+      "Find 계열 탐색 사용",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 80
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
+    "class_name": "RecallTutorialManager",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "find-heavy",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "ui-runtime-mixed",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
       "Find 계열 탐색 사용",
       "초기화 순서에 민감할 가능성",
       "저장/불러오기 관련 로직 포함",
@@ -1358,27 +1404,6 @@
       "참조 타입 또는 관계 수가 많음",
       "초기화 순서에 민감할 가능성",
       "저장/불러오기 관련 로직 포함",
-      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 68
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
-    "class_name": "LaserChargeController",
-    "risk_flags": [
-      "update-heavy",
-      "high-coupling",
-      "find-heavy",
-      "init-order-sensitive",
-      "ui-runtime-mixed",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "Unity 업데이트 루프 사용",
-      "참조 타입 또는 관계 수가 많음",
-      "Find 계열 탐색 사용",
-      "초기화 순서에 민감할 가능성",
       "UI와 런타임 책임이 한 파일에 섞였을 가능성",
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
@@ -2366,6 +2391,23 @@
     "risk_score": 46
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
+    "class_name": "PointerInputReader",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "ui-runtime-mixed",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
+      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 46
+  },
+  {
     "file_id": "ProjectDribble/Assets/TextMesh Pro/Examples & Extras/Scripts/EnvMapAnimator.cs",
     "class_name": "EnvMapAnimator",
     "risk_flags": [
@@ -2878,21 +2920,6 @@
     "risk_score": 30
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
-    "class_name": "PointerInputReader",
-    "risk_flags": [
-      "update-heavy",
-      "ui-runtime-mixed",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "Unity 업데이트 루프 사용",
-      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 28
-  },
-  {
     "file_id": "PaddlePrototype/Assets/Scripts/ScriptableObjectScripts/BallBalanceData.cs",
     "class_name": "BallBalanceData",
     "risk_flags": [
@@ -3014,6 +3041,19 @@
     "risk_score": 20
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserUnlockState.cs",
+    "class_name": "LaserUnlockState",
+    "risk_flags": [
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 20
+  },
+  {
     "file_id": "PaddlePrototype/Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_DigitValidator.cs",
     "class_name": "TMP_DigitValidator",
     "risk_flags": [
@@ -3068,17 +3108,6 @@
   {
     "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingDamager.cs",
     "class_name": "CeilingDamager",
-    "risk_flags": [
-      "save-load-sensitive"
-    ],
-    "risk_reasons": [
-      "저장/불러오기 관련 로직 포함"
-    ],
-    "risk_score": 12
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserUnlockState.cs",
-    "class_name": "LaserUnlockState",
     "risk_flags": [
       "save-load-sensitive"
     ],

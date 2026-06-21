@@ -204,19 +204,29 @@ public class GameManager : MonoBehaviour
     public void PauseForTutorial()
     {
         if (isPausedByTutorial)
+        {
+            Debug.Log($"[Tutorial] PauseForTutorial skipped: already paused. Time.timeScale={Time.timeScale}");
             return;
+        }
 
         timeScaleBeforeTutorial = Time.timeScale;
         Time.timeScale = 0f;
         isPausedByTutorial = true;
+        Debug.Log(
+            $"[Tutorial] PauseForTutorial called. " +
+            $"previousTimeScale={timeScaleBeforeTutorial}, Time.timeScale={Time.timeScale}");
     }
 
     public void ResumeFromTutorial()
     {
         if (!isPausedByTutorial)
+        {
+            Debug.Log($"[Tutorial] ResumeFromTutorial skipped: tutorial is not paused. Time.timeScale={Time.timeScale}");
             return;
+        }
 
         Time.timeScale = timeScaleBeforeTutorial;
         isPausedByTutorial = false;
+        Debug.Log($"[Tutorial] ResumeFromTutorial called. Time.timeScale={Time.timeScale}");
     }
 }

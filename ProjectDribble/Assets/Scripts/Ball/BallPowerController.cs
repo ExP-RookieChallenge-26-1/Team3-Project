@@ -6,6 +6,10 @@ public class BallPowerController : MonoBehaviour
 
     [SerializeField] private float currentDamage;
 
+    private bool hasStageMaxDamageOverride;
+    private float stageMaxDamageOverride;
+    private float powerGainMultiplier = 1f;
+
     public float CurrentDamageValue => currentDamage;
 
     void Start()
@@ -15,24 +19,25 @@ public class BallPowerController : MonoBehaviour
     
     public float CurrentDamage()
     {
+        ClampCurrentDamage();
         return currentDamage;
     }
 
     public void ResetToBaseDamage()
     {
-        currentDamage = data != null ? data.BaseDamage : 1f;
+        float baseDamage = data != null ? data.BaseDamage : 1f;
+        currentDamage = hasStageMaxDamageOverride
+            ? Mathf.Min(baseDamage, stageMaxDamageOverride)
+            : baseDamage;
     }
 
     public void AddDamage(float amount)
     {
-        if (data == null)
-        {
-            currentDamage = Mathf.Max(0f, currentDamage + amount);
-            return;
-        }
+        if (amount > 0f)
+            amount *= powerGainMultiplier;
 
         currentDamage += amount;
-        currentDamage = Mathf.Clamp(currentDamage, data.BaseDamage, data.MaxDamage);
+        ClampCurrentDamage();
     }
 
     public void AddPaddleDamage()
@@ -53,5 +58,31 @@ public class BallPowerController : MonoBehaviour
         AddDamage(-lossAmount);
 
         Debug.Log($"[BallDamage] Damage Loss: {lossAmount}, CurrentDamage Before Loss: {beforeDamage}, CurrentDamage After Loss: {currentDamage}");
+    }
+
+    public void ApplyStageTuning(float maxDamageOverride, float gainMultiplier)
+    {
+        hasStageMaxDamageOverride = true;
+        stageMaxDamageOverride = Mathf.Max(0f, maxDamageOverride);
+        powerGainMultiplier = Mathf.Max(0f, gainMultiplier);
+        ClampCurrentDamage();
+    }
+
+    public void ClearStageTuning()
+    {
+        hasStageMaxDamageOverride = false;
+        powerGainMultiplier = 1f;
+        ClampCurrentDamage();
+    }
+
+    private void ClampCurrentDamage()
+    {
+        float baseDamage = data != null ? data.BaseDamage : 0f;
+        float maxDamage = hasStageMaxDamageOverride
+            ? stageMaxDamageOverride
+            : data != null ? data.MaxDamage : float.PositiveInfinity;
+
+        float minDamage = Mathf.Min(baseDamage, maxDamage);
+        currentDamage = Mathf.Clamp(currentDamage, minDamage, maxDamage);
     }
 }

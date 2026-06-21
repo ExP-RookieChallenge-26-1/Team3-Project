@@ -13,12 +13,17 @@ MonoBehaviour:
   m_Name: tutorial 1
   m_EditorClassIdentifier: Assembly-CSharp::StageDefinition
   blockData: {fileID: 11400000, guid: feeb20f0aeabbc040ad442d150c6662e, type: 2}
-  ceilingSegmentMode: 0
-  ceilingMaxHpOverride: 20
+  ceilingSegmentMode: 1
+  ceilingMaxHpOverride: 50
   playerMaxHpOverride: 10
   startGaugeValue: 0
   ballStartPosition: {x: 0, y: -11.5}
   ballStartDirection: {x: 0, y: -1}
   ballStartSpeed: 30
+  overrideBallTuning: 1
+  maxSpeedOverride: 80
+  maxDamageOverride: 7
+  speedGainMultiplierOverride: 0.5
+  powerGainMultiplierOverride: 0.8
   isTutorialStage: 1
   tutorialStageId: 1

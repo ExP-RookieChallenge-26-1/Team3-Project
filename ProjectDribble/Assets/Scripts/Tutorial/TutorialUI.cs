@@ -33,17 +33,67 @@ public class UIManager : MonoBehaviour
             HideTutorialPopup();
     }
 
-    public void ShowTutorialPopup(string message, Action onClose = null)
+    public bool ShowTutorialPopup(string message, Action onClose = null)
     {
-        tutorialCloseCallback = onClose;
+        Debug.Log(
+            $"[Tutorial] TutorialUI.ShowTutorialPopup called. " +
+            $"rootActiveSelf={gameObject.activeSelf}, rootActiveInHierarchy={gameObject.activeInHierarchy}, " +
+            $"panelActiveSelf={(messageRoot != null && messageRoot.activeSelf)}, " +
+            $"panelActiveInHierarchy={(messageRoot != null && messageRoot.activeInHierarchy)}");
 
-        if (messageText != null)
-            messageText.text = message;
+        if (isTutorialPopupOpen)
+        {
+            Debug.LogWarning("[Tutorial] Popup was not shown: another tutorial popup is already open.");
+            return false;
+        }
 
-        if (messageRoot != null)
+        if (messageRoot == null)
+        {
+            Debug.LogWarning("[Tutorial] Popup was not shown: messageRoot is not assigned.");
+            return false;
+        }
+
+        if (messageText == null)
+        {
+            Debug.LogWarning("[Tutorial] Popup was not shown: messageText is not assigned.");
+            return false;
+        }
+
+        if (string.IsNullOrWhiteSpace(message))
+        {
+            Debug.LogWarning("[Tutorial] Popup was not shown: message is empty.");
+            return false;
+        }
+
+        if (!enabled)
+            enabled = true;
+
+        if (!gameObject.activeSelf)
+            gameObject.SetActive(true);
+
+        if (!gameObject.activeInHierarchy)
+        {
+            Debug.LogWarning("[Tutorial] Popup was not shown: TutorialUI has an inactive parent.");
+            return false;
+        }
+
+        if (!messageRoot.activeSelf)
             messageRoot.SetActive(true);
 
+        if (!messageRoot.activeInHierarchy)
+        {
+            Debug.LogWarning("[Tutorial] Popup was not shown: messageRoot has an inactive parent.");
+            return false;
+        }
+
+        messageText.text = message;
+        tutorialCloseCallback = onClose;
+
         isTutorialPopupOpen = true;
+        Debug.Log(
+            $"[Tutorial] Popup shown. rootActive={gameObject.activeInHierarchy}, " +
+            $"panelActive={messageRoot.activeInHierarchy}");
+        return true;
     }
 
     public void HideTutorialPopup()

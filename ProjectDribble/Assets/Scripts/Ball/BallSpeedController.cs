@@ -38,6 +38,10 @@ public class BallSpeedController : MonoBehaviour
     private BallSpeedState currentSpeedState = BallSpeedState.Normal;
     private Coroutine weakenedCoroutine;
     private float lastBlockSpeedSlowTime = -999f;
+    private bool isInitialized;
+    private bool hasStageMaxSpeedOverride;
+    private float stageMaxSpeedOverride;
+    private float speedGainMultiplier = 1f;
 
     public float CurrentSpeed => currentSpeed;
     public BallSpeedState CurrentSpeedState => currentSpeedState;
@@ -47,16 +51,15 @@ public class BallSpeedController : MonoBehaviour
     public float SpeedRatio01 => GetSpeedRatio();
     public event Action<BallSpeedState> OnSpeedStateChanged;
 
+    private void Awake()
+    {
+        EnsureInitialized();
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        LoadSpeedSettingsFromData();
-
-        BallMovement = GetComponent<BallMovement>();
-        BallController = GetComponent<BallController>();
-        BallPowerController = GetComponent<BallPowerController>();
-        tr = GetComponent<Transform>();
-        cc = GetComponent<CircleCollider2D>();
+        EnsureInitialized();
         currentSpeed = BallMovement.speed;
         ClampSpeed();
     }
@@ -152,6 +155,9 @@ public class BallSpeedController : MonoBehaviour
             return;
         }
 
+        if (amount > 0f)
+            amount *= speedGainMultiplier;
+
         BallMovement.AddBallSpeed(amount);
         ClampSpeed();
         currentSpeed = BallMovement.speed;
@@ -221,6 +227,7 @@ public class BallSpeedController : MonoBehaviour
         float boostedSpeed = Mathf.Max(BallMovement.speed, laserMinBoostSpeed);
         boostedSpeed = Mathf.Min(boostedSpeed + laserBoostAmount, laserMaxSpeed);
         BallMovement.SetBallSpeed(boostedSpeed);
+        ClampSpeed();
         currentSpeed = BallMovement.speed;
     }
 
@@ -248,7 +255,27 @@ public class BallSpeedController : MonoBehaviour
 
     private float GetCurrentMaxSpeed()
     {
-        return IsLaserBoosted ? laserMaxSpeed : normalMaxSpeed;
+        float stateMaxSpeed = IsLaserBoosted ? laserMaxSpeed : normalMaxSpeed;
+        return hasStageMaxSpeedOverride ? stageMaxSpeedOverride : stateMaxSpeed;
+    }
+
+    public void ApplyStageTuning(float maxSpeedOverride, float gainMultiplier)
+    {
+        EnsureInitialized();
+        hasStageMaxSpeedOverride = true;
+        stageMaxSpeedOverride = Mathf.Max(baseSpeed, maxSpeedOverride);
+        speedGainMultiplier = Mathf.Max(0f, gainMultiplier);
+        ClampSpeed();
+        currentSpeed = BallMovement.speed;
+    }
+
+    public void ClearStageTuning()
+    {
+        EnsureInitialized();
+        hasStageMaxSpeedOverride = false;
+        speedGainMultiplier = 1f;
+        ClampSpeed();
+        currentSpeed = BallMovement.speed;
     }
 
     private void SetSpeedState(BallSpeedState nextState)
@@ -288,5 +315,19 @@ public class BallSpeedController : MonoBehaviour
         weakenedDuration = data.WeakenedDuration;
         PaddleSpeedIncrease = data.outerPaddleSpeedIncrease;
         BlockSpeedDecrease = data.BlockSpeedDecrease;
+    }
+
+    private void EnsureInitialized()
+    {
+        if (isInitialized)
+            return;
+
+        BallMovement = GetComponent<BallMovement>();
+        BallController = GetComponent<BallController>();
+        BallPowerController = GetComponent<BallPowerController>();
+        tr = transform;
+        cc = GetComponent<CircleCollider2D>();
+        LoadSpeedSettingsFromData();
+        isInitialized = true;
     }
 }

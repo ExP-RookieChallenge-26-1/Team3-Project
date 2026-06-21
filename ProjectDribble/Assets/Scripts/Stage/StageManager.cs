@@ -14,6 +14,8 @@ public class StageManager : MonoBehaviour
     [SerializeField] private BlockManager blockManager;
     [SerializeField] private GaugeManager gaugeManager;
     [SerializeField] private BallSpawnController ballSpawnController;
+    [SerializeField] private BallSpeedController ballSpeedController;
+    [SerializeField] private BallPowerController ballPowerController;
     [SerializeField] private BossController bossController;
     [SerializeField] private TutorialManager tutorialManager;
 
@@ -130,6 +132,8 @@ public class StageManager : MonoBehaviour
             return;
         }
 
+        ApplyBallTuning(data);
+
         if (ceilingManager != null)
         {
             ceilingManager.InitializeCeiling(data.ceilingMaxHpOverride, data.ceilingSegmentMode);
@@ -168,6 +172,30 @@ public class StageManager : MonoBehaviour
         {
             tutorialManager.BeginStage(currentStageIndex, data);
         }
+    }
+
+    private void ApplyBallTuning(StageDefinition data)
+    {
+        if (ballSpeedController == null)
+            ballSpeedController = FindAnyObjectByType<BallSpeedController>();
+
+        if (ballPowerController == null)
+            ballPowerController = FindAnyObjectByType<BallPowerController>();
+
+        ballSpeedController?.ClearStageTuning();
+        ballPowerController?.ClearStageTuning();
+
+        if (!data.overrideBallTuning)
+            return;
+
+        ballSpeedController?.ApplyStageTuning(
+            data.maxSpeedOverride,
+            data.speedGainMultiplierOverride
+        );
+        ballPowerController?.ApplyStageTuning(
+            data.maxDamageOverride,
+            data.powerGainMultiplierOverride
+        );
     }
 
     public bool IsValidStageIndex(int index)

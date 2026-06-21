@@ -83,6 +83,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private BallRespawner ballRespawner;
     [SerializeField] private LaserUnlockState laserUnlockState;
     [SerializeField] private BallController ballController;
+    [SerializeField] private GameObject tutorialTopBoundary;
 
     [Header("Message")]
     [SerializeField] private bool pauseOnMessage;
@@ -230,6 +231,7 @@ public class TutorialManager : MonoBehaviour
     private void BeginStage1()
     {
         currentPhase = TutorialPhase.Intro;
+        SetTutorialTopBoundaryActive(true);
         hasShownDribbleGuide = false;
         hasShownCeilingSegmentGuide = false;
         breakNormalBlocksElapsed = 0f;
@@ -355,6 +357,7 @@ public class TutorialManager : MonoBehaviour
             return;
 
         currentPhase = TutorialPhase.RevealCeiling;
+        SetTutorialTopBoundaryActive(false);
 
         if (ceilingManager != null)
         {
@@ -368,6 +371,8 @@ public class TutorialManager : MonoBehaviour
 
     private void BeginAttackCeilingPhase()
     {
+        SetTutorialTopBoundaryActive(false);
+
         if (ceilingManager != null)
             ceilingManager.SetDamageEnabled(true);
 
@@ -398,7 +403,10 @@ public class TutorialManager : MonoBehaviour
     private void HandleTutorialStageCleared()
     {
         if (currentTutorialStageId == TutorialStageId.Stage1)
+        {
             currentPhase = TutorialPhase.Completed;
+            SetTutorialTopBoundaryActive(false);
+        }
     }
 
     private void HandleGaugeValueChanged(int value)
@@ -513,6 +521,8 @@ public class TutorialManager : MonoBehaviour
 
     private void ClearStageSubscriptions()
     {
+        SetTutorialTopBoundaryActive(false);
+
         if (isSubscribedToBlockEvents && blockManager != null)
         {
             blockManager.OnNormalBlocksCleared -= HandleNormalBlocksCleared;
@@ -561,24 +571,47 @@ public class TutorialManager : MonoBehaviour
         ResetStageFlags();
     }
 
+    private void SetTutorialTopBoundaryActive(bool active)
+    {
+        if (tutorialTopBoundary == null)
+            return;
+
+        tutorialTopBoundary.SetActive(active);
+    }
+
     private void ShowPausedTutorialMessage(string message, System.Action onClose = null)
     {
+        Debug.Log($"[Tutorial] Popup requested. phase={currentPhase}, message={message}");
+
         if (uiManager == null)
         {
+            Debug.LogWarning("[Tutorial] Popup was not shown: UIManager reference is null. Tutorial pause skipped.");
+            onClose?.Invoke();
+            return;
+        }
+
+        bool shown = uiManager.ShowTutorialPopup(message, () =>
+        {
+            try
+            {
+                onClose?.Invoke();
+            }
+            finally
+            {
+                if (gameManager != null)
+                    gameManager.ResumeFromTutorial();
+            }
+        });
+
+        if (!shown)
+        {
+            Debug.LogWarning("[Tutorial] Popup was not shown. Tutorial pause skipped.");
             onClose?.Invoke();
             return;
         }
 
         if (gameManager != null)
             gameManager.PauseForTutorial();
-
-        uiManager.ShowTutorialPopup(message, () =>
-        {
-            onClose?.Invoke();
-
-            if (gameManager != null)
-                gameManager.ResumeFromTutorial();
-        });
     }
 
     public bool TryShowTutorial(TutorialId id)
@@ -601,30 +634,53 @@ public class TutorialManager : MonoBehaviour
 
     private bool TryShowTutorial(TutorialId id, bool pauseGame)
     {
-        if (id == TutorialId.None || HasShown(id))
+        if (id == TutorialId.None)
+        {
+            Debug.LogWarning("[Tutorial] Popup was not requested: TutorialId is None.");
             return false;
+        }
+
+        if (HasShown(id))
+        {
+            Debug.Log($"[Tutorial] Popup skipped: {id} was already shown.");
+            return false;
+        }
 
         string message = GetTutorialMessage(id);
         if (string.IsNullOrWhiteSpace(message))
         {
-            Debug.LogWarning($"TutorialManager: message is empty for {id}.");
+            Debug.LogWarning($"[Tutorial] Popup was not shown: message is empty for {id}.");
             return false;
         }
 
-        MarkShown(id);
-        ShowMessage(message, pauseGame);
-        return true;
+        bool shown = ShowMessage(message, pauseGame);
+        if (shown)
+            MarkShown(id);
+
+        return shown;
     }
 
-    private void ShowMessage(string message, bool pauseGame)
+    private bool ShowMessage(string message, bool pauseGame)
     {
+        Debug.Log($"[Tutorial] Popup requested. phase={currentPhase}, message={message}");
+
         if (uiManager == null)
-            return;
+        {
+            Debug.LogWarning("[Tutorial] Popup was not shown: UIManager reference is null. Tutorial pause skipped.");
+            return false;
+        }
+
+        bool shown = uiManager.ShowTutorialPopup(message, pauseGame ? ResumeTutorial : null);
+        if (!shown)
+        {
+            Debug.LogWarning("[Tutorial] Popup was not shown. Tutorial pause skipped.");
+            return false;
+        }
 
         if (pauseGame && gameManager != null)
             gameManager.PauseForTutorial();
 
-        uiManager.ShowTutorialPopup(message, pauseGame ? ResumeTutorial : null);
+        return true;
     }
 
     private void HideMessage()

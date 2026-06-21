@@ -106,6 +106,31 @@
     "risk_score": 97
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "class_name": "TutorialManager",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "find-heavy",
+      "large-class",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "ui-runtime-mixed",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
+      "Find 계열 탐색 사용",
+      "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 95
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallMovement.cs",
     "class_name": "BallMovement",
     "risk_flags": [
@@ -452,29 +477,6 @@
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 86
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "class_name": "TutorialManager",
-    "risk_flags": [
-      "high-coupling",
-      "find-heavy",
-      "large-class",
-      "init-order-sensitive",
-      "save-load-sensitive",
-      "ui-runtime-mixed",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "참조 타입 또는 관계 수가 많음",
-      "Find 계열 탐색 사용",
-      "파일/메서드/필드 수가 많아 책임이 커질 가능성",
-      "초기화 순서에 민감할 가능성",
-      "저장/불러오기 관련 로직 포함",
-      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 85
   },
   {
     "file_id": "Old Scripts/ball_movement.cs",

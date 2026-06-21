@@ -5,7 +5,7 @@
   "total_cs_files": 176,
   "mono_behaviour_files": 146,
   "scriptable_object_files": 10,
-  "files_with_update": 50,
+  "files_with_update": 51,
   "files_with_fixed_update": 1,
   "files_with_late_update": 8,
   "singleton_candidates": 3,
@@ -31,16 +31,22 @@
       "referenced_type_count": 190
     },
     {
+      "class_name": "CeilingManager",
+      "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+      "relation_count": 169,
+      "referenced_type_count": 163
+    },
+    {
       "class_name": "BallCapturedDribbleController",
       "file_id": "ProjectDribble/Assets/Scripts/Ball/BallCapturedDribbleController.cs",
       "relation_count": 168,
       "referenced_type_count": 163
     },
     {
-      "class_name": "CeilingManager",
-      "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
-      "relation_count": 163,
-      "referenced_type_count": 157
+      "class_name": "TutorialManager",
+      "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+      "relation_count": 152,
+      "referenced_type_count": 150
     },
     {
       "class_name": "TMP_TextSelector_B",
@@ -71,12 +77,6 @@
       "file_id": "ProjectDribble/Assets/Scripts/Ball/BallController.cs",
       "relation_count": 129,
       "referenced_type_count": 118
-    },
-    {
-      "class_name": "TutorialManager",
-      "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-      "relation_count": 124,
-      "referenced_type_count": 122
     },
     {
       "class_name": "CameraController",
@@ -191,6 +191,31 @@
         "상태 중심 또는 관리 중심 클래스일 가능성"
       ],
       "risk_score": 97
+    },
+    {
+      "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+      "class_name": "TutorialManager",
+      "risk_flags": [
+        "update-heavy",
+        "high-coupling",
+        "find-heavy",
+        "large-class",
+        "init-order-sensitive",
+        "save-load-sensitive",
+        "ui-runtime-mixed",
+        "state-owner"
+      ],
+      "risk_reasons": [
+        "Unity 업데이트 루프 사용",
+        "참조 타입 또는 관계 수가 많음",
+        "Find 계열 탐색 사용",
+        "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+        "초기화 순서에 민감할 가능성",
+        "저장/불러오기 관련 로직 포함",
+        "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+        "상태 중심 또는 관리 중심 클래스일 가능성"
+      ],
+      "risk_score": 95
     },
     {
       "file_id": "ProjectDribble/Assets/Scripts/Ball/BallMovement.cs",
@@ -313,31 +338,6 @@
         "파일/메서드/필드 수가 많아 책임이 커질 가능성",
         "초기화 순서에 민감할 가능성",
         "저장/불러오기 관련 로직 포함",
-        "상태 중심 또는 관리 중심 클래스일 가능성"
-      ],
-      "risk_score": 91
-    },
-    {
-      "file_id": "ProjectDribble/Assets/Scripts/BossProjectile.cs",
-      "class_name": "BossProjectile",
-      "risk_flags": [
-        "update-heavy",
-        "high-coupling",
-        "find-heavy",
-        "magic-number-heavy",
-        "large-class",
-        "init-order-sensitive",
-        "ui-runtime-mixed",
-        "state-owner"
-      ],
-      "risk_reasons": [
-        "Unity 업데이트 루프 사용",
-        "참조 타입 또는 관계 수가 많음",
-        "Find 계열 탐색 사용",
-        "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
-        "파일/메서드/필드 수가 많아 책임이 커질 가능성",
-        "초기화 순서에 민감할 가능성",
-        "UI와 런타임 책임이 한 파일에 섞였을 가능성",
         "상태 중심 또는 관리 중심 클래스일 가능성"
       ],
       "risk_score": 91

@@ -13,7 +13,8 @@ public enum SoundType
 public enum BgmMuffleReason
 {
     Pause,
-    Settings
+    Settings,
+    Tutorial
 }
 
 public class SoundManager : MonoBehaviour

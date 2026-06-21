@@ -30,7 +30,12 @@ public class UIManager : MonoBehaviour
     protected virtual void OnDisable()
     {
         if (isTutorialPopupOpen)
+        {
             HideTutorialPopup();
+            return;
+        }
+
+        SoundManager.Instance?.SetBgmMuffled(BgmMuffleReason.Tutorial, false);
     }
 
     public bool ShowTutorialPopup(string message, Action onClose = null)
@@ -90,6 +95,7 @@ public class UIManager : MonoBehaviour
         tutorialCloseCallback = onClose;
 
         isTutorialPopupOpen = true;
+        SoundManager.Instance?.SetBgmMuffled(BgmMuffleReason.Tutorial, true);
         Debug.Log(
             $"[Tutorial] Popup shown. rootActive={gameObject.activeInHierarchy}, " +
             $"panelActive={messageRoot.activeInHierarchy}");
@@ -128,6 +134,7 @@ public class UIManager : MonoBehaviour
         Action callback = tutorialCloseCallback;
         tutorialCloseCallback = null;
         isTutorialPopupOpen = false;
+        SoundManager.Instance?.SetBgmMuffled(BgmMuffleReason.Tutorial, false);
 
         if (invokeCallback && wasOpen)
             callback?.Invoke();

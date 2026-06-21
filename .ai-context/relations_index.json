@@ -37774,6 +37774,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
+    "to_type": "Tutorial",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
     "to_type": "UIClick",
     "relation_type": "uses",
     "strength": 1
@@ -39622,6 +39629,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
+    "to_type": "SoundManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
+    "from_class": "UIManager",
     "to_type": "Awake",
     "relation_type": "uses",
     "strength": 1
@@ -39630,6 +39644,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
     "to_type": "Began",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
+    "from_class": "UIManager",
+    "to_type": "BgmMuffleReason",
     "relation_type": "uses",
     "strength": 1
   },
@@ -39693,6 +39714,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
     "to_type": "Input",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
+    "from_class": "UIManager",
+    "to_type": "Instance",
     "relation_type": "uses",
     "strength": 1
   },
@@ -39783,6 +39811,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
+    "to_type": "SetBgmMuffled",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
+    "from_class": "UIManager",
     "to_type": "ShowMessage",
     "relation_type": "uses",
     "strength": 1
@@ -39791,6 +39826,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
     "to_type": "ShowTutorialPopup",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
+    "from_class": "UIManager",
+    "to_type": "SoundManager",
     "relation_type": "uses",
     "strength": 1
   },

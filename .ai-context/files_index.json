@@ -25293,9 +25293,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "file_name": "SoundManager.cs",
-    "content_hash": "71e02eaf49a658a2f9def8683c97601451800151",
-    "size": 12395,
-    "line_count": 464,
+    "content_hash": "036e915750c4bb3b5a8e6b8e2559deb4d2e2ecbf",
+    "size": 12409,
+    "line_count": 465,
     "namespace": "",
     "using_list": [
       "System.Collections.Generic",
@@ -25508,6 +25508,7 @@
       "BgmMuffleReason",
       "Pause",
       "Settings",
+      "Tutorial",
       "Instance",
       "BallSpeedController",
       "Sources",
@@ -26632,9 +26633,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "path": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "file_name": "TutorialUI.cs",
-    "content_hash": "8bc5d7284504404c8d8ac6bdaa7e21223915121d",
-    "size": 4019,
-    "line_count": 153,
+    "content_hash": "b67471e0f36be30385e25c3b765a10f67068391c",
+    "size": 4296,
+    "line_count": 160,
     "namespace": "",
     "using_list": [
       "System",
@@ -26746,6 +26747,10 @@
       "Update",
       "IsTutorialCloseInput",
       "OnDisable",
+      "SoundManager",
+      "Instance",
+      "SetBgmMuffled",
+      "BgmMuffleReason",
       "ShowTutorialPopup",
       "Log",
       "LogWarning",
@@ -26769,7 +26774,9 @@
     ],
     "component_access_types": [],
     "created_types": [],
-    "singleton_access_types": [],
+    "singleton_access_types": [
+      "SoundManager"
+    ],
     "string_literals": [
       "Tutorial Popup",
       "[Tutorial] TutorialUI.ShowTutorialPopup called. ",
@@ -26789,8 +26796,8 @@
       "ui",
       "runtime",
       "combat",
-      "player",
-      "manager"
+      "manager",
+      "player"
     ],
     "summary_signals": [
       "런타임 컴포넌트",

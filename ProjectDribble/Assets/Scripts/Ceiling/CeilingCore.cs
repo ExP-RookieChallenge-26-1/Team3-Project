@@ -12,6 +12,7 @@ public class CeilingCore : MonoBehaviour
     private int segmentIndex = -1;
     private bool isAlive = true;
     private bool isConnected;
+    private bool isVisible = true;
 
     public int SegmentIndex => segmentIndex;
 
@@ -32,7 +33,14 @@ public class CeilingCore : MonoBehaviour
         this.segmentIndex = segmentIndex;
         isAlive = true;
         isConnected = false;
+        isVisible = true;
         ResetVisual();
+    }
+
+    public void SetVisible(bool visible)
+    {
+        isVisible = visible;
+        ApplyState();
     }
 
     public void SetConnectedState(bool connected)
@@ -67,8 +75,11 @@ public class CeilingCore : MonoBehaviour
 
     private void ApplyState()
     {
-        bool activePulse = isAlive && isConnected;
+        bool activePulse = isVisible && isAlive && isConnected;
         float alpha = activePulse ? connectedAlpha : disconnectedAlpha;
+
+        if (coreRenderer != null)
+            coreRenderer.enabled = isVisible && isAlive;
 
         SetAlpha(alpha);
 

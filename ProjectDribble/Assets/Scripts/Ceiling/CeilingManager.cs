@@ -101,6 +101,49 @@ public class CeilingManager : MonoBehaviour
         damageEnabled = enabled;
     }
 
+    public void SetCeilingVisible(bool visible)
+    {
+        for (int i = 0; i < aliveBricks.Count; i++)
+        {
+            CeilingBrick brick = aliveBricks[i];
+
+            if (brick == null || !brick.gameObject.activeSelf)
+                continue;
+
+            SpriteRenderer[] renderers = brick.GetComponentsInChildren<SpriteRenderer>(true);
+
+            for (int rendererIndex = 0; rendererIndex < renderers.Length; rendererIndex++)
+                renderers[rendererIndex].enabled = visible;
+        }
+
+        for (int i = 0; i < ceilingCores.Count; i++)
+            ceilingCores[i]?.SetVisible(visible);
+
+        for (int i = 0; i < segmentRootVisuals.Count; i++)
+        {
+            CeilingSegmentRootVisual visual = segmentRootVisuals[i];
+
+            if (visual != null)
+                visual.SetActiveState(visible && IsSegmentAliveByIndex(i));
+        }
+    }
+
+    public void SetCeilingCollisionEnabled(bool enabled)
+    {
+        for (int i = 0; i < aliveBricks.Count; i++)
+        {
+            CeilingBrick brick = aliveBricks[i];
+
+            if (brick == null || !brick.gameObject.activeSelf)
+                continue;
+
+            Collider2D[] colliders = brick.GetComponentsInChildren<Collider2D>(true);
+
+            for (int colliderIndex = 0; colliderIndex < colliders.Length; colliderIndex++)
+                colliders[colliderIndex].enabled = enabled;
+        }
+    }
+
     public void ResetCeilingState()
     {
         isStageCleared = false;

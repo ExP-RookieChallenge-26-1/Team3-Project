@@ -21,6 +21,10 @@ public class StageManager : MonoBehaviour
 
     public int CurrentStageIndex => currentStageIndex;
     public int StageCount => stages == null ? 0 : stages.Length;
+    public bool IsCurrentStageTutorial =>
+        IsValidStageIndex(currentStageIndex) &&
+        stages[currentStageIndex] != null &&
+        stages[currentStageIndex].isTutorialStage;
 
     private void OnEnable()
     {

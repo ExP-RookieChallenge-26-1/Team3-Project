@@ -26,9 +26,11 @@ public class GameManager : MonoBehaviour
 
     private bool isPaused;
     private float timeScaleBefore = 1f;
+    private bool isGameStarted;
 
     public bool IsPausedByTutorial => isPausedByTutorial;
     public bool IsPaused => isPaused;
+    public bool IsGameStarted => isGameStarted;
 
     private void Awake()
     {
@@ -52,8 +54,8 @@ public class GameManager : MonoBehaviour
         saveManager.MarkStageCleared(currentStage);
         saveManager.SetLaserUnlocked(laserUnlockState.IsLaserUnlocked);
 
-        // Æ©Åä¸®¾ó ¿©ºÎ´Â ³ªÁß (ÇöÀç Å¬¸®¾î ¿©ºÎ º¯¼ö ¾øÀ½)
-        saveManager.SetTutorialCleared(false);
+        if (stageManager.IsCurrentStageTutorial)
+            saveManager.SetTutorialCleared(true);
 
         saveManager.Save();
 
@@ -69,7 +71,7 @@ public class GameManager : MonoBehaviour
         else
         {
             gameClearUI.SetActive(true);
-            SoundManager.Instance.Play(SoundId.StageClear); //¾ÆÁ÷ °ÔÀÓÅ¬¸®¾î »ç¿îµå ¾øÀ½ 
+            SoundManager.Instance.Play(SoundId.StageClear); // ì•„ì§ ê²Œì„í´ë¦¬ì–´ ì‚¬ìš´ë“œ ì—†ìŒ
         }
         pauseButton.SetActive(false);
     }
@@ -91,12 +93,13 @@ public class GameManager : MonoBehaviour
         if (saveManager.Current.laserUnlocked)
             laserUnlockState.UnlockLaser();
 
-        stageManager.StartStage(startStageIndex);
-
         Time.timeScale = timeScaleBefore;
         isPaused = false;
+        isGameStarted = true;
         titleUI.SetActive(false);
         pauseButton.SetActive(true);
+
+        stageManager.StartStage(startStageIndex);
     }
 
     public void RetryStage()
@@ -168,6 +171,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         isPaused = true;
+        isGameStarted = false;
         isPausedByTutorial = false;
         timeScaleBefore = 1f;
         timeScaleBeforeTutorial = 1f;

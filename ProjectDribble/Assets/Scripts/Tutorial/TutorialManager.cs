@@ -24,6 +24,28 @@ public enum TutorialId
 
 public class TutorialManager : MonoBehaviour
 {
+    private enum TutorialPhase
+    {
+        None,
+        Intro,
+        BreakNormalBlocks,
+        RevealCeiling,
+        AttackCeiling,
+        Completed
+    }
+
+    private const string IntroMessage = "공을 튕겨 블록을 모두 부수세요.";
+    private const string DribbleGuideMessage =
+        "공이 패들 사이에 들어오면 잠시 붙잡을 수 있습니다.\n" +
+        "붙잡은 동안 조준하고 레이저를 차징할 수 있습니다.";
+    private const string RevealCeilingMessage =
+        "위에 나타난 천장을 노리세요.\n" +
+        "초록 흐름 블록은 아래로 자라나며, 바닥에 닿으면 위험합니다.";
+    private const string CeilingSegmentGuideMessage =
+        "천장을 부수면 연결된 흐름 블록의 성장이 멈춥니다.";
+    private const float DribbleGuideDetectionDelay = 3f;
+    private const float DribbleGuideForceDelay = 10f;
+
     private const string Stage1StartMessage =
         "기본 조작 설명 \n블록을 모두 부수세요!";
     private const string Stage1CeilingMessage = 
@@ -60,6 +82,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private LaserShooter laserShooter;
     [SerializeField] private BallRespawner ballRespawner;
     [SerializeField] private LaserUnlockState laserUnlockState;
+    [SerializeField] private BallController ballController;
 
     [Header("Message")]
     [SerializeField] private bool pauseOnMessage;
@@ -71,6 +94,11 @@ public class TutorialManager : MonoBehaviour
     private bool isSubscribedToGaugeEvents;
     private bool isSubscribedToLaserEvents;
     private bool isSubscribedToBallRespawnerEvents;
+    private bool isSubscribedToBallEvents;
+    private TutorialPhase currentPhase = TutorialPhase.None;
+    private bool hasShownDribbleGuide;
+    private bool hasShownCeilingSegmentGuide;
+    private float breakNormalBlocksElapsed;
     private bool stage4GaugeFullMessageShown;
     private bool stage4LaserFiredMessageShown;
     private bool stage5FixedHitMessageShown;
@@ -105,6 +133,24 @@ public class TutorialManager : MonoBehaviour
 
         if (laserUnlockState == null)
             laserUnlockState = FindAnyObjectByType<LaserUnlockState>();
+
+        if (ballController == null)
+            ballController = FindAnyObjectByType<BallController>();
+    }
+
+    private void Update()
+    {
+        if (currentTutorialStageId != TutorialStageId.Stage1 ||
+            currentPhase != TutorialPhase.BreakNormalBlocks ||
+            hasShownDribbleGuide)
+        {
+            return;
+        }
+
+        breakNormalBlocksElapsed += Time.deltaTime;
+
+        if (breakNormalBlocksElapsed >= DribbleGuideForceDelay)
+            ShowDribbleGuide();
     }
 
     private void OnDisable()
@@ -120,6 +166,19 @@ public class TutorialManager : MonoBehaviour
             ceilingManager.SetDamageEnabled(true);
 
         currentTutorialStageId = ResolveTutorialStageId(stageIndex, stageDefinition);
+
+        if (gameManager != null && !gameManager.IsGameStarted)
+        {
+            HideMessage();
+            return;
+        }
+
+        if (ceilingManager != null)
+        {
+            ceilingManager.SetCeilingVisible(true);
+            ceilingManager.SetCeilingCollisionEnabled(true);
+            ceilingManager.SetDamageEnabled(true);
+        }
 
         switch (currentTutorialStageId)
         {
@@ -170,16 +229,64 @@ public class TutorialManager : MonoBehaviour
 
     private void BeginStage1()
     {
+        currentPhase = TutorialPhase.Intro;
+        hasShownDribbleGuide = false;
+        hasShownCeilingSegmentGuide = false;
+        breakNormalBlocksElapsed = 0f;
+
         if (ceilingManager != null)
+        {
+            ceilingManager.SetCeilingVisible(false);
+            ceilingManager.SetCeilingCollisionEnabled(false);
             ceilingManager.SetDamageEnabled(false);
+            ceilingManager.OnCeilingSegmentDestroyed += HandleCeilingSegmentDestroyed;
+            ceilingManager.OnStageCleared += HandleTutorialStageCleared;
+            isSubscribedToCeilingEvents = true;
+        }
 
-        TryShowTutorial(TutorialId.Stage1Start);
+        if (blockManager != null)
+        {
+            blockManager.StopGrowth();
+            blockManager.OnNormalBlocksCleared += HandleNormalBlocksCleared;
+            isSubscribedToBlockEvents = true;
+        }
 
-        if (blockManager == null)
+        if (ballController != null)
+        {
+            ballController.OnCaptured += HandleBallCaptured;
+            isSubscribedToBallEvents = true;
+        }
+
+        ShowPausedTutorialMessage(IntroMessage, BeginBreakNormalBlocksPhase);
+    }
+
+    private void BeginBreakNormalBlocksPhase()
+    {
+        currentPhase = TutorialPhase.BreakNormalBlocks;
+        breakNormalBlocksElapsed = 0f;
+    }
+
+    private void HandleBallCaptured()
+    {
+        if (currentTutorialStageId != TutorialStageId.Stage1 ||
+            currentPhase != TutorialPhase.BreakNormalBlocks ||
+            hasShownDribbleGuide ||
+            breakNormalBlocksElapsed < DribbleGuideDetectionDelay ||
+            breakNormalBlocksElapsed > DribbleGuideForceDelay)
+        {
+            return;
+        }
+
+        ShowDribbleGuide();
+    }
+
+    private void ShowDribbleGuide()
+    {
+        if (hasShownDribbleGuide)
             return;
 
-        blockManager.OnNormalBlocksCleared += HandleNormalBlocksCleared;
-        isSubscribedToBlockEvents = true;
+        hasShownDribbleGuide = true;
+        ShowPausedTutorialMessage(DribbleGuideMessage);
     }
 
     private void BeginStage3()
@@ -243,21 +350,55 @@ public class TutorialManager : MonoBehaviour
 
     private void HandleNormalBlocksCleared()
     {
-        if (currentTutorialStageId != TutorialStageId.Stage1)
+        if (currentTutorialStageId != TutorialStageId.Stage1 ||
+            currentPhase != TutorialPhase.BreakNormalBlocks)
             return;
 
+        currentPhase = TutorialPhase.RevealCeiling;
+
+        if (ceilingManager != null)
+        {
+            ceilingManager.SetCeilingVisible(true);
+            ceilingManager.SetCeilingCollisionEnabled(true);
+            ceilingManager.SetDamageEnabled(false);
+        }
+
+        ShowPausedTutorialMessage(RevealCeilingMessage, BeginAttackCeilingPhase);
+    }
+
+    private void BeginAttackCeilingPhase()
+    {
         if (ceilingManager != null)
             ceilingManager.SetDamageEnabled(true);
 
-        TryShowTutorial(TutorialId.Stage1Ceiling);
+        if (blockManager != null)
+            blockManager.StartGrowth();
+
+        currentPhase = TutorialPhase.AttackCeiling;
     }
 
     private void HandleCeilingSegmentDestroyed(CeilingSegment segment)
     {
+        if (currentTutorialStageId == TutorialStageId.Stage1)
+        {
+            if (currentPhase != TutorialPhase.AttackCeiling || hasShownCeilingSegmentGuide)
+                return;
+
+            hasShownCeilingSegmentGuide = true;
+            ShowPausedTutorialMessage(CeilingSegmentGuideMessage);
+            return;
+        }
+
         if (currentTutorialStageId != TutorialStageId.Stage3)
             return;
 
         TryShowTutorial(TutorialId.Stage3SegmentDestroyed);
+    }
+
+    private void HandleTutorialStageCleared()
+    {
+        if (currentTutorialStageId == TutorialStageId.Stage1)
+            currentPhase = TutorialPhase.Completed;
     }
 
     private void HandleGaugeValueChanged(int value)
@@ -380,7 +521,10 @@ public class TutorialManager : MonoBehaviour
         }
 
         if (isSubscribedToCeilingEvents && ceilingManager != null)
+        {
             ceilingManager.OnCeilingSegmentDestroyed -= HandleCeilingSegmentDestroyed;
+            ceilingManager.OnStageCleared -= HandleTutorialStageCleared;
+        }
 
         if (isSubscribedToGaugeEvents && gaugeManager != null)
         {
@@ -393,6 +537,9 @@ public class TutorialManager : MonoBehaviour
 
         if (isSubscribedToBallRespawnerEvents && ballRespawner != null)
             ballRespawner.OnBallRecalled -= HandleBallRecalled;
+
+        if (isSubscribedToBallEvents && ballController != null)
+            ballController.OnCaptured -= HandleBallCaptured;
 
         if (ceilingManager != null)
             ceilingManager.SetDamageEnabled(true);
@@ -408,8 +555,30 @@ public class TutorialManager : MonoBehaviour
         isSubscribedToGaugeEvents = false;
         isSubscribedToLaserEvents = false;
         isSubscribedToBallRespawnerEvents = false;
+        isSubscribedToBallEvents = false;
         currentTutorialStageId = TutorialStageId.None;
+        currentPhase = TutorialPhase.None;
         ResetStageFlags();
+    }
+
+    private void ShowPausedTutorialMessage(string message, System.Action onClose = null)
+    {
+        if (uiManager == null)
+        {
+            onClose?.Invoke();
+            return;
+        }
+
+        if (gameManager != null)
+            gameManager.PauseForTutorial();
+
+        uiManager.ShowTutorialPopup(message, () =>
+        {
+            onClose?.Invoke();
+
+            if (gameManager != null)
+                gameManager.ResumeFromTutorial();
+        });
     }
 
     public bool TryShowTutorial(TutorialId id)

@@ -32916,6 +32916,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
+    "to_type": "BgmMuffleReason",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
     "to_type": "bool",
     "relation_type": "uses",
     "strength": 1
@@ -32924,6 +32931,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "CeilingManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "ClearBgmMuffles",
     "relation_type": "uses",
     "strength": 1
   },
@@ -33084,6 +33098,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
+    "to_type": "Pause",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
     "to_type": "PauseForTutorial",
     "relation_type": "uses",
     "strength": 1
@@ -33099,6 +33120,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "Play",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "PlayGameplayBgm",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "PlayTitleBgm",
     "relation_type": "uses",
     "strength": 1
   },
@@ -33189,6 +33224,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
+    "to_type": "SetBgmMuffled",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
     "to_type": "SetLaserUnlocked",
     "relation_type": "uses",
     "strength": 1
@@ -33232,6 +33274,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "StageManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "Start",
     "relation_type": "uses",
     "strength": 1
   },
@@ -36983,6 +37032,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundId.cs",
     "from_class": "SoundId",
+    "to_type": "GameplayBGM",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundId.cs",
+    "from_class": "SoundId",
     "to_type": "Gauge",
     "relation_type": "uses",
     "strength": 1
@@ -37067,6 +37123,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundId.cs",
     "from_class": "SoundId",
+    "to_type": "TitleBGM",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundId.cs",
+    "from_class": "SoundId",
     "to_type": "UI",
     "relation_type": "uses",
     "strength": 1
@@ -37095,6 +37158,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
+    "to_type": "ApplyBgmMuffleState",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
     "to_type": "ApplyMixerGroup",
     "relation_type": "uses",
     "strength": 1
@@ -37117,6 +37187,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
     "to_type": "AudioClip",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "AudioMixer",
     "relation_type": "uses",
     "strength": 1
   },
@@ -37152,6 +37229,41 @@
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
     "to_type": "BGM",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "BGMLowPassCutoff",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "BgmLowPassCutoffParameter",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "BgmMuffleReason",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "BGMVolume",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "BgmVolumeParameter",
     "relation_type": "uses",
     "strength": 1
   },
@@ -37200,6 +37312,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
+    "to_type": "ClearBgmMuffles",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
     "to_type": "Collections",
     "relation_type": "uses",
     "strength": 1
@@ -37208,6 +37327,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
     "to_type": "ContainsKey",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "Count",
     "relation_type": "uses",
     "strength": 1
   },
@@ -37264,6 +37390,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
     "to_type": "FormerlySerializedAs",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "GameplayBGM",
     "relation_type": "uses",
     "strength": 1
   },
@@ -37340,7 +37473,28 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
+    "to_type": "LinearToDb",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "Log10",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
     "to_type": "LogWarning",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "Mixer",
     "relation_type": "uses",
     "strength": 1
   },
@@ -37361,6 +37515,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
+    "to_type": "Pause",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
     "to_type": "Play",
     "relation_type": "uses",
     "strength": 1
@@ -37368,7 +37529,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
-    "to_type": "PlayBGM",
+    "to_type": "PlayBgm",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "PlayBgmInternal",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "PlayGameplayBgm",
     "relation_type": "uses",
     "strength": 1
   },
@@ -37389,6 +37564,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
+    "to_type": "PlayTitleBgm",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "Remove",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
     "to_type": "Serialization",
     "relation_type": "uses",
     "strength": 1
@@ -37396,7 +37585,42 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
+    "to_type": "SetBgmMuffled",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "SetBgmVolume",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "SetFloat",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
     "to_type": "SetLoopRatio",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "SetSfxVolume",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "Settings",
     "relation_type": "uses",
     "strength": 1
   },
@@ -37411,6 +37635,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
     "to_type": "SFX",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "SFXVolume",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "SfxVolumeParameter",
     "relation_type": "uses",
     "strength": 1
   },
@@ -37466,6 +37704,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
+    "to_type": "StopBgm",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
     "to_type": "StopBGM",
     "relation_type": "uses",
     "strength": 1
@@ -37480,6 +37725,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
+    "to_type": "string",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
     "to_type": "System",
     "relation_type": "uses",
     "strength": 1
@@ -37488,6 +37740,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
     "to_type": "The",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "TitleBGM",
     "relation_type": "uses",
     "strength": 1
   },
@@ -39720,13 +39979,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
     "from_class": "BGMSlider",
-    "to_type": "BGM",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
-    "from_class": "BGMSlider",
     "to_type": "Clamp01",
     "relation_type": "uses",
     "strength": 1
@@ -39755,7 +40007,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
     "from_class": "BGMSlider",
-    "to_type": "SetVolume",
+    "to_type": "SetBgmVolume",
     "relation_type": "uses",
     "strength": 1
   },
@@ -39763,13 +40015,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
     "from_class": "BGMSlider",
     "to_type": "SoundManager",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
-    "from_class": "BGMSlider",
-    "to_type": "SoundType",
     "relation_type": "uses",
     "strength": 1
   },
@@ -39797,7 +40042,35 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
     "from_class": "SettingsUI",
+    "to_type": "SoundManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "BgmMuffleReason",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
     "to_type": "CloseSettings",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "Instance",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "OnDisable",
     "relation_type": "uses",
     "strength": 1
   },
@@ -39812,6 +40085,27 @@
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
     "from_class": "SettingsUI",
     "to_type": "SetActive",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "SetBgmMuffled",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "Settings",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "SoundManager",
     "relation_type": "uses",
     "strength": 1
   },
@@ -39874,14 +40168,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
     "from_class": "SFXSlider",
-    "to_type": "SetVolume",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
-    "from_class": "SFXSlider",
-    "to_type": "SFX",
+    "to_type": "SetSfxVolume",
     "relation_type": "uses",
     "strength": 1
   },
@@ -39889,13 +40176,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
     "from_class": "SFXSlider",
     "to_type": "SoundManager",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
-    "from_class": "SFXSlider",
-    "to_type": "SoundType",
     "relation_type": "uses",
     "strength": 1
   },

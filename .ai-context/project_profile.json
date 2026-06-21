@@ -9,7 +9,7 @@
   "files_with_fixed_update": 1,
   "files_with_late_update": 8,
   "singleton_candidates": 3,
-  "manager_like_classes": 59,
+  "manager_like_classes": 60,
   "ui_related_classes": 94,
   "save_load_related_classes": 94,
   "role_counts": {
@@ -17,10 +17,10 @@
     "player": 80,
     "combat": 106,
     "save-load": 94,
-    "manager": 57,
-    "data": 56,
+    "manager": 58,
+    "data": 57,
     "ui": 94,
-    "scene": 2,
+    "scene": 3,
     "network": 2
   },
   "high_coupling_classes": [
@@ -193,6 +193,31 @@
       "risk_score": 97
     },
     {
+      "file_id": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+      "class_name": "SoundManager",
+      "risk_flags": [
+        "singleton-candidate",
+        "high-coupling",
+        "magic-number-heavy",
+        "large-class",
+        "init-order-sensitive",
+        "save-load-sensitive",
+        "ui-runtime-mixed",
+        "state-owner"
+      ],
+      "risk_reasons": [
+        "Instance 또는 DontDestroyOnLoad 패턴 감지",
+        "참조 타입 또는 관계 수가 많음",
+        "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+        "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+        "초기화 순서에 민감할 가능성",
+        "저장/불러오기 관련 로직 포함",
+        "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+        "상태 중심 또는 관리 중심 클래스일 가능성"
+      ],
+      "risk_score": 96
+    },
+    {
       "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
       "class_name": "TutorialManager",
       "risk_flags": [
@@ -294,31 +319,6 @@
     },
     {
       "file_id": "Old Scripts/enemy.cs",
-      "class_name": "Enemy",
-      "risk_flags": [
-        "update-heavy",
-        "high-coupling",
-        "public-field-heavy",
-        "magic-number-heavy",
-        "large-class",
-        "init-order-sensitive",
-        "save-load-sensitive",
-        "state-owner"
-      ],
-      "risk_reasons": [
-        "Unity 업데이트 루프 사용",
-        "참조 타입 또는 관계 수가 많음",
-        "public 필드 노출 수가 많음",
-        "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
-        "파일/메서드/필드 수가 많아 책임이 커질 가능성",
-        "초기화 순서에 민감할 가능성",
-        "저장/불러오기 관련 로직 포함",
-        "상태 중심 또는 관리 중심 클래스일 가능성"
-      ],
-      "risk_score": 91
-    },
-    {
-      "file_id": "PaddlePrototype/Assets/Scripts/enemy.cs",
       "class_name": "Enemy",
       "risk_flags": [
         "update-heavy",

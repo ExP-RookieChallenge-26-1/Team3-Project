@@ -203,8 +203,43 @@ public class LaserChargeController : MonoBehaviour
             laserStartPoint.position,
             width,
             range,
-            _data.laserAffectsBelowPaddle ? _data.laserBottomOffset : 0f
+            _data.startOffset,
+            _data.laserAffectsBelowPaddle,
+            _data.laserBottomOffset,
+            GetPaddleTopY(),
+            laserChargePreview.PlayAreaTopY
         );
+    }
+
+    private float GetPaddleTopY()
+    {
+        if (laserStartPoint == null)
+            return transform.position.y;
+
+        PaddleController paddle = laserStartPoint.GetComponentInParent<PaddleController>();
+        if (paddle == null)
+            paddle = FindAnyObjectByType<PaddleController>();
+        if (paddle == null)
+            return laserStartPoint.position.y;
+
+        Collider2D[] colliders = paddle.GetComponentsInChildren<Collider2D>(true);
+        Collider2D closest = null;
+        float closestDistance = float.MaxValue;
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            Collider2D candidate = colliders[i];
+            if (candidate == null || candidate.isTrigger || candidate.GetComponentInParent<BallController>() != null)
+                continue;
+
+            float distance = Mathf.Abs(candidate.bounds.center.y - laserStartPoint.position.y);
+            if (distance < closestDistance)
+            {
+                closest = candidate;
+                closestDistance = distance;
+            }
+        }
+
+        return closest != null ? closest.bounds.max.y : laserStartPoint.position.y;
     }
     
     // 드리블 타임 체크

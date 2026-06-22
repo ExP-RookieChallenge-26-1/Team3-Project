@@ -13,7 +13,7 @@ public class BlockPool : MonoBehaviour
     private bool warnedNormalFallback;
 
     private BlockCell[,] pool;
-    private BlockCell[,] activeFlowBlocks;
+    private BlockCell[,] activeBlocks;
 
     private System.Func<Vector2Int, Vector3> gridToWorld;
     private Vector2 cellSize;
@@ -37,7 +37,7 @@ public class BlockPool : MonoBehaviour
         this.manager = manager;
 
         pool = new BlockCell[width, height];
-        activeFlowBlocks = new BlockCell[width, height];
+        activeBlocks = new BlockCell[width, height];
         cellSize = getCellSize();
 
         for (int y = 0; y < height; y++)
@@ -89,7 +89,7 @@ public class BlockPool : MonoBehaviour
             block.Init(manager, coord);
 
         block.Activate(coord, hp, BlockType.Flow);
-        activeFlowBlocks[coord.x, coord.y] = block;
+        activeBlocks[coord.x, coord.y] = block;
     }
 
     public BlockCell CreateNormalBlock(Vector2Int coord, float hp)
@@ -120,6 +120,7 @@ public class BlockPool : MonoBehaviour
 
         block.Init(manager, coord);
         block.Activate(coord, hp, BlockType.Normal);
+        activeBlocks[coord.x, coord.y] = block;
 
         return block;
     }
@@ -143,6 +144,7 @@ public class BlockPool : MonoBehaviour
 
         block.Init(manager, coord);
         block.Activate(coord, hp, BlockType.Fixed);
+        activeBlocks[coord.x, coord.y] = block;
 
         return block;
     }
@@ -161,15 +163,15 @@ public class BlockPool : MonoBehaviour
         else
             Destroy(block.gameObject);
 
-        activeFlowBlocks[coord.x, coord.y] = null;
+        activeBlocks[coord.x, coord.y] = null;
     }
 
     public BlockCell GetBlock(Vector2Int coord)
     {
-        if (activeFlowBlocks != null && activeFlowBlocks[coord.x, coord.y] != null)
-            return activeFlowBlocks[coord.x, coord.y];
+        if (activeBlocks == null)
+            return null;
 
-        return pool[coord.x, coord.y];
+        return activeBlocks[coord.x, coord.y];
     }
 
     private void ApplyBlockSize(BlockCell block)

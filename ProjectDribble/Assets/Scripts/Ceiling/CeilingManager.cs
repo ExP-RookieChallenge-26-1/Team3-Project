@@ -379,6 +379,23 @@ public class CeilingManager : MonoBehaviour
         return segment == null ? 0f : segment.GetHpPercent();
     }
 
+    public bool TryGetAliveSegmentIndexAtWorldX(float worldX, out int segmentIndex)
+    {
+        int x = Mathf.RoundToInt((worldX - startPosition.x) / Mathf.Max(0.0001f, brickSize.x));
+        CeilingSegment segment = GetSegmentByX(x);
+        segmentIndex = segments.IndexOf(segment);
+        return segmentIndex >= 0 && !segment.IsDestroyed;
+    }
+
+    public void SetLaserTargetPreview(int segmentIndex, bool active, float alpha)
+    {
+        if (segmentIndex < 0 || segmentIndex >= segmentRootVisuals.Count)
+            return;
+
+        CeilingSegmentRootVisual visual = segmentRootVisuals[segmentIndex];
+        visual?.SetLaserTargetPreview(active && IsSegmentAliveByIndex(segmentIndex), alpha);
+    }
+
     public bool AreAllSegmentsDestroyed()
     {
         return segments.Count > 0 && segments.TrueForAll(segment => segment.IsDestroyed);

@@ -721,22 +721,11 @@ public class BlockManager : MonoBehaviour
 
         occupied[coord.x, coord.y] = false;
 
-        BlockType removedType = blockTypes[coord.x, coord.y];
-        bool wasFixed = fixedOccupied[coord.x, coord.y];
         fixedOccupied[coord.x, coord.y] = false;
         blockTypes[coord.x, coord.y] = BlockType.Empty;
         stemOwner[coord.x, coord.y] = -1;
 
-        if (wasFixed || removedType == BlockType.Normal)
-        {
-            BlockCell block = GetBlockCell(coord); // 없다면 만들어야 함
-            if (block != null)
-                Destroy(block.gameObject);
-        }
-        else
-        {
-            blockPool.DeactivateBlock(coord);
-        }
+        blockPool.DeactivateBlock(coord);
 
         RefreshStemConnectionVisuals();
         CheckNormalBlocksCleared();
@@ -833,6 +822,9 @@ public class BlockManager : MonoBehaviour
     {
         if (!IsValidCoord(coord))
             return null;
+
+        if (blockPool != null)
+            return blockPool.GetBlock(coord);
 
         Vector3 cellCenter = GridToWorld(coord);
         Vector2 cellSize = GetCellSize();
@@ -1627,6 +1619,16 @@ public class BlockManager : MonoBehaviour
 
         float top = gridArea.position.y + gridArea.lossyScale.y * 0.5f;
         return top;
+    }
+
+    public float GetBottomBoundaryY()
+    {
+        CalculateGridSize();
+
+        if (gridArea == null)
+            return 0f;
+
+        return gridArea.position.y - gridArea.lossyScale.y * 0.5f;
     }
     
     public int WorldXToGridX(float worldX)

@@ -21,6 +21,7 @@ public class CeilingSegmentRootVisual : MonoBehaviour
 
     private readonly List<SpriteRenderer> tiles = new();
     private readonly List<Color> baseColors = new();
+    private readonly List<SpriteRenderer> laserTargetOverlays = new();
     private int segmentIndex = -1;
     private bool isPulsing;
 
@@ -82,6 +83,28 @@ public class CeilingSegmentRootVisual : MonoBehaviour
             tile.enabled = true;
             tiles.Add(tile);
             baseColors.Add(tile.color);
+
+            SpriteRenderer overlay = Instantiate(tile, tileParent);
+            overlay.name = $"LaserTargetOverlay_{i}";
+            overlay.sortingOrder = tile.sortingOrder + 1;
+            overlay.color = new Color(1f, 0.08f, 0.04f, 0f);
+            overlay.enabled = false;
+            laserTargetOverlays.Add(overlay);
+        }
+    }
+
+    public void SetLaserTargetPreview(bool active, float alpha)
+    {
+        for (int i = 0; i < laserTargetOverlays.Count; i++)
+        {
+            SpriteRenderer overlay = laserTargetOverlays[i];
+            if (overlay == null)
+                continue;
+
+            overlay.enabled = active;
+            Color color = overlay.color;
+            color.a = Mathf.Clamp01(alpha);
+            overlay.color = color;
         }
     }
 
@@ -90,7 +113,10 @@ public class CeilingSegmentRootVisual : MonoBehaviour
         isPulsing = active;
 
         if (!active)
+        {
+            SetLaserTargetPreview(false, 0f);
             RestoreVisual();
+        }
 
         for (int i = 0; i < tiles.Count; i++)
         {
@@ -125,6 +151,13 @@ public class CeilingSegmentRootVisual : MonoBehaviour
 
     private void ClearTiles()
     {
+        for (int i = laserTargetOverlays.Count - 1; i >= 0; i--)
+        {
+            if (laserTargetOverlays[i] != null)
+                Destroy(laserTargetOverlays[i].gameObject);
+        }
+        laserTargetOverlays.Clear();
+
         for (int i = tiles.Count - 1; i >= 0; i--)
         {
             if (tiles[i] != null)
@@ -137,6 +170,7 @@ public class CeilingSegmentRootVisual : MonoBehaviour
 
     private void OnDisable()
     {
+        SetLaserTargetPreview(false, 0f);
         isPulsing = false;
         RestoreVisual();
     }

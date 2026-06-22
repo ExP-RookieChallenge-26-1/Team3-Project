@@ -14344,6 +14344,116 @@
     ]
   },
   {
+    "file_id": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "path": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "file_name": "fonts.cs",
+    "content_hash": "7cd0667b514cb5cc8640397a22caeb738f341f33",
+    "size": 1188,
+    "line_count": 49,
+    "namespace": "",
+    "using_list": [
+      "System.Collections",
+      "System.Collections.Generic",
+      "UnityEngine",
+      "TMPro",
+      "UnityEditor"
+    ],
+    "classes": [
+      {
+        "name": "TMP_FontChanger",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      },
+      {
+        "name": "TMP_FontChangerEditor",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "Editor"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "TMP_FontChanger",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "OnInspectorGUI"
+    ],
+    "fields": [],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "System",
+      "Collections",
+      "Generic",
+      "UnityEngine",
+      "TMPro",
+      "UNITY_EDITOR",
+      "UnityEditor",
+      "Insert",
+      "TMP",
+      "It",
+      "TMP_FontAsset",
+      "FontAsset",
+      "CustomEditor",
+      "Editor",
+      "OnInspectorGUI",
+      "GUILayout",
+      "Button",
+      "Change",
+      "Font",
+      "TextMeshPro",
+      "FindObjectsOfType",
+      "TextMeshProUGUI"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Change Font!"
+    ],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "ui",
+      "combat",
+      "save-load",
+      "scene",
+      "runtime"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "UI 관련 로직 포함",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함"
+    ]
+  },
+  {
     "file_id": "ProjectDribble/Assets/ScriptableObjects/Scripts/BallData.cs",
     "path": "ProjectDribble/Assets/ScriptableObjects/Scripts/BallData.cs",
     "file_name": "BallData.cs",
@@ -14747,9 +14857,9 @@
     "file_id": "ProjectDribble/Assets/ScriptableObjects/Scripts/LaserData.cs",
     "path": "ProjectDribble/Assets/ScriptableObjects/Scripts/LaserData.cs",
     "file_name": "LaserData.cs",
-    "content_hash": "152ef3aa30b1a9424e67580693098d6e492e1c5c",
-    "size": 1292,
-    "line_count": 64,
+    "content_hash": "da615ce6426ba42b4ed5843488fa0779cf149b06",
+    "size": 1571,
+    "line_count": 71,
     "namespace": "ScriptableObjects",
     "using_list": [
       "UnityEngine"
@@ -14838,6 +14948,20 @@
         "is_static": false
       },
       {
+        "name": "laserAffectsBelowPaddle",
+        "type": "bool",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "laserBottomOffset",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "ballSpawnBackOffset",
         "type": "float",
         "access": "public",
@@ -14870,7 +14994,7 @@
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 0,
-    "public_field_count": 12,
+    "public_field_count": 14,
     "get_component_count": 0,
     "find_call_count": 0,
     "new_keyword_count": 0,
@@ -14880,6 +15004,7 @@
     "referenced_types": [
       "int",
       "float",
+      "bool",
       "Color",
       "UnityEngine",
       "ScriptableObjects",
@@ -14889,6 +15014,8 @@
       "Charge",
       "Laser",
       "Size",
+      "When",
+      "Distance",
       "Ball",
       "After",
       "Preview",
@@ -14903,6 +15030,8 @@
       "Gauge",
       "Charge",
       "Laser Size",
+      "When enabled, the laser also affects blocks below the paddle.",
+      "Distance below the fire point included in the laser area.",
       "Ball After Laser",
       "Preview"
     ],
@@ -14914,6 +15043,7 @@
       0,
       0.5,
       10,
+      5,
       0.001,
       0.05
     ],
@@ -17566,9 +17696,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallRespawner.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallRespawner.cs",
     "file_name": "BallRespawner.cs",
-    "content_hash": "e9c234b048f3fd5775bd69c6f0ff3562e25b965c",
-    "size": 1326,
-    "line_count": 50,
+    "content_hash": "0f09d14311423ee231fc4dc121bd613c62824d70",
+    "size": 1755,
+    "line_count": 61,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -17592,10 +17722,18 @@
     "main_class_name": "BallRespawner",
     "unity_type": "MonoBehaviour",
     "methods": [
+      "Awake",
       "RecallBallToPaddle",
       "GetPaddleCenterPosition"
     ],
     "fields": [
+      {
+        "name": "ballSpeedController",
+        "type": "BallSpeedController",
+        "access": "private",
+        "serialized": true,
+        "is_static": false
+      },
       {
         "name": "upperPos",
         "type": "Vector2",
@@ -17613,23 +17751,26 @@
     ],
     "properties": [],
     "events": [],
-    "unity_messages": [],
+    "unity_messages": [
+      "Awake"
+    ],
     "has_update": false,
     "has_fixed_update": false,
     "has_late_update": false,
-    "has_awake": false,
+    "has_awake": true,
     "has_start": false,
     "has_on_enable": false,
     "has_on_disable": false,
-    "serialize_field_count": 0,
+    "serialize_field_count": 1,
     "public_field_count": 0,
-    "get_component_count": 0,
+    "get_component_count": 2,
     "find_call_count": 0,
     "new_keyword_count": 0,
     "coroutine_count": 0,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
+      "BallSpeedController",
       "Vector2",
       "DefaultNamespace",
       "System",
@@ -17641,9 +17782,12 @@
       "BallController",
       "BallMovement",
       "OnBallRecalled",
+      "Awake",
+      "GetComponent",
       "RecallBallToPaddle",
       "GetPaddleCenterPosition",
       "InitializeBall",
+      "ApplyGroundWeakened",
       "SoundManager",
       "Instance",
       "Play",
@@ -17651,7 +17795,9 @@
       "BallRespawn",
       "Invoke"
     ],
-    "component_access_types": [],
+    "component_access_types": [
+      "BallSpeedController"
+    ],
     "created_types": [],
     "singleton_access_types": [
       "SoundManager"
@@ -17665,14 +17811,16 @@
       0.5
     ],
     "guessed_roles": [
-      "manager",
       "runtime",
+      "manager",
       "player",
       "save-load"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
-      "저장/불러오기 관련 로직 포함"
+      "인스펙터 직렬화 필드 사용",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
     ]
   },
   {
@@ -17796,9 +17944,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallSpeedColorController.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallSpeedColorController.cs",
     "file_name": "BallSpeedColorController.cs",
-    "content_hash": "6977572d43f5a5735acaeaff4809e5f06a782c0c",
-    "size": 2380,
-    "line_count": 86,
+    "content_hash": "af5b6817107137f178bd4b4446658a2dc517106b",
+    "size": 2466,
+    "line_count": 88,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -17876,12 +18024,12 @@
       "Awake",
       "Update",
       "GetCurrentSpeed",
+      "Color",
       "GetColorForSpeed",
       "GetComponent",
       "GetComponentInChildren",
       "BallController",
       "CurrentSpeed",
-      "Color",
       "InverseLerp",
       "Lerp"
     ],
@@ -17914,9 +18062,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
     "file_name": "BallSpeedController.cs",
-    "content_hash": "6a2d1597f3a5d66556de1b99b50a81141210a5f6",
-    "size": 9958,
-    "line_count": 334,
+    "content_hash": "e526e026920642589216c09db684e28eba935740",
+    "size": 11671,
+    "line_count": 394,
     "namespace": "",
     "using_list": [
       "System",
@@ -17940,9 +18088,14 @@
     "main_class_name": "BallSpeedController",
     "unity_type": "MonoBehaviour",
     "methods": [
+      "Range",
+      "Min",
       "Awake",
       "Start",
       "Update",
+      "LateUpdate",
+      "OnEnable",
+      "OnDisable",
       "AdjustSpeed",
       "HandleCollisionSpeed",
       "ResetToBaseSpeed",
@@ -17961,6 +18114,9 @@
       "ApplyStageTuning",
       "ClearStageTuning",
       "SetSpeedState",
+      "UpdateWeakenedBlink",
+      "RestoreOriginalAlpha",
+      "SetBallAlpha",
       "LoadSpeedSettingsFromData",
       "EnsureInitialized"
     ],
@@ -18141,6 +18297,13 @@
         "is_static": false
       },
       {
+        "name": "originalAlpha",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "cooldown",
         "type": "float",
         "access": "internal",
@@ -18188,6 +18351,13 @@
         "access": "internal",
         "serialized": false,
         "is_static": false
+      },
+      {
+        "name": "color",
+        "type": "Color",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
       }
     ],
     "properties": [],
@@ -18195,21 +18365,24 @@
     "unity_messages": [
       "Awake",
       "Start",
-      "Update"
+      "Update",
+      "LateUpdate",
+      "OnEnable",
+      "OnDisable"
     ],
     "has_update": true,
     "has_fixed_update": false,
-    "has_late_update": false,
+    "has_late_update": true,
     "has_awake": true,
     "has_start": true,
-    "has_on_enable": false,
-    "has_on_disable": false,
+    "has_on_enable": true,
+    "has_on_disable": true,
     "serialize_field_count": 0,
     "public_field_count": 1,
     "get_component_count": 4,
     "find_call_count": 0,
     "new_keyword_count": 1,
-    "coroutine_count": 2,
+    "coroutine_count": 3,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
@@ -18222,6 +18395,7 @@
       "BallSpeedState",
       "Coroutine",
       "bool",
+      "Color",
       "System",
       "Collections",
       "UnityEngine",
@@ -18230,6 +18404,9 @@
       "Weakened",
       "PaddleSpeedIncrease",
       "BlockSpeedDecrease",
+      "Visual",
+      "SpriteRenderer",
+      "Min",
       "CurrentSpeed",
       "CurrentSpeedState",
       "CurrentMaxSpeed",
@@ -18244,6 +18421,14 @@
       "Start",
       "Update",
       "ClampSpeed",
+      "LateUpdate",
+      "UpdateWeakenedBlink",
+      "OnEnable",
+      "StartCoroutine",
+      "RecoverFromWeakened",
+      "OnDisable",
+      "StopCoroutine",
+      "RestoreOriginalAlpha",
       "AdjustSpeed",
       "Vector2",
       "LayerMask",
@@ -18286,15 +18471,14 @@
       "InverseLerp",
       "ApplyLaserBoost",
       "Max",
-      "Min",
       "ApplyGroundWeakened",
-      "StopCoroutine",
-      "StartCoroutine",
-      "RecoverFromWeakened",
       "WaitForSeconds",
       "ApplyStageTuning",
       "ClearStageTuning",
       "Invoke",
+      "Sin",
+      "Lerp",
+      "SetBallAlpha",
       "LoadSpeedSettingsFromData",
       "NormalMaxSpeed",
       "LaserMinBoostSpeed",
@@ -18303,7 +18487,8 @@
       "LaserReturnThreshold",
       "WeakenedSpeed",
       "WeakenedDuration",
-      "GetComponent"
+      "GetComponent",
+      "GetComponentInChildren"
     ],
     "component_access_types": [
       "BallMovement",
@@ -18316,14 +18501,18 @@
     ],
     "singleton_access_types": [],
     "string_literals": [
+      "Weakened Visual",
       "paddle_down",
       "wall_up"
     ],
     "numeric_literals": [
-      999,
-      1,
-      5,
       0,
+      1,
+      0.35,
+      8,
+      999,
+      5,
+      0.5,
       30,
       70,
       80,
@@ -20938,8 +21127,8 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "file_name": "CeilingManager.cs",
-    "content_hash": "2fd1be455b1943ad829a0e78e383e17cae4880c8",
-    "size": 24350,
+    "content_hash": "fdbf378cba8a754f0fd8370a4215a47787d9165a",
+    "size": 24352,
     "line_count": 793,
     "namespace": "",
     "using_list": [
@@ -23155,9 +23344,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
     "file_name": "LaserBlockEraser.cs",
-    "content_hash": "f95b30a5c9253e7bf376873d0fb031b2d060fa17",
-    "size": 2833,
-    "line_count": 104,
+    "content_hash": "598c8c4da663f667b9a0d5494e8e058cf2ec3899",
+    "size": 3310,
+    "line_count": 123,
     "namespace": "",
     "using_list": [
       "Interfaces",
@@ -23242,6 +23431,8 @@
       "BlockManager",
       "EraseByLaser",
       "WorldXToGridX",
+      "Max",
+      "Min",
       "GetTopBoundaryY",
       "EraseColumn",
       "Height",
@@ -23271,9 +23462,9 @@
       "occupied는 true인데 ILaserHittable을 찾지 못함: "
     ],
     "numeric_literals": [
+      0,
       0.5,
-      0.8,
-      0
+      0.8
     ],
     "guessed_roles": [
       "runtime",
@@ -23292,9 +23483,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "file_name": "LaserChargeController.cs",
-    "content_hash": "2e2567948efa04ef4edf91a6feb55bcdf019a3a6",
-    "size": 7824,
-    "line_count": 332,
+    "content_hash": "5b5c8ce043891c1e9e0cd8963cc0dafdb34dc413",
+    "size": 7898,
+    "line_count": 333,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -23515,9 +23706,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
     "file_name": "LaserChargePreview.cs",
-    "content_hash": "8bca158e2546857635c4534557438a58e0a5067c",
-    "size": 1925,
-    "line_count": 80,
+    "content_hash": "35d7d5a48526cb7624e7325c34482324d7abd490",
+    "size": 2114,
+    "line_count": 85,
     "namespace": "",
     "using_list": [
       "ScriptableObjects",
@@ -23620,9 +23811,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserShooter.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserShooter.cs",
     "file_name": "LaserShooter.cs",
-    "content_hash": "4a50d19476425041813b8defdc501c8f0130cf6f",
-    "size": 1778,
-    "line_count": 64,
+    "content_hash": "6315e1c8e7087051452cbd198185a0145016878a",
+    "size": 1866,
+    "line_count": 66,
     "namespace": "",
     "using_list": [
       "ScriptableObjects",

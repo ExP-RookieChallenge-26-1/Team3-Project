@@ -20944,6 +20944,174 @@
     "strength": 1
   },
   {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChangerEditor",
+    "to_type": "Editor",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChanger",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChanger",
+    "to_type": "Button",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChanger",
+    "to_type": "Change",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChanger",
+    "to_type": "Collections",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChanger",
+    "to_type": "CustomEditor",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChanger",
+    "to_type": "Editor",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChanger",
+    "to_type": "FindObjectsOfType",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChanger",
+    "to_type": "Font",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChanger",
+    "to_type": "FontAsset",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChanger",
+    "to_type": "Generic",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChanger",
+    "to_type": "GUILayout",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChanger",
+    "to_type": "Insert",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChanger",
+    "to_type": "It",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChanger",
+    "to_type": "OnInspectorGUI",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChanger",
+    "to_type": "System",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChanger",
+    "to_type": "TextMeshPro",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChanger",
+    "to_type": "TextMeshProUGUI",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChanger",
+    "to_type": "TMP",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChanger",
+    "to_type": "TMP_FontAsset",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChanger",
+    "to_type": "TMPro",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChanger",
+    "to_type": "UNITY_EDITOR",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChanger",
+    "to_type": "UnityEditor",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Resources/Fonts/fonts.cs",
+    "from_class": "TMP_FontChanger",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/BallData.cs",
     "from_class": "BallData",
     "to_type": "ScriptableObject",
@@ -21471,6 +21639,13 @@
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/LaserData.cs",
     "from_class": "LaserData",
+    "to_type": "bool",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/LaserData.cs",
+    "from_class": "LaserData",
     "to_type": "Charge",
     "relation_type": "uses",
     "strength": 1
@@ -21486,6 +21661,13 @@
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/LaserData.cs",
     "from_class": "LaserData",
     "to_type": "CreateAssetMenu",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/LaserData.cs",
+    "from_class": "LaserData",
+    "to_type": "Distance",
     "relation_type": "uses",
     "strength": 1
   },
@@ -21556,6 +21738,13 @@
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/LaserData.cs",
     "from_class": "LaserData",
     "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/LaserData.cs",
+    "from_class": "LaserData",
+    "to_type": "When",
     "relation_type": "uses",
     "strength": 1
   },
@@ -25881,6 +26070,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRespawner.cs",
     "from_class": "BallRespawner",
+    "to_type": "BallSpeedController",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRespawner.cs",
+    "from_class": "BallRespawner",
     "to_type": "MonoBehaviour",
     "relation_type": "inherits",
     "strength": 4
@@ -25891,6 +26087,20 @@
     "to_type": "SoundManager",
     "relation_type": "singleton-access",
     "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRespawner.cs",
+    "from_class": "BallRespawner",
+    "to_type": "ApplyGroundWeakened",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRespawner.cs",
+    "from_class": "BallRespawner",
+    "to_type": "Awake",
+    "relation_type": "uses",
+    "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRespawner.cs",
@@ -25923,7 +26133,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRespawner.cs",
     "from_class": "BallRespawner",
+    "to_type": "BallSpeedController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRespawner.cs",
+    "from_class": "BallRespawner",
     "to_type": "DefaultNamespace",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRespawner.cs",
+    "from_class": "BallRespawner",
+    "to_type": "GetComponent",
     "relation_type": "uses",
     "strength": 1
   },
@@ -26574,6 +26798,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
     "from_class": "BallSpeedController",
+    "to_type": "Color",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
     "to_type": "Cooldown",
     "relation_type": "uses",
     "strength": 1
@@ -26652,6 +26883,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
     "from_class": "BallSpeedController",
     "to_type": "GetComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "GetComponentInChildren",
     "relation_type": "uses",
     "strength": 1
   },
@@ -26742,7 +26980,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
     "from_class": "BallSpeedController",
+    "to_type": "LateUpdate",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
     "to_type": "LayerMask",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "Lerp",
     "relation_type": "uses",
     "strength": 1
   },
@@ -26785,6 +27037,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
     "from_class": "BallSpeedController",
     "to_type": "NormalMaxSpeed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "OnDisable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "OnEnable",
     "relation_type": "uses",
     "strength": 1
   },
@@ -26854,6 +27120,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
     "from_class": "BallSpeedController",
+    "to_type": "RestoreOriginalAlpha",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "SetBallAlpha",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
     "to_type": "SetBallSpeed",
     "relation_type": "uses",
     "strength": 1
@@ -26862,6 +27142,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
     "from_class": "BallSpeedController",
     "to_type": "SetSpeedState",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "Sin",
     "relation_type": "uses",
     "strength": 1
   },
@@ -26890,6 +27177,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
     "from_class": "BallSpeedController",
     "to_type": "SpeedRatio01",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "SpriteRenderer",
     "relation_type": "uses",
     "strength": 1
   },
@@ -26952,7 +27246,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
     "from_class": "BallSpeedController",
+    "to_type": "UpdateWeakenedBlink",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
     "to_type": "Vector2",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
+    "from_class": "BallSpeedController",
+    "to_type": "Visual",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34303,6 +34611,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
     "from_class": "LaserBlockEraser",
     "to_type": "LogWarning",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
+    "from_class": "LaserBlockEraser",
+    "to_type": "Max",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
+    "from_class": "LaserBlockEraser",
+    "to_type": "Min",
     "relation_type": "uses",
     "strength": 1
   },

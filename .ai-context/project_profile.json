@@ -2,25 +2,25 @@
   "project_name": "unknown",
   "language": "C#",
   "engine_guess": "Unity",
-  "total_cs_files": 178,
-  "mono_behaviour_files": 148,
+  "total_cs_files": 179,
+  "mono_behaviour_files": 149,
   "scriptable_object_files": 10,
   "files_with_update": 52,
   "files_with_fixed_update": 1,
-  "files_with_late_update": 8,
+  "files_with_late_update": 9,
   "singleton_candidates": 3,
   "manager_like_classes": 66,
-  "ui_related_classes": 96,
-  "save_load_related_classes": 95,
+  "ui_related_classes": 97,
+  "save_load_related_classes": 96,
   "role_counts": {
-    "runtime": 157,
+    "runtime": 158,
     "player": 80,
-    "combat": 106,
-    "save-load": 95,
+    "combat": 107,
+    "save-load": 96,
     "manager": 64,
     "data": 58,
-    "ui": 96,
-    "scene": 3,
+    "ui": 97,
+    "scene": 4,
     "network": 2
   },
   "high_coupling_classes": [
@@ -79,10 +79,10 @@
       "referenced_type_count": 118
     },
     {
-      "class_name": "SoundManager",
-      "file_id": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
-      "relation_count": 103,
-      "referenced_type_count": 102
+      "class_name": "BallSpeedController",
+      "file_id": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
+      "relation_count": 109,
+      "referenced_type_count": 103
     }
   ],
   "high_risk_classes": [

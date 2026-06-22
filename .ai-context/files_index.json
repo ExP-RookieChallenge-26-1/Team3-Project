@@ -25123,9 +25123,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Sound/SoundData.cs",
     "path": "ProjectDribble/Assets/Scripts/Sound/SoundData.cs",
     "file_name": "SoundData.cs",
-    "content_hash": "dd9c8411af38147f83f700338f2ffbfb8bc7f48a",
-    "size": 1154,
-    "line_count": 55,
+    "content_hash": "19d753ff2fc8e5536cbec127afccbd0adf02bd28",
+    "size": 1305,
+    "line_count": 59,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -25167,6 +25167,13 @@
       {
         "name": "clips",
         "type": "AudioClip[]",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "loopClip",
+        "type": "AudioClip",
         "access": "public",
         "serialized": false,
         "is_static": false
@@ -25260,7 +25267,7 @@
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 1,
-    "public_field_count": 12,
+    "public_field_count": 13,
     "get_component_count": 0,
     "find_call_count": 0,
     "new_keyword_count": 0,
@@ -25281,6 +25288,9 @@
       "System",
       "Serializable",
       "ISerializationCallbackReceiver",
+      "BGM",
+      "Optional",
+      "Leave",
       "FormerlySerializedAs",
       "Category",
       "SFX",
@@ -25297,6 +25307,7 @@
     "created_types": [],
     "singleton_access_types": [],
     "string_literals": [
+      "BGM",
       "clip",
       "Category",
       "Volume",
@@ -25424,9 +25435,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "file_name": "SoundManager.cs",
-    "content_hash": "036e915750c4bb3b5a8e6b8e2559deb4d2e2ecbf",
-    "size": 12409,
-    "line_count": 465,
+    "content_hash": "c36a7e6267eb91b2781300f8d37432d2440c580c",
+    "size": 14150,
+    "line_count": 520,
     "namespace": "",
     "using_list": [
       "System.Collections.Generic",
@@ -25470,6 +25481,8 @@
       "PlayGameplayBgm",
       "PlayBgm",
       "PlayBgmInternal",
+      "GetBgmIntroClip",
+      "StopBgmSources",
       "StopBgm",
       "StopBGM",
       "SetVolume",
@@ -25517,6 +25530,13 @@
         "is_static": false
       },
       {
+        "name": "isBgmScheduled",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "userBgmVolume",
         "type": "float",
         "access": "private",
@@ -25547,6 +25567,13 @@
       {
         "name": "BgmLowPassCutoffParameter",
         "type": "string",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "BgmScheduleDelay",
+        "type": "double",
         "access": "private",
         "serialized": false,
         "is_static": false
@@ -25592,6 +25619,20 @@
         "access": "internal",
         "serialized": false,
         "is_static": false
+      },
+      {
+        "name": "introStartTime",
+        "type": "double",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "loopStartTime",
+        "type": "double",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
       }
     ],
     "properties": [
@@ -25625,7 +25666,9 @@
       "SoundPlayOptions",
       "SoundId",
       "float",
+      "bool",
       "string",
+      "double",
       "System",
       "Collections",
       "Generic",
@@ -25656,6 +25699,7 @@
       "SFXVolume",
       "BgmLowPassCutoffParameter",
       "BGMLowPassCutoff",
+      "BgmScheduleDelay",
       "Awake",
       "Destroy",
       "DontDestroyOnLoad",
@@ -25675,9 +25719,9 @@
       "Default",
       "TryGetSoundData",
       "CanPlayByInterval",
+      "PlayBgmInternal",
       "AudioClip",
       "GetRandomClip",
-      "PlayBgmInternal",
       "CalculatePitch",
       "CalculateVolume",
       "GetSourceFor",
@@ -25701,6 +25745,13 @@
       "TitleBGM",
       "PlayGameplayBgm",
       "GameplayBGM",
+      "GetBgmIntroClip",
+      "StopBgmSources",
+      "Loop",
+      "Falling",
+      "AudioSettings",
+      "PlayScheduled",
+      "Intro",
       "StopBgm",
       "StopBGM",
       "SetVolume",
@@ -25732,7 +25783,8 @@
       "UIClick",
       "GaugeSegmentFilled",
       "SoundManager: {id} is not configured as BGM.",
-      "SoundManager: BGM AudioSource is not assigned."
+      "SoundManager: BGM AudioSource is not assigned.",
+      "SoundManager: Intro AudioClip for {data.id} is empty."
     ],
     "numeric_literals": [
       22000,
@@ -25747,9 +25799,9 @@
     ],
     "guessed_roles": [
       "manager",
+      "runtime",
       "save-load",
       "data",
-      "runtime",
       "ui"
     ],
     "summary_signals": [

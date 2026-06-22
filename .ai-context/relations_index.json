@@ -40518,6 +40518,27 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
     "from_class": "PlayTestUI",
+    "to_type": "IsValidStageIndex",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
+    "from_class": "PlayTestUI",
+    "to_type": "LogWarning",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
+    "from_class": "PlayTestUI",
+    "to_type": "OpenPlayTest",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
+    "from_class": "PlayTestUI",
     "to_type": "References",
     "relation_type": "uses",
     "strength": 1
@@ -40525,7 +40546,56 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
     "from_class": "PlayTestUI",
+    "to_type": "SelectStage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
+    "from_class": "PlayTestUI",
+    "to_type": "SetActive",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
+    "from_class": "PlayTestUI",
     "to_type": "Speed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
+    "from_class": "PlayTestUI",
+    "to_type": "StageManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
+    "from_class": "PlayTestUI",
+    "to_type": "StartStage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
+    "from_class": "PlayTestUI",
+    "to_type": "StatTextsOff",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
+    "from_class": "PlayTestUI",
+    "to_type": "StatTextsOn",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
+    "from_class": "PlayTestUI",
+    "to_type": "TMP_InputField",
     "relation_type": "uses",
     "strength": 1
   },
@@ -40547,6 +40617,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
     "from_class": "PlayTestUI",
     "to_type": "ToString",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
+    "from_class": "PlayTestUI",
+    "to_type": "TryParse",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
+    "from_class": "PlayTestUI",
+    "to_type": "UI",
     "relation_type": "uses",
     "strength": 1
   },

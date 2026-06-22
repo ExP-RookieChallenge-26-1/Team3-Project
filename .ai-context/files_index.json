@@ -22233,9 +22233,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "path": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "file_name": "GameManager.cs",
-    "content_hash": "9f9eb0615633a771d71797aee380b98c4ea5e5f3",
-    "size": 7110,
-    "line_count": 265,
+    "content_hash": "0dffb68b66449dfc63208db895364b318ecb008e",
+    "size": 7236,
+    "line_count": 269,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -24806,8 +24806,8 @@
     "file_id": "ProjectDribble/Assets/Scripts/SaveData.cs",
     "path": "ProjectDribble/Assets/Scripts/SaveData.cs",
     "file_name": "SaveData.cs",
-    "content_hash": "3042d0486a47b240739736e3f56f22976622e869",
-    "size": 226,
+    "content_hash": "822d8c141e83cef550331a7bbb285937cf91cdcf",
+    "size": 225,
     "line_count": 11,
     "namespace": "",
     "using_list": [
@@ -25950,9 +25950,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "file_name": "StageManager.cs",
-    "content_hash": "fe87b28e987f3c85bac73c2fbf19646ad3195f22",
-    "size": 5768,
-    "line_count": 220,
+    "content_hash": "ffab1799789befa4a21b038d8cdf32d34325f6bf",
+    "size": 5822,
+    "line_count": 221,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -27075,9 +27075,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
     "path": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
     "file_name": "PlayTestUI.cs",
-    "content_hash": "7e6a5dc47fb74dd1f5e344433aa99217a1b46b92",
-    "size": 1337,
-    "line_count": 45,
+    "content_hash": "72e6fdc6b74975c48e6f69ea9243790bc9239245",
+    "size": 2993,
+    "line_count": 95,
     "namespace": "",
     "using_list": [
       "TMPro",
@@ -27101,7 +27101,11 @@
     "unity_type": "MonoBehaviour",
     "methods": [
       "Awake",
-      "Update"
+      "Update",
+      "OpenPlayTest",
+      "StatTextsOn",
+      "StatTextsOff",
+      "SelectStage"
     ],
     "fields": [
       {
@@ -27141,6 +27145,9 @@
       "BallMovement",
       "BallPowerController",
       "TMP_Text",
+      "StageManager",
+      "UI",
+      "TMP_InputField",
       "Display",
       "Speed",
       "Damage",
@@ -27148,7 +27155,16 @@
       "GetComponent",
       "Update",
       "CurrentDamage",
-      "ToString"
+      "ToString",
+      "OpenPlayTest",
+      "SetActive",
+      "StatTextsOn",
+      "StatTextsOff",
+      "SelectStage",
+      "TryParse",
+      "LogWarning",
+      "IsValidStageIndex",
+      "StartStage"
     ],
     "component_access_types": [
       "BallPowerController"
@@ -27157,28 +27173,31 @@
     "singleton_access_types": [],
     "string_literals": [
       "References",
+      "UI",
       "Display",
       "Speed: ",
       "Damage: ",
       "F{decimalPlaces}",
-      "\\n"
+      "\\n",
+      "�������� ��ȣ�� ���ڰ� �ƴ�",
+      "���� �������� �ε���: {stageIndex}"
     ],
     "numeric_literals": [
-      0
+      0,
+      1
     ],
     "guessed_roles": [
       "runtime",
       "ui",
       "player",
       "combat",
-      "save-load"
+      "manager"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
       "Update 기반 처리 존재",
       "UI 관련 로직 포함",
       "전투 계열 로직 포함",
-      "저장/불러오기 관련 로직 포함",
       "컴포넌트 조회 사용"
     ]
   },

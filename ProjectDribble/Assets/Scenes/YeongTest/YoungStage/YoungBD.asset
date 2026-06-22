@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d953c4d8f0723644096f01e564abfdbc, type: 3}
-  m_Name: 1
+  m_Name: YoungBD
   m_EditorClassIdentifier: Assembly-CSharp::StageBlockData
   width: 7
   height: 20
@@ -18,7 +18,8 @@ MonoBehaviour:
   disableGrowth: 0
   useStemGrowth: 1
   growthStems:
-  - ceilingSegmentIndex: 0
+  - flowBlockPrefabOverride: {fileID: -3824261130330139456, guid: 01777d40d4d6fe048b11c95c8abfcd6b, type: 3}
+    ceilingSegmentIndex: 0
     startCoord: {x: 3, y: 0}
     minX: 1
     maxX: 5

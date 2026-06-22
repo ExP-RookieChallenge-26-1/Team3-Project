@@ -6176,9 +6176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StageManager
   stages:
   - {fileID: 11400000, guid: 1b20ece803d2b0e45a821b2d37531598, type: 2}
-  - {fileID: 11400000, guid: f6d0b059c7b03354a8259b6601fd6d0e, type: 2}
-  - {fileID: 11400000, guid: 6f9f7bebaa6fdb843bd33df6a9f38dbd, type: 2}
-  - {fileID: 11400000, guid: c444d90c7e5121947a5593126289f6e1, type: 2}
+  - {fileID: 11400000, guid: 8eb759d87ef483b41b16c74517e85fb5, type: 2}
   titleStageIndex: 0
   startStageIndex: 1
   bossStageIndex: 10
@@ -7144,10 +7142,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.5759259
     y: 0
-    width: 1
-    height: 1
+    width: 0.3333333
+    height: 0.34027776
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -10795,7 +10793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7724e34210dd70428b8294e454edaf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CeilingManager
-  healthData: {fileID: 11400000, guid: 117f7251e9974744096b222ffafdf8bc, type: 2}
+  healthData: {fileID: 11400000, guid: 0aed794ff5aaa12439234b1efcfa15e8, type: 2}
   ceilingBrickPrefab: {fileID: 6450190104311429135, guid: 70d54978defbfd6429c5e5f4038c4cc8, type: 3}
   columnCount: 7
   rowCount: 2
@@ -11199,7 +11197,7 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 8
-  data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
+  data: {fileID: 11400000, guid: 2390feddc1a7e01498d20c5dd4658f8e, type: 2}
   ballDamage: 1
 --- !u!4 &603430885421747095
 Transform:
@@ -11419,7 +11417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaddleBallReflector
   reflectUp: 0
-  data: {fileID: 11400000, guid: 553479fb14815704aac8e148ffd42d28, type: 2}
+  data: {fileID: 11400000, guid: 79c45b2631f6faf4a84890954b563ded, type: 2}
 --- !u!1 &1039212398890708014
 GameObject:
   m_ObjectHideFlags: 0
@@ -11448,12 +11446,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb50178a981d104ab84d09147991c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaserShoot
-  laserData: {fileID: 11400000, guid: 0379fc37ebdf6b94abba4c8925f4a626, type: 2}
+  laserData: {fileID: 11400000, guid: 7f1b2236869e2a34f881a5bb9edd95d7, type: 2}
   laserBlockEraser: {fileID: 8472021404511710861}
   ball: {fileID: 3975715977317708694}
-  ballSpeedController: {fileID: 0}
+  ballSpeedController: {fileID: 7296297799575264570}
   firePoint: {fileID: 5282263332914875281}
-  laserUnlockState: {fileID: 0}
+  laserUnlockState: {fileID: 487274947}
 --- !u!1 &1152909526965683514
 GameObject:
   m_ObjectHideFlags: 0
@@ -11906,7 +11904,7 @@ MonoBehaviour:
   debugCollision: 0
   warnWhenOutOfPlayArea: 1
   outOfPlayAreaY: -30
-  data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
+  data: {fileID: 11400000, guid: 2390feddc1a7e01498d20c5dd4658f8e, type: 2}
   moveDistance: 0
 --- !u!114 &2250531861603855641
 MonoBehaviour:
@@ -11920,7 +11918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 763a91c4431a0b342a62b640929724d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
-  ballSpeedController: {fileID: 0}
+  ballSpeedController: {fileID: 7296297799575264570}
   bgmSource: {fileID: 8273444135795600978}
   bgmLoopSource: {fileID: 5673248853260796918}
   defaultSfxSource: {fileID: 118996073313617209}
@@ -12374,7 +12372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaddleBallReflector
   reflectUp: 1
-  data: {fileID: 11400000, guid: 553479fb14815704aac8e148ffd42d28, type: 2}
+  data: {fileID: 11400000, guid: 79c45b2631f6faf4a84890954b563ded, type: 2}
 --- !u!4 &2832640441850570119
 Transform:
   m_ObjectHideFlags: 0
@@ -12657,7 +12655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb02a98df8da476ea6fff758e9a21367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaddleSpeedModifier
-  data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
+  data: {fileID: 11400000, guid: 2390feddc1a7e01498d20c5dd4658f8e, type: 2}
 --- !u!212 &3163137102092357086
 SpriteRenderer:
   serializedVersion: 2
@@ -13130,7 +13128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9df67bdf5ac247d4ab8a735f58f84b21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaddleCaptureZone
-  data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
+  data: {fileID: 11400000, guid: 2390feddc1a7e01498d20c5dd4658f8e, type: 2}
   paddle: {fileID: 6356577598330059143}
   captureAnchor: {fileID: 8842194425867753083}
   side: 2
@@ -13305,7 +13303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c2a287d0569ff4db6fa1d7c36d3f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallSpeedColorController
-  data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
+  data: {fileID: 11400000, guid: 2390feddc1a7e01498d20c5dd4658f8e, type: 2}
   speedController: {fileID: 7296297799575264570}
   ballMovement: {fileID: 2168572690617071577}
   spriteRenderer: {fileID: 2939823309469030166}
@@ -13365,7 +13363,7 @@ MonoBehaviour:
   ballController: {fileID: 584468765816933253}
   guageManager: {fileID: 8966763087485139492}
   laserShoot: {fileID: 1093841035844746070}
-  laserUnlockState: {fileID: 0}
+  laserUnlockState: {fileID: 487274947}
 --- !u!212 &4475683751732736882
 SpriteRenderer:
   serializedVersion: 2
@@ -13659,7 +13657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99dee2c176ea9d47a9d401387d5ac65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallPowerController
-  data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
+  data: {fileID: 11400000, guid: 2390feddc1a7e01498d20c5dd4658f8e, type: 2}
   currentDamage: 0
 --- !u!4 &5265716868967427068
 Transform:
@@ -13705,7 +13703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaddleBallReflector
   reflectUp: 1
-  data: {fileID: 11400000, guid: 553479fb14815704aac8e148ffd42d28, type: 2}
+  data: {fileID: 11400000, guid: 79c45b2631f6faf4a84890954b563ded, type: 2}
 --- !u!1 &5332573370083047979
 GameObject:
   m_ObjectHideFlags: 0
@@ -14469,7 +14467,7 @@ MonoBehaviour:
   inputReader: {fileID: 1168435298}
   upPaddleSpriteRenderer: {fileID: 3163137102092357086}
   debugPaddleActiveState: 0
-  data: {fileID: 11400000, guid: 553479fb14815704aac8e148ffd42d28, type: 2}
+  data: {fileID: 11400000, guid: 79c45b2631f6faf4a84890954b563ded, type: 2}
 --- !u!1 &6534391962667282047
 GameObject:
   m_ObjectHideFlags: 0
@@ -14515,7 +14513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb02a98df8da476ea6fff758e9a21367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaddleSpeedModifier
-  data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
+  data: {fileID: 11400000, guid: 2390feddc1a7e01498d20c5dd4658f8e, type: 2}
 --- !u!114 &6595331378872569135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14528,7 +14526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edf1cfa0869143b2952ba4ba402e3c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaserChargePreview
-  laserData: {fileID: 11400000, guid: 0379fc37ebdf6b94abba4c8925f4a626, type: 2}
+  laserData: {fileID: 11400000, guid: 7f1b2236869e2a34f881a5bb9edd95d7, type: 2}
   lineRenderer: {fileID: 272248255012021923}
 --- !u!1 &6680881697239888964
 GameObject:
@@ -14681,7 +14679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb02a98df8da476ea6fff758e9a21367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaddleSpeedModifier
-  data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
+  data: {fileID: 11400000, guid: 2390feddc1a7e01498d20c5dd4658f8e, type: 2}
 --- !u!1971053207 &7184497298976896497
 SpriteShapeRenderer:
   serializedVersion: 2
@@ -14819,7 +14817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ffa797f56a5a0468b46618216ce79e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallSpeedController
-  data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
+  data: {fileID: 11400000, guid: 2390feddc1a7e01498d20c5dd4658f8e, type: 2}
   ballSpriteRenderer: {fileID: 2939823309469030166}
   weakenedMinAlpha: 0.35
   weakenedMaxAlpha: 1
@@ -15773,7 +15771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6987e661de5447c5b0395c077a2fdc2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaserBlockEraser
-  blockManager: {fileID: 0}
+  blockManager: {fileID: 4361603370357834238}
 --- !u!1 &8482898872724151035
 GameObject:
   m_ObjectHideFlags: 0
@@ -15969,8 +15967,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a429e742d67ed48b1d1f9b873dce8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GaugeManager
-  _data: {fileID: 11400000, guid: 0379fc37ebdf6b94abba4c8925f4a626, type: 2}
-  laserUnlockState: {fileID: 0}
+  _data: {fileID: 11400000, guid: 7f1b2236869e2a34f881a5bb9edd95d7, type: 2}
+  laserUnlockState: {fileID: 487274947}
   currentGaugeValue: 30
 --- !u!1 &9017954552722693854
 GameObject:

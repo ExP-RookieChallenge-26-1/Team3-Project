@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0127b42207167a4fac8693b6c5836c8, type: 3}
+  m_Name: YBallData
+  m_EditorClassIdentifier: Assembly-CSharp::BallData
+  baseSpeed: 30
+  ballDamage: 1
+  outerPaddleSpeedIncrease: 6
+  innerPaddleSpeedIncrease: 2
+  BlockSpeedDecrease: -5
+  DamageMultiplier: 0.2
+  dribbleSpeedBonus: 3
+  normalMaxSpeed: 60
+  laserMinBoostSpeed: 80
+  laserMaxSpeed: 80
+  laserBoostAmount: 20
+  laserReturnThreshold: 70
+  weakenedSpeed: 15
+  weakenedDuration: 1
+  baseDamage: 5
+  maxDamage: 7
+  paddleDamageBonus: 0.8
+  dribbleDamageBonus: 0.1
+  blockDamageLoss: 0.5
+  blockSpeedSlowCooldown: 0.25
+  captureCooldown: 0.1
+  releaseRecaptureDelay: 0.5
+  minEntranceDirectionX: 0.05
+  debugCaptureLog: 0
+  capturedDribbleSpeedFallback: 20
+  capturedTopOffset: 1.5
+  capturedBottomOffset: -1.5
+  capturedXFollowSpeed: 15
+  capturedPaddleHitCooldown: 0.1
+  debugCapturedDribbleLog: 0
+  useSpeedColorChange: 1
+  normalSpeedColor: {r: 1, g: 1, b: 1, a: 1}
+  maxSpeedColor: {r: 1, g: 0, b: 0, a: 1}
+  speedColorStartSpeed: 30
+  speedColorEndSpeed: 70
+  blockSlowRules:
+  - minSpeed: 0
+    slowAmount: 7
+  - minSpeed: 50
+    slowAmount: 5
+  - minSpeed: 70
+    slowAmount: 3
+  minDirectionX: 0
+  minDirectionY: 1

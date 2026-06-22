@@ -19,7 +19,9 @@ public class PaddleController : MonoBehaviour
     private bool hasAttemptedUpPaddleSpriteRendererResolve;
     private bool hasLoggedMissingUpPaddleSpriteRenderer;
 
-    public bool IsPaddleActive => inputReader != null && inputReader.IsPressed;
+    private bool IsInputPressed => inputReader != null && inputReader.IsPressed;
+
+    public bool IsPaddleActive => (GameManager.Instance != null && !GameManager.Instance.IsGameStarted) || IsInputPressed;
     public float VelocityX => velocityX;
     public Vector2 Velocity => new Vector2(velocityX, 0f);
 
@@ -49,15 +51,12 @@ public class PaddleController : MonoBehaviour
     {
         float xBeforeMove = transform.position.x;
 
-        if (IsPaddleActive)
+        if (IsInputPressed)
         {
             MovePad(inputReader.ScreenPosition);
-            SetUpPaddleAlpha(1f);
         }
-        else
-        {
-            SetUpPaddleAlpha(TransparentAlpha);
-        }
+
+        SetUpPaddleAlpha(IsPaddleActive ? 1f : TransparentAlpha);
 
         SetReflectColliderEnabled("paddle_up", IsPaddleActive);
         SetReflectColliderEnabled("roof_paddle", IsPaddleActive);

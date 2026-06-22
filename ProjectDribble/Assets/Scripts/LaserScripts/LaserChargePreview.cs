@@ -31,6 +31,11 @@ public class LaserChargePreview : MonoBehaviour
 
     public void Show(Vector2 startPosition, float width, float range)
     {
+        Show(startPosition, width, range, 0f);
+    }
+
+    public void Show(Vector2 startPosition, float width, float topRange, float bottomOffset)
+    {
         if (width <= 0f)
         {
             Hide();
@@ -43,25 +48,25 @@ public class LaserChargePreview : MonoBehaviour
 
         Vector3 bottomLeft = new Vector3(
             startPosition.x - halfWidth,
-            startPosition.y,
+            startPosition.y - bottomOffset,
             0f
         );
 
         Vector3 topLeft = new Vector3(
             startPosition.x - halfWidth,
-            startPosition.y + range,
+            startPosition.y + topRange,
             0f
         );
 
         Vector3 topRight = new Vector3(
             startPosition.x + halfWidth,
-            startPosition.y + range,
+            startPosition.y + topRange,
             0f
         );
 
         Vector3 bottomRight = new Vector3(
             startPosition.x + halfWidth,
-            startPosition.y,
+            startPosition.y - bottomOffset,
             0f
         );
 

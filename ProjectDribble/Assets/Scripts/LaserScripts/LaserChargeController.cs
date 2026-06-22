@@ -202,7 +202,8 @@ public class LaserChargeController : MonoBehaviour
         laserChargePreview.Show(
             laserStartPoint.position,
             width,
-            range
+            range,
+            _data.laserAffectsBelowPaddle ? _data.laserBottomOffset : 0f
         );
     }
     

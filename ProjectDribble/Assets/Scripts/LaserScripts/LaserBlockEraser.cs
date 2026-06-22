@@ -12,6 +12,18 @@ public class LaserBlockEraser : MonoBehaviour
         float startOffset
     )
     {
+        return EraseByLaser(origin, width, range, startOffset, false, 0f);
+    }
+
+    public Vector2 EraseByLaser(
+        Vector2 origin,
+        float width,
+        float range,
+        float startOffset,
+        bool affectsBelowPaddle,
+        float bottomOffset
+    )
+    {
         Vector2 start = origin + Vector2.up * startOffset;
 
         float leftX = start.x - width * 0.5f;
@@ -22,13 +34,19 @@ public class LaserBlockEraser : MonoBehaviour
 
         int centerX = blockManager.WorldXToGridX(origin.x);
 
-        float topY = blockManager.GetTopBoundaryY();
+        float bottomY = affectsBelowPaddle
+            ? origin.y - Mathf.Max(0f, bottomOffset)
+            : start.y;
+        float topY = Mathf.Min(
+            blockManager.GetTopBoundaryY(),
+            start.y + Mathf.Max(0f, range)
+        );
 
         float centerColumnEndY = topY;
 
         for (int x = minX; x <= maxX; x++)
         {
-            float columnEndY = EraseColumn(x, start.y, topY);
+            float columnEndY = EraseColumn(x, bottomY, topY);
 
             if (x == centerX)
             {

@@ -35,7 +35,9 @@ public class LaserShooter : MonoBehaviour
             origin,
             width,
             laserData.range,
-            laserData.startOffset
+            laserData.startOffset,
+            laserData.laserAffectsBelowPaddle,
+            laserData.laserBottomOffset
         );
 
         Vector2 newBallPosition =

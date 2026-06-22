@@ -10059,6 +10059,7 @@ MonoBehaviour:
   speedText: {fileID: 1913734611}
   damageText: {fileID: 234577727}
   stageManager: {fileID: 977133737}
+  gameManager: {fileID: 949227556}
   playTestUI: {fileID: 1309705846}
   titleUI: {fileID: 666438759}
   statTextOnButton: {fileID: 1672718196}

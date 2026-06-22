@@ -97,7 +97,11 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         int startStageIndex = saveManager.GetStartStageIndex(stageManager.StageCount);
+        StartGameAtStage(startStageIndex);
+    }
 
+    public void StartGameAtStage(int startStageIndex)
+    {
         if (saveManager.Current.laserUnlocked)
             laserUnlockState.UnlockLaser();
 
@@ -106,6 +110,7 @@ public class GameManager : MonoBehaviour
         isGameStarted = true;
         SoundManager.Instance?.ClearBgmMuffles();
         SoundManager.Instance?.PlayGameplayBgm();
+        playTestUI.SetActive(false);
         titleUI.SetActive(false);
         pauseButton.SetActive(true);
 

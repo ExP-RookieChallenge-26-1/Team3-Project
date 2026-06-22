@@ -10,6 +10,7 @@ public class PlayTestUI : MonoBehaviour
     [SerializeField] private TMP_Text speedText;
     [SerializeField] private TMP_Text damageText;
     [SerializeField] private StageManager stageManager;
+    [SerializeField] private GameManager gameManager;
 
     [Header("UI")]
     [SerializeField] private GameObject playTestUI;
@@ -70,25 +71,21 @@ public class PlayTestUI : MonoBehaviour
     }
     public void SelectStage()
     {
-        if (stageInput == null || stageManager == null)
+        if (stageInput == null || gameManager == null || stageManager == null)
             return;
 
         if (!int.TryParse(stageInput.text, out int stageIndex))
         {
-            Debug.LogWarning("스테이지 번호가 숫자가 아님");
+            Debug.LogWarning("Please enter a number");
             return;
         }
 
         if (!stageManager.IsValidStageIndex(stageIndex))
         {
-            Debug.LogWarning($"없는 스테이지 인덱스: {stageIndex}");
+            Debug.LogWarning($"Invalid index: {stageIndex}");
             return;
         }
 
-        playTestUI.SetActive(false);
-        titleUI.SetActive(false);
-        pauseButton.SetActive(true);
-        Time.timeScale = 1f;
-        stageManager.StartStage(stageIndex);
+        gameManager.StartGameAtStage(stageIndex);
     }
 }

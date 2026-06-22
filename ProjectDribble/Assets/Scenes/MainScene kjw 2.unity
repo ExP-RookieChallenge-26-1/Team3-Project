@@ -4537,7 +4537,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 666438760}
-  - component: {fileID: 666438761}
   m_Layer: 5
   m_Name: TitleUI
   m_TagString: Untagged
@@ -4570,18 +4569,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &666438761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 666438759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1725d29195b148d41a1ca3e375681fb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PauseUI
 --- !u!1 &695587558
 GameObject:
   m_ObjectHideFlags: 0
@@ -5060,7 +5047,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 768215120}
-  - component: {fileID: 768215121}
   m_Layer: 5
   m_Name: PauseUI
   m_TagString: Untagged
@@ -5091,18 +5077,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &768215121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 768215119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1725d29195b148d41a1ca3e375681fb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PauseUI
 --- !u!1 &816289845
 GameObject:
   m_ObjectHideFlags: 0
@@ -7829,6 +7803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
   ballSpeedController: {fileID: 8198340417991375921}
   bgmSource: {fileID: 1766143808}
+  bgmLoopSource: {fileID: 0}
   defaultSfxSource: {fileID: 179826586}
   loopSource: {fileID: 1894080214}
   uiSfxSource: {fileID: 237588459}
@@ -7839,6 +7814,7 @@ MonoBehaviour:
   - id: 1
     clips:
     - {fileID: 8300000, guid: 140b5a95c1421b046ba4d544d06da615, type: 3}
+    loopClip: {fileID: 0}
     legacyClip: {fileID: 8300000, guid: 460782fd23fefc845a323777a4d404ab, type: 3}
     soundType: 1
     baseVolume: 0.5
@@ -7853,6 +7829,7 @@ MonoBehaviour:
   - id: 2
     clips:
     - {fileID: 8300000, guid: 9176f17c96adc8542928b87484d6b5d1, type: 3}
+    loopClip: {fileID: 0}
     legacyClip: {fileID: 8300000, guid: 9176f17c96adc8542928b87484d6b5d1, type: 3}
     soundType: 1
     baseVolume: 0.74
@@ -7867,6 +7844,7 @@ MonoBehaviour:
   - id: 3
     clips:
     - {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
+    loopClip: {fileID: 0}
     legacyClip: {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
     soundType: 1
     baseVolume: 0.489
@@ -7881,6 +7859,7 @@ MonoBehaviour:
   - id: 4
     clips:
     - {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
+    loopClip: {fileID: 0}
     legacyClip: {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
     soundType: 1
     baseVolume: 0.489
@@ -7895,6 +7874,7 @@ MonoBehaviour:
   - id: 5
     clips:
     - {fileID: 8300000, guid: d7cd59d147b7379408b59018c93377de, type: 3}
+    loopClip: {fileID: 0}
     legacyClip: {fileID: 8300000, guid: d7cd59d147b7379408b59018c93377de, type: 3}
     soundType: 1
     baseVolume: 0.655
@@ -7909,6 +7889,7 @@ MonoBehaviour:
   - id: 7
     clips:
     - {fileID: 8300000, guid: 7f12e51ba64d421478b53febc6422e61, type: 3}
+    loopClip: {fileID: 0}
     legacyClip: {fileID: 8300000, guid: 6744363a541ccea40be007a23c5f668f, type: 3}
     soundType: 1
     baseVolume: 1
@@ -7923,6 +7904,7 @@ MonoBehaviour:
   - id: 8
     clips:
     - {fileID: 8300000, guid: fb1b396bdc96cf240a622a7563729701, type: 3}
+    loopClip: {fileID: 0}
     legacyClip: {fileID: 8300000, guid: fb1b396bdc96cf240a622a7563729701, type: 3}
     soundType: 1
     baseVolume: 1
@@ -7937,6 +7919,7 @@ MonoBehaviour:
   - id: 9
     clips:
     - {fileID: 8300000, guid: f21fe5c47e20708418cfb84216fbf275, type: 3}
+    loopClip: {fileID: 0}
     legacyClip: {fileID: 8300000, guid: f21fe5c47e20708418cfb84216fbf275, type: 3}
     soundType: 1
     baseVolume: 1
@@ -7951,6 +7934,7 @@ MonoBehaviour:
   - id: 10
     clips:
     - {fileID: 8300000, guid: dbe0aeec065697f4ab6af9fbe7edf725, type: 3}
+    loopClip: {fileID: 0}
     legacyClip: {fileID: 8300000, guid: c8b76e3cb1a33c44fa79a52d9feeda88, type: 3}
     soundType: 1
     baseVolume: 0.769
@@ -7965,6 +7949,7 @@ MonoBehaviour:
   - id: 11
     clips:
     - {fileID: 8300000, guid: f2e73f32a82d17d449b2a5ead09f650e, type: 3}
+    loopClip: {fileID: 0}
     legacyClip: {fileID: 8300000, guid: 50c56e22e46b91b4899a571077c9078b, type: 3}
     soundType: 1
     baseVolume: 1
@@ -7979,6 +7964,7 @@ MonoBehaviour:
   - id: 12
     clips:
     - {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
+    loopClip: {fileID: 0}
     legacyClip: {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
     soundType: 1
     baseVolume: 0.489
@@ -7993,6 +7979,7 @@ MonoBehaviour:
   - id: 13
     clips:
     - {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
+    loopClip: {fileID: 0}
     legacyClip: {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
     soundType: 1
     baseVolume: 0.489
@@ -8007,6 +7994,7 @@ MonoBehaviour:
   - id: 16
     clips:
     - {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
+    loopClip: {fileID: 0}
     legacyClip: {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
     soundType: 1
     baseVolume: 0.489
@@ -8021,6 +8009,7 @@ MonoBehaviour:
   - id: 17
     clips:
     - {fileID: 8300000, guid: 51844ac1348df5746b7295bae0f6681a, type: 3}
+    loopClip: {fileID: 0}
     legacyClip: {fileID: 8300000, guid: 51844ac1348df5746b7295bae0f6681a, type: 3}
     soundType: 0
     baseVolume: 1
@@ -8035,6 +8024,7 @@ MonoBehaviour:
   - id: 18
     clips:
     - {fileID: 8300000, guid: 2b9274ab295a09b4b836eb0aa9fb5681, type: 3}
+    loopClip: {fileID: 0}
     legacyClip: {fileID: 8300000, guid: 2b9274ab295a09b4b836eb0aa9fb5681, type: 3}
     soundType: 0
     baseVolume: 1
@@ -9234,7 +9224,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1455427973}
-  - component: {fileID: 1455427974}
   m_Layer: 5
   m_Name: 'GameClearUI '
   m_TagString: Untagged
@@ -9263,18 +9252,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1455427974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1455427972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1725d29195b148d41a1ca3e375681fb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PauseUI
 --- !u!1 &1465136419
 GameObject:
   m_ObjectHideFlags: 0
@@ -10506,7 +10483,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1779464682}
-  - component: {fileID: 1779464683}
   m_Layer: 5
   m_Name: GameOverUI
   m_TagString: Untagged
@@ -10536,18 +10512,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1779464683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1779464681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1725d29195b148d41a1ca3e375681fb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PauseUI
 --- !u!1 &1805171191
 GameObject:
   m_ObjectHideFlags: 0
@@ -11674,7 +11638,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2030120728}
-  - component: {fileID: 2030120729}
   m_Layer: 5
   m_Name: StageClearUI
   m_TagString: Untagged
@@ -11703,18 +11666,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2030120729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2030120727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1725d29195b148d41a1ca3e375681fb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PauseUI
 --- !u!1 &2053120890
 GameObject:
   m_ObjectHideFlags: 0

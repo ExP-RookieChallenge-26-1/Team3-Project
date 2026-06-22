@@ -6176,7 +6176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StageManager
   stages:
   - {fileID: 11400000, guid: 1b20ece803d2b0e45a821b2d37531598, type: 2}
-  - {fileID: 11400000, guid: 8eb759d87ef483b41b16c74517e85fb5, type: 2}
+  - {fileID: 11400000, guid: 1ff20c8d59e2f1e4bad1b087f875aadf, type: 2}
   titleStageIndex: 0
   startStageIndex: 1
   bossStageIndex: 10
@@ -7142,10 +7142,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.5759259
+    x: 0.35937503
     y: 0
-    width: 0.3333333
-    height: 0.34027776
+    width: 0.28125
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60

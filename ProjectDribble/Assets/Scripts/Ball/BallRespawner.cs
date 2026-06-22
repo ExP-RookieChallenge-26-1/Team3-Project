@@ -15,8 +15,18 @@ public class BallRespawner : MonoBehaviour
 
     [SerializeField] private BallController ballController;
     [SerializeField] private BallMovement ballMovement;
+    private BallSpeedController ballSpeedController;
 
     public event Action OnBallRecalled;
+
+    private void Awake()
+    {
+        if (ballController != null)
+            ballSpeedController = ballController.GetComponent<BallSpeedController>();
+
+        if (ballSpeedController == null && ballSpawnController != null)
+            ballSpeedController = ballSpawnController.GetComponent<BallSpeedController>();
+    }
 
     public void RecallBallToPaddle()
     {
@@ -29,6 +39,7 @@ public class BallRespawner : MonoBehaviour
             recallPosition,
             recallStartDirection
         );
+        ballSpeedController?.ApplyGroundWeakened();
 
         SoundManager.Instance.Play(SoundId.BallRespawn);
         OnBallRecalled?.Invoke();

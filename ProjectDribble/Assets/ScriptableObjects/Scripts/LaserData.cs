@@ -40,6 +40,13 @@ namespace ScriptableObjects
         [Min(0f)]
         public float startOffset = 0f;
 
+        [Tooltip("When enabled, the laser also affects blocks below the paddle.")]
+        public bool laserAffectsBelowPaddle = true;
+
+        [Min(0f)]
+        [Tooltip("Distance below the fire point included in the laser area.")]
+        public float laserBottomOffset = 5f;
+
 
         [Header("Ball After Laser")]
         [Min(0f)]

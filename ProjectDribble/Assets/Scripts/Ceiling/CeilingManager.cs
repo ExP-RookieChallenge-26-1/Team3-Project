@@ -331,7 +331,7 @@ public class CeilingManager : MonoBehaviour
             OnCeilingSegmentDestroyed?.Invoke(segment);
             BreakSegmentBricks(segment);
             ballRespawner.RecallBallToPaddle();
-            _gaugeManager.AddGauge(_gaugeManager.GaugePerSegment);
+            //_gaugeManager.AddGauge(_gaugeManager.GaugePerSegment);
         }
         else
         {

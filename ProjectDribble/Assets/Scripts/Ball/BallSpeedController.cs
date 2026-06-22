@@ -33,6 +33,11 @@ public class BallSpeedController : MonoBehaviour
     private float laserReturnThreshold;
     private float weakenedSpeed;
     private float weakenedDuration;
+    [Header("Weakened Visual")]
+    [SerializeField] private SpriteRenderer ballSpriteRenderer;
+    [SerializeField, Range(0f, 1f)] private float weakenedMinAlpha = 0.35f;
+    [SerializeField, Range(0f, 1f)] private float weakenedMaxAlpha = 1f;
+    [SerializeField, Min(0f)] private float weakenedBlinkSpeed = 8f;
     [SerializeField] private float currentSpeed;
 
     private BallSpeedState currentSpeedState = BallSpeedState.Normal;
@@ -42,6 +47,7 @@ public class BallSpeedController : MonoBehaviour
     private bool hasStageMaxSpeedOverride;
     private float stageMaxSpeedOverride;
     private float speedGainMultiplier = 1f;
+    private float originalAlpha = 1f;
 
     public float CurrentSpeed => currentSpeed;
     public BallSpeedState CurrentSpeedState => currentSpeedState;
@@ -70,6 +76,28 @@ public class BallSpeedController : MonoBehaviour
         ClampSpeed();
         currentSpeed = BallMovement.speed;
         moveDistance = BallMovement.moveDistance;
+    }
+
+    private void LateUpdate()
+    {
+        UpdateWeakenedBlink();
+    }
+
+    private void OnEnable()
+    {
+        if (IsWeakened)
+            weakenedCoroutine = StartCoroutine(RecoverFromWeakened());
+    }
+
+    private void OnDisable()
+    {
+        if (weakenedCoroutine != null)
+        {
+            StopCoroutine(weakenedCoroutine);
+            weakenedCoroutine = null;
+        }
+
+        RestoreOriginalAlpha();
     }
 
     /*
@@ -283,8 +311,36 @@ public class BallSpeedController : MonoBehaviour
         if (currentSpeedState == nextState)
             return;
 
+        if (currentSpeedState == BallSpeedState.Weakened)
+            RestoreOriginalAlpha();
+
         currentSpeedState = nextState;
         OnSpeedStateChanged?.Invoke(currentSpeedState);
+    }
+
+    private void UpdateWeakenedBlink()
+    {
+        if (!IsWeakened || ballSpriteRenderer == null)
+            return;
+
+        float t = (Mathf.Sin(Time.time * weakenedBlinkSpeed) + 1f) * 0.5f;
+        float alpha = Mathf.Lerp(weakenedMinAlpha, weakenedMaxAlpha, t);
+        SetBallAlpha(alpha);
+    }
+
+    private void RestoreOriginalAlpha()
+    {
+        SetBallAlpha(originalAlpha);
+    }
+
+    private void SetBallAlpha(float alpha)
+    {
+        if (ballSpriteRenderer == null)
+            return;
+
+        Color color = ballSpriteRenderer.color;
+        color.a = alpha;
+        ballSpriteRenderer.color = color;
     }
 
     private void LoadSpeedSettingsFromData()
@@ -325,6 +381,10 @@ public class BallSpeedController : MonoBehaviour
         BallMovement = GetComponent<BallMovement>();
         BallController = GetComponent<BallController>();
         BallPowerController = GetComponent<BallPowerController>();
+        if (ballSpriteRenderer == null)
+            ballSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        if (ballSpriteRenderer != null)
+            originalAlpha = ballSpriteRenderer.color.a;
         tr = transform;
         cc = GetComponent<CircleCollider2D>();
         LoadSpeedSettingsFromData();

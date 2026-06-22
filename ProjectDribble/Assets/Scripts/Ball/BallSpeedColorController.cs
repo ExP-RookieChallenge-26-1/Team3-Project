@@ -23,7 +23,9 @@ public class BallSpeedColorController : MonoBehaviour
             return;
 
         float currentSpeed = GetCurrentSpeed();
-        spriteRenderer.color = GetColorForSpeed(currentSpeed);
+        Color speedColor = GetColorForSpeed(currentSpeed);
+        speedColor.a = spriteRenderer.color.a;
+        spriteRenderer.color = speedColor;
     }
 
     private void AutoAssignReferences()

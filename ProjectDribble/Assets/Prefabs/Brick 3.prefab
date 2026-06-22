@@ -91,7 +91,7 @@ SpriteRenderer:
   m_Size: {x: 3, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!114 &8008601955375370094
 MonoBehaviour:
@@ -163,8 +163,9 @@ MonoBehaviour:
   pulseSpeed: 1
   minAlpha: 0.5
   maxAlpha: 1
-  pulseColor: {r: 1, g: 1, b: 1, a: 1}
+  pulseColor: {r: 0.49247953, g: 0.8773585, b: 0.67842454, a: 1}
   scaleAmount: 0.06
+  useScalePulse: 1
   useUnscaledTime: 0
 --- !u!1 &7211861392728797942
 GameObject:

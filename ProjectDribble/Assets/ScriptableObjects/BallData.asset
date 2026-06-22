@@ -18,18 +18,18 @@ MonoBehaviour:
   innerPaddleSpeedIncrease: 2
   BlockSpeedDecrease: -5
   DamageMultiplier: 0.2
-  dribbleSpeedBonus: 5
+  dribbleSpeedBonus: 3
   normalMaxSpeed: 60
   laserMinBoostSpeed: 80
   laserMaxSpeed: 80
   laserBoostAmount: 20
   laserReturnThreshold: 70
-  weakenedSpeed: 25
-  weakenedDuration: 0.75
+  weakenedSpeed: 15
+  weakenedDuration: 1
   baseDamage: 5
-  maxDamage: 9
+  maxDamage: 7
   paddleDamageBonus: 0.8
-  dribbleDamageBonus: 0.3
+  dribbleDamageBonus: 0.1
   blockDamageLoss: 0.5
   blockSpeedSlowCooldown: 0.25
   captureCooldown: 0.1
@@ -40,7 +40,7 @@ MonoBehaviour:
   capturedTopOffset: 1.5
   capturedBottomOffset: -1.5
   capturedXFollowSpeed: 15
-  capturedPaddleHitCooldown: 0.05
+  capturedPaddleHitCooldown: 0.1
   debugCapturedDribbleLog: 0
   useSpeedColorChange: 1
   normalSpeedColor: {r: 1, g: 1, b: 1, a: 1}

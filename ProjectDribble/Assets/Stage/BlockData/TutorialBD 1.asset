@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StageBlockData
   width: 7
   height: 20
-  defaultHp: 6.2
+  defaultHp: 5.8
   disableGrowth: 0
   useStemGrowth: 1
   growthStems:

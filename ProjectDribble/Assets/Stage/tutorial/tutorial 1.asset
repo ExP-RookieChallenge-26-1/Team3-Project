@@ -16,7 +16,7 @@ MonoBehaviour:
   ceilingSegmentMode: 1
   ceilingMaxHpOverride: 50
   playerMaxHpOverride: 15
-  startGaugeValue: 10
+  startGaugeValue: 20
   ballStartPosition: {x: 0, y: -11.5}
   ballStartDirection: {x: 0, y: -1}
   ballStartSpeed: 30

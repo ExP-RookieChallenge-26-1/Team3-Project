@@ -24,6 +24,6 @@ MonoBehaviour:
   maxSpeedOverride: 80
   maxDamageOverride: 7
   speedGainMultiplierOverride: 0.5
-  powerGainMultiplierOverride: 0.8
+  powerGainMultiplierOverride: 1
   isTutorialStage: 1
   tutorialStageId: 1

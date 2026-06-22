@@ -25,6 +25,7 @@ public class SoundManager : MonoBehaviour
 
     [Header("Audio Sources")]
     [SerializeField] private AudioSource bgmSource;
+    [SerializeField] private AudioSource bgmLoopSource;
 
     [FormerlySerializedAs("sfxSource")]
     [SerializeField] private AudioSource defaultSfxSource;
@@ -47,6 +48,7 @@ public class SoundManager : MonoBehaviour
     private SoundId currentLoopId = SoundId.None;
     private float currentLoopBaseVolume = 1f;
     private SoundId currentBgmId = SoundId.None;
+    private bool isBgmScheduled;
     private readonly HashSet<BgmMuffleReason> bgmMuffleReasons = new();
     private float userBgmVolume = 1f;
     private float userSfxVolume = 1f;
@@ -54,6 +56,7 @@ public class SoundManager : MonoBehaviour
     private const string BgmVolumeParameter = "BGMVolume";
     private const string SfxVolumeParameter = "SFXVolume";
     private const string BgmLowPassCutoffParameter = "BGMLowPassCutoff";
+    private const double BgmScheduleDelay = 0.1d;
 
     private void Awake()
     {
@@ -72,7 +75,10 @@ public class SoundManager : MonoBehaviour
     private void Initialize()
     {
         if (bgmSource != null)
-            bgmSource.loop = true;
+            bgmSource.loop = false;
+
+        if (bgmLoopSource != null)
+            bgmLoopSource.loop = true;
 
         if (loopSource != null)
             loopSource.loop = true;
@@ -139,15 +145,15 @@ public class SoundManager : MonoBehaviour
         if (!CanPlayByInterval(data))
             return;
 
+        if (data.soundType == SoundType.BGM)
+        {
+            PlayBgmInternal(id, data);
+            return;
+        }
+
         AudioClip clip = GetRandomClip(data);
         if (clip == null)
             return;
-
-        if (data.soundType == SoundType.BGM)
-        {
-            PlayBgmInternal(id, data, clip);
-            return;
-        }
 
         float pitch = CalculatePitch(data, options);
         float volume = CalculateVolume(data, options);
@@ -316,7 +322,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayBgm(SoundId id)
     {
-        if (currentBgmId == id && bgmSource != null && bgmSource.isPlaying)
+        if (currentBgmId == id && isBgmScheduled)
             return;
 
         if (!TryGetSoundData(id, out SoundData data))
@@ -328,14 +334,10 @@ public class SoundManager : MonoBehaviour
             return;
         }
 
-        AudioClip clip = GetRandomClip(data);
-        if (clip == null)
-            return;
-
-        PlayBgmInternal(id, data, clip);
+        PlayBgmInternal(id, data);
     }
 
-    private void PlayBgmInternal(SoundId id, SoundData data, AudioClip clip)
+    private void PlayBgmInternal(SoundId id, SoundData data)
     {
         if (bgmSource == null)
         {
@@ -343,34 +345,84 @@ public class SoundManager : MonoBehaviour
             return;
         }
 
-        if (currentBgmId == id && bgmSource.isPlaying)
+        if (currentBgmId == id && isBgmScheduled)
             return;
 
-        if (bgmSource.isPlaying)
-            bgmSource.Stop();
+        AudioClip introClip = GetBgmIntroClip(data);
+        if (introClip == null)
+            return;
+
+        StopBgmSources();
 
         ApplyMixerGroup(bgmSource, data.mixerGroup);
-        bgmSource.loop = true;
         bgmSource.pitch = Mathf.Clamp(data.basePitch, 0.1f, 3f);
         float baseVolume = Mathf.Clamp01(data.baseVolume);
         bgmSource.volume = audioMixer == null
             ? baseVolume * userBgmVolume
             : baseVolume;
-        bgmSource.clip = clip;
-        bgmSource.Play();
+
+        if (data.loopClip == null || bgmLoopSource == null)
+        {
+            if (data.loopClip != null && bgmLoopSource == null)
+                Debug.LogWarning("SoundManager: BGM Loop AudioSource is not assigned. Falling back to the intro clip loop.");
+
+            bgmSource.clip = introClip;
+            bgmSource.loop = true;
+            bgmSource.Play();
+        }
+        else
+        {
+            ApplyMixerGroup(bgmLoopSource, data.mixerGroup);
+            bgmLoopSource.clip = data.loopClip;
+            bgmLoopSource.loop = true;
+            bgmLoopSource.pitch = bgmSource.pitch;
+            bgmLoopSource.volume = bgmSource.volume;
+
+            bgmSource.clip = introClip;
+            bgmSource.loop = false;
+
+            double introStartTime = AudioSettings.dspTime + BgmScheduleDelay;
+            double loopStartTime = introStartTime + introClip.length / bgmSource.pitch;
+            bgmSource.PlayScheduled(introStartTime);
+            bgmLoopSource.PlayScheduled(loopStartTime);
+        }
+
         currentBgmId = id;
+        isBgmScheduled = true;
         ApplyBgmMuffleState();
+    }
+
+    private AudioClip GetBgmIntroClip(SoundData data)
+    {
+        if (data.clips == null || data.clips.Length == 0 || data.clips[0] == null)
+        {
+            Debug.LogWarning($"SoundManager: Intro AudioClip for {data.id} is empty.");
+            return null;
+        }
+
+        return data.clips[0];
+    }
+
+    private void StopBgmSources()
+    {
+        if (bgmSource != null)
+        {
+            bgmSource.Stop();
+            bgmSource.clip = null;
+        }
+
+        if (bgmLoopSource != null)
+        {
+            bgmLoopSource.Stop();
+            bgmLoopSource.clip = null;
+        }
     }
 
     public void StopBgm()
     {
         currentBgmId = SoundId.None;
-
-        if (bgmSource == null)
-            return;
-
-        bgmSource.Stop();
-        bgmSource.clip = null;
+        isBgmScheduled = false;
+        StopBgmSources();
     }
 
     public void StopBGM()
@@ -403,6 +455,9 @@ public class SoundManager : MonoBehaviour
                 ? Mathf.Clamp01(data.baseVolume)
                 : 1f;
             bgmSource.volume = baseVolume * userBgmVolume;
+
+            if (bgmLoopSource != null)
+                bgmLoopSource.volume = bgmSource.volume;
         }
     }
 

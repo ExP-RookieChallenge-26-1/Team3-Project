@@ -10,6 +10,10 @@ public class SoundData : ISerializationCallbackReceiver
 
     public AudioClip[] clips;
 
+    [Header("BGM")]
+    [Tooltip("Optional loop clip played after clips[0]. Leave empty to loop clips[0] as before.")]
+    public AudioClip loopClip;
+
     [SerializeField, FormerlySerializedAs("clip")]
     private AudioClip legacyClip;
 

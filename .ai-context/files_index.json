@@ -22233,9 +22233,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "path": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "file_name": "GameManager.cs",
-    "content_hash": "0dffb68b66449dfc63208db895364b318ecb008e",
-    "size": 7236,
-    "line_count": 269,
+    "content_hash": "4bbb6f485993becd75e917a7477d362fca817112",
+    "size": 7382,
+    "line_count": 274,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -22263,6 +22263,7 @@
       "RequestStageClear",
       "RequestGameOver",
       "StartGame",
+      "StartGameAtStage",
       "RetryStage",
       "NextStage",
       "PauseGame",
@@ -22397,6 +22398,7 @@
       "StartGame",
       "GetStartStageIndex",
       "StageCount",
+      "StartGameAtStage",
       "Current",
       "UnlockLaser",
       "ClearBgmMuffles",
@@ -27218,9 +27220,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
     "path": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
     "file_name": "PlayTestUI.cs",
-    "content_hash": "72e6fdc6b74975c48e6f69ea9243790bc9239245",
-    "size": 2993,
-    "line_count": 95,
+    "content_hash": "0e691152221d86cce7bde287c3a03178daa48a53",
+    "size": 2857,
+    "line_count": 92,
     "namespace": "",
     "using_list": [
       "TMPro",
@@ -27289,6 +27291,7 @@
       "BallPowerController",
       "TMP_Text",
       "StageManager",
+      "GameManager",
       "UI",
       "TMP_InputField",
       "Display",
@@ -27306,8 +27309,10 @@
       "SelectStage",
       "TryParse",
       "LogWarning",
+      "Please",
       "IsValidStageIndex",
-      "StartStage"
+      "Invalid",
+      "StartGameAtStage"
     ],
     "component_access_types": [
       "BallPowerController"
@@ -27322,12 +27327,11 @@
       "Damage: ",
       "F{decimalPlaces}",
       "\\n",
-      "�������� ��ȣ�� ���ڰ� �ƴ�",
-      "���� �������� �ε���: {stageIndex}"
+      "Please enter a number",
+      "Invalid index: {stageIndex}"
     ],
     "numeric_literals": [
-      0,
-      1
+      0
     ],
     "guessed_roles": [
       "runtime",

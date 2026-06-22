@@ -33371,6 +33371,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
+    "to_type": "StartGameAtStage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
     "to_type": "StartStage",
     "relation_type": "uses",
     "strength": 1
@@ -40728,7 +40735,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
     "from_class": "PlayTestUI",
+    "to_type": "GameManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
+    "from_class": "PlayTestUI",
     "to_type": "GetComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
+    "from_class": "PlayTestUI",
+    "to_type": "Invalid",
     "relation_type": "uses",
     "strength": 1
   },
@@ -40750,6 +40771,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
     "from_class": "PlayTestUI",
     "to_type": "OpenPlayTest",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
+    "from_class": "PlayTestUI",
+    "to_type": "Please",
     "relation_type": "uses",
     "strength": 1
   },
@@ -40791,7 +40819,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/PlayTestUI.cs",
     "from_class": "PlayTestUI",
-    "to_type": "StartStage",
+    "to_type": "StartGameAtStage",
     "relation_type": "uses",
     "strength": 1
   },

@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject stageClearUI;
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private GameObject gameClearUI;
+    [SerializeField] private GameObject playTestUI;
     [SerializeField] private GameObject pauseButton;
 
     private bool isPausedByTutorial;
@@ -207,6 +208,9 @@ public class GameManager : MonoBehaviour
 
         if (gameClearUI != null)
             gameClearUI.SetActive(false);
+
+        if (playTestUI != null)
+            playTestUI.SetActive(false);
 
         if (titleUI != null)
             titleUI.SetActive(true);

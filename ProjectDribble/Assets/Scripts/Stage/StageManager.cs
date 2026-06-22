@@ -5,7 +5,8 @@ public class StageManager : MonoBehaviour
 {
     [Header("Stage Data")]
     [SerializeField] private StageDefinition[] stages;
-    [SerializeField] private int startStageIndex = 0;
+    [SerializeField] private int titleStageIndex = 0;
+    [SerializeField] private int startStageIndex = 1;
     [SerializeField] private int bossStageIndex = -1;
 
     [Header("System References")]
@@ -49,7 +50,7 @@ public class StageManager : MonoBehaviour
             return;
         }
 
-        StartStage(startStageIndex);
+        StartStage(titleStageIndex);
     }
 
     public void StartStage(int stageIndex)

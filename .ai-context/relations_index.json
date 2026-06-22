@@ -35618,6 +35618,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
     "from_class": "PaddleController",
+    "to_type": "GameManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
+    "from_class": "PaddleController",
     "to_type": "AddPaddleSpeed",
     "relation_type": "uses",
     "strength": 1
@@ -35695,6 +35702,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
     "from_class": "PaddleController",
+    "to_type": "GameManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
+    "from_class": "PaddleController",
     "to_type": "GetComponent",
     "relation_type": "uses",
     "strength": 1
@@ -35723,6 +35737,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
     "from_class": "PaddleController",
+    "to_type": "Instance",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
+    "from_class": "PaddleController",
     "to_type": "IsAnyCaptureTriggerEnabled",
     "relation_type": "uses",
     "strength": 1
@@ -35731,6 +35752,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
     "from_class": "PaddleController",
     "to_type": "IsColliderEnabled",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
+    "from_class": "PaddleController",
+    "to_type": "IsGameStarted",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
+    "from_class": "PaddleController",
+    "to_type": "IsInputPressed",
     "relation_type": "uses",
     "strength": 1
   },
@@ -36627,6 +36662,97 @@
     "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
     "from_class": "PlayerHealth",
     "to_type": "WaitForSeconds",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PointerDownButton.cs",
+    "from_class": "PointerDownButton",
+    "to_type": "IPointerDownHandler",
+    "relation_type": "implements",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PointerDownButton.cs",
+    "from_class": "PointerDownButton",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PointerDownButton.cs",
+    "from_class": "PointerDownButton",
+    "to_type": "ButtonAction",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PointerDownButton.cs",
+    "from_class": "PointerDownButton",
+    "to_type": "EventSystems",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PointerDownButton.cs",
+    "from_class": "PointerDownButton",
+    "to_type": "GameManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PointerDownButton.cs",
+    "from_class": "PointerDownButton",
+    "to_type": "IPointerDownHandler",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PointerDownButton.cs",
+    "from_class": "PointerDownButton",
+    "to_type": "NextStage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PointerDownButton.cs",
+    "from_class": "PointerDownButton",
+    "to_type": "OnPointerDown",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PointerDownButton.cs",
+    "from_class": "PointerDownButton",
+    "to_type": "PointerEventData",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PointerDownButton.cs",
+    "from_class": "PointerDownButton",
+    "to_type": "ResumeGame",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PointerDownButton.cs",
+    "from_class": "PointerDownButton",
+    "to_type": "RetryStage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PointerDownButton.cs",
+    "from_class": "PointerDownButton",
+    "to_type": "StartGame",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PointerDownButton.cs",
+    "from_class": "PointerDownButton",
+    "to_type": "UnityEngine",
     "relation_type": "uses",
     "strength": 1
   },

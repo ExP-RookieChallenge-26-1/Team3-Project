@@ -24083,9 +24083,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
     "path": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
     "file_name": "PaddleController.cs",
-    "content_hash": "f43d58aa2adad0bb2de5ae973811143914c721fc",
-    "size": 7595,
-    "line_count": 265,
+    "content_hash": "10f1176e6498dcb0d2658565d6a5e91d776025e5",
+    "size": 7672,
+    "line_count": 264,
     "namespace": "",
     "using_list": [
       "UnityEngine",
@@ -24248,8 +24248,12 @@
       "PointerInputReader",
       "SpriteRenderer",
       "TransparentAlpha",
-      "IsPaddleActive",
+      "IsInputPressed",
       "IsPressed",
+      "IsPaddleActive",
+      "GameManager",
+      "Instance",
+      "IsGameStarted",
       "VelocityX",
       "Vector2",
       "Velocity",
@@ -24295,7 +24299,9 @@
       "Vector3",
       "Color"
     ],
-    "singleton_access_types": [],
+    "singleton_access_types": [
+      "GameManager"
+    ],
     "string_literals": [
       "paddle_up",
       "roof_paddle",
@@ -24314,6 +24320,7 @@
     "guessed_roles": [
       "runtime",
       "player",
+      "manager",
       "data",
       "save-load"
     ],
@@ -24800,6 +24807,90 @@
     "summary_signals": [
       "런타임 컴포넌트",
       "전투 계열 로직 포함"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/PointerDownButton.cs",
+    "path": "ProjectDribble/Assets/Scripts/PointerDownButton.cs",
+    "file_name": "PointerDownButton.cs",
+    "content_hash": "cd752c2e2eb9bbd93b10215a085d3e6c0a4e0b02",
+    "size": 943,
+    "line_count": 41,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine",
+      "UnityEngine.EventSystems"
+    ],
+    "classes": [
+      {
+        "name": "PointerDownButton",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour",
+          "IPointerDownHandler"
+        ],
+        "interfaces": [
+          "IPointerDownHandler"
+        ],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "PointerDownButton",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "OnPointerDown"
+    ],
+    "fields": [],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "UnityEngine",
+      "EventSystems",
+      "IPointerDownHandler",
+      "GameManager",
+      "ButtonAction",
+      "StartGame",
+      "ResumeGame",
+      "NextStage",
+      "RetryStage",
+      "OnPointerDown",
+      "PointerEventData"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [],
+    "guessed_roles": [
+      "runtime",
+      "ui",
+      "manager",
+      "data",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "UI 관련 로직 포함",
+      "저장/불러오기 관련 로직 포함"
     ]
   },
   {

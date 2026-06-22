@@ -17,8 +17,8 @@ MonoBehaviour:
   gaugePerSegment: 30
   chargeTime: 2
   maxChargeCount: 2
-  baseWidth: 2.1
-  widthPerCharge: 3.9
+  baseWidth: 2.125
+  widthPerCharge: 3.875
   range: 28
   startOffset: 0
   laserAffectsBelowPaddle: 1

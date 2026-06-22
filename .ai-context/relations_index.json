@@ -27435,6 +27435,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "from_class": "BlockCell",
+    "to_type": "GameObject",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
+    "from_class": "BlockCell",
     "to_type": "MonoBehaviour",
     "relation_type": "inherits",
     "strength": 4
@@ -27450,6 +27457,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "from_class": "BlockCell",
     "to_type": "Activate",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
+    "from_class": "BlockCell",
+    "to_type": "AddComponent",
     "relation_type": "uses",
     "strength": 1
   },
@@ -27603,6 +27617,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "from_class": "BlockCell",
+    "to_type": "EnsureLaserTargetOverlay",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
+    "from_class": "BlockCell",
     "to_type": "Fixed",
     "relation_type": "uses",
     "strength": 1
@@ -27736,6 +27757,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "from_class": "BlockCell",
+    "to_type": "LaserTargetOverlay",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
+    "from_class": "BlockCell",
     "to_type": "Length",
     "relation_type": "uses",
     "strength": 1
@@ -27842,6 +27870,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "from_class": "BlockCell",
     "to_type": "SetDangerVisual",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
+    "from_class": "BlockCell",
+    "to_type": "SetLaserTargetPreview",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
+    "from_class": "BlockCell",
+    "to_type": "SetParent",
     "relation_type": "uses",
     "strength": 1
   },
@@ -28444,6 +28486,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "from_class": "BlockManager",
     "to_type": "GetBlockCell",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
+    "from_class": "BlockManager",
+    "to_type": "GetBottomBoundaryY",
     "relation_type": "uses",
     "strength": 1
   },
@@ -32230,6 +32279,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "from_class": "CeilingManager",
+    "to_type": "SetLaserTargetPreview",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
     "to_type": "SetSegmentRootVisualState",
     "relation_type": "uses",
     "strength": 1
@@ -32329,6 +32385,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "from_class": "CeilingManager",
     "to_type": "TrueForAll",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "TryGetAliveSegmentIndexAtWorldX",
     "relation_type": "uses",
     "strength": 1
   },
@@ -32510,6 +32573,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
     "from_class": "CeilingSegmentRootVisual",
+    "to_type": "Color",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
+    "from_class": "CeilingSegmentRootVisual",
     "to_type": "Keyframe",
     "relation_type": "creates",
     "strength": 2
@@ -32678,6 +32748,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
     "from_class": "CeilingSegmentRootVisual",
+    "to_type": "LaserTargetOverlay_",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
+    "from_class": "CeilingSegmentRootVisual",
     "to_type": "Lerp",
     "relation_type": "uses",
     "strength": 1
@@ -32742,6 +32819,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
     "from_class": "CeilingSegmentRootVisual",
     "to_type": "SetActiveState",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
+    "from_class": "CeilingSegmentRootVisual",
+    "to_type": "SetLaserTargetPreview",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34498,6 +34582,34 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
     "from_class": "LaserBlockEraser",
+    "to_type": "Add",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
+    "from_class": "LaserBlockEraser",
+    "to_type": "Approximately",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
+    "from_class": "LaserBlockEraser",
+    "to_type": "Awake",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
+    "from_class": "LaserBlockEraser",
+    "to_type": "BlockCell",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
+    "from_class": "LaserBlockEraser",
     "to_type": "BlockManager",
     "relation_type": "uses",
     "strength": 1
@@ -34505,7 +34617,56 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
     "from_class": "LaserBlockEraser",
-    "to_type": "Collider2D",
+    "to_type": "Blocks",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
+    "from_class": "LaserBlockEraser",
+    "to_type": "CalculateLaserTargets",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
+    "from_class": "LaserBlockEraser",
+    "to_type": "CeilingManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
+    "from_class": "LaserBlockEraser",
+    "to_type": "CeilingSegmentIndices",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
+    "from_class": "LaserBlockEraser",
+    "to_type": "CollectColumnTargets",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
+    "from_class": "LaserBlockEraser",
+    "to_type": "Collections",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
+    "from_class": "LaserBlockEraser",
+    "to_type": "Count",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
+    "from_class": "LaserBlockEraser",
+    "to_type": "EndPoint",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34519,14 +34680,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
     "from_class": "LaserBlockEraser",
-    "to_type": "EraseColumn",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
-    "from_class": "LaserBlockEraser",
-    "to_type": "FindLaserTargetAtCoord",
+    "to_type": "FindAnyObjectByType",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34540,6 +34694,27 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
     "from_class": "LaserBlockEraser",
+    "to_type": "Generic",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
+    "from_class": "LaserBlockEraser",
+    "to_type": "GetBlockCell",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
+    "from_class": "LaserBlockEraser",
+    "to_type": "GetBottomBoundaryY",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
+    "from_class": "LaserBlockEraser",
     "to_type": "GetCellHeight",
     "relation_type": "uses",
     "strength": 1
@@ -34547,14 +34722,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
     "from_class": "LaserBlockEraser",
-    "to_type": "GetCellSize",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
-    "from_class": "LaserBlockEraser",
-    "to_type": "GetComponentInParent",
+    "to_type": "GetPlayAreaTopY",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34582,14 +34750,14 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
     "from_class": "LaserBlockEraser",
-    "to_type": "ILaserHittable",
+    "to_type": "IsAlive",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
     "from_class": "LaserBlockEraser",
-    "to_type": "Interfaces",
+    "to_type": "IsFixed",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34604,13 +34772,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
     "from_class": "LaserBlockEraser",
     "to_type": "IsValidCoord",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
-    "from_class": "LaserBlockEraser",
-    "to_type": "LogWarning",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34638,14 +34799,28 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
     "from_class": "LaserBlockEraser",
-    "to_type": "OverlapBox",
+    "to_type": "SetCeilingTargetPreview",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
     "from_class": "LaserBlockEraser",
-    "to_type": "Physics2D",
+    "to_type": "SetLaserTargetPreview",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
+    "from_class": "LaserBlockEraser",
+    "to_type": "System",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
+    "from_class": "LaserBlockEraser",
+    "to_type": "TryGetAliveSegmentIndexAtWorldX",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34708,6 +34883,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "from_class": "LaserChargeController",
+    "to_type": "Abs",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
     "to_type": "AddGauge",
     "relation_type": "uses",
     "strength": 1
@@ -34765,6 +34947,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "from_class": "LaserChargeController",
     "to_type": "Clamp01",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
+    "to_type": "Collider2D",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34835,6 +35024,27 @@
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "from_class": "LaserChargeController",
     "to_type": "GetChargeRatio",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
+    "to_type": "GetComponentInParent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
+    "to_type": "GetComponentsInChildren",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
+    "to_type": "GetPaddleTopY",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34974,7 +35184,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "from_class": "LaserChargeController",
+    "to_type": "Length",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
     "to_type": "Log",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
+    "to_type": "MaxValue",
     "relation_type": "uses",
     "strength": 1
   },
@@ -35023,7 +35247,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "from_class": "LaserChargeController",
+    "to_type": "PaddleController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
     "to_type": "Play",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
+    "to_type": "PlayAreaTopY",
     "relation_type": "uses",
     "strength": 1
   },
@@ -35184,6 +35422,34 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
     "from_class": "LaserChargePreview",
+    "to_type": "Color",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "GameObject",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "Rect",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "Vector2",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
     "to_type": "Vector3",
     "relation_type": "creates",
     "strength": 2
@@ -35198,7 +35464,126 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
     "from_class": "LaserChargePreview",
+    "to_type": "AddComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "AddRange",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
     "to_type": "Awake",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "BlockCell",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "Blocks",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "bool",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "CalculateLaserTargets",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "CeilingSegmentIndices",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "Clamp01",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "Clear",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "ClearTargets",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "Collections",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "Color",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "Count",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "Create",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "Default",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "EnsureAreaRenderer",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "FindAnyObjectByType",
     "relation_type": "uses",
     "strength": 1
   },
@@ -35212,7 +35597,28 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
     "from_class": "LaserChargePreview",
+    "to_type": "Generic",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
     "to_type": "GetComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "GetPlayAreaTopY",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "GetRuntimeAreaSprite",
     "relation_type": "uses",
     "strength": 1
   },
@@ -35226,6 +35632,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
     "from_class": "LaserChargePreview",
+    "to_type": "IsAlive",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "LaserBlockEraser",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
     "to_type": "LaserData",
     "relation_type": "uses",
     "strength": 1
@@ -35233,7 +35653,77 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
     "from_class": "LaserChargePreview",
+    "to_type": "LaserHitPreviewResult",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "LaserPreviewAreaSprite",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "Lerp",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
     "to_type": "LineRenderer",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "Max",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "OnDisable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "PlayAreaTopY",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "PreviewArea",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "Rect",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "RefreshTargets",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "RemoveAt",
     "relation_type": "uses",
     "strength": 1
   },
@@ -35254,7 +35744,35 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
     "from_class": "LaserChargePreview",
-    "to_type": "SetPosition",
+    "to_type": "SetAreaAlpha",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "SetCeilingTargetPreview",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "SetLaserTargetPreview",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "SetParent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "SetTargetAlpha",
     "relation_type": "uses",
     "strength": 1
   },
@@ -35268,7 +35786,49 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
     "from_class": "LaserChargePreview",
+    "to_type": "Sin",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "Sprite",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "SpriteRenderer",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "System",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "Texture2D",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
     "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "from_class": "LaserChargePreview",
+    "to_type": "Update",
     "relation_type": "uses",
     "strength": 1
   },

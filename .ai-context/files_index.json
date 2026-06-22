@@ -18647,9 +18647,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "path": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "file_name": "BlockCell.cs",
-    "content_hash": "73a0152deba64cdc411bef6fad34d367fc0e0511",
-    "size": 6288,
-    "line_count": 256,
+    "content_hash": "af83d139634f1c417547d33be9bb30b89a3db8e1",
+    "size": 7682,
+    "line_count": 289,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -18687,6 +18687,9 @@
       "TakeDamage",
       "UpdateVisual",
       "UpdateStemConnectionVisual",
+      "SetLaserTargetPreview",
+      "EnsureLaserTargetOverlay",
+      "GameObject",
       "UpdateHpVisual",
       "ResetTransientVisuals",
       "OnDrawGizmosSelected"
@@ -18791,6 +18794,13 @@
         "is_static": false
       },
       {
+        "name": "color",
+        "type": "Color",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "blockCollider",
         "type": "Collider2D",
         "access": "internal",
@@ -18821,7 +18831,7 @@
     "public_field_count": 0,
     "get_component_count": 1,
     "find_call_count": 0,
-    "new_keyword_count": 2,
+    "new_keyword_count": 4,
     "coroutine_count": 0,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
@@ -18857,12 +18867,14 @@
       "IsAlive",
       "Awake",
       "GetComponent",
+      "EnsureLaserTargetOverlay",
       "Init",
       "Activate",
       "SetActive",
       "ResetTransientVisuals",
       "UpdateVisual",
       "Deactivate",
+      "SetLaserTargetPreview",
       "SetStemConnection",
       "UpdateStemConnectionVisual",
       "SetDangerVisual",
@@ -18891,6 +18903,9 @@
       "UpdateHpVisual",
       "Lerp",
       "SetState",
+      "LaserTargetOverlay",
+      "SetParent",
+      "AddComponent",
       "ResetVisual",
       "OnDrawGizmosSelected",
       "GetComponentsInChildren",
@@ -18902,13 +18917,15 @@
       "SpriteRenderer"
     ],
     "created_types": [
-      "Color"
+      "Color",
+      "GameObject"
     ],
     "singleton_access_types": [
       "SoundManager"
     ],
     "string_literals": [
-      "Visual"
+      "Visual",
+      "LaserTargetOverlay"
     ],
     "numeric_literals": [
       2,
@@ -18921,7 +18938,9 @@
       0,
       3,
       1.05,
-      0.3
+      0.3,
+      0.08,
+      0.04
     ],
     "guessed_roles": [
       "combat",
@@ -18940,9 +18959,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "file_name": "BlockManager.cs",
-    "content_hash": "dde6052e8edbb9098666339d72c238c675e5dbca",
-    "size": 46503,
-    "line_count": 1720,
+    "content_hash": "0b9cf236eb04971ff66ab2ed7a9ecb88685c0d69",
+    "size": 46395,
+    "line_count": 1722,
     "namespace": "",
     "using_list": [
       "System.Collections",
@@ -19071,6 +19090,7 @@
       "IsFixed",
       "IsNormal",
       "GetTopBoundaryY",
+      "GetBottomBoundaryY",
       "WorldXToGridX",
       "GetCellHeight",
       "DrawGridGizmos",
@@ -19311,20 +19331,6 @@
         "is_static": false
       },
       {
-        "name": "removedType",
-        "type": "BlockType",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "wasFixed",
-        "type": "bool",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
         "name": "radiusSqr",
         "type": "float",
         "access": "internal",
@@ -19539,7 +19545,6 @@
       "Coroutine",
       "Vector3",
       "StageBlockData.GrowthStemData",
-      "BlockType",
       "Vector2",
       "System",
       "Collections",
@@ -19572,6 +19577,7 @@
       "Spawn",
       "Safety",
       "GaugeManager",
+      "BlockType",
       "StemConnectionDirections",
       "Awake",
       "FindAnyObjectByType",
@@ -19652,8 +19658,6 @@
       "GetStemFlowBlockPrefabOverride",
       "CheckNormalBlocksCleared",
       "RemoveBlock",
-      "GetBlockCell",
-      "Destroy",
       "DeactivateBlock",
       "GetAbsorbableFlowBlockCoords",
       "IsAbsorbableFlowBlock",
@@ -19663,6 +19667,8 @@
       "TryRemoveAbsorbableFlowBlock",
       "IsStartCoord",
       "GetActiveStartCoords",
+      "GetBlockCell",
+      "GetBlock",
       "Collider2D",
       "Physics2D",
       "OverlapBox",
@@ -19680,7 +19686,6 @@
       "Enqueue",
       "Dequeue",
       "CreateCoreConnectionStateList",
-      "GetBlock",
       "GetDistanceFromBottom",
       "GetDanger01FromBottomDistance",
       "GetGlitchStageFromBottomDistance",
@@ -19713,12 +19718,14 @@
       "Height",
       "IsNormal",
       "GetTopBoundaryY",
+      "GetBottomBoundaryY",
       "WorldXToGridX",
       "FloorToInt",
       "GetCellHeight",
       "Gizmos",
       "DrawWireCube",
-      "FindObjectsOfType"
+      "FindObjectsOfType",
+      "Destroy"
     ],
     "component_access_types": [],
     "created_types": [
@@ -19772,9 +19779,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Block/BlockPool.cs",
     "path": "ProjectDribble/Assets/Scripts/Block/BlockPool.cs",
     "file_name": "BlockPool.cs",
-    "content_hash": "036d87e10c95d19080b9fe5b474a017fb4e533b6",
-    "size": 4896,
-    "line_count": 180,
+    "content_hash": "28a4db07b4bf5d62dc1d2f4f5432641a9eba2a86",
+    "size": 4904,
+    "line_count": 182,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -19824,7 +19831,7 @@
         "is_static": false
       },
       {
-        "name": "activeFlowBlocks",
+        "name": "activeBlocks",
         "type": "BlockCell[,]",
         "access": "private",
         "serialized": false,
@@ -21127,9 +21134,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "file_name": "CeilingManager.cs",
-    "content_hash": "fdbf378cba8a754f0fd8370a4215a47787d9165a",
-    "size": 24352,
-    "line_count": 793,
+    "content_hash": "911569575c8037cab394a951ec271a23756654eb",
+    "size": 25063,
+    "line_count": 810,
     "namespace": "",
     "using_list": [
       "System",
@@ -21178,6 +21185,8 @@
       "IsSegmentAliveByIndex",
       "TryGetSegmentXRange",
       "GetSegmentHpPercentByX",
+      "TryGetAliveSegmentIndexAtWorldX",
+      "SetLaserTargetPreview",
       "AreAllSegmentsDestroyed",
       "SetCoreConnected",
       "SetCoreConnections",
@@ -21345,6 +21354,13 @@
       {
         "name": "sprite",
         "type": "Sprite",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "visual",
+        "type": "CeilingSegmentRootVisual",
         "access": "internal",
         "serialized": false,
         "is_static": false
@@ -21632,6 +21648,8 @@
       "StartX",
       "EndX",
       "GetSegmentHpPercentByX",
+      "TryGetAliveSegmentIndexAtWorldX",
+      "SetLaserTargetPreview",
       "TrueForAll",
       "SetCoreConnected",
       "GetCoreByIndex",
@@ -21709,7 +21727,8 @@
       0.5,
       0.3,
       3,
-      0
+      0,
+      0.0001
     ],
     "guessed_roles": [
       "runtime",
@@ -21816,9 +21835,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
     "path": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
     "file_name": "CeilingSegmentRootVisual.cs",
-    "content_hash": "c959a3a40fd9616325ea260275e2dacc513c3256",
-    "size": 3776,
-    "line_count": 144,
+    "content_hash": "0d30847114ccc1944d1fa20fc698c0ce349d1793",
+    "size": 4947,
+    "line_count": 178,
     "namespace": "",
     "using_list": [
       "System.Collections.Generic",
@@ -21847,6 +21866,8 @@
       "Update",
       "Initialize",
       "BuildTiles",
+      "Color",
+      "SetLaserTargetPreview",
       "SetActiveState",
       "ApplyPulse",
       "RestoreVisual",
@@ -21883,6 +21904,20 @@
         "is_static": false
       },
       {
+        "name": "overlay",
+        "type": "SpriteRenderer",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "color",
+        "type": "Color",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "tile",
         "type": "SpriteRenderer",
         "access": "internal",
@@ -21908,7 +21943,7 @@
     "public_field_count": 0,
     "get_component_count": 0,
     "find_call_count": 0,
-    "new_keyword_count": 8,
+    "new_keyword_count": 9,
     "coroutine_count": 0,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
@@ -21918,6 +21953,7 @@
       "float",
       "Vector3",
       "SpriteRenderer",
+      "Color",
       "System",
       "Collections",
       "Generic",
@@ -21926,7 +21962,6 @@
       "Pulse",
       "AnimationCurve",
       "Keyframe",
-      "Color",
       "SegmentIndex",
       "TileCount",
       "Count",
@@ -21946,6 +21981,8 @@
       "Instantiate",
       "RootTile_",
       "Add",
+      "LaserTargetOverlay_",
+      "SetLaserTargetPreview",
       "SetActiveState",
       "RestoreVisual",
       "Lerp",
@@ -21956,19 +21993,23 @@
     "component_access_types": [],
     "created_types": [
       "AnimationCurve",
-      "Keyframe"
+      "Keyframe",
+      "Color"
     ],
     "singleton_access_types": [],
     "string_literals": [
       "Tiles",
       "Pulse",
-      "RootTile_{i}"
+      "RootTile_{i}",
+      "LaserTargetOverlay_{i}"
     ],
     "numeric_literals": [
       0,
       0.15,
       1,
-      0.55
+      0.55,
+      0.08,
+      0.04
     ],
     "guessed_roles": [
       "runtime",
@@ -23344,15 +23385,25 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
     "file_name": "LaserBlockEraser.cs",
-    "content_hash": "598c8c4da663f667b9a0d5494e8e058cf2ec3899",
-    "size": 3310,
-    "line_count": 123,
+    "content_hash": "d74fd36b1c16ff7f253bfcc569f1116b3ff69f8c",
+    "size": 4214,
+    "line_count": 124,
     "namespace": "",
     "using_list": [
-      "Interfaces",
+      "System.Collections.Generic",
       "UnityEngine"
     ],
     "classes": [
+      {
+        "name": "LaserHitPreviewResult",
+        "kind": "class",
+        "access": "internal",
+        "base_types": [],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      },
       {
         "name": "LaserBlockEraser",
         "kind": "class",
@@ -23369,30 +23420,33 @@
     "main_class_name": "LaserBlockEraser",
     "unity_type": "MonoBehaviour",
     "methods": [
+      "Awake",
       "EraseByLaser",
+      "CalculateLaserTargets",
       "Vector2",
-      "EraseColumn",
-      "Vector2Int",
-      "FindLaserTargetAtCoord"
+      "GetPlayAreaTopY",
+      "SetCeilingTargetPreview",
+      "CollectColumnTargets",
+      "Vector2Int"
     ],
     "fields": [
       {
+        "name": "EndPoint",
+        "type": "Vector2",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "block",
+        "type": "BlockCell",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "start",
         "type": "Vector2",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "leftX",
-        "type": "float",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
-        "name": "rightX",
-        "type": "float",
         "access": "internal",
         "serialized": false,
         "is_static": false
@@ -23407,50 +23461,65 @@
     ],
     "properties": [],
     "events": [],
-    "unity_messages": [],
+    "unity_messages": [
+      "Awake"
+    ],
     "has_update": false,
     "has_fixed_update": false,
     "has_late_update": false,
-    "has_awake": false,
+    "has_awake": true,
     "has_start": false,
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 0,
-    "public_field_count": 0,
+    "public_field_count": 1,
     "get_component_count": 0,
-    "find_call_count": 0,
+    "find_call_count": 2,
     "new_keyword_count": 2,
     "coroutine_count": 0,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
       "Vector2",
+      "BlockCell",
       "float",
-      "Interfaces",
+      "System",
+      "Collections",
+      "Generic",
       "UnityEngine",
+      "Blocks",
+      "CeilingSegmentIndices",
+      "EndPoint",
       "BlockManager",
+      "CeilingManager",
+      "Awake",
+      "FindAnyObjectByType",
       "EraseByLaser",
+      "CalculateLaserTargets",
+      "Count",
+      "IsAlive",
+      "OnLaserHit",
       "WorldXToGridX",
-      "Max",
       "Min",
+      "Max",
+      "GetBottomBoundaryY",
       "GetTopBoundaryY",
-      "EraseColumn",
+      "CollectColumnTargets",
+      "Approximately",
+      "TryGetAliveSegmentIndexAtWorldX",
+      "Add",
+      "GetPlayAreaTopY",
+      "SetCeilingTargetPreview",
+      "SetLaserTargetPreview",
       "Height",
       "Vector2Int",
       "IsValidCoord",
       "IsOccupied",
       "Vector3",
       "GridToWorld",
-      "ILaserHittable",
-      "FindLaserTargetAtCoord",
-      "LogWarning",
-      "OnLaserHit",
-      "GetCellHeight",
-      "GetCellSize",
-      "Collider2D",
-      "Physics2D",
-      "OverlapBox",
-      "GetComponentInParent"
+      "GetBlockCell",
+      "IsFixed",
+      "GetCellHeight"
     ],
     "component_access_types": [],
     "created_types": [
@@ -23458,34 +23527,31 @@
       "Vector2Int"
     ],
     "singleton_access_types": [],
-    "string_literals": [
-      "occupied는 true인데 ILaserHittable을 찾지 못함: "
-    ],
+    "string_literals": [],
     "numeric_literals": [
       0,
-      0.5,
-      0.8
+      0.5
     ],
     "guessed_roles": [
       "runtime",
       "combat",
       "manager",
-      "data",
       "save-load"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
       "전투 계열 로직 포함",
-      "저장/불러오기 관련 로직 포함"
+      "저장/불러오기 관련 로직 포함",
+      "Find 계열 탐색 사용"
     ]
   },
   {
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "file_name": "LaserChargeController.cs",
-    "content_hash": "5b5c8ce043891c1e9e0cd8963cc0dafdb34dc413",
-    "size": 7898,
-    "line_count": 333,
+    "content_hash": "fc02dc1bd88c878fe21859596e1d99edcfc1309a",
+    "size": 9158,
+    "line_count": 368,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -23520,6 +23586,7 @@
       "HandleBallReleased",
       "Update",
       "UpdateChargePreview",
+      "GetPaddleTopY",
       "CheckTimer",
       "TryIncreaseChargeLevel",
       "IncreaseChargeLevel",
@@ -23568,6 +23635,27 @@
         "is_static": false
       },
       {
+        "name": "closest",
+        "type": "Collider2D",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "closestDistance",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "candidate",
+        "type": "Collider2D",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "returnAmount",
         "type": "int",
         "access": "internal",
@@ -23600,7 +23688,7 @@
     "serialize_field_count": 0,
     "public_field_count": 0,
     "get_component_count": 0,
-    "find_call_count": 2,
+    "find_call_count": 3,
     "new_keyword_count": 0,
     "coroutine_count": 0,
     "singleton_candidate": false,
@@ -23609,6 +23697,7 @@
       "bool",
       "float",
       "int",
+      "Collider2D",
       "DefaultNamespace",
       "ScriptableObjects",
       "UnityEngine",
@@ -23656,6 +23745,14 @@
       "TryIncreaseChargeLevel",
       "GetWidthForCharge",
       "Show",
+      "GetPaddleTopY",
+      "PlayAreaTopY",
+      "PaddleController",
+      "GetComponentInParent",
+      "GetComponentsInChildren",
+      "MaxValue",
+      "Length",
+      "Abs",
       "FilledGaugeSegments",
       "IncreaseChargeLevel",
       "TryReduceGaugeLevel",
@@ -23706,11 +23803,12 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
     "file_name": "LaserChargePreview.cs",
-    "content_hash": "35d7d5a48526cb7624e7325c34482324d7abd490",
-    "size": 2114,
-    "line_count": 85,
+    "content_hash": "e34678eb60f68b7e5246eeca6550d806a682e0ca",
+    "size": 6737,
+    "line_count": 196,
     "namespace": "",
     "using_list": [
+      "System.Collections.Generic",
       "ScriptableObjects",
       "UnityEngine"
     ],
@@ -23731,15 +23829,105 @@
     "main_class_name": "LaserChargePreview",
     "unity_type": "MonoBehaviour",
     "methods": [
+      "Range",
       "Awake",
+      "Update",
       "Show",
       "Vector3",
-      "Hide"
+      "Hide",
+      "RefreshTargets",
+      "SetTargetAlpha",
+      "ClearTargets",
+      "EnsureAreaRenderer",
+      "GameObject",
+      "Color",
+      "SetAreaAlpha",
+      "GetRuntimeAreaSprite",
+      "Rect",
+      "Vector2",
+      "OnDisable"
     ],
     "fields": [
       {
-        "name": "halfWidth",
+        "name": "laserOrigin",
+        "type": "Vector2",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "laserWidth",
         "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "laserRange",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "laserStartOffset",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "laserBottomOffset",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "affectsBelowPaddle",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "nextTargetRefreshTime",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "runtimeAreaSprite",
+        "type": "Sprite",
+        "access": "private",
+        "serialized": false,
+        "is_static": true
+      },
+      {
+        "name": "bottomY",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "height",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "block",
+        "type": "BlockCell",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "color",
+        "type": "Color",
         "access": "internal",
         "serialized": false,
         "is_static": false
@@ -23748,63 +23936,127 @@
     "properties": [],
     "events": [],
     "unity_messages": [
-      "Awake"
+      "Awake",
+      "Update",
+      "OnDisable"
     ],
-    "has_update": false,
+    "has_update": true,
     "has_fixed_update": false,
     "has_late_update": false,
     "has_awake": true,
     "has_start": false,
     "has_on_enable": false,
-    "has_on_disable": false,
+    "has_on_disable": true,
     "serialize_field_count": 0,
     "public_field_count": 0,
     "get_component_count": 1,
-    "find_call_count": 0,
-    "new_keyword_count": 4,
+    "find_call_count": 1,
+    "new_keyword_count": 6,
     "coroutine_count": 0,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
+      "Vector2",
       "float",
+      "bool",
+      "Sprite",
+      "BlockCell",
+      "Color",
+      "System",
+      "Collections",
+      "Generic",
       "ScriptableObjects",
       "UnityEngine",
       "LaserData",
       "LineRenderer",
+      "SpriteRenderer",
+      "LaserBlockEraser",
+      "PlayAreaTopY",
+      "GetPlayAreaTopY",
       "Awake",
       "GetComponent",
+      "FindAnyObjectByType",
+      "EnsureAreaRenderer",
       "Hide",
+      "Update",
+      "Sin",
+      "Max",
+      "RefreshTargets",
+      "SetAreaAlpha",
+      "Lerp",
+      "SetTargetAlpha",
       "Show",
-      "Vector2",
       "SetActive",
       "Vector3",
-      "SetPosition"
+      "ClearTargets",
+      "LaserHitPreviewResult",
+      "CalculateLaserTargets",
+      "AddRange",
+      "Blocks",
+      "CeilingSegmentIndices",
+      "Count",
+      "IsAlive",
+      "RemoveAt",
+      "SetLaserTargetPreview",
+      "SetCeilingTargetPreview",
+      "Clear",
+      "PreviewArea",
+      "SetParent",
+      "AddComponent",
+      "GetRuntimeAreaSprite",
+      "Default",
+      "Clamp01",
+      "Create",
+      "Texture2D",
+      "Rect",
+      "LaserPreviewAreaSprite",
+      "OnDisable"
     ],
     "component_access_types": [
       "LineRenderer"
     ],
     "created_types": [
-      "Vector3"
+      "Vector3",
+      "GameObject",
+      "Color",
+      "Rect",
+      "Vector2"
     ],
     "singleton_access_types": [],
-    "string_literals": [],
+    "string_literals": [
+      "PreviewArea",
+      "Default",
+      "LaserPreviewAreaSprite"
+    ],
     "numeric_literals": [
-      5,
       0,
+      1,
+      0.12,
+      0.35,
+      0.25,
+      0.8,
+      8,
+      0.075,
       0.5,
-      2,
-      3,
-      4
+      0.01,
+      10,
+      0.05,
+      0.02
     ],
     "guessed_roles": [
-      "data",
       "runtime",
+      "data",
+      "player",
+      "combat",
       "save-load"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
+      "Update 기반 처리 존재",
+      "전투 계열 로직 포함",
       "저장/불러오기 관련 로직 포함",
-      "컴포넌트 조회 사용"
+      "컴포넌트 조회 사용",
+      "Find 계열 탐색 사용"
     ]
   },
   {

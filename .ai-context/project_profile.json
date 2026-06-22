@@ -5,7 +5,7 @@
   "total_cs_files": 179,
   "mono_behaviour_files": 149,
   "scriptable_object_files": 10,
-  "files_with_update": 52,
+  "files_with_update": 53,
   "files_with_fixed_update": 1,
   "files_with_late_update": 9,
   "singleton_candidates": 3,
@@ -14,11 +14,11 @@
   "save_load_related_classes": 96,
   "role_counts": {
     "runtime": 158,
-    "player": 80,
-    "combat": 107,
+    "player": 81,
+    "combat": 108,
     "save-load": 96,
     "manager": 64,
-    "data": 58,
+    "data": 57,
     "ui": 97,
     "scene": 4,
     "network": 2
@@ -27,14 +27,14 @@
     {
       "class_name": "BlockManager",
       "file_id": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
-      "relation_count": 196,
-      "referenced_type_count": 190
+      "relation_count": 197,
+      "referenced_type_count": 191
     },
     {
       "class_name": "CeilingManager",
       "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
-      "relation_count": 169,
-      "referenced_type_count": 163
+      "relation_count": 171,
+      "referenced_type_count": 165
     },
     {
       "class_name": "BallCapturedDribbleController",

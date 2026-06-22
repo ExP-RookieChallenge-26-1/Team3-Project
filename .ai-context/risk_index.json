@@ -895,6 +895,29 @@
     "risk_score": 79
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
+    "class_name": "LaserChargePreview",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "find-heavy",
+      "magic-number-heavy",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
+      "Find 계열 탐색 사용",
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 78
+  },
+  {
     "file_id": "PaddlePrototype/Assets/Scripts/paddle_movement_ground.cs",
     "class_name": "GroundPadController",
     "risk_flags": [
@@ -1093,6 +1116,29 @@
     "risk_reasons": [
       "참조 타입 또는 관계 수가 많음",
       "public 필드 노출 수가 많음",
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 76
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
+    "class_name": "CeilingSegmentRootVisual",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "magic-number-heavy",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "ui-runtime-mixed",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
       "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
       "초기화 순서에 민감할 가능성",
       "저장/불러오기 관련 로직 포함",
@@ -1370,27 +1416,6 @@
   {
     "file_id": "PaddlePrototype/Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_ExampleScript_01.cs",
     "class_name": "TMP_ExampleScript_01",
-    "risk_flags": [
-      "update-heavy",
-      "high-coupling",
-      "init-order-sensitive",
-      "save-load-sensitive",
-      "ui-runtime-mixed",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "Unity 업데이트 루프 사용",
-      "참조 타입 또는 관계 수가 많음",
-      "초기화 순서에 민감할 가능성",
-      "저장/불러오기 관련 로직 포함",
-      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 68
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
-    "class_name": "CeilingSegmentRootVisual",
     "risk_flags": [
       "update-heavy",
       "high-coupling",
@@ -1864,6 +1889,25 @@
     "risk_score": 60
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
+    "class_name": "LaserBlockEraser",
+    "risk_flags": [
+      "high-coupling",
+      "find-heavy",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "Find 계열 탐색 사용",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 60
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserShooter.cs",
     "class_name": "LaserShooter",
     "risk_flags": [
@@ -1881,6 +1925,25 @@
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 60
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
+    "class_name": "BlockCell",
+    "risk_flags": [
+      "high-coupling",
+      "magic-number-heavy",
+      "large-class",
+      "init-order-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+      "초기화 순서에 민감할 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 59
   },
   {
     "file_id": "PaddlePrototype/Assets/TextMesh Pro/Examples & Extras/Scripts/TMPro_InstructionOverlay.cs",
@@ -2561,23 +2624,6 @@
     "risk_score": 44
   },
   {
-    "file_id": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
-    "class_name": "BlockCell",
-    "risk_flags": [
-      "high-coupling",
-      "magic-number-heavy",
-      "init-order-sensitive",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "참조 타입 또는 관계 수가 많음",
-      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
-      "초기화 순서에 민감할 가능성",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 44
-  },
-  {
     "file_id": "ProjectDribble/Assets/Scripts/Sound/SoundId.cs",
     "class_name": "SoundId",
     "risk_flags": [
@@ -2704,38 +2750,6 @@
     ],
     "risk_reasons": [
       "참조 타입 또는 관계 수가 많음",
-      "저장/불러오기 관련 로직 포함",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 38
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserBlockEraser.cs",
-    "class_name": "LaserBlockEraser",
-    "risk_flags": [
-      "high-coupling",
-      "save-load-sensitive",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "참조 타입 또는 관계 수가 많음",
-      "저장/불러오기 관련 로직 포함",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 38
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargePreview.cs",
-    "class_name": "LaserChargePreview",
-    "risk_flags": [
-      "magic-number-heavy",
-      "init-order-sensitive",
-      "save-load-sensitive",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
-      "초기화 순서에 민감할 가능성",
       "저장/불러오기 관련 로직 포함",
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],

@@ -15655,9 +15655,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallCapturedDribbleController.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallCapturedDribbleController.cs",
     "file_name": "BallCapturedDribbleController.cs",
-    "content_hash": "d1717cb531eaec6970a20815eea5a1f18c71562a",
-    "size": 23648,
-    "line_count": 758,
+    "content_hash": "0ce7f6553ac5af0e049cfed072f8536155446679",
+    "size": 23939,
+    "line_count": 769,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -15719,7 +15719,6 @@
       "GetCapturedReleaseSpeed",
       "GetAlignedReleaseDirection",
       "ApplyCapturedPaddleHit",
-      "SoundPlayOptions",
       "SuppressInactiveCaptureUntilPaddleActive",
       "ClearInactiveCaptureSuppression",
       "GetDribbleBounceDirection",
@@ -15994,7 +15993,7 @@
     "public_field_count": 0,
     "get_component_count": 0,
     "find_call_count": 0,
-    "new_keyword_count": 5,
+    "new_keyword_count": 4,
     "coroutine_count": 0,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
@@ -16133,13 +16132,16 @@
       "CapturedPaddleHitCooldown",
       "CapturedPaddleHit",
       "Skipped",
-      "SoundManager",
-      "Instance",
-      "Play",
-      "SoundId",
-      "BallBounce",
       "SoundPlayOptions",
       "GetSpeedRatio",
+      "FeedbackManager",
+      "Instance",
+      "PlayBallBounceFeedback",
+      "BallFeedbackSurface",
+      "SoundId",
+      "BallBounce",
+      "SoundManager",
+      "Play",
       "TryIncreaseSpeedFromDribble",
       "Apply",
       "CaptureUnblocked",
@@ -16166,10 +16168,10 @@
     "component_access_types": [],
     "created_types": [
       "Color",
-      "Vector2",
-      "SoundPlayOptions"
+      "Vector2"
     ],
     "singleton_access_types": [
+      "FeedbackManager",
       "SoundManager"
     ],
     "string_literals": [
@@ -16229,9 +16231,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "file_name": "BallCollisionHandler.cs",
-    "content_hash": "a15c0ccffd8b4eda5a71a08a7f5a35146fc11352",
-    "size": 8810,
-    "line_count": 286,
+    "content_hash": "58a8022a2bc6d28751ed70a26b09efcb35c98161",
+    "size": 9786,
+    "line_count": 310,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -16263,6 +16265,7 @@
       "CreateResult",
       "IsFloorCollider",
       "GetCollisionSound",
+      "PlayCollisionFeedback",
       "IsFloorName"
     ],
     "fields": [
@@ -16335,6 +16338,13 @@
         "access": "internal",
         "serialized": false,
         "is_static": false
+      },
+      {
+        "name": "surface",
+        "type": "BallFeedbackSurface",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
       }
     ],
     "properties": [],
@@ -16366,6 +16376,7 @@
       "SoundPlayOptions",
       "bool",
       "PaddleController",
+      "BallFeedbackSurface",
       "DefaultNamespace",
       "Interfaces",
       "UnityEngine",
@@ -16383,9 +16394,7 @@
       "BlockCell",
       "GetComponentInParent",
       "IsFixed",
-      "SoundManager",
-      "Instance",
-      "Play",
+      "PlayCollisionFeedback",
       "PaddleBallReflector",
       "TryStartPendingCaptureFromPaddleHit",
       "ReflectUp",
@@ -16424,6 +16433,16 @@
       "CeilingBrick",
       "WallBallHitReceiver",
       "BallGroundBounce",
+      "FeedbackManager",
+      "Instance",
+      "SoundManager",
+      "Play",
+      "Other",
+      "Paddle",
+      "Ceiling",
+      "Block",
+      "Wall",
+      "PlayBallBounceFeedback",
       "Contains"
     ],
     "component_access_types": [
@@ -16435,6 +16454,7 @@
       "BallCollisionResult"
     ],
     "singleton_access_types": [
+      "FeedbackManager",
       "SoundManager"
     ],
     "string_literals": [
@@ -17583,9 +17603,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "file_name": "BallRecallInput.cs",
-    "content_hash": "1cf9bc560cd34d4fa0bc58651e7478cfcae68f93",
-    "size": 4451,
-    "line_count": 198,
+    "content_hash": "673a9c3eac50881d22876fffa32e277e64f2f1a8",
+    "size": 4976,
+    "line_count": 212,
     "namespace": "",
     "using_list": [
       "UnityEngine",
@@ -17617,6 +17637,7 @@
       "HoldDownSwipe",
       "CancelHold",
       "EndPointer",
+      "OnDisable",
       "RecallBall",
       "IsRecallTutorialActive",
       "IsPointerOverUI"
@@ -17677,12 +17698,20 @@
         "access": "internal",
         "serialized": false,
         "is_static": false
+      },
+      {
+        "name": "progress",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
       }
     ],
     "properties": [],
     "events": [],
     "unity_messages": [
-      "Update"
+      "Update",
+      "OnDisable"
     ],
     "has_update": true,
     "has_fixed_update": false,
@@ -17690,7 +17719,7 @@
     "has_awake": false,
     "has_start": false,
     "has_on_enable": false,
-    "has_on_disable": false,
+    "has_on_disable": true,
     "serialize_field_count": 0,
     "public_field_count": 0,
     "get_component_count": 0,
@@ -17724,25 +17753,30 @@
       "MovePointer",
       "EndPointer",
       "Pointer",
+      "FeedbackManager",
+      "Instance",
+      "StopRecallHoldFeedback",
       "Log",
       "Abs",
       "HoldDownSwipe",
       "IsRecallTutorialActive",
+      "StartRecallHoldFeedback",
       "Holding",
       "Down",
       "RecallBall",
+      "OnDisable",
       "Recall",
       "Ball",
       "LogWarning",
       "RecallBallToPaddle",
       "GameManager",
-      "Instance",
       "EventSystem",
       "IsPointerOverGameObject"
     ],
     "component_access_types": [],
     "created_types": [],
     "singleton_access_types": [
+      "FeedbackManager",
       "GameManager"
     ],
     "string_literals": [
@@ -17759,7 +17793,8 @@
       80,
       1.5,
       0.4,
-      0
+      0,
+      1
     ],
     "guessed_roles": [
       "runtime",
@@ -18730,9 +18765,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "path": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "file_name": "BlockCell.cs",
-    "content_hash": "af83d139634f1c417547d33be9bb30b89a3db8e1",
-    "size": 7682,
-    "line_count": 289,
+    "content_hash": "82c5bec67e9213bc78f5f95b7f8cd2320b3adb46",
+    "size": 7821,
+    "line_count": 292,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -18983,6 +19018,8 @@
       "TakeDamage",
       "PlayFlash",
       "AddGauge",
+      "FeedbackManager",
+      "PlayBlockBreakFeedback",
       "UpdateHpVisual",
       "Lerp",
       "SetState",
@@ -19004,7 +19041,8 @@
       "GameObject"
     ],
     "singleton_access_types": [
-      "SoundManager"
+      "SoundManager",
+      "FeedbackManager"
     ],
     "string_literals": [
       "Visual",
@@ -21356,9 +21394,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "file_name": "CeilingManager.cs",
-    "content_hash": "911569575c8037cab394a951ec271a23756654eb",
-    "size": 25063,
-    "line_count": 810,
+    "content_hash": "fa6d4563163a596eb41a6b0e23b09bd888386874",
+    "size": 25249,
+    "line_count": 814,
     "namespace": "",
     "using_list": [
       "System",
@@ -21860,8 +21898,10 @@
       "AddGauge",
       "GaugePerSegment",
       "GetHpPercent",
-      "CeilingHit",
       "Clamp01",
+      "FeedbackManager",
+      "PlayCeilingHitFeedback",
+      "CeilingHit",
       "AreAllSegmentsDestroyed",
       "Die",
       "IsSegmentDestroyedByX",
@@ -21917,7 +21957,8 @@
       "Vector3"
     ],
     "singleton_access_types": [
-      "SoundManager"
+      "SoundManager",
+      "FeedbackManager"
     ],
     "string_literals": [
       "Data",
@@ -22682,12 +22723,481 @@
     ]
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "path": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "file_name": "FeedbackManager.cs",
+    "content_hash": "05d303c4fcdab227f32eb61d8d664e0a0931c95d",
+    "size": 7144,
+    "line_count": 212,
+    "namespace": "",
+    "using_list": [
+      "System.Collections.Generic",
+      "DefaultNamespace",
+      "UnityEngine",
+      "UnityEngine.SceneManagement",
+      "UnityEngine.UI"
+    ],
+    "classes": [
+      {
+        "name": "FeedbackManager",
+        "kind": "class",
+        "access": "internal",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "FeedbackManager",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Range",
+      "Min",
+      "EnsureInstance",
+      "GameObject",
+      "Awake",
+      "OnEnable",
+      "Start",
+      "OnDisable",
+      "PlayUIButtonFeedback",
+      "PlayBallBounceFeedback",
+      "PlayCeilingHitFeedback",
+      "PlayBlockBreakFeedback",
+      "PlayLaserFireFeedback",
+      "PlayGaugeSegmentFilledFeedback",
+      "StartRecallHoldFeedback",
+      "StopRecallHoldFeedback",
+      "VibrateOneShot",
+      "HandleSceneLoaded",
+      "RegisterSceneButtons",
+      "HandleUIButtonClicked"
+    ],
+    "fields": [
+      {
+        "name": "intensities",
+        "type": "float[]",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [
+      {
+        "access": "internal",
+        "type": "FeedbackManager",
+        "name": "Instance"
+      }
+    ],
+    "events": [],
+    "unity_messages": [
+      "Awake",
+      "OnEnable",
+      "Start",
+      "OnDisable"
+    ],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": true,
+    "has_on_enable": true,
+    "has_on_disable": true,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 1,
+    "new_keyword_count": 1,
+    "coroutine_count": 0,
+    "singleton_candidate": true,
+    "dont_destroy_on_load": true,
+    "referenced_types": [
+      "float",
+      "System",
+      "Collections",
+      "Generic",
+      "DefaultNamespace",
+      "UnityEngine",
+      "SceneManagement",
+      "UI",
+      "BallFeedbackSurface",
+      "Paddle",
+      "Wall",
+      "Block",
+      "Ceiling",
+      "Other",
+      "Instance",
+      "Event",
+      "Vibration",
+      "Durations",
+      "Min",
+      "Cooldowns",
+      "Laser",
+      "Weak",
+      "Strong",
+      "Pattern",
+      "Button",
+      "RuntimeInitializeOnLoadMethod",
+      "RuntimeInitializeLoadType",
+      "AfterSceneLoad",
+      "EnsureInstance",
+      "FindAnyObjectByType",
+      "AddComponent",
+      "Awake",
+      "Destroy",
+      "DontDestroyOnLoad",
+      "OnEnable",
+      "SceneManager",
+      "HandleSceneLoaded",
+      "Start",
+      "RegisterSceneButtons",
+      "OnDisable",
+      "StopRecallHoldFeedback",
+      "PlayUIButtonFeedback",
+      "SoundManager",
+      "Play",
+      "SoundId",
+      "UIClick",
+      "VibrateOneShot",
+      "PlayBallBounceFeedback",
+      "SoundPlayOptions",
+      "Clamp01",
+      "PlayCeilingHitFeedback",
+      "CeilingHit",
+      "PlayBlockBreakFeedback",
+      "BlockBreak",
+      "PlayLaserFireFeedback",
+      "LaserFire",
+      "VibrationManager",
+      "Length",
+      "TryPlayWaveform",
+      "PlayGaugeSegmentFilledFeedback",
+      "GaugeSegmentFilled",
+      "StartRecallHoldFeedback",
+      "UpdateProgressiveVibration",
+      "StopProgressiveVibration",
+      "TryPlayOneShot",
+      "Scene",
+      "LoadSceneMode",
+      "Clear",
+      "FindObjectsByType",
+      "FindObjectsInactive",
+      "Include",
+      "VibrationToggle",
+      "Add",
+      "AddListener",
+      "HandleUIButtonClicked"
+    ],
+    "component_access_types": [],
+    "created_types": [
+      "GameObject"
+    ],
+    "singleton_access_types": [
+      "SoundManager",
+      "VibrationManager"
+    ],
+    "string_literals": [
+      "Event Vibration",
+      "Durations (ms)",
+      "Cooldowns",
+      "Laser Weak-Strong-Weak Pattern",
+      "ui",
+      "ball-paddle",
+      "ball-wall",
+      "ball-block",
+      "ceiling",
+      "laser",
+      "gauge-ready",
+      "VibrationToggle"
+    ],
+    "numeric_literals": [
+      0,
+      1,
+      0.2,
+      0.35,
+      0.65,
+      0.45,
+      0.55,
+      0.8,
+      15,
+      22,
+      20,
+      30,
+      18,
+      0.03,
+      0.08,
+      0.12,
+      0.1,
+      25,
+      40,
+      0.4
+    ],
+    "guessed_roles": [
+      "runtime",
+      "manager",
+      "scene",
+      "ui",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "싱글톤 후보",
+      "UI 관련 로직 포함",
+      "저장/불러오기 관련 로직 포함",
+      "Find 계열 탐색 사용"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "path": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "file_name": "VibrationManager.cs",
+    "content_hash": "06b8bf87108c0ac93e604470fcad9e9603d9fcb2",
+    "size": 8352,
+    "line_count": 275,
+    "namespace": "",
+    "using_list": [
+      "System",
+      "System.Collections.Generic",
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "VibrationManager",
+        "kind": "class",
+        "access": "internal",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "VibrationManager",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Range",
+      "Min",
+      "EnsureInstance",
+      "GameObject",
+      "Awake",
+      "OnApplicationPause",
+      "OnApplicationQuit",
+      "SetVibrationEnabled",
+      "TryPlayOneShot",
+      "NormalizeIntensityToAmplitude",
+      "TryPlayWaveform",
+      "UpdateProgressiveVibration",
+      "StopProgressiveVibration",
+      "PlayOneShot",
+      "PlayWaveform",
+      "CancelVibration",
+      "CanPlay",
+      "GetVibrator",
+      "GetAndroidSdkInt"
+    ],
+    "fields": [
+      {
+        "name": "VibrationEnabledKey",
+        "type": "string",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "nextProgressivePulseTime",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "progressiveFeedbackActive",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "peakIntensity",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "amplitudes",
+        "type": "int[]",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [
+      {
+        "access": "internal",
+        "type": "VibrationManager",
+        "name": "Instance"
+      },
+      {
+        "access": "public",
+        "type": "bool",
+        "name": "VibrationEnabled"
+      }
+    ],
+    "events": [],
+    "unity_messages": [
+      "Awake"
+    ],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 1,
+    "new_keyword_count": 1,
+    "coroutine_count": 0,
+    "singleton_candidate": true,
+    "dont_destroy_on_load": true,
+    "referenced_types": [
+      "string",
+      "float",
+      "bool",
+      "int",
+      "System",
+      "Collections",
+      "Generic",
+      "UnityEngine",
+      "Instance",
+      "VibrationEnabledKey",
+      "VibrationEnabled",
+      "Amplitude",
+      "Progressive",
+      "Feedback",
+      "Min",
+      "RuntimeInitializeOnLoadMethod",
+      "RuntimeInitializeLoadType",
+      "AfterSceneLoad",
+      "EnsureInstance",
+      "FindAnyObjectByType",
+      "AddComponent",
+      "Awake",
+      "Destroy",
+      "DontDestroyOnLoad",
+      "PlayerPrefs",
+      "GetInt",
+      "OnApplicationPause",
+      "CancelVibration",
+      "OnApplicationQuit",
+      "SetVibrationEnabled",
+      "SetInt",
+      "Save",
+      "TryPlayOneShot",
+      "CanPlay",
+      "PlayOneShot",
+      "NormalizeIntensityToAmplitude",
+      "TryPlayWaveform",
+      "Length",
+      "Max",
+      "PlayWaveform",
+      "UpdateProgressiveVibration",
+      "Clamp01",
+      "Lerp",
+      "Math",
+      "StopProgressiveVibration",
+      "Clamp",
+      "RoundToInt",
+      "UNITY_ANDROID",
+      "Application",
+      "AndroidJavaObject",
+      "GetVibrator",
+      "Call",
+      "GetAndroidSdkInt",
+      "AndroidJavaClass",
+      "VibrationEffect",
+      "CallStatic",
+      "Exception",
+      "LogWarning",
+      "Android",
+      "Message",
+      "Handheld",
+      "Vibrate",
+      "IsNullOrEmpty",
+      "TryGetValue",
+      "UnityPlayer",
+      "GetStatic",
+      "Build",
+      "VERSION",
+      "SDK_INT"
+    ],
+    "component_access_types": [],
+    "created_types": [
+      "GameObject"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "VibrationEnabled",
+      "Amplitude",
+      "Progressive Feedback",
+      "hasVibrator",
+      "android.os.VibrationEffect",
+      "createOneShot",
+      "vibrate",
+      "VibrationManager: Android vibration failed. {exception.Message}",
+      "createWaveform",
+      "VibrationManager: Android waveform failed. {exception.Message}",
+      "cancel",
+      "VibrationManager: Android vibration cancellation failed. {exception.Message}",
+      "com.unity3d.player.UnityPlayer",
+      "currentActivity",
+      "getSystemService",
+      "vibrator",
+      "android.os.Build$VERSION",
+      "SDK_INT"
+    ],
+    "numeric_literals": [
+      255,
+      30,
+      220,
+      0.05,
+      0.12,
+      18,
+      0,
+      1,
+      0.15,
+      1000,
+      26
+    ],
+    "guessed_roles": [
+      "save-load",
+      "manager",
+      "runtime",
+      "ui",
+      "player"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "싱글톤 후보",
+      "UI 관련 로직 포함",
+      "저장/불러오기 관련 로직 포함",
+      "Find 계열 탐색 사용"
+    ]
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "path": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "file_name": "GameManager.cs",
-    "content_hash": "4bbb6f485993becd75e917a7477d362fca817112",
-    "size": 7382,
-    "line_count": 274,
+    "content_hash": "49b09c024fc762b0f9f9d389cac9e36bd4acd0cb",
+    "size": 7682,
+    "line_count": 279,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -22833,6 +23343,8 @@
       "SoundManager",
       "PlayTitleBgm",
       "RequestStageClear",
+      "FeedbackManager",
+      "StopRecallHoldFeedback",
       "CurrentStageIndex",
       "MarkStageCleared",
       "SetLaserUnlocked",
@@ -22877,7 +23389,8 @@
     "component_access_types": [],
     "created_types": [],
     "singleton_access_types": [
-      "SoundManager"
+      "SoundManager",
+      "FeedbackManager"
     ],
     "string_literals": [
       "System References",
@@ -23309,9 +23822,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
     "file_name": "GaugeManager.cs",
-    "content_hash": "8ac48475ed20e5929ce88abd415cf62204eb3643",
-    "size": 3212,
-    "line_count": 127,
+    "content_hash": "44520fdde9caa00cd705b2db6b5f98cb11081264",
+    "size": 3547,
+    "line_count": 136,
     "namespace": "",
     "using_list": [
       "System",
@@ -23422,8 +23935,10 @@
       "Clamp",
       "UpdateGaugeSegmentByValue",
       "Invoke",
-      "SoundManager",
+      "FeedbackManager",
       "Instance",
+      "PlayGaugeSegmentFilledFeedback",
+      "SoundManager",
       "Play",
       "SoundId",
       "GaugeSegmentFilled",
@@ -23435,6 +23950,7 @@
     "component_access_types": [],
     "created_types": [],
     "singleton_access_types": [
+      "FeedbackManager",
       "SoundManager"
     ],
     "string_literals": [
@@ -24136,9 +24652,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "file_name": "LaserChargeController.cs",
-    "content_hash": "a795eee24e6a798a658c24ce1092e45cabf2f561",
-    "size": 10156,
-    "line_count": 395,
+    "content_hash": "18a288c365aa0d2e69bf5f66019a0b47a6609eb2",
+    "size": 10305,
+    "line_count": 398,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -24367,6 +24883,8 @@
       "GetChargeRatio",
       "PlayLoop",
       "SoundId",
+      "FeedbackManager",
+      "PlayLaserFireFeedback",
       "Play",
       "LaserFire",
       "ShootLaser",
@@ -24387,6 +24905,7 @@
     "created_types": [],
     "singleton_access_types": [
       "SoundManager",
+      "FeedbackManager",
       "GameManager"
     ],
     "string_literals": [
@@ -28699,12 +29218,13 @@
     "file_id": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
     "path": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
     "file_name": "SettingsUI.cs",
-    "content_hash": "e1b364b7f8b8690f3c7d5f7b2f7878216dab12b1",
-    "size": 674,
-    "line_count": 35,
+    "content_hash": "741eff990f3d2d6c1cb6ffa80405c7ce54b4c507",
+    "size": 2482,
+    "line_count": 88,
     "namespace": "",
     "using_list": [
-      "UnityEngine"
+      "UnityEngine",
+      "UnityEngine.UI"
     ],
     "classes": [
       {
@@ -28724,16 +29244,29 @@
     "unity_type": "MonoBehaviour",
     "methods": [
       "Start",
+      "OnDestroy",
+      "ToggleVibration",
+      "SetVibrationEnabled",
+      "RefreshVibrationToggleVisual",
       "Update",
       "OpenSettings",
       "CloseSettings",
       "OnDisable"
     ],
-    "fields": [],
+    "fields": [
+      {
+        "name": "image",
+        "type": "Image",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
     "properties": [],
     "events": [],
     "unity_messages": [
       "Start",
+      "OnDestroy",
       "Update",
       "OnDisable"
     ],
@@ -28746,44 +29279,72 @@
     "has_on_disable": true,
     "serialize_field_count": 0,
     "public_field_count": 0,
-    "get_component_count": 0,
+    "get_component_count": 1,
     "find_call_count": 0,
     "new_keyword_count": 0,
     "coroutine_count": 0,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
+      "Image",
       "UnityEngine",
+      "UI",
+      "Button",
+      "Color",
       "Start",
+      "Find",
+      "VibrationToggle",
+      "GetComponent",
+      "AddListener",
+      "ToggleVibration",
+      "RefreshVibrationToggleVisual",
+      "OnDestroy",
+      "RemoveListener",
+      "VibrationManager",
+      "Instance",
+      "SetVibrationEnabled",
+      "VibrationEnabled",
+      "FeedbackManager",
+      "PlayUIButtonFeedback",
       "Update",
       "OpenSettings",
       "SetActive",
       "SoundManager",
-      "Instance",
       "SetBgmMuffled",
       "BgmMuffleReason",
       "Settings",
       "CloseSettings",
       "OnDisable"
     ],
-    "component_access_types": [],
+    "component_access_types": [
+      "Button"
+    ],
     "created_types": [],
     "singleton_access_types": [
+      "VibrationManager",
+      "FeedbackManager",
       "SoundManager"
     ],
-    "string_literals": [],
-    "numeric_literals": [],
+    "string_literals": [
+      "VibrationToggle"
+    ],
+    "numeric_literals": [
+      0.45,
+      1
+    ],
     "guessed_roles": [
+      "ui",
       "runtime",
       "manager",
-      "ui",
-      "save-load"
+      "player",
+      "combat"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
       "Update 기반 처리 존재",
       "UI 관련 로직 포함",
-      "저장/불러오기 관련 로직 포함"
+      "전투 계열 로직 포함",
+      "컴포넌트 조회 사용"
     ]
   },
   {

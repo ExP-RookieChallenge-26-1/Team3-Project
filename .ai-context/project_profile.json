@@ -5,23 +5,24 @@
   "total_cs_files": 180,
   "mono_behaviour_files": 150,
   "scriptable_object_files": 10,
-  "files_with_update": 54,
+  "files_with_update": 55,
   "files_with_fixed_update": 1,
   "files_with_late_update": 9,
   "singleton_candidates": 3,
   "manager_like_classes": 66,
   "ui_related_classes": 98,
-  "save_load_related_classes": 97,
+  "save_load_related_classes": 96,
   "role_counts": {
     "runtime": 159,
     "player": 81,
     "combat": 108,
-    "save-load": 97,
+    "save-load": 96,
     "manager": 64,
     "data": 57,
     "ui": 98,
     "scene": 4,
-    "network": 2
+    "network": 2,
+    "inventory": 1
   },
   "high_coupling_classes": [
     {
@@ -132,6 +133,33 @@
         "참조 타입 또는 관계 수가 많음",
         "public 필드 노출 수가 많음",
         "GetComponent/TryGetComponent 호출이 많음",
+        "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+        "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+        "초기화 순서에 민감할 가능성",
+        "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+        "상태 중심 또는 관리 중심 클래스일 가능성"
+      ],
+      "risk_score": 100
+    },
+    {
+      "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
+      "class_name": "GaugeUI",
+      "risk_flags": [
+        "update-heavy",
+        "high-coupling",
+        "getcomponent-heavy",
+        "find-heavy",
+        "magic-number-heavy",
+        "large-class",
+        "init-order-sensitive",
+        "ui-runtime-mixed",
+        "state-owner"
+      ],
+      "risk_reasons": [
+        "Unity 업데이트 루프 사용",
+        "참조 타입 또는 관계 수가 많음",
+        "GetComponent/TryGetComponent 호출이 많음",
+        "Find 계열 탐색 사용",
         "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
         "파일/메서드/필드 수가 많아 책임이 커질 가능성",
         "초기화 순서에 민감할 가능성",
@@ -316,31 +344,6 @@
         "상태 중심 또는 관리 중심 클래스일 가능성"
       ],
       "risk_score": 93
-    },
-    {
-      "file_id": "Old Scripts/enemy.cs",
-      "class_name": "Enemy",
-      "risk_flags": [
-        "update-heavy",
-        "high-coupling",
-        "public-field-heavy",
-        "magic-number-heavy",
-        "large-class",
-        "init-order-sensitive",
-        "save-load-sensitive",
-        "state-owner"
-      ],
-      "risk_reasons": [
-        "Unity 업데이트 루프 사용",
-        "참조 타입 또는 관계 수가 많음",
-        "public 필드 노출 수가 많음",
-        "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
-        "파일/메서드/필드 수가 많아 책임이 커질 가능성",
-        "초기화 순서에 민감할 가능성",
-        "저장/불러오기 관련 로직 포함",
-        "상태 중심 또는 관리 중심 클래스일 가능성"
-      ],
-      "risk_score": 91
     }
   ],
   "common_patterns": [

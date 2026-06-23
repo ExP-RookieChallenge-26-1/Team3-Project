@@ -309,7 +309,10 @@ public class LaserChargeController : MonoBehaviour
         {
             float chargeRatio = GetChargeRatio();
             SoundManager.Instance.StopLoop();
-            SoundManager.Instance.Play(SoundId.LaserFire, chargeRatio);
+            if (FeedbackManager.Instance != null)
+                FeedbackManager.Instance.PlayLaserFireFeedback(chargeRatio);
+            else
+                SoundManager.Instance?.Play(SoundId.LaserFire, chargeRatio);
             int firedChargeLevel = chargeCount;
             if (laserShoot.ShootLaser(firedChargeLevel) && laserFireFlashEffect != null)
                 laserFireFlashEffect.Play(firedChargeLevel, GetPaddleCenterPosition());

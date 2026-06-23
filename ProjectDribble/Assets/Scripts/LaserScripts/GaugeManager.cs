@@ -63,7 +63,16 @@ public class GaugeManager : MonoBehaviour
                 float ratio = MaxGaugeSegments > 0
                     ? FilledGaugeSegments / (float)MaxGaugeSegments
                     : 0f;
-                SoundManager.Instance.Play(SoundId.GaugeSegmentFilled, ratio);
+                if (FeedbackManager.Instance != null)
+                {
+                    FeedbackManager.Instance.PlayGaugeSegmentFilledFeedback(
+                        ratio,
+                        previousSegments == 0 && FilledGaugeSegments > 0);
+                }
+                else
+                {
+                    SoundManager.Instance?.Play(SoundId.GaugeSegmentFilled, ratio);
+                }
             }
         }
     }

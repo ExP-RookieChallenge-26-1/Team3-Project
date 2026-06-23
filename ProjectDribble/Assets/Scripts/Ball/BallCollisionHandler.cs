@@ -45,7 +45,7 @@ public class BallCollisionHandler : MonoBehaviour
 
         if (!shouldDelayBlockBounce)
         {
-            SoundManager.Instance.Play(soundId, options);
+            PlayCollisionFeedback(hit.collider, soundId, options);
         }
 
         PaddleBallReflector paddleReflector =
@@ -108,7 +108,7 @@ public class BallCollisionHandler : MonoBehaviour
 
             if (shouldDelayBlockBounce)
             {
-                SoundManager.Instance.Play(soundId, options);
+                PlayCollisionFeedback(hit.collider, soundId, options);
             }
 
             if (destroyed)
@@ -273,6 +273,30 @@ public class BallCollisionHandler : MonoBehaviour
         }
 
         return SoundId.BallBounce;
+    }
+
+    private void PlayCollisionFeedback(
+        Collider2D collider,
+        SoundId soundId,
+        SoundPlayOptions options)
+    {
+        if (FeedbackManager.Instance == null)
+        {
+            SoundManager.Instance?.Play(soundId, options);
+            return;
+        }
+
+        BallFeedbackSurface surface = BallFeedbackSurface.Other;
+        if (collider.GetComponentInParent<PaddleBallReflector>() != null)
+            surface = BallFeedbackSurface.Paddle;
+        else if (collider.GetComponentInParent<CeilingBrick>() != null)
+            surface = BallFeedbackSurface.Ceiling;
+        else if (collider.GetComponentInParent<BlockCell>() != null)
+            surface = BallFeedbackSurface.Block;
+        else if (collider.GetComponentInParent<WallBallHitReceiver>() != null || IsFloorCollider(collider))
+            surface = BallFeedbackSurface.Wall;
+
+        FeedbackManager.Instance.PlayBallBounceFeedback(surface, soundId, options);
     }
     
 

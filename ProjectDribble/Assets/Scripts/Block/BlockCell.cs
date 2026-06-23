@@ -184,7 +184,10 @@ public class BlockCell : MonoBehaviour,
             if (addGauge)
                 manager.AddGauge();
 
-            SoundManager.Instance.Play(SoundId.BlockBreak);
+            if (FeedbackManager.Instance != null)
+                FeedbackManager.Instance.PlayBlockBreakFeedback();
+            else
+                SoundManager.Instance?.Play(SoundId.BlockBreak);
             manager.RemoveBlock(coord);
             
             if (hp>= - 0.3f)

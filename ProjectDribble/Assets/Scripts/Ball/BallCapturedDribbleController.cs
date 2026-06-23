@@ -623,13 +623,24 @@ public class BallCapturedDribbleController : MonoBehaviour
         if (speedController == null)
             return;
 
-        SoundManager.Instance.Play(SoundId.BallBounce,
-            new SoundPlayOptions()
-            {
-                pitchScale = 1.08f,
-                ratio = speedController.GetSpeedRatio(),
-                volumeScale = 0.7f
-            });
+        SoundPlayOptions feedbackOptions = new()
+        {
+            pitchScale = 1.08f,
+            ratio = speedController.GetSpeedRatio(),
+            volumeScale = 0.7f
+        };
+
+        if (FeedbackManager.Instance != null)
+        {
+            FeedbackManager.Instance.PlayBallBounceFeedback(
+                BallFeedbackSurface.Paddle,
+                SoundId.BallBounce,
+                feedbackOptions);
+        }
+        else
+        {
+            SoundManager.Instance?.Play(SoundId.BallBounce, feedbackOptions);
+        }
         
         TryIncreaseSpeedFromDribble();
 

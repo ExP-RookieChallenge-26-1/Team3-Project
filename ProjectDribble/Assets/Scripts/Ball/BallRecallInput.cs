@@ -97,6 +97,7 @@ public class BallRecallInput : MonoBehaviour
 
     private void BeginPointer(Vector2 position)
     {
+        FeedbackManager.Instance?.StopRecallHoldFeedback();
         startPointerPosition = position;
 
         isPointerDown = true;
@@ -138,6 +139,9 @@ public class BallRecallInput : MonoBehaviour
             ? Time.unscaledDeltaTime
             : Time.deltaTime;
 
+        float progress = holdDuration > 0f ? holdTimer / holdDuration : 1f;
+        FeedbackManager.Instance?.StartRecallHoldFeedback(progress);
+
         Debug.Log("Holding Down Swipe: " + holdTimer);
 
         if (holdTimer >= holdDuration)
@@ -149,12 +153,16 @@ public class BallRecallInput : MonoBehaviour
 
     private void CancelHold()
     {
+        if (isDownSwipeHolding)
+            FeedbackManager.Instance?.StopRecallHoldFeedback();
+
         isDownSwipeHolding = false;
         holdTimer = 0f;
     }
 
     private void EndPointer()
     {
+        FeedbackManager.Instance?.StopRecallHoldFeedback();
         isPointerDown = false;
         isDownSwipeHolding = false;
         hasRecalledThisSwipe = false;
@@ -164,9 +172,15 @@ public class BallRecallInput : MonoBehaviour
         Debug.Log("EndPointer");
     }
 
+    private void OnDisable()
+    {
+        FeedbackManager.Instance?.StopRecallHoldFeedback();
+    }
+
     private void RecallBall()
     {
         Debug.Log("Recall Ball");
+        FeedbackManager.Instance?.StopRecallHoldFeedback();
 
         if (ballRespawner == null)
         {

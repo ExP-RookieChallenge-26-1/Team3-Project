@@ -336,7 +336,11 @@ public class CeilingManager : MonoBehaviour
         else
         {
             float ratio = 1f - segment.GetHpPercent();
-            SoundManager.Instance.Play(SoundId.CeilingHit, Mathf.Clamp01(ratio));
+            float hitRatio = Mathf.Clamp01(ratio);
+            if (FeedbackManager.Instance != null)
+                FeedbackManager.Instance.PlayCeilingHitFeedback(hitRatio);
+            else
+                SoundManager.Instance?.Play(SoundId.CeilingHit, hitRatio);
         }
 
         if (AreAllSegmentsDestroyed())

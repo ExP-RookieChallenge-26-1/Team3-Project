@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
 
     public void RequestStageClear()
     {
+        FeedbackManager.Instance?.StopRecallHoldFeedback();
         int currentStage = stageManager.CurrentStageIndex;
 
         saveManager.MarkStageCleared(currentStage);
@@ -86,6 +87,7 @@ public class GameManager : MonoBehaviour
 
     public void RequestGameOver()
     {
+        FeedbackManager.Instance?.StopRecallHoldFeedback();
         timeScaleBefore = Time.timeScale;
         Time.timeScale = 0f;
         isPaused = true;
@@ -159,6 +161,7 @@ public class GameManager : MonoBehaviour
         if (isPaused)
             return;
 
+        FeedbackManager.Instance?.StopRecallHoldFeedback();
         timeScaleBefore = Time.timeScale;
         Time.timeScale = 0f;
         isPaused = true;
@@ -186,6 +189,7 @@ public class GameManager : MonoBehaviour
 
     public void Initialize()
     {
+        FeedbackManager.Instance?.StopRecallHoldFeedback();
         Time.timeScale = 0f;
         isPaused = true;
         isGameStarted = false;
@@ -232,6 +236,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        FeedbackManager.Instance?.StopRecallHoldFeedback();
         timeScaleBeforeTutorial = Time.timeScale;
         Time.timeScale = 0f;
         isPausedByTutorial = true;

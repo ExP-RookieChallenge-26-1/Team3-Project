@@ -23,7 +23,10 @@ public class CeilingManager : MonoBehaviour
     private CeilingSegmentMode ceilingSegmentMode = CeilingSegmentMode.ThreeSegments;
     private bool isStageCleared;
     private bool isInitialized;
+    private bool isCeilingEnabled;
     private bool damageEnabled = true;
+
+    public bool IsCeilingEnabled => isCeilingEnabled;
 
     [Header("Brick Spawn")]
     [SerializeField] private CeilingBrick ceilingBrickPrefab;
@@ -68,7 +71,10 @@ public class CeilingManager : MonoBehaviour
 
     private void Awake()
     {
-        runtimeMaxHp = Mathf.Max(1, healthData.ceilingMaxHp);
+        runtimeMaxHp = healthData != null ? Mathf.Max(1, healthData.ceilingMaxHp) : 1f;
+
+        if (healthData == null)
+            Debug.LogWarning("CeilingManager: HealthData is missing. Using a fallback ceiling HP of 1.");
 
         if (blockManager == null)
             blockManager = FindAnyObjectByType<BlockManager>();
@@ -92,13 +98,28 @@ public class CeilingManager : MonoBehaviour
         runtimeMaxHp = Mathf.Max(1, maxHp);
         ceilingSegmentMode = segmentMode;
         isInitialized = true;
+        isCeilingEnabled = true;
         damageEnabled = true;
         ResetCeilingState();
     }
 
+    public void DisableCeiling()
+    {
+        isInitialized = true;
+        isCeilingEnabled = false;
+        damageEnabled = false;
+        isStageCleared = false;
+        currentHp = 0f;
+
+        ClearCeilingCores();
+        ClearSegmentRootVisuals();
+        ClearCeilingBricks();
+        segments.Clear();
+    }
+
     public void SetDamageEnabled(bool enabled)
     {
-        damageEnabled = enabled;
+        damageEnabled = isCeilingEnabled && enabled;
     }
 
     public void SetCeilingVisible(bool visible)
@@ -162,7 +183,9 @@ public class CeilingManager : MonoBehaviour
     {
         segments.Clear();
 
-        float maxHp = runtimeMaxHp > 0 ? runtimeMaxHp : Mathf.Max(1, healthData.ceilingMaxHp);
+        float maxHp = runtimeMaxHp > 0
+            ? runtimeMaxHp
+            : healthData != null ? Mathf.Max(1, healthData.ceilingMaxHp) : 1f;
 
         switch (ceilingSegmentMode)
         {
@@ -228,6 +251,12 @@ public class CeilingManager : MonoBehaviour
 
     private void CreateCeilingBricks()
     {
+        if (ceilingBrickPrefab == null)
+        {
+            Debug.LogWarning("CeilingManager: CeilingBrick prefab is missing. Ceiling bricks were not created.");
+            return;
+        }
+
         for (int y = 0; y < rowCount; y++)
         {
             for (int x = 0; x < columnCount; x++)
@@ -290,7 +319,7 @@ public class CeilingManager : MonoBehaviour
 
     public void DamageSegmentByX(int x, float damage)
     {
-        if (!damageEnabled)
+        if (!isCeilingEnabled || !damageEnabled)
             return;
 
         if (isStageCleared)
@@ -325,12 +354,15 @@ public class CeilingManager : MonoBehaviour
         {
             SetCoreAlive(segmentIndex, false);
             SetSegmentRootVisualState(segmentIndex, false);
-            SoundManager.Instance.Play(SoundId.CeilingBreak);
+            SoundManager.Instance?.Play(SoundId.CeilingBreak);
             Debug.Log($"Ceiling segment {segment.SegmentName} destroyed.");
             DisableStemGrowthForSegment(segment);
             OnCeilingSegmentDestroyed?.Invoke(segment);
             BreakSegmentBricks(segment);
-            ballRespawner.RecallBallToPaddle();
+            if (ballRespawner != null)
+                ballRespawner.RecallBallToPaddle();
+            else
+                Debug.LogWarning("CeilingManager: BallRespawner is missing; the ball was not recalled.");
             //_gaugeManager.AddGauge(_gaugeManager.GaugePerSegment);
         }
         else
@@ -385,6 +417,12 @@ public class CeilingManager : MonoBehaviour
 
     public bool TryGetAliveSegmentIndexAtWorldX(float worldX, out int segmentIndex)
     {
+        if (!isCeilingEnabled)
+        {
+            segmentIndex = -1;
+            return false;
+        }
+
         int x = Mathf.RoundToInt((worldX - startPosition.x) / Mathf.Max(0.0001f, brickSize.x));
         CeilingSegment segment = GetSegmentByX(x);
         segmentIndex = segments.IndexOf(segment);

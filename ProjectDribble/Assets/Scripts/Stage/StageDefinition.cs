@@ -8,6 +8,13 @@ public enum CeilingSegmentMode
     TwoSegments = 2
 }
 
+public enum StageClearCondition
+{
+    DestroyCeiling = 0,
+    DestroyAllNormalBlocks = 1,
+    None = 2
+}
+
 public enum TutorialStageId
 {
     None = 0,
@@ -26,9 +33,22 @@ public class StageDefinition : ScriptableObject
     public StageBlockData blockData;
 
     [Header("Ceiling / Player")]
+    [Tooltip("If false, this stage does not create or use ceiling segments, cores, visuals, or collisions.")]
+    public bool useCeiling = true;
     public CeilingSegmentMode ceilingSegmentMode = CeilingSegmentMode.ThreeSegments;
     public int ceilingMaxHpOverride = 100;
     public int playerMaxHpOverride = 10;
+
+    [Header("Stage Clear")]
+    [Tooltip("DestroyCeiling preserves the existing clear behavior. Use DestroyAllNormalBlocks or None for a stage without a ceiling.")]
+    public StageClearCondition clearCondition = StageClearCondition.DestroyCeiling;
+
+    [Header("Top Decoration")]
+    [SerializeField] private bool useTopDecoration;
+    [SerializeField] private GameObject topDecorationPrefab;
+
+    public bool UseTopDecoration => useTopDecoration;
+    public GameObject TopDecorationPrefab => topDecorationPrefab;
 
     [Header("Gauge")]
     public int startGaugeValue = 0;

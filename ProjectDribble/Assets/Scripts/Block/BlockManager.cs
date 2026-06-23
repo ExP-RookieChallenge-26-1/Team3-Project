@@ -68,6 +68,7 @@ public class BlockManager : MonoBehaviour
     private Coroutine growRoutine;
     private readonly List<StemGrowthRuntimeState> stemGrowthStates = new();
     private bool normalBlocksClearedNotified;
+    private bool useCeilingForCurrentStage = true;
 
     private static readonly Vector2Int[] StemConnectionDirections =
     {
@@ -98,6 +99,11 @@ public class BlockManager : MonoBehaviour
 
     public void InitializeStageBlocks(StageBlockData stageData)
     {
+        InitializeStageBlocks(stageData, true);
+    }
+
+    public void InitializeStageBlocks(StageBlockData stageData, bool useCeiling)
+    {
         if (stageData == null)
         {
             Debug.LogWarning("BlockManager: StageBlockData is null. Block grid was not initialized.");
@@ -105,12 +111,14 @@ public class BlockManager : MonoBehaviour
         }
 
         data = stageData;
+        useCeilingForCurrentStage = useCeiling;
         Debug.Log(
             $"BlockManager: InitializeStageBlocks data={data.name}, size={data.width}x{data.height}, " +
             $"fixed={data.fixedBlocks?.Count ?? 0}, normal={data.normalBlocks?.Count ?? 0}, " +
             $"stems={data.growthStems?.Length ?? 0}, startCells={data.startCells?.Count ?? 0}, " +
             $"useStemGrowth={data.UseStemGrowth}."
         );
+        ValidateCeilingStemConfiguration();
         ResetBlocks();
         StartGrowth();
     }
@@ -146,6 +154,7 @@ public class BlockManager : MonoBehaviour
         SpawnFixedBlocks();
         SpawnNormalBlocks();
         SpawnStartBlocks();
+        CheckNormalBlocksCleared();
     }
 
     public void StartGrowth()
@@ -283,9 +292,59 @@ public class BlockManager : MonoBehaviour
             {
                 stemIndex = i,
                 timer = -initialDelay,
-                enabled = stem == null || stem.enabled
+                enabled = stem != null && stem.enabled && IsCeilingStemAvailable(stem)
             });
         }
+    }
+
+    private void ValidateCeilingStemConfiguration()
+    {
+        if (data == null || !data.UseStemGrowth || data.growthStems == null)
+            return;
+
+        for (int i = 0; i < data.growthStems.Length; i++)
+        {
+            StageBlockData.GrowthStemData stem = data.growthStems[i];
+
+            if (!UsesCeilingSegment(stem))
+                continue;
+
+            if (!useCeilingForCurrentStage)
+            {
+                Debug.LogWarning(
+                    $"BlockManager: Skipping growth stem {i} (ceilingSegmentIndex={stem.ceilingSegmentIndex}) " +
+                    "because this stage has useCeiling disabled."
+                );
+                continue;
+            }
+
+            if (ceilingManager == null)
+            {
+                Debug.LogWarning(
+                    $"BlockManager: Skipping growth stem {i} (ceilingSegmentIndex={stem.ceilingSegmentIndex}) " +
+                    "because CeilingManager is missing."
+                );
+                continue;
+            }
+
+            if (!ceilingManager.TryGetSegmentXRange(stem.ceilingSegmentIndex, out _, out _))
+            {
+                Debug.LogWarning(
+                    $"BlockManager: Skipping growth stem {i}; ceilingSegmentIndex={stem.ceilingSegmentIndex} " +
+                    "does not exist in the current ceiling configuration."
+                );
+            }
+        }
+    }
+
+    private bool IsCeilingStemAvailable(StageBlockData.GrowthStemData stem)
+    {
+        if (!UsesCeilingSegment(stem))
+            return true;
+
+        return useCeilingForCurrentStage &&
+               ceilingManager != null &&
+               ceilingManager.TryGetSegmentXRange(stem.ceilingSegmentIndex, out _, out _);
     }
 
     public void DisableStemGrowth(int stemIndex)
@@ -1318,7 +1377,8 @@ public class BlockManager : MonoBehaviour
         if (!UsesCeilingSegment(stem))
             return true;
 
-        return ceilingManager != null && ceilingManager.IsSegmentAliveByIndex(stem.ceilingSegmentIndex);
+        return IsCeilingStemAvailable(stem) &&
+               ceilingManager.IsSegmentAliveByIndex(stem.ceilingSegmentIndex);
     }
 
     private List<Vector2Int> GetCeilingSegmentSpawnCandidates(StageBlockData.GrowthStemData stem)

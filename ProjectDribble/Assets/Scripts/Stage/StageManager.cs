@@ -20,7 +20,11 @@ public class StageManager : MonoBehaviour
     [SerializeField] private BossController bossController;
     [SerializeField] private TutorialManager tutorialManager;
 
+    [Header("Top Decoration")]
+    [SerializeField] private Transform topDecorationParent;
+
     private int currentStageIndex;
+    private GameObject currentTopDecoration;
 
     public int CurrentStageIndex => currentStageIndex;
     public int StageCount => stages == null ? 0 : stages.Length;
@@ -28,6 +32,8 @@ public class StageManager : MonoBehaviour
         IsValidStageIndex(currentStageIndex) &&
         stages[currentStageIndex] != null &&
         stages[currentStageIndex].isTutorialStage;
+    private StageDefinition CurrentStageDefinition =>
+        IsValidStageIndex(currentStageIndex) ? stages[currentStageIndex] : null;
 
     private void OnEnable()
     {
@@ -37,6 +43,11 @@ public class StageManager : MonoBehaviour
     private void OnDisable()
     {
         UnbindStageEvents();
+    }
+
+    private void OnDestroy()
+    {
+        ClearTopDecoration();
     }
 
     private void Start()
@@ -85,13 +96,36 @@ public class StageManager : MonoBehaviour
 
     private void HandleStageCleared()
     {
+        StageDefinition data = CurrentStageDefinition;
+
+        if (data == null || data.clearCondition != StageClearCondition.DestroyCeiling)
+            return;
+
+        CompleteCurrentStage();
+    }
+
+    private void HandleNormalBlocksCleared()
+    {
+        StageDefinition data = CurrentStageDefinition;
+
+        if (data == null || data.clearCondition != StageClearCondition.DestroyAllNormalBlocks)
+            return;
+
+        CompleteCurrentStage();
+    }
+
+    private void CompleteCurrentStage()
+    {
         if (bossController == null)
             bossController = FindAnyObjectByType<BossController>();
 
         if (bossController != null)
             bossController.StopBossPattern();
 
-        GameManager.Instance.RequestStageClear();
+        if (GameManager.Instance != null)
+            GameManager.Instance.RequestStageClear();
+        else
+            Debug.LogWarning("StageManager: Cannot complete the stage because GameManager is missing.");
     }
 
     private void HandlePlayerDead()
@@ -104,6 +138,11 @@ public class StageManager : MonoBehaviour
         if (ceilingManager != null)
         {
             ceilingManager.OnStageCleared += HandleStageCleared;
+        }
+
+        if (blockManager != null)
+        {
+            blockManager.OnNormalBlocksCleared += HandleNormalBlocksCleared;
         }
 
         if (playerHealth != null)
@@ -119,6 +158,11 @@ public class StageManager : MonoBehaviour
             ceilingManager.OnStageCleared -= HandleStageCleared;
         }
 
+        if (blockManager != null)
+        {
+            blockManager.OnNormalBlocksCleared -= HandleNormalBlocksCleared;
+        }
+
         if (playerHealth != null)
         {
             playerHealth.OnPlayerDead -= HandlePlayerDead;
@@ -127,6 +171,8 @@ public class StageManager : MonoBehaviour
 
     private void ApplyStageData(StageDefinition data)
     {
+        ApplyTopDecoration(data);
+
         if (data == null)
         {
             Debug.LogWarning("StageManager: StageDefinition is null.");
@@ -135,14 +181,33 @@ public class StageManager : MonoBehaviour
 
         ApplyBallTuning(data);
 
-        if (ceilingManager != null)
+        if (data.useCeiling && ceilingManager != null)
         {
             ceilingManager.InitializeCeiling(data.ceilingMaxHpOverride, data.ceilingSegmentMode);
+        }
+        else if (data.useCeiling)
+        {
+            Debug.LogWarning(
+                $"StageManager: Stage '{data.name}' uses a ceiling, but CeilingManager is missing. " +
+                "Ceiling clear and ceiling-based stems will be unavailable."
+            );
+        }
+        else if (ceilingManager != null)
+        {
+            ceilingManager.DisableCeiling();
+        }
+
+        if (!data.useCeiling && data.clearCondition == StageClearCondition.DestroyCeiling)
+        {
+            Debug.LogWarning(
+                $"StageManager: Stage '{data.name}' has useCeiling disabled but still uses DestroyCeiling. " +
+                "The stage will not clear automatically. Choose DestroyAllNormalBlocks or None."
+            );
         }
 
         if (blockManager != null)
         {
-            blockManager.InitializeStageBlocks(data.blockData);
+            blockManager.InitializeStageBlocks(data.blockData, data.useCeiling);
         }
         else
         {
@@ -173,6 +238,37 @@ public class StageManager : MonoBehaviour
         {
             tutorialManager.BeginStage(currentStageIndex, data);
         }
+    }
+
+    private void ApplyTopDecoration(StageDefinition data)
+    {
+        ClearTopDecoration();
+
+        if (data == null || !data.UseTopDecoration)
+            return;
+
+        GameObject prefab = data.TopDecorationPrefab;
+
+        if (prefab == null)
+        {
+            Debug.LogWarning(
+                $"StageManager: Stage '{data.name}' enables top decoration, but its prefab is missing."
+            );
+            return;
+        }
+
+        Transform parent = topDecorationParent != null ? topDecorationParent : transform;
+        currentTopDecoration = Instantiate(prefab, parent);
+    }
+
+    private void ClearTopDecoration()
+    {
+        if (currentTopDecoration == null)
+            return;
+
+        currentTopDecoration.SetActive(false);
+        Destroy(currentTopDecoration);
+        currentTopDecoration = null;
     }
 
     private void ApplyBallTuning(StageDefinition data)

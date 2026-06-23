@@ -53,11 +53,11 @@ TagManager:
   - name: Ball
     uniqueID: 4098998569
     locked: 0
-  - name: Paddle
-    uniqueID: 3752784911
-    locked: 0
   - name: GamePlayUI
     uniqueID: 2978591121
+    locked: 0
+  - name: Paddle
+    uniqueID: 3752784911
     locked: 0
   - name: UI
     uniqueID: 846106113

@@ -11,12 +11,12 @@
   "singleton_candidates": 5,
   "manager_like_classes": 67,
   "ui_related_classes": 100,
-  "save_load_related_classes": 99,
+  "save_load_related_classes": 100,
   "role_counts": {
     "runtime": 162,
     "player": 83,
     "combat": 109,
-    "save-load": 99,
+    "save-load": 100,
     "manager": 65,
     "data": 58,
     "ui": 100,
@@ -28,14 +28,14 @@
     {
       "class_name": "BlockManager",
       "file_id": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
-      "relation_count": 197,
-      "referenced_type_count": 191
+      "relation_count": 200,
+      "referenced_type_count": 194
     },
     {
       "class_name": "CeilingManager",
       "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
-      "relation_count": 174,
-      "referenced_type_count": 167
+      "relation_count": 177,
+      "referenced_type_count": 170
     },
     {
       "class_name": "BallCapturedDribbleController",

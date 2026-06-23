@@ -79,9 +79,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 60
+  m_SortingLayerID: 1716653133
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 82a845e4f21a7a14f8284875a6c12286, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -248,8 +248,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1716653133
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: c776e09157ef6114d8b0c6c9cdfba5dd, type: 3}
@@ -329,6 +329,7 @@ MonoBehaviour:
   dangerStemColor: {r: 0.33909282, g: 0.7075472, b: 0.25031152, a: 1}
   glitchOverlay: {fileID: 8008601955375370094}
   damageFlashVisual: {fileID: 3677851521251101403}
+  laserTargetOverlayRenderer: {fileID: 0}
 --- !u!114 &3677851521251101403
 MonoBehaviour:
   m_ObjectHideFlags: 0

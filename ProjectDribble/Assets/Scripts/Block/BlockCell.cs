@@ -30,6 +30,7 @@ public class BlockCell : MonoBehaviour,
     [SerializeField] private Color dangerStemColor = Color.red;
     [SerializeField] private GlitchOverlayVisual glitchOverlay;
     [SerializeField] private DamageFlashVisual damageFlashVisual;
+    [SerializeField] private SpriteRenderer laserTargetOverlayRenderer;
 
     private SpriteRenderer sr;
     private Color connectedStemColor = Color.white;
@@ -54,6 +55,8 @@ public class BlockCell : MonoBehaviour,
 
         if (sr != null)
             connectedStemColor = sr.color;
+
+        EnsureLaserTargetOverlay();
     }
 
     public void Init(BlockManager manager, Vector2Int coord)
@@ -87,6 +90,7 @@ public class BlockCell : MonoBehaviour,
 
     public void Deactivate()
     {
+        SetLaserTargetPreview(false, 0f);
         blockType = BlockType.Empty;
         isDisconnectedStem = false;
         danger01 = 0f;
@@ -212,6 +216,35 @@ public class BlockCell : MonoBehaviour,
 
         bool showGlitch = blockType == BlockType.Flow;
         glitchOverlay?.SetState(showGlitch, !isDisconnectedStem, danger01, glitchStage);
+    }
+
+    public void SetLaserTargetPreview(bool active, float alpha)
+    {
+        EnsureLaserTargetOverlay();
+        if (laserTargetOverlayRenderer == null)
+            return;
+
+        laserTargetOverlayRenderer.sprite = sr != null ? sr.sprite : laserTargetOverlayRenderer.sprite;
+        laserTargetOverlayRenderer.enabled = active && IsAlive;
+        Color color = laserTargetOverlayRenderer.color;
+        color.a = Mathf.Clamp01(alpha);
+        laserTargetOverlayRenderer.color = color;
+    }
+
+    private void EnsureLaserTargetOverlay()
+    {
+        if (laserTargetOverlayRenderer != null || sr == null)
+            return;
+
+        GameObject overlayObject = new GameObject("LaserTargetOverlay");
+        overlayObject.transform.SetParent(transform, false);
+        laserTargetOverlayRenderer = overlayObject.AddComponent<SpriteRenderer>();
+        laserTargetOverlayRenderer.sprite = sr.sprite;
+        laserTargetOverlayRenderer.material = sr.sharedMaterial;
+        laserTargetOverlayRenderer.sortingLayerID = sr.sortingLayerID;
+        laserTargetOverlayRenderer.sortingOrder = sr.sortingOrder + 1;
+        laserTargetOverlayRenderer.color = new Color(1f, 0.08f, 0.04f, 0f);
+        laserTargetOverlayRenderer.enabled = false;
     }
 
     private void UpdateHpVisual()

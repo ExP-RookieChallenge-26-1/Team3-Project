@@ -19,13 +19,13 @@ public class LaserShooter : MonoBehaviour
             laserUnlockState = FindAnyObjectByType<LaserUnlockState>();
     }
 
-    public void ShootLaser(int chargeCount)
+    public bool ShootLaser(int chargeCount)
     {
         if (laserUnlockState == null || !laserUnlockState.IsLaserUnlocked)
-            return;
+            return false;
 
         if (laserData == null || laserBlockEraser == null || ball == null || firePoint == null || chargeCount <= 0)
-            return;
+            return false;
 
         Vector2 origin = firePoint.position;
 
@@ -46,7 +46,8 @@ public class LaserShooter : MonoBehaviour
         ball.position = newBallPosition;
         GetBallSpeedController()?.ApplyLaserBoost();
         OnLaserFired?.Invoke();
-        
+
+        return true;
     }
 
     private BallSpeedController GetBallSpeedController()

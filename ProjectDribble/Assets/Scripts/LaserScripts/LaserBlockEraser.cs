@@ -1,122 +1,123 @@
-﻿using Interfaces;
+using System.Collections.Generic;
 using UnityEngine;
+
+public sealed class LaserHitPreviewResult
+{
+    public readonly List<BlockCell> Blocks = new();
+    public readonly List<int> CeilingSegmentIndices = new();
+    public Vector2 EndPoint;
+}
 
 public class LaserBlockEraser : MonoBehaviour
 {
     [SerializeField] private BlockManager blockManager;
+    [SerializeField] private CeilingManager ceilingManager;
 
-    public Vector2 EraseByLaser(
-        Vector2 origin,
-        float width,
-        float range,
-        float startOffset
-    )
+    private void Awake()
+    {
+        if (blockManager == null)
+            blockManager = FindAnyObjectByType<BlockManager>();
+        if (ceilingManager == null)
+            ceilingManager = FindAnyObjectByType<CeilingManager>();
+    }
+
+    public Vector2 EraseByLaser(Vector2 origin, float width, float range, float startOffset)
     {
         return EraseByLaser(origin, width, range, startOffset, false, 0f);
     }
 
     public Vector2 EraseByLaser(
-        Vector2 origin,
-        float width,
-        float range,
-        float startOffset,
-        bool affectsBelowPaddle,
-        float bottomOffset
-    )
+        Vector2 origin, float width, float range, float startOffset,
+        bool affectsBelowPaddle, float bottomOffset)
     {
+        LaserHitPreviewResult result = CalculateLaserTargets(
+            origin, width, range, startOffset, affectsBelowPaddle, bottomOffset);
+
+        for (int i = 0; i < result.Blocks.Count; i++)
+        {
+            BlockCell block = result.Blocks[i];
+            if (block != null && block.IsAlive)
+                block.OnLaserHit();
+        }
+
+        return result.EndPoint;
+    }
+
+    public LaserHitPreviewResult CalculateLaserTargets(
+        Vector2 origin, float width, float range, float startOffset,
+        bool affectsBelowPaddle, float bottomOffset)
+    {
+        LaserHitPreviewResult result = new();
+        if (blockManager == null || width <= 0f)
+        {
+            result.EndPoint = origin;
+            return result;
+        }
+
         Vector2 start = origin + Vector2.up * startOffset;
-
-        float leftX = start.x - width * 0.5f;
-        float rightX = start.x + width * 0.5f;
-
-        int minX = blockManager.WorldXToGridX(leftX);
-        int maxX = blockManager.WorldXToGridX(rightX);
-
+        int minX = blockManager.WorldXToGridX(start.x - width * 0.5f);
+        int maxX = blockManager.WorldXToGridX(start.x + width * 0.5f);
         int centerX = blockManager.WorldXToGridX(origin.x);
-
         float bottomY = affectsBelowPaddle
-            ? origin.y - Mathf.Max(0f, bottomOffset)
+            ? Mathf.Min(
+                origin.y - Mathf.Max(0f, bottomOffset),
+                blockManager.GetBottomBoundaryY()
+            )
             : start.y;
-        float topY = Mathf.Min(
-            blockManager.GetTopBoundaryY(),
-            start.y + Mathf.Max(0f, range)
-        );
-
+        float boundaryY = blockManager.GetTopBoundaryY();
+        float topY = Mathf.Min(boundaryY, start.y + Mathf.Max(0f, range));
         float centerColumnEndY = topY;
 
         for (int x = minX; x <= maxX; x++)
         {
-            float columnEndY = EraseColumn(x, bottomY, topY);
-
+            float columnEndY = CollectColumnTargets(x, bottomY, topY, result.Blocks);
             if (x == centerX)
-            {
                 centerColumnEndY = columnEndY;
-            }
         }
 
-        return new Vector2(origin.x, centerColumnEndY);
+        result.EndPoint = new Vector2(origin.x, centerColumnEndY);
+        bool reachesCeiling = Mathf.Approximately(topY, boundaryY) &&
+                              Mathf.Approximately(centerColumnEndY, topY);
+        if (reachesCeiling && ceilingManager != null &&
+            ceilingManager.TryGetAliveSegmentIndexAtWorldX(origin.x, out int segmentIndex))
+        {
+            result.CeilingSegmentIndices.Add(segmentIndex);
+        }
+
+        return result;
     }
 
-    private float EraseColumn(int x, float startY, float endY)
+    public float GetPlayAreaTopY()
     {
-        // y = 0이 위쪽, y = Height - 1이 아래쪽.
-        // 레이저는 아래에서 위로 올라가므로 아래쪽 행부터 위쪽 행으로 검사.
+        return blockManager != null ? blockManager.GetTopBoundaryY() : transform.position.y;
+    }
+
+    public void SetCeilingTargetPreview(int segmentIndex, bool active, float alpha)
+    {
+        ceilingManager?.SetLaserTargetPreview(segmentIndex, active, alpha);
+    }
+
+    private float CollectColumnTargets(int x, float startY, float endY, List<BlockCell> targets)
+    {
         for (int y = blockManager.Height - 1; y >= 0; y--)
         {
             Vector2Int coord = new Vector2Int(x, y);
-
-            if (!blockManager.IsValidCoord(coord))
-                continue;
-
-            if (!blockManager.IsOccupied(coord))
+            if (!blockManager.IsValidCoord(coord) || !blockManager.IsOccupied(coord))
                 continue;
 
             Vector3 cellCenter = blockManager.GridToWorld(coord);
-
-            if (cellCenter.y < startY)
+            if (cellCenter.y < startY || cellCenter.y > endY)
                 continue;
 
-            if (cellCenter.y > endY)
+            BlockCell block = blockManager.GetBlockCell(coord);
+            if (block == null || !block.IsAlive)
                 continue;
 
-            ILaserHittable laserTarget = FindLaserTargetAtCoord(coord);
-
-            if (laserTarget == null)
-            {
-                Debug.LogWarning("occupied는 true인데 ILaserHittable을 찾지 못함: " + coord);
-                continue;
-            }
-
-            bool isBlocked = laserTarget.OnLaserHit();
-
-            if (isBlocked)
-            {
-                float cellHeight = blockManager.GetCellHeight();
-
-                // 이 column만 여기서 막힘.
-                // 옆 column은 계속 진행됨.
-                return cellCenter.y - cellHeight * 0.5f;
-            }
+            targets.Add(block);
+            if (block.IsFixed)
+                return cellCenter.y - blockManager.GetCellHeight() * 0.5f;
         }
 
-        // 이 column은 끝까지 막히지 않음.
         return endY;
-    }
-
-    private ILaserHittable FindLaserTargetAtCoord(Vector2Int coord)
-    {
-        Vector3 cellCenter = blockManager.GridToWorld(coord);
-        Vector2 cellSize = blockManager.GetCellSize();
-
-        Collider2D hit = Physics2D.OverlapBox(
-            cellCenter,
-            cellSize * 0.8f,
-            0f
-        );
-
-        if (hit == null)
-            return null;
-
-        return hit.GetComponentInParent<ILaserHittable>();
     }
 }

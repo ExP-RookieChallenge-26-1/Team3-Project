@@ -47,14 +47,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: UI
-    uniqueID: 2978591121
+  - name: Brick
+    uniqueID: 1716653133
+    locked: 0
+  - name: Ball
+    uniqueID: 4098998569
     locked: 0
   - name: Paddle
     uniqueID: 3752784911
     locked: 0
-  - name: Ball
-    uniqueID: 4098998569
+  - name: GamePlayUI
+    uniqueID: 2978591121
+    locked: 0
+  - name: UI
+    uniqueID: 846106113
     locked: 0
   m_RenderingLayers:
   - Default

@@ -4634,6 +4634,22 @@ MonoBehaviour:
   gaugeVisualRoot: {fileID: 0}
   gaugeCanvasGroup: {fileID: 0}
   gaugeBar: {fileID: 1896597042}
+  legacyGaugeFill: {fileID: 1699218749}
+  totalSlots: 12
+  slotSize: {x: 25, y: 80}
+  slotSpacing: 3
+  slotSprite: {fileID: 8468321831769159285, guid: 3efa0519f3aeb6a418d1c0ebb9f08e35, type: 3}
+  slotPrefab: {fileID: 0}
+  gaugeBackground: {fileID: 1725785364691067978}
+  slotContainer: {fileID: 0}
+  flashDuration: 0.12
+  minFlashAlpha: 0.2
+  maxFlashAlpha: 0.9
+  popScale: 1.12
+  popDuration: 0.16
+  availablePulseSpeed: 2
+  availablePulseMinAlpha: 0.75
+  availablePulseMaxAlpha: 1
   gaugeSegmentText: {fileID: 0}
   gaugeValueText: {fileID: 0}
 --- !u!4 &5535690463866401957

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7f148e9761887f3478a9a8c345570d2b
+guid: 6d5a09cdbf26d1f42ba375dc984e2620
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8481310334923148338
-    second: White_GaugeUI_336x80_0
+      213: -9142557880351522994
+    second: LazerSmall_34x460_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: White_GaugeUI_336x80_0
+      name: LazerSmall_34x460_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 336
-        height: 80
+        width: 34
+        height: 460
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ec37e01bf255c4a80800000000000000
-      internalID: -8481310334923148338
+      spriteID: e4ff2331c0c1f1180800000000000000
+      internalID: -9142557880351522994
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      White_GaugeUI_336x80_0: -8481310334923148338
+      LazerSmall_34x460_0: -9142557880351522994
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

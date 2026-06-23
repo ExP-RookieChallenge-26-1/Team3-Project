@@ -15,11 +15,18 @@ public class LaserChargeController : MonoBehaviour
     [SerializeField] private BallController ballController;
     [FormerlySerializedAs("guageManger")] [SerializeField] private GaugeManager guageManager;
     [SerializeField] private LaserShooter laserShoot;
+    [SerializeField] private LaserFireFlashEffect laserFireFlashEffect;
     [SerializeField] private LaserUnlockState laserUnlockState;
     
     private bool isDribbling = false;
+    private bool isReturningGauge = false;
     private float chargeTimer = 0f;
     private int chargeCount = 0;
+
+    public bool IsCharging => isDribbling;
+    public bool IsReturningGauge => isReturningGauge;
+    public int ChargedLevelCount => chargeCount;
+    public int ConsumedGaugeValue => _data != null ? chargeCount * _data.gaugePerSegment : 0;
 
     private void Awake()
     {
@@ -303,9 +310,23 @@ public class LaserChargeController : MonoBehaviour
             float chargeRatio = GetChargeRatio();
             SoundManager.Instance.StopLoop();
             SoundManager.Instance.Play(SoundId.LaserFire, chargeRatio);
-            laserShoot.ShootLaser(chargeCount);
+            int firedChargeLevel = chargeCount;
+            if (laserShoot.ShootLaser(firedChargeLevel) && laserFireFlashEffect != null)
+                laserFireFlashEffect.Play(firedChargeLevel, GetPaddleCenterPosition());
+
             chargeCount = 0;
         }
+    }
+
+    private Vector3 GetPaddleCenterPosition()
+    {
+        if (laserStartPoint == null)
+            return transform.position;
+
+        Collider2D paddleCollider = laserStartPoint.GetComponent<Collider2D>();
+        return paddleCollider != null
+            ? paddleCollider.bounds.center
+            : laserStartPoint.position;
     }
 
     private void ReturnGauge()
@@ -317,9 +338,15 @@ public class LaserChargeController : MonoBehaviour
 
         int returnAmount = chargeCount * _data.gaugePerSegment;
 
-        for (int i = 0; i < returnAmount; i++)
+        isReturningGauge = true;
+        try
         {
-            guageManager.AddGauge();
+            for (int i = 0; i < returnAmount; i++)
+                guageManager.AddGauge();
+        }
+        finally
+        {
+            isReturningGauge = false;
         }
     }
     

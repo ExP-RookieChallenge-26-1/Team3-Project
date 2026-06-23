@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
@@ -3798,6 +3798,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8285537673710809277}
   - component: {fileID: 8501950924800153373}
+  - component: {fileID: 8501950924800153374}
   m_Layer: 0
   m_Name: LaserChargeManager
   m_TagString: Untagged
@@ -4642,14 +4643,19 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   gaugeBackground: {fileID: 1725785364691067978}
   slotContainer: {fileID: 0}
+  minPartialAlpha: 0.15
+  maxPartialAlpha: 0.8
   flashDuration: 0.12
-  minFlashAlpha: 0.2
-  maxFlashAlpha: 0.9
-  popScale: 1.12
-  popDuration: 0.16
+  minFlashGlowAlpha: 0.35
+  maxFlashGlowAlpha: 1
+  flashGlowScale: 1.12
   availablePulseSpeed: 2
-  availablePulseMinAlpha: 0.75
-  availablePulseMaxAlpha: 1
+  availablePulseMinAlpha: 0.08
+  availablePulseMaxAlpha: 0.22
+  chargingPulseSpeed: 4
+  chargingPulseMinAlpha: 0.55
+  chargingPulseMaxAlpha: 1
+  chargingGlowScale: 1.15
   gaugeSegmentText: {fileID: 0}
   gaugeValueText: {fileID: 0}
 --- !u!4 &5535690463866401957
@@ -6006,7 +6012,33 @@ MonoBehaviour:
   ballController: {fileID: 8185791647005175377}
   guageManager: {fileID: 3735814449434435070}
   laserShoot: {fileID: 4979493474648238134}
+  laserFireFlashEffect: {fileID: 8501950924800153374}
   laserUnlockState: {fileID: 0}
+--- !u!114 &8501950924800153374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2409034923826482897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a41f589ab7344ec29be6fa179461c36d, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::LaserFireFlashEffect
+  level1Sprite: {fileID: -9142557880351522994, guid: 6d5a09cdbf26d1f42ba375dc984e2620, type: 3}
+  level2Sprite: {fileID: -4905983228708222408, guid: f66001e96d0cd31488b1a5caeb4bf083, type: 3}
+  duration: 0.12
+  fireFlashYOffset: 0.4
+  effectZ: 0
+  startAlpha: 0
+  peakAlpha: 1
+  endAlpha: 0
+  startScale: 0.9
+  peakScale: 1.08
+  sortingLayerName: Paddle
+  sortingOrder: 10
+  targetRenderer: {fileID: 0}
 --- !u!68 &8573653355632497595
 EdgeCollider2D:
   m_ObjectHideFlags: 0

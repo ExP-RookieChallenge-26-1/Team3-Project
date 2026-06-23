@@ -5,6 +5,7 @@ using UnityEngine;
 public class GaugeUI : MonoBehaviour
 {
     [SerializeField] private GaugeManager gaugeManager;
+    [SerializeField] private LaserChargeController laserChargeController;
     [SerializeField] private LaserUnlockState laserUnlockState;
     [SerializeField] private GameObject gaugeVisualRoot;
     [SerializeField] private CanvasGroup gaugeCanvasGroup;
@@ -25,24 +26,36 @@ public class GaugeUI : MonoBehaviour
     [SerializeField] private Transform slotContainer;
 
     [Header("Slot Feedback")]
+    [Range(0f, 1f)]
+    [SerializeField] private float minPartialAlpha = 0.15f;
+    [Range(0f, 1f)]
+    [SerializeField] private float maxPartialAlpha = 0.8f;
     [Min(0f)]
     [SerializeField] private float flashDuration = 0.12f;
     [Range(0f, 1f)]
-    [SerializeField] private float minFlashAlpha = 0.2f;
+    [SerializeField] private float minFlashGlowAlpha = 0.35f;
     [Range(0f, 1f)]
-    [SerializeField] private float maxFlashAlpha = 0.9f;
+    [SerializeField] private float maxFlashGlowAlpha = 1f;
     [Min(1f)]
-    [SerializeField] private float popScale = 1.12f;
-    [Min(0f)]
-    [SerializeField] private float popDuration = 0.16f;
+    [SerializeField] private float flashGlowScale = 1.12f;
 
     [Header("Available Laser Pulse")]
     [Min(0f)]
     [SerializeField] private float availablePulseSpeed = 2f;
     [Range(0f, 1f)]
-    [SerializeField] private float availablePulseMinAlpha = 0.75f;
+    [SerializeField] private float availablePulseMinAlpha = 0.08f;
     [Range(0f, 1f)]
-    [SerializeField] private float availablePulseMaxAlpha = 1f;
+    [SerializeField] private float availablePulseMaxAlpha = 0.22f;
+
+    [Header("Charging Pulse")]
+    [Min(0f)]
+    [SerializeField] private float chargingPulseSpeed = 4f;
+    [Range(0f, 1f)]
+    [SerializeField] private float chargingPulseMinAlpha = 0.55f;
+    [Range(0f, 1f)]
+    [SerializeField] private float chargingPulseMaxAlpha = 1f;
+    [Min(1f)]
+    [SerializeField] private float chargingGlowScale = 1.15f;
 
     [Header("Text")]
     [SerializeField] private TextMeshProUGUI gaugeSegmentText;
@@ -50,12 +63,12 @@ public class GaugeUI : MonoBehaviour
 
     private const string GeneratedSlotNamePrefix = "GaugeSlot_";
 
-    private readonly List<SpriteRenderer> slotRenderers = new List<SpriteRenderer>();
+    private readonly List<SpriteRenderer> mainRenderers = new List<SpriteRenderer>();
+    private readonly List<SpriteRenderer> glowRenderers = new List<SpriteRenderer>();
     private readonly List<Transform> slotTransforms = new List<Transform>();
-    private readonly List<Vector3> slotBaseScales = new List<Vector3>();
+    private readonly List<Vector3> glowBaseScales = new List<Vector3>();
     private float[] flashEndTimes;
     private float[] flashAlphas;
-    private float[] popStartTimes;
     private int filledSlotCount;
     private int availableSlotCount;
     private int lastGaugeValue;
@@ -64,6 +77,9 @@ public class GaugeUI : MonoBehaviour
     {
         if (gaugeManager == null)
             gaugeManager = FindAnyObjectByType<GaugeManager>();
+
+        if (laserChargeController == null)
+            laserChargeController = FindAnyObjectByType<LaserChargeController>();
 
         if (laserUnlockState == null)
             laserUnlockState = FindAnyObjectByType<LaserUnlockState>();
@@ -79,7 +95,7 @@ public class GaugeUI : MonoBehaviour
     {
         DisableLegacyGauge();
 
-        if (slotRenderers.Count != totalSlots)
+        if (mainRenderers.Count != totalSlots || glowRenderers.Count != totalSlots)
             BuildSlots();
 
         if (gaugeManager != null)
@@ -135,18 +151,23 @@ public class GaugeUI : MonoBehaviour
         int previousFilledSlots = CalculateFilledSlots(lastGaugeValue);
         int newFilledSlots = CalculateFilledSlots(value);
 
-        if (value > lastGaugeValue && popStartTimes != null)
+        bool charging = laserChargeController != null && laserChargeController.IsCharging;
+        bool returningGauge = laserChargeController != null && laserChargeController.IsReturningGauge;
+        if (value > lastGaugeValue && flashEndTimes != null && !charging && !returningGauge)
         {
-            int popEnd = Mathf.Min(newFilledSlots, popStartTimes.Length);
-            for (int i = previousFilledSlots; i < popEnd; i++)
-                popStartTimes[i] = Time.unscaledTime;
-
-            int nextSlot = newFilledSlots;
-            float progress = CalculateNextSlotProgress(value, nextSlot);
-            if (nextSlot < slotRenderers.Count && progress > 0f)
+            int flashSlot = newFilledSlots > previousFilledSlots
+                ? newFilledSlots - 1
+                : newFilledSlots;
+            float progress = newFilledSlots > previousFilledSlots
+                ? 1f
+                : CalculateNextSlotProgress(value, flashSlot);
+            if (flashSlot >= 0 && flashSlot < glowRenderers.Count && progress > 0f)
             {
-                flashEndTimes[nextSlot] = Time.unscaledTime + flashDuration;
-                flashAlphas[nextSlot] = Mathf.Lerp(minFlashAlpha, maxFlashAlpha, progress);
+                flashEndTimes[flashSlot] = Time.unscaledTime + flashDuration;
+                flashAlphas[flashSlot] = Mathf.Lerp(
+                    minFlashGlowAlpha,
+                    maxFlashGlowAlpha,
+                    progress);
             }
         }
 
@@ -251,51 +272,70 @@ public class GaugeUI : MonoBehaviour
 
             slot.transform.localRotation = Quaternion.identity;
 
-            GameObject visual = slotPrefab != null
+            GameObject mainImage = slotPrefab != null
                 ? Instantiate(slotPrefab, slot.transform)
-                : new GameObject("Visual");
-            visual.transform.SetParent(slot.transform, false);
+                : new GameObject("MainImage");
+            mainImage.name = "MainImage";
+            mainImage.transform.SetParent(slot.transform, false);
 
-            SpriteRenderer renderer = visual.GetComponentInChildren<SpriteRenderer>();
-            if (renderer == null)
-                renderer = visual.AddComponent<SpriteRenderer>();
+            SpriteRenderer mainRenderer = mainImage.GetComponentInChildren<SpriteRenderer>();
+            if (mainRenderer == null)
+                mainRenderer = mainImage.AddComponent<SpriteRenderer>();
 
             if (slotSprite != null)
-                renderer.sprite = slotSprite;
+                mainRenderer.sprite = slotSprite;
 
-            if (renderer.sprite == null)
+            if (mainRenderer.sprite == null)
             {
                 slot.SetActive(false);
                 continue;
             }
 
-            Vector2 spriteSize = renderer.sprite.rect.size;
-            renderer.transform.localScale = new Vector3(
-                spriteSize.x > 0f ? slotSize.x / spriteSize.x : 1f,
-                spriteSize.y > 0f ? slotSize.y / spriteSize.y : 1f,
-                1f);
-            renderer.transform.localPosition = -Vector3.Scale(
-                renderer.sprite.bounds.center,
-                renderer.transform.localScale);
+            GameObject glowImage = new GameObject("GlowImage");
+            glowImage.transform.SetParent(slot.transform, false);
+            SpriteRenderer glowRenderer = glowImage.AddComponent<SpriteRenderer>();
+            glowRenderer.sprite = mainRenderer.sprite;
+
+            ConfigureSlotRenderer(mainRenderer);
+            ConfigureSlotRenderer(glowRenderer);
 
             if (backgroundRenderer != null)
             {
-                renderer.sortingLayerID = backgroundRenderer.sortingLayerID;
-                renderer.sortingOrder = backgroundRenderer.sortingOrder + 1;
+                mainRenderer.sortingLayerID = backgroundRenderer.sortingLayerID;
+                mainRenderer.sortingOrder = backgroundRenderer.sortingOrder + 1;
+                glowRenderer.sortingLayerID = backgroundRenderer.sortingLayerID;
+                glowRenderer.sortingOrder = backgroundRenderer.sortingOrder + 2;
             }
 
-            slotRenderers.Add(renderer);
+            Color glowColor = glowRenderer.color;
+            glowColor.a = 0f;
+            glowRenderer.color = glowColor;
+
+            mainRenderers.Add(mainRenderer);
+            glowRenderers.Add(glowRenderer);
             slotTransforms.Add(slot.transform);
-            slotBaseScales.Add(slot.transform.localScale);
+            glowBaseScales.Add(glowRenderer.transform.localScale);
             slot.SetActive(false);
         }
 
-        flashEndTimes = new float[slotRenderers.Count];
-        flashAlphas = new float[slotRenderers.Count];
-        popStartTimes = new float[slotRenderers.Count];
+        flashEndTimes = new float[mainRenderers.Count];
+        flashAlphas = new float[mainRenderers.Count];
+    }
 
-        for (int i = 0; i < popStartTimes.Length; i++)
-            popStartTimes[i] = float.NegativeInfinity;
+    private void ConfigureSlotRenderer(SpriteRenderer renderer)
+    {
+        Vector2 spriteSize = renderer.sprite.rect.size;
+        renderer.transform.localScale = new Vector3(
+            spriteSize.x > 0f ? slotSize.x / spriteSize.x : 1f,
+            spriteSize.y > 0f ? slotSize.y / spriteSize.y : 1f,
+            1f);
+        CenterRenderer(renderer, renderer.transform.localScale);
+    }
+
+    private static void CenterRenderer(SpriteRenderer renderer, Vector3 scale)
+    {
+        renderer.transform.localScale = scale;
+        renderer.transform.localPosition = -Vector3.Scale(renderer.sprite.bounds.center, scale);
     }
 
     private void EnsureSlotContainer()
@@ -342,9 +382,10 @@ public class GaugeUI : MonoBehaviour
 
     private void ClearGeneratedSlots()
     {
-        slotRenderers.Clear();
+        mainRenderers.Clear();
+        glowRenderers.Clear();
         slotTransforms.Clear();
-        slotBaseScales.Clear();
+        glowBaseScales.Clear();
 
         for (int i = slotContainer.childCount - 1; i >= 0; i--)
         {
@@ -361,38 +402,95 @@ public class GaugeUI : MonoBehaviour
 
     private void UpdateSlotVisuals()
     {
-        if (slotRenderers.Count == 0)
+        if (mainRenderers.Count == 0)
             return;
 
         float time = Time.unscaledTime;
-        float pulse = (Mathf.Sin(time * availablePulseSpeed * Mathf.PI * 2f) + 1f) * 0.5f;
-        float pulseAlpha = Mathf.Lerp(availablePulseMinAlpha, availablePulseMaxAlpha, pulse);
+        float partialProgress = CalculateNextSlotProgress(lastGaugeValue, filledSlotCount);
+        bool isCharging = laserChargeController != null && laserChargeController.IsCharging;
+        int chargingStartSlot = 0;
+        int chargingEndSlot = 0;
 
-        for (int i = 0; i < slotRenderers.Count; i++)
+        if (isCharging && laserChargeController.ConsumedGaugeValue > 0)
         {
-            SpriteRenderer renderer = slotRenderers[i];
-            if (renderer == null)
+            chargingStartSlot = CalculateFilledSlots(lastGaugeValue);
+            chargingEndSlot = CalculateFilledSlots(
+                lastGaugeValue + laserChargeController.ConsumedGaugeValue);
+        }
+
+        float availablePulse = EvaluatePulse(time, availablePulseSpeed);
+        float availableAlpha = Mathf.Lerp(
+            availablePulseMinAlpha,
+            availablePulseMaxAlpha,
+            availablePulse);
+        float chargingPulse = EvaluatePulse(time, chargingPulseSpeed);
+        float chargingAlpha = Mathf.Lerp(
+            chargingPulseMinAlpha,
+            chargingPulseMaxAlpha,
+            chargingPulse);
+
+        for (int i = 0; i < mainRenderers.Count; i++)
+        {
+            SpriteRenderer mainRenderer = mainRenderers[i];
+            SpriteRenderer glowRenderer = glowRenderers[i];
+            if (mainRenderer == null || glowRenderer == null)
                 continue;
 
             bool filled = i < filledSlotCount;
-            bool flashing = !filled && time < flashEndTimes[i];
-            slotTransforms[i].gameObject.SetActive(filled || flashing);
+            bool partial = i == filledSlotCount && partialProgress > 0f;
+            bool charging = isCharging && i >= chargingStartSlot && i < chargingEndSlot;
+            bool flashing = !charging && time < flashEndTimes[i];
+            bool available = !isCharging && filled && i < availableSlotCount;
 
-            if (!filled && !flashing)
-                continue;
+            mainRenderer.gameObject.SetActive(filled || partial);
+            if (filled || partial)
+            {
+                Color mainColor = mainRenderer.color;
+                mainColor.a = filled
+                    ? 1f
+                    : Mathf.Lerp(minPartialAlpha, maxPartialAlpha, partialProgress);
+                mainRenderer.color = mainColor;
+            }
 
-            Color color = renderer.color;
-            color.a = flashing ? flashAlphas[i] : i < availableSlotCount ? pulseAlpha : 1f;
-            renderer.color = color;
+            float glowAlpha = 0f;
+            float glowScale = 1f;
 
-            float popProgress = popDuration > 0f
-                ? Mathf.Clamp01((time - popStartTimes[i]) / popDuration)
-                : 1f;
-            float scaleMultiplier = popProgress < 1f
-                ? Mathf.Lerp(popScale, 1f, popProgress)
-                : 1f;
-            slotTransforms[i].localScale = slotBaseScales[i] * scaleMultiplier;
+            if (charging)
+            {
+                glowAlpha = chargingAlpha;
+                glowScale = chargingGlowScale;
+            }
+            else if (flashing)
+            {
+                float remaining = flashDuration > 0f
+                    ? Mathf.Clamp01((flashEndTimes[i] - time) / flashDuration)
+                    : 0f;
+                glowAlpha = flashAlphas[i] * remaining;
+                glowScale = Mathf.Lerp(1f, flashGlowScale, remaining);
+            }
+            else if (available)
+            {
+                glowAlpha = availableAlpha;
+                glowScale = 1.04f;
+            }
+
+            glowRenderer.gameObject.SetActive(glowAlpha > 0f);
+            if (glowAlpha > 0f)
+            {
+                Color glowColor = glowRenderer.color;
+                glowColor.a = glowAlpha;
+                glowRenderer.color = glowColor;
+                CenterRenderer(glowRenderer, glowBaseScales[i] * glowScale);
+            }
+
+            slotTransforms[i].gameObject.SetActive(
+                mainRenderer.gameObject.activeSelf || glowRenderer.gameObject.activeSelf);
         }
+    }
+
+    private static float EvaluatePulse(float time, float speed)
+    {
+        return (Mathf.Sin(time * speed * Mathf.PI * 2f) + 1f) * 0.5f;
     }
 
     private void DisableLegacyGauge()

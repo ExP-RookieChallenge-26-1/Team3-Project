@@ -2979,12 +2979,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487274946}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2.29899, y: -1.38437, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 3789165653612699718}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &497728408
 GameObject:
@@ -6193,10 +6193,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.12962963
-    y: -0.055555556
-    width: 0.3333333
-    height: 0.3333333
+    x: 0
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -11496,6 +11496,7 @@ Transform:
   - {fileID: 1942160685988170845}
   - {fileID: 8907413205743742945}
   - {fileID: 50287656}
+  - {fileID: 487274948}
   m_Father: {fileID: 6123536525102001380}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &3863617512385791211
@@ -11858,6 +11859,7 @@ MonoBehaviour:
   ballController: {fileID: 584468765816933253}
   guageManager: {fileID: 8966763087485139492}
   laserShoot: {fileID: 1093841035844746070}
+  laserFireFlashEffect: {fileID: 4754992851937118706}
   laserUnlockState: {fileID: 487274947}
 --- !u!212 &4475683751732736882
 SpriteRenderer:
@@ -12002,6 +12004,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4754992851937118705}
   - component: {fileID: 1093841035844746070}
+  - component: {fileID: 4754992851937118706}
   m_Layer: 0
   m_Name: LaserShooter
   m_TagString: Untagged
@@ -12024,6 +12027,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3789165653612699718}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4754992851937118706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4711735575160426193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a41f589ab7344ec29be6fa179461c36d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaserFireFlashEffect
+  level1Sprite: {fileID: 21300000, guid: 6d5a09cdbf26d1f42ba375dc984e2620, type: 3}
+  level2Sprite: {fileID: 21300000, guid: f66001e96d0cd31488b1a5caeb4bf083, type: 3}
+  duration: 0.1
+  fireFlashYOffset: 1
+  effectZ: 0
+  startAlpha: 0.17
+  peakAlpha: 1
+  endAlpha: 0
+  startScale: 0.9
+  peakScale: 1.3
+  sortingLayerName: Paddle
+  sortingOrder: 10
+  targetRenderer: {fileID: 0}
 --- !u!114 &4835974830143877303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12276,6 +12304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GaugeUI
   gaugeManager: {fileID: 8966763087485139492}
+  laserChargeController: {fileID: 4454907405174469521}
   laserUnlockState: {fileID: 487274947}
   gaugeVisualRoot: {fileID: 0}
   gaugeCanvasGroup: {fileID: 0}
@@ -12288,14 +12317,19 @@ MonoBehaviour:
   slotPrefab: {fileID: 4577816528135792227, guid: 495fbf1bd450eae49b5282345f09fad8, type: 3}
   gaugeBackground: {fileID: 1725785364691067978}
   slotContainer: {fileID: 0}
+  minPartialAlpha: 0.15
+  maxPartialAlpha: 0.8
   flashDuration: 0.15
-  minFlashAlpha: 0.229
-  maxFlashAlpha: 0.9
-  popScale: 1.12
-  popDuration: 0.2
-  availablePulseSpeed: 2
-  availablePulseMinAlpha: 0.75
+  minFlashGlowAlpha: 0.35
+  maxFlashGlowAlpha: 1
+  flashGlowScale: 1.12
+  availablePulseSpeed: 1.5
+  availablePulseMinAlpha: 0.178
   availablePulseMaxAlpha: 1
+  chargingPulseSpeed: 4
+  chargingPulseMinAlpha: 0.479
+  chargingPulseMaxAlpha: 0.879
+  chargingGlowScale: 1.15
   gaugeSegmentText: {fileID: 0}
   gaugeValueText: {fileID: 0}
 --- !u!4 &5535690463866401957
@@ -14612,8 +14646,8 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 8e711bdb9e5c9e54394f83955f083822, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 7f148e9761887f3478a9a8c345570d2b, type: 3}
+  m_Color: {r: 0.13725491, g: 0.13725491, b: 0.13725491, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -14636,6 +14670,5 @@ SceneRoots:
   - {fileID: 8838075}
   - {fileID: 990277295}
   - {fileID: 145883133}
-  - {fileID: 487274948}
   - {fileID: 3373838537442495311}
   - {fileID: 414049263}

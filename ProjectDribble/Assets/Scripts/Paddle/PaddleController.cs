@@ -6,6 +6,7 @@ public class PaddleController : MonoBehaviour
     [SerializeField] private PointerInputReader inputReader;
     [SerializeField] private SpriteRenderer upPaddleSpriteRenderer;
     [SerializeField] private bool debugPaddleActiveState;
+    [SerializeField, Min(0f)] private float activationRewardGracePeriod = 0.08f;
 
     private const float TransparentAlpha = 0.3f;
 
@@ -15,6 +16,8 @@ public class PaddleController : MonoBehaviour
     private float moveSpeed;
     private float paddleWidth;
     private float velocityX;
+    private float lastActivationTime = -999f;
+    private bool wasPaddleActive;
     private bool lastLoggedPaddleActive;
     private bool hasAttemptedUpPaddleSpriteRendererResolve;
     private bool hasLoggedMissingUpPaddleSpriteRenderer;
@@ -22,6 +25,8 @@ public class PaddleController : MonoBehaviour
     private bool IsInputPressed => inputReader != null && inputReader.IsPressed;
 
     public bool IsPaddleActive => (GameManager.Instance != null && !GameManager.Instance.IsGameStarted) || IsInputPressed;
+    public bool IsInActivationRewardGracePeriod =>
+        Time.time < lastActivationTime + activationRewardGracePeriod;
     public float VelocityX => velocityX;
     public Vector2 Velocity => new Vector2(velocityX, 0f);
 
@@ -39,11 +44,13 @@ public class PaddleController : MonoBehaviour
         paddleWidth = data.paddleWidth;
         mainCamera = Camera.main;
 
-        SetReflectColliderEnabled("paddle_up", IsPaddleActive);
-        SetReflectColliderEnabled("roof_paddle", IsPaddleActive);
+        bool isPaddleActive = IsPaddleActive;
+        SetReflectColliderEnabled("paddle_up", isPaddleActive);
+        SetReflectColliderEnabled("roof_paddle", isPaddleActive);
         EnsureCaptureTriggersEnabled();
 
-        lastLoggedPaddleActive = !IsPaddleActive;
+        wasPaddleActive = isPaddleActive;
+        lastLoggedPaddleActive = !isPaddleActive;
         LogPaddleStateIfChanged();
     }
 
@@ -56,10 +63,17 @@ public class PaddleController : MonoBehaviour
             MovePad(inputReader.ScreenPosition);
         }
 
-        SetUpPaddleAlpha(IsPaddleActive ? 1f : TransparentAlpha);
+        bool isPaddleActive = IsPaddleActive;
 
-        SetReflectColliderEnabled("paddle_up", IsPaddleActive);
-        SetReflectColliderEnabled("roof_paddle", IsPaddleActive);
+        if (isPaddleActive && !wasPaddleActive)
+            lastActivationTime = Time.time;
+
+        wasPaddleActive = isPaddleActive;
+
+        SetUpPaddleAlpha(isPaddleActive ? 1f : TransparentAlpha);
+
+        SetReflectColliderEnabled("paddle_up", isPaddleActive);
+        SetReflectColliderEnabled("roof_paddle", isPaddleActive);
         EnsureCaptureTriggersEnabled();
 
         float deltaTime = Mathf.Max(Time.deltaTime, 0.0001f);

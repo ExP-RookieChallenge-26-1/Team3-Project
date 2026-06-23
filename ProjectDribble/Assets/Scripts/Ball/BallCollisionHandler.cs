@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class BallCollisionHandler : MonoBehaviour
 {
+    [SerializeField, Min(0f)] private float paddleRewardCooldown = 0.1f;
+    [SerializeField] private bool debugPaddleReward;
+
     private BallController ballController;
     private BallSpeedController ballSpeedController;
     private BallPowerController ballPowerController;
+    private Component lastPaddleRewardSource;
+    private float lastPaddleRewardTime = -999f;
 
     private void Start()
     {
@@ -31,12 +36,6 @@ public class BallCollisionHandler : MonoBehaviour
             return new BallCollisionResult(incomingDirection.normalized, false);
         }
 
-        Debug.Log(
-            $"Collision: {hit.collider.name}, frame={Time.frameCount}, inDir={incomingDirection}, hitNormal={hit.normal}, usedNormal={collisionNormal}, distance={hit.distance:0.0000}"
-        );
-
-
-
         float speedRatio = ballSpeedController.GetSpeedRatio();
 
         SoundPlayOptions options;
@@ -51,11 +50,11 @@ public class BallCollisionHandler : MonoBehaviour
 
         PaddleBallReflector paddleReflector =
             hit.collider.GetComponentInParent<PaddleBallReflector>();
+        PaddleController hitPaddle = null;
 
         if (paddleReflector != null)
         {
-            PaddleController hitPaddle =
-                paddleReflector.GetComponentInParent<PaddleController>();
+            hitPaddle = paddleReflector.GetComponentInParent<PaddleController>();
 
             if (
                 ballController != null &&
@@ -94,7 +93,12 @@ public class BallCollisionHandler : MonoBehaviour
 
             if (!isFloorHit && speedModifier != null)
             {
-                speedModifier.ModifySpeed(ballSpeedController);
+                ApplySpeedModifier(
+                    hit.collider,
+                    speedModifier,
+                    paddleReflector,
+                    hitPaddle
+                );
             }
 
             if (blockWasBroken)
@@ -114,7 +118,12 @@ public class BallCollisionHandler : MonoBehaviour
         }
         else if (!isFloorHit && speedModifier != null)
         {
-            speedModifier.ModifySpeed(ballSpeedController);
+            ApplySpeedModifier(
+                hit.collider,
+                speedModifier,
+                paddleReflector,
+                hitPaddle
+            );
         }
 
         IBallHitReceiver receiver = hit.collider.GetComponentInParent<IBallHitReceiver>();
@@ -144,6 +153,46 @@ public class BallCollisionHandler : MonoBehaviour
         Vector2 defaultDirection = Vector2.Reflect(incomingDirection, normal).normalized;
 
         return CreateResult(defaultDirection, true);
+    }
+
+    private void ApplySpeedModifier(
+        Collider2D hitCollider,
+        IBallSpeedModifier speedModifier,
+        PaddleBallReflector paddleReflector,
+        PaddleController hitPaddle
+    )
+    {
+        if (paddleReflector == null)
+        {
+            speedModifier.ModifySpeed(ballSpeedController);
+            return;
+        }
+
+        Component rewardSource = hitPaddle != null
+            ? hitPaddle
+            : paddleReflector;
+        bool skippedByGrace =
+            hitPaddle != null && hitPaddle.IsInActivationRewardGracePeriod;
+        bool skippedByCooldown =
+            rewardSource == lastPaddleRewardSource &&
+            Time.time < lastPaddleRewardTime + paddleRewardCooldown;
+        float speedBefore = ballSpeedController.CurrentSpeed;
+
+        if (!skippedByGrace && !skippedByCooldown)
+        {
+            speedModifier.ModifySpeed(ballSpeedController);
+            lastPaddleRewardSource = rewardSource;
+            lastPaddleRewardTime = Time.time;
+        }
+
+        if (debugPaddleReward)
+        {
+            Debug.Log(
+                $"[PaddleReward] frame={Time.frameCount}, collider={hitCollider.name}, " +
+                $"skippedByCooldown={skippedByCooldown}, skippedByGrace={skippedByGrace}, " +
+                $"speedBefore={speedBefore:0.000}, speedAfter={ballSpeedController.CurrentSpeed:0.000}"
+            );
+        }
     }
 
     private BallCollisionResult CreateResult(Vector2 direction, bool shouldMoveRemainingDistance)

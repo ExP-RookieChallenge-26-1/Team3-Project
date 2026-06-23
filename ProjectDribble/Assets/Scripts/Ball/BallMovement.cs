@@ -138,6 +138,7 @@ public class BallMovement : MonoBehaviour
             Vector2 rawReflectDirection = Vector2.Reflect(incomingDirection, stableNormal).normalized;
             BallCollisionResult result = ballCollisionHandler.HandleCollision(hit, direction, stableNormal);
             direction = result.nextDirection;
+            CorrectSideWallPosition(hit.collider, actualRadius, ref direction);
             lastHitCollider = hit.collider;
             lastResolvedCollider = hit.collider;
             lastResolvedDirection = direction;
@@ -160,10 +161,10 @@ public class BallMovement : MonoBehaviour
                 break;
 
             remainingDistance = Mathf.Max(0f, remainingDistance - skinWidth);
-            ResolveOverlap(actualRadius, collisionMask, direction);
+            ResolveOverlap(actualRadius, collisionMask, ref direction);
         }
 
-        ResolveOverlap(actualRadius, collisionMask, direction);
+        ResolveOverlap(actualRadius, collisionMask, ref direction);
         WarnIfOutOfPlayArea();
 
         return direction;
@@ -237,9 +238,15 @@ public class BallMovement : MonoBehaviour
         return Vector2.Reflect(direction, hit.normal).normalized;
     }
 
-    private void ResolveOverlap(float actualRadius, LayerMask collisionMask, Vector2 fallbackDirection)
+    private void ResolveOverlap(
+        float actualRadius,
+        LayerMask collisionMask,
+        ref Vector2 fallbackDirection
+    )
     {
         Collider2D[] overlaps = Physics2D.OverlapCircleAll(GetPosition(), actualRadius, collisionMask);
+        Collider2D leftWall = null;
+        Collider2D rightWall = null;
 
         for (int i = 0; i < overlaps.Length; i++)
         {
@@ -253,6 +260,17 @@ public class BallMovement : MonoBehaviour
 
             if (overlap.CompareTag("need_correction"))
                 continue;
+
+            if (TryGetAxisAlignedWallNormal(overlap, out Vector2 wallNormal))
+            {
+                if (wallNormal.x > 0f)
+                    leftWall = overlap;
+                else
+                    rightWall = overlap;
+
+                CorrectSideWallPosition(overlap, actualRadius, ref fallbackDirection);
+                continue;
+            }
 
             Vector2 position = GetPosition();
             Vector2 closest = overlap.ClosestPoint(position);
@@ -277,6 +295,62 @@ public class BallMovement : MonoBehaviour
                 }
 
                 MoveBy(pushDirection.normalized * (penetration + skinWidth));
+            }
+        }
+
+        // A later paddle correction can push the ball back into a wall that was
+        // already processed, so enforce the remembered wall bounds once more.
+        CorrectSideWallPosition(leftWall, actualRadius, ref fallbackDirection);
+        CorrectSideWallPosition(rightWall, actualRadius, ref fallbackDirection);
+    }
+
+    private void CorrectSideWallPosition(
+        Collider2D wallCollider,
+        float actualRadius,
+        ref Vector2 direction
+    )
+    {
+        if (!TryGetAxisAlignedWallNormal(wallCollider, out Vector2 wallNormal))
+            return;
+
+        Vector2 positionBefore = GetPosition();
+        Vector2 positionAfter = positionBefore;
+
+        if (wallNormal.x > 0f)
+        {
+            float minimumX = wallCollider.bounds.max.x + actualRadius + skinWidth;
+
+            if (positionAfter.x < minimumX)
+                positionAfter.x = minimumX;
+
+            if (direction.x < 0f)
+                direction.x = Mathf.Abs(direction.x);
+        }
+        else
+        {
+            float maximumX = wallCollider.bounds.min.x - actualRadius - skinWidth;
+
+            if (positionAfter.x > maximumX)
+                positionAfter.x = maximumX;
+
+            if (direction.x > 0f)
+                direction.x = -Mathf.Abs(direction.x);
+        }
+
+        bool positionCorrected =
+            (positionAfter - positionBefore).sqrMagnitude > 0.000001f;
+
+        if (positionCorrected)
+        {
+            MoveBy(positionAfter - positionBefore);
+
+            if (debugCollision)
+            {
+                Debug.Log(
+                    $"[BallWallPositionCorrection] frame={Time.frameCount}, " +
+                    $"collider={wallCollider.name}, corrected={positionCorrected}, " +
+                    $"positionBefore={positionBefore}, positionAfter={positionAfter}, direction={direction}"
+                );
             }
         }
     }

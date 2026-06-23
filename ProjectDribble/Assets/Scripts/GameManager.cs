@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
     public void RequestStageClear()
     {
         FeedbackManager.Instance?.StopRecallHoldFeedback();
+        FeedbackManager.Instance?.StopLaserChargeFeedback();
         int currentStage = stageManager.CurrentStageIndex;
 
         saveManager.MarkStageCleared(currentStage);
@@ -88,6 +89,7 @@ public class GameManager : MonoBehaviour
     public void RequestGameOver()
     {
         FeedbackManager.Instance?.StopRecallHoldFeedback();
+        FeedbackManager.Instance?.StopLaserChargeFeedback();
         timeScaleBefore = Time.timeScale;
         Time.timeScale = 0f;
         isPaused = true;
@@ -162,6 +164,7 @@ public class GameManager : MonoBehaviour
             return;
 
         FeedbackManager.Instance?.StopRecallHoldFeedback();
+        FeedbackManager.Instance?.StopLaserChargeFeedback();
         timeScaleBefore = Time.timeScale;
         Time.timeScale = 0f;
         isPaused = true;
@@ -190,6 +193,7 @@ public class GameManager : MonoBehaviour
     public void Initialize()
     {
         FeedbackManager.Instance?.StopRecallHoldFeedback();
+        FeedbackManager.Instance?.StopLaserChargeFeedback();
         Time.timeScale = 0f;
         isPaused = true;
         isGameStarted = false;
@@ -237,6 +241,7 @@ public class GameManager : MonoBehaviour
         }
 
         FeedbackManager.Instance?.StopRecallHoldFeedback();
+        FeedbackManager.Instance?.StopLaserChargeFeedback();
         timeScaleBeforeTutorial = Time.timeScale;
         Time.timeScale = 0f;
         isPausedByTutorial = true;

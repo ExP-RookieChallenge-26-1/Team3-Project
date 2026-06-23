@@ -60,6 +60,7 @@ public class LaserChargeController : MonoBehaviour
             ballController.OnReleased -= HandleBallReleased;
         }
 
+        FeedbackManager.Instance?.StopLaserChargeFeedback();
         SoundManager.Instance.StopLoop();
     }
     // 차징존에 공이 들어오고 나갈 때 호출되는 이벤트 핸들러
@@ -92,9 +93,13 @@ public class LaserChargeController : MonoBehaviour
         }
 
         isDribbling = value;
+
+        if (isDribbling)
+            FeedbackManager.Instance?.StartLaserChargeFeedback();
         
         if (isDribbling == false)
         {
+            FeedbackManager.Instance?.StopLaserChargeFeedback();
             bool mousePressed = Mouse.current != null && Mouse.current.leftButton.isPressed;
 
             if(!mousePressed)
@@ -125,12 +130,15 @@ public class LaserChargeController : MonoBehaviour
 
         isDribbling = true;
         chargeTimer = 0f;
+        FeedbackManager.Instance?.StartLaserChargeFeedback();
         
         Debug.Log("[LaserCharge] Start charging by BallCaptured event");
     }
 
     private void HandleBallReleased()
     {
+        FeedbackManager.Instance?.StopLaserChargeFeedback();
+
         if (IsRecallTutorialActive())
         {
             Reset();
@@ -178,6 +186,11 @@ public class LaserChargeController : MonoBehaviour
         }
 
         UpdateChargePreview();
+
+        if (isDribbling && IsLaserUnlocked() && !IsPointerOverUI())
+            FeedbackManager.Instance?.UpdateLaserChargeFeedback();
+        else
+            FeedbackManager.Instance?.StopLaserChargeFeedback();
 
         if (CheckTimer())
         {
@@ -302,6 +315,8 @@ public class LaserChargeController : MonoBehaviour
 
     private void TryFireChargedLaser()
     {
+        FeedbackManager.Instance?.StopLaserChargeFeedback();
+
         if (!IsLaserUnlocked())
             return;
 
@@ -334,6 +349,7 @@ public class LaserChargeController : MonoBehaviour
 
     private void ReturnGauge()
     {
+        FeedbackManager.Instance?.StopLaserChargeFeedback();
         SoundManager.Instance.StopLoop();
 
         if (!IsLaserUnlocked() || guageManager == null)
@@ -356,6 +372,7 @@ public class LaserChargeController : MonoBehaviour
     
     private void Reset()
     {
+        FeedbackManager.Instance?.StopLaserChargeFeedback();
         SoundManager.Instance.StopLoop();
         chargeCount = 0;
         chargeTimer = 0;

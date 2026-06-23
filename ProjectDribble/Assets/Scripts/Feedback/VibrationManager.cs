@@ -17,9 +17,20 @@ public sealed class VibrationManager : MonoBehaviour
     [SerializeField, Min(1)] private long progressivePulseDurationMs = 18;
     [SerializeField, Range(0f, 1f)] private float progressiveMinimumIntensity = 0.15f;
 
+    [Header("Laser Charge Pulse")]
+    [SerializeField] private bool chargePulseEnabled = true;
+    [SerializeField, Min(0.05f)] private float chargePulseInterval = 0.15f;
+    [SerializeField, Min(1)] private long chargePulseDurationMs = 90;
+    [SerializeField, Range(0f, 1f)] private float chargePulseIntensity = 0.25f;
+    [SerializeField, Min(0f)] private float chargePulseForegroundGap = 0.04f;
+
     private readonly Dictionary<string, float> lastEventTimes = new();
     private float nextProgressivePulseTime;
     private bool progressiveFeedbackActive;
+    private bool chargePulseActive;
+    private bool chargePulseOwnsActiveVibration;
+    private float nextChargePulseTime;
+    private float nextBackgroundPulseAllowedTime;
 
     public bool VibrationEnabled { get; private set; }
 
@@ -82,6 +93,8 @@ public sealed class VibrationManager : MonoBehaviour
         if (!CanPlay(eventId, cooldownSeconds, intensity))
             return false;
 
+        chargePulseOwnsActiveVibration = false;
+        DelayBackgroundPulse(milliseconds / 1000f);
         PlayOneShot(milliseconds, NormalizeIntensityToAmplitude(intensity));
         return true;
     }
@@ -107,6 +120,12 @@ public sealed class VibrationManager : MonoBehaviour
         for (int i = 0; i < amplitudes.Length; i++)
             amplitudes[i] = intensities[i] <= 0f ? 0 : NormalizeIntensityToAmplitude(intensities[i]);
 
+        long totalDurationMs = 0L;
+        for (int i = 0; i < timings.Length; i++)
+            totalDurationMs += Math.Max(0L, timings[i]);
+
+        chargePulseOwnsActiveVibration = false;
+        DelayBackgroundPulse(totalDurationMs / 1000f);
         PlayWaveform(timings, amplitudes);
         return true;
     }
@@ -115,6 +134,9 @@ public sealed class VibrationManager : MonoBehaviour
     {
         if (!VibrationEnabled)
             return;
+
+        if (chargePulseActive)
+            StopLaserChargePulse();
 
         float progress = Mathf.Clamp01(progress01);
         if (progress <= 0f)
@@ -127,6 +149,7 @@ public sealed class VibrationManager : MonoBehaviour
         nextProgressivePulseTime = Time.unscaledTime + progressivePulseInterval;
         float intensity = Mathf.Lerp(progressiveMinimumIntensity, 1f, progress);
         long gapMs = Math.Max(1L, (long)(progressivePulseInterval * 1000f) - progressivePulseDurationMs);
+        chargePulseOwnsActiveVibration = false;
         PlayWaveform(
             new[] { 0L, progressivePulseDurationMs, gapMs },
             new[] { 0, NormalizeIntensityToAmplitude(intensity), 0 });
@@ -140,6 +163,49 @@ public sealed class VibrationManager : MonoBehaviour
         progressiveFeedbackActive = false;
         nextProgressivePulseTime = 0f;
         CancelVibration();
+    }
+
+    public void StartLaserChargePulse(float intensity = 1f)
+    {
+        if (!VibrationEnabled || !chargePulseEnabled || intensity <= 0f)
+            return;
+
+        if (progressiveFeedbackActive)
+            StopProgressiveVibration();
+
+        chargePulseActive = true;
+        nextChargePulseTime = 0f;
+        UpdateLaserChargePulse(intensity);
+    }
+
+    public void UpdateLaserChargePulse(float intensity = 1f)
+    {
+        if (!VibrationEnabled || !chargePulseEnabled || !chargePulseActive || intensity <= 0f)
+            return;
+
+        float now = Time.unscaledTime;
+        if (now < nextChargePulseTime || now < nextBackgroundPulseAllowedTime)
+            return;
+
+        nextChargePulseTime = now + chargePulseInterval;
+        chargePulseOwnsActiveVibration = true;
+        PlayOneShot(
+            chargePulseDurationMs,
+            NormalizeIntensityToAmplitude(chargePulseIntensity * Mathf.Clamp01(intensity)));
+    }
+
+    public void StopLaserChargePulse()
+    {
+        if (!chargePulseActive)
+            return;
+
+        chargePulseActive = false;
+        nextChargePulseTime = 0f;
+
+        if (chargePulseOwnsActiveVibration)
+            CancelHardwareVibration();
+
+        chargePulseOwnsActiveVibration = false;
     }
 
     public int NormalizeIntensityToAmplitude(float intensity)
@@ -224,6 +290,23 @@ public sealed class VibrationManager : MonoBehaviour
     {
         progressiveFeedbackActive = false;
         nextProgressivePulseTime = 0f;
+        chargePulseActive = false;
+        chargePulseOwnsActiveVibration = false;
+        nextChargePulseTime = 0f;
+        nextBackgroundPulseAllowedTime = 0f;
+
+        CancelHardwareVibration();
+    }
+
+    private void DelayBackgroundPulse(float durationSeconds)
+    {
+        nextBackgroundPulseAllowedTime = Mathf.Max(
+            nextBackgroundPulseAllowedTime,
+            Time.unscaledTime + Mathf.Max(0f, durationSeconds) + chargePulseForegroundGap);
+    }
+
+    private void CancelHardwareVibration()
+    {
 
 #if UNITY_ANDROID
         if (Application.isEditor)

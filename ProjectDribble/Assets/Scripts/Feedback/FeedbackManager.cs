@@ -91,6 +91,7 @@ public sealed class FeedbackManager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= HandleSceneLoaded;
         StopRecallHoldFeedback();
+        StopLaserChargeFeedback();
     }
 
     public void PlayUIButtonFeedback(float eventVolume = 1f)
@@ -179,6 +180,21 @@ public sealed class FeedbackManager : MonoBehaviour
         VibrationManager.Instance?.StopProgressiveVibration();
     }
 
+    public void StartLaserChargeFeedback(float intensity = 1f)
+    {
+        VibrationManager.Instance?.StartLaserChargePulse(intensity);
+    }
+
+    public void UpdateLaserChargeFeedback(float intensity = 1f)
+    {
+        VibrationManager.Instance?.UpdateLaserChargePulse(intensity);
+    }
+
+    public void StopLaserChargeFeedback()
+    {
+        VibrationManager.Instance?.StopLaserChargePulse();
+    }
+
     private void VibrateOneShot(string eventId, float cooldown, long durationMs, float intensity)
     {
         VibrationManager.Instance?.TryPlayOneShot(eventId, cooldown, durationMs, intensity);
@@ -188,6 +204,7 @@ public sealed class FeedbackManager : MonoBehaviour
     {
         registeredButtons.Clear();
         StopRecallHoldFeedback();
+        StopLaserChargeFeedback();
         RegisterSceneButtons();
     }
 

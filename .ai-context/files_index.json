@@ -23376,9 +23376,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
     "file_name": "GaugeUI.cs",
-    "content_hash": "f419f8002e9069e38f2614604b7e34af9feafc72",
-    "size": 15567,
-    "line_count": 463,
+    "content_hash": "c980d440143cf634daea9106958fab3595972f4d",
+    "size": 19635,
+    "line_count": 561,
     "namespace": "",
     "using_list": [
       "System.Collections.Generic",
@@ -23416,10 +23416,13 @@
       "BuildSlots",
       "GameObject",
       "Vector3",
+      "ConfigureSlotRenderer",
+      "CenterRenderer",
       "EnsureSlotContainer",
       "ClearGeneratedSlots",
       "DestroyImmediate",
       "UpdateSlotVisuals",
+      "EvaluatePulse",
       "DisableLegacyGauge",
       "UpdateGaugeValueText",
       "UpdateGaugeSegmentText",
@@ -23449,13 +23452,6 @@
         "is_static": false
       },
       {
-        "name": "popStartTimes",
-        "type": "float[]",
-        "access": "private",
-        "serialized": false,
-        "is_static": false
-      },
-      {
         "name": "filledSlotCount",
         "type": "int",
         "access": "private",
@@ -23477,8 +23473,15 @@
         "is_static": false
       },
       {
-        "name": "nextSlot",
-        "type": "int",
+        "name": "charging",
+        "type": "bool",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "returningGauge",
+        "type": "bool",
         "access": "internal",
         "serialized": false,
         "is_static": false
@@ -23561,6 +23564,13 @@
         "is_static": false
       },
       {
+        "name": "glowColor",
+        "type": "Color",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "spriteSize",
         "type": "Vector2",
         "access": "internal",
@@ -23582,7 +23592,35 @@
         "is_static": false
       },
       {
-        "name": "renderer",
+        "name": "isCharging",
+        "type": "bool",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "chargingStartSlot",
+        "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "chargingEndSlot",
+        "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "mainRenderer",
+        "type": "SpriteRenderer",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "glowRenderer",
         "type": "SpriteRenderer",
         "access": "internal",
         "serialized": false,
@@ -23596,6 +23634,20 @@
         "is_static": false
       },
       {
+        "name": "partial",
+        "type": "bool",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "charging",
+        "type": "bool",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "flashing",
         "type": "bool",
         "access": "internal",
@@ -23603,7 +23655,35 @@
         "is_static": false
       },
       {
-        "name": "color",
+        "name": "available",
+        "type": "bool",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "mainColor",
+        "type": "Color",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "glowAlpha",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "glowScale",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "glowColor",
         "type": "Color",
         "access": "internal",
         "serialized": false,
@@ -23635,8 +23715,8 @@
     "serialize_field_count": 0,
     "public_field_count": 0,
     "get_component_count": 3,
-    "find_call_count": 2,
-    "new_keyword_count": 18,
+    "find_call_count": 3,
+    "new_keyword_count": 20,
     "coroutine_count": 0,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
@@ -23644,16 +23724,17 @@
       "string",
       "float",
       "int",
-      "Vector2",
-      "SpriteRenderer",
       "bool",
       "Color",
+      "Vector2",
+      "SpriteRenderer",
       "System",
       "Collections",
       "Generic",
       "TMPro",
       "UnityEngine",
       "GaugeManager",
+      "LaserChargeController",
       "LaserUnlockState",
       "CanvasGroup",
       "Legacy",
@@ -23666,6 +23747,7 @@
       "Available",
       "Laser",
       "Pulse",
+      "Charging",
       "Text",
       "TextMeshProUGUI",
       "GeneratedSlotNamePrefix",
@@ -23695,7 +23777,8 @@
       "UpdateGaugeValueText",
       "FilledGaugeSegments",
       "CalculateFilledSlots",
-      "Length",
+      "IsCharging",
+      "IsReturningGauge",
       "CalculateNextSlotProgress",
       "Lerp",
       "GaugePerSegment",
@@ -23709,13 +23792,15 @@
       "SetParent",
       "Quaternion",
       "Instantiate",
-      "Visual",
+      "MainImage",
       "GetComponentInChildren",
       "AddComponent",
       "SetActive",
-      "Scale",
+      "GlowImage",
+      "ConfigureSlotRenderer",
       "Add",
-      "NegativeInfinity",
+      "CenterRenderer",
+      "Scale",
       "Find",
       "GaugeSlots",
       "Clear",
@@ -23724,6 +23809,8 @@
       "Application",
       "Destroy",
       "DestroyImmediate",
+      "ConsumedGaugeValue",
+      "EvaluatePulse",
       "Sin",
       "PI",
       "GaugePP",
@@ -23748,10 +23835,12 @@
       "Slot Gauge",
       "Slot Feedback",
       "Available Laser Pulse",
+      "Charging Pulse",
       "Text",
       "GaugeSlot_",
       "{GeneratedSlotNamePrefix}{i + 1:00}",
-      "Visual",
+      "MainImage",
+      "GlowImage",
       "GaugeSlots",
       "GaugePP",
       "Gauge Value: {value}",
@@ -23763,25 +23852,28 @@
       80,
       0,
       3,
-      0.12,
       1,
-      0.2,
-      0.9,
+      0.15,
+      0.8,
+      0.12,
+      0.35,
       1.12,
-      0.16,
       2,
-      0.75,
+      0.08,
+      0.22,
+      4,
+      0.55,
+      1.15,
       100,
       0.5,
-      0,
-      0.01
+      0
     ],
     "guessed_roles": [
       "ui",
       "runtime",
+      "data",
       "inventory",
-      "combat",
-      "manager"
+      "combat"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
@@ -23961,9 +24053,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "file_name": "LaserChargeController.cs",
-    "content_hash": "fc02dc1bd88c878fe21859596e1d99edcfc1309a",
-    "size": 9158,
-    "line_count": 368,
+    "content_hash": "a795eee24e6a798a658c24ce1092e45cabf2f561",
+    "size": 10156,
+    "line_count": 395,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -24004,6 +24096,7 @@
       "IncreaseChargeLevel",
       "GetChargeRatio",
       "TryFireChargedLaser",
+      "GetPaddleCenterPosition",
       "ReturnGauge",
       "Reset",
       "IsLaserUnlocked",
@@ -24013,6 +24106,13 @@
     "fields": [
       {
         "name": "isDribbling",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "isReturningGauge",
         "type": "bool",
         "access": "private",
         "serialized": false,
@@ -24068,6 +24168,13 @@
         "is_static": false
       },
       {
+        "name": "firedChargeLevel",
+        "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "returnAmount",
         "type": "int",
         "access": "internal",
@@ -24099,7 +24206,7 @@
     "has_on_disable": true,
     "serialize_field_count": 0,
     "public_field_count": 0,
-    "get_component_count": 0,
+    "get_component_count": 1,
     "find_call_count": 3,
     "new_keyword_count": 0,
     "coroutine_count": 0,
@@ -24123,7 +24230,12 @@
       "FormerlySerializedAs",
       "GaugeManager",
       "LaserShooter",
+      "LaserFireFlashEffect",
       "LaserUnlockState",
+      "IsCharging",
+      "IsReturningGauge",
+      "ChargedLevelCount",
+      "ConsumedGaugeValue",
       "Awake",
       "FindAnyObjectByType",
       "OnEnable",
@@ -24175,6 +24287,9 @@
       "Play",
       "LaserFire",
       "ShootLaser",
+      "GetPaddleCenterPosition",
+      "Vector3",
+      "GetComponent",
       "AddGauge",
       "Clamp01",
       "GameManager",
@@ -24183,7 +24298,9 @@
       "IsPointerOverGameObject",
       "ReadValue"
     ],
-    "component_access_types": [],
+    "component_access_types": [
+      "Collider2D"
+    ],
     "created_types": [],
     "singleton_access_types": [
       "SoundManager",
@@ -24208,6 +24325,7 @@
       "런타임 컴포넌트",
       "Update 기반 처리 존재",
       "UI 관련 로직 포함",
+      "컴포넌트 조회 사용",
       "Find 계열 탐색 사용"
     ]
   },
@@ -24472,12 +24590,187 @@
     ]
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserFireFlashEffect.cs",
+    "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserFireFlashEffect.cs",
+    "file_name": "LaserFireFlashEffect.cs",
+    "content_hash": "663c71e3ab2a20312c56a1d0faa0dd8f9def4e9e",
+    "size": 3846,
+    "line_count": 130,
+    "namespace": "",
+    "using_list": [
+      "System.Collections",
+      "UnityEngine",
+      "UnityEngine.Serialization"
+    ],
+    "classes": [
+      {
+        "name": "LaserFireFlashEffect",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "LaserFireFlashEffect",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Awake",
+      "OnDisable",
+      "Play",
+      "PlayRoutine",
+      "ApplyFrame",
+      "EnsureRenderer",
+      "GameObject"
+    ],
+    "fields": [
+      {
+        "name": "playRoutine",
+        "type": "Coroutine",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "sprite",
+        "type": "Sprite",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "position",
+        "type": "Vector3",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "riseDuration",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "fallDuration",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "elapsed",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "color",
+        "type": "Color",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Awake",
+      "OnDisable"
+    ],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": true,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 1,
+    "coroutine_count": 2,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "Coroutine",
+      "Sprite",
+      "Vector3",
+      "float",
+      "Color",
+      "System",
+      "Collections",
+      "UnityEngine",
+      "Serialization",
+      "Sprites",
+      "Animation",
+      "Min",
+      "FormerlySerializedAs",
+      "Rendering",
+      "Default",
+      "SpriteRenderer",
+      "Awake",
+      "EnsureRenderer",
+      "SetActive",
+      "OnDisable",
+      "StopCoroutine",
+      "Play",
+      "StartCoroutine",
+      "PlayRoutine",
+      "Clamp01",
+      "ApplyFrame",
+      "Lerp",
+      "LaserFireFlashVisual",
+      "SetParent",
+      "AddComponent"
+    ],
+    "component_access_types": [],
+    "created_types": [
+      "GameObject"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Sprites",
+      "Animation",
+      "yOffset",
+      "Rendering",
+      "Default",
+      "LaserFireFlashVisual"
+    ],
+    "numeric_literals": [
+      0.01,
+      0.12,
+      0.4,
+      0,
+      1,
+      0.9,
+      1.08,
+      10,
+      0.35
+    ],
+    "guessed_roles": [
+      "runtime",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "저장/불러오기 관련 로직 포함"
+    ]
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserShooter.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserShooter.cs",
     "file_name": "LaserShooter.cs",
-    "content_hash": "6315e1c8e7087051452cbd198185a0145016878a",
-    "size": 1866,
-    "line_count": 66,
+    "content_hash": "0a0df44fd8ffcfa1c05d8610b71e29f8fcf8db27",
+    "size": 1891,
+    "line_count": 67,
     "namespace": "",
     "using_list": [
       "ScriptableObjects",

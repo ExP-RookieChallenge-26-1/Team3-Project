@@ -22353,13 +22353,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCapturedDribbleController.cs",
     "from_class": "BallCapturedDribbleController",
-    "to_type": "SoundPlayOptions",
-    "relation_type": "creates",
-    "strength": 2
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCapturedDribbleController.cs",
-    "from_class": "BallCapturedDribbleController",
     "to_type": "Vector2",
     "relation_type": "creates",
     "strength": 2
@@ -22369,6 +22362,13 @@
     "from_class": "BallCapturedDribbleController",
     "to_type": "MonoBehaviour",
     "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCapturedDribbleController.cs",
+    "from_class": "BallCapturedDribbleController",
+    "to_type": "FeedbackManager",
+    "relation_type": "singleton-access",
     "strength": 4
   },
   {
@@ -22459,6 +22459,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCapturedDribbleController.cs",
     "from_class": "BallCapturedDribbleController",
     "to_type": "BallController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCapturedDribbleController.cs",
+    "from_class": "BallCapturedDribbleController",
+    "to_type": "BallFeedbackSurface",
     "relation_type": "uses",
     "strength": 1
   },
@@ -22941,6 +22948,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCapturedDribbleController.cs",
     "from_class": "BallCapturedDribbleController",
+    "to_type": "FeedbackManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCapturedDribbleController.cs",
+    "from_class": "BallCapturedDribbleController",
     "to_type": "float",
     "relation_type": "uses",
     "strength": 1
@@ -23284,6 +23298,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCapturedDribbleController.cs",
     "from_class": "BallCapturedDribbleController",
+    "to_type": "PlayBallBounceFeedback",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCapturedDribbleController.cs",
+    "from_class": "BallCapturedDribbleController",
     "to_type": "RefreshInactiveCaptureSuppression",
     "relation_type": "uses",
     "strength": 1
@@ -23557,6 +23578,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "from_class": "BallCollisionHandler",
+    "to_type": "FeedbackManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
     "to_type": "SoundManager",
     "relation_type": "singleton-access",
     "strength": 4
@@ -23620,6 +23648,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "from_class": "BallCollisionHandler",
+    "to_type": "BallFeedbackSurface",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
     "to_type": "BallGroundBounce",
     "relation_type": "uses",
     "strength": 1
@@ -23648,6 +23683,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "from_class": "BallCollisionHandler",
+    "to_type": "Block",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
     "to_type": "BlockCell",
     "relation_type": "uses",
     "strength": 1
@@ -23656,6 +23698,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "from_class": "BallCollisionHandler",
     "to_type": "bool",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "Ceiling",
     "relation_type": "uses",
     "strength": 1
   },
@@ -23740,6 +23789,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "from_class": "BallCollisionHandler",
     "to_type": "Empty",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "FeedbackManager",
     "relation_type": "uses",
     "strength": 1
   },
@@ -23914,6 +23970,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "from_class": "BallCollisionHandler",
+    "to_type": "Other",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "Paddle",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
     "to_type": "PaddleBallReflector",
     "relation_type": "uses",
     "strength": 1
@@ -23936,6 +24006,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "from_class": "BallCollisionHandler",
     "to_type": "Play",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "PlayBallBounceFeedback",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "PlayCollisionFeedback",
     "relation_type": "uses",
     "strength": 1
   },
@@ -24020,6 +24104,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "from_class": "BallCollisionHandler",
     "to_type": "Vector2",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "Wall",
     "relation_type": "uses",
     "strength": 1
   },
@@ -25846,6 +25937,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "from_class": "BallRecallInput",
+    "to_type": "FeedbackManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
+    "from_class": "BallRecallInput",
     "to_type": "GameManager",
     "relation_type": "singleton-access",
     "strength": 4
@@ -25917,6 +26015,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "from_class": "BallRecallInput",
     "to_type": "EventSystems",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
+    "from_class": "BallRecallInput",
+    "to_type": "FeedbackManager",
     "relation_type": "uses",
     "strength": 1
   },
@@ -26028,6 +26133,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "from_class": "BallRecallInput",
+    "to_type": "OnDisable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
+    "from_class": "BallRecallInput",
     "to_type": "Pointer",
     "relation_type": "uses",
     "strength": 1
@@ -26071,6 +26183,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "from_class": "BallRecallInput",
     "to_type": "Setting",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
+    "from_class": "BallRecallInput",
+    "to_type": "StartRecallHoldFeedback",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
+    "from_class": "BallRecallInput",
+    "to_type": "StopRecallHoldFeedback",
     "relation_type": "uses",
     "strength": 1
   },
@@ -27505,6 +27631,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "from_class": "BlockCell",
+    "to_type": "FeedbackManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
+    "from_class": "BlockCell",
     "to_type": "SoundManager",
     "relation_type": "singleton-access",
     "strength": 4
@@ -27674,6 +27807,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "from_class": "BlockCell",
     "to_type": "EnsureLaserTargetOverlay",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
+    "from_class": "BlockCell",
+    "to_type": "FeedbackManager",
     "relation_type": "uses",
     "strength": 1
   },
@@ -27884,6 +28024,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "from_class": "BlockCell",
     "to_type": "Play",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
+    "from_class": "BlockCell",
+    "to_type": "PlayBlockBreakFeedback",
     "relation_type": "uses",
     "strength": 1
   },
@@ -31453,6 +31600,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "from_class": "CeilingManager",
+    "to_type": "FeedbackManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
     "to_type": "SoundManager",
     "relation_type": "singleton-access",
     "strength": 4
@@ -31901,6 +32055,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "from_class": "CeilingManager",
+    "to_type": "FeedbackManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
     "to_type": "FindAnyObjectByType",
     "relation_type": "uses",
     "strength": 1
@@ -32238,6 +32399,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "from_class": "CeilingManager",
     "to_type": "Play",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "PlayCeilingHitFeedback",
     "relation_type": "uses",
     "strength": 1
   },
@@ -33488,10 +33656,1067 @@
     "strength": 1
   },
   {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "GameObject",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "SoundManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "VibrationManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Add",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "AddComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "AddListener",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "AfterSceneLoad",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Awake",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "BallFeedbackSurface",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Block",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "BlockBreak",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Button",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Ceiling",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "CeilingHit",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Clamp01",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Clear",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Collections",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Cooldowns",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "DefaultNamespace",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Destroy",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "DontDestroyOnLoad",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Durations",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "EnsureInstance",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Event",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "FindAnyObjectByType",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "FindObjectsByType",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "FindObjectsInactive",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "float",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "GaugeSegmentFilled",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Generic",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "HandleSceneLoaded",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "HandleUIButtonClicked",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Include",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Instance",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Laser",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "LaserFire",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Length",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "LoadSceneMode",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Min",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "OnDisable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "OnEnable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Other",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Paddle",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Pattern",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Play",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "PlayBallBounceFeedback",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "PlayBlockBreakFeedback",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "PlayCeilingHitFeedback",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "PlayGaugeSegmentFilledFeedback",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "PlayLaserFireFeedback",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "PlayUIButtonFeedback",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "RegisterSceneButtons",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "RuntimeInitializeLoadType",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "RuntimeInitializeOnLoadMethod",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Scene",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "SceneManagement",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "SceneManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "SoundId",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "SoundManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "SoundPlayOptions",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Start",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "StartRecallHoldFeedback",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "StopProgressiveVibration",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "StopRecallHoldFeedback",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Strong",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "System",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "TryPlayOneShot",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "TryPlayWaveform",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "UI",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "UIClick",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "UpdateProgressiveVibration",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "VibrateOneShot",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Vibration",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "VibrationManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "VibrationToggle",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Wall",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "Weak",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "GameObject",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "AddComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "AfterSceneLoad",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Amplitude",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Android",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "AndroidJavaClass",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "AndroidJavaObject",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Application",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Awake",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "bool",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Build",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Call",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "CallStatic",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "CancelVibration",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "CanPlay",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Clamp",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Clamp01",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Collections",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Destroy",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "DontDestroyOnLoad",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "EnsureInstance",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Exception",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Feedback",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "FindAnyObjectByType",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "float",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Generic",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "GetAndroidSdkInt",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "GetInt",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "GetStatic",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "GetVibrator",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Handheld",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Instance",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "int",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "IsNullOrEmpty",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Length",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Lerp",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "LogWarning",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Math",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Max",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Message",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Min",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "NormalizeIntensityToAmplitude",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "OnApplicationPause",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "OnApplicationQuit",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "PlayerPrefs",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "PlayOneShot",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "PlayWaveform",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Progressive",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "RoundToInt",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "RuntimeInitializeLoadType",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "RuntimeInitializeOnLoadMethod",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Save",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "SDK_INT",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "SetInt",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "SetVibrationEnabled",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "StopProgressiveVibration",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "string",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "System",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "TryGetValue",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "TryPlayOneShot",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "TryPlayWaveform",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "UNITY_ANDROID",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "UnityPlayer",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "UpdateProgressiveVibration",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "VERSION",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Vibrate",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "VibrationEffect",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "VibrationEnabled",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "VibrationEnabledKey",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "MonoBehaviour",
     "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "FeedbackManager",
+    "relation_type": "singleton-access",
     "strength": 4
   },
   {
@@ -33575,6 +34800,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "EndRecallTutorial",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "FeedbackManager",
     "relation_type": "uses",
     "strength": 1
   },
@@ -33931,6 +35163,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
+    "to_type": "StopRecallHoldFeedback",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
     "to_type": "System",
     "relation_type": "uses",
     "strength": 1
@@ -34197,6 +35436,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
     "from_class": "GaugeManager",
+    "to_type": "FeedbackManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
+    "from_class": "GaugeManager",
     "to_type": "SoundManager",
     "relation_type": "singleton-access",
     "strength": 4
@@ -34247,6 +35493,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
     "from_class": "GaugeManager",
     "to_type": "DefaultNamespace",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
+    "from_class": "GaugeManager",
+    "to_type": "FeedbackManager",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34366,6 +35619,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
     "from_class": "GaugeManager",
     "to_type": "Play",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
+    "from_class": "GaugeManager",
+    "to_type": "PlayGaugeSegmentFilledFeedback",
     "relation_type": "uses",
     "strength": 1
   },
@@ -35492,6 +36752,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "from_class": "LaserChargeController",
+    "to_type": "FeedbackManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
     "to_type": "GameManager",
     "relation_type": "singleton-access",
     "strength": 4
@@ -35612,6 +36879,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "from_class": "LaserChargeController",
     "to_type": "EventSystems",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
+    "to_type": "FeedbackManager",
     "relation_type": "uses",
     "strength": 1
   },
@@ -35934,6 +37208,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "from_class": "LaserChargeController",
     "to_type": "PlayAreaTopY",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
+    "to_type": "PlayLaserFireFeedback",
     "relation_type": "uses",
     "strength": 1
   },
@@ -42758,8 +44039,22 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
     "from_class": "SettingsUI",
+    "to_type": "Button",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
     "to_type": "MonoBehaviour",
     "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "FeedbackManager",
+    "relation_type": "singleton-access",
     "strength": 4
   },
   {
@@ -42772,7 +44067,28 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
     "from_class": "SettingsUI",
+    "to_type": "VibrationManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "AddListener",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
     "to_type": "BgmMuffleReason",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "Button",
     "relation_type": "uses",
     "strength": 1
   },
@@ -42786,7 +44102,49 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
     "from_class": "SettingsUI",
+    "to_type": "Color",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "FeedbackManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "Find",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "GetComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "Image",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
     "to_type": "Instance",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "OnDestroy",
     "relation_type": "uses",
     "strength": 1
   },
@@ -42801,6 +44159,27 @@
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
     "from_class": "SettingsUI",
     "to_type": "OpenSettings",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "PlayUIButtonFeedback",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "RefreshVibrationToggleVisual",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "RemoveListener",
     "relation_type": "uses",
     "strength": 1
   },
@@ -42828,6 +44207,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
     "from_class": "SettingsUI",
+    "to_type": "SetVibrationEnabled",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
     "to_type": "SoundManager",
     "relation_type": "uses",
     "strength": 1
@@ -42842,6 +44228,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
     "from_class": "SettingsUI",
+    "to_type": "ToggleVibration",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "UI",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
     "to_type": "UnityEngine",
     "relation_type": "uses",
     "strength": 1
@@ -42850,6 +44250,27 @@
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
     "from_class": "SettingsUI",
     "to_type": "Update",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "VibrationEnabled",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "VibrationManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "VibrationToggle",
     "relation_type": "uses",
     "strength": 1
   },

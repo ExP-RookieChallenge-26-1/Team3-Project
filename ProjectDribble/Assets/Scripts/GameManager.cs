@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameClearUI;
     [SerializeField] private GameObject playTestUI;
     [SerializeField] private GameObject pauseButton;
+    [SerializeField] private GameObject quitConfirmPopup;
+    [SerializeField] private GameObject homeConfirmPopup;
 
     private bool isPausedByTutorial;
     private float timeScaleBeforeTutorial = 1f;
@@ -187,11 +189,80 @@ public class GameManager : MonoBehaviour
 
     public void ToTitle()
     {
+        ShowHomeConfirmPopup();
+    }
+
+    public void OnClickHomeButton()
+    {
+        ShowHomeConfirmPopup();
+    }
+
+    public void ConfirmGoHome()
+    {
+        HideHomeConfirmPopup();
+        GoHomeInternal();
+    }
+
+    public void CancelGoHome()
+    {
+        HideHomeConfirmPopup();
+    }
+
+    public void ShowHomeConfirmPopup()
+    {
+        HideQuitConfirmPopup();
+
+        if (homeConfirmPopup != null)
+            homeConfirmPopup.SetActive(true);
+    }
+
+    public void HideHomeConfirmPopup()
+    {
+        if (homeConfirmPopup != null)
+            homeConfirmPopup.SetActive(false);
+    }
+
+    public void OnClickQuitButton()
+    {
+        ShowQuitConfirmPopup();
+    }
+
+    public void ShowQuitConfirmPopup()
+    {
+        HideHomeConfirmPopup();
+
+        if (quitConfirmPopup != null)
+            quitConfirmPopup.SetActive(true);
+    }
+
+    public void HideQuitConfirmPopup()
+    {
+        if (quitConfirmPopup != null)
+            quitConfirmPopup.SetActive(false);
+    }
+
+    public void ConfirmQuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+
+    public void CancelQuitGame()
+    {
+        HideQuitConfirmPopup();
+    }
+
+    private void GoHomeInternal()
+    {
         Initialize();
     }
 
     public void Initialize()
     {
+        CloseConfirmPopups();
         FeedbackManager.Instance?.StopRecallHoldFeedback();
         FeedbackManager.Instance?.StopLaserChargeFeedback();
         Time.timeScale = 0f;
@@ -230,6 +301,12 @@ public class GameManager : MonoBehaviour
 
         if (pauseButton != null)
             pauseButton.SetActive(false);
+    }
+
+    private void CloseConfirmPopups()
+    {
+        HideQuitConfirmPopup();
+        HideHomeConfirmPopup();
     }
 
     public void PauseForTutorial()

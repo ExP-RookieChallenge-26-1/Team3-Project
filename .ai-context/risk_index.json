@@ -464,6 +464,29 @@
     "risk_score": 88
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "class_name": "GameManager",
+    "risk_flags": [
+      "singleton-candidate",
+      "high-coupling",
+      "large-class",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "ui-runtime-mixed",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Instance 또는 DontDestroyOnLoad 패턴 감지",
+      "참조 타입 또는 관계 수가 많음",
+      "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 88
+  },
+  {
     "file_id": "PaddlePrototype/Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs",
     "class_name": "Benchmark01_UGUI",
     "risk_flags": [
@@ -1413,27 +1436,6 @@
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 76
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Scripts/GameManager.cs",
-    "class_name": "GameManager",
-    "risk_flags": [
-      "singleton-candidate",
-      "high-coupling",
-      "init-order-sensitive",
-      "save-load-sensitive",
-      "ui-runtime-mixed",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "Instance 또는 DontDestroyOnLoad 패턴 감지",
-      "참조 타입 또는 관계 수가 많음",
-      "초기화 순서에 민감할 가능성",
-      "저장/불러오기 관련 로직 포함",
-      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 73
   },
   {
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallSpeedColorController.cs",

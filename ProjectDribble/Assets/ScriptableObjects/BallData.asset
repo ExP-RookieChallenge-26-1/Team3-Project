@@ -30,7 +30,7 @@ MonoBehaviour:
   maxDamage: 7
   paddleDamageBonus: 0.8
   dribbleDamageBonus: 0.1
-  blockDamageLoss: 0.5
+  blockDamageLoss: 0.35
   blockSpeedSlowCooldown: 0.25
   captureCooldown: 0.1
   releaseRecaptureDelay: 0.5

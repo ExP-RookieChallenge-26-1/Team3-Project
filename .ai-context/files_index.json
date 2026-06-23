@@ -16229,9 +16229,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "file_name": "BallCollisionHandler.cs",
-    "content_hash": "3bff5557caf58eebcb80deffd0458bddc700bd55",
-    "size": 7176,
-    "line_count": 237,
+    "content_hash": "a15c0ccffd8b4eda5a71a08a7f5a35146fc11352",
+    "size": 8810,
+    "line_count": 286,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -16255,9 +16255,11 @@
     "main_class_name": "BallCollisionHandler",
     "unity_type": "MonoBehaviour",
     "methods": [
+      "Min",
       "Start",
       "HandleCollision",
       "BallCollisionResult",
+      "ApplySpeedModifier",
       "CreateResult",
       "IsFloorCollider",
       "GetCollisionSound",
@@ -16286,6 +16288,20 @@
         "is_static": false
       },
       {
+        "name": "lastPaddleRewardSource",
+        "type": "Component",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "lastPaddleRewardTime",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "options",
         "type": "SoundPlayOptions",
         "access": "internal",
@@ -16300,8 +16316,22 @@
         "is_static": false
       },
       {
+        "name": "hitPaddle",
+        "type": "PaddleController",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "blockWasBroken",
         "type": "bool",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "speedBefore",
+        "type": "float",
         "access": "internal",
         "serialized": false,
         "is_static": false
@@ -16331,11 +16361,15 @@
       "BallController",
       "BallSpeedController",
       "BallPowerController",
+      "Component",
+      "float",
       "SoundPlayOptions",
       "bool",
+      "PaddleController",
       "DefaultNamespace",
       "Interfaces",
       "UnityEngine",
+      "Min",
       "Start",
       "GetComponent",
       "BallCollisionResult",
@@ -16343,8 +16377,6 @@
       "RaycastHit2D",
       "Vector2",
       "IsCaptured",
-      "Log",
-      "Collision",
       "GetSpeedRatio",
       "SoundId",
       "GetCollisionSound",
@@ -16355,7 +16387,6 @@
       "Instance",
       "Play",
       "PaddleBallReflector",
-      "PaddleController",
       "TryStartPendingCaptureFromPaddleHit",
       "ReflectUp",
       "IsFloorCollider",
@@ -16363,6 +16394,7 @@
       "ApplyGroundWeakened",
       "IDamageable",
       "CurrentDamage",
+      "Log",
       "BallDamage",
       "Apply",
       "Damage",
@@ -16371,15 +16403,19 @@
       "TakeDamage",
       "IsAlive",
       "ApplyBlockDamageLoss",
-      "ModifySpeed",
+      "ApplySpeedModifier",
       "CreateResult",
       "IBallHitReceiver",
       "OnBallHit",
       "IBallReflector",
       "GetReflectDirection",
       "Reflect",
-      "CorrectDirection",
       "Collider2D",
+      "ModifySpeed",
+      "IsInActivationRewardGracePeriod",
+      "CurrentSpeed",
+      "PaddleReward",
+      "CorrectDirection",
       "ToLowerInvariant",
       "Empty",
       "IsFloorName",
@@ -16402,19 +16438,23 @@
       "SoundManager"
     ],
     "string_literals": [
+      "[PaddleReward] frame={Time.frameCount}, collider={hitCollider.name}, ",
+      "skippedByCooldown={skippedByCooldown}, skippedByGrace={skippedByGrace}, ",
       "ground",
       "floor",
       "bottom"
     ],
     "numeric_literals": [
       0,
+      0.1,
+      999,
       0.0001,
+      0,
       1.1,
       1.08,
       1.15,
       1.2,
       1,
-      0,
       0.85,
       0.5,
       0.8
@@ -16423,11 +16463,13 @@
       "combat",
       "manager",
       "runtime",
-      "player"
+      "player",
+      "save-load"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
       "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함",
       "컴포넌트 조회 사용"
     ]
   },
@@ -16904,9 +16946,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallMovement.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallMovement.cs",
     "file_name": "BallMovement.cs",
-    "content_hash": "d1c8cfe82c21b9e997216429b040309348d58f26",
-    "size": 17784,
-    "line_count": 537,
+    "content_hash": "64fedc94ba4538511ef4e5e23f7b69d3fee7ef58",
+    "size": 20212,
+    "line_count": 611,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -16936,6 +16978,7 @@
       "IsImmediateRepeatHit",
       "UpdateDirection",
       "ResolveOverlap",
+      "CorrectSideWallPosition",
       "GetStableNormal",
       "TryGetDirectHitNormal",
       "TryGetAxisAlignedWallNormal",
@@ -17123,6 +17166,20 @@
         "is_static": false
       },
       {
+        "name": "leftWall",
+        "type": "Collider2D",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "rightWall",
+        "type": "Collider2D",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "overlap",
         "type": "Collider2D",
         "access": "internal",
@@ -17138,6 +17195,27 @@
       },
       {
         "name": "penetration",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "positionAfter",
+        "type": "Vector2",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "minimumX",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "maximumX",
         "type": "float",
         "access": "internal",
         "serialized": false,
@@ -17228,6 +17306,7 @@
       "Reflect",
       "BallCollisionResult",
       "HandleCollision",
+      "CorrectSideWallPosition",
       "Sign",
       "Abs",
       "LogWarning",
@@ -17243,10 +17322,11 @@
       "OverlapCircleAll",
       "Length",
       "CompareTag",
+      "TryGetAxisAlignedWallNormal",
       "ClosestPoint",
       "Distance",
       "BallOverlapResolve",
-      "TryGetAxisAlignedWallNormal",
+      "BallWallPositionCorrection",
       "BallStableNormalWallOverride",
       "TryGetDirectHitNormal",
       "BallStableNormalDirectOverride",
@@ -17293,6 +17373,8 @@
     "singleton_access_types": [],
     "string_literals": [
       "need_correction",
+      "[BallWallPositionCorrection] frame={Time.frameCount}, ",
+      "collider={wallCollider.name}, corrected={positionCorrected}, ",
       "wall_left",
       "wall_right",
       "wall"
@@ -17311,6 +17393,7 @@
       0,
       0,
       0.8,
+      0.000001,
       2
     ],
     "guessed_roles": [
@@ -25233,9 +25316,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
     "path": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
     "file_name": "PaddleController.cs",
-    "content_hash": "10f1176e6498dcb0d2658565d6a5e91d776025e5",
-    "size": 7672,
-    "line_count": 264,
+    "content_hash": "284cac4ab5664c3b2c7aa3e2b1295764ba5c44cd",
+    "size": 8225,
+    "line_count": 278,
     "namespace": "",
     "using_list": [
       "UnityEngine",
@@ -25258,6 +25341,7 @@
     "main_class_name": "PaddleController",
     "unity_type": "MonoBehaviour",
     "methods": [
+      "Min",
       "Vector2",
       "Awake",
       "Start",
@@ -25322,6 +25406,20 @@
         "is_static": false
       },
       {
+        "name": "lastActivationTime",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "wasPaddleActive",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "lastLoggedPaddleActive",
         "type": "bool",
         "access": "private",
@@ -25350,8 +25448,22 @@
         "is_static": false
       },
       {
+        "name": "isPaddleActive",
+        "type": "bool",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "xBeforeMove",
         "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "isPaddleActive",
+        "type": "bool",
         "access": "internal",
         "serialized": false,
         "is_static": false
@@ -25397,6 +25509,7 @@
       "InputSystem",
       "PointerInputReader",
       "SpriteRenderer",
+      "Min",
       "TransparentAlpha",
       "IsInputPressed",
       "IsPressed",
@@ -25404,6 +25517,7 @@
       "GameManager",
       "Instance",
       "IsGameStarted",
+      "IsInActivationRewardGracePeriod",
       "VelocityX",
       "Vector2",
       "Velocity",
@@ -25461,8 +25575,10 @@
       "{childName} has no Collider2D."
     ],
     "numeric_literals": [
-      0.3,
       0,
+      0.08,
+      0.3,
+      999,
       1,
       0.0001,
       6.55

@@ -23585,6 +23585,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "from_class": "BallCollisionHandler",
+    "to_type": "ApplySpeedModifier",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
     "to_type": "BallBounce",
     "relation_type": "uses",
     "strength": 1
@@ -23669,7 +23676,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "from_class": "BallCollisionHandler",
-    "to_type": "Collision",
+    "to_type": "Component",
     "relation_type": "uses",
     "strength": 1
   },
@@ -23704,6 +23711,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "from_class": "BallCollisionHandler",
+    "to_type": "CurrentSpeed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
     "to_type": "Damage",
     "relation_type": "uses",
     "strength": 1
@@ -23726,6 +23740,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "from_class": "BallCollisionHandler",
     "to_type": "Empty",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "float",
     "relation_type": "uses",
     "strength": 1
   },
@@ -23851,6 +23872,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "from_class": "BallCollisionHandler",
+    "to_type": "IsInActivationRewardGracePeriod",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
     "to_type": "Log",
     "relation_type": "uses",
     "strength": 1
@@ -23859,6 +23887,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "from_class": "BallCollisionHandler",
     "to_type": "Loss",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "Min",
     "relation_type": "uses",
     "strength": 1
   },
@@ -23887,6 +23922,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "from_class": "BallCollisionHandler",
     "to_type": "PaddleController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "PaddleReward",
     "relation_type": "uses",
     "strength": 1
   },
@@ -25090,6 +25132,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallMovement.cs",
     "from_class": "BallMovement",
+    "to_type": "BallWallPositionCorrection",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallMovement.cs",
+    "from_class": "BallMovement",
     "to_type": "BlockCell",
     "relation_type": "uses",
     "strength": 1
@@ -25182,6 +25231,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallMovement.cs",
     "from_class": "BallMovement",
     "to_type": "Continuous",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallMovement.cs",
+    "from_class": "BallMovement",
+    "to_type": "CorrectSideWallPosition",
     "relation_type": "uses",
     "strength": 1
   },
@@ -37501,6 +37557,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
     "from_class": "PaddleController",
+    "to_type": "IsInActivationRewardGracePeriod",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
+    "from_class": "PaddleController",
     "to_type": "IsInputPressed",
     "relation_type": "uses",
     "strength": 1
@@ -37551,6 +37614,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
     "from_class": "PaddleController",
     "to_type": "Max",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
+    "from_class": "PaddleController",
+    "to_type": "Min",
     "relation_type": "uses",
     "strength": 1
   },

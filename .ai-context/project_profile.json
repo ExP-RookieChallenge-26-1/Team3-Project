@@ -11,12 +11,12 @@
   "singleton_candidates": 3,
   "manager_like_classes": 65,
   "ui_related_classes": 98,
-  "save_load_related_classes": 97,
+  "save_load_related_classes": 98,
   "role_counts": {
     "runtime": 160,
     "player": 81,
     "combat": 108,
-    "save-load": 97,
+    "save-load": 98,
     "manager": 63,
     "data": 58,
     "ui": 98,
@@ -169,6 +169,33 @@
       "risk_score": 100
     },
     {
+      "file_id": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
+      "class_name": "PaddleController",
+      "risk_flags": [
+        "update-heavy",
+        "high-coupling",
+        "getcomponent-heavy",
+        "find-heavy",
+        "magic-number-heavy",
+        "large-class",
+        "init-order-sensitive",
+        "save-load-sensitive",
+        "state-owner"
+      ],
+      "risk_reasons": [
+        "Unity 업데이트 루프 사용",
+        "참조 타입 또는 관계 수가 많음",
+        "GetComponent/TryGetComponent 호출이 많음",
+        "Find 계열 탐색 사용",
+        "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+        "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+        "초기화 순서에 민감할 가능성",
+        "저장/불러오기 관련 로직 포함",
+        "상태 중심 또는 관리 중심 클래스일 가능성"
+      ],
+      "risk_score": 100
+    },
+    {
       "file_id": "ProjectDribble/Assets/TextMesh Pro/Examples & Extras/Scripts/TextMeshProFloatingText.cs",
       "class_name": "TextMeshProFloatingText",
       "risk_flags": [
@@ -194,31 +221,6 @@
         "상태 중심 또는 관리 중심 클래스일 가능성"
       ],
       "risk_score": 100
-    },
-    {
-      "file_id": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
-      "class_name": "PaddleController",
-      "risk_flags": [
-        "update-heavy",
-        "high-coupling",
-        "getcomponent-heavy",
-        "find-heavy",
-        "large-class",
-        "init-order-sensitive",
-        "save-load-sensitive",
-        "state-owner"
-      ],
-      "risk_reasons": [
-        "Unity 업데이트 루프 사용",
-        "참조 타입 또는 관계 수가 많음",
-        "GetComponent/TryGetComponent 호출이 많음",
-        "Find 계열 탐색 사용",
-        "파일/메서드/필드 수가 많아 책임이 커질 가능성",
-        "초기화 순서에 민감할 가능성",
-        "저장/불러오기 관련 로직 포함",
-        "상태 중심 또는 관리 중심 클래스일 가능성"
-      ],
-      "risk_score": 97
     },
     {
       "file_id": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",

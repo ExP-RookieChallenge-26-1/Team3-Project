@@ -34092,7 +34092,35 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
     "from_class": "FeedbackManager",
+    "to_type": "StartLaserChargeFeedback",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "StartLaserChargePulse",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
     "to_type": "StartRecallHoldFeedback",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "StopLaserChargeFeedback",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "StopLaserChargePulse",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34156,6 +34184,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
     "from_class": "FeedbackManager",
     "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "UpdateLaserChargeFeedback",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "UpdateLaserChargePulse",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34309,6 +34351,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
     "from_class": "VibrationManager",
+    "to_type": "CancelHardwareVibration",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
     "to_type": "CancelVibration",
     "relation_type": "uses",
     "strength": 1
@@ -34317,6 +34366,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
     "from_class": "VibrationManager",
     "to_type": "CanPlay",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "Charge",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34338,6 +34394,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
     "from_class": "VibrationManager",
     "to_type": "Collections",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "DelayBackgroundPulse",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34456,6 +34519,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
     "from_class": "VibrationManager",
+    "to_type": "Laser",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
     "to_type": "Length",
     "relation_type": "uses",
     "strength": 1
@@ -34471,6 +34541,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
     "from_class": "VibrationManager",
     "to_type": "LogWarning",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "long",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34554,6 +34631,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
     "from_class": "VibrationManager",
+    "to_type": "Pulse",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
     "to_type": "RoundToInt",
     "relation_type": "uses",
     "strength": 1
@@ -34597,6 +34681,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
     "from_class": "VibrationManager",
     "to_type": "SetVibrationEnabled",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "StartLaserChargePulse",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "StopLaserChargePulse",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34660,6 +34758,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
     "from_class": "VibrationManager",
     "to_type": "UnityPlayer",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
+    "from_class": "VibrationManager",
+    "to_type": "UpdateLaserChargePulse",
     "relation_type": "uses",
     "strength": 1
   },
@@ -35157,6 +35262,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "StartStage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "StopLaserChargeFeedback",
     "relation_type": "uses",
     "strength": 1
   },
@@ -37305,7 +37417,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "from_class": "LaserChargeController",
+    "to_type": "StartLaserChargeFeedback",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
     "to_type": "Stop",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
+    "to_type": "StopLaserChargeFeedback",
     "relation_type": "uses",
     "strength": 1
   },
@@ -37362,6 +37488,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "from_class": "LaserChargeController",
     "to_type": "UpdateChargePreview",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
+    "to_type": "UpdateLaserChargeFeedback",
     "relation_type": "uses",
     "strength": 1
   },

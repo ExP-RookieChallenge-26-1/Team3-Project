@@ -20786,6 +20786,145 @@
     ]
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/CamaraLetterBox.cs",
+    "path": "ProjectDribble/Assets/Scripts/CamaraLetterBox.cs",
+    "file_name": "CamaraLetterBox.cs",
+    "content_hash": "e1a28c04b38566423aaf5fab097d343e538509cf",
+    "size": 1489,
+    "line_count": 58,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "CameraLetterBox",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "CameraLetterBox",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Awake",
+      "Update",
+      "ApplyLetterbox",
+      "Rect"
+    ],
+    "fields": [
+      {
+        "name": "cam",
+        "type": "Camera",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "lastScreenWidth",
+        "type": "int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "lastScreenHeight",
+        "type": "int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "targetAspect",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "width",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "height",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Awake",
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 1,
+    "find_call_count": 0,
+    "new_keyword_count": 3,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "Camera",
+      "int",
+      "float",
+      "UnityEngine",
+      "RequireComponent",
+      "Awake",
+      "GetComponent",
+      "ApplyLetterbox",
+      "Update",
+      "Screen",
+      "Rect"
+    ],
+    "component_access_types": [
+      "Camera"
+    ],
+    "created_types": [
+      "Rect"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [
+      1080,
+      2160,
+      0,
+      1,
+      2
+    ],
+    "guessed_roles": [
+      "runtime",
+      "ui",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재",
+      "UI 관련 로직 포함",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
+    ]
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingBrick.cs",
     "path": "ProjectDribble/Assets/Scripts/Ceiling/CeilingBrick.cs",
     "file_name": "CeilingBrick.cs",

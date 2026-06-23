@@ -30884,6 +30884,104 @@
     "strength": 1
   },
   {
+    "from_file": "ProjectDribble/Assets/Scripts/CamaraLetterBox.cs",
+    "from_class": "CameraLetterBox",
+    "to_type": "Camera",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CamaraLetterBox.cs",
+    "from_class": "CameraLetterBox",
+    "to_type": "Rect",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CamaraLetterBox.cs",
+    "from_class": "CameraLetterBox",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CamaraLetterBox.cs",
+    "from_class": "CameraLetterBox",
+    "to_type": "ApplyLetterbox",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CamaraLetterBox.cs",
+    "from_class": "CameraLetterBox",
+    "to_type": "Awake",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CamaraLetterBox.cs",
+    "from_class": "CameraLetterBox",
+    "to_type": "Camera",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CamaraLetterBox.cs",
+    "from_class": "CameraLetterBox",
+    "to_type": "float",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CamaraLetterBox.cs",
+    "from_class": "CameraLetterBox",
+    "to_type": "GetComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CamaraLetterBox.cs",
+    "from_class": "CameraLetterBox",
+    "to_type": "int",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CamaraLetterBox.cs",
+    "from_class": "CameraLetterBox",
+    "to_type": "Rect",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CamaraLetterBox.cs",
+    "from_class": "CameraLetterBox",
+    "to_type": "RequireComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CamaraLetterBox.cs",
+    "from_class": "CameraLetterBox",
+    "to_type": "Screen",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CamaraLetterBox.cs",
+    "from_class": "CameraLetterBox",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/CamaraLetterBox.cs",
+    "from_class": "CameraLetterBox",
+    "to_type": "Update",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingBrick.cs",
     "from_class": "CeilingBrick",
     "to_type": "SpriteRenderer",

@@ -5,18 +5,18 @@
   "total_cs_files": 186,
   "mono_behaviour_files": 155,
   "scriptable_object_files": 10,
-  "files_with_update": 57,
+  "files_with_update": 56,
   "files_with_fixed_update": 1,
   "files_with_late_update": 9,
   "singleton_candidates": 5,
   "manager_like_classes": 68,
   "ui_related_classes": 100,
-  "save_load_related_classes": 105,
+  "save_load_related_classes": 106,
   "role_counts": {
     "runtime": 163,
-    "player": 83,
+    "player": 82,
     "combat": 111,
-    "save-load": 105,
+    "save-load": 106,
     "manager": 66,
     "data": 60,
     "ui": 100,
@@ -34,20 +34,14 @@
     {
       "class_name": "CeilingManager",
       "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
-      "relation_count": 194,
-      "referenced_type_count": 185
+      "relation_count": 201,
+      "referenced_type_count": 192
     },
     {
       "class_name": "BallCapturedDribbleController",
       "file_id": "ProjectDribble/Assets/Scripts/Ball/BallCapturedDribbleController.cs",
       "relation_count": 171,
       "referenced_type_count": 166
-    },
-    {
-      "class_name": "TutorialManager",
-      "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-      "relation_count": 165,
-      "referenced_type_count": 163
     },
     {
       "class_name": "TMP_TextSelector_B",
@@ -59,6 +53,12 @@
       "class_name": "TMP_TextSelector_B",
       "file_id": "ProjectDribble/Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextSelector_B.cs",
       "relation_count": 144,
+      "referenced_type_count": 137
+    },
+    {
+      "class_name": "TutorialManager",
+      "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+      "relation_count": 140,
       "referenced_type_count": 137
     },
     {
@@ -250,6 +250,33 @@
       "risk_score": 100
     },
     {
+      "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+      "class_name": "TutorialManager",
+      "risk_flags": [
+        "update-heavy",
+        "high-coupling",
+        "find-heavy",
+        "magic-number-heavy",
+        "large-class",
+        "init-order-sensitive",
+        "save-load-sensitive",
+        "ui-runtime-mixed",
+        "state-owner"
+      ],
+      "risk_reasons": [
+        "Unity 업데이트 루프 사용",
+        "참조 타입 또는 관계 수가 많음",
+        "Find 계열 탐색 사용",
+        "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+        "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+        "초기화 순서에 민감할 가능성",
+        "저장/불러오기 관련 로직 포함",
+        "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+        "상태 중심 또는 관리 중심 클래스일 가능성"
+      ],
+      "risk_score": 100
+    },
+    {
       "file_id": "ProjectDribble/Assets/TextMesh Pro/Examples & Extras/Scripts/TextMeshProFloatingText.cs",
       "class_name": "TextMeshProFloatingText",
       "risk_flags": [
@@ -300,31 +327,6 @@
         "상태 중심 또는 관리 중심 클래스일 가능성"
       ],
       "risk_score": 96
-    },
-    {
-      "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-      "class_name": "TutorialManager",
-      "risk_flags": [
-        "update-heavy",
-        "high-coupling",
-        "find-heavy",
-        "large-class",
-        "init-order-sensitive",
-        "save-load-sensitive",
-        "ui-runtime-mixed",
-        "state-owner"
-      ],
-      "risk_reasons": [
-        "Unity 업데이트 루프 사용",
-        "참조 타입 또는 관계 수가 많음",
-        "Find 계열 탐색 사용",
-        "파일/메서드/필드 수가 많아 책임이 커질 가능성",
-        "초기화 순서에 민감할 가능성",
-        "저장/불러오기 관련 로직 포함",
-        "UI와 런타임 책임이 한 파일에 섞였을 가능성",
-        "상태 중심 또는 관리 중심 클래스일 가능성"
-      ],
-      "risk_score": 95
     },
     {
       "file_id": "ProjectDribble/Assets/Scripts/Ball/BallMovement.cs",

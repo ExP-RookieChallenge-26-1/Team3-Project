@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6776875856473315814, guid: 94e98bdb81a22a6488a0faf2c51e37d2, type: 3}
+      propertyPath: scaleMultiplier
+      value: 1.3
+      objectReference: {fileID: 0}
     - target: {fileID: 7211861392728797942, guid: 94e98bdb81a22a6488a0faf2c51e37d2, type: 3}
       propertyPath: m_Name
       value: Brick 3 Variant

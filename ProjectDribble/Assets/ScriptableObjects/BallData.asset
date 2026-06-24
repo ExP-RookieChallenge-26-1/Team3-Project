@@ -19,7 +19,7 @@ MonoBehaviour:
   BlockSpeedDecrease: -5
   DamageMultiplier: 0.2
   dribbleSpeedBonus: 5
-  normalMaxSpeed: 60
+  normalMaxSpeed: 65
   laserMinBoostSpeed: 80
   laserMaxSpeed: 80
   laserBoostAmount: 20
@@ -44,9 +44,9 @@ MonoBehaviour:
   debugCapturedDribbleLog: 0
   useSpeedColorChange: 1
   normalSpeedColor: {r: 1, g: 1, b: 1, a: 1}
-  maxSpeedColor: {r: 1, g: 0, b: 0, a: 1}
-  speedColorStartSpeed: 30
-  speedColorEndSpeed: 70
+  maxSpeedColor: {r: 1, g: 1, b: 1, a: 0}
+  speedColorStartSpeed: 40
+  speedColorEndSpeed: 65
   blockSlowRules:
   - minSpeed: 0
     slowAmount: 7

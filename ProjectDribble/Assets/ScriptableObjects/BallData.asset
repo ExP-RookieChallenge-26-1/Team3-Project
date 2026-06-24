@@ -18,7 +18,7 @@ MonoBehaviour:
   innerPaddleSpeedIncrease: 2
   BlockSpeedDecrease: -5
   DamageMultiplier: 0.2
-  dribbleSpeedBonus: 3
+  dribbleSpeedBonus: 5
   normalMaxSpeed: 60
   laserMinBoostSpeed: 80
   laserMaxSpeed: 80

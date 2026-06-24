@@ -6,6 +6,12 @@ public class GlitchOverlayVisual : MonoBehaviour
     [SerializeField] private PulseVisual pulseVisual;
     [SerializeField] private SegmentGlowShadowVisual glowShadowVisual;
 
+    [Header("Stage Sprites")]
+    [SerializeField] private Sprite[] stage1Sprites;
+    [SerializeField] private Sprite[] stage2Sprites;
+    [SerializeField] private Sprite[] stage3Sprites;
+
+    [Header("Legacy Stage Sprite Fallbacks")]
     [SerializeField] private Sprite glitchStage1;
     [SerializeField] private Sprite glitchStage2;
     [SerializeField] private Sprite glitchStage3;
@@ -18,6 +24,9 @@ public class GlitchOverlayVisual : MonoBehaviour
     [SerializeField] private float stage2Threshold = 0.34f;
     [SerializeField] private float stage3Threshold = 0.67f;
 #pragma warning restore 0414
+
+    private int currentStage = -1;
+    private Sprite currentSelectedSprite;
 
     private void Awake()
     {
@@ -53,8 +62,9 @@ public class GlitchOverlayVisual : MonoBehaviour
         if (glitchRenderer == null)
             return;
 
-        if (!visible)
+        if (!visible || glitchStage <= 0 || glitchStage > 3)
         {
+            ResetSelectedSprite();
             glitchRenderer.enabled = false;
             glowShadowVisual?.SetState(false, false);
             if (pulseVisual != null)
@@ -62,8 +72,22 @@ public class GlitchOverlayVisual : MonoBehaviour
             return;
         }
 
-        glitchRenderer.enabled = true;
-        glitchRenderer.sprite = GetSpriteByStage(glitchStage);
+        if (glitchStage != currentStage || currentSelectedSprite == null)
+        {
+            currentStage = glitchStage;
+            currentSelectedSprite = PickRandomSpriteForStage(glitchStage);
+        }
+
+        bool hasSprite = currentSelectedSprite != null;
+        glitchRenderer.enabled = hasSprite;
+        glitchRenderer.sprite = currentSelectedSprite;
+
+        if (!hasSprite)
+        {
+            glowShadowVisual?.SetState(false, false);
+            pulseVisual?.SetPulsing(false);
+            return;
+        }
 
         float alpha = connected ? connectedAlpha : disconnectedAlpha;
         SetAlpha(alpha);
@@ -81,6 +105,8 @@ public class GlitchOverlayVisual : MonoBehaviour
 
     public void ResetVisual()
     {
+        ResetSelectedSprite();
+
         if (pulseVisual != null)
             pulseVisual.SetPulsing(false);
 
@@ -88,7 +114,7 @@ public class GlitchOverlayVisual : MonoBehaviour
             return;
 
         glitchRenderer.enabled = false;
-        glitchRenderer.sprite = glitchStage1;
+        glitchRenderer.sprite = null;
         SetAlpha(disconnectedAlpha);
 
         if (pulseVisual != null)
@@ -97,23 +123,60 @@ public class GlitchOverlayVisual : MonoBehaviour
         glowShadowVisual?.SetState(false, false);
     }
 
-    private Sprite GetSpriteByStage(int glitchStage)
+    private Sprite PickRandomSpriteForStage(int glitchStage)
     {
         switch (glitchStage)
         {
             case 3:
-                if (glitchStage3 != null)
-                    return glitchStage3;
-                if (glitchStage2 != null)
-                    return glitchStage2;
-                return glitchStage1;
+                return PickRandomFromArrayOrFallback(stage3Sprites, glitchStage3)
+                    ?? PickRandomFromArrayOrFallback(stage2Sprites, glitchStage2)
+                    ?? PickRandomFromArrayOrFallback(stage1Sprites, glitchStage1);
             case 2:
-                if (glitchStage2 != null)
-                    return glitchStage2;
-                return glitchStage1;
+                return PickRandomFromArrayOrFallback(stage2Sprites, glitchStage2)
+                    ?? PickRandomFromArrayOrFallback(stage1Sprites, glitchStage1);
+            case 1:
+                return PickRandomFromArrayOrFallback(stage1Sprites, glitchStage1);
             default:
-                return glitchStage1;
+                return null;
         }
+    }
+
+    private Sprite PickRandomFromArrayOrFallback(Sprite[] sprites, Sprite fallback)
+    {
+        int validCount = 0;
+
+        if (sprites != null)
+        {
+            for (int i = 0; i < sprites.Length; i++)
+            {
+                if (sprites[i] != null)
+                    validCount++;
+            }
+        }
+
+        if (validCount == 0)
+            return fallback;
+
+        int selectedIndex = Random.Range(0, validCount);
+
+        for (int i = 0; i < sprites.Length; i++)
+        {
+            if (sprites[i] == null)
+                continue;
+
+            if (selectedIndex == 0)
+                return sprites[i];
+
+            selectedIndex--;
+        }
+
+        return fallback;
+    }
+
+    private void ResetSelectedSprite()
+    {
+        currentStage = -1;
+        currentSelectedSprite = null;
     }
 
     private void SetAlpha(float alpha)

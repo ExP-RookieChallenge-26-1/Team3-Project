@@ -18,7 +18,7 @@ MonoBehaviour:
   disableGrowth: 0
   useStemGrowth: 1
   growthStems:
-  - flowBlockPrefabOverride: {fileID: 0}
+  - flowBlockPrefabOverride: {fileID: 4187076069102778719, guid: ed85ace53a3514947b53a4e5f32cdac8, type: 3}
     ceilingSegmentIndex: 1
     startCoord: {x: 3, y: 0}
     minX: 2
@@ -33,7 +33,7 @@ MonoBehaviour:
     minGrowPerTick: 2
     maxGrowPerTick: 2
     initialDelay: 0
-  - flowBlockPrefabOverride: {fileID: 0}
+  - flowBlockPrefabOverride: {fileID: 3519423046997599010, guid: d35a090072e47b3498ae96befaa4be7b, type: 3}
     ceilingSegmentIndex: 0
     startCoord: {x: 1, y: 0}
     minX: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
     minGrowPerTick: 2
     maxGrowPerTick: 3
     initialDelay: 0
-  - flowBlockPrefabOverride: {fileID: 0}
+  - flowBlockPrefabOverride: {fileID: 1050434719393625102, guid: d0d1027d9cd12e74391f2dba57968483, type: 3}
     ceilingSegmentIndex: 2
     startCoord: {x: 5, y: 0}
     minX: 5

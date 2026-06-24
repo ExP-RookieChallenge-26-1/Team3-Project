@@ -15,6 +15,9 @@ public sealed class SegmentGlowShadowVisual : MonoBehaviour
     [SerializeField, Min(0f)] private float scaleMultiplier = 1.12f;
     [SerializeField] private int sortingOrderOffset = -1;
 
+    [Header("Transform")]
+    [SerializeField] private Vector2 localOffset = Vector2.zero;
+
     [Header("Pulse")]
     [SerializeField, Range(0f, 1f)] private float alphaMin = 0.1f;
     [SerializeField, Range(0f, 1f)] private float alphaMax = 0.55f;
@@ -187,7 +190,7 @@ public sealed class SegmentGlowShadowVisual : MonoBehaviour
         if (glowTransform.parent != targetTransform)
             glowTransform.SetParent(targetTransform, false);
 
-        glowTransform.localPosition = Vector3.zero;
+        glowTransform.localPosition = new Vector3(localOffset.x, localOffset.y, 0f);
         glowTransform.localRotation = Quaternion.identity;
 
         if (scaleSourceRenderer != targetRenderer)

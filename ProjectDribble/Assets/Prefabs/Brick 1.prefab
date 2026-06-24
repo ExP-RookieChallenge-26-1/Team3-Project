@@ -188,6 +188,7 @@ MonoBehaviour:
   glowColor: {r: 0, g: 1, b: 0, a: 1}
   scaleMultiplier: 1.12
   sortingOrderOffset: -1
+  localOffset: {x: 0.05, y: -0.05}
   alphaMin: 0.1
   alphaMax: 0.55
   pulseSpeed: 1

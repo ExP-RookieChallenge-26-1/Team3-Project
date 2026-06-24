@@ -6204,10 +6204,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.097222224
-    y: -0.046875
-    width: 0.25
-    height: 0.28125
+    x: 0
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -9369,10 +9369,10 @@ MonoBehaviour:
     disconnectedGlowColor: {r: 0.45, g: 0.5, b: 0.42, a: 1}
     disconnectedGlowAlpha: 0.25
   segmentGlowProfiles:
-  - glowColor: {r: 0.4268423, g: 0.8301887, b: 0.43831185, a: 1}
+  - glowColor: {r: 0, g: 1, b: 0.029126167, a: 1}
     scaleMultiplier: 1.12
-    glowAlphaMin: 0.241
-    glowAlphaMax: 0.717
+    glowAlphaMin: 0.155
+    glowAlphaMax: 0.906
     pulseSpeed: 1
     phaseOffset: 0
     alphaCurve:
@@ -9410,10 +9410,10 @@ MonoBehaviour:
       m_RotationOrder: 4
     disconnectedGlowColor: {r: 0.44705886, g: 0.49411768, b: 0.41960788, a: 1}
     disconnectedGlowAlpha: 0.377
-  - glowColor: {r: 0.3480331, g: 0.745283, b: 0.6040805, a: 1}
+  - glowColor: {r: 0, g: 0.7211729, b: 1, a: 1}
     scaleMultiplier: 1.12
-    glowAlphaMin: 0.335
-    glowAlphaMax: 0.745
+    glowAlphaMin: 0.176
+    glowAlphaMax: 0.899
     pulseSpeed: 1
     phaseOffset: 0
     alphaCurve:
@@ -9451,7 +9451,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     disconnectedGlowColor: {r: 0.4245283, g: 0.42166984, b: 0.24230152, a: 1}
     disconnectedGlowAlpha: 0.407
-  - glowColor: {r: 0.33259168, g: 0.6981132, b: 0.47810733, a: 1}
+  - glowColor: {r: 0, g: 0.8143575, b: 1, a: 1}
     scaleMultiplier: 1.12
     glowAlphaMin: 0.368
     glowAlphaMax: 0.773

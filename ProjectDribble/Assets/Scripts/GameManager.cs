@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
         saveManager.MarkStageCleared(currentStage);
         saveManager.SetLaserUnlocked(laserUnlockState.IsLaserUnlocked);
 
-        if (stageManager.IsCurrentStageTutorial)
+        if (stageManager.IsCurrentStageFinalTutorialStage)
             saveManager.SetTutorialCleared(true);
 
         saveManager.Save();

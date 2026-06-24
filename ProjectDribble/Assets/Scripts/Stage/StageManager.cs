@@ -1,3 +1,4 @@
+using System;
 using DefaultNamespace;
 using UnityEngine;
 
@@ -26,6 +27,7 @@ public class StageManager : MonoBehaviour
 
     private int currentStageIndex;
     private GameObject currentTopDecoration;
+    private bool isCompletingStage;
 
     public int CurrentStageIndex => currentStageIndex;
     public int StageCount => stages == null ? 0 : stages.Length;
@@ -33,6 +35,9 @@ public class StageManager : MonoBehaviour
         IsValidStageIndex(currentStageIndex) &&
         stages[currentStageIndex] != null &&
         stages[currentStageIndex].isTutorialStage;
+    public bool IsCurrentStageFinalTutorialStage =>
+        IsCurrentStageTutorial &&
+        stages[currentStageIndex].tutorialStageId == TutorialStageId.Stage3;
     private StageDefinition CurrentStageDefinition =>
         IsValidStageIndex(currentStageIndex) ? stages[currentStageIndex] : null;
 
@@ -73,6 +78,7 @@ public class StageManager : MonoBehaviour
             return;
         }
 
+        isCompletingStage = false;
         currentStageIndex = stageIndex;
         ApplyStageData(stages[currentStageIndex]);
     }
@@ -117,16 +123,40 @@ public class StageManager : MonoBehaviour
 
     private void CompleteCurrentStage()
     {
+        if (isCompletingStage)
+            return;
+
+        isCompletingStage = true;
+
         if (bossController == null)
             bossController = FindAnyObjectByType<BossController>();
 
         if (bossController != null)
             bossController.StopBossPattern();
 
+        Action continueStageClear = ContinueStageClear;
+        if (tutorialManager != null &&
+            tutorialManager.TryInterceptStageClear(CurrentStageDefinition, continueStageClear))
+        {
+            return;
+        }
+
+        continueStageClear();
+    }
+
+    private void ContinueStageClear()
+    {
+        if (!isCompletingStage)
+            return;
+
         if (GameManager.Instance != null)
+        {
             GameManager.Instance.RequestStageClear();
-        else
-            Debug.LogWarning("StageManager: Cannot complete the stage because GameManager is missing.");
+            return;
+        }
+
+        isCompletingStage = false;
+        Debug.LogWarning("StageManager: Cannot complete the stage because GameManager is missing.");
     }
 
     private void HandlePlayerDead()

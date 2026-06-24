@@ -66,6 +66,9 @@ public class TutorialManager : MonoBehaviour
     private bool hasShownStep3;
     private bool hasShownStep5;
     private bool hasShownStep7;
+    private bool hasShownStep8;
+    private bool isRunningPendingStageClear;
+    private Action pendingStageClearCallback;
 
     private void Awake()
     {
@@ -123,6 +126,8 @@ public class TutorialManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        pendingStageClearCallback = null;
+        isRunningPendingStageClear = false;
         UnsubscribeStageEvents();
     }
 
@@ -373,11 +378,64 @@ public class TutorialManager : MonoBehaviour
         ShowStepPopup(7);
     }
 
-    private bool ShowStepPopup(int stepNumber, Action onConfirmed = null)
+    public bool TryInterceptStageClear(
+        StageDefinition stageDefinition,
+        Action continueStageClear)
+    {
+        if (ResolveTutorialStageId(stageDefinition) != TutorialStageId.Stage3 ||
+            currentTutorialStageId != TutorialStageId.Stage3)
+        {
+            return false;
+        }
+
+        if (pendingStageClearCallback != null || hasShownStep8 || isRunningPendingStageClear)
+            return true;
+
+        if (continueStageClear == null)
+        {
+            Debug.LogWarning("[Tutorial] Stage 3 clear interception was skipped: callback is missing.");
+            return false;
+        }
+
+        pendingStageClearCallback = continueStageClear;
+        hasShownStep8 = true;
+
+        if (uiManager != null && uiManager.IsTutorialPopupOpen)
+            uiManager.HideTutorialPopupWithoutCallback();
+
+        ShowStepPopup(8, CompletePendingStageClear, true);
+        return true;
+    }
+
+    private void CompletePendingStageClear()
+    {
+        if (isRunningPendingStageClear || pendingStageClearCallback == null)
+            return;
+
+        Action callback = pendingStageClearCallback;
+        pendingStageClearCallback = null;
+        isRunningPendingStageClear = true;
+
+        try
+        {
+            callback.Invoke();
+        }
+        finally
+        {
+            isRunningPendingStageClear = false;
+        }
+    }
+
+    private bool ShowStepPopup(
+        int stepNumber,
+        Action onConfirmed = null,
+        bool resumeBeforeCallback = false)
     {
         if (uiManager == null)
         {
             Debug.LogWarning($"[Tutorial] Step {stepNumber} was skipped: UIManager is missing.");
+            if (resumeBeforeCallback)
+                gameManager?.ResumeFromTutorial();
             onConfirmed?.Invoke();
             return false;
         }
@@ -392,6 +450,13 @@ public class TutorialManager : MonoBehaviour
 
         bool shown = uiManager.ShowTutorialStepPopup(stepNumber, () =>
         {
+            if (resumeBeforeCallback)
+            {
+                gameManager?.ResumeFromTutorial();
+                onConfirmed?.Invoke();
+                return;
+            }
+
             try
             {
                 onConfirmed?.Invoke();
@@ -404,6 +469,8 @@ public class TutorialManager : MonoBehaviour
 
         if (!shown)
         {
+            if (resumeBeforeCallback)
+                gameManager?.ResumeFromTutorial();
             onConfirmed?.Invoke();
             return false;
         }
@@ -434,6 +501,9 @@ public class TutorialManager : MonoBehaviour
         hasShownStep3 = false;
         hasShownStep5 = false;
         hasShownStep7 = false;
+        hasShownStep8 = false;
+        isRunningPendingStageClear = false;
+        pendingStageClearCallback = null;
     }
 
     private void UnsubscribeStageEvents()
@@ -533,7 +603,4 @@ public class TutorialManager : MonoBehaviour
                 return string.Empty;
         }
     }
-
-    // Step 8 needs a dedicated confirmation order: resume tutorial, then request stage clear.
-    // It is intentionally deferred to the Stage Clear implementation phase.
 }

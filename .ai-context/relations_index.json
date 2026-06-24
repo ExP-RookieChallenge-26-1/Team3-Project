@@ -46090,6 +46090,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
     "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Vector2",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
     "to_type": "Vector3",
     "relation_type": "uses",
     "strength": 1

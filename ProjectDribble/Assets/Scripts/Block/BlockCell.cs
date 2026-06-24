@@ -33,6 +33,7 @@ public class BlockCell : MonoBehaviour,
     [SerializeField] private SpriteRenderer laserTargetOverlayRenderer;
 
     private SpriteRenderer sr;
+    private Sprite defaultSprite;
     private Color connectedStemColor = Color.white;
 
     private float hp;
@@ -55,7 +56,10 @@ public class BlockCell : MonoBehaviour,
         sr = GetComponent<SpriteRenderer>();
 
         if (sr != null)
+        {
+            defaultSprite = sr.sprite;
             connectedStemColor = sr.color;
+        }
 
         EnsureLaserTargetOverlay();
     }
@@ -64,6 +68,17 @@ public class BlockCell : MonoBehaviour,
     {
         this.manager = manager;
         this.coord = coord;
+    }
+
+    public void SetSpriteOverride(Sprite spriteOverride)
+    {
+        if (sr == null)
+            return;
+
+        sr.sprite = spriteOverride != null ? spriteOverride : defaultSprite;
+
+        if (laserTargetOverlayRenderer != null)
+            laserTargetOverlayRenderer.sprite = sr.sprite;
     }
 
     public void Activate(Vector2Int coord, float hp, bool isFixed)

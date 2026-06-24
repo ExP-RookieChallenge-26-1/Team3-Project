@@ -125,7 +125,11 @@ public class BlockPool : MonoBehaviour
         return block;
     }
 
-    public BlockCell CreateFixedBlock(Vector2Int coord, float hp)
+    public BlockCell CreateFixedBlock(
+        Vector2Int coord,
+        float hp,
+        Sprite spriteOverride = null
+    )
     {
         if (fixedBlockPrefab == null)
         {
@@ -142,6 +146,7 @@ public class BlockPool : MonoBehaviour
 
         ApplyBlockSize(block);
 
+        block.SetSpriteOverride(spriteOverride);
         block.Init(manager, coord);
         block.Activate(coord, hp, BlockType.Fixed);
         activeBlocks[coord.x, coord.y] = block;

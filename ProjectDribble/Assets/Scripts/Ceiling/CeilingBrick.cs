@@ -32,7 +32,7 @@ public class CeilingBrick : MonoBehaviour, IDamageable
             return false;
 
         manager.TakeDamage(damage, this);
-        return manager.IsSegmentDestroyedByX(coord.x);
+        return manager.IsSegmentDestroyedByCoord(coord);
     }
 
     public void Break()

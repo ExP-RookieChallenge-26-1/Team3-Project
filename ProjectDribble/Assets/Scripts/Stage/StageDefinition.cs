@@ -50,6 +50,11 @@ public class StageDefinition : ScriptableObject
     public bool UseTopDecoration => useTopDecoration;
     public GameObject TopDecorationPrefab => topDecorationPrefab;
 
+    [Header("Art")]
+    [SerializeField] private StageArtProfile artProfile;
+
+    public StageArtProfile ArtProfile => artProfile;
+
     [Header("Gauge")]
     public int startGaugeValue = 0;
 

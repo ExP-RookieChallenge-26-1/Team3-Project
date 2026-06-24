@@ -57,11 +57,13 @@ public class CeilingManager : MonoBehaviour
     [FormerlySerializedAs("segmentVisualProfiles")]
     [SerializeField] private CeilingSegmentVisualProfile[] segmentGlowProfiles;
 
-    [Header("Segment Root Visuals")]
-    [SerializeField] private CeilingSegmentRootVisual segmentRootVisualPrefab;
-    [SerializeField] private Transform segmentRootVisualParent;
-    [SerializeField] private float segmentRootVisualYOffset = -0.3f;
-    [SerializeField] private float segmentRootVisualEdgePadding;
+    [Header("Segment Dividers")]
+    [SerializeField] private SpriteRenderer segmentDividerPrefab;
+    [SerializeField] private Transform segmentDividerParent;
+    [SerializeField] private Sprite[] verticalSegmentDividerSprites;
+    [SerializeField] private Sprite[] lightningSegmentDividerSprites;
+    [SerializeField] private float segmentDividerOwnerOffset = 0.01f;
+    [SerializeField] private float segmentDividerScale = 1f;
 
     [Header("Ball Control")]
     [SerializeField] private BallRespawner ballRespawner;
@@ -74,7 +76,7 @@ public class CeilingManager : MonoBehaviour
     private readonly List<CeilingBrick> aliveBricks = new();
     private readonly List<CeilingSegment> segments = new();
     private readonly List<CeilingCore> ceilingCores = new();
-    private readonly List<CeilingSegmentRootVisual> segmentRootVisuals = new();
+    private readonly Dictionary<int, List<GameObject>> segmentDividerObjects = new();
 
     private void Awake()
     {
@@ -119,7 +121,7 @@ public class CeilingManager : MonoBehaviour
         currentHp = 0f;
 
         ClearCeilingCores();
-        ClearSegmentRootVisuals();
+        ClearSegmentDividers();
         ClearCeilingBricks();
         segments.Clear();
     }
@@ -147,13 +149,7 @@ public class CeilingManager : MonoBehaviour
         for (int i = 0; i < ceilingCores.Count; i++)
             ceilingCores[i]?.SetVisible(visible);
 
-        for (int i = 0; i < segmentRootVisuals.Count; i++)
-        {
-            CeilingSegmentRootVisual visual = segmentRootVisuals[i];
-
-            if (visual != null)
-                visual.SetActiveState(visible && IsSegmentAliveByIndex(i));
-        }
+        SetSegmentDividersVisible(visible);
     }
 
     public void SetCeilingCollisionEnabled(bool enabled)
@@ -178,12 +174,12 @@ public class CeilingManager : MonoBehaviour
         currentHp = 0;
 
         ClearCeilingCores();
-        ClearSegmentRootVisuals();
+        ClearSegmentDividers();
         ClearCeilingBricks();
         ResetSegments();
         CreateCeilingBricks();
         CreateCeilingCores();
-        CreateSegmentRootVisuals();
+        CreateSegmentDividers();
     }
 
     private void ResetSegments()
@@ -302,7 +298,7 @@ public class CeilingManager : MonoBehaviour
             if (ceilingCoreParent != null && child == ceilingCoreParent)
                 continue;
 
-            if (segmentRootVisualParent != null && child == segmentRootVisualParent)
+            if (segmentDividerParent != null && child == segmentDividerParent)
                 continue;
 
             Destroy(child.gameObject);
@@ -321,10 +317,15 @@ public class CeilingManager : MonoBehaviour
 
     public void DamageSegmentByCoord(Vector2Int coord, float damage)
     {
-        DamageSegmentByX(coord.x, damage);
+        DamageSegment(GetSegmentByCoord(coord), damage, coord.x);
     }
 
     public void DamageSegmentByX(int x, float damage)
+    {
+        DamageSegment(GetSegmentByX(x), damage, x);
+    }
+
+    private void DamageSegment(CeilingSegment segment, float damage, int hitX)
     {
         if (!isCeilingEnabled || !damageEnabled)
             return;
@@ -332,11 +333,9 @@ public class CeilingManager : MonoBehaviour
         if (isStageCleared)
             return;
 
-        CeilingSegment segment = GetSegmentByX(x);
-
         if (segment == null)
         {
-            Debug.LogWarning($"CeilingManager: x={x} does not belong to a ceiling segment.");
+            Debug.LogWarning($"CeilingManager: x={hitX} does not belong to a ceiling segment.");
             return;
         }
 
@@ -360,7 +359,7 @@ public class CeilingManager : MonoBehaviour
         if (destroyed)
         {
             SetCoreAlive(segmentIndex, false);
-            SetSegmentRootVisualState(segmentIndex, false);
+            SetSegmentDividerState(segmentIndex, false);
             SoundManager.Instance?.Play(SoundId.CeilingBreak);
             Debug.Log($"Ceiling segment {segment.SegmentName} destroyed.");
             DisableStemGrowthForSegment(segment);
@@ -391,6 +390,12 @@ public class CeilingManager : MonoBehaviour
     public bool IsSegmentDestroyedByX(int x)
     {
         CeilingSegment segment = GetSegmentByX(x);
+        return segment != null && segment.IsDestroyed;
+    }
+
+    public bool IsSegmentDestroyedByCoord(Vector2Int coord)
+    {
+        CeilingSegment segment = GetSegmentByCoord(coord);
         return segment != null && segment.IsDestroyed;
     }
 
@@ -438,11 +443,7 @@ public class CeilingManager : MonoBehaviour
 
     public void SetLaserTargetPreview(int segmentIndex, bool active, float alpha)
     {
-        if (segmentIndex < 0 || segmentIndex >= segmentRootVisuals.Count)
-            return;
-
-        CeilingSegmentRootVisual visual = segmentRootVisuals[segmentIndex];
-        visual?.SetLaserTargetPreview(active && IsSegmentAliveByIndex(segmentIndex), alpha);
+        // CeilingSegmentRootVisual is deprecated and no longer created at runtime.
     }
 
     public bool AreAllSegmentsDestroyed()
@@ -600,11 +601,13 @@ public class CeilingManager : MonoBehaviour
 
     private void BreakSegmentBricks(CeilingSegment segment)
     {
+        int segmentIndex = segments.IndexOf(segment);
+
         for (int i = aliveBricks.Count - 1; i >= 0; i--)
         {
             CeilingBrick brick = aliveBricks[i];
 
-            if (brick == null || !segment.ContainsX(brick.Coord.x))
+            if (brick == null || !IsCoordOwnedBySegment(brick.Coord, segmentIndex))
                 continue;
 
             aliveBricks.RemoveAt(i);
@@ -653,95 +656,120 @@ public class CeilingManager : MonoBehaviour
         ceilingCores.Clear();
     }
 
-    private void CreateSegmentRootVisuals()
+    private void CreateSegmentDividers()
     {
-        if (segmentRootVisualPrefab == null)
+        if (segmentDividerPrefab == null || segments.Count < 2)
             return;
 
-        Transform parent = segmentRootVisualParent != null ? segmentRootVisualParent : transform;
+        bool useLightningDivider = ceilingSegmentMode == CeilingSegmentMode.TwoSegments;
+        Sprite[] spriteCandidates = useLightningDivider
+            ? lightningSegmentDividerSprites
+            : verticalSegmentDividerSprites;
+        Transform parent = segmentDividerParent != null ? segmentDividerParent : transform;
 
-        for (int i = 0; i < segments.Count; i++)
+        for (int boundaryIndex = 0; boundaryIndex < segments.Count - 1; boundaryIndex++)
         {
-            CeilingSegment segment = segments[i];
-
-            if (segment == null)
-                continue;
-
-            CeilingSegmentRootVisual visual = Instantiate(
-                segmentRootVisualPrefab,
-                GetSegmentRootVisualPosition(segment),
-                Quaternion.identity,
-                parent
+            CeilingSegment leftSegment = segments[boundaryIndex];
+            CeilingSegment rightSegment = segments[boundaryIndex + 1];
+            Sprite dividerSprite = GetRandomSprite(spriteCandidates);
+            Vector3 boundaryPosition = GetSegmentBoundaryPosition(
+                leftSegment,
+                rightSegment,
+                useLightningDivider
             );
 
-            visual.Initialize(i);
-            visual.ApplyVisualProfile(GetSegmentGlowProfile(i));
-            visual.BuildTiles(GetSegmentRootVisualTilePositions(segment));
-            segmentRootVisuals.Add(visual);
+            CreateSegmentDivider(boundaryIndex, boundaryPosition, -segmentDividerOwnerOffset, dividerSprite, parent);
+            CreateSegmentDivider(boundaryIndex + 1, boundaryPosition, segmentDividerOwnerOffset, dividerSprite, parent);
         }
-
-        RefreshSegmentRootVisuals();
     }
 
-    private void ClearSegmentRootVisuals()
+    private void CreateSegmentDivider(
+        int ownerSegmentIndex,
+        Vector3 position,
+        float xOffset,
+        Sprite sprite,
+        Transform parent
+    )
     {
-        for (int i = segmentRootVisuals.Count - 1; i >= 0; i--)
+        position.x += xOffset;
+        SpriteRenderer divider = Instantiate(segmentDividerPrefab, position, Quaternion.identity, parent);
+        divider.sprite = sprite;
+        divider.transform.localScale *= Mathf.Max(0f, segmentDividerScale);
+        divider.gameObject.SetActive(IsSegmentAliveByIndex(ownerSegmentIndex));
+
+        if (!segmentDividerObjects.TryGetValue(ownerSegmentIndex, out List<GameObject> ownedDividers))
         {
-            CeilingSegmentRootVisual visual = segmentRootVisuals[i];
-
-            if (visual != null)
-                Destroy(visual.gameObject);
+            ownedDividers = new List<GameObject>();
+            segmentDividerObjects.Add(ownerSegmentIndex, ownedDividers);
         }
 
-        segmentRootVisuals.Clear();
+        ownedDividers.Add(divider.gameObject);
     }
 
-    public void RefreshSegmentRootVisuals()
+    private Vector3 GetSegmentBoundaryPosition(
+        CeilingSegment leftSegment,
+        CeilingSegment rightSegment,
+        bool useLightningDivider
+    )
     {
-        for (int i = 0; i < segmentRootVisuals.Count; i++)
-            SetSegmentRootVisualState(i, IsSegmentAliveByIndex(i));
+        bool sharedColumn = ceilingSegmentMode == CeilingSegmentMode.TwoSegments &&
+                            columnCount > 1 &&
+                            columnCount % 2 != 0;
+        int centerColumnX = columnCount / 2;
+        float boundaryX = sharedColumn
+            ? startPosition.x + centerColumnX * brickSize.x
+            : startPosition.x + (leftSegment.EndX + 0.5f) * brickSize.x;
+        float centerY = startPosition.y - ((Mathf.Max(1, rowCount) - 1) * 0.5f * brickSize.y);
+
+        if (useLightningDivider && sharedColumn)
+            centerY = startPosition.y - 0.5f * brickSize.y;
+
+        return new Vector3(boundaryX, centerY, transform.position.z);
     }
 
-    public void SetSegmentRootVisualState(int segmentIndex, bool active)
+    private static Sprite GetRandomSprite(Sprite[] sprites)
     {
-        if (segmentIndex < 0 || segmentIndex >= segmentRootVisuals.Count)
+        if (sprites == null || sprites.Length == 0)
+            return null;
+
+        return sprites[UnityEngine.Random.Range(0, sprites.Length)];
+    }
+
+    private void SetSegmentDividersVisible(bool visible)
+    {
+        foreach (KeyValuePair<int, List<GameObject>> pair in segmentDividerObjects)
+            SetSegmentDividerState(pair.Key, visible);
+    }
+
+    private void SetSegmentDividerState(int segmentIndex, bool active)
+    {
+        if (!segmentDividerObjects.TryGetValue(segmentIndex, out List<GameObject> ownedDividers))
             return;
 
-        CeilingSegmentRootVisual visual = segmentRootVisuals[segmentIndex];
-        visual?.SetActiveState(active && IsSegmentAliveByIndex(segmentIndex));
-    }
+        bool shouldBeActive = active && IsSegmentAliveByIndex(segmentIndex);
 
-    private Vector3 GetSegmentRootVisualPosition(CeilingSegment segment)
-    {
-        float centerX = startPosition.x + ((segment.StartX + segment.EndX) * 0.5f * brickSize.x);
-        float bottomY = startPosition.y - (Mathf.Max(1, rowCount) - 1) * brickSize.y;
-        return new Vector3(centerX, bottomY + segmentRootVisualYOffset, transform.position.z);
-    }
-
-    private List<Vector3> GetSegmentRootVisualTilePositions(CeilingSegment segment)
-    {
-        int tileCount = Mathf.Max(0, segment.EndX - segment.StartX + 1);
-        List<Vector3> positions = new(tileCount);
-        float bottomY = startPosition.y - (Mathf.Max(1, rowCount) - 1) * brickSize.y;
-
-        for (int x = segment.StartX; x <= segment.EndX; x++)
+        for (int i = 0; i < ownedDividers.Count; i++)
         {
-            float edgeOffset = 0f;
+            if (ownedDividers[i] != null)
+                ownedDividers[i].SetActive(shouldBeActive);
+        }
+    }
 
-            if (tileCount > 1 && x == segment.StartX)
-                edgeOffset = segmentRootVisualEdgePadding;
-            else if (tileCount > 1 && x == segment.EndX)
-                edgeOffset = -segmentRootVisualEdgePadding;
-
-            float columnCenterX = startPosition.x + x * brickSize.x + edgeOffset;
-            positions.Add(new Vector3(
-                columnCenterX,
-                bottomY + segmentRootVisualYOffset,
-                transform.position.z
-            ));
+    private void ClearSegmentDividers()
+    {
+        foreach (List<GameObject> ownedDividers in segmentDividerObjects.Values)
+        {
+            for (int i = ownedDividers.Count - 1; i >= 0; i--)
+            {
+                if (ownedDividers[i] != null)
+                {
+                    ownedDividers[i].SetActive(false);
+                    Destroy(ownedDividers[i]);
+                }
+            }
         }
 
-        return positions;
+        segmentDividerObjects.Clear();
     }
 
     private Vector3 GetCorePosition(CeilingSegment segment)
@@ -820,10 +848,52 @@ public class CeilingManager : MonoBehaviour
         return null;
     }
 
+    private CeilingSegment GetSegmentByCoord(Vector2Int coord)
+    {
+        int segmentIndex = GetSegmentIndexByCoord(coord);
+        return GetSegmentByIndex(segmentIndex);
+    }
+
+    private int GetSegmentIndexByCoord(Vector2Int coord)
+    {
+        if (segments.Count == 2 &&
+            columnCount > 1 &&
+            columnCount % 2 != 0 &&
+            coord.x == columnCount / 2)
+        {
+            int upperRowCount = Mathf.CeilToInt(Mathf.Max(1, rowCount) * 0.5f);
+            return coord.y < upperRowCount ? 0 : 1;
+        }
+
+        for (int i = 0; i < segments.Count; i++)
+        {
+            if (segments[i].ContainsX(coord.x))
+                return i;
+        }
+
+        return -1;
+    }
+
+    private bool IsCoordOwnedBySegment(Vector2Int coord, int segmentIndex)
+    {
+        return segmentIndex >= 0 && GetSegmentIndexByCoord(coord) == segmentIndex;
+    }
+
     private int GetSegmentTotalBlockCount(CeilingSegment segment)
     {
-        int width = Mathf.Max(0, segment.EndX - segment.StartX + 1);
-        return width * Mathf.Max(0, rowCount);
+        int segmentIndex = segments.IndexOf(segment);
+        int total = 0;
+
+        for (int y = 0; y < rowCount; y++)
+        {
+            for (int x = 0; x < columnCount; x++)
+            {
+                if (IsCoordOwnedBySegment(new Vector2Int(x, y), segmentIndex))
+                    total++;
+            }
+        }
+
+        return total;
     }
 
     private int GetAliveBlockCountInSegment(CeilingSegment segment)
@@ -834,6 +904,7 @@ public class CeilingManager : MonoBehaviour
     private List<CeilingBrick> GetAliveBricksInSegment(CeilingSegment segment)
     {
         List<CeilingBrick> result = new();
+        int segmentIndex = segments.IndexOf(segment);
 
         for (int i = 0; i < aliveBricks.Count; i++)
         {
@@ -845,7 +916,7 @@ public class CeilingManager : MonoBehaviour
             if (!brick.gameObject.activeSelf)
                 continue;
 
-            if (!segment.ContainsX(brick.Coord.x))
+            if (!IsCoordOwnedBySegment(brick.Coord, segmentIndex))
                 continue;
 
             result.Add(brick);

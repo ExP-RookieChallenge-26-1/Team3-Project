@@ -19,6 +19,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] private BallPowerController ballPowerController;
     [SerializeField] private BossController bossController;
     [SerializeField] private TutorialManager tutorialManager;
+    [SerializeField] private StageArtManager stageArtManager;
 
     [Header("Top Decoration")]
     [SerializeField] private Transform topDecorationParent;
@@ -173,6 +174,14 @@ public class StageManager : MonoBehaviour
     {
         ApplyTopDecoration(data);
 
+        if (stageArtManager != null)
+        {
+            if (data == null)
+                stageArtManager.ResetToDefault();
+            else
+                stageArtManager.Apply(data.ArtProfile);
+        }
+
         if (data == null)
         {
             Debug.LogWarning("StageManager: StageDefinition is null.");
@@ -207,7 +216,15 @@ public class StageManager : MonoBehaviour
 
         if (blockManager != null)
         {
-            blockManager.InitializeStageBlocks(data.blockData, data.useCeiling);
+            Sprite fixedBlockSpriteOverride = data.ArtProfile != null
+                ? data.ArtProfile.FixedBlockSprite
+                : null;
+
+            blockManager.InitializeStageBlocks(
+                data.blockData,
+                data.useCeiling,
+                fixedBlockSpriteOverride
+            );
         }
         else
         {

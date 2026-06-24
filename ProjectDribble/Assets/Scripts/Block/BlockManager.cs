@@ -70,6 +70,7 @@ public class BlockManager : MonoBehaviour
     private readonly CeilingSegmentVisualProfile fallbackGlowProfile = new();
     private bool normalBlocksClearedNotified;
     private bool useCeilingForCurrentStage = true;
+    private Sprite fixedBlockSpriteOverride;
 
     private static readonly Vector2Int[] StemConnectionDirections =
     {
@@ -100,10 +101,14 @@ public class BlockManager : MonoBehaviour
 
     public void InitializeStageBlocks(StageBlockData stageData)
     {
-        InitializeStageBlocks(stageData, true);
+        InitializeStageBlocks(stageData, true, null);
     }
 
-    public void InitializeStageBlocks(StageBlockData stageData, bool useCeiling)
+    public void InitializeStageBlocks(
+        StageBlockData stageData,
+        bool useCeiling,
+        Sprite fixedBlockSpriteOverride = null
+    )
     {
         if (stageData == null)
         {
@@ -113,6 +118,7 @@ public class BlockManager : MonoBehaviour
 
         data = stageData;
         useCeilingForCurrentStage = useCeiling;
+        this.fixedBlockSpriteOverride = fixedBlockSpriteOverride;
         Debug.Log(
             $"BlockManager: InitializeStageBlocks data={data.name}, size={data.width}x{data.height}, " +
             $"fixed={data.fixedBlocks?.Count ?? 0}, normal={data.normalBlocks?.Count ?? 0}, " +
@@ -753,7 +759,7 @@ public class BlockManager : MonoBehaviour
 
         if (blockType == BlockType.Fixed)
         {
-            blockPool.CreateFixedBlock(coord, hp);
+            blockPool.CreateFixedBlock(coord, hp, fixedBlockSpriteOverride);
         }
         else if (blockType == BlockType.Normal)
         {

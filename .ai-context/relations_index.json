@@ -35506,7 +35506,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
-    "to_type": "IsCurrentStageTutorial",
+    "to_type": "IsCurrentStageFinalTutorialStage",
     "relation_type": "uses",
     "strength": 1
   },
@@ -42765,6 +42765,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "bool",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "BossController",
     "relation_type": "uses",
     "strength": 1
@@ -42815,6 +42822,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
     "to_type": "CompleteCurrentStage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "ContinueStageClear",
     "relation_type": "uses",
     "strength": 1
   },
@@ -42989,6 +43003,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "IsCurrentStageFinalTutorialStage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "IsCurrentStageTutorial",
     "relation_type": "uses",
     "strength": 1
@@ -43129,6 +43150,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "Stage3",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "StageArtManager",
     "relation_type": "uses",
     "strength": 1
@@ -43213,6 +43241,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "TryInterceptStageClear",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "TryStartNextStage",
     "relation_type": "uses",
     "strength": 1
@@ -43221,6 +43256,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
     "to_type": "TutorialManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "TutorialStageId",
     "relation_type": "uses",
     "strength": 1
   },
@@ -43766,6 +43808,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "CompletePendingStageClear",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "CompleteStage2LaserUnlock",
     "relation_type": "uses",
     "strength": 1
@@ -43970,13 +44019,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
     "to_type": "IsTutorialPopupOpen",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "It",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44488,6 +44530,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
     "to_type": "System",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "TryInterceptStageClear",
     "relation_type": "uses",
     "strength": 1
   },

@@ -58,8 +58,8 @@
     {
       "class_name": "TutorialManager",
       "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-      "relation_count": 140,
-      "referenced_type_count": 137
+      "relation_count": 141,
+      "referenced_type_count": 138
     },
     {
       "class_name": "TMP_TextInfoDebugTool",

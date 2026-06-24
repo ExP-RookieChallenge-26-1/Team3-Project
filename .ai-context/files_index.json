@@ -29563,8 +29563,8 @@
     "file_id": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
     "path": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
     "file_name": "SettingsUI.cs",
-    "content_hash": "741eff990f3d2d6c1cb6ffa80405c7ce54b4c507",
-    "size": 2482,
+    "content_hash": "b3c3b9103e5c4227863a87a401868d4317d6d579",
+    "size": 2476,
     "line_count": 88,
     "namespace": "",
     "using_list": [
@@ -29635,7 +29635,7 @@
       "UnityEngine",
       "UI",
       "Button",
-      "Color",
+      "Sprite",
       "Start",
       "Find",
       "VibrationToggle",
@@ -29673,22 +29673,19 @@
     "string_literals": [
       "VibrationToggle"
     ],
-    "numeric_literals": [
-      0.45,
-      1
-    ],
+    "numeric_literals": [],
     "guessed_roles": [
       "ui",
       "runtime",
       "manager",
       "player",
-      "combat"
+      "save-load"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
       "Update 기반 처리 존재",
       "UI 관련 로직 포함",
-      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함",
       "컴포넌트 조회 사용"
     ]
   },

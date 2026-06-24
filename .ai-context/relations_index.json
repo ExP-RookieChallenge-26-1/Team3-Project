@@ -44893,13 +44893,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
     "from_class": "SettingsUI",
-    "to_type": "Color",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
-    "from_class": "SettingsUI",
     "to_type": "FeedbackManager",
     "relation_type": "uses",
     "strength": 1
@@ -45006,6 +44999,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
     "from_class": "SettingsUI",
     "to_type": "SoundManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SettingsUI.cs",
+    "from_class": "SettingsUI",
+    "to_type": "Sprite",
     "relation_type": "uses",
     "strength": 1
   },

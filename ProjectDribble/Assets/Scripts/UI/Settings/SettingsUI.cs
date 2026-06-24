@@ -5,8 +5,8 @@ public class SettingsUI : MonoBehaviour
 {
     [SerializeField] private GameObject settingsUI;
     [SerializeField] private Button vibrationToggleButton;
-    [SerializeField] private Color vibrationEnabledColor = Color.white;
-    [SerializeField] private Color vibrationDisabledColor = new(0.45f, 0.45f, 0.45f, 1f);
+    [SerializeField] private Sprite vibrationEnabledSpriteRenderer;
+    [SerializeField] private Sprite vibrationDisabledSpriteRenderer;
 
     void Start()
     {
@@ -56,9 +56,9 @@ public class SettingsUI : MonoBehaviour
         Image image = vibrationToggleButton.targetGraphic as Image;
         if (image != null)
         {
-            image.color = VibrationManager.Instance.VibrationEnabled
-                ? vibrationEnabledColor
-                : vibrationDisabledColor;
+            image.sprite = VibrationManager.Instance.VibrationEnabled
+                ? vibrationEnabledSpriteRenderer
+                : vibrationDisabledSpriteRenderer;
         }
     }
 

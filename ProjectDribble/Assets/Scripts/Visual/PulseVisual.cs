@@ -72,6 +72,11 @@ public class PulseVisual : MonoBehaviour
             RestoreVisual();
     }
 
+    public void SetUseUnscaledTime(bool enabled)
+    {
+        useUnscaledTime = enabled;
+    }
+
     public void ResetVisual()
     {
         isPulsing = false;

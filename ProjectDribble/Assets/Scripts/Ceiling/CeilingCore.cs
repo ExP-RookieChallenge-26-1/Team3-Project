@@ -57,10 +57,21 @@ public class CeilingCore : MonoBehaviour
         ApplyState();
     }
 
+    public void SetCoreSprite(Sprite sprite)
+    {
+        if (coreRenderer != null && sprite != null)
+            coreRenderer.sprite = sprite;
+    }
+
     public void SetConnectedState(bool connected)
     {
         isConnected = connected;
         ApplyState();
+    }
+
+    public void SetPulseUseUnscaledTime(bool enabled)
+    {
+        pulseVisual?.SetUseUnscaledTime(enabled);
     }
 
     public void SetAliveState(bool alive)

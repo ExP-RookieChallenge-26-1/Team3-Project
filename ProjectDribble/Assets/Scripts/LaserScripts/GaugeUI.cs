@@ -6,7 +6,6 @@ public class GaugeUI : MonoBehaviour
 {
     [SerializeField] private GaugeManager gaugeManager;
     [SerializeField] private LaserChargeController laserChargeController;
-    [SerializeField] private LaserUnlockState laserUnlockState;
     [SerializeField] private GameObject gaugeVisualRoot;
     [SerializeField] private CanvasGroup gaugeCanvasGroup;
 
@@ -81,9 +80,6 @@ public class GaugeUI : MonoBehaviour
         if (laserChargeController == null)
             laserChargeController = FindAnyObjectByType<LaserChargeController>();
 
-        if (laserUnlockState == null)
-            laserUnlockState = FindAnyObjectByType<LaserUnlockState>();
-
         if (gaugeCanvasGroup == null)
             gaugeCanvasGroup = GetComponent<CanvasGroup>();
 
@@ -104,12 +100,6 @@ public class GaugeUI : MonoBehaviour
             gaugeManager.OnGaugeSegmentChanged += UpdateGaugeSegmentText;
         }
 
-        if (laserUnlockState != null)
-        {
-            laserUnlockState.OnLaserUnlocked += HandleLaserUnlockChanged;
-            laserUnlockState.OnLaserLocked += HandleLaserUnlockChanged;
-        }
-
         RefreshAll();
     }
 
@@ -120,12 +110,6 @@ public class GaugeUI : MonoBehaviour
             gaugeManager.OnGaugeValueChanged -= HandleGaugeValueChanged;
             gaugeManager.OnGaugeSegmentChanged -= UpdateGaugeSegmentText;
         }
-
-        if (laserUnlockState != null)
-        {
-            laserUnlockState.OnLaserUnlocked -= HandleLaserUnlockChanged;
-            laserUnlockState.OnLaserLocked -= HandleLaserUnlockChanged;
-        }
     }
 
     private void Update()
@@ -135,10 +119,11 @@ public class GaugeUI : MonoBehaviour
 
     private void RefreshAll()
     {
+        EnsureGaugeVisible();
+
         if (gaugeManager == null)
             return;
 
-        RefreshVisibility();
         lastGaugeValue = gaugeManager.CurrentGaugeValue;
         RefreshSlotCounts(lastGaugeValue);
         UpdateGaugeValueText(lastGaugeValue);
@@ -524,37 +509,30 @@ public class GaugeUI : MonoBehaviour
         }
     }
 
-    private void HandleLaserUnlockChanged()
+    private void EnsureGaugeVisible()
     {
-        RefreshAll();
-    }
-
-    private void RefreshVisibility()
-    {
-        bool unlocked = laserUnlockState != null && laserUnlockState.IsLaserUnlocked;
-
         if (gaugeCanvasGroup != null)
         {
-            gaugeCanvasGroup.alpha = unlocked ? 1f : 0f;
-            gaugeCanvasGroup.interactable = unlocked;
-            gaugeCanvasGroup.blocksRaycasts = unlocked;
+            gaugeCanvasGroup.alpha = 1f;
+            gaugeCanvasGroup.interactable = true;
+            gaugeCanvasGroup.blocksRaycasts = true;
         }
 
         if (gaugeVisualRoot != null && gaugeVisualRoot != gameObject)
         {
-            gaugeVisualRoot.SetActive(unlocked);
+            gaugeVisualRoot.SetActive(true);
             return;
         }
 
         if (gaugeBackground != null)
-            gaugeBackground.gameObject.SetActive(unlocked);
+            gaugeBackground.gameObject.SetActive(true);
         else if (slotContainer != null)
-            slotContainer.gameObject.SetActive(unlocked);
+            slotContainer.gameObject.SetActive(true);
 
         if (gaugeSegmentText != null)
-            gaugeSegmentText.gameObject.SetActive(unlocked);
+            gaugeSegmentText.gameObject.SetActive(true);
 
         if (gaugeValueText != null)
-            gaugeValueText.gameObject.SetActive(unlocked);
+            gaugeValueText.gameObject.SetActive(true);
     }
 }

@@ -6,6 +6,13 @@ using UnityEngine.Serialization;
 
 public class CeilingManager : MonoBehaviour
 {
+    [Serializable]
+    private class SegmentCoreSpriteSet
+    {
+        public int segmentCellCount;
+        public Sprite[] sprites;
+    }
+
     public event Action OnStageCleared;
     public event Action<CeilingSegment> OnCeilingSegmentDestroyed;
 
@@ -45,6 +52,8 @@ public class CeilingManager : MonoBehaviour
     [SerializeField] private CeilingCore ceilingCorePrefab;
     [SerializeField] private Transform ceilingCoreParent;
     [SerializeField] private Vector2 ceilingCoreOffset;
+    [SerializeField] private SegmentCoreSpriteSet[] segmentCoreSpriteSets;
+    [SerializeField] private Sprite[] fallbackSegmentCoreSprites;
 
     [Header("Segments")]
     [SerializeField] private int leftSegmentMaxHp;
@@ -478,6 +487,23 @@ public class CeilingManager : MonoBehaviour
         }
     }
 
+    public void SetAllAliveCoreVisualsConnected(bool connected)
+    {
+        for (int i = 0; i < ceilingCores.Count; i++)
+        {
+            CeilingCore core = ceilingCores[i];
+
+            if (core != null)
+                core.SetConnectedState(connected && IsSegmentAliveByIndex(i));
+        }
+    }
+
+    public void SetCorePulseUseUnscaledTime(bool enabled)
+    {
+        for (int i = 0; i < ceilingCores.Count; i++)
+            ceilingCores[i]?.SetPulseUseUnscaledTime(enabled);
+    }
+
     public void UpdateSegmentBlockVisuals(CeilingSegment segment)
     {
         if (segment == null)
@@ -637,10 +663,69 @@ public class CeilingManager : MonoBehaviour
             );
 
             core.Initialize(i);
+            core.SetCoreSprite(GetRandomCoreSprite(segment));
             core.ApplyVisualProfile(GetSegmentGlowProfile(i));
             core.SetAliveState(!segment.IsDestroyed);
             ceilingCores.Add(core);
         }
+    }
+
+    private Sprite GetRandomCoreSprite(CeilingSegment segment)
+    {
+        if (segment == null)
+            return null;
+
+        int segmentCellCount = Mathf.Max(0, segment.EndX - segment.StartX + 1);
+
+        if (segmentCoreSpriteSets != null)
+        {
+            for (int i = 0; i < segmentCoreSpriteSets.Length; i++)
+            {
+                SegmentCoreSpriteSet spriteSet = segmentCoreSpriteSets[i];
+
+                if (spriteSet == null || spriteSet.segmentCellCount != segmentCellCount)
+                    continue;
+
+                Sprite sprite = GetRandomValidSprite(spriteSet.sprites);
+
+                if (sprite != null)
+                    return sprite;
+            }
+        }
+
+        return GetRandomValidSprite(fallbackSegmentCoreSprites);
+    }
+
+    private static Sprite GetRandomValidSprite(Sprite[] sprites)
+    {
+        if (sprites == null || sprites.Length == 0)
+            return null;
+
+        int validSpriteCount = 0;
+
+        for (int i = 0; i < sprites.Length; i++)
+        {
+            if (sprites[i] != null)
+                validSpriteCount++;
+        }
+
+        if (validSpriteCount == 0)
+            return null;
+
+        int selectedValidIndex = UnityEngine.Random.Range(0, validSpriteCount);
+
+        for (int i = 0; i < sprites.Length; i++)
+        {
+            if (sprites[i] == null)
+                continue;
+
+            if (selectedValidIndex == 0)
+                return sprites[i];
+
+            selectedValidIndex--;
+        }
+
+        return null;
     }
 
     private void ClearCeilingCores()

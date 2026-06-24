@@ -134,16 +134,20 @@ public class GameManager : MonoBehaviour
         if (gameOverUI != null)
             gameOverUI.SetActive(false);
 
+        // Restore gameplay before stage initialization so a tutorial popup can
+        // capture the correct pre-popup time scale and pause the retried stage.
+        ResumeGame();
         stageManager.RestartCurrentStage();
 
         if (paddleController != null)
             paddleController.ResetPosition();
-
-        ResumeGame();
     }
 
     public void NextStage()
     {
+        // Stage initialization may immediately open a tutorial popup. Resume the
+        // stage-clear pause first so that popup remains the final pause owner.
+        ResumeGame();
         bool moved = stageManager.TryStartNextStage();
 
         if (!moved)
@@ -156,8 +160,6 @@ public class GameManager : MonoBehaviour
             paddleController.ResetPosition();
 
         stageClearUI.SetActive(false);
-
-        ResumeGame();
     }
 
     public void PauseGame()

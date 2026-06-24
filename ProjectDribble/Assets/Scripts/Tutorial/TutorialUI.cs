@@ -14,27 +14,21 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject messageRoot;
     [SerializeField] private TextMeshProUGUI messageText;
 
+    [Header("Tutorial Step Popups")]
+    [Tooltip("Step 1 through Step 8 popup roots, in order.")]
+    [SerializeField] private GameObject[] tutorialStepPopups = new GameObject[8];
+
     private Action tutorialCloseCallback;
     private bool isTutorialPopupOpen;
     private TutorialPopupCloseMode tutorialPopupCloseMode = TutorialPopupCloseMode.ClickToClose;
+    private GameObject currentTutorialPopupRoot;
 
     public bool IsTutorialPopupOpen => isTutorialPopupOpen;
+    public GameObject CurrentTutorialPopupRoot => currentTutorialPopupRoot;
 
     protected virtual void Awake()
     {
         HideTutorialPopup(false);
-    }
-
-    protected virtual void Update()
-    {
-        if (!isTutorialPopupOpen)
-            return;
-
-        if (tutorialPopupCloseMode == TutorialPopupCloseMode.ExternalOnly)
-            return;
-
-        if (IsTutorialCloseInput())
-            HideTutorialPopup();
     }
 
     protected virtual void OnDisable()
@@ -95,6 +89,8 @@ public class UIManager : MonoBehaviour
             return false;
         }
 
+        HideAllTutorialStepPopups();
+
         if (!messageRoot.activeSelf)
             messageRoot.SetActive(true);
 
@@ -107,6 +103,7 @@ public class UIManager : MonoBehaviour
         messageText.text = message;
         tutorialCloseCallback = onClose;
         tutorialPopupCloseMode = closeMode;
+        currentTutorialPopupRoot = messageRoot;
 
         isTutorialPopupOpen = true;
         SoundManager.Instance?.SetBgmMuffled(BgmMuffleReason.Tutorial, true);
@@ -116,9 +113,76 @@ public class UIManager : MonoBehaviour
         return true;
     }
 
+    public bool ShowTutorialStepPopup(int stepNumber, Action onClose = null)
+    {
+        if (isTutorialPopupOpen)
+        {
+            Debug.LogWarning("[Tutorial] Step popup was not shown: another tutorial popup is already open.");
+            return false;
+        }
+
+        int popupIndex = stepNumber - 1;
+        if (tutorialStepPopups == null || popupIndex < 0 || popupIndex >= tutorialStepPopups.Length)
+        {
+            Debug.LogWarning($"[Tutorial] Step popup was not shown: invalid step number {stepNumber}.");
+            return false;
+        }
+
+        GameObject popupRoot = tutorialStepPopups[popupIndex];
+        if (popupRoot == null)
+        {
+            Debug.LogWarning($"[Tutorial] Step popup was not shown: Step {stepNumber} root is not assigned.");
+            return false;
+        }
+
+        if (!enabled)
+            enabled = true;
+
+        if (!gameObject.activeSelf)
+            gameObject.SetActive(true);
+
+        if (!gameObject.activeInHierarchy)
+        {
+            Debug.LogWarning("[Tutorial] Step popup was not shown: TutorialUI has an inactive parent.");
+            return false;
+        }
+
+        if (messageRoot != null)
+            messageRoot.SetActive(false);
+
+        HideAllTutorialStepPopups();
+        popupRoot.SetActive(true);
+
+        tutorialCloseCallback = onClose;
+        tutorialPopupCloseMode = TutorialPopupCloseMode.ClickToClose;
+        currentTutorialPopupRoot = popupRoot;
+        isTutorialPopupOpen = true;
+        SoundManager.Instance?.SetBgmMuffled(BgmMuffleReason.Tutorial, true);
+        return true;
+    }
+
+    public void HideAllTutorialStepPopups()
+    {
+        if (tutorialStepPopups == null)
+            return;
+
+        for (int i = 0; i < tutorialStepPopups.Length; i++)
+        {
+            if (tutorialStepPopups[i] != null)
+                tutorialStepPopups[i].SetActive(false);
+        }
+
+        currentTutorialPopupRoot = null;
+    }
+
     public void HideTutorialPopup()
     {
         HideTutorialPopup(true);
+    }
+
+    public void HideTutorialPopupWithoutCallback()
+    {
+        HideTutorialPopup(false);
     }
 
     public void Continue()
@@ -144,6 +208,8 @@ public class UIManager : MonoBehaviour
         if (messageRoot != null)
             messageRoot.SetActive(false);
 
+        HideAllTutorialStepPopups();
+
         if (messageText != null)
             messageText.text = string.Empty;
 
@@ -151,6 +217,7 @@ public class UIManager : MonoBehaviour
         Action callback = tutorialCloseCallback;
         tutorialCloseCallback = null;
         tutorialPopupCloseMode = TutorialPopupCloseMode.ClickToClose;
+        currentTutorialPopupRoot = null;
         isTutorialPopupOpen = false;
         SoundManager.Instance?.SetBgmMuffled(BgmMuffleReason.Tutorial, false);
 
@@ -158,18 +225,6 @@ public class UIManager : MonoBehaviour
             callback?.Invoke();
     }
 
-    private bool IsTutorialCloseInput()
-    {
-        if (Input.GetMouseButtonDown(0))
-            return true;
-
-        if (Input.GetKeyDown(KeyCode.Space) ||
-            Input.GetKeyDown(KeyCode.Return) ||
-            Input.GetKeyDown(KeyCode.KeypadEnter))
-            return true;
-
-        return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began;
-    }
 }
 
 public class TutorialUI : UIManager

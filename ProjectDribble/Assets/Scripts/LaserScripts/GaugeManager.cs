@@ -35,8 +35,14 @@ public class GaugeManager : MonoBehaviour
 
     public void InitializeGauge(int startValue)
     {
+        InitializeGauge(startValue, false);
+    }
+
+    public void InitializeGauge(int startValue, bool allowValueWhileLaserLocked)
+    {
         MaxGaugeValue = _data.maxGaugeSegments * _data.gaugePerSegment;
-        SetGaugeValue(IsLaserUnlocked() ? startValue : 0);
+        bool canApplyStartValue = IsLaserUnlocked() || allowValueWhileLaserLocked;
+        SetGaugeValue(canApplyStartValue ? startValue : 0);
     }
 
     public void ResetGauge()
@@ -100,6 +106,14 @@ public class GaugeManager : MonoBehaviour
     public void AddGauge(int amount)
     {
         if (!CanGainGauge())
+            return;
+
+        SetGaugeValue(currentGaugeValue + amount);
+    }
+
+    public void RestoreGauge(int amount)
+    {
+        if (amount <= 0)
             return;
 
         SetGaugeValue(currentGaugeValue + amount);

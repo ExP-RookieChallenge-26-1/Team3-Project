@@ -368,6 +368,28 @@ public class LaserChargeController : MonoBehaviour
             isReturningGauge = false;
         }
     }
+
+    public void CancelChargeAndRefund()
+    {
+        int refundAmount = ConsumedGaugeValue;
+
+        isDribbling = false;
+        Reset();
+        laserChargePreview?.Hide();
+
+        if (refundAmount <= 0 || guageManager == null)
+            return;
+
+        isReturningGauge = true;
+        try
+        {
+            guageManager.RestoreGauge(refundAmount);
+        }
+        finally
+        {
+            isReturningGauge = false;
+        }
+    }
     
     
     private void Reset()

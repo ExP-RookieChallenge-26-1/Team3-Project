@@ -29923,9 +29923,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
     "path": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
     "file_name": "GlitchOverlayVisual.cs",
-    "content_hash": "0dcffe2b131d6091d47a985c78aaf604632b35e8",
-    "size": 3812,
-    "line_count": 137,
+    "content_hash": "a36002459120a09aab9c7e3a0a19cb8228bfb3b1",
+    "size": 5666,
+    "line_count": 200,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -29950,14 +29950,44 @@
       "Awake",
       "SetState",
       "ResetVisual",
-      "GetSpriteByStage",
+      "PickRandomSpriteForStage",
+      "PickRandomFromArrayOrFallback",
+      "ResetSelectedSprite",
       "SetAlpha",
       "EnsureGlowShadowVisual"
     ],
     "fields": [
       {
+        "name": "currentStage",
+        "type": "int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "currentSelectedSprite",
+        "type": "Sprite",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "hasSprite",
+        "type": "bool",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "alpha",
         "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "validCount",
+        "type": "int",
         "access": "internal",
         "serialized": false,
         "is_static": false
@@ -29991,25 +30021,33 @@
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
+      "int",
+      "Sprite",
+      "bool",
       "float",
       "Color",
       "UnityEngine",
       "SpriteRenderer",
       "PulseVisual",
       "SegmentGlowShadowVisual",
-      "Sprite",
+      "Stage",
+      "Sprites",
       "Legacy",
+      "Fallbacks",
       "Awake",
       "GetComponent",
       "EnsureGlowShadowVisual",
       "ResetVisual",
       "SetState",
       "CeilingSegmentVisualProfile",
+      "ResetSelectedSprite",
       "SetPulsing",
-      "GetSpriteByStage",
+      "PickRandomSpriteForStage",
       "SetAlpha",
       "ApplyVisualProfile",
       "SetBaseAlpha",
+      "PickRandomFromArrayOrFallback",
+      "Length",
       "Clamp01",
       "Initialize"
     ],
@@ -30020,7 +30058,10 @@
     ],
     "created_types": [],
     "singleton_access_types": [],
-    "string_literals": [],
+    "string_literals": [
+      "Stage Sprites",
+      "Legacy Stage Sprite Fallbacks"
+    ],
     "numeric_literals": [
       1,
       0.25,

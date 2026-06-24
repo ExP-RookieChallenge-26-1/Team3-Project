@@ -45334,6 +45334,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
     "from_class": "GlitchOverlayVisual",
+    "to_type": "bool",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
+    "from_class": "GlitchOverlayVisual",
     "to_type": "CeilingSegmentVisualProfile",
     "relation_type": "uses",
     "strength": 1
@@ -45362,6 +45369,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
     "from_class": "GlitchOverlayVisual",
+    "to_type": "Fallbacks",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
+    "from_class": "GlitchOverlayVisual",
     "to_type": "float",
     "relation_type": "uses",
     "strength": 1
@@ -45376,14 +45390,14 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
     "from_class": "GlitchOverlayVisual",
-    "to_type": "GetSpriteByStage",
+    "to_type": "Initialize",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
     "from_class": "GlitchOverlayVisual",
-    "to_type": "Initialize",
+    "to_type": "int",
     "relation_type": "uses",
     "strength": 1
   },
@@ -45397,7 +45411,35 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
     "from_class": "GlitchOverlayVisual",
+    "to_type": "Length",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
+    "from_class": "GlitchOverlayVisual",
+    "to_type": "PickRandomFromArrayOrFallback",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
+    "from_class": "GlitchOverlayVisual",
+    "to_type": "PickRandomSpriteForStage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
+    "from_class": "GlitchOverlayVisual",
     "to_type": "PulseVisual",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
+    "from_class": "GlitchOverlayVisual",
+    "to_type": "ResetSelectedSprite",
     "relation_type": "uses",
     "strength": 1
   },
@@ -45454,6 +45496,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
     "from_class": "GlitchOverlayVisual",
     "to_type": "SpriteRenderer",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
+    "from_class": "GlitchOverlayVisual",
+    "to_type": "Sprites",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
+    "from_class": "GlitchOverlayVisual",
+    "to_type": "Stage",
     "relation_type": "uses",
     "strength": 1
   },

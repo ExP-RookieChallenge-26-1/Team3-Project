@@ -748,6 +748,29 @@
     "risk_score": 81
   },
   {
+    "file_id": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
+    "class_name": "CeilingSegmentVisualProfile",
+    "risk_flags": [
+      "high-coupling",
+      "public-field-heavy",
+      "magic-number-heavy",
+      "large-class",
+      "save-load-sensitive",
+      "ui-runtime-mixed",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "public 필드 노출 수가 많음",
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+      "저장/불러오기 관련 로직 포함",
+      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 81
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "class_name": "BlockManager",
     "risk_flags": [
@@ -789,6 +812,29 @@
       "파일/메서드/필드 수가 많아 책임이 커질 가능성",
       "초기화 순서에 민감할 가능성",
       "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 81
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "class_name": "SegmentGlowShadowVisual",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "magic-number-heavy",
+      "large-class",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 81
@@ -1459,27 +1505,6 @@
     "risk_score": 70
   },
   {
-    "file_id": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "class_name": "StageBlockData",
-    "risk_flags": [
-      "high-coupling",
-      "public-field-heavy",
-      "magic-number-heavy",
-      "large-class",
-      "ui-runtime-mixed",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "참조 타입 또는 관계 수가 많음",
-      "public 필드 노출 수가 많음",
-      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
-      "파일/메서드/필드 수가 많아 책임이 커질 가능성",
-      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 69
-  },
-  {
     "file_id": "Old Scripts/ForRazer/ChargingLaserManager.cs",
     "class_name": "ChargingLaserManager",
     "risk_flags": [
@@ -1517,6 +1542,27 @@
       "초기화 순서에 민감할 가능성",
       "저장/불러오기 관련 로직 포함",
       "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 68
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
+    "class_name": "GlitchOverlayVisual",
+    "risk_flags": [
+      "high-coupling",
+      "getcomponent-heavy",
+      "magic-number-heavy",
+      "init-order-sensitive",
+      "save-load-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "참조 타입 또는 관계 수가 많음",
+      "GetComponent/TryGetComponent 호출이 많음",
+      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+      "초기화 순서에 민감할 가능성",
+      "저장/불러오기 관련 로직 포함",
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 68
@@ -2860,23 +2906,6 @@
     ],
     "risk_reasons": [
       "참조 타입 또는 관계 수가 많음",
-      "저장/불러오기 관련 로직 포함",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 38
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
-    "class_name": "GlitchOverlayVisual",
-    "risk_flags": [
-      "magic-number-heavy",
-      "init-order-sensitive",
-      "save-load-sensitive",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
-      "초기화 순서에 민감할 가능성",
       "저장/불러오기 관련 로직 포함",
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],

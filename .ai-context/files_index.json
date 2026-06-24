@@ -15157,15 +15157,26 @@
     "file_id": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
     "path": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
     "file_name": "StageBlockData.cs",
-    "content_hash": "8d5adc57775390841d0fbc3faee7a70c7cab37e2",
-    "size": 10822,
-    "line_count": 249,
+    "content_hash": "1b2628f1efe84d9fbeb2a46bef2931abe9eedbeb",
+    "size": 12032,
+    "line_count": 282,
     "namespace": "",
     "using_list": [
       "System.Collections.Generic",
-      "UnityEngine"
+      "UnityEngine",
+      "UnityEngine.Serialization"
     ],
     "classes": [
+      {
+        "name": "CeilingSegmentVisualProfile",
+        "kind": "class",
+        "access": "public",
+        "base_types": [],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      },
       {
         "name": "StageBlockData",
         "kind": "class",
@@ -15219,15 +15230,32 @@
         "is_generic": false
       }
     ],
-    "main_class_name": "StageBlockData",
-    "unity_type": "ScriptableObject",
+    "main_class_name": "CeilingSegmentVisualProfile",
+    "unity_type": "None",
     "methods": [
+      "AnimationCurve",
+      "Keyframe",
+      "Color",
       "GetPreferredDirections",
       "CreateGrowthDirection",
       "ToVector2Int",
       "Vector2Int"
     ],
     "fields": [
+      {
+        "name": "glowColor",
+        "type": "Color",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "phaseOffset",
+        "type": "float",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
       {
         "name": "name",
         "type": "string",
@@ -15513,18 +15541,19 @@
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 0,
-    "public_field_count": 37,
+    "public_field_count": 39,
     "get_component_count": 0,
     "find_call_count": 0,
-    "new_keyword_count": 18,
+    "new_keyword_count": 23,
     "coroutine_count": 0,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
+      "Color",
+      "float",
       "string",
       "Vector2Int",
       "int",
-      "float",
       "StemDirectionType",
       "BlockCell",
       "bool",
@@ -15532,6 +15561,14 @@
       "Collections",
       "Generic",
       "UnityEngine",
+      "Serialization",
+      "Serializable",
+      "Glow",
+      "FormerlySerializedAs",
+      "Min",
+      "AnimationCurve",
+      "Keyframe",
+      "Disconnected",
       "CreateAssetMenu",
       "Scriptable",
       "Objects",
@@ -15541,7 +15578,6 @@
       "Right",
       "DownLeft",
       "DownRight",
-      "Serializable",
       "Inspector",
       "Runtime",
       "Legacy",
@@ -15601,36 +15637,46 @@
     ],
     "component_access_types": [],
     "created_types": [
+      "AnimationCurve",
+      "Keyframe",
+      "Color",
       "Vector2Int"
     ],
     "singleton_access_types": [],
     "string_literals": [
+      "Glow",
+      "pulseColor",
+      "glitchColor",
+      "connectedAlpha",
+      "glowPulseSpeed",
+      "pulseSpeed",
+      "glowPhaseOffset",
+      "phaseOffset",
+      "glowAlphaCurve",
+      "pulseCurve",
+      "Disconnected",
+      "disconnectedColor",
+      "disconnectedAlpha",
       "StageBlockData",
       "Scriptable Objects/StageBlockData",
       "Legacy growth direction vector. Used by startCells/directions based growth.",
       "Lower priority values are selected before higher priority values.",
       "Weighted random selection value. Values less than or equal to 0 are ignored.",
       "Stem growth direction option used when useStemGrowth is true.",
-      "Lower priority values are selected before higher priority values for this stem.",
-      "Stem Visual",
-      "Stem Layout",
-      "Minimum grid X coordinate this stem can grow within.",
-      "Maximum grid X coordinate this stem can grow within.",
-      "Deprecated / Unused Candidates",
-      "Stem Growth",
-      "Maximum number of Flow blocks owned by this stem that may exist in one row.",
-      "Direction Options",
-      "Stem Timing",
-      "Grid",
-      "Grid width in cells.",
-      "Grid height in cells.",
-      "Block Layout"
+      "Lower priority values are selected before higher priority values for this stem."
     ],
     "numeric_literals": [
+      0,
+      1.12,
       1,
+      0.15,
+      0.65,
+      0.5,
+      0.45,
+      0.42,
+      0.1,
       999,
       2,
-      0,
       7,
       18,
       10,
@@ -15641,14 +15687,14 @@
     "guessed_roles": [
       "data",
       "combat",
+      "save-load",
       "ui",
-      "player",
-      "runtime"
+      "player"
     ],
     "summary_signals": [
-      "데이터 자산 중심 구조",
       "UI 관련 로직 포함",
-      "전투 계열 로직 포함"
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함"
     ]
   },
   {
@@ -18765,9 +18811,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "path": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "file_name": "BlockCell.cs",
-    "content_hash": "82c5bec67e9213bc78f5f95b7f8cd2320b3adb46",
-    "size": 7821,
-    "line_count": 292,
+    "content_hash": "55147d3a08a82cbbffbb5e46ba425228319614c6",
+    "size": 8308,
+    "line_count": 312,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -18884,6 +18930,13 @@
         "is_static": false
       },
       {
+        "name": "stemVisualProfile",
+        "type": "CeilingSegmentVisualProfile",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "wasFixed",
         "type": "bool",
         "access": "internal",
@@ -18962,6 +19015,7 @@
       "BlockType",
       "bool",
       "int",
+      "CeilingSegmentVisualProfile",
       "Collider2D",
       "Bounds",
       "DefaultNamespace",
@@ -19080,9 +19134,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "file_name": "BlockManager.cs",
-    "content_hash": "3eefa6de14873d0603880af4aa9f55ba8ca331ee",
-    "size": 48494,
-    "line_count": 1782,
+    "content_hash": "adf11023e5ac8c4496ca16b9d7bf2a55975edccd",
+    "size": 49358,
+    "line_count": 1803,
     "namespace": "",
     "using_list": [
       "System.Collections",
@@ -19185,6 +19239,7 @@
       "AddConnectedStemCells",
       "IsValidConnectedStemCell",
       "RefreshStemConnectionVisuals",
+      "GetStemGlowProfile",
       "CreateCoreConnectionStateList",
       "MarkConnectedCeilingCore",
       "GetDistanceFromBottom",
@@ -19510,6 +19565,20 @@
         "is_static": false
       },
       {
+        "name": "stem",
+        "type": "StageBlockData.GrowthStemData",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "segmentIndex",
+        "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "segmentCount",
         "type": "int",
         "access": "internal",
@@ -19715,6 +19784,7 @@
       "Safety",
       "GaugeManager",
       "BlockType",
+      "CeilingSegmentVisualProfile",
       "StemConnectionDirections",
       "Awake",
       "FindAnyObjectByType",
@@ -19831,9 +19901,11 @@
       "GetDanger01FromBottomDistance",
       "GetGlitchStageFromBottomDistance",
       "SetStemVisual",
+      "GetStemGlowProfile",
       "MarkConnectedCeilingCore",
       "SetCoreConnections",
       "ToArray",
+      "GetSegmentGlowProfile",
       "Abs",
       "Clamp01",
       "IsCeilingSegmentAliveForStem",
@@ -21177,9 +21249,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingCore.cs",
     "path": "ProjectDribble/Assets/Scripts/Ceiling/CeilingCore.cs",
     "file_name": "CeilingCore.cs",
-    "content_hash": "beb1645f932cce68bddf2e2acec781db5cbf380a",
-    "size": 2360,
-    "line_count": 103,
+    "content_hash": "7a84e695ff80c4f0ba231e31e7ec1a2626186089",
+    "size": 3035,
+    "line_count": 126,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -21204,12 +21276,14 @@
       "Awake",
       "Initialize",
       "SetVisible",
+      "ApplyVisualProfile",
       "SetConnectedState",
       "SetAliveState",
       "PlayDamageFlash",
       "ResetVisual",
       "ApplyState",
-      "SetAlpha"
+      "SetAlpha",
+      "EnsureGlowShadowVisual"
     ],
     "fields": [
       {
@@ -21276,7 +21350,7 @@
     "has_on_disable": false,
     "serialize_field_count": 0,
     "public_field_count": 0,
-    "get_component_count": 3,
+    "get_component_count": 4,
     "find_call_count": 0,
     "new_keyword_count": 0,
     "coroutine_count": 0,
@@ -21291,18 +21365,23 @@
       "SpriteRenderer",
       "PulseVisual",
       "DamageFlashVisual",
+      "SegmentGlowShadowVisual",
       "SegmentIndex",
       "Awake",
       "GetComponent",
+      "EnsureGlowShadowVisual",
       "Initialize",
       "ResetVisual",
       "SetVisible",
       "ApplyState",
+      "ApplyVisualProfile",
+      "CeilingSegmentVisualProfile",
       "SetConnectedState",
       "SetAliveState",
       "PlayDamageFlash",
       "PlayFlash",
       "SetAlpha",
+      "SetState",
       "SetBaseAlpha",
       "SetPulsing",
       "Clamp01"
@@ -21310,7 +21389,8 @@
     "component_access_types": [
       "SpriteRenderer",
       "PulseVisual",
-      "DamageFlashVisual"
+      "DamageFlashVisual",
+      "SegmentGlowShadowVisual"
     ],
     "created_types": [],
     "singleton_access_types": [],
@@ -21416,15 +21496,16 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "file_name": "CeilingManager.cs",
-    "content_hash": "3e9e7632e19de1fe537c93a1148d44bdd9151bb7",
-    "size": 26417,
-    "line_count": 852,
+    "content_hash": "d10541968bdcd4c2539577ffe829af144ffe14a4",
+    "size": 27391,
+    "line_count": 877,
     "namespace": "",
     "using_list": [
       "System",
       "System.Collections.Generic",
       "DefaultNamespace",
-      "UnityEngine"
+      "UnityEngine",
+      "UnityEngine.Serialization"
     ],
     "classes": [
       {
@@ -21489,6 +21570,8 @@
       "Vector3",
       "GetSegmentRootVisualTilePositions",
       "GetCoreByIndex",
+      "GetSegmentGlowProfile",
+      "CeilingSegmentVisualProfile",
       "PlayCoreDamageFlash",
       "SetCoreAlive",
       "DisableStemGrowthForSegment",
@@ -21806,7 +21889,7 @@
     "public_field_count": 0,
     "get_component_count": 0,
     "find_call_count": 1,
-    "new_keyword_count": 13,
+    "new_keyword_count": 14,
     "coroutine_count": 0,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
@@ -21825,6 +21908,7 @@
       "Generic",
       "DefaultNamespace",
       "UnityEngine",
+      "Serialization",
       "OnStageCleared",
       "OnCeilingSegmentDestroyed",
       "LeftSegmentStartX",
@@ -21845,6 +21929,10 @@
       "Core",
       "Segments",
       "Segment",
+      "Glow",
+      "Profiles",
+      "FormerlySerializedAs",
+      "CeilingSegmentVisualProfile",
       "Root",
       "Visuals",
       "Ball",
@@ -21971,6 +22059,8 @@
       "ContainsX",
       "GetCorePosition",
       "Initialize",
+      "ApplyVisualProfile",
+      "GetSegmentGlowProfile",
       "SetAliveState",
       "GetSegmentRootVisualPosition",
       "BuildTiles",
@@ -21987,7 +22077,8 @@
       "Vector2",
       "CeilingSegment",
       "Vector2Int",
-      "Vector3"
+      "Vector3",
+      "CeilingSegmentVisualProfile"
     ],
     "singleton_access_types": [
       "SoundManager",
@@ -21999,6 +22090,9 @@
       "Sprites",
       "Ceiling Core",
       "Segments",
+      "Segment Glow Profiles",
+      "defaultSegmentVisualProfile",
+      "segmentVisualProfiles",
       "Segment Root Visuals",
       "Ball Control",
       "Gauge",
@@ -22010,10 +22104,7 @@
       "Center",
       "CeilingManager: CeilingBrick prefab is missing. Ceiling bricks were not created.",
       "CeilingManager: x={x} does not belong to a ceiling segment.",
-      "Ceiling segment {segment.SegmentName} is already destroyed.",
-      "Ceiling segment {segment.SegmentName} destroyed.",
-      "CeilingManager: BallRespawner is missing; the ball was not recalled.",
-      "Ceiling segment {segment.SegmentName} random block destroyed at {brick.Coord}."
+      "Ceiling segment {segment.SegmentName} is already destroyed."
     ],
     "numeric_literals": [
       2,
@@ -22133,9 +22224,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
     "path": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
     "file_name": "CeilingSegmentRootVisual.cs",
-    "content_hash": "0d30847114ccc1944d1fa20fc698c0ce349d1793",
-    "size": 4947,
-    "line_count": 178,
+    "content_hash": "1759f2e695205e5b1097abb55cce502859875611",
+    "size": 5753,
+    "line_count": 206,
     "namespace": "",
     "using_list": [
       "System.Collections.Generic",
@@ -22163,6 +22254,7 @@
       "Awake",
       "Update",
       "Initialize",
+      "ApplyVisualProfile",
       "BuildTiles",
       "Color",
       "SetLaserTargetPreview",
@@ -22170,6 +22262,7 @@
       "ApplyPulse",
       "RestoreVisual",
       "ClearTiles",
+      "EnsureGlowShadowVisual",
       "OnDisable"
     ],
     "fields": [
@@ -22221,6 +22314,13 @@
         "access": "internal",
         "serialized": false,
         "is_static": false
+      },
+      {
+        "name": "referenceRenderer",
+        "type": "SpriteRenderer",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
       }
     ],
     "properties": [],
@@ -22239,7 +22339,7 @@
     "has_on_disable": true,
     "serialize_field_count": 0,
     "public_field_count": 0,
-    "get_component_count": 0,
+    "get_component_count": 1,
     "find_call_count": 0,
     "new_keyword_count": 9,
     "coroutine_count": 0,
@@ -22260,12 +22360,16 @@
       "Pulse",
       "AnimationCurve",
       "Keyframe",
+      "Glow",
+      "Shadow",
+      "SegmentGlowShadowVisual",
       "SegmentIndex",
       "TileCount",
       "Count",
       "Awake",
       "GetComponentInChildren",
       "SetActive",
+      "EnsureGlowShadowVisual",
       "Update",
       "Repeat",
       "Max",
@@ -22273,6 +22377,8 @@
       "Clamp01",
       "Evaluate",
       "Initialize",
+      "ApplyVisualProfile",
+      "CeilingSegmentVisualProfile",
       "BuildTiles",
       "IReadOnlyList",
       "ClearTiles",
@@ -22283,12 +22389,16 @@
       "SetLaserTargetPreview",
       "SetActiveState",
       "RestoreVisual",
+      "SetState",
       "Lerp",
       "Destroy",
       "Clear",
+      "GetComponent",
       "OnDisable"
     ],
-    "component_access_types": [],
+    "component_access_types": [
+      "SegmentGlowShadowVisual"
+    ],
     "created_types": [
       "AnimationCurve",
       "Keyframe",
@@ -22298,6 +22408,7 @@
     "string_literals": [
       "Tiles",
       "Pulse",
+      "Glow / Shadow",
       "RootTile_{i}",
       "LaserTargetOverlay_{i}"
     ],
@@ -22318,7 +22429,8 @@
       "런타임 컴포넌트",
       "Update 기반 처리 존재",
       "UI 관련 로직 포함",
-      "저장/불러오기 관련 로직 포함"
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
     ]
   },
   {
@@ -29811,9 +29923,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
     "path": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
     "file_name": "GlitchOverlayVisual.cs",
-    "content_hash": "c278bf457f94397a3e613d4b3fa9c55958c9fa07",
-    "size": 2987,
-    "line_count": 108,
+    "content_hash": "0dcffe2b131d6091d47a985c78aaf604632b35e8",
+    "size": 3812,
+    "line_count": 137,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -29839,7 +29951,8 @@
       "SetState",
       "ResetVisual",
       "GetSpriteByStage",
-      "SetAlpha"
+      "SetAlpha",
+      "EnsureGlowShadowVisual"
     ],
     "fields": [
       {
@@ -29871,7 +29984,7 @@
     "has_on_disable": false,
     "serialize_field_count": 0,
     "public_field_count": 0,
-    "get_component_count": 2,
+    "get_component_count": 3,
     "find_call_count": 0,
     "new_keyword_count": 0,
     "coroutine_count": 0,
@@ -29883,21 +29996,27 @@
       "UnityEngine",
       "SpriteRenderer",
       "PulseVisual",
+      "SegmentGlowShadowVisual",
       "Sprite",
       "Legacy",
       "Awake",
       "GetComponent",
+      "EnsureGlowShadowVisual",
       "ResetVisual",
       "SetState",
+      "CeilingSegmentVisualProfile",
       "SetPulsing",
       "GetSpriteByStage",
       "SetAlpha",
+      "ApplyVisualProfile",
       "SetBaseAlpha",
-      "Clamp01"
+      "Clamp01",
+      "Initialize"
     ],
     "component_access_types": [
       "SpriteRenderer",
-      "PulseVisual"
+      "PulseVisual",
+      "SegmentGlowShadowVisual"
     ],
     "created_types": [],
     "singleton_access_types": [],
@@ -30076,6 +30195,251 @@
       2.5,
       0.35,
       0.06
+    ],
+    "guessed_roles": [
+      "runtime",
+      "combat",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "path": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "file_name": "SegmentGlowShadowVisual.cs",
+    "content_hash": "5224d117cd7565274f4f5815aba16bbe27de505c",
+    "size": 8299,
+    "line_count": 259,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "SegmentGlowShadowVisual",
+        "kind": "class",
+        "access": "internal",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "SegmentGlowShadowVisual",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Min",
+      "Range",
+      "AnimationCurve",
+      "Keyframe",
+      "Color",
+      "Awake",
+      "Update",
+      "Initialize",
+      "ApplyVisualProfile",
+      "SetState",
+      "RefreshFromTarget",
+      "EnsureTargetRenderer",
+      "EnsureGlowRenderer",
+      "GameObject",
+      "RefreshTransformFromTarget",
+      "Vector3",
+      "GetScaleRatio",
+      "ApplyState",
+      "SetColorAndAlpha",
+      "MaterialPropertyBlock",
+      "OnDisable"
+    ],
+    "fields": [
+      {
+        "name": "isVisible",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "isConnected",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "scaleSourceRenderer",
+        "type": "SpriteRenderer",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "targetBaseScale",
+        "type": "Vector3",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "propertyBlock",
+        "type": "MaterialPropertyBlock",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "time",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "candidate",
+        "type": "SpriteRenderer",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "targetTransform",
+        "type": "Transform",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "glowTransform",
+        "type": "Transform",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "currentScale",
+        "type": "Vector3",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Awake",
+      "Update",
+      "OnDisable"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": true,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 1,
+    "find_call_count": 0,
+    "new_keyword_count": 8,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "bool",
+      "SpriteRenderer",
+      "Vector3",
+      "MaterialPropertyBlock",
+      "float",
+      "UnityEngine",
+      "Target",
+      "Generated",
+      "Glow",
+      "Auto",
+      "Shadow",
+      "Appearance",
+      "Material",
+      "Color",
+      "Min",
+      "Pulse",
+      "AnimationCurve",
+      "Keyframe",
+      "Disconnected",
+      "GlowColorId",
+      "Shader",
+      "PropertyToID",
+      "ColorId",
+      "Awake",
+      "EnsureTargetRenderer",
+      "EnsureGlowRenderer",
+      "RefreshFromTarget",
+      "ApplyState",
+      "Update",
+      "RefreshTransformFromTarget",
+      "Repeat",
+      "Max",
+      "Clamp01",
+      "Evaluate",
+      "SetColorAndAlpha",
+      "Lerp",
+      "Initialize",
+      "ApplyVisualProfile",
+      "CeilingSegmentVisualProfile",
+      "SetState",
+      "GetComponent",
+      "GetComponentsInChildren",
+      "Length",
+      "SetParent",
+      "AddComponent",
+      "Quaternion",
+      "GetScaleRatio",
+      "Abs",
+      "Epsilon",
+      "SetPropertyBlock",
+      "GetPropertyBlock",
+      "SetColor",
+      "OnDisable"
+    ],
+    "component_access_types": [
+      "SpriteRenderer"
+    ],
+    "created_types": [
+      "AnimationCurve",
+      "Keyframe",
+      "Color",
+      "GameObject",
+      "Vector3",
+      "MaterialPropertyBlock"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Target",
+      "Generated Glow",
+      "Auto Glow Shadow",
+      "Appearance",
+      "Pulse",
+      "Disconnected",
+      "_GlowColor",
+      "_Color"
+    ],
+    "numeric_literals": [
+      0,
+      1.12,
+      1,
+      0.1,
+      0.55,
+      0.5,
+      0.45,
+      0.42,
+      0.08
     ],
     "guessed_roles": [
       "runtime",

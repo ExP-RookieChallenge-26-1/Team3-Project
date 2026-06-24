@@ -21792,7 +21792,28 @@
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
+    "to_type": "AnimationCurve",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
+    "from_class": "CeilingSegmentVisualProfile",
+    "to_type": "Color",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
+    "from_class": "CeilingSegmentVisualProfile",
+    "to_type": "Keyframe",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Vector2Int",
     "relation_type": "creates",
     "strength": 2
@@ -21806,539 +21827,595 @@
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Added",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
+    "to_type": "AnimationCurve",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Basic",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Bias",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Block",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "BlockCell",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "BlockPool",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Blocks",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "bool",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Candidates",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Ceiling",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Collections",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
+    "to_type": "Color",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Connection",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "CreateAssetMenu",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "CreateGrowthDirection",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Currently",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Default",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Delay",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Deprecated",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Direction",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Directions",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
+    "to_type": "Disconnected",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Down",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "DownLeft",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "DownRight",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Fixed",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "float",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Flow",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
+    "to_type": "FormerlySerializedAs",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Generic",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "GetPreferredDirections",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Global",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
+    "to_type": "Glow",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Grid",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Growth",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "HasStemGrowthData",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "HP",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "If",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Initial",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Inspector",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "int",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Kept",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
+    "to_type": "Keyframe",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Layout",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Left",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Legacy",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Length",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Lower",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Maximum",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
+    "to_type": "Min",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Minimum",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Mode",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Negative",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Normal",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Objects",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Optional",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Options",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Respawn",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Right",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Row",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Rules",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Runtime",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Scriptable",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Serializable",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
+    "to_type": "Serialization",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Stem",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "StemDirectionType",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "string",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "System",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "The",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "This",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Timing",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "ToString",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "ToVector2Int",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Turns",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "UnityEngine",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Unused",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Up",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Used",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "UseStemGrowth",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Values",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Vector2Int",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Visual",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/ScriptableObjects/Scripts/StageBlockData.cs",
-    "from_class": "StageBlockData",
+    "from_class": "CeilingSegmentVisualProfile",
     "to_type": "Weighted",
     "relation_type": "uses",
     "strength": 1
@@ -27736,6 +27813,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "from_class": "BlockCell",
+    "to_type": "CeilingSegmentVisualProfile",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
+    "from_class": "BlockCell",
     "to_type": "Clamp",
     "relation_type": "uses",
     "strength": 1
@@ -28387,6 +28471,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "from_class": "BlockManager",
+    "to_type": "CeilingSegmentVisualProfile",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
+    "from_class": "BlockManager",
     "to_type": "CheckNormalBlocksCleared",
     "relation_type": "uses",
     "strength": 1
@@ -28786,6 +28877,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "from_class": "BlockManager",
+    "to_type": "GetSegmentGlowProfile",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
+    "from_class": "BlockManager",
     "to_type": "GetStartConnectedCells",
     "relation_type": "uses",
     "strength": 1
@@ -28794,6 +28892,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "from_class": "BlockManager",
     "to_type": "GetStemFlowBlockPrefabOverride",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
+    "from_class": "BlockManager",
+    "to_type": "GetStemGlowProfile",
     "relation_type": "uses",
     "strength": 1
   },
@@ -31341,6 +31446,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingCore.cs",
     "from_class": "CeilingCore",
+    "to_type": "SegmentGlowShadowVisual",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingCore.cs",
+    "from_class": "CeilingCore",
     "to_type": "SpriteRenderer",
     "relation_type": "component-access",
     "strength": 3
@@ -31362,6 +31474,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingCore.cs",
     "from_class": "CeilingCore",
+    "to_type": "ApplyVisualProfile",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingCore.cs",
+    "from_class": "CeilingCore",
     "to_type": "Awake",
     "relation_type": "uses",
     "strength": 1
@@ -31370,6 +31489,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingCore.cs",
     "from_class": "CeilingCore",
     "to_type": "bool",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingCore.cs",
+    "from_class": "CeilingCore",
+    "to_type": "CeilingSegmentVisualProfile",
     "relation_type": "uses",
     "strength": 1
   },
@@ -31391,6 +31517,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingCore.cs",
     "from_class": "CeilingCore",
     "to_type": "DamageFlashVisual",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingCore.cs",
+    "from_class": "CeilingCore",
+    "to_type": "EnsureGlowShadowVisual",
     "relation_type": "uses",
     "strength": 1
   },
@@ -31453,6 +31586,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingCore.cs",
     "from_class": "CeilingCore",
+    "to_type": "SegmentGlowShadowVisual",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingCore.cs",
+    "from_class": "CeilingCore",
     "to_type": "SegmentIndex",
     "relation_type": "uses",
     "strength": 1
@@ -31489,6 +31629,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingCore.cs",
     "from_class": "CeilingCore",
     "to_type": "SetPulsing",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingCore.cs",
+    "from_class": "CeilingCore",
+    "to_type": "SetState",
     "relation_type": "uses",
     "strength": 1
   },
@@ -31593,6 +31740,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "from_class": "CeilingManager",
+    "to_type": "CeilingSegmentVisualProfile",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
     "to_type": "Vector2",
     "relation_type": "creates",
     "strength": 2
@@ -31685,6 +31839,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "from_class": "CeilingManager",
     "to_type": "ApplyDamage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "ApplyVisualProfile",
     "relation_type": "uses",
     "strength": 1
   },
@@ -31832,6 +31993,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "from_class": "CeilingManager",
     "to_type": "CeilingSegmentRootVisual",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "CeilingSegmentVisualProfile",
     "relation_type": "uses",
     "strength": 1
   },
@@ -32104,6 +32272,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "from_class": "CeilingManager",
+    "to_type": "FormerlySerializedAs",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
     "to_type": "Gauge",
     "relation_type": "uses",
     "strength": 1
@@ -32202,6 +32377,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "from_class": "CeilingManager",
+    "to_type": "GetSegmentGlowProfile",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
     "to_type": "GetSegmentHpPercentByX",
     "relation_type": "uses",
     "strength": 1
@@ -32224,6 +32406,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "from_class": "CeilingManager",
     "to_type": "GetSegmentTotalBlockCount",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "Glow",
     "relation_type": "uses",
     "strength": 1
   },
@@ -32461,6 +32650,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "from_class": "CeilingManager",
+    "to_type": "Profiles",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
     "to_type": "Quaternion",
     "relation_type": "uses",
     "strength": 1
@@ -32567,6 +32763,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "from_class": "CeilingManager",
     "to_type": "SelectDistributedAnchorBricks",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "Serialization",
     "relation_type": "uses",
     "strength": 1
   },
@@ -32930,6 +33133,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
     "from_class": "CeilingSegmentRootVisual",
+    "to_type": "SegmentGlowShadowVisual",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
+    "from_class": "CeilingSegmentRootVisual",
     "to_type": "AnimationCurve",
     "relation_type": "creates",
     "strength": 2
@@ -32979,6 +33189,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
     "from_class": "CeilingSegmentRootVisual",
+    "to_type": "ApplyVisualProfile",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
+    "from_class": "CeilingSegmentRootVisual",
     "to_type": "Awake",
     "relation_type": "uses",
     "strength": 1
@@ -32994,6 +33211,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
     "from_class": "CeilingSegmentRootVisual",
     "to_type": "BuildTiles",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
+    "from_class": "CeilingSegmentRootVisual",
+    "to_type": "CeilingSegmentVisualProfile",
     "relation_type": "uses",
     "strength": 1
   },
@@ -33049,6 +33273,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
     "from_class": "CeilingSegmentRootVisual",
+    "to_type": "EnsureGlowShadowVisual",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
+    "from_class": "CeilingSegmentRootVisual",
     "to_type": "Evaluate",
     "relation_type": "uses",
     "strength": 1
@@ -33070,7 +33301,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
     "from_class": "CeilingSegmentRootVisual",
+    "to_type": "GetComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
+    "from_class": "CeilingSegmentRootVisual",
     "to_type": "GetComponentInChildren",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
+    "from_class": "CeilingSegmentRootVisual",
+    "to_type": "Glow",
     "relation_type": "uses",
     "strength": 1
   },
@@ -33168,6 +33413,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
     "from_class": "CeilingSegmentRootVisual",
+    "to_type": "SegmentGlowShadowVisual",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
+    "from_class": "CeilingSegmentRootVisual",
     "to_type": "SegmentIndex",
     "relation_type": "uses",
     "strength": 1
@@ -33190,6 +33442,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
     "from_class": "CeilingSegmentRootVisual",
     "to_type": "SetLaserTargetPreview",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
+    "from_class": "CeilingSegmentRootVisual",
+    "to_type": "SetState",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingSegmentRootVisual.cs",
+    "from_class": "CeilingSegmentRootVisual",
+    "to_type": "Shadow",
     "relation_type": "uses",
     "strength": 1
   },
@@ -45033,6 +45299,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
     "from_class": "GlitchOverlayVisual",
+    "to_type": "SegmentGlowShadowVisual",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
+    "from_class": "GlitchOverlayVisual",
     "to_type": "SpriteRenderer",
     "relation_type": "component-access",
     "strength": 3
@@ -45047,7 +45320,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
     "from_class": "GlitchOverlayVisual",
+    "to_type": "ApplyVisualProfile",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
+    "from_class": "GlitchOverlayVisual",
     "to_type": "Awake",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
+    "from_class": "GlitchOverlayVisual",
+    "to_type": "CeilingSegmentVisualProfile",
     "relation_type": "uses",
     "strength": 1
   },
@@ -45062,6 +45349,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
     "from_class": "GlitchOverlayVisual",
     "to_type": "Color",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
+    "from_class": "GlitchOverlayVisual",
+    "to_type": "EnsureGlowShadowVisual",
     "relation_type": "uses",
     "strength": 1
   },
@@ -45089,6 +45383,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
     "from_class": "GlitchOverlayVisual",
+    "to_type": "Initialize",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
+    "from_class": "GlitchOverlayVisual",
     "to_type": "Legacy",
     "relation_type": "uses",
     "strength": 1
@@ -45104,6 +45405,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
     "from_class": "GlitchOverlayVisual",
     "to_type": "ResetVisual",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
+    "from_class": "GlitchOverlayVisual",
+    "to_type": "SegmentGlowShadowVisual",
     "relation_type": "uses",
     "strength": 1
   },
@@ -45355,6 +45663,433 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Visual/PulseVisual.cs",
     "from_class": "PulseVisual",
+    "to_type": "Vector3",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "SpriteRenderer",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "AnimationCurve",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Color",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "GameObject",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Keyframe",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "MaterialPropertyBlock",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Vector3",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Abs",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "AddComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "AnimationCurve",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Appearance",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "ApplyState",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "ApplyVisualProfile",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Auto",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Awake",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "bool",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "CeilingSegmentVisualProfile",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Clamp01",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Color",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "ColorId",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Disconnected",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "EnsureGlowRenderer",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "EnsureTargetRenderer",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Epsilon",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Evaluate",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "float",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Generated",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "GetComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "GetComponentsInChildren",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "GetPropertyBlock",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "GetScaleRatio",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Glow",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "GlowColorId",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Initialize",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Keyframe",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Length",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Lerp",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Material",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "MaterialPropertyBlock",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Max",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Min",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "OnDisable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "PropertyToID",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Pulse",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Quaternion",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "RefreshFromTarget",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "RefreshTransformFromTarget",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Repeat",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "SetColor",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "SetColorAndAlpha",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "SetParent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "SetPropertyBlock",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "SetState",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Shader",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Shadow",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "SpriteRenderer",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Target",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
+    "to_type": "Update",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
+    "from_class": "SegmentGlowShadowVisual",
     "to_type": "Vector3",
     "relation_type": "uses",
     "strength": 1

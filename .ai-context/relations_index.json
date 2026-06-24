@@ -31663,6 +31663,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingCore.cs",
     "from_class": "CeilingCore",
+    "to_type": "SetCoreSprite",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingCore.cs",
+    "from_class": "CeilingCore",
+    "to_type": "SetPulseUseUnscaledTime",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingCore.cs",
+    "from_class": "CeilingCore",
     "to_type": "SetPulsing",
     "relation_type": "uses",
     "strength": 1
@@ -31677,7 +31691,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingCore.cs",
     "from_class": "CeilingCore",
+    "to_type": "SetUseUnscaledTime",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingCore.cs",
+    "from_class": "CeilingCore",
     "to_type": "SetVisible",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingCore.cs",
+    "from_class": "CeilingCore",
+    "to_type": "Sprite",
     "relation_type": "uses",
     "strength": 1
   },
@@ -32419,7 +32447,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "from_class": "CeilingManager",
+    "to_type": "GetRandomCoreSprite",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
     "to_type": "GetRandomSprite",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "GetRandomValidSprite",
     "relation_type": "uses",
     "strength": 1
   },
@@ -32853,6 +32895,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "from_class": "CeilingManager",
+    "to_type": "Serializable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
     "to_type": "Serialization",
     "relation_type": "uses",
     "strength": 1
@@ -32868,6 +32917,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "from_class": "CeilingManager",
     "to_type": "SetAliveState",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "SetAllAliveCoreVisualsConnected",
     "relation_type": "uses",
     "strength": 1
   },
@@ -32916,6 +32972,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "from_class": "CeilingManager",
+    "to_type": "SetCorePulseUseUnscaledTime",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "SetCoreSprite",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
     "to_type": "SetDamageEnabled",
     "relation_type": "uses",
     "strength": 1
@@ -32924,6 +32994,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "from_class": "CeilingManager",
     "to_type": "SetLaserTargetPreview",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "SetPulseUseUnscaledTime",
     "relation_type": "uses",
     "strength": 1
   },
@@ -35632,6 +35709,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
+    "to_type": "Restore",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "Resume",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
     "to_type": "ResumeFromTutorial",
     "relation_type": "uses",
     "strength": 1
@@ -35717,6 +35808,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "SoundManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "Stage",
     "relation_type": "uses",
     "strength": 1
   },
@@ -36269,6 +36367,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
     "from_class": "GaugeManager",
+    "to_type": "RestoreGauge",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeManager.cs",
+    "from_class": "GaugeManager",
     "to_type": "ScriptableObjects",
     "relation_type": "uses",
     "strength": 1
@@ -36577,6 +36682,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
     "from_class": "GaugeUI",
+    "to_type": "EnsureGaugeVisible",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
+    "from_class": "GaugeUI",
     "to_type": "EnsureSlotContainer",
     "relation_type": "uses",
     "strength": 1
@@ -36717,13 +36829,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
     "from_class": "GaugeUI",
-    "to_type": "HandleLaserUnlockChanged",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
-    "from_class": "GaugeUI",
     "to_type": "Instantiate",
     "relation_type": "uses",
     "strength": 1
@@ -36745,13 +36850,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
     "from_class": "GaugeUI",
-    "to_type": "IsLaserUnlocked",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
-    "from_class": "GaugeUI",
     "to_type": "IsReturningGauge",
     "relation_type": "uses",
     "strength": 1
@@ -36767,13 +36865,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
     "from_class": "GaugeUI",
     "to_type": "LaserChargeController",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
-    "from_class": "GaugeUI",
-    "to_type": "LaserUnlockState",
     "relation_type": "uses",
     "strength": 1
   },
@@ -36850,20 +36941,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
     "from_class": "GaugeUI",
-    "to_type": "OnLaserLocked",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
-    "from_class": "GaugeUI",
-    "to_type": "OnLaserUnlocked",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
-    "from_class": "GaugeUI",
     "to_type": "PI",
     "relation_type": "uses",
     "strength": 1
@@ -36900,13 +36977,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
     "from_class": "GaugeUI",
     "to_type": "RefreshSlotCounts",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/GaugeUI.cs",
-    "from_class": "GaugeUI",
-    "to_type": "RefreshVisibility",
     "relation_type": "uses",
     "strength": 1
   },
@@ -37452,6 +37522,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "from_class": "LaserChargeController",
+    "to_type": "CancelChargeAndRefund",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
     "to_type": "ChargedLevelCount",
     "relation_type": "uses",
     "strength": 1
@@ -37866,6 +37943,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "from_class": "LaserChargeController",
     "to_type": "Reset",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
+    "to_type": "RestoreGauge",
     "relation_type": "uses",
     "strength": 1
   },
@@ -43528,6 +43612,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "SaveManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "Add",
     "relation_type": "uses",
     "strength": 1
@@ -43535,7 +43626,14 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "AttackCeiling",
+    "to_type": "AimGuideDetectionDelay",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "AimGuideForceDelay",
     "relation_type": "uses",
     "strength": 1
   },
@@ -43556,27 +43654,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "BallRespawner",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "BeginAttackCeilingPhase",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "BeginBreakNormalBlocksPhase",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
     "to_type": "BeginStage",
     "relation_type": "uses",
     "strength": 1
@@ -43591,6 +43668,34 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "BeginStage1BlockPlay",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "BeginStage1CeilingAttack",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "BeginStage2",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "BeginStage2Play",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "BeginStage3",
     "relation_type": "uses",
     "strength": 1
@@ -43598,28 +43703,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "BeginStage4",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "BeginStage5",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "BeginStage6",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "BlockCell",
+    "to_type": "BeginStage3Play",
     "relation_type": "uses",
     "strength": 1
   },
@@ -43640,7 +43724,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "BreakNormalBlocks",
+    "to_type": "CancelChargeAndRefund",
     "relation_type": "uses",
     "strength": 1
   },
@@ -43661,14 +43745,14 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "CeilingSegmentGuideMessage",
+    "to_type": "Clear",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "ClearStageSubscriptions",
+    "to_type": "ClearStageRuntimeState",
     "relation_type": "uses",
     "strength": 1
   },
@@ -43682,14 +43766,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "Completed",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "CompleteLaserGuide",
+    "to_type": "CompleteStage2LaserUnlock",
     "relation_type": "uses",
     "strength": 1
   },
@@ -43703,13 +43780,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "Coroutine",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
     "to_type": "CurrentGaugeValue",
     "relation_type": "uses",
     "strength": 1
@@ -43717,21 +43787,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "DribbleGuideDetectionDelay",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "DribbleGuideForceDelay",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "DribbleGuideMessage",
+    "to_type": "Dynamic",
     "relation_type": "uses",
     "strength": 1
   },
@@ -43753,6 +43809,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
     "to_type": "FindAnyObjectByType",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "FindObjectsInactive",
     "relation_type": "uses",
     "strength": 1
   },
@@ -43794,84 +43857,42 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "GetTutorialMessage",
+    "to_type": "GetLegacyTutorialMessage",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "HandleBallCaptured",
+    "to_type": "HandleStage1BallCaptured",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "HandleBallRecalled",
+    "to_type": "HandleStage1NormalBlocksCleared",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "HandleCeilingSegmentDestroyed",
+    "to_type": "HandleStage2GaugeSegmentChanged",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "HandleFixedBlockDestroyedByLaser",
+    "to_type": "HandleStage2GaugeValueChanged",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "HandleFixedBlockHitByBall",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "HandleGaugeFull",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "HandleGaugeSegmentChanged",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "HandleGaugeValueChanged",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "HandleLaserFired",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "HandleNormalBlocksCleared",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "HandleTutorialStageCleared",
+    "to_type": "HandleStage3CeilingSegmentDestroyed",
     "relation_type": "uses",
     "strength": 1
   },
@@ -43885,14 +43906,14 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "HideMessage",
+    "to_type": "HideTutorialPopupWithoutCallback",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "HideTutorialPopup",
+    "to_type": "Include",
     "relation_type": "uses",
     "strength": 1
   },
@@ -43907,20 +43928,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
     "to_type": "Instance",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "Intro",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "IntroMessage",
     "relation_type": "uses",
     "strength": 1
   },
@@ -43955,6 +43962,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "IsPausedByTutorial",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "IsTutorialPopupOpen",
     "relation_type": "uses",
     "strength": 1
@@ -43962,21 +43976,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "Laser",
+    "to_type": "It",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "LaserGuideMessage",
+    "to_type": "Kept",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "LaserShooter",
+    "to_type": "LaserChargeController",
     "relation_type": "uses",
     "strength": 1
   },
@@ -43990,14 +44004,14 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "LockLaser",
+    "to_type": "Legacy",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "Log",
+    "to_type": "LockLaser",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44011,21 +44025,14 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "MainScene",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "MarkShown",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "MarkStage4GaugeFullMessageShown",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "MarkStage5LaserGuideMessageShown",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44053,13 +44060,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "Min",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
     "to_type": "None",
     "relation_type": "uses",
     "strength": 1
@@ -44068,13 +44068,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
     "to_type": "NotifyTriggerEntered",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "OnBallRecalled",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44095,21 +44088,14 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "OnDestroy",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "OnDisable",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "OnFixedBlockDestroyedByLaser",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "OnFixedBlockHitByBall",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44130,21 +44116,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "OnLaserFired",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
     "to_type": "OnNormalBlocksCleared",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "OnStageCleared",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44158,21 +44130,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "Popup",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
     "to_type": "References",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "ResetStageFlags",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44186,6 +44144,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "RestoreDefaultCeilingState",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "ResumeFromTutorial",
     "relation_type": "uses",
     "strength": 1
@@ -44193,21 +44158,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "ResumeTutorial",
+    "to_type": "ResumeLegacyTutorial",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "RevealCeiling",
+    "to_type": "Save",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "RevealCeilingMessage",
+    "to_type": "SaveManager",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44228,6 +44193,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "SetAllAliveCoreVisualsConnected",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "SetCeilingCollisionEnabled",
     "relation_type": "uses",
     "strength": 1
@@ -44236,6 +44208,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
     "to_type": "SetCeilingVisible",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "SetCorePulseUseUnscaledTime",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44256,6 +44235,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "SetLaserUnlocked",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "SetTutorialTopBoundaryActive",
     "relation_type": "uses",
     "strength": 1
@@ -44263,42 +44249,14 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "ShowDribbleGuide",
+    "to_type": "ShowStage1AimGuide",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "ShowLaserGuideWhenAvailable",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "ShowMessage",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "ShowPausedTutorialMessage",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "ShowTutorialAfterCurrentCloses",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "ShowTutorialAfterCurrentClosesRoutine",
+    "to_type": "ShowStepPopup",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44312,7 +44270,35 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "ShowTutorialStepPopup",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "Stage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "Stage1",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "Stage1AttackCeiling",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "Stage1BreakNormalBlocks",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44326,7 +44312,14 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "Stage1CeilingMessage",
+    "to_type": "Stage1Intro",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "Stage1RevealCeiling",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44340,14 +44333,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "Stage1StartMessage",
+    "to_type": "Stage2",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "Stage2",
+    "to_type": "Stage2Intro",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "Stage2Playing",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44361,14 +44361,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "Stage2StartMessage",
+    "to_type": "Stage3",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "Stage3",
+    "to_type": "Stage3Intro",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "Stage3Playing",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44382,28 +44389,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "Stage3SegmentDestroyedMessage",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
     "to_type": "Stage3Start",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "Stage3StartMessage",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "Stage4",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44417,21 +44403,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "Stage4GaugeFullMessage",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
     "to_type": "Stage4LaserFired",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "Stage4LaserFiredMessage",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44445,28 +44417,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "Stage4StartMessage",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "Stage5",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
     "to_type": "Stage5FixedDestroyed",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "Stage5FixedDestroyedMessage",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44480,21 +44431,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "Stage5FixedHitMessage",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
     "to_type": "Stage5LaserGuide",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "Stage5LaserGuideMessage",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44508,28 +44445,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "Stage5StartMessage",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "Stage6",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
     "to_type": "Stage6Recalled",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "Stage6RecalledMessage",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44543,21 +44459,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "Stage6RecallGuideMessage",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
     "to_type": "StageDefinition",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "StartCoroutine",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44571,7 +44473,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "StopCoroutine",
+    "to_type": "Step",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44585,13 +44487,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "string",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
     "to_type": "System",
     "relation_type": "uses",
     "strength": 1
@@ -44599,7 +44494,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "TryShowLaserGuide",
+    "to_type": "TryShowStage2LaserUnlock",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44641,6 +44536,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "TutorialTrigger",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "UIManager",
     "relation_type": "uses",
     "strength": 1
@@ -44656,6 +44558,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
     "to_type": "UnlockLaser",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "UnsubscribeStageEvents",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44781,13 +44690,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
-    "to_type": "Began",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
-    "from_class": "UIManager",
     "to_type": "BgmMuffleReason",
     "relation_type": "uses",
     "strength": 1
@@ -44816,6 +44718,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
+    "to_type": "CurrentTutorialPopupRoot",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
+    "from_class": "UIManager",
     "to_type": "Empty",
     "relation_type": "uses",
     "strength": 1
@@ -44830,28 +44739,14 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
-    "to_type": "GetKeyDown",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
-    "from_class": "UIManager",
-    "to_type": "GetMouseButtonDown",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
-    "from_class": "UIManager",
-    "to_type": "GetTouch",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
-    "from_class": "UIManager",
     "to_type": "Hide",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
+    "from_class": "UIManager",
+    "to_type": "HideAllTutorialStepPopups",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44865,7 +44760,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
-    "to_type": "Input",
+    "to_type": "HideTutorialPopupWithoutCallback",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44873,6 +44768,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
     "to_type": "Instance",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
+    "from_class": "UIManager",
+    "to_type": "int",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44893,13 +44795,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
-    "to_type": "IsTutorialCloseInput",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
-    "from_class": "UIManager",
     "to_type": "IsTutorialPopupOpen",
     "relation_type": "uses",
     "strength": 1
@@ -44907,14 +44802,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
-    "to_type": "KeyCode",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
-    "from_class": "UIManager",
-    "to_type": "KeypadEnter",
+    "to_type": "Length",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44949,7 +44837,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
-    "to_type": "Return",
+    "to_type": "Popups",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44984,6 +44872,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
+    "to_type": "ShowTutorialStepPopup",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
+    "from_class": "UIManager",
     "to_type": "SoundManager",
     "relation_type": "uses",
     "strength": 1
@@ -44991,7 +44886,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
-    "to_type": "Space",
+    "to_type": "Step",
     "relation_type": "uses",
     "strength": 1
   },
@@ -45019,13 +44914,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
-    "to_type": "TouchPhase",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
-    "from_class": "UIManager",
     "to_type": "Tutorial",
     "relation_type": "uses",
     "strength": 1
@@ -45041,13 +44929,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
     "to_type": "UnityEngine",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
-    "from_class": "UIManager",
-    "to_type": "Update",
     "relation_type": "uses",
     "strength": 1
   },
@@ -46203,6 +46084,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Visual/PulseVisual.cs",
     "from_class": "PulseVisual",
     "to_type": "SetPulsing",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/PulseVisual.cs",
+    "from_class": "PulseVisual",
+    "to_type": "SetUseUnscaledTime",
     "relation_type": "uses",
     "strength": 1
   },

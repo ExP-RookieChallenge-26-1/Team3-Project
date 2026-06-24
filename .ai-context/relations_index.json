@@ -28975,6 +28975,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "from_class": "BlockManager",
+    "to_type": "IsCeilingStemAvailable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
+    "from_class": "BlockManager",
     "to_type": "IsFixed",
     "relation_type": "uses",
     "strength": 1
@@ -29318,6 +29325,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "from_class": "BlockManager",
+    "to_type": "Skipping",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
+    "from_class": "BlockManager",
     "to_type": "Sort",
     "relation_type": "uses",
     "strength": 1
@@ -29515,6 +29529,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "from_class": "BlockManager",
     "to_type": "UseStemGrowth",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
+    "from_class": "BlockManager",
+    "to_type": "ValidateCeilingStemConfiguration",
     "relation_type": "uses",
     "strength": 1
   },
@@ -32020,6 +32041,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "from_class": "CeilingManager",
+    "to_type": "DisableCeiling",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
     "to_type": "DisableStemGrowthByCeilingSegment",
     "relation_type": "uses",
     "strength": 1
@@ -32273,6 +32301,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "from_class": "CeilingManager",
     "to_type": "Invoke",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "IsCeilingEnabled",
     "relation_type": "uses",
     "strength": 1
   },
@@ -32749,6 +32784,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "from_class": "CeilingManager",
     "to_type": "UpdateSegmentBlockVisuals",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
+    "to_type": "Using",
     "relation_type": "uses",
     "strength": 1
   },
@@ -41533,7 +41575,35 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
     "from_class": "StageDefinition",
+    "to_type": "Clear",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
+    "from_class": "StageDefinition",
     "to_type": "CreateAssetMenu",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
+    "from_class": "StageDefinition",
+    "to_type": "Decoration",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
+    "from_class": "StageDefinition",
+    "to_type": "DestroyAllNormalBlocks",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
+    "from_class": "StageDefinition",
+    "to_type": "DestroyCeiling",
     "relation_type": "uses",
     "strength": 1
   },
@@ -41548,6 +41618,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
     "from_class": "StageDefinition",
     "to_type": "Gauge",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
+    "from_class": "StageDefinition",
+    "to_type": "If",
     "relation_type": "uses",
     "strength": 1
   },
@@ -41624,6 +41701,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
     "from_class": "StageDefinition",
+    "to_type": "Stage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
+    "from_class": "StageDefinition",
     "to_type": "Stage1",
     "relation_type": "uses",
     "strength": 1
@@ -41673,7 +41757,28 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
     "from_class": "StageDefinition",
+    "to_type": "StageClearCondition",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
+    "from_class": "StageDefinition",
     "to_type": "ThreeSegments",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
+    "from_class": "StageDefinition",
+    "to_type": "Top",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
+    "from_class": "StageDefinition",
+    "to_type": "TopDecorationPrefab",
     "relation_type": "uses",
     "strength": 1
   },
@@ -41709,6 +41814,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
     "from_class": "StageDefinition",
     "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
+    "from_class": "StageDefinition",
+    "to_type": "Use",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
+    "from_class": "StageDefinition",
+    "to_type": "UseTopDecoration",
     "relation_type": "uses",
     "strength": 1
   },
@@ -41764,6 +41883,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "ApplyTopDecoration",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "BallPowerController",
     "relation_type": "uses",
     "strength": 1
@@ -41813,6 +41939,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "Cannot",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "Ceiling",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "CeilingManager",
     "relation_type": "uses",
     "strength": 1
@@ -41820,7 +41960,35 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "Choose",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "ClearStageTuning",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "ClearTopDecoration",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "CompleteCurrentStage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "CurrentStageDefinition",
     "relation_type": "uses",
     "strength": 1
   },
@@ -41841,7 +42009,42 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "Decoration",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "DefaultNamespace",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "Destroy",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "DestroyAllNormalBlocks",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "DestroyCeiling",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "DisableCeiling",
     "relation_type": "uses",
     "strength": 1
   },
@@ -41863,6 +42066,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
     "to_type": "GaugeManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "HandleNormalBlocksCleared",
     "relation_type": "uses",
     "strength": 1
   },
@@ -41925,6 +42135,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "Instantiate",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "int",
     "relation_type": "uses",
     "strength": 1
@@ -41960,6 +42177,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "None",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "OnDestroy",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "OnDisable",
     "relation_type": "uses",
     "strength": 1
@@ -41968,6 +42199,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
     "to_type": "OnEnable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "OnNormalBlocksCleared",
     "relation_type": "uses",
     "strength": 1
   },
@@ -42023,7 +42261,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "SetActive",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "Stage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "StageClearCondition",
     "relation_type": "uses",
     "strength": 1
   },
@@ -42079,6 +42331,27 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "The",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "Top",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "TopDecorationPrefab",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "TryStartNextStage",
     "relation_type": "uses",
     "strength": 1
@@ -42101,6 +42374,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
     "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "UseTopDecoration",
     "relation_type": "uses",
     "strength": 1
   },

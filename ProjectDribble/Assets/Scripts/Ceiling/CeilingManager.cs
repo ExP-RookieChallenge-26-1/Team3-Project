@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CeilingManager : MonoBehaviour
 {
@@ -49,6 +50,12 @@ public class CeilingManager : MonoBehaviour
     [SerializeField] private int leftSegmentMaxHp;
     [SerializeField] private int centerSegmentMaxHp;
     [SerializeField] private int rightSegmentMaxHp;
+
+    [Header("Segment Glow Profiles")]
+    [FormerlySerializedAs("defaultSegmentVisualProfile")]
+    [SerializeField] private CeilingSegmentVisualProfile defaultGlowProfile = new();
+    [FormerlySerializedAs("segmentVisualProfiles")]
+    [SerializeField] private CeilingSegmentVisualProfile[] segmentGlowProfiles;
 
     [Header("Segment Root Visuals")]
     [SerializeField] private CeilingSegmentRootVisual segmentRootVisualPrefab;
@@ -627,6 +634,7 @@ public class CeilingManager : MonoBehaviour
             );
 
             core.Initialize(i);
+            core.ApplyVisualProfile(GetSegmentGlowProfile(i));
             core.SetAliveState(!segment.IsDestroyed);
             ceilingCores.Add(core);
         }
@@ -667,6 +675,7 @@ public class CeilingManager : MonoBehaviour
             );
 
             visual.Initialize(i);
+            visual.ApplyVisualProfile(GetSegmentGlowProfile(i));
             visual.BuildTiles(GetSegmentRootVisualTilePositions(segment));
             segmentRootVisuals.Add(visual);
         }
@@ -749,6 +758,22 @@ public class CeilingManager : MonoBehaviour
             return null;
 
         return ceilingCores[segmentIndex];
+    }
+
+    public CeilingSegmentVisualProfile GetSegmentGlowProfile(int segmentIndex)
+    {
+        if (segmentIndex >= 0 &&
+            segmentGlowProfiles != null &&
+            segmentIndex < segmentGlowProfiles.Length &&
+            segmentGlowProfiles[segmentIndex] != null)
+        {
+            return segmentGlowProfiles[segmentIndex];
+        }
+
+        if (defaultGlowProfile == null)
+            defaultGlowProfile = new CeilingSegmentVisualProfile();
+
+        return defaultGlowProfile;
     }
 
     private void PlayCoreDamageFlash(int segmentIndex)

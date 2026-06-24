@@ -67,6 +67,7 @@ public class BlockManager : MonoBehaviour
 
     private Coroutine growRoutine;
     private readonly List<StemGrowthRuntimeState> stemGrowthStates = new();
+    private readonly CeilingSegmentVisualProfile fallbackGlowProfile = new();
     private bool normalBlocksClearedNotified;
     private bool useCeilingForCurrentStage = true;
 
@@ -1089,7 +1090,12 @@ public class BlockManager : MonoBehaviour
                     : 0f;
                 int glitchStage = GetGlitchStageFromBottomDistance(distanceFromBottom);
 
-                block.SetStemVisual(connected[x, y], danger01, glitchStage);
+                block.SetStemVisual(
+                    connected[x, y],
+                    danger01,
+                    glitchStage,
+                    GetStemGlowProfile(stemOwner[x, y])
+                );
 
                 if (connected[x, y])
                     MarkConnectedCeilingCore(coreConnections, stemOwner[x, y]);
@@ -1097,6 +1103,21 @@ public class BlockManager : MonoBehaviour
         }
 
         ceilingManager?.SetCoreConnections(coreConnections.ToArray());
+    }
+
+    private CeilingSegmentVisualProfile GetStemGlowProfile(int stemIndex)
+    {
+        if (ceilingManager == null || data == null || data.growthStems == null)
+            return ceilingManager != null
+                ? ceilingManager.GetSegmentGlowProfile(-1)
+                : fallbackGlowProfile;
+
+        if (stemIndex < 0 || stemIndex >= data.growthStems.Length)
+            return ceilingManager.GetSegmentGlowProfile(-1);
+
+        StageBlockData.GrowthStemData stem = data.growthStems[stemIndex];
+        int segmentIndex = stem != null ? stem.ceilingSegmentIndex : -1;
+        return ceilingManager.GetSegmentGlowProfile(segmentIndex);
     }
 
     private List<bool> CreateCoreConnectionStateList()

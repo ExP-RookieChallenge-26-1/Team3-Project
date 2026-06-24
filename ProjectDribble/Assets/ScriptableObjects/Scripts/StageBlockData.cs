@@ -1,5 +1,38 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+
+[System.Serializable]
+public class CeilingSegmentVisualProfile
+{
+    [Header("Glow")]
+    [FormerlySerializedAs("pulseColor")]
+    [FormerlySerializedAs("glitchColor")]
+    public Color glowColor = Color.green;
+    [Min(0f)] public float scaleMultiplier = 1.12f;
+    [Range(0f, 1f)] public float glowAlphaMin = 0.15f;
+    [FormerlySerializedAs("connectedAlpha")]
+    [Range(0f, 1f)] public float glowAlphaMax = 0.65f;
+    [FormerlySerializedAs("glowPulseSpeed")]
+    [FormerlySerializedAs("pulseSpeed")]
+    [Min(0f)] public float pulseSpeed = 1f;
+    [FormerlySerializedAs("glowPhaseOffset")]
+    [FormerlySerializedAs("phaseOffset")]
+    public float phaseOffset;
+    [FormerlySerializedAs("glowAlphaCurve")]
+    [FormerlySerializedAs("pulseCurve")]
+    public AnimationCurve alphaCurve = new AnimationCurve(
+        new Keyframe(0f, 0f),
+        new Keyframe(0.5f, 1f),
+        new Keyframe(1f, 0f)
+    );
+
+    [Header("Disconnected")]
+    [FormerlySerializedAs("disconnectedColor")]
+    public Color disconnectedGlowColor = new Color(0.45f, 0.5f, 0.42f, 1f);
+    [FormerlySerializedAs("disconnectedAlpha")]
+    [Range(0f, 1f)] public float disconnectedGlowAlpha = 0.1f;
+}
 
 [CreateAssetMenu(fileName = "StageBlockData", menuName = "Scriptable Objects/StageBlockData")]
 public class StageBlockData : ScriptableObject

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400000}
   - component: {fileID: 11400000}
+  - component: {fileID: 4889929483078199470}
   m_Layer: 0
   m_Name: CeilingSegmentRootVisual
   m_TagString: Untagged
@@ -85,6 +86,66 @@ MonoBehaviour:
   maxAlpha: 1
   pulseColor: {r: 0, g: 1, b: 0, a: 1}
   useUnscaledTime: 0
+  glowShadowVisual: {fileID: 4889929483078199470}
+--- !u!114 &4889929483078199470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bbd98eb8066a4f458ba953afc893d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SegmentGlowShadowVisual
+  targetRenderer: {fileID: 0}
+  glowRenderer: {fileID: 0}
+  generatedChildName: Auto Glow Shadow
+  silhouetteGlowMaterial: {fileID: 2100000, guid: cf513e452cd5cb9438cf1448e8b1bc3d, type: 2}
+  glowColor: {r: 0, g: 0, b: 0, a: 1}
+  scaleMultiplier: 1.12
+  sortingOrderOffset: -1
+  alphaMin: 0.1
+  alphaMax: 0.55
+  pulseSpeed: 1
+  phaseOffset: 0
+  alphaCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.15
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  useUnscaledTime: 0
+  disconnectedGlowColor: {r: 0.45, g: 0.5, b: 0.42, a: 1}
+  disconnectedAlpha: 0.08
 --- !u!1 &100001
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,7 +224,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1316376175
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 92
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: a060a26a2abcbae4fa638ded64c215c5, type: 3}

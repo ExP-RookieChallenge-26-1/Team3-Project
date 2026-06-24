@@ -4,6 +4,7 @@ public class GlitchOverlayVisual : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer glitchRenderer;
     [SerializeField] private PulseVisual pulseVisual;
+    [SerializeField] private SegmentGlowShadowVisual glowShadowVisual;
 
     [SerializeField] private Sprite glitchStage1;
     [SerializeField] private Sprite glitchStage2;
@@ -26,6 +27,8 @@ public class GlitchOverlayVisual : MonoBehaviour
         if (pulseVisual == null)
             pulseVisual = GetComponent<PulseVisual>();
 
+        EnsureGlowShadowVisual();
+
         ResetVisual();
     }
 
@@ -36,12 +39,24 @@ public class GlitchOverlayVisual : MonoBehaviour
 
     public void SetState(bool visible, bool connected, float danger01, int glitchStage)
     {
+        SetState(visible, connected, danger01, glitchStage, null);
+    }
+
+    public void SetState(
+        bool visible,
+        bool connected,
+        float danger01,
+        int glitchStage,
+        CeilingSegmentVisualProfile profile
+    )
+    {
         if (glitchRenderer == null)
             return;
 
         if (!visible)
         {
             glitchRenderer.enabled = false;
+            glowShadowVisual?.SetState(false, false);
             if (pulseVisual != null)
                 pulseVisual.SetPulsing(false);
             return;
@@ -52,6 +67,10 @@ public class GlitchOverlayVisual : MonoBehaviour
 
         float alpha = connected ? connectedAlpha : disconnectedAlpha;
         SetAlpha(alpha);
+
+        EnsureGlowShadowVisual();
+        glowShadowVisual?.ApplyVisualProfile(profile);
+        glowShadowVisual?.SetState(true, connected);
 
         if (pulseVisual != null)
         {
@@ -74,6 +93,8 @@ public class GlitchOverlayVisual : MonoBehaviour
 
         if (pulseVisual != null)
             pulseVisual.SetBaseAlpha(disconnectedAlpha);
+
+        glowShadowVisual?.SetState(false, false);
     }
 
     private Sprite GetSpriteByStage(int glitchStage)
@@ -103,5 +124,13 @@ public class GlitchOverlayVisual : MonoBehaviour
         Color color = glitchRenderer.color;
         color.a = Mathf.Clamp01(alpha);
         glitchRenderer.color = color;
+    }
+
+    private void EnsureGlowShadowVisual()
+    {
+        if (glowShadowVisual == null)
+            glowShadowVisual = GetComponent<SegmentGlowShadowVisual>();
+
+        glowShadowVisual?.Initialize(glitchRenderer);
     }
 }

@@ -5,6 +5,7 @@ public class CeilingCore : MonoBehaviour
     [SerializeField] private SpriteRenderer coreRenderer;
     [SerializeField] private PulseVisual pulseVisual;
     [SerializeField] private DamageFlashVisual damageFlashVisual;
+    [SerializeField] private SegmentGlowShadowVisual glowShadowVisual;
 
     [SerializeField] private float connectedAlpha = 1f;
     [SerializeField] private float disconnectedAlpha = 0.25f;
@@ -26,6 +27,8 @@ public class CeilingCore : MonoBehaviour
 
         if (damageFlashVisual == null)
             damageFlashVisual = GetComponent<DamageFlashVisual>();
+
+        EnsureGlowShadowVisual();
     }
 
     public void Initialize(int segmentIndex)
@@ -34,12 +37,23 @@ public class CeilingCore : MonoBehaviour
         isAlive = true;
         isConnected = false;
         isVisible = true;
+        EnsureGlowShadowVisual();
         ResetVisual();
     }
 
     public void SetVisible(bool visible)
     {
         isVisible = visible;
+        ApplyState();
+    }
+
+    public void ApplyVisualProfile(CeilingSegmentVisualProfile profile)
+    {
+        if (profile == null)
+            return;
+
+        EnsureGlowShadowVisual();
+        glowShadowVisual?.ApplyVisualProfile(profile);
         ApplyState();
     }
 
@@ -82,6 +96,7 @@ public class CeilingCore : MonoBehaviour
             coreRenderer.enabled = isVisible && isAlive;
 
         SetAlpha(alpha);
+        glowShadowVisual?.SetState(isVisible && isAlive, isConnected);
 
         if (pulseVisual != null)
         {
@@ -98,5 +113,13 @@ public class CeilingCore : MonoBehaviour
         Color color = coreRenderer.color;
         color.a = Mathf.Clamp01(alpha);
         coreRenderer.color = color;
+    }
+
+    private void EnsureGlowShadowVisual()
+    {
+        if (glowShadowVisual == null)
+            glowShadowVisual = GetComponent<SegmentGlowShadowVisual>();
+
+        glowShadowVisual?.Initialize(coreRenderer);
     }
 }

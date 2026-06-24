@@ -19,6 +19,9 @@ public class CeilingSegmentRootVisual : MonoBehaviour
     [SerializeField] private Color pulseColor = Color.green;
     [SerializeField] private bool useUnscaledTime;
 
+    [Header("Glow / Shadow")]
+    [SerializeField] private SegmentGlowShadowVisual glowShadowVisual;
+
     private readonly List<SpriteRenderer> tiles = new();
     private readonly List<Color> baseColors = new();
     private readonly List<SpriteRenderer> laserTargetOverlays = new();
@@ -47,6 +50,8 @@ public class CeilingSegmentRootVisual : MonoBehaviour
                 new Keyframe(1f, 0f)
             );
         }
+
+        EnsureGlowShadowVisual();
     }
 
     private void Update()
@@ -62,6 +67,15 @@ public class CeilingSegmentRootVisual : MonoBehaviour
     public void Initialize(int index)
     {
         segmentIndex = index;
+    }
+
+    public void ApplyVisualProfile(CeilingSegmentVisualProfile profile)
+    {
+        if (profile == null)
+            return;
+
+        EnsureGlowShadowVisual();
+        glowShadowVisual?.ApplyVisualProfile(profile);
     }
 
     public void BuildTiles(IReadOnlyList<Vector3> positions)
@@ -91,6 +105,8 @@ public class CeilingSegmentRootVisual : MonoBehaviour
             overlay.enabled = false;
             laserTargetOverlays.Add(overlay);
         }
+
+        EnsureGlowShadowVisual();
     }
 
     public void SetLaserTargetPreview(bool active, float alpha)
@@ -123,6 +139,8 @@ public class CeilingSegmentRootVisual : MonoBehaviour
             if (tiles[i] != null)
                 tiles[i].enabled = active;
         }
+
+        glowShadowVisual?.SetState(active, active);
     }
 
     private void ApplyPulse(float value)
@@ -168,10 +186,20 @@ public class CeilingSegmentRootVisual : MonoBehaviour
         baseColors.Clear();
     }
 
+    private void EnsureGlowShadowVisual()
+    {
+        if (glowShadowVisual == null)
+            glowShadowVisual = GetComponent<SegmentGlowShadowVisual>();
+
+        SpriteRenderer referenceRenderer = tiles.Count > 0 ? tiles[0] : tilePrefab;
+        glowShadowVisual?.Initialize(referenceRenderer);
+    }
+
     private void OnDisable()
     {
         SetLaserTargetPreview(false, 0f);
         isPulsing = false;
+        glowShadowVisual?.SetState(false, false);
         RestoreVisual();
     }
 }

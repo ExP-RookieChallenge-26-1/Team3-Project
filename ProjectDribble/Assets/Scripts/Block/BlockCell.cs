@@ -42,6 +42,7 @@ public class BlockCell : MonoBehaviour,
     private bool isDisconnectedStem;
     private float danger01;
     private int glitchStage = 1;
+    private CeilingSegmentVisualProfile stemVisualProfile;
 
     public Vector2Int Coord => coord;
     public BlockType BlockType => blockType;
@@ -81,6 +82,7 @@ public class BlockCell : MonoBehaviour,
         isDisconnectedStem = false;
         danger01 = 0f;
         glitchStage = 1;
+        stemVisualProfile = null;
 
         gameObject.SetActive(true);
 
@@ -95,6 +97,7 @@ public class BlockCell : MonoBehaviour,
         isDisconnectedStem = false;
         danger01 = 0f;
         glitchStage = 1;
+        stemVisualProfile = null;
         ResetTransientVisuals();
         UpdateVisual();
         gameObject.SetActive(false);
@@ -119,9 +122,20 @@ public class BlockCell : MonoBehaviour,
 
     public void SetStemVisual(bool isConnected, float danger01, int glitchStage)
     {
+        SetStemVisual(isConnected, danger01, glitchStage, null);
+    }
+
+    public void SetStemVisual(
+        bool isConnected,
+        float danger01,
+        int glitchStage,
+        CeilingSegmentVisualProfile profile
+    )
+    {
         isDisconnectedStem = !isConnected;
         this.danger01 = Mathf.Clamp01(danger01);
         this.glitchStage = Mathf.Clamp(glitchStage, 1, 3);
+        stemVisualProfile = profile;
         UpdateStemConnectionVisual();
     }
 
@@ -218,7 +232,13 @@ public class BlockCell : MonoBehaviour,
         sr.color = color;
 
         bool showGlitch = blockType == BlockType.Flow;
-        glitchOverlay?.SetState(showGlitch, !isDisconnectedStem, danger01, glitchStage);
+        glitchOverlay?.SetState(
+            showGlitch,
+            !isDisconnectedStem,
+            danger01,
+            glitchStage,
+            stemVisualProfile
+        );
     }
 
     public void SetLaserTargetPreview(bool active, float alpha)

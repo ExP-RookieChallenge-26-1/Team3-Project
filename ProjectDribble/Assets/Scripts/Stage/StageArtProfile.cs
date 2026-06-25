@@ -15,6 +15,9 @@ public class StageArtProfile : ScriptableObject
     [SerializeField, Min(0f)] private float overlayPulseSpeed = 1f;
     [SerializeField] private bool useUnscaledTime = true;
 
+    [Header("Screen Decor Prefab")]
+    [SerializeField] private GameObject screenDecorPrefab;
+
     public Sprite FixedBlockSprite => fixedBlockSprite;
     public bool UseScreenGlitchOverlay => useScreenGlitchOverlay;
     public Sprite ScreenGlitchOverlaySprite => screenGlitchOverlaySprite;
@@ -23,6 +26,7 @@ public class StageArtProfile : ScriptableObject
     public bool AnimateOverlay => animateOverlay;
     public float OverlayPulseSpeed => overlayPulseSpeed;
     public bool UseUnscaledTime => useUnscaledTime;
+    public GameObject ScreenDecorPrefab => screenDecorPrefab;
 
     private void OnValidate()
     {

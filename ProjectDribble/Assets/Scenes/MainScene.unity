@@ -10143,6 +10143,7 @@ MonoBehaviour:
   overlayRoot: {fileID: 845197163174211712}
   overlayImage: {fileID: 844007108896553344}
   overlayCanvasGroup: {fileID: 798449975959186432}
+  screenDecorRoot: {fileID: 814660214011963904}
 --- !u!114 &742079920240221859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10426,7 +10427,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -6805138788385806154, guid: 266638f5c9bd96f4bb2bf48bbed30ac6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 266638f5c9bd96f4bb2bf48bbed30ac6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10452,7 +10453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!222 &847736608611609096
 CanvasRenderer:
   m_ObjectHideFlags: 0

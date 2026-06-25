@@ -8,8 +8,12 @@ public class StageArtManager : MonoBehaviour
     [SerializeField] private Image overlayImage;
     [SerializeField] private CanvasGroup overlayCanvasGroup;
 
+    [Header("Screen Decor Prefab")]
+    [SerializeField] private Transform screenDecorRoot;
+
     private StageArtProfile currentProfile;
     private float baseOverlayAlpha;
+    private GameObject currentScreenDecorInstance;
 
     private void Awake()
     {
@@ -44,15 +48,21 @@ public class StageArtManager : MonoBehaviour
 
     public void Apply(StageArtProfile profile)
     {
-        if (profile == null ||
-            !profile.UseScreenGlitchOverlay ||
-            profile.ScreenGlitchOverlaySprite == null)
+        currentProfile = profile;
+        ApplyScreenDecor(profile);
+
+        if (profile == null)
         {
-            ResetToDefault();
+            ResetOverlayToDefault();
             return;
         }
 
-        currentProfile = profile;
+        if (!profile.UseScreenGlitchOverlay || profile.ScreenGlitchOverlaySprite == null)
+        {
+            ResetOverlayToDefault();
+            return;
+        }
+
         baseOverlayAlpha = profile.ScreenGlitchOverlayAlpha;
 
         if (overlayImage != null)
@@ -74,6 +84,12 @@ public class StageArtManager : MonoBehaviour
     public void ResetToDefault()
     {
         currentProfile = null;
+        ClearScreenDecor();
+        ResetOverlayToDefault();
+    }
+
+    private void ResetOverlayToDefault()
+    {
         baseOverlayAlpha = 0f;
 
         if (overlayCanvasGroup != null)
@@ -90,6 +106,39 @@ public class StageArtManager : MonoBehaviour
 
         if (overlayRoot != null)
             overlayRoot.SetActive(false);
+    }
+
+    private void ApplyScreenDecor(StageArtProfile profile)
+    {
+        ClearScreenDecor();
+
+        if (profile == null || profile.ScreenDecorPrefab == null)
+            return;
+
+        if (screenDecorRoot == null)
+        {
+            Debug.LogWarning(
+                $"StageArtManager: ScreenDecorRoot is not assigned for art profile '{profile.name}'.",
+                this
+            );
+            return;
+        }
+
+        currentScreenDecorInstance = Instantiate(
+            profile.ScreenDecorPrefab,
+            screenDecorRoot,
+            false
+        );
+    }
+
+    private void ClearScreenDecor()
+    {
+        if (currentScreenDecorInstance == null)
+            return;
+
+        currentScreenDecorInstance.SetActive(false);
+        Destroy(currentScreenDecorInstance);
+        currentScreenDecorInstance = null;
     }
 
     private void ConfigureOverlayRaycastBlocking()

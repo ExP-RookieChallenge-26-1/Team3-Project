@@ -21,7 +21,7 @@ MonoBehaviour:
   clearCondition: 0
   useTopDecoration: 0
   topDecorationPrefab: {fileID: 0}
-  artProfile: {fileID: 0}
+  artProfile: {fileID: 11400000, guid: aa8b99f8458c7bf4eb158a0e275caf7a, type: 2}
   startGaugeValue: 0
   ballStartPosition: {x: 0, y: -11.5}
   ballStartDirection: {x: 0, y: -1}

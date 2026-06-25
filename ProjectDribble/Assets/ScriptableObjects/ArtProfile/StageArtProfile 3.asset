@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4fa1e12e323464b859947c6727ff525, type: 3}
-  m_Name: StageArtProfile
+  m_Name: StageArtProfile 3
   m_EditorClassIdentifier: Assembly-CSharp::StageArtProfile
   fixedBlockSprite: {fileID: 21300000, guid: 45515f86027d2e146aa0c5bf57d23d02, type: 3}
   useScreenGlitchOverlay: 1
@@ -20,4 +20,4 @@ MonoBehaviour:
   animateOverlay: 0
   overlayPulseSpeed: 1
   useUnscaledTime: 1
-  screenDecorPrefab: {fileID: 5556947328588039609, guid: 838220821743e804a9724b19cf3bf20d, type: 3}
+  screenDecorPrefab: {fileID: 5556947328588039609, guid: 17db38a47122a40468bb648a171226f0, type: 3}

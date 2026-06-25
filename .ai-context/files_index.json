@@ -30664,9 +30664,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
     "path": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
     "file_name": "GlitchOverlayVisual.cs",
-    "content_hash": "a36002459120a09aab9c7e3a0a19cb8228bfb3b1",
-    "size": 5666,
-    "line_count": 200,
+    "content_hash": "b89de7524f601e2bf69fd5fb8f56b6dce0ed8958",
+    "size": 5786,
+    "line_count": 204,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -30997,9 +30997,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
     "path": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
     "file_name": "SegmentGlowShadowVisual.cs",
-    "content_hash": "76f272b0b1efb316c3c6bfc3ef4d1e1d85a1f473",
-    "size": 8424,
-    "line_count": 262,
+    "content_hash": "501afaa151b3772ef526b7db1f143a4059f516a6",
+    "size": 8496,
+    "line_count": 267,
     "namespace": "",
     "using_list": [
       "UnityEngine"

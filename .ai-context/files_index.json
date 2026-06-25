@@ -22522,9 +22522,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
     "path": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
     "file_name": "EndingGaugeController.cs",
-    "content_hash": "d5a51ccd4c4bbddb81eaf5a9ada8ff6ece0d8fcf",
-    "size": 2772,
-    "line_count": 110,
+    "content_hash": "7f2ac8dbcac233e92b1c34dc973bad9580bfe834",
+    "size": 2763,
+    "line_count": 112,
     "namespace": "",
     "using_list": [
       "UnityEngine",
@@ -22549,6 +22549,7 @@
     "unity_type": "MonoBehaviour",
     "methods": [
       "Color",
+      "Range",
       "Awake",
       "Update",
       "BeginFill",
@@ -22605,13 +22606,6 @@
         "access": "internal",
         "serialized": false,
         "is_static": false
-      },
-      {
-        "name": "color",
-        "type": "Color",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
       }
     ],
     "properties": [],
@@ -22639,10 +22633,10 @@
       "float",
       "bool",
       "Image",
-      "Color",
       "UnityEngine",
       "Events",
       "UI",
+      "Color",
       "UnityEvent",
       "Fill01",
       "Clamp01",
@@ -22655,8 +22649,8 @@
       "SetActive",
       "CreateFlickerColor",
       "Length",
-      "Sin",
-      "Abs"
+      "SharedFlickerSignal",
+      "ApplyAlphaFlicker"
     ],
     "component_access_types": [],
     "created_types": [
@@ -22671,8 +22665,7 @@
       0.25,
       0.12,
       18,
-      0,
-      0.35
+      0
     ],
     "guessed_roles": [
       "runtime",
@@ -28489,9 +28482,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Stage/StageArtManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Stage/StageArtManager.cs",
     "file_name": "StageArtManager.cs",
-    "content_hash": "98b33b3e32ffbb41a040b304f7fc6eb8ff266c73",
-    "size": 2804,
-    "line_count": 107,
+    "content_hash": "3012beb094aa8d2a655c152a8c831ec415f4d3a9",
+    "size": 4011,
+    "line_count": 156,
     "namespace": "",
     "using_list": [
       "UnityEngine",
@@ -28519,6 +28512,9 @@
       "OnDisable",
       "Apply",
       "ResetToDefault",
+      "ResetOverlayToDefault",
+      "ApplyScreenDecor",
+      "ClearScreenDecor",
       "ConfigureOverlayRaycastBlocking"
     ],
     "fields": [
@@ -28532,6 +28528,13 @@
       {
         "name": "baseOverlayAlpha",
         "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "currentScreenDecorInstance",
+        "type": "GameObject",
         "access": "private",
         "serialized": false,
         "is_static": false
@@ -28576,6 +28579,8 @@
       "Overlay",
       "Image",
       "CanvasGroup",
+      "Decor",
+      "Prefab",
       "Awake",
       "ConfigureOverlayRaycastBlocking",
       "ResetToDefault",
@@ -28588,18 +28593,27 @@
       "Lerp",
       "OnDisable",
       "Apply",
+      "ApplyScreenDecor",
+      "ResetOverlayToDefault",
       "UseScreenGlitchOverlay",
       "ScreenGlitchOverlaySprite",
       "ScreenGlitchOverlayAlpha",
       "ScreenGlitchOverlayColor",
       "SetActive",
-      "Color"
+      "ClearScreenDecor",
+      "Color",
+      "ScreenDecorPrefab",
+      "LogWarning",
+      "ScreenDecorRoot",
+      "Instantiate",
+      "Destroy"
     ],
     "component_access_types": [],
     "created_types": [],
     "singleton_access_types": [],
     "string_literals": [
-      "Screen Glitch Overlay"
+      "Screen Glitch Overlay",
+      "Screen Decor Prefab"
     ],
     "numeric_literals": [
       0,
@@ -28611,8 +28625,8 @@
     "guessed_roles": [
       "ui",
       "runtime",
-      "data",
       "manager",
+      "data",
       "combat"
     ],
     "summary_signals": [
@@ -28626,9 +28640,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Stage/StageArtProfile.cs",
     "path": "ProjectDribble/Assets/Scripts/Stage/StageArtProfile.cs",
     "file_name": "StageArtProfile.cs",
-    "content_hash": "9ecfdfeed42206a2dcaf386ce0dc433b57adde6c",
-    "size": 1416,
-    "line_count": 33,
+    "content_hash": "7a4d9abbc12965e7082755f2f6eb8ceb5c3f131c",
+    "size": 1574,
+    "line_count": 37,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -28684,6 +28698,8 @@
       "Overlay",
       "Color",
       "Min",
+      "Decor",
+      "Prefab",
       "FixedBlockSprite",
       "UseScreenGlitchOverlay",
       "ScreenGlitchOverlaySprite",
@@ -28692,6 +28708,7 @@
       "AnimateOverlay",
       "OverlayPulseSpeed",
       "UseUnscaledTime",
+      "ScreenDecorPrefab",
       "OnValidate",
       "Clamp01",
       "Max"
@@ -28703,7 +28720,8 @@
       "StageArtProfile",
       "ScriptableObjects/StageArtProfile",
       "Blocks",
-      "Screen Glitch Overlay"
+      "Screen Glitch Overlay",
+      "Screen Decor Prefab"
     ],
     "numeric_literals": [
       0,
@@ -30816,6 +30834,134 @@
     ]
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "path": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "file_name": "DecorativeFlickerSprite.cs",
+    "content_hash": "3478e77f228128c28a0ba5550b6050def86e9fc5",
+    "size": 2073,
+    "line_count": 88,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "DecorativeFlickerSprite",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "DecorativeFlickerSprite",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Min",
+      "Range",
+      "Awake",
+      "OnEnable",
+      "Update",
+      "OnDisable",
+      "SetFlickerEnabled",
+      "CaptureBaseColor",
+      "RestoreBaseColor",
+      "EnsureRenderer"
+    ],
+    "fields": [
+      {
+        "name": "baseColor",
+        "type": "Color",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "hasBaseColor",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Awake",
+      "OnEnable",
+      "Update",
+      "OnDisable"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": false,
+    "has_on_enable": true,
+    "has_on_disable": true,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 1,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "Color",
+      "bool",
+      "UnityEngine",
+      "DisallowMultipleComponent",
+      "RequireComponent",
+      "SpriteRenderer",
+      "Min",
+      "Awake",
+      "EnsureRenderer",
+      "PI",
+      "CaptureBaseColor",
+      "OnEnable",
+      "Update",
+      "SharedFlickerSignal",
+      "ApplyAlphaFlicker",
+      "OnDisable",
+      "RestoreBaseColor",
+      "SetFlickerEnabled",
+      "GetComponent"
+    ],
+    "component_access_types": [
+      "SpriteRenderer"
+    ],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [
+      0,
+      0.2,
+      8,
+      1,
+      0.25,
+      2
+    ],
+    "guessed_roles": [
+      "runtime",
+      "ui",
+      "combat",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재",
+      "UI 관련 로직 포함",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
+    ]
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
     "path": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
     "file_name": "GlitchOverlayVisual.cs",
@@ -31394,6 +31540,102 @@
       "저장/불러오기 관련 로직 포함",
       "컴포넌트 조회 사용"
     ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Visual/SharedFlickerSignal.cs",
+    "path": "ProjectDribble/Assets/Scripts/Visual/SharedFlickerSignal.cs",
+    "file_name": "SharedFlickerSignal.cs",
+    "content_hash": "d14c07f2cb2454be462792f788f61f694d6efb0d",
+    "size": 1018,
+    "line_count": 36,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "SharedFlickerSignal",
+        "kind": "class",
+        "access": "internal",
+        "base_types": [],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "SharedFlickerSignal",
+    "unity_type": "None",
+    "methods": [
+      "Evaluate",
+      "ApplyAlphaFlicker"
+    ],
+    "fields": [
+      {
+        "name": "time",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "alphaOffset",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "color",
+        "type": "Color",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "float",
+      "Color",
+      "UnityEngine",
+      "Evaluate",
+      "Abs",
+      "Sin",
+      "Clamp01",
+      "ApplyAlphaFlicker",
+      "Clamp"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [
+      0,
+      2.37,
+      1.71,
+      0.75,
+      0.25,
+      1
+    ],
+    "guessed_roles": [],
+    "summary_signals": []
   },
   {
     "file_id": "ProjectDribble/Assets/Scripts/WallBallHitReceiver.cs",

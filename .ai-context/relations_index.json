@@ -33707,7 +33707,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
     "from_class": "EndingGaugeController",
-    "to_type": "Abs",
+    "to_type": "ApplyAlphaFlicker",
     "relation_type": "uses",
     "strength": 1
   },
@@ -33819,7 +33819,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
     "from_class": "EndingGaugeController",
-    "to_type": "Sin",
+    "to_type": "SharedFlickerSignal",
     "relation_type": "uses",
     "strength": 1
   },
@@ -42618,6 +42618,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageArtManager.cs",
     "from_class": "StageArtManager",
+    "to_type": "ApplyScreenDecor",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageArtManager.cs",
+    "from_class": "StageArtManager",
     "to_type": "Awake",
     "relation_type": "uses",
     "strength": 1
@@ -42632,6 +42639,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageArtManager.cs",
     "from_class": "StageArtManager",
+    "to_type": "ClearScreenDecor",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageArtManager.cs",
+    "from_class": "StageArtManager",
     "to_type": "Color",
     "relation_type": "uses",
     "strength": 1
@@ -42640,6 +42654,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageArtManager.cs",
     "from_class": "StageArtManager",
     "to_type": "ConfigureOverlayRaycastBlocking",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageArtManager.cs",
+    "from_class": "StageArtManager",
+    "to_type": "Decor",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageArtManager.cs",
+    "from_class": "StageArtManager",
+    "to_type": "Destroy",
     "relation_type": "uses",
     "strength": 1
   },
@@ -42667,7 +42695,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageArtManager.cs",
     "from_class": "StageArtManager",
+    "to_type": "Instantiate",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageArtManager.cs",
+    "from_class": "StageArtManager",
     "to_type": "Lerp",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageArtManager.cs",
+    "from_class": "StageArtManager",
+    "to_type": "LogWarning",
     "relation_type": "uses",
     "strength": 1
   },
@@ -42702,6 +42744,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageArtManager.cs",
     "from_class": "StageArtManager",
+    "to_type": "Prefab",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageArtManager.cs",
+    "from_class": "StageArtManager",
+    "to_type": "ResetOverlayToDefault",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageArtManager.cs",
+    "from_class": "StageArtManager",
     "to_type": "ResetToDefault",
     "relation_type": "uses",
     "strength": 1
@@ -42710,6 +42766,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageArtManager.cs",
     "from_class": "StageArtManager",
     "to_type": "Screen",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageArtManager.cs",
+    "from_class": "StageArtManager",
+    "to_type": "ScreenDecorPrefab",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageArtManager.cs",
+    "from_class": "StageArtManager",
+    "to_type": "ScreenDecorRoot",
     "relation_type": "uses",
     "strength": 1
   },
@@ -42835,6 +42905,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageArtProfile.cs",
     "from_class": "StageArtProfile",
+    "to_type": "Decor",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageArtProfile.cs",
+    "from_class": "StageArtProfile",
     "to_type": "FixedBlockSprite",
     "relation_type": "uses",
     "strength": 1
@@ -42884,7 +42961,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageArtProfile.cs",
     "from_class": "StageArtProfile",
+    "to_type": "Prefab",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageArtProfile.cs",
+    "from_class": "StageArtProfile",
     "to_type": "Screen",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageArtProfile.cs",
+    "from_class": "StageArtProfile",
+    "to_type": "ScreenDecorPrefab",
     "relation_type": "uses",
     "strength": 1
   },
@@ -46627,6 +46718,153 @@
     "strength": 1
   },
   {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "from_class": "DecorativeFlickerSprite",
+    "to_type": "SpriteRenderer",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "from_class": "DecorativeFlickerSprite",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "from_class": "DecorativeFlickerSprite",
+    "to_type": "ApplyAlphaFlicker",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "from_class": "DecorativeFlickerSprite",
+    "to_type": "Awake",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "from_class": "DecorativeFlickerSprite",
+    "to_type": "bool",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "from_class": "DecorativeFlickerSprite",
+    "to_type": "CaptureBaseColor",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "from_class": "DecorativeFlickerSprite",
+    "to_type": "Color",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "from_class": "DecorativeFlickerSprite",
+    "to_type": "DisallowMultipleComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "from_class": "DecorativeFlickerSprite",
+    "to_type": "EnsureRenderer",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "from_class": "DecorativeFlickerSprite",
+    "to_type": "GetComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "from_class": "DecorativeFlickerSprite",
+    "to_type": "Min",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "from_class": "DecorativeFlickerSprite",
+    "to_type": "OnDisable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "from_class": "DecorativeFlickerSprite",
+    "to_type": "OnEnable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "from_class": "DecorativeFlickerSprite",
+    "to_type": "PI",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "from_class": "DecorativeFlickerSprite",
+    "to_type": "RequireComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "from_class": "DecorativeFlickerSprite",
+    "to_type": "RestoreBaseColor",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "from_class": "DecorativeFlickerSprite",
+    "to_type": "SetFlickerEnabled",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "from_class": "DecorativeFlickerSprite",
+    "to_type": "SharedFlickerSignal",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "from_class": "DecorativeFlickerSprite",
+    "to_type": "SpriteRenderer",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "from_class": "DecorativeFlickerSprite",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "from_class": "DecorativeFlickerSprite",
+    "to_type": "Update",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
     "from_file": "ProjectDribble/Assets/Scripts/Visual/GlitchOverlayVisual.cs",
     "from_class": "GlitchOverlayVisual",
     "to_type": "PulseVisual",
@@ -47498,6 +47736,69 @@
     "from_file": "ProjectDribble/Assets/Scripts/Visual/SegmentGlowShadowVisual.cs",
     "from_class": "SegmentGlowShadowVisual",
     "to_type": "Vector3",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SharedFlickerSignal.cs",
+    "from_class": "SharedFlickerSignal",
+    "to_type": "Abs",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SharedFlickerSignal.cs",
+    "from_class": "SharedFlickerSignal",
+    "to_type": "ApplyAlphaFlicker",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SharedFlickerSignal.cs",
+    "from_class": "SharedFlickerSignal",
+    "to_type": "Clamp",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SharedFlickerSignal.cs",
+    "from_class": "SharedFlickerSignal",
+    "to_type": "Clamp01",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SharedFlickerSignal.cs",
+    "from_class": "SharedFlickerSignal",
+    "to_type": "Color",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SharedFlickerSignal.cs",
+    "from_class": "SharedFlickerSignal",
+    "to_type": "Evaluate",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SharedFlickerSignal.cs",
+    "from_class": "SharedFlickerSignal",
+    "to_type": "float",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SharedFlickerSignal.cs",
+    "from_class": "SharedFlickerSignal",
+    "to_type": "Sin",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/SharedFlickerSignal.cs",
+    "from_class": "SharedFlickerSignal",
+    "to_type": "UnityEngine",
     "relation_type": "uses",
     "strength": 1
   },

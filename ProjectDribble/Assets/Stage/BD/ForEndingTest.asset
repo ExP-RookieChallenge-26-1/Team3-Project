@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d953c4d8f0723644096f01e564abfdbc, type: 3}
+  m_Name: ForEndingTest
+  m_EditorClassIdentifier: Assembly-CSharp::StageBlockData
+  width: 7
+  height: 20
+  defaultHp: 5.8
+  disableGrowth: 0
+  useStemGrowth: 0
+  growthStems: []
+  fixedBlocks: []
+  normalBlocks: []
+  respawnMissingStartBlocks: 1
+  startCells: []
+  spawnInterval: 5
+  minGrowPerTick: 1
+  maxGrowPerTick: 1
+  rowWeightMultiplier: 1
+  rowPriorityStep: 0
+  onlyGrowFromStartConnectedBlocks: 0
+  directions: []

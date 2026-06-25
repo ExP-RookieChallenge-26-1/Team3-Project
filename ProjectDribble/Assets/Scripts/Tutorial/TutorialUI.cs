@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     [Header("Tutorial Step Popups")]
     [Tooltip("Step 1 through Step 8 popup roots, in order.")]
     [SerializeField] private GameObject[] tutorialStepPopups = new GameObject[8];
+    [SerializeField] private GameObject recallTutorialPopup;
 
     private Action tutorialCloseCallback;
     private bool isTutorialPopupOpen;
@@ -161,16 +162,65 @@ public class UIManager : MonoBehaviour
         return true;
     }
 
+    public bool ShowRecallTutorialPopup(Action onClose = null)
+    {
+        if (isTutorialPopupOpen)
+        {
+            Debug.LogWarning("[Tutorial] Recall popup was not shown: another tutorial popup is already open.");
+            return false;
+        }
+
+        if (recallTutorialPopup == null)
+        {
+            Debug.LogWarning("[Tutorial] Recall popup was not shown: recallTutorialPopup is not assigned.");
+            return false;
+        }
+
+        if (!enabled)
+            enabled = true;
+
+        if (!gameObject.activeSelf)
+            gameObject.SetActive(true);
+
+        if (!gameObject.activeInHierarchy)
+        {
+            Debug.LogWarning("[Tutorial] Recall popup was not shown: TutorialUI has an inactive parent.");
+            return false;
+        }
+
+        if (messageRoot != null)
+            messageRoot.SetActive(false);
+
+        HideAllTutorialStepPopups();
+        recallTutorialPopup.SetActive(true);
+
+        tutorialCloseCallback = onClose;
+        tutorialPopupCloseMode = TutorialPopupCloseMode.ClickToClose;
+        currentTutorialPopupRoot = recallTutorialPopup;
+        isTutorialPopupOpen = true;
+        SoundManager.Instance?.SetBgmMuffled(BgmMuffleReason.Tutorial, true);
+        return true;
+    }
+
     public void HideAllTutorialStepPopups()
     {
         if (tutorialStepPopups == null)
+        {
+            if (recallTutorialPopup != null)
+                recallTutorialPopup.SetActive(false);
+
+            currentTutorialPopupRoot = null;
             return;
+        }
 
         for (int i = 0; i < tutorialStepPopups.Length; i++)
         {
             if (tutorialStepPopups[i] != null)
                 tutorialStepPopups[i].SetActive(false);
         }
+
+        if (recallTutorialPopup != null)
+            recallTutorialPopup.SetActive(false);
 
         currentTutorialPopupRoot = null;
     }

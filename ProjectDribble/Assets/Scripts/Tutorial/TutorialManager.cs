@@ -51,7 +51,18 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private LaserChargeController laserChargeController;
     [SerializeField] private SaveManager saveManager;
     [SerializeField] private BallController ballController;
+    [SerializeField] private BallRespawner ballRespawner;
     [SerializeField] private GameObject tutorialTopBoundary;
+
+    [Header("Recall Tutorial")]
+    [SerializeField] private bool enableRecallTutorial = true;
+    [SerializeField] private float recallWatchMinY = 0f;
+    [SerializeField] private float recallWatchMaxY = 18f;
+    [Min(0f)]
+    [SerializeField] private float recallObserveDuration = 4f;
+    [Min(0f)]
+    [SerializeField] private float recallMaxYDeviation = 10f;
+    [SerializeField] private bool saveRecallTutorialSeen = true;
 
     [Header("Legacy Dynamic Message")]
     [Tooltip("Kept for callers that still use TryShowTutorial. Step 1-8 popups always pause.")]
@@ -69,6 +80,14 @@ public class TutorialManager : MonoBehaviour
     private bool hasShownStep8;
     private bool isRunningPendingStageClear;
     private Action pendingStageClearCallback;
+    private bool hasRecallObservation;
+    private bool recallTutorialSeenThisSession;
+    private float recallObservedTime;
+    private float recallObservedMinY;
+    private float recallObservedMaxY;
+
+    private bool IsRecallTutorialActive =>
+        gameManager != null && gameManager.IsRecallTutorialActive;
 
     private void Awake()
     {
@@ -102,25 +121,40 @@ public class TutorialManager : MonoBehaviour
 
         if (ballController == null)
             ballController = FindAnyObjectByType<BallController>();
+
+        if (ballRespawner == null)
+            ballRespawner = FindAnyObjectByType<BallRespawner>();
+    }
+
+    private void OnEnable()
+    {
+        if (ballRespawner == null)
+            ballRespawner = FindAnyObjectByType<BallRespawner>();
+
+        if (ballRespawner != null)
+            ballRespawner.OnBallRecalled += HandleRecallTutorialBallRecalled;
     }
 
     private void Update()
     {
-        if (currentTutorialStageId != TutorialStageId.Stage1 ||
-            currentPhase != TutorialPhase.Stage1BreakNormalBlocks ||
-            hasShownStep2)
+        if (currentTutorialStageId == TutorialStageId.Stage1 &&
+            currentPhase == TutorialPhase.Stage1BreakNormalBlocks &&
+            !hasShownStep2)
         {
-            return;
+            stage1PlayElapsed += Time.deltaTime;
+
+            if (stage1PlayElapsed >= AimGuideForceDelay)
+                ShowStage1AimGuide();
         }
 
-        stage1PlayElapsed += Time.deltaTime;
-
-        if (stage1PlayElapsed >= AimGuideForceDelay)
-            ShowStage1AimGuide();
+        UpdateRecallTutorial();
     }
 
     private void OnDisable()
     {
+        if (ballRespawner != null)
+            ballRespawner.OnBallRecalled -= HandleRecallTutorialBallRecalled;
+
         ClearStageRuntimeState();
     }
 
@@ -482,11 +516,14 @@ public class TutorialManager : MonoBehaviour
     private void ClearStageRuntimeState()
     {
         UnsubscribeStageEvents();
+        ResetRecallObservation();
 
         if (uiManager != null)
             uiManager.HideTutorialPopupWithoutCallback();
 
-        if (gameManager != null && gameManager.IsPausedByTutorial)
+        if (IsRecallTutorialActive)
+            gameManager.EndRecallTutorial();
+        else if (gameManager != null && gameManager.IsPausedByTutorial)
             gameManager.ResumeFromTutorial();
 
         gaugeManager?.SetGaugeGainWhileLaserLockedEnabled(false);
@@ -539,6 +576,144 @@ public class TutorialManager : MonoBehaviour
     {
         if (tutorialTopBoundary != null)
             tutorialTopBoundary.SetActive(active);
+    }
+
+    private void UpdateRecallTutorial()
+    {
+        if (!CanObserveRecallTutorial())
+        {
+            ResetRecallObservation();
+            return;
+        }
+
+        float currentY = ballController.transform.position.y;
+
+        if (currentY < recallWatchMinY || currentY > recallWatchMaxY)
+        {
+            ResetRecallObservation();
+            return;
+        }
+
+        ObserveRecallTutorialY(currentY);
+    }
+
+    private bool CanObserveRecallTutorial()
+    {
+        if (!enableRecallTutorial ||
+            currentTutorialStageId == TutorialStageId.None ||
+            HasSeenRecallTutorial() ||
+            IsRecallTutorialActive)
+        {
+            return false;
+        }
+
+        if (ballController == null || ballController.IsCaptured)
+            return false;
+
+        if (gameManager == null ||
+            !gameManager.IsGameStarted ||
+            gameManager.IsPaused ||
+            gameManager.IsPausedByTutorial)
+        {
+            return false;
+        }
+
+        if (!Mathf.Approximately(Time.timeScale, 1f))
+            return false;
+
+        return uiManager == null || !uiManager.IsTutorialPopupOpen;
+    }
+
+    private bool HasSeenRecallTutorial()
+    {
+        if (recallTutorialSeenThisSession)
+            return true;
+
+        return saveRecallTutorialSeen &&
+               saveManager != null &&
+               saveManager.Current != null &&
+               saveManager.Current.recallTutorialSeen;
+    }
+
+    private void ObserveRecallTutorialY(float currentY)
+    {
+        if (!hasRecallObservation)
+        {
+            StartRecallObservation(currentY);
+            return;
+        }
+
+        recallObservedMinY = Mathf.Min(recallObservedMinY, currentY);
+        recallObservedMaxY = Mathf.Max(recallObservedMaxY, currentY);
+
+        if (recallObservedMaxY - recallObservedMinY > recallMaxYDeviation)
+        {
+            StartRecallObservation(currentY);
+            return;
+        }
+
+        recallObservedTime += Time.deltaTime;
+
+        if (recallObservedTime >= recallObserveDuration)
+            TryBeginRecallTutorial();
+    }
+
+    private void TryBeginRecallTutorial()
+    {
+        ResetRecallObservation();
+
+        if (uiManager == null || gameManager == null)
+        {
+            Debug.LogWarning("[Tutorial] Recall popup was skipped: UIManager or GameManager is missing.");
+            return;
+        }
+
+        bool shown = uiManager.ShowRecallTutorialPopup(CompleteRecallTutorial);
+
+        if (!shown)
+            return;
+
+        gameManager.BeginRecallTutorial();
+    }
+
+    private void HandleRecallTutorialBallRecalled()
+    {
+        if (!IsRecallTutorialActive)
+            return;
+
+        uiManager?.HideTutorialPopup();
+    }
+
+    private void CompleteRecallTutorial()
+    {
+        recallTutorialSeenThisSession = true;
+
+        if (saveRecallTutorialSeen && saveManager != null)
+        {
+            saveManager.SetRecallTutorialSeen(true);
+            saveManager.Save();
+        }
+
+        if (IsRecallTutorialActive)
+            gameManager.EndRecallTutorial();
+
+        ResetRecallObservation();
+    }
+
+    private void StartRecallObservation(float y)
+    {
+        hasRecallObservation = true;
+        recallObservedTime = 0f;
+        recallObservedMinY = y;
+        recallObservedMaxY = y;
+    }
+
+    private void ResetRecallObservation()
+    {
+        hasRecallObservation = false;
+        recallObservedTime = 0f;
+        recallObservedMinY = 0f;
+        recallObservedMaxY = 0f;
     }
 
     // Kept for TutorialTrigger and older scenes. Stage 4-6 flows are inactive in MainScene.

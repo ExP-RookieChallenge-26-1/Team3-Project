@@ -20,6 +20,10 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private SpriteRenderer rightGroundRenderer;
     [SerializeField] private SpriteRenderer UpPaddleRenderer;
     [SerializeField] private SpriteRenderer DownPaddleRenderer;
+
+    [Header("Paddle Visual")]
+    [SerializeField] private bool enablePaddleBaseTint;
+    [SerializeField] private PaddleCorruptionVisual[] paddleCorruptionVisuals;
     
     public int CurrentHp => currentHp;
     public int MaxHp => runtimeMaxHp;
@@ -40,7 +44,7 @@ public class PlayerHealth : MonoBehaviour
         isDead = false;
         gameOverSoundStarted = false;
         currentHp = runtimeMaxHp > 0 ? runtimeMaxHp : Mathf.Max(1, healthData.playerMaxHp);
-        UpdateGroundColor();
+        UpdateHealthVisuals();
     }
 
     public void TakeDamage(int damage)
@@ -53,7 +57,7 @@ public class PlayerHealth : MonoBehaviour
         currentHp = Mathf.Clamp(currentHp, 0, runtimeMaxHp);
 
         Debug.Log($"Player HP: {currentHp}");
-        UpdateGroundColor();
+        UpdateHealthVisuals();
 
         if (currentHp < previousHp)
         {
@@ -67,7 +71,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void UpdateGroundColor()
+    private void UpdateHealthVisuals()
     {
         float hpRatio = currentHp / (float)runtimeMaxHp;
 
@@ -82,11 +86,35 @@ public class PlayerHealth : MonoBehaviour
 
         if (rightGroundRenderer != null)
             rightGroundRenderer.color = currentColor;
-        if (DownPaddleRenderer != null)
-            DownPaddleRenderer.color = currentColor;
 
-        if (UpPaddleRenderer != null)
-            UpPaddleRenderer.color = currentColor;
+        if (enablePaddleBaseTint)
+        {
+            if (DownPaddleRenderer != null)
+                ApplyRendererRgb(DownPaddleRenderer, currentColor);
+
+            if (UpPaddleRenderer != null)
+                ApplyRendererRgb(UpPaddleRenderer, currentColor);
+        }
+
+        UpdatePaddleCorruptionVisuals(hpRatio);
+    }
+
+    private void ApplyRendererRgb(SpriteRenderer targetRenderer, Color rgbSource)
+    {
+        Color color = targetRenderer.color;
+        color.r = rgbSource.r;
+        color.g = rgbSource.g;
+        color.b = rgbSource.b;
+        targetRenderer.color = color;
+    }
+
+    private void UpdatePaddleCorruptionVisuals(float hpRatio)
+    {
+        if (paddleCorruptionVisuals == null)
+            return;
+
+        for (int i = 0; i < paddleCorruptionVisuals.Length; i++)
+            paddleCorruptionVisuals[i]?.ApplyHealthRatio(hpRatio);
     }
 
     private void Die()

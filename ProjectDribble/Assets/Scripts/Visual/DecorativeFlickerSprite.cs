@@ -71,6 +71,15 @@ public class DecorativeFlickerSprite : MonoBehaviour
         hasBaseColor = true;
     }
 
+    public void SetBaseColor(Color color)
+    {
+        baseColor = color;
+        hasBaseColor = true;
+
+        if (targetRenderer != null)
+            targetRenderer.color = color;
+    }
+
     private void RestoreBaseColor()
     {
         if (targetRenderer == null || !hasBaseColor)

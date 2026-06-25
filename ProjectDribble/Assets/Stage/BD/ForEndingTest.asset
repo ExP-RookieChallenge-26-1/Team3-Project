@@ -21,11 +21,16 @@ MonoBehaviour:
   fixedBlocks: []
   normalBlocks: []
   respawnMissingStartBlocks: 1
-  startCells: []
-  spawnInterval: 5
-  minGrowPerTick: 1
-  maxGrowPerTick: 1
+  startCells:
+  - {x: 0, y: 0}
+  spawnInterval: 0.01
+  minGrowPerTick: 5
+  maxGrowPerTick: 5
   rowWeightMultiplier: 1
   rowPriorityStep: 0
-  onlyGrowFromStartConnectedBlocks: 0
-  directions: []
+  onlyGrowFromStartConnectedBlocks: 1
+  directions:
+  - name: 
+    direction: {x: 0, y: 1}
+    priority: 0
+    weight: 1

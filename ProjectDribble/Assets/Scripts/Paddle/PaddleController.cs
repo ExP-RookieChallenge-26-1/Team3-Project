@@ -5,6 +5,7 @@ public class PaddleController : MonoBehaviour
 {
     [SerializeField] private PointerInputReader inputReader;
     [SerializeField] private SpriteRenderer upPaddleSpriteRenderer;
+    [SerializeField] private PaddleCorruptionVisual upPaddleCorruptionVisual;
     [SerializeField] private bool debugPaddleActiveState;
     [SerializeField, Min(0f)] private float activationRewardGracePeriod = 0.08f;
 
@@ -154,6 +155,7 @@ public class PaddleController : MonoBehaviour
 
         Color color = upPaddleSpriteRenderer.color;
         upPaddleSpriteRenderer.color = new Color(color.r, color.g, color.b, targetAlpha);
+        upPaddleCorruptionVisual?.SetVisibilityAlpha(targetAlpha);
     }
 
     public void SetPaddleCollider(string childName, bool isActive)

@@ -31,6 +31,7 @@ public class BlockCell : MonoBehaviour,
     [SerializeField] private GlitchOverlayVisual glitchOverlay;
     [SerializeField] private DamageFlashVisual damageFlashVisual;
     [SerializeField] private SpriteRenderer laserTargetOverlayRenderer;
+    [SerializeField, Range(0f, 1f)] private float damagedDarkenAmount = 0.2f;
 
     private SpriteRenderer sr;
     private Sprite defaultSprite;
@@ -241,10 +242,11 @@ public class BlockCell : MonoBehaviour,
         if (sr == null)
             return;
 
-        Color color = isDisconnectedStem ? disconnectedStemColor : connectedStemColor;
+        Color color = GetUndamagedStemColor();
         color = Color.Lerp(color, dangerStemColor, danger01);
 
         sr.color = color;
+        RefreshDamageTint();
 
         bool showGlitch = blockType == BlockType.Flow;
         glitchOverlay?.SetState(
@@ -293,17 +295,42 @@ public class BlockCell : MonoBehaviour,
         crackOverlayRenderer.gameObject.SetActive(false);
     }
 
+    private Color GetUndamagedStemColor()
+    {
+        return isDisconnectedStem ? disconnectedStemColor : connectedStemColor;
+    }
+
+    private void RefreshDamageTint()
+    {
+        if (sr == null)
+            return;
+
+        float healthRatio = maxHp > 0f ? Mathf.Clamp01(hp / maxHp) : 1f;
+        float darken = Mathf.Lerp(damagedDarkenAmount, 0f, healthRatio);
+        float multiplier = 1f - darken;
+
+        Color color = sr.color;
+        color.r *= multiplier;
+        color.g *= multiplier;
+        color.b *= multiplier;
+        sr.color = color;
+    }
+
+    private void ResetDamageTint()
+    {
+        if (sr == null)
+            return;
+
+        Color color = GetUndamagedStemColor();
+        color.a = connectedStemColor.a;
+        sr.color = color;
+    }
+
     private void ResetTransientVisuals()
     {
         glitchOverlay?.ResetVisual();
         damageFlashVisual?.ResetVisual();
-
-        if (sr != null)
-        {
-            Color color = sr.color;
-            color.a = connectedStemColor.a;
-            sr.color = color;
-        }
+        ResetDamageTint();
     }
 
     private void OnDrawGizmosSelected()

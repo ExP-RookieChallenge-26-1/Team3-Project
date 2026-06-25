@@ -10,10 +10,17 @@ public class PlayerHealth : MonoBehaviour
     [Header("Data")]
     [SerializeField] private HealthData healthData;
 
+    [Header("Auto Recovery")]
+    [SerializeField] private bool enableAutoRecovery = true;
+    [SerializeField, Min(0f)] private float recoveryDelay = 3f;
+    [SerializeField, Min(0f)] private float recoveryPerSecond = 1f;
+
     private int currentHp;
     private int runtimeMaxHp;
     private bool isDead;
     private bool gameOverSoundStarted;
+    private float lastDamageTime;
+    private float pendingRecovery;
 
     [Header("Ground Visual")]
     [SerializeField] private SpriteRenderer leftGroundRenderer;
@@ -33,6 +40,11 @@ public class PlayerHealth : MonoBehaviour
         InitializePlayerHealth(healthData.playerMaxHp);
     }
 
+    private void Update()
+    {
+        UpdateAutoRecovery();
+    }
+
     public void InitializePlayerHealth(int maxHp)
     {
         runtimeMaxHp = Mathf.Max(1, maxHp);
@@ -43,6 +55,8 @@ public class PlayerHealth : MonoBehaviour
     {
         isDead = false;
         gameOverSoundStarted = false;
+        lastDamageTime = Time.time;
+        pendingRecovery = 0f;
         currentHp = runtimeMaxHp > 0 ? runtimeMaxHp : Mathf.Max(1, healthData.playerMaxHp);
         UpdateHealthVisuals();
     }
@@ -61,6 +75,9 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHp < previousHp)
         {
+            lastDamageTime = Time.time;
+            pendingRecovery = 0f;
+
             float dangerRatio = 1f - currentHp / (float)runtimeMaxHp;
             SoundManager.Instance.Play(SoundId.PlayerHit, Mathf.Clamp01(dangerRatio));
         }
@@ -69,6 +86,27 @@ public class PlayerHealth : MonoBehaviour
         {
             Die();
         }
+    }
+
+    private void UpdateAutoRecovery()
+    {
+        if (!enableAutoRecovery ||
+            isDead ||
+            currentHp >= runtimeMaxHp ||
+            Time.time - lastDamageTime < recoveryDelay)
+        {
+            return;
+        }
+
+        pendingRecovery += recoveryPerSecond * Time.deltaTime;
+        int recoveredHp = Mathf.FloorToInt(pendingRecovery);
+
+        if (recoveredHp <= 0)
+            return;
+
+        pendingRecovery -= recoveredHp;
+        currentHp = Mathf.Min(runtimeMaxHp, currentHp + recoveredHp);
+        UpdateHealthVisuals();
     }
 
     private void UpdateHealthVisuals()

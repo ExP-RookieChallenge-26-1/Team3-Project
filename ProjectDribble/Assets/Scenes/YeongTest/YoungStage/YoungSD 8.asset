@@ -12,11 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce5f614b448eead419bad4017a2d335c, type: 3}
   m_Name: YoungSD 8
   m_EditorClassIdentifier: Assembly-CSharp::StageDefinition
+  stageType: 2
   blockData: {fileID: 11400000, guid: 319bc576734153843af8308c9ae4c1a8, type: 2}
+  useCeiling: 1
   ceilingSegmentMode: 2
   ceilingMaxHpOverride: 80
   playerMaxHpOverride: 10
-  startGaugeValue: 20
+  clearCondition: 0
+  useTopDecoration: 0
+  topDecorationPrefab: {fileID: 0}
+  artProfile: {fileID: 0}
+  startGaugeValue: 0
   ballStartPosition: {x: 0, y: -11.3}
   ballStartDirection: {x: 0, y: -1}
   ballStartSpeed: 30

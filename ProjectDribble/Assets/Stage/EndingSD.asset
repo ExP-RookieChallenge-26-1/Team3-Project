@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce5f614b448eead419bad4017a2d335c, type: 3}
-  m_Name: YoungSD 2
+  m_Name: EndingSD
   m_EditorClassIdentifier: Assembly-CSharp::StageDefinition
-  stageType: 2
-  blockData: {fileID: 11400000, guid: a78e758a537e26146be63dc89f05fff0, type: 2}
-  useCeiling: 1
+  stageType: 3
+  blockData: {fileID: 11400000, guid: d2b6d2e3d9bcb814d99e40d4dba93f02, type: 2}
+  useCeiling: 0
   ceilingSegmentMode: 1
   ceilingMaxHpOverride: 80
   playerMaxHpOverride: 10
   clearCondition: 0
-  useTopDecoration: 0
-  topDecorationPrefab: {fileID: 0}
+  useTopDecoration: 1
+  topDecorationPrefab: {fileID: 4674497611455876438, guid: 9df8be1bc08a61944a1a0883e713760f, type: 3}
   artProfile: {fileID: 0}
   startGaugeValue: 0
   ballStartPosition: {x: 0, y: -11.3}
   ballStartDirection: {x: 0, y: -1}
   ballStartSpeed: 30
-  overrideBallTuning: 1
+  overrideBallTuning: 0
   maxSpeedOverride: 45
   maxDamageOverride: 5
   speedGainMultiplierOverride: 0.5

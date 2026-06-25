@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce5f614b448eead419bad4017a2d335c, type: 3}
   m_Name: Tutorial Stage 3
   m_EditorClassIdentifier: Assembly-CSharp::StageDefinition
+  stageType: 1
   blockData: {fileID: 11400000, guid: 98588c471c9b4f26bc291c6fe979aa0c, type: 2}
   useCeiling: 1
   ceilingSegmentMode: 2

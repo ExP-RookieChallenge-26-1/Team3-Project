@@ -15,6 +15,14 @@ public enum StageClearCondition
     None = 2
 }
 
+public enum StageType
+{
+    Title = 0,
+    Tutorial = 1,
+    Normal = 2,
+    Ending = 3
+}
+
 public enum TutorialStageId
 {
     None = 0,
@@ -29,6 +37,11 @@ public enum TutorialStageId
 [CreateAssetMenu(fileName = "StageDefinition", menuName = "ScriptableObjects/StageDefinition")]
 public class StageDefinition : ScriptableObject
 {
+    [Header("Stage Type")]
+    [SerializeField] private StageType stageType = StageType.Normal;
+
+    public StageType StageType => stageType;
+
     [Header("Blocks")]
     public StageBlockData blockData;
 

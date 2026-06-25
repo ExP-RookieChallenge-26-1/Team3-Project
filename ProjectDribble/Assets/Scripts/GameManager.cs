@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private SaveManager saveManager;
     [SerializeField] private LaserUnlockState laserUnlockState;
     [SerializeField] private PaddleController paddleController;
+    [SerializeField] private EndingSequenceController endingSequenceController;
 
     [Header("UI")]
     [SerializeField] private GameObject titleUI;
@@ -60,33 +61,60 @@ public class GameManager : MonoBehaviour
 
     public void RequestStageClear()
     {
+        if (stageManager == null)
+        {
+            Debug.LogWarning("GameManager: Cannot clear stage because StageManager is missing.");
+            return;
+        }
+
+        if (stageManager.IsCurrentStageEnding)
+        {
+            Debug.LogWarning("GameManager: Stage clear was requested during the ending stage and was ignored.");
+            return;
+        }
+
         FeedbackManager.Instance?.StopRecallHoldFeedback();
         FeedbackManager.Instance?.StopLaserChargeFeedback();
         int currentStage = stageManager.CurrentStageIndex;
 
-        saveManager.MarkStageCleared(currentStage);
-        saveManager.SetLaserUnlocked(laserUnlockState.IsLaserUnlocked);
+        if (saveManager != null)
+        {
+            saveManager.MarkStageCleared(currentStage);
 
-        if (stageManager.IsCurrentStageFinalTutorialStage)
-            saveManager.SetTutorialCleared(true);
+            if (laserUnlockState != null)
+                saveManager.SetLaserUnlocked(laserUnlockState.IsLaserUnlocked);
 
-        saveManager.Save();
+            if (stageManager.IsCurrentStageFinalTutorialStage)
+                saveManager.SetTutorialCleared(true);
+
+            saveManager.Save();
+        }
 
         timeScaleBefore = Time.timeScale;
         Time.timeScale = 0f;
         isPaused = true;
 
-        if (stageManager.IsValidStageIndex(currentStage + 1))
+        if (stageClearUI != null)
+            stageClearUI.SetActive(false);
+
+        if (gameClearUI != null)
+            gameClearUI.SetActive(false);
+
+        if (stageManager.IsCurrentStageLastNormalStage())
         {
-            stageClearUI.SetActive(true);
-            SoundManager.Instance.Play(SoundId.StageClear);
+            if (gameClearUI != null)
+                gameClearUI.SetActive(true);
+
+            SoundManager.Instance?.Play(SoundId.StageClear);
         }
         else
         {
-            gameClearUI.SetActive(true);
-            SoundManager.Instance.Play(SoundId.StageClear); // 아직 게임클리어 사운드 없음
+            if (stageClearUI != null)
+                stageClearUI.SetActive(true);
+            SoundManager.Instance?.Play(SoundId.StageClear);
         }
-        pauseButton.SetActive(false);
+        if (pauseButton != null)
+            pauseButton.SetActive(false);
     }
 
     public void RequestGameOver()
@@ -103,13 +131,20 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        if (saveManager == null || stageManager == null)
+        {
+            Debug.LogWarning("GameManager: Cannot start game because SaveManager or StageManager is missing.");
+            return;
+        }
+
         int startStageIndex = saveManager.GetStartStageIndex(stageManager.StageCount);
+        stageManager.TryResolvePlayableStartStageIndex(startStageIndex, out startStageIndex);
         StartGameAtStage(startStageIndex);
     }
 
     public void StartGameAtStage(int startStageIndex)
     {
-        if (saveManager.Current.laserUnlocked)
+        if (saveManager != null && saveManager.Current.laserUnlocked && laserUnlockState != null)
             laserUnlockState.UnlockLaser();
 
         Time.timeScale = timeScaleBefore;
@@ -122,6 +157,46 @@ public class GameManager : MonoBehaviour
         pauseButton.SetActive(true);
 
         stageManager.StartStage(startStageIndex);
+    }
+
+    public void StartEndingStage()
+    {
+        CloseConfirmPopups();
+
+        if (pauseUI != null)
+            pauseUI.SetActive(false);
+
+        if (stageClearUI != null)
+            stageClearUI.SetActive(false);
+
+        if (gameClearUI != null)
+            gameClearUI.SetActive(false);
+
+        if (gameOverUI != null)
+            gameOverUI.SetActive(false);
+
+        Time.timeScale = 1f;
+        timeScaleBefore = 1f;
+        isPaused = false;
+        isGameStarted = true;
+
+        if (titleUI != null)
+            titleUI.SetActive(false);
+
+        if (playTestUI != null)
+            playTestUI.SetActive(false);
+
+        if (pauseButton != null)
+            pauseButton.SetActive(true);
+
+        if (stageManager == null || !stageManager.TryStartEndingStage())
+        {
+            Debug.LogWarning("GameManager: Cannot start ending stage.");
+            return;
+        }
+
+        if (paddleController != null)
+            paddleController.ResetPosition();
     }
 
     public void RetryStage()
@@ -275,6 +350,14 @@ public class GameManager : MonoBehaviour
         Initialize();
     }
 
+    public void GoHomeFromEnding()
+    {
+        Time.timeScale = 1f;
+        endingSequenceController?.EndEndingAndReset();
+        GoHomeInternal();
+        Time.timeScale = 1f;
+    }
+
     public void Initialize()
     {
         CloseConfirmPopups();
@@ -290,6 +373,7 @@ public class GameManager : MonoBehaviour
         timeScaleBeforeTutorial = 1f;
         SoundManager.Instance?.ClearBgmMuffles();
         SoundManager.Instance?.PlayTitleBgm();
+        endingSequenceController?.EndEndingAndReset();
 
         if (stageManager != null)
             stageManager.StartStage(0);

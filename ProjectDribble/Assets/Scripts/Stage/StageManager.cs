@@ -21,6 +21,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] private BossController bossController;
     [SerializeField] private TutorialManager tutorialManager;
     [SerializeField] private StageArtManager stageArtManager;
+    [SerializeField] private EndingSequenceController endingSequenceController;
 
     [Header("Top Decoration")]
     [SerializeField] private Transform topDecorationParent;
@@ -35,6 +36,14 @@ public class StageManager : MonoBehaviour
         IsValidStageIndex(currentStageIndex) &&
         stages[currentStageIndex] != null &&
         stages[currentStageIndex].isTutorialStage;
+    public bool IsCurrentStageEnding =>
+        CurrentStageDefinition != null &&
+        CurrentStageDefinition.StageType == StageType.Ending;
+    public bool IsCurrentStageNormal =>
+        CurrentStageDefinition != null &&
+        CurrentStageDefinition.StageType == StageType.Normal &&
+        !CurrentStageDefinition.isTutorialStage &&
+        currentStageIndex != titleStageIndex;
     public bool IsCurrentStageFinalTutorialStage =>
         IsCurrentStageTutorial &&
         stages[currentStageIndex].tutorialStageId == TutorialStageId.Stage3;
@@ -99,6 +108,67 @@ public class StageManager : MonoBehaviour
 
         StartStage(nextIndex);
         return true;
+    }
+
+    public bool IsCurrentStageLastNormalStage()
+    {
+        return IsLastNormalStage(currentStageIndex);
+    }
+
+    public bool IsLastNormalStage(int index)
+    {
+        if (!IsValidStageIndex(index) || !IsNormalStageIndex(index))
+            return false;
+
+        for (int i = index + 1; i < StageCount; i++)
+        {
+            if (IsNormalStageIndex(i))
+                return false;
+        }
+
+        return true;
+    }
+
+    public bool TryStartEndingStage()
+    {
+        int endingStageIndex = FindFirstStageIndex(StageType.Ending);
+
+        if (!IsValidStageIndex(endingStageIndex))
+        {
+            Debug.LogWarning("StageManager: Ending stage is missing. Add a StageDefinition with StageType.Ending.");
+            return false;
+        }
+
+        StartStage(endingStageIndex);
+        return true;
+    }
+
+    public bool TryResolvePlayableStartStageIndex(int requestedIndex, out int resolvedIndex)
+    {
+        if (IsPlayableStartStageIndex(requestedIndex))
+        {
+            resolvedIndex = requestedIndex;
+            return true;
+        }
+
+        if (IsPlayableStartStageIndex(startStageIndex))
+        {
+            resolvedIndex = startStageIndex;
+            return true;
+        }
+
+        for (int i = 0; i < StageCount; i++)
+        {
+            if (!IsPlayableStartStageIndex(i))
+                continue;
+
+            resolvedIndex = i;
+            return true;
+        }
+
+        resolvedIndex = IsValidStageIndex(titleStageIndex) ? titleStageIndex : 0;
+        Debug.LogWarning("StageManager: No playable start stage was found. Falling back to title stage.");
+        return false;
     }
 
     private void HandleStageCleared()
@@ -219,12 +289,13 @@ public class StageManager : MonoBehaviour
         }
 
         ApplyBallTuning(data);
+        bool isEndingStage = data.StageType == StageType.Ending;
 
-        if (data.useCeiling && ceilingManager != null)
+        if (!isEndingStage && data.useCeiling && ceilingManager != null)
         {
             ceilingManager.InitializeCeiling(data.ceilingMaxHpOverride, data.ceilingSegmentMode);
         }
-        else if (data.useCeiling)
+        else if (!isEndingStage && data.useCeiling)
         {
             Debug.LogWarning(
                 $"StageManager: Stage '{data.name}' uses a ceiling, but CeilingManager is missing. " +
@@ -246,15 +317,22 @@ public class StageManager : MonoBehaviour
 
         if (blockManager != null)
         {
-            Sprite fixedBlockSpriteOverride = data.ArtProfile != null
-                ? data.ArtProfile.FixedBlockSprite
-                : null;
+            if (isEndingStage)
+            {
+                blockManager.ClearStageBlocks();
+            }
+            else
+            {
+                Sprite fixedBlockSpriteOverride = data.ArtProfile != null
+                    ? data.ArtProfile.FixedBlockSprite
+                    : null;
 
-            blockManager.InitializeStageBlocks(
-                data.blockData,
-                data.useCeiling,
-                fixedBlockSpriteOverride
-            );
+                blockManager.InitializeStageBlocks(
+                    data.blockData,
+                    data.useCeiling,
+                    fixedBlockSpriteOverride
+                );
+            }
         }
         else
         {
@@ -266,7 +344,7 @@ public class StageManager : MonoBehaviour
             playerHealth.InitializePlayerHealth(data.playerMaxHpOverride);
         }
 
-        if (gaugeManager != null)
+        if (!isEndingStage && gaugeManager != null)
         {
             gaugeManager.InitializeGauge(data.startGaugeValue);
         }
@@ -281,7 +359,12 @@ public class StageManager : MonoBehaviour
 
         ApplyBossPatternStateForCurrentStage();
 
-        if (tutorialManager != null)
+        if (isEndingStage)
+            endingSequenceController?.BeginEnding();
+        else
+            endingSequenceController?.EndEndingAndReset();
+
+        if (!isEndingStage && tutorialManager != null)
         {
             tutorialManager.BeginStage(currentStageIndex, data);
         }
@@ -347,6 +430,47 @@ public class StageManager : MonoBehaviour
         return stages != null && index >= 0 && index < stages.Length;
     }
 
+    private bool IsNormalStageIndex(int index)
+    {
+        if (!IsValidStageIndex(index))
+            return false;
+
+        StageDefinition stage = stages[index];
+        return stage != null &&
+               stage.StageType == StageType.Normal &&
+               !stage.isTutorialStage &&
+               index != titleStageIndex;
+    }
+
+    private bool IsPlayableStartStageIndex(int index)
+    {
+        if (!IsValidStageIndex(index))
+            return false;
+
+        StageDefinition stage = stages[index];
+
+        if (stage == null)
+            return false;
+
+        if (index == titleStageIndex)
+            return false;
+
+        return stage.StageType == StageType.Normal ||
+               stage.StageType == StageType.Tutorial ||
+               stage.isTutorialStage;
+    }
+
+    private int FindFirstStageIndex(StageType stageType)
+    {
+        for (int i = 0; i < StageCount; i++)
+        {
+            if (stages[i] != null && stages[i].StageType == stageType)
+                return i;
+        }
+
+        return -1;
+    }
+
     private void ApplyBossPatternStateForCurrentStage()
     {
         if (bossController == null)
@@ -355,7 +479,7 @@ public class StageManager : MonoBehaviour
         if (bossController == null)
             return;
 
-        if (currentStageIndex == bossStageIndex)
+        if (!IsCurrentStageEnding && currentStageIndex == bossStageIndex)
             bossController.StartBossPattern();
         else
             bossController.StopBossPattern();

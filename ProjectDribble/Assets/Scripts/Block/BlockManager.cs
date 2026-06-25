@@ -186,6 +186,19 @@ public class BlockManager : MonoBehaviour
         }
     }
 
+    public void ClearStageBlocks()
+    {
+        StopGrowth();
+        ClearAllSpawnedBlocks();
+        occupied = null;
+        fixedOccupied = null;
+        blockTypes = null;
+        stemOwner = null;
+        data = null;
+        normalBlocksClearedNotified = false;
+        stemGrowthStates.Clear();
+    }
+
     private void CreateGrid()
     {
         if (data == null)
@@ -994,6 +1007,9 @@ public class BlockManager : MonoBehaviour
 
     public bool[,] GetStartConnectedCells()
     {
+        if (data == null || occupied == null)
+            return new bool[0, 0];
+
         bool[,] connected = new bool[data.width, data.height];
 
         if (data.UseStemGrowth && data.HasStemGrowthData)

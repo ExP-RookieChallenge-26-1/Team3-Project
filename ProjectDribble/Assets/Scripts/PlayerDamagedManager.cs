@@ -33,11 +33,25 @@ public class PlayerDamagedManager : MonoBehaviour
 
     private void CheckConnected()
     {
+        if (blockManager == null)
+        {
+            isConnected = false;
+            return;
+        }
+
         bool[,] connected = blockManager.GetStartConnectedCells();
 
         isConnected = false;
 
-        for (int i = 0; i < 7; i++)
+        int width = connected.GetLength(0);
+        int height = connected.GetLength(1);
+
+        if (width <= 0 || height <= 19)
+            return;
+
+        int maxX = Mathf.Min(7, width);
+
+        for (int i = 0; i < maxX; i++)
         {
             if (connected[i, 19])
             {
@@ -51,10 +65,12 @@ public class PlayerDamagedManager : MonoBehaviour
     {
         while (isConnected)
         {
-            playerHealth.TakeDamage(data.damagePerTick);
+            if (playerHealth != null && data != null)
+                playerHealth.TakeDamage(data.damagePerTick);
             Debug.Log("데미지 받기");
 
-            yield return new WaitForSeconds(data.damageInterval);
+            float interval = data != null ? data.damageInterval : 1f;
+            yield return new WaitForSeconds(interval);
         }
 
         damageCoroutine = null;

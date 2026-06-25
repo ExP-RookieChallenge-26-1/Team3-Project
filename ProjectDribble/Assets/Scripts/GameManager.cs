@@ -32,10 +32,13 @@ public class GameManager : MonoBehaviour
     private bool isPaused;
     private float timeScaleBefore = 1f;
     private bool isGameStarted;
+    private bool isStageClearInputBlocked;
 
     public bool IsPausedByTutorial => isPausedByTutorial;
     public bool IsPaused => isPaused;
     public bool IsGameStarted => isGameStarted;
+    public bool IsStageClearInputBlocked => isStageClearInputBlocked;
+    public bool IsPlayerInputBlocked => isStageClearInputBlocked;
     public bool IsRecallTutorialActive { get; private set; }
 
     private void Awake()
@@ -90,9 +93,7 @@ public class GameManager : MonoBehaviour
             saveManager.Save();
         }
 
-        timeScaleBefore = Time.timeScale;
-        Time.timeScale = 0f;
-        isPaused = true;
+        isStageClearInputBlocked = true;
 
         if (stageClearUI != null)
             stageClearUI.SetActive(false);
@@ -119,6 +120,9 @@ public class GameManager : MonoBehaviour
 
     public void RequestGameOver()
     {
+        if (isStageClearInputBlocked)
+            return;
+
         FeedbackManager.Instance?.StopRecallHoldFeedback();
         FeedbackManager.Instance?.StopLaserChargeFeedback();
         timeScaleBefore = Time.timeScale;
@@ -151,10 +155,11 @@ public class GameManager : MonoBehaviour
         isPaused = false;
         isGameStarted = true;
         SoundManager.Instance?.ClearBgmMuffles();
-        SoundManager.Instance?.PlayGameplayBgm();
+        SoundManager.Instance?.PlayGameplayBgm(true);
         playTestUI.SetActive(false);
         titleUI.SetActive(false);
         pauseButton.SetActive(true);
+        isStageClearInputBlocked = false;
 
         stageManager.StartStage(startStageIndex);
     }
@@ -179,6 +184,7 @@ public class GameManager : MonoBehaviour
         timeScaleBefore = 1f;
         isPaused = false;
         isGameStarted = true;
+        isStageClearInputBlocked = false;
 
         if (titleUI != null)
             titleUI.SetActive(false);
@@ -210,13 +216,21 @@ public class GameManager : MonoBehaviour
         if (gameOverUI != null)
             gameOverUI.SetActive(false);
 
+        if (gameClearUI != null)
+            gameClearUI.SetActive(false);
+
         // Restore gameplay before stage initialization so a tutorial popup can
         // capture the correct pre-popup time scale and pause the retried stage.
         ResumeGame();
         stageManager.RestartCurrentStage();
+        SoundManager.Instance?.PlayGameplayBgm(true);
+        isStageClearInputBlocked = false;
 
         if (paddleController != null)
             paddleController.ResetPosition();
+
+        if (pauseButton != null)
+            pauseButton.SetActive(true);
     }
 
     public void NextStage()
@@ -228,14 +242,22 @@ public class GameManager : MonoBehaviour
 
         if (!moved)
         {
+            isStageClearInputBlocked = false;
             ToTitle();
             return;
         }
 
+        SoundManager.Instance?.PlayGameplayBgm(true);
+        isStageClearInputBlocked = false;
+
         if (paddleController != null)
             paddleController.ResetPosition();
 
-        stageClearUI.SetActive(false);
+        if (stageClearUI != null)
+            stageClearUI.SetActive(false);
+
+        if (pauseButton != null)
+            pauseButton.SetActive(true);
     }
 
     public void PauseGame()
@@ -368,6 +390,7 @@ public class GameManager : MonoBehaviour
         isPaused = true;
         isGameStarted = false;
         isPausedByTutorial = false;
+        isStageClearInputBlocked = false;
         IsRecallTutorialActive = false;
         timeScaleBefore = 1f;
         timeScaleBeforeTutorial = 1f;

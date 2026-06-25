@@ -317,12 +317,22 @@ public class SoundManager : MonoBehaviour
 
     public void PlayGameplayBgm()
     {
-        PlayBgm(SoundId.GameplayBGM);
+        PlayGameplayBgm(false);
+    }
+
+    public void PlayGameplayBgm(bool restart)
+    {
+        PlayBgm(SoundId.GameplayBGM, restart);
     }
 
     public void PlayBgm(SoundId id)
     {
-        if (currentBgmId == id && isBgmScheduled)
+        PlayBgm(id, false);
+    }
+
+    public void PlayBgm(SoundId id, bool restart)
+    {
+        if (!restart && currentBgmId == id && isBgmScheduled)
             return;
 
         if (!TryGetSoundData(id, out SoundData data))
@@ -334,10 +344,15 @@ public class SoundManager : MonoBehaviour
             return;
         }
 
-        PlayBgmInternal(id, data);
+        PlayBgmInternal(id, data, restart);
     }
 
     private void PlayBgmInternal(SoundId id, SoundData data)
+    {
+        PlayBgmInternal(id, data, false);
+    }
+
+    private void PlayBgmInternal(SoundId id, SoundData data, bool restart)
     {
         if (bgmSource == null)
         {
@@ -345,7 +360,7 @@ public class SoundManager : MonoBehaviour
             return;
         }
 
-        if (currentBgmId == id && isBgmScheduled)
+        if (!restart && currentBgmId == id && isBgmScheduled)
             return;
 
         AudioClip introClip = GetBgmIntroClip(data);
@@ -428,6 +443,18 @@ public class SoundManager : MonoBehaviour
     public void StopBGM()
     {
         StopBgm();
+    }
+
+    public void StopAllAudioForEnding()
+    {
+        StopBgm();
+        StopLoop();
+
+        if (defaultSfxSource != null)
+            defaultSfxSource.Stop();
+
+        if (uiSfxSource != null)
+            uiSfxSource.Stop();
     }
 
     public void SetVolume(SoundType type, float volume)

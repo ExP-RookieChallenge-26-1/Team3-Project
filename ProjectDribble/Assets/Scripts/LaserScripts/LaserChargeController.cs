@@ -66,6 +66,13 @@ public class LaserChargeController : MonoBehaviour
     // 차징존에 공이 들어오고 나갈 때 호출되는 이벤트 핸들러
     private void HandleDribblingChanged(bool value)
     {
+        if (IsPlayerInputBlocked())
+        {
+            CancelChargeAndRefund();
+            isDribbling = false;
+            return;
+        }
+
         if (IsRecallTutorialActive())
         {
             if (isDribbling || chargeTimer > 0f || chargeCount > 0)
@@ -119,6 +126,9 @@ public class LaserChargeController : MonoBehaviour
 
     private void HandleBallCaptured()
     {
+        if (IsPlayerInputBlocked())
+            return;
+
         if (IsRecallTutorialActive())
             return;
 
@@ -138,6 +148,13 @@ public class LaserChargeController : MonoBehaviour
     private void HandleBallReleased()
     {
         FeedbackManager.Instance?.StopLaserChargeFeedback();
+
+        if (IsPlayerInputBlocked())
+        {
+            CancelChargeAndRefund();
+            isDribbling = false;
+            return;
+        }
 
         if (IsRecallTutorialActive())
         {
@@ -172,6 +189,16 @@ public class LaserChargeController : MonoBehaviour
     
     void Update()
     {
+        if (IsPlayerInputBlocked())
+        {
+            if (isDribbling || chargeTimer > 0f || chargeCount > 0)
+                CancelChargeAndRefund();
+
+            isDribbling = false;
+            laserChargePreview?.Hide();
+            return;
+        }
+
         if (IsRecallTutorialActive())
         {
             if (isDribbling || chargeTimer > 0f || chargeCount > 0)
@@ -416,6 +443,11 @@ public class LaserChargeController : MonoBehaviour
     private bool IsRecallTutorialActive()
     {
         return GameManager.Instance != null && GameManager.Instance.IsRecallTutorialActive;
+    }
+
+    private bool IsPlayerInputBlocked()
+    {
+        return GameManager.Instance != null && GameManager.Instance.IsPlayerInputBlocked;
     }
 
     private bool IsPointerOverUI()

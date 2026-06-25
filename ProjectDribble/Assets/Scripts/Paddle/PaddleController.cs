@@ -25,7 +25,10 @@ public class PaddleController : MonoBehaviour
 
     private bool IsInputPressed => inputReader != null && inputReader.IsPressed;
 
-    public bool IsPaddleActive => (GameManager.Instance != null && !GameManager.Instance.IsGameStarted) || IsInputPressed;
+    public bool IsPaddleActive =>
+        GameManager.Instance != null &&
+        !GameManager.Instance.IsPlayerInputBlocked &&
+        (!GameManager.Instance.IsGameStarted || IsInputPressed);
     public bool IsInActivationRewardGracePeriod =>
         Time.time < lastActivationTime + activationRewardGracePeriod;
     public float VelocityX => velocityX;

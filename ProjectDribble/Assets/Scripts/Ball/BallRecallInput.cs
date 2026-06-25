@@ -24,6 +24,14 @@ public class BallRecallInput : MonoBehaviour
 
     private void Update()
     {
+        if (IsPlayerInputBlocked())
+        {
+            CancelHold();
+            isPointerDown = false;
+            hasRecalledThisSwipe = false;
+            return;
+        }
+
         HandleTouchInput();
 
 #if UNITY_EDITOR || UNITY_STANDALONE
@@ -194,6 +202,11 @@ public class BallRecallInput : MonoBehaviour
     private bool IsRecallTutorialActive()
     {
         return GameManager.Instance != null && GameManager.Instance.IsRecallTutorialActive;
+    }
+
+    private bool IsPlayerInputBlocked()
+    {
+        return GameManager.Instance != null && GameManager.Instance.IsPlayerInputBlocked;
     }
 
     private bool IsPointerOverUI(int pointerId = -1)

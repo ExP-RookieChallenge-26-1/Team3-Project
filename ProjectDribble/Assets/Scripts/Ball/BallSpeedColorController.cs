@@ -6,6 +6,11 @@ public class BallSpeedColorController : MonoBehaviour
     [SerializeField] private BallSpeedController speedController;
     [SerializeField] private BallMovement ballMovement;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Sprite normalSprite;
+    [SerializeField] private Sprite midSpeedSprite;
+    [SerializeField] private Sprite highSpeedSprite;
+
+    private Sprite defaultSprite;
 
     private void Reset()
     {
@@ -15,6 +20,7 @@ public class BallSpeedColorController : MonoBehaviour
     private void Awake()
     {
         AutoAssignReferences();
+        CacheDefaultSprite();
     }
 
     private void Update()
@@ -23,9 +29,13 @@ public class BallSpeedColorController : MonoBehaviour
             return;
 
         float currentSpeed = GetCurrentSpeed();
-        Color speedColor = GetColorForSpeed(currentSpeed);
-        //speedColor.a = spriteRenderer.color.a;
-        spriteRenderer.color = speedColor;
+        Sprite speedSprite = GetSpriteForSpeed(currentSpeed);
+
+        if (speedSprite != null && spriteRenderer.sprite != speedSprite)
+            spriteRenderer.sprite = speedSprite;
+
+        Color currentColor = spriteRenderer.color;
+        spriteRenderer.color = new Color(Color.white.r, Color.white.g, Color.white.b, currentColor.a);
     }
 
     private void AutoAssignReferences()
@@ -56,6 +66,17 @@ public class BallSpeedColorController : MonoBehaviour
         }
     }
 
+    private void CacheDefaultSprite()
+    {
+        if (spriteRenderer == null)
+            return;
+
+        defaultSprite = spriteRenderer.sprite;
+
+        if (normalSprite == null)
+            normalSprite = defaultSprite;
+    }
+
     private float GetCurrentSpeed()
     {
         if (speedController != null)
@@ -67,21 +88,41 @@ public class BallSpeedColorController : MonoBehaviour
         return 0f;
     }
 
-    private Color GetColorForSpeed(float currentSpeed)
+    private Sprite GetSpriteForSpeed(float currentSpeed)
     {
         float startSpeed = data.speedColorStartSpeed;
         float endSpeed = data.speedColorEndSpeed;
 
         if (endSpeed <= startSpeed)
-            return currentSpeed <= startSpeed ? data.normalSpeedColor : data.maxSpeedColor;
+            return currentSpeed <= startSpeed ? GetNormalSprite() : GetHighSpeedSprite();
 
         if (currentSpeed <= startSpeed)
-            return data.normalSpeedColor;
+            return GetNormalSprite();
 
         if (currentSpeed >= endSpeed)
-            return data.maxSpeedColor;
+            return GetHighSpeedSprite();
 
-        float t = Mathf.InverseLerp(startSpeed, endSpeed, currentSpeed);
-        return Color.Lerp(data.normalSpeedColor, data.maxSpeedColor, t);
+        return GetMidSpeedSprite();
+    }
+
+    private Sprite GetNormalSprite()
+    {
+        return normalSprite != null ? normalSprite : defaultSprite;
+    }
+
+    private Sprite GetMidSpeedSprite()
+    {
+        if (midSpeedSprite != null)
+            return midSpeedSprite;
+
+        return GetNormalSprite();
+    }
+
+    private Sprite GetHighSpeedSprite()
+    {
+        if (highSpeedSprite != null)
+            return highSpeedSprite;
+
+        return GetMidSpeedSprite();
     }
 }

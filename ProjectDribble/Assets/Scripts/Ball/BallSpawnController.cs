@@ -5,6 +5,7 @@ public class BallSpawnController : MonoBehaviour
     [SerializeField] private BallMovement ballMovement;
 
     private BallController ballController;
+    private BallSpeedController ballSpeedController;
     private Vector2 lastStartPosition;
     private Vector2 lastStartDirection = Vector2.down;
     private float lastStartSpeed;
@@ -17,6 +18,7 @@ public class BallSpawnController : MonoBehaviour
         }
 
         ballController = GetComponent<BallController>();
+        ballSpeedController = GetComponent<BallSpeedController>();
     }
 
     public void InitializeBall(
@@ -41,6 +43,8 @@ public class BallSpawnController : MonoBehaviour
             ballMovement.ResetMovementState();
             ballMovement.SetBallSpeed(); //base speed로
         }
+
+        ballSpeedController?.ResetToBaseSpeed();
     }
 
     

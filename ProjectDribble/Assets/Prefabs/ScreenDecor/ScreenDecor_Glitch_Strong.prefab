@@ -106,9 +106,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DecorativeFlickerSprite
   targetRenderer: {fileID: 8117984200867004483}
   canFlicker: 1
-  flickerAmount: 0.2
-  flickerSpeed: 8
-  minAlpha: 0.25
+  flickerAmount: 0.4
+  flickerSpeed: 14
+  minAlpha: 0.674
   phase: 0
   randomizePhaseOnAwake: 1
   captureColorOnEnable: 1

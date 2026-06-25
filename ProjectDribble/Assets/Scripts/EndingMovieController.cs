@@ -53,6 +53,7 @@ public class EndingMovieController : MonoBehaviour
     public void PlayMovie()
     {
         Time.timeScale = 1f;
+        SoundManager.Instance?.StopAllAudioForEnding();
         isPlaying = false;
         waitingForTap = false;
         inputEnabledRealtime = float.PositiveInfinity;
@@ -88,6 +89,7 @@ public class EndingMovieController : MonoBehaviour
         if (videoPlayer.clip.length <= 0d)
             Debug.LogWarning("[EndingMovieController] Video clip length is 0 or not ready yet. Check import/settings.");
 
+        MuteVideoAudio();
         videoPlayer.Stop();
         videoPlayer.isLooping = false;
         videoPlayer.time = 0d;
@@ -151,5 +153,17 @@ public class EndingMovieController : MonoBehaviour
             gameManager.GoHomeFromEnding();
         else
             Debug.LogWarning("[EndingMovieController] GameManager is missing; cannot return home.");
+    }
+
+    private void MuteVideoAudio()
+    {
+        if (videoPlayer == null)
+            return;
+
+        videoPlayer.audioOutputMode = VideoAudioOutputMode.None;
+
+        ushort trackCount = videoPlayer.controlledAudioTrackCount;
+        for (ushort i = 0; i < trackCount; i++)
+            videoPlayer.SetDirectAudioMute(i, true);
     }
 }

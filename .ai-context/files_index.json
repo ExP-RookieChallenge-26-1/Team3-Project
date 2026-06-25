@@ -17649,9 +17649,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "file_name": "BallRecallInput.cs",
-    "content_hash": "673a9c3eac50881d22876fffa32e277e64f2f1a8",
-    "size": 4976,
-    "line_count": 212,
+    "content_hash": "8996b8a12feb74f442dbbb9bdfeceb03875dc585",
+    "size": 5299,
+    "line_count": 225,
     "namespace": "",
     "using_list": [
       "UnityEngine",
@@ -17686,6 +17686,7 @@
       "OnDisable",
       "RecallBall",
       "IsRecallTutorialActive",
+      "IsPlayerInputBlocked",
       "IsPointerOverUI"
     ],
     "fields": [
@@ -17787,6 +17788,8 @@
       "Setting",
       "Hold",
       "Update",
+      "IsPlayerInputBlocked",
+      "CancelHold",
       "HandleTouchInput",
       "UNITY_EDITOR",
       "UNITY_STANDALONE",
@@ -17795,7 +17798,6 @@
       "IsPointerOverUI",
       "ReadValue",
       "BeginPointer",
-      "CancelHold",
       "MovePointer",
       "EndPointer",
       "Pointer",
@@ -17843,8 +17845,8 @@
       1
     ],
     "guessed_roles": [
-      "runtime",
       "player",
+      "runtime",
       "manager",
       "ui",
       "save-load"
@@ -17991,9 +17993,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallSpawnController.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallSpawnController.cs",
     "file_name": "BallSpawnController.cs",
-    "content_hash": "fea156a373faa3eb2d201c85832f1a99fd964b8c",
-    "size": 1258,
-    "line_count": 52,
+    "content_hash": "c635b7977d3da423dcfcac31abb4c558344f8683",
+    "size": 1428,
+    "line_count": 56,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -18023,6 +18025,13 @@
       {
         "name": "ballController",
         "type": "BallController",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "ballSpeedController",
+        "type": "BallSpeedController",
         "access": "private",
         "serialized": false,
         "is_static": false
@@ -18063,7 +18072,7 @@
     "has_on_disable": false,
     "serialize_field_count": 0,
     "public_field_count": 0,
-    "get_component_count": 2,
+    "get_component_count": 3,
     "find_call_count": 0,
     "new_keyword_count": 0,
     "coroutine_count": 0,
@@ -18071,6 +18080,7 @@
     "dont_destroy_on_load": false,
     "referenced_types": [
       "BallController",
+      "BallSpeedController",
       "Vector2",
       "float",
       "UnityEngine",
@@ -18081,11 +18091,13 @@
       "SetBallDirection",
       "ResetMovementState",
       "SetBallSpeed",
+      "ResetToBaseSpeed",
       "ResetBallState"
     ],
     "component_access_types": [
       "BallMovement",
-      "BallController"
+      "BallController",
+      "BallSpeedController"
     ],
     "created_types": [],
     "singleton_access_types": [],
@@ -18108,9 +18120,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallSpeedColorController.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallSpeedColorController.cs",
     "file_name": "BallSpeedColorController.cs",
-    "content_hash": "b71ee6539afd4e51b2230314f90be057dc8eaa01",
-    "size": 2468,
-    "line_count": 88,
+    "content_hash": "f6defca76cb906d7a5a9ca136238ea50e4964338",
+    "size": 3436,
+    "line_count": 129,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -18135,11 +18147,30 @@
       "Reset",
       "Awake",
       "Update",
+      "Color",
       "AutoAssignReferences",
+      "CacheDefaultSprite",
       "GetCurrentSpeed",
-      "GetColorForSpeed"
+      "GetSpriteForSpeed",
+      "GetNormalSprite",
+      "GetMidSpeedSprite",
+      "GetHighSpeedSprite"
     ],
     "fields": [
+      {
+        "name": "defaultSprite",
+        "type": "Sprite",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "currentColor",
+        "type": "Color",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
       {
         "name": "startSpeed",
         "type": "float",
@@ -18172,11 +18203,13 @@
     "public_field_count": 0,
     "get_component_count": 4,
     "find_call_count": 0,
-    "new_keyword_count": 0,
+    "new_keyword_count": 1,
     "coroutine_count": 0,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
+      "Sprite",
+      "Color",
       "float",
       "UnityEngine",
       "BallData",
@@ -18186,16 +18219,17 @@
       "Reset",
       "AutoAssignReferences",
       "Awake",
+      "CacheDefaultSprite",
       "Update",
       "GetCurrentSpeed",
-      "Color",
-      "GetColorForSpeed",
+      "GetSpriteForSpeed",
       "GetComponent",
       "GetComponentInChildren",
       "BallController",
       "CurrentSpeed",
-      "InverseLerp",
-      "Lerp"
+      "GetNormalSprite",
+      "GetHighSpeedSprite",
+      "GetMidSpeedSprite"
     ],
     "component_access_types": [
       "BallSpeedController",
@@ -18203,7 +18237,9 @@
       "SpriteRenderer",
       "BallController"
     ],
-    "created_types": [],
+    "created_types": [
+      "Color"
+    ],
     "singleton_access_types": [],
     "string_literals": [],
     "numeric_literals": [
@@ -18213,11 +18249,13 @@
       "runtime",
       "player",
       "data",
+      "combat",
       "save-load"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
       "Update 기반 처리 존재",
+      "전투 계열 로직 포함",
       "저장/불러오기 관련 로직 포함",
       "컴포넌트 조회 사용"
     ]
@@ -22685,9 +22723,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
     "path": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
     "file_name": "EndingMovieController.cs",
-    "content_hash": "b16d872ff25cd08f9d72481f10705cc537c11b9a",
-    "size": 4247,
-    "line_count": 156,
+    "content_hash": "77c104bb568456cefd4897634b27b824a6f260ea",
+    "size": 4664,
+    "line_count": 170,
     "namespace": "",
     "using_list": [
       "UnityEngine",
@@ -22719,7 +22757,8 @@
       "StopAndReset",
       "HandleMovieFinished",
       "HasReturnInput",
-      "ReturnHomeAfterMovie"
+      "ReturnHomeAfterMovie",
+      "MuteVideoAudio"
     ],
     "fields": [
       {
@@ -22740,6 +22779,13 @@
         "name": "inputEnabledRealtime",
         "type": "float",
         "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "trackCount",
+        "type": "ushort",
+        "access": "internal",
         "serialized": false,
         "is_static": false
       }
@@ -22770,6 +22816,7 @@
     "referenced_types": [
       "bool",
       "float",
+      "ushort",
       "UnityEngine",
       "Video",
       "VideoPlayer",
@@ -22787,10 +22834,14 @@
       "HasReturnInput",
       "ReturnHomeAfterMovie",
       "PlayMovie",
+      "SoundManager",
+      "Instance",
+      "StopAllAudioForEnding",
       "SetActive",
       "HideAndReset",
       "LogWarning",
       "Check",
+      "MuteVideoAudio",
       "Stop",
       "Play",
       "Input",
@@ -22799,13 +22850,16 @@
       "GetTouch",
       "TouchPhase",
       "Began",
-      "Instance",
       "EndEndingAndReset",
-      "GoHomeFromEnding"
+      "GoHomeFromEnding",
+      "VideoAudioOutputMode",
+      "None",
+      "SetDirectAudioMute"
     ],
     "component_access_types": [],
     "created_types": [],
     "singleton_access_types": [
+      "SoundManager",
       "GameManager"
     ],
     "string_literals": [
@@ -23183,9 +23237,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
     "path": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
     "file_name": "PointerInputReader.cs",
-    "content_hash": "42d6877defa23b9e20da36ee78d29dd1bc4ea96d",
-    "size": 2064,
-    "line_count": 72,
+    "content_hash": "436e1e0a3ecbdfa82c7a689482a9a8c7ba8ed415",
+    "size": 2123,
+    "line_count": 73,
     "namespace": "",
     "using_list": [
       "UnityEngine",
@@ -23284,6 +23338,7 @@
       "GameManager",
       "Instance",
       "IsRecallTutorialActive",
+      "IsPlayerInputBlocked",
       "TryReadPointer",
       "Touchscreen",
       "ReadValue",
@@ -23301,10 +23356,10 @@
     "string_literals": [],
     "numeric_literals": [],
     "guessed_roles": [
+      "player",
       "manager",
       "ui",
-      "runtime",
-      "player"
+      "runtime"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
@@ -23934,9 +23989,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "path": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "file_name": "GameManager.cs",
-    "content_hash": "bebe45ae2ab2a7131e0111d4fb0bd7dd095340b9",
-    "size": 12554,
-    "line_count": 461,
+    "content_hash": "e7021f3bcd7ecbaf44a30a50a3f2edf126d985c4",
+    "size": 13370,
+    "line_count": 484,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -24029,6 +24084,13 @@
         "is_static": false
       },
       {
+        "name": "isStageClearInputBlocked",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "currentStage",
         "type": "int",
         "access": "internal",
@@ -24088,6 +24150,8 @@
       "IsPausedByTutorial",
       "IsPaused",
       "IsGameStarted",
+      "IsStageClearInputBlocked",
+      "IsPlayerInputBlocked",
       "IsRecallTutorialActive",
       "Awake",
       "LogWarning",
@@ -24195,11 +24259,11 @@
       0
     ],
     "guessed_roles": [
+      "player",
       "runtime",
       "ui",
       "manager",
-      "save-load",
-      "player"
+      "save-load"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
@@ -25430,9 +25494,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "path": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "file_name": "LaserChargeController.cs",
-    "content_hash": "1cffea87ef12b807d8c9cb4bc50063c78a744732",
-    "size": 11497,
-    "line_count": 437,
+    "content_hash": "8491e6dc7fa2eb832c985d4694611a8ed13dad43",
+    "size": 12251,
+    "line_count": 469,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -25479,6 +25543,7 @@
       "Reset",
       "IsLaserUnlocked",
       "IsRecallTutorialActive",
+      "IsPlayerInputBlocked",
       "IsPointerOverUI"
     ],
     "fields": [
@@ -25636,6 +25701,8 @@
       "StopLaserChargeFeedback",
       "SoundManager",
       "StopLoop",
+      "IsPlayerInputBlocked",
+      "CancelChargeAndRefund",
       "IsRecallTutorialActive",
       "Reset",
       "IsLaserUnlocked",
@@ -25681,7 +25748,6 @@
       "Vector3",
       "GetComponent",
       "AddGauge",
-      "CancelChargeAndRefund",
       "RestoreGauge",
       "Clamp01",
       "GameManager",
@@ -25710,9 +25776,9 @@
     "guessed_roles": [
       "runtime",
       "data",
+      "player",
       "manager",
-      "ui",
-      "player"
+      "ui"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
@@ -26626,9 +26692,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
     "path": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
     "file_name": "PaddleController.cs",
-    "content_hash": "284cac4ab5664c3b2c7aa3e2b1295764ba5c44cd",
-    "size": 8225,
-    "line_count": 278,
+    "content_hash": "4237c90dad293b02af9747af736ed524f5fe190f",
+    "size": 8440,
+    "line_count": 283,
     "namespace": "",
     "using_list": [
       "UnityEngine",
@@ -26819,6 +26885,7 @@
       "InputSystem",
       "PointerInputReader",
       "SpriteRenderer",
+      "PaddleCorruptionVisual",
       "Min",
       "TransparentAlpha",
       "IsInputPressed",
@@ -26826,6 +26893,7 @@
       "IsPaddleActive",
       "GameManager",
       "Instance",
+      "IsPlayerInputBlocked",
       "IsGameStarted",
       "IsInActivationRewardGracePeriod",
       "VelocityX",
@@ -26850,6 +26918,7 @@
       "Length",
       "UpPaddleSprite",
       "LogWarning",
+      "SetVisibilityAlpha",
       "SetPaddleCollider",
       "Find",
       "Collider2D",
@@ -26906,6 +26975,153 @@
       "저장/불러오기 관련 로직 포함",
       "컴포넌트 조회 사용",
       "Find 계열 탐색 사용"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "path": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "file_name": "PaddleCorruptionVisual.cs",
+    "content_hash": "1b63784a29502e1f9388b2fd52a1a0e22621feb5",
+    "size": 3183,
+    "line_count": 103,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "PaddleCorruptionVisual",
+        "kind": "class",
+        "access": "internal",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "PaddleCorruptionVisual",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Color",
+      "Range",
+      "Awake",
+      "ApplyHealthRatio",
+      "SetVisibilityAlpha",
+      "ResetVisual",
+      "CalculateCorruption",
+      "ApplyCorruption",
+      "ApplyBaseTint",
+      "ApplyOverlay",
+      "OnValidate"
+    ],
+    "fields": [
+      {
+        "name": "overlayFlicker",
+        "type": "DecorativeFlickerSprite",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "currentCorruption",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "visibilityAlphaMultiplier",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "color",
+        "type": "Color",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Awake"
+    ],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 2,
+    "find_call_count": 0,
+    "new_keyword_count": 1,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "DecorativeFlickerSprite",
+      "float",
+      "Color",
+      "UnityEngine",
+      "Renderers",
+      "SpriteRenderer",
+      "Base",
+      "Tint",
+      "Overlay",
+      "Awake",
+      "GetComponent",
+      "ApplyCorruption",
+      "ApplyHealthRatio",
+      "CalculateCorruption",
+      "SetVisibilityAlpha",
+      "Clamp01",
+      "ResetVisual",
+      "InverseLerp",
+      "ApplyBaseTint",
+      "ApplyOverlay",
+      "Lerp",
+      "SetBaseColor",
+      "OnValidate"
+    ],
+    "component_access_types": [
+      "SpriteRenderer",
+      "DecorativeFlickerSprite"
+    ],
+    "created_types": [
+      "Color"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "Renderers",
+      "Base Tint",
+      "Overlay"
+    ],
+    "numeric_literals": [
+      0.4,
+      1,
+      0,
+      0.7,
+      0.001
+    ],
+    "guessed_roles": [
+      "runtime",
+      "combat",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
     ]
   },
   {
@@ -27228,9 +27444,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
     "path": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
     "file_name": "PlayerHealth.cs",
-    "content_hash": "58ee78eb26b8993384482a23688d923c54bad177",
-    "size": 2959,
-    "line_count": 118,
+    "content_hash": "19d827131ecc6ce7e76d6065e454a690985b0448",
+    "size": 3816,
+    "line_count": 146,
     "namespace": "",
     "using_list": [
       "System",
@@ -27259,7 +27475,9 @@
       "InitializePlayerHealth",
       "ResetPlayerHealth",
       "TakeDamage",
-      "UpdateGroundColor",
+      "UpdateHealthVisuals",
+      "ApplyRendererRgb",
+      "UpdatePaddleCorruptionVisuals",
       "Die",
       "StartGameOverSoundDelay",
       "PlayGameOverSoundDelayed",
@@ -27300,6 +27518,13 @@
         "access": "internal",
         "serialized": false,
         "is_static": false
+      },
+      {
+        "name": "color",
+        "type": "Color",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
       }
     ],
     "properties": [],
@@ -27325,6 +27550,7 @@
     "referenced_types": [
       "int",
       "bool",
+      "Color",
       "System",
       "Collections",
       "DefaultNamespace",
@@ -27337,13 +27563,15 @@
       "SpriteRenderer",
       "UpPaddleRenderer",
       "DownPaddleRenderer",
+      "Paddle",
+      "PaddleCorruptionVisual",
       "CurrentHp",
       "MaxHp",
       "Awake",
       "InitializePlayerHealth",
       "Max",
       "ResetPlayerHealth",
-      "UpdateGroundColor",
+      "UpdateHealthVisuals",
       "TakeDamage",
       "Clamp",
       "Log",
@@ -27356,8 +27584,11 @@
       "PlayerHit",
       "Clamp01",
       "Die",
-      "Color",
       "Lerp",
+      "ApplyRendererRgb",
+      "UpdatePaddleCorruptionVisuals",
+      "Length",
+      "ApplyHealthRatio",
       "Game",
       "Over",
       "StartGameOverSoundDelay",
@@ -27377,6 +27608,7 @@
     "string_literals": [
       "Data",
       "Ground Visual",
+      "Paddle Visual",
       "Player HP: {currentHp}",
       "Game Over"
     ],
@@ -28022,9 +28254,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "file_name": "SoundManager.cs",
-    "content_hash": "c36a7e6267eb91b2781300f8d37432d2440c580c",
-    "size": 14150,
-    "line_count": 520,
+    "content_hash": "e22a6dfa7a2f9333e55eac76e1dd9c2c83924a3a",
+    "size": 14738,
+    "line_count": 547,
     "namespace": "",
     "using_list": [
       "System.Collections.Generic",
@@ -28072,6 +28304,7 @@
       "StopBgmSources",
       "StopBgm",
       "StopBGM",
+      "StopAllAudioForEnding",
       "SetVolume",
       "SetSfxVolume",
       "SetBgmVolume",
@@ -28341,6 +28574,7 @@
       "Intro",
       "StopBgm",
       "StopBGM",
+      "StopAllAudioForEnding",
       "SetVolume",
       "SetBgmVolume",
       "SetSfxVolume",
@@ -30837,9 +31071,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
     "path": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
     "file_name": "DecorativeFlickerSprite.cs",
-    "content_hash": "3478e77f228128c28a0ba5550b6050def86e9fc5",
-    "size": 2073,
-    "line_count": 88,
+    "content_hash": "99b83173e01b351ed7f5e1da1e744273a5ab60f7",
+    "size": 2263,
+    "line_count": 97,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -30869,6 +31103,7 @@
       "OnDisable",
       "SetFlickerEnabled",
       "CaptureBaseColor",
+      "SetBaseColor",
       "RestoreBaseColor",
       "EnsureRenderer"
     ],
@@ -30930,6 +31165,7 @@
       "OnDisable",
       "RestoreBaseColor",
       "SetFlickerEnabled",
+      "SetBaseColor",
       "GetComponent"
     ],
     "component_access_types": [

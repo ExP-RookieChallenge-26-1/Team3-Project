@@ -26168,6 +26168,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "from_class": "BallRecallInput",
+    "to_type": "IsPlayerInputBlocked",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
+    "from_class": "BallRecallInput",
     "to_type": "IsPointerOverGameObject",
     "relation_type": "uses",
     "strength": 1
@@ -26532,6 +26539,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpawnController.cs",
     "from_class": "BallSpawnController",
+    "to_type": "BallSpeedController",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpawnController.cs",
+    "from_class": "BallSpawnController",
     "to_type": "MonoBehaviour",
     "relation_type": "inherits",
     "strength": 4
@@ -26554,6 +26568,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpawnController.cs",
     "from_class": "BallSpawnController",
     "to_type": "BallMovement",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpawnController.cs",
+    "from_class": "BallSpawnController",
+    "to_type": "BallSpeedController",
     "relation_type": "uses",
     "strength": 1
   },
@@ -26589,6 +26610,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpawnController.cs",
     "from_class": "BallSpawnController",
     "to_type": "ResetMovementState",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpawnController.cs",
+    "from_class": "BallSpawnController",
+    "to_type": "ResetToBaseSpeed",
     "relation_type": "uses",
     "strength": 1
   },
@@ -26651,6 +26679,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedColorController.cs",
     "from_class": "BallSpeedColorController",
+    "to_type": "Color",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedColorController.cs",
+    "from_class": "BallSpeedColorController",
     "to_type": "MonoBehaviour",
     "relation_type": "inherits",
     "strength": 4
@@ -26700,6 +26735,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedColorController.cs",
     "from_class": "BallSpeedColorController",
+    "to_type": "CacheDefaultSprite",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedColorController.cs",
+    "from_class": "BallSpeedColorController",
     "to_type": "Color",
     "relation_type": "uses",
     "strength": 1
@@ -26715,13 +26757,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedColorController.cs",
     "from_class": "BallSpeedColorController",
     "to_type": "float",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedColorController.cs",
-    "from_class": "BallSpeedColorController",
-    "to_type": "GetColorForSpeed",
     "relation_type": "uses",
     "strength": 1
   },
@@ -26749,14 +26784,28 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedColorController.cs",
     "from_class": "BallSpeedColorController",
-    "to_type": "InverseLerp",
+    "to_type": "GetHighSpeedSprite",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedColorController.cs",
     "from_class": "BallSpeedColorController",
-    "to_type": "Lerp",
+    "to_type": "GetMidSpeedSprite",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedColorController.cs",
+    "from_class": "BallSpeedColorController",
+    "to_type": "GetNormalSprite",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedColorController.cs",
+    "from_class": "BallSpeedColorController",
+    "to_type": "GetSpriteForSpeed",
     "relation_type": "uses",
     "strength": 1
   },
@@ -26764,6 +26813,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedColorController.cs",
     "from_class": "BallSpeedColorController",
     "to_type": "Reset",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallSpeedColorController.cs",
+    "from_class": "BallSpeedColorController",
+    "to_type": "Sprite",
     "relation_type": "uses",
     "strength": 1
   },
@@ -33868,6 +33924,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
     "from_class": "EndingMovieController",
+    "to_type": "SoundManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
     "to_type": "Awake",
     "relation_type": "uses",
     "strength": 1
@@ -33994,6 +34057,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
     "from_class": "EndingMovieController",
+    "to_type": "MuteVideoAudio",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "None",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
     "to_type": "OnDisable",
     "relation_type": "uses",
     "strength": 1
@@ -34043,7 +34120,28 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
     "from_class": "EndingMovieController",
+    "to_type": "SetDirectAudioMute",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "SoundManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
     "to_type": "Stop",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "StopAllAudioForEnding",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34092,7 +34190,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
     "from_class": "EndingMovieController",
+    "to_type": "ushort",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
     "to_type": "Video",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "VideoAudioOutputMode",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34499,6 +34611,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
     "from_class": "PointerInputReader",
     "to_type": "Instance",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
+    "from_class": "PointerInputReader",
+    "to_type": "IsPlayerInputBlocked",
     "relation_type": "uses",
     "strength": 1
   },
@@ -36122,7 +36241,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
+    "to_type": "IsPlayerInputBlocked",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
     "to_type": "IsRecallTutorialActive",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "IsStageClearInputBlocked",
     "relation_type": "uses",
     "strength": 1
   },
@@ -38362,6 +38495,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
     "from_class": "LaserChargeController",
+    "to_type": "IsPlayerInputBlocked",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/LaserScripts/LaserChargeController.cs",
+    "from_class": "LaserChargeController",
     "to_type": "IsPointerOverGameObject",
     "relation_type": "uses",
     "strength": 1
@@ -40196,6 +40336,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
     "from_class": "PaddleController",
+    "to_type": "IsPlayerInputBlocked",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
+    "from_class": "PaddleController",
     "to_type": "IsPressed",
     "relation_type": "uses",
     "strength": 1
@@ -40260,6 +40407,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
     "from_class": "PaddleController",
     "to_type": "PaddleCaptureZone",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
+    "from_class": "PaddleController",
+    "to_type": "PaddleCorruptionVisual",
     "relation_type": "uses",
     "strength": 1
   },
@@ -40350,6 +40504,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
     "from_class": "PaddleController",
+    "to_type": "SetVisibilityAlpha",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
+    "from_class": "PaddleController",
     "to_type": "SpriteRenderer",
     "relation_type": "uses",
     "strength": 1
@@ -40414,6 +40575,195 @@
     "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleController.cs",
     "from_class": "PaddleController",
     "to_type": "VelocityX",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "DecorativeFlickerSprite",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "SpriteRenderer",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "Color",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "ApplyBaseTint",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "ApplyCorruption",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "ApplyHealthRatio",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "ApplyOverlay",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "Awake",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "Base",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "CalculateCorruption",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "Clamp01",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "Color",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "DecorativeFlickerSprite",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "float",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "GetComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "InverseLerp",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "Lerp",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "OnValidate",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "Overlay",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "Renderers",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "ResetVisual",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "SetBaseColor",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "SetVisibilityAlpha",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "SpriteRenderer",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "Tint",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "UnityEngine",
     "relation_type": "uses",
     "strength": 1
   },
@@ -40812,6 +41162,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
     "from_class": "PlayerHealth",
+    "to_type": "ApplyHealthRatio",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
+    "from_class": "PlayerHealth",
+    "to_type": "ApplyRendererRgb",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
+    "from_class": "PlayerHealth",
     "to_type": "Awake",
     "relation_type": "uses",
     "strength": 1
@@ -40952,6 +41316,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
     "from_class": "PlayerHealth",
+    "to_type": "Length",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
+    "from_class": "PlayerHealth",
     "to_type": "Lerp",
     "relation_type": "uses",
     "strength": 1
@@ -40988,6 +41359,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
     "from_class": "PlayerHealth",
     "to_type": "Over",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
+    "from_class": "PlayerHealth",
+    "to_type": "Paddle",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
+    "from_class": "PlayerHealth",
+    "to_type": "PaddleCorruptionVisual",
     "relation_type": "uses",
     "strength": 1
   },
@@ -41085,7 +41470,14 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
     "from_class": "PlayerHealth",
-    "to_type": "UpdateGroundColor",
+    "to_type": "UpdateHealthVisuals",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
+    "from_class": "PlayerHealth",
+    "to_type": "UpdatePaddleCorruptionVisuals",
     "relation_type": "uses",
     "strength": 1
   },
@@ -42479,6 +42871,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
     "to_type": "Stop",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "StopAllAudioForEnding",
     "relation_type": "uses",
     "strength": 1
   },
@@ -46826,6 +47225,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
     "from_class": "DecorativeFlickerSprite",
     "to_type": "RestoreBaseColor",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Visual/DecorativeFlickerSprite.cs",
+    "from_class": "DecorativeFlickerSprite",
+    "to_type": "SetBaseColor",
     "relation_type": "uses",
     "strength": 1
   },

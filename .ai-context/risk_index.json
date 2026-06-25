@@ -2294,6 +2294,25 @@
     "risk_score": 56
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "class_name": "EndingMovieController",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "init-order-sensitive",
+      "ui-runtime-mixed",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
+      "초기화 순서에 민감할 가능성",
+      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 56
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/LaserScripts/LaserFireFlashEffect.cs",
     "class_name": "LaserFireFlashEffect",
     "risk_flags": [

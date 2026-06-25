@@ -22689,12 +22689,163 @@
     ]
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "path": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "file_name": "EndingMovieController.cs",
+    "content_hash": "b16d872ff25cd08f9d72481f10705cc537c11b9a",
+    "size": 4247,
+    "line_count": 156,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine",
+      "UnityEngine.Video"
+    ],
+    "classes": [
+      {
+        "name": "EndingMovieController",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "EndingMovieController",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Min",
+      "Awake",
+      "OnEnable",
+      "OnDisable",
+      "Update",
+      "PlayMovie",
+      "StopAndReset",
+      "HandleMovieFinished",
+      "HasReturnInput",
+      "ReturnHomeAfterMovie"
+    ],
+    "fields": [
+      {
+        "name": "isPlaying",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "waitingForTap",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "inputEnabledRealtime",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Awake",
+      "OnEnable",
+      "OnDisable",
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": false,
+    "has_on_enable": true,
+    "has_on_disable": true,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "bool",
+      "float",
+      "UnityEngine",
+      "Video",
+      "VideoPlayer",
+      "GameManager",
+      "EndingSequenceController",
+      "StrangePopupController",
+      "Min",
+      "PositiveInfinity",
+      "Awake",
+      "StopAndReset",
+      "OnEnable",
+      "HandleMovieFinished",
+      "OnDisable",
+      "Update",
+      "HasReturnInput",
+      "ReturnHomeAfterMovie",
+      "PlayMovie",
+      "SetActive",
+      "HideAndReset",
+      "LogWarning",
+      "Check",
+      "Stop",
+      "Play",
+      "Input",
+      "GetMouseButtonDown",
+      "Touch",
+      "GetTouch",
+      "TouchPhase",
+      "Began",
+      "Instance",
+      "EndEndingAndReset",
+      "GoHomeFromEnding"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [
+      "GameManager"
+    ],
+    "string_literals": [
+      "[EndingMovieController] VideoPlayer is missing.",
+      "[EndingMovieController] Video clip is missing.",
+      "[EndingMovieController] GameManager is missing; cannot return home."
+    ],
+    "numeric_literals": [
+      0,
+      0.2,
+      1
+    ],
+    "guessed_roles": [
+      "runtime",
+      "player",
+      "manager",
+      "ui",
+      "combat"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재",
+      "UI 관련 로직 포함",
+      "전투 계열 로직 포함"
+    ]
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
     "path": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
     "file_name": "EndingSequenceController.cs",
-    "content_hash": "5577f869d91310cc3b0815d1ace728f5748da5a0",
-    "size": 2702,
-    "line_count": 94,
+    "content_hash": "5cbb9ce6186b682de40ba12da4a9b202d4ab98b4",
+    "size": 2870,
+    "line_count": 98,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -22779,6 +22930,7 @@
       "UnityEngine",
       "EndingGaugeController",
       "StrangePopupController",
+      "EndingMovieController",
       "LaserChargeController",
       "PlayerDamagedManager",
       "IsEnding",
@@ -22787,7 +22939,8 @@
       "SetActive",
       "HideAndReset",
       "BeginFill",
-      "ResetGauge"
+      "ResetGauge",
+      "StopAndReset"
     ],
     "component_access_types": [],
     "created_types": [],
@@ -29117,9 +29270,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
     "path": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
     "file_name": "StrangePopupController.cs",
-    "content_hash": "c85a44b21b65497894acc043446dcb7c42e8698d",
-    "size": 2860,
-    "line_count": 111,
+    "content_hash": "6c09c8972adb360a0a9c4f8145d1aa1ac02ca07f",
+    "size": 3066,
+    "line_count": 119,
     "namespace": "",
     "using_list": [
       "System.Collections",
@@ -29206,6 +29359,7 @@
       "TextMeshProUGUI",
       "GameManager",
       "EndingSequenceController",
+      "EndingMovieController",
       "Awake",
       "HideAndReset",
       "Show",
@@ -29216,6 +29370,7 @@
       "StopRunningCoroutines",
       "Empty",
       "OnClickHome",
+      "PlayMovie",
       "EndEndingAndReset",
       "Instance",
       "GoHomeFromEnding",

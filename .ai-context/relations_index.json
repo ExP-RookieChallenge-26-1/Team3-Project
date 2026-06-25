@@ -28527,6 +28527,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "from_class": "BlockManager",
+    "to_type": "ClearStageBlocks",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
+    "from_class": "BlockManager",
     "to_type": "CollectCeilingSegmentStemGrowthCandidates",
     "relation_type": "uses",
     "strength": 1
@@ -33684,6 +33691,265 @@
     "strength": 1
   },
   {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "Color",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "Abs",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "ApplyFill",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "Awake",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "BeginFill",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "bool",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "Clamp01",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "Color",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "CreateFlickerColor",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "Events",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "Fill01",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "float",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "Image",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "Invoke",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "Length",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "ResetGauge",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "SetActive",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "Sin",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "UI",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "UnityEvent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "Update",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
+    "to_type": "BeginEnding",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
+    "to_type": "BeginFill",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
+    "to_type": "bool",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
+    "to_type": "EndEndingAndReset",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
+    "to_type": "EndingGaugeController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
+    "to_type": "HideAndReset",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
+    "to_type": "IsEnding",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
+    "to_type": "LaserChargeController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
+    "to_type": "PlayerDamagedManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
+    "to_type": "ResetGauge",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
+    "to_type": "SetActive",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
+    "to_type": "StrangePopupController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
     "from_file": "ProjectDribble/Assets/Scripts/etc/CameraAspectFitter.cs",
     "from_class": "CameraAspectFitter",
     "to_type": "Camera",
@@ -35366,6 +35632,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
+    "to_type": "Cannot",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
     "to_type": "CeilingManager",
     "relation_type": "uses",
     "strength": 1
@@ -35429,6 +35702,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
+    "to_type": "EndEndingAndReset",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "EndingSequenceController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
     "to_type": "EndRecallTutorial",
     "relation_type": "uses",
     "strength": 1
@@ -35458,6 +35745,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "GetStartStageIndex",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "GoHomeFromEnding",
     "relation_type": "uses",
     "strength": 1
   },
@@ -35513,7 +35807,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
+    "to_type": "IsCurrentStageEnding",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
     "to_type": "IsCurrentStageFinalTutorialStage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "IsCurrentStageLastNormalStage",
     "relation_type": "uses",
     "strength": 1
   },
@@ -35549,13 +35857,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "IsRecallTutorialActive",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
-    "from_class": "GameManager",
-    "to_type": "IsValidStageIndex",
     "relation_type": "uses",
     "strength": 1
   },
@@ -35863,6 +36164,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
+    "to_type": "StartEndingStage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
     "to_type": "StartGame",
     "relation_type": "uses",
     "strength": 1
@@ -35906,6 +36214,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "ToTitle",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "TryResolvePlayableStartStageIndex",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "TryStartEndingStage",
     "relation_type": "uses",
     "strength": 1
   },
@@ -40105,6 +40427,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/PlayerDamagedManager.cs",
     "from_class": "PlayerDamagedManager",
+    "to_type": "float",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerDamagedManager.cs",
+    "from_class": "PlayerDamagedManager",
+    "to_type": "GetLength",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerDamagedManager.cs",
+    "from_class": "PlayerDamagedManager",
     "to_type": "GetStartConnectedCells",
     "relation_type": "uses",
     "strength": 1
@@ -40120,6 +40456,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/PlayerDamagedManager.cs",
     "from_class": "PlayerDamagedManager",
     "to_type": "Log",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerDamagedManager.cs",
+    "from_class": "PlayerDamagedManager",
+    "to_type": "Min",
     "relation_type": "uses",
     "strength": 1
   },
@@ -42436,6 +42779,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
     "from_class": "StageDefinition",
+    "to_type": "Ending",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
+    "from_class": "StageDefinition",
     "to_type": "float",
     "relation_type": "uses",
     "strength": 1
@@ -42479,6 +42829,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
     "from_class": "StageDefinition",
     "to_type": "None",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
+    "from_class": "StageDefinition",
+    "to_type": "Normal",
     "relation_type": "uses",
     "strength": 1
   },
@@ -42597,7 +42954,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
     "from_class": "StageDefinition",
+    "to_type": "StageType",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
+    "from_class": "StageDefinition",
     "to_type": "ThreeSegments",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
+    "from_class": "StageDefinition",
+    "to_type": "Title",
     "relation_type": "uses",
     "strength": 1
   },
@@ -42646,6 +43017,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
     "from_class": "StageDefinition",
+    "to_type": "Type",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
+    "from_class": "StageDefinition",
     "to_type": "UnityEngine",
     "relation_type": "uses",
     "strength": 1
@@ -42684,6 +43062,13 @@
     "to_type": "GameManager",
     "relation_type": "singleton-access",
     "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "Add",
+    "relation_type": "uses",
+    "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
@@ -42758,6 +43143,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "BeginEnding",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "BeginStage",
     "relation_type": "uses",
     "strength": 1
@@ -42815,6 +43207,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
     "to_type": "Choose",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "ClearStageBlocks",
     "relation_type": "uses",
     "strength": 1
   },
@@ -42912,7 +43311,42 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "EndEndingAndReset",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "Ending",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "EndingSequenceController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "Falling",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "FindAnyObjectByType",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "FindFirstStageIndex",
     "relation_type": "uses",
     "strength": 1
   },
@@ -43017,6 +43451,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "IsCurrentStageEnding",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "IsCurrentStageFinalTutorialStage",
     "relation_type": "uses",
     "strength": 1
@@ -43024,7 +43465,42 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "IsCurrentStageLastNormalStage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "IsCurrentStageNormal",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "IsCurrentStageTutorial",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "IsLastNormalStage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "IsNormalStageIndex",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "IsPlayableStartStageIndex",
     "relation_type": "uses",
     "strength": 1
   },
@@ -43052,7 +43528,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "No",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "None",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "Normal",
     "relation_type": "uses",
     "strength": 1
   },
@@ -43199,6 +43689,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "StageType",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "Start",
     "relation_type": "uses",
     "strength": 1
@@ -43262,7 +43759,28 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "TryResolvePlayableStartStageIndex",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "TryStartEndingStage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "TryStartNextStage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "Tutorial",
     "relation_type": "uses",
     "strength": 1
   },
@@ -43298,6 +43816,209 @@
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
     "to_type": "UseTopDecoration",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "WaitForSecondsRealtime",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "GameManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "AnimateDots",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "Awake",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "Collections",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "Coroutine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "Empty",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "EndEndingAndReset",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "EndingSequenceController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "GameManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "GoHomeFromEnding",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "HideAndReset",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "Instance",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "int",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "LogWarning",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "Max",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "OnClickHome",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "SetActive",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "Show",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "ShowHomeButtonAfterDelay",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "StartCoroutine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "StopCoroutine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "StopRunningCoroutines",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "System",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "TextMeshProUGUI",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "TMPro",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "WaitForSecondsRealtime",
     "relation_type": "uses",
     "strength": 1
   },

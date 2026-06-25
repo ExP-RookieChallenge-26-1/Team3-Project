@@ -2,34 +2,34 @@
   "project_name": "unknown",
   "language": "C#",
   "engine_guess": "Unity",
-  "total_cs_files": 186,
-  "mono_behaviour_files": 155,
+  "total_cs_files": 189,
+  "mono_behaviour_files": 158,
   "scriptable_object_files": 10,
-  "files_with_update": 56,
+  "files_with_update": 57,
   "files_with_fixed_update": 1,
   "files_with_late_update": 9,
   "singleton_candidates": 5,
-  "manager_like_classes": 68,
-  "ui_related_classes": 100,
-  "save_load_related_classes": 106,
+  "manager_like_classes": 70,
+  "ui_related_classes": 103,
+  "save_load_related_classes": 109,
   "role_counts": {
-    "runtime": 163,
-    "player": 82,
-    "combat": 111,
-    "save-load": 106,
-    "manager": 66,
+    "runtime": 165,
+    "player": 83,
+    "combat": 113,
+    "save-load": 109,
+    "manager": 68,
     "data": 60,
-    "ui": 100,
+    "ui": 103,
     "scene": 5,
     "network": 2,
-    "inventory": 1
+    "inventory": 2
   },
   "high_coupling_classes": [
     {
       "class_name": "BlockManager",
       "file_id": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
-      "relation_count": 204,
-      "referenced_type_count": 198
+      "relation_count": 205,
+      "referenced_type_count": 199
     },
     {
       "class_name": "CeilingManager",
@@ -80,10 +80,10 @@
       "referenced_type_count": 118
     },
     {
-      "class_name": "BallSpeedController",
-      "file_id": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
-      "relation_count": 109,
-      "referenced_type_count": 103
+      "class_name": "StageManager",
+      "file_id": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+      "relation_count": 110,
+      "referenced_type_count": 108
     }
   ],
   "high_risk_classes": [

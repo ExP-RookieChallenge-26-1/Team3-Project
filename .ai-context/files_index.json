@@ -19144,9 +19144,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Block/BlockManager.cs",
     "file_name": "BlockManager.cs",
-    "content_hash": "a9ac5ebd246ea0e75fe2dceae391809406dc3711",
-    "size": 49571,
-    "line_count": 1809,
+    "content_hash": "7ae9ce5d9f9d72dea7d5181fb615ba1a642574e2",
+    "size": 49964,
+    "line_count": 1825,
     "namespace": "",
     "using_list": [
       "System.Collections",
@@ -19198,6 +19198,7 @@
       "ResetBlocks",
       "StartGrowth",
       "StopGrowth",
+      "ClearStageBlocks",
       "CreateGrid",
       "CalculateGridSize",
       "GridToWorld",
@@ -19833,6 +19834,8 @@
       "StartCoroutine",
       "GrowRoutine",
       "StopCoroutine",
+      "ClearStageBlocks",
+      "Clear",
       "Empty",
       "CalculateGridSize",
       "UpdateStemGrowth",
@@ -19843,7 +19846,6 @@
       "PickByPriorityAndWeight",
       "SpawnBlock",
       "Growth",
-      "Clear",
       "GrowthStemData",
       "Max",
       "Add",
@@ -22517,6 +22519,298 @@
     ]
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "path": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "file_name": "EndingGaugeController.cs",
+    "content_hash": "d5a51ccd4c4bbddb81eaf5a9ada8ff6ece0d8fcf",
+    "size": 2772,
+    "line_count": 110,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine",
+      "UnityEngine.Events",
+      "UnityEngine.UI"
+    ],
+    "classes": [
+      {
+        "name": "EndingGaugeController",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "EndingGaugeController",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Color",
+      "Awake",
+      "Update",
+      "BeginFill",
+      "ResetGauge",
+      "ApplyFill",
+      "CreateFlickerColor"
+    ],
+    "fields": [
+      {
+        "name": "elapsed",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "filling",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "filled",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "fill",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "scaledFill",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "slot",
+        "type": "Image",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "isFilled",
+        "type": "bool",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "color",
+        "type": "Color",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Awake",
+      "Update"
+    ],
+    "has_update": true,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 2,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "float",
+      "bool",
+      "Image",
+      "Color",
+      "UnityEngine",
+      "Events",
+      "UI",
+      "UnityEvent",
+      "Fill01",
+      "Clamp01",
+      "Awake",
+      "ResetGauge",
+      "Update",
+      "ApplyFill",
+      "Invoke",
+      "BeginFill",
+      "SetActive",
+      "CreateFlickerColor",
+      "Length",
+      "Sin",
+      "Abs"
+    ],
+    "component_access_types": [],
+    "created_types": [
+      "Color"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [
+      8,
+      0.2,
+      1,
+      0.25,
+      0.12,
+      18,
+      0,
+      0.35
+    ],
+    "guessed_roles": [
+      "runtime",
+      "ui",
+      "inventory",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "Update 기반 처리 존재",
+      "UI 관련 로직 포함",
+      "인벤토리 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "path": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "file_name": "EndingSequenceController.cs",
+    "content_hash": "5577f869d91310cc3b0815d1ace728f5748da5a0",
+    "size": 2702,
+    "line_count": 94,
+    "namespace": "",
+    "using_list": [
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "EndingSequenceController",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "EndingSequenceController",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "BeginEnding",
+      "EndEndingAndReset"
+    ],
+    "fields": [
+      {
+        "name": "isEnding",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "laserWasEnabled",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "damageWasEnabled",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "pauseButtonWasActive",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "wasEnding",
+        "type": "bool",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": false,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 0,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "bool",
+      "UnityEngine",
+      "EndingGaugeController",
+      "StrangePopupController",
+      "LaserChargeController",
+      "PlayerDamagedManager",
+      "IsEnding",
+      "BeginEnding",
+      "EndEndingAndReset",
+      "SetActive",
+      "HideAndReset",
+      "BeginFill",
+      "ResetGauge"
+    ],
+    "component_access_types": [],
+    "created_types": [],
+    "singleton_access_types": [],
+    "string_literals": [],
+    "numeric_literals": [
+      1
+    ],
+    "guessed_roles": [
+      "player",
+      "combat",
+      "manager",
+      "ui",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "UI 관련 로직 포함",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함"
+    ]
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/etc/CameraAspectFitter.cs",
     "path": "ProjectDribble/Assets/Scripts/etc/CameraAspectFitter.cs",
     "file_name": "CameraAspectFitter.cs",
@@ -23494,9 +23788,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "path": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "file_name": "GameManager.cs",
-    "content_hash": "2aef45e2dc0dbb360db7521ebdc57ede702900ba",
-    "size": 10174,
-    "line_count": 377,
+    "content_hash": "bebe45ae2ab2a7131e0111d4fb0bd7dd095340b9",
+    "size": 12554,
+    "line_count": 461,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -23525,6 +23819,7 @@
       "RequestGameOver",
       "StartGame",
       "StartGameAtStage",
+      "StartEndingStage",
       "RetryStage",
       "ResumeGame",
       "NextStage",
@@ -23543,6 +23838,7 @@
       "ConfirmQuitGame",
       "CancelQuitGame",
       "GoHomeInternal",
+      "GoHomeFromEnding",
       "Initialize",
       "CloseConfirmPopups",
       "PauseForTutorial",
@@ -23641,6 +23937,7 @@
       "SaveManager",
       "LaserUnlockState",
       "PaddleController",
+      "EndingSequenceController",
       "UI",
       "IsPausedByTutorial",
       "IsPaused",
@@ -23656,6 +23953,9 @@
       "SoundManager",
       "PlayTitleBgm",
       "RequestStageClear",
+      "Cannot",
+      "IsCurrentStageEnding",
+      "Stage",
       "FeedbackManager",
       "StopRecallHoldFeedback",
       "StopLaserChargeFeedback",
@@ -23666,8 +23966,8 @@
       "IsCurrentStageFinalTutorialStage",
       "SetTutorialCleared",
       "Save",
-      "IsValidStageIndex",
       "SetActive",
+      "IsCurrentStageLastNormalStage",
       "Play",
       "SoundId",
       "StageClear",
@@ -23676,19 +23976,22 @@
       "StartGame",
       "GetStartStageIndex",
       "StageCount",
+      "TryResolvePlayableStartStageIndex",
       "StartGameAtStage",
       "Current",
       "UnlockLaser",
       "ClearBgmMuffles",
       "PlayGameplayBgm",
       "StartStage",
+      "StartEndingStage",
+      "CloseConfirmPopups",
+      "TryStartEndingStage",
+      "ResetPosition",
       "RetryStage",
       "Restore",
       "ResumeGame",
       "RestartCurrentStage",
-      "ResetPosition",
       "NextStage",
-      "Stage",
       "Resume",
       "TryStartNextStage",
       "ToTitle",
@@ -23713,7 +24016,8 @@
       "EditorApplication",
       "Quit",
       "CancelQuitGame",
-      "CloseConfirmPopups",
+      "GoHomeFromEnding",
+      "EndEndingAndReset",
       "PauseForTutorial",
       "Log",
       "Tutorial",
@@ -23731,6 +24035,10 @@
       "System References",
       "UI",
       "GameManager: more than one GameManager exists. Keeping the first instance.",
+      "GameManager: Cannot clear stage because StageManager is missing.",
+      "GameManager: Stage clear was requested during the ending stage and was ignored.",
+      "GameManager: Cannot start game because SaveManager or StageManager is missing.",
+      "GameManager: Cannot start ending stage.",
       "[Tutorial] PauseForTutorial called. ",
       "previousTimeScale={timeScaleBeforeTutorial}, Time.timeScale={Time.timeScale}",
       "[Tutorial] ResumeFromTutorial called. Time.timeScale={Time.timeScale}"
@@ -26649,9 +26957,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/PlayerDamagedManager.cs",
     "path": "ProjectDribble/Assets/Scripts/PlayerDamagedManager.cs",
     "file_name": "PlayerDamagedManager.cs",
-    "content_hash": "db9764f6ccdb632d71c8f0f770d7039f02afee5a",
-    "size": 1387,
-    "line_count": 62,
+    "content_hash": "dec02d21865de490488c3c571f62c87a0c26f32b",
+    "size": 1808,
+    "line_count": 79,
     "namespace": "",
     "using_list": [
       "UnityEngine",
@@ -26693,6 +27001,13 @@
         "access": "private",
         "serialized": false,
         "is_static": false
+      },
+      {
+        "name": "interval",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
       }
     ],
     "properties": [],
@@ -26718,6 +27033,7 @@
     "referenced_types": [
       "bool",
       "Coroutine",
+      "float",
       "UnityEngine",
       "System",
       "Collections",
@@ -26730,6 +27046,8 @@
       "DamageRoutine",
       "StopCoroutine",
       "GetStartConnectedCells",
+      "GetLength",
+      "Min",
       "TakeDamage",
       "Log",
       "WaitForSeconds"
@@ -26743,8 +27061,9 @@
       "데미지 받기"
     ],
     "numeric_literals": [
+      19,
       7,
-      19
+      1
     ],
     "guessed_roles": [
       "runtime",
@@ -28252,9 +28571,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
     "path": "ProjectDribble/Assets/Scripts/Stage/StageDefinition.cs",
     "file_name": "StageDefinition.cs",
-    "content_hash": "5b8b6ee03210fe250ffd6f2c4f6b1795d8a18a07",
-    "size": 2601,
-    "line_count": 85,
+    "content_hash": "313ed0ffda50a80dc58ff052b0c973ece821a1c9",
+    "size": 2835,
+    "line_count": 98,
     "namespace": "",
     "using_list": [
       "ScriptableObjects",
@@ -28401,6 +28720,11 @@
       "DestroyCeiling",
       "DestroyAllNormalBlocks",
       "None",
+      "StageType",
+      "Title",
+      "Tutorial",
+      "Normal",
+      "Ending",
       "Stage1",
       "Stage2",
       "Stage3",
@@ -28408,11 +28732,12 @@
       "Stage5",
       "Stage6",
       "CreateAssetMenu",
+      "Stage",
+      "Type",
       "Blocks",
       "Ceiling",
       "Player",
       "If",
-      "Stage",
       "Clear",
       "Use",
       "Top",
@@ -28428,7 +28753,6 @@
       "Tuning",
       "Override",
       "Min",
-      "Tutorial",
       "OnValidate",
       "Max"
     ],
@@ -28440,6 +28764,7 @@
     "string_literals": [
       "StageDefinition",
       "ScriptableObjects/StageDefinition",
+      "Stage Type",
       "Blocks",
       "Ceiling / Player",
       "Stage Clear",
@@ -28483,9 +28808,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "file_name": "StageManager.cs",
-    "content_hash": "1d629f9824defd4db3d1a2804dd99dff34a11ae5",
-    "size": 10028,
-    "line_count": 364,
+    "content_hash": "58f2f82e9f2847bcd4858a9aece44ee8d440f2bb",
+    "size": 13668,
+    "line_count": 488,
     "namespace": "",
     "using_list": [
       "System",
@@ -28516,6 +28841,10 @@
       "StartStage",
       "RestartCurrentStage",
       "TryStartNextStage",
+      "IsCurrentStageLastNormalStage",
+      "IsLastNormalStage",
+      "TryStartEndingStage",
+      "TryResolvePlayableStartStageIndex",
       "HandleStageCleared",
       "HandleNormalBlocksCleared",
       "CompleteCurrentStage",
@@ -28528,6 +28857,9 @@
       "ClearTopDecoration",
       "ApplyBallTuning",
       "IsValidStageIndex",
+      "IsNormalStageIndex",
+      "IsPlayableStartStageIndex",
+      "FindFirstStageIndex",
       "ApplyBossPatternStateForCurrentStage"
     ],
     "fields": [
@@ -28581,6 +28913,13 @@
         "is_static": false
       },
       {
+        "name": "isEndingStage",
+        "type": "bool",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "prefab",
         "type": "GameObject",
         "access": "internal",
@@ -28590,6 +28929,20 @@
       {
         "name": "parent",
         "type": "Transform",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "stage",
+        "type": "StageDefinition",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "stage",
+        "type": "StageDefinition",
         "access": "internal",
         "serialized": false,
         "is_static": false
@@ -28638,6 +28991,7 @@
       "BossController",
       "TutorialManager",
       "StageArtManager",
+      "EndingSequenceController",
       "Top",
       "Decoration",
       "CurrentStageIndex",
@@ -28645,10 +28999,15 @@
       "Length",
       "IsCurrentStageTutorial",
       "IsValidStageIndex",
+      "IsCurrentStageEnding",
+      "CurrentStageDefinition",
+      "StageType",
+      "Ending",
+      "IsCurrentStageNormal",
+      "Normal",
       "IsCurrentStageFinalTutorialStage",
       "TutorialStageId",
       "Stage3",
-      "CurrentStageDefinition",
       "OnEnable",
       "BindStageEvents",
       "OnDisable",
@@ -28662,6 +29021,16 @@
       "ApplyStageData",
       "RestartCurrentStage",
       "TryStartNextStage",
+      "IsCurrentStageLastNormalStage",
+      "IsLastNormalStage",
+      "IsNormalStageIndex",
+      "TryStartEndingStage",
+      "FindFirstStageIndex",
+      "Add",
+      "TryResolvePlayableStartStageIndex",
+      "IsPlayableStartStageIndex",
+      "No",
+      "Falling",
       "HandleStageCleared",
       "StageClearCondition",
       "DestroyCeiling",
@@ -28691,6 +29060,7 @@
       "The",
       "Choose",
       "None",
+      "ClearStageBlocks",
       "Sprite",
       "FixedBlockSprite",
       "InitializeStageBlocks",
@@ -28698,6 +29068,8 @@
       "InitializeGauge",
       "InitializeBall",
       "ApplyBossPatternStateForCurrentStage",
+      "BeginEnding",
+      "EndEndingAndReset",
       "BeginStage",
       "UseTopDecoration",
       "TopDecorationPrefab",
@@ -28706,6 +29078,7 @@
       "Destroy",
       "ClearStageTuning",
       "ApplyStageTuning",
+      "Tutorial",
       "StartBossPattern"
     ],
     "component_access_types": [],
@@ -28719,6 +29092,7 @@
       "Top Decoration",
       "StageManager: stages is empty.",
       "StageManager: invalid stage index {stageIndex}.",
+      "StageManager: No playable start stage was found. Falling back to title stage.",
       "StageManager: Cannot complete the stage because GameManager is missing.",
       "StageManager: StageDefinition is null.",
       "Ceiling clear and ceiling-based stems will be unavailable.",
@@ -28737,6 +29111,150 @@
       "런타임 컴포넌트",
       "전투 계열 로직 포함",
       "Find 계열 탐색 사용"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "path": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "file_name": "StrangePopupController.cs",
+    "content_hash": "c85a44b21b65497894acc043446dcb7c42e8698d",
+    "size": 2860,
+    "line_count": 111,
+    "namespace": "",
+    "using_list": [
+      "System.Collections",
+      "TMPro",
+      "UnityEngine"
+    ],
+    "classes": [
+      {
+        "name": "StrangePopupController",
+        "kind": "class",
+        "access": "public",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "StrangePopupController",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "Awake",
+      "Show",
+      "HideAndReset",
+      "OnClickHome",
+      "AnimateDots",
+      "string",
+      "WaitForSecondsRealtime",
+      "ShowHomeButtonAfterDelay",
+      "StopRunningCoroutines"
+    ],
+    "fields": [
+      {
+        "name": "animationRoutine",
+        "type": "Coroutine",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "homeButtonRoutine",
+        "type": "Coroutine",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "dotCount",
+        "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Awake"
+    ],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 0,
+    "find_call_count": 0,
+    "new_keyword_count": 2,
+    "coroutine_count": 4,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "Coroutine",
+      "int",
+      "System",
+      "Collections",
+      "TMPro",
+      "UnityEngine",
+      "TextMeshProUGUI",
+      "GameManager",
+      "EndingSequenceController",
+      "Awake",
+      "HideAndReset",
+      "Show",
+      "SetActive",
+      "StartCoroutine",
+      "AnimateDots",
+      "ShowHomeButtonAfterDelay",
+      "StopRunningCoroutines",
+      "Empty",
+      "OnClickHome",
+      "EndEndingAndReset",
+      "Instance",
+      "GoHomeFromEnding",
+      "LogWarning",
+      "WaitForSecondsRealtime",
+      "Max",
+      "StopCoroutine"
+    ],
+    "component_access_types": [],
+    "created_types": [
+      "WaitForSecondsRealtime"
+    ],
+    "singleton_access_types": [
+      "GameManager"
+    ],
+    "string_literals": [
+      ".",
+      "StrangePopupController: GameManager is missing; cannot return home."
+    ],
+    "numeric_literals": [
+      0.35,
+      3,
+      1,
+      3,
+      0.01,
+      0
+    ],
+    "guessed_roles": [
+      "ui",
+      "runtime",
+      "manager",
+      "combat",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "UI 관련 로직 포함",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함"
     ]
   },
   {

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d953c4d8f0723644096f01e564abfdbc, type: 3}
-  m_Name: TestBD 4
+  m_Name: YoungBD 1
   m_EditorClassIdentifier: Assembly-CSharp::StageBlockData
   width: 7
   height: 20
@@ -18,54 +18,62 @@ MonoBehaviour:
   disableGrowth: 0
   useStemGrowth: 1
   growthStems:
-  - flowBlockPrefabOverride: {fileID: -3824261130330139456, guid: 01777d40d4d6fe048b11c95c8abfcd6b, type: 3}
+  - flowBlockPrefabOverride: {fileID: -3824261130330139456, guid: 395089d7cf5c57544a3ba4809d654e6f, type: 3}
     ceilingSegmentIndex: 0
-    startCoord: {x: 3, y: 0}
+    startCoord: {x: 2, y: 0}
     minX: 0
-    maxX: 3
+    maxX: 2
     maxLength: 20
     width: 0
     growWeight: 1
-    maxBlocksPerRow: 3
-    directionOptions: []
+    maxBlocksPerRow: 2
+    directionOptions:
+    - direction: 4
+      priority: 1
+      weight: 1
+    - direction: 5
+      priority: 1
+      weight: 1
     enabled: 1
-    spawnInterval: 1
+    spawnInterval: 1.5
     minGrowPerTick: 1
     maxGrowPerTick: 2
     initialDelay: 0
-  - flowBlockPrefabOverride: {fileID: -3824261130330139456, guid: 94e98bdb81a22a6488a0faf2c51e37d2, type: 3}
+  - flowBlockPrefabOverride: {fileID: -3824261130330139456, guid: 5b1ef1b0c8560444c8f5598b670f6918, type: 3}
     ceilingSegmentIndex: 1
-    startCoord: {x: 3, y: 0}
+    startCoord: {x: 4, y: 0}
     minX: 3
     maxX: 6
     maxLength: 20
     width: 0
     growWeight: 1
-    maxBlocksPerRow: 3
-    directionOptions: []
+    maxBlocksPerRow: 2
+    directionOptions:
+    - direction: 4
+      priority: 1
+      weight: 1
+    - direction: 5
+      priority: 1
+      weight: 1
     enabled: 1
-    spawnInterval: 1
+    spawnInterval: 1.5
     minGrowPerTick: 1
     maxGrowPerTick: 2
     initialDelay: 0
   fixedBlocks:
-  - cell: {x: 2, y: 4}
+  - cell: {x: 2, y: 5}
     hp: 1
-  - cell: {x: 3, y: 4}
+  - cell: {x: 3, y: 5}
     hp: 1
-  - cell: {x: 4, y: 4}
-    hp: 1
-  - cell: {x: 1, y: 8}
-    hp: 1
-  - cell: {x: 5, y: 8}
+  - cell: {x: 4, y: 5}
     hp: 1
   normalBlocks: []
-  respawnMissingStartBlocks: 0
+  respawnMissingStartBlocks: 1
   startCells: []
-  spawnInterval: 1.3
-  minGrowPerTick: 2
-  maxGrowPerTick: 3
+  spawnInterval: 5
+  minGrowPerTick: 1
+  maxGrowPerTick: 1
   rowWeightMultiplier: 1
   rowPriorityStep: 0
-  onlyGrowFromStartConnectedBlocks: 1
+  onlyGrowFromStartConnectedBlocks: 0
   directions: []

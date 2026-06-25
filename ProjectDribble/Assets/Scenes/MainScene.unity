@@ -1365,16 +1365,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c45564d325ef49139c5263decad7dc0b, type: 2}
   - {fileID: 11400000, guid: 67064a7c8c0243a7920eca81a2138532, type: 2}
   - {fileID: 11400000, guid: 1ada66f7386143b38676bcf9e01e805e, type: 2}
-  - {fileID: 11400000, guid: 8eb759d87ef483b41b16c74517e85fb5, type: 2}
   - {fileID: 11400000, guid: 82f92230405c88b419e9372787484565, type: 2}
+  - {fileID: 11400000, guid: 3a1e2c1347e609d408c4da31945a07d5, type: 2}
+  - {fileID: 11400000, guid: 56a9382f87c3e3c47ab02a156ce0158f, type: 2}
+  - {fileID: 11400000, guid: 41c9534ee6da2564e836200c0a6e423b, type: 2}
   - {fileID: 11400000, guid: 1ff20c8d59e2f1e4bad1b087f875aadf, type: 2}
   - {fileID: 11400000, guid: bb062c08a961a014ba193cce36055ad7, type: 2}
   - {fileID: 11400000, guid: 4175f71eac15c174192c8ac28ece3939, type: 2}
-  - {fileID: 11400000, guid: fe80df33717eefa43b6e2adf5ff63f3e, type: 2}
-  - {fileID: 11400000, guid: 4e55d7cbdc2293c4091b9f3636ccfd3c, type: 2}
+  - {fileID: 11400000, guid: b8cfaa1263d426c469d2f3a51b597141, type: 2}
+  - {fileID: 11400000, guid: 987d267fb3bb38d4ab39cddc3c465be0, type: 2}
   - {fileID: 11400000, guid: 169c584824c3f3642a7c710c86cc4767, type: 2}
-  - {fileID: 11400000, guid: 987d267fb3bb38d4ab39cddc3c465be0, type: 2}
-  - {fileID: 11400000, guid: 987d267fb3bb38d4ab39cddc3c465be0, type: 2}
+  - {fileID: 11400000, guid: 4e55d7cbdc2293c4091b9f3636ccfd3c, type: 2}
+  - {fileID: 11400000, guid: fe80df33717eefa43b6e2adf5ff63f3e, type: 2}
+  - {fileID: 11400000, guid: 89b5b5c7199f12c419056bf82162115a, type: 2}
   - {fileID: 11400000, guid: 0fa4ea42d6e6ad548842ef9c9da3b3c9, type: 2}
   titleStageIndex: 0
   startStageIndex: 1
@@ -2235,10 +2238,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+    x: 0.12962963
+    y: -0.055555556
+    width: 0.3333333
+    height: 0.3333333
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -7644,7 +7647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BlockPool
   flowBlockPrefab: {fileID: -3824261130330139456, guid: 01777d40d4d6fe048b11c95c8abfcd6b, type: 3}
-  normalBlockPrefab: {fileID: -3824261130330139456, guid: a4b73e878e2e272468009f2c66975e59, type: 3}
+  normalBlockPrefab: {fileID: 0}
   fixedBlockPrefab: {fileID: -3824261130330139456, guid: a3d8d0af586ab6c4f8ab13ff615f495b, type: 3}
   normalBlockParent: {fileID: 2085599314}
   fixedBlockParent: {fileID: 7673058917726375693}
@@ -8668,6 +8671,36 @@ MonoBehaviour:
     maxPitch: 1
     pitchRandomRange: 0
     mixerGroup: {fileID: -6424471294437657134, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
+    minInterval: 0
+    usePitchByRatio: 1
+    minPitch: 0.8
+  - id: 14
+    clips:
+    - {fileID: 8300000, guid: 8aa1e79d84a296742b7fb3c8e2c51dea, type: 3}
+    loopClip: {fileID: 0}
+    legacyClip: {fileID: 8300000, guid: 8aa1e79d84a296742b7fb3c8e2c51dea, type: 3}
+    soundType: 1
+    baseVolume: 1
+    volumeRandomRange: 0
+    basePitch: 1
+    maxPitch: 1
+    pitchRandomRange: 0
+    mixerGroup: {fileID: -2828534213274750351, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
+    minInterval: 0
+    usePitchByRatio: 1
+    minPitch: 0.8
+  - id: 6
+    clips:
+    - {fileID: 8300000, guid: cf75f428be483ec429612f65c94ae17a, type: 3}
+    loopClip: {fileID: 0}
+    legacyClip: {fileID: 8300000, guid: cf75f428be483ec429612f65c94ae17a, type: 3}
+    soundType: 1
+    baseVolume: 0.382
+    volumeRandomRange: 0
+    basePitch: 1
+    maxPitch: 2
+    pitchRandomRange: 0
+    mixerGroup: {fileID: -2828534213274750351, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
     minInterval: 0
     usePitchByRatio: 1
     minPitch: 0.8

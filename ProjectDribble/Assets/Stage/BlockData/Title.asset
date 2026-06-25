@@ -16,23 +16,8 @@ MonoBehaviour:
   height: 20
   defaultHp: 6.2
   disableGrowth: 1
-  useStemGrowth: 1
-  growthStems:
-  - flowBlockPrefabOverride: {fileID: 0}
-    ceilingSegmentIndex: 0
-    startCoord: {x: 3, y: 0}
-    minX: 1
-    maxX: 5
-    maxLength: 20
-    width: 0
-    growWeight: 1
-    maxBlocksPerRow: 3
-    directionOptions: []
-    enabled: 1
-    spawnInterval: 1
-    minGrowPerTick: 1
-    maxGrowPerTick: 2
-    initialDelay: 0
+  useStemGrowth: 0
+  growthStems: []
   fixedBlocks: []
   normalBlocks: []
   respawnMissingStartBlocks: 0

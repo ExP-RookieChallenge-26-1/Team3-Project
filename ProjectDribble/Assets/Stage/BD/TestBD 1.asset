@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d953c4d8f0723644096f01e564abfdbc, type: 3}
-  m_Name: TestBD 2
+  m_Name: TestBD 1
   m_EditorClassIdentifier: Assembly-CSharp::StageBlockData
   width: 7
   height: 20
@@ -33,7 +33,7 @@ MonoBehaviour:
     minGrowPerTick: 1
     maxGrowPerTick: 2
     initialDelay: 0
-  - flowBlockPrefabOverride: {fileID: -3824261130330139456, guid: 94e98bdb81a22a6488a0faf2c51e37d2, type: 3}
+  - flowBlockPrefabOverride: {fileID: -3824261130330139456, guid: 5b1ef1b0c8560444c8f5598b670f6918, type: 3}
     ceilingSegmentIndex: 1
     startCoord: {x: 3, y: 0}
     minX: 3
@@ -53,11 +53,9 @@ MonoBehaviour:
     hp: 1
   - cell: {x: 5, y: 4}
     hp: 1
-  - cell: {x: 2, y: 8}
+  - cell: {x: 1, y: 7}
     hp: 1
-  - cell: {x: 3, y: 8}
-    hp: 1
-  - cell: {x: 4, y: 8}
+  - cell: {x: 5, y: 7}
     hp: 1
   normalBlocks: []
   respawnMissingStartBlocks: 0

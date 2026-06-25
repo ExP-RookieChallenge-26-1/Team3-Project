@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1513949279411316045
+--- !u!1 &3880507704467658687
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1450426535207122254}
-  - component: {fileID: 5779418759459765515}
-  - component: {fileID: 8008601955375370094}
-  - component: {fileID: 5126134319728496029}
-  - component: {fileID: 6776875856473315814}
+  - component: {fileID: 7202949224847697357}
+  - component: {fileID: 6713834042051001224}
+  - component: {fileID: 3916834592663857604}
+  - component: {fileID: 8358913403269014976}
+  - component: {fileID: 220004925063543356}
   m_Layer: 3
   m_Name: GlitchOverlay
   m_TagString: Untagged
@@ -20,29 +20,29 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1450426535207122254
+--- !u!4 &7202949224847697357
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1513949279411316045}
+  m_GameObject: {fileID: 3880507704467658687}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.90453, y: 0.14697, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2089717769909320674}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &5779418759459765515
+--- !u!212 &6713834042051001224
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1513949279411316045}
+  m_GameObject: {fileID: 3880507704467658687}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -94,21 +94,33 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
---- !u!114 &8008601955375370094
+--- !u!114 &3916834592663857604
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1513949279411316045}
+  m_GameObject: {fileID: 3880507704467658687}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 592d73172702ede498323438a0ffeac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GlitchOverlayVisual
-  glitchRenderer: {fileID: 5779418759459765515}
-  pulseVisual: {fileID: 5126134319728496029}
-  glowShadowVisual: {fileID: 0}
+  glitchRenderer: {fileID: 6713834042051001224}
+  pulseVisual: {fileID: 8358913403269014976}
+  glowShadowVisual: {fileID: 220004925063543356}
+  stage1Sprites:
+  - {fileID: 21300000, guid: e68dd8c9a2fdf584798482659b0f3247, type: 3}
+  - {fileID: 21300000, guid: c690cfbfee29ae745ac5ac5166a43329, type: 3}
+  - {fileID: 21300000, guid: 20ed55c0bf5bc67488cf69f63b219dce, type: 3}
+  stage2Sprites:
+  - {fileID: 21300000, guid: 086c4d2f1c3f2574c9ab8a7979c851a0, type: 3}
+  - {fileID: 21300000, guid: f3f73d67cce671f49ae6a1505679bfe6, type: 3}
+  - {fileID: 21300000, guid: cb9f85954e190be4880ee643b3fd7bef, type: 3}
+  stage3Sprites:
+  - {fileID: 21300000, guid: 300700723933f144db6804bcdb55701e, type: 3}
+  - {fileID: 21300000, guid: 7d02ca1e9856f3049a8873960478ea0a, type: 3}
+  - {fileID: 21300000, guid: f65c3c7a13351cd4bacd5a42fca52017, type: 3}
   glitchStage1: {fileID: 21300000, guid: e68dd8c9a2fdf584798482659b0f3247, type: 3}
   glitchStage2: {fileID: 21300000, guid: 086c4d2f1c3f2574c9ab8a7979c851a0, type: 3}
   glitchStage3: {fileID: 21300000, guid: 300700723933f144db6804bcdb55701e, type: 3}
@@ -116,19 +128,19 @@ MonoBehaviour:
   disconnectedAlpha: 0.25
   stage2Threshold: 0.2
   stage3Threshold: 0.4
---- !u!114 &5126134319728496029
+--- !u!114 &8358913403269014976
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1513949279411316045}
+  m_GameObject: {fileID: 3880507704467658687}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a22519613094dd439ad7f852fd84133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PulseVisual
-  targetRenderer: {fileID: 5779418759459765515}
+  targetRenderer: {fileID: 6713834042051001224}
   pulseCurve:
     serializedVersion: 2
     m_Curve:
@@ -142,8 +154,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.21666566
-      value: 0.9928589
+      time: 0.15
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -165,30 +177,30 @@ MonoBehaviour:
   pulseSpeed: 1
   minAlpha: 0.5
   maxAlpha: 1
-  pulseColor: {r: 0.64705884, g: 1, b: 0.64705884, a: 1}
+  pulseColor: {r: 0.6462264, g: 1, b: 0.6462264, a: 1}
   scaleAmount: 0.06
   useScalePulse: 1
   useUnscaledTime: 0
---- !u!114 &6776875856473315814
+--- !u!114 &220004925063543356
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1513949279411316045}
+  m_GameObject: {fileID: 3880507704467658687}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bbd98eb8066a4f458ba953afc893d5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SegmentGlowShadowVisual
   targetRenderer: {fileID: 0}
-  glowRenderer: {fileID: 0}
+  glowRenderer: {fileID: 6713834042051001224}
   generatedChildName: Auto Glow Shadow
   silhouetteGlowMaterial: {fileID: 2100000, guid: cf513e452cd5cb9438cf1448e8b1bc3d, type: 2}
   glowColor: {r: 0, g: 1, b: 0, a: 1}
-  scaleMultiplier: 1.12
+  scaleMultiplier: 1.3
   sortingOrderOffset: -1
-  localOffset: {x: 0.1, y: -0.1}
+  localOffset: {x: 0.05, y: -0.05}
   alphaMin: 0.1
   alphaMax: 0.55
   pulseSpeed: 1
@@ -262,7 +274,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1450426535207122254}
+  - {fileID: 7202949224847697357}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2735149166923990631
@@ -314,7 +326,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: c776e09157ef6114d8b0c6c9cdfba5dd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9fc1b90bd589e8f42a26c00864828b62, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -389,7 +401,7 @@ MonoBehaviour:
   maxCrackAlpha: 1
   disconnectedStemColor: {r: 1, g: 1, b: 1, a: 0.48235294}
   dangerStemColor: {r: 0.33909282, g: 0.7075472, b: 0.25031152, a: 1}
-  glitchOverlay: {fileID: 8008601955375370094}
+  glitchOverlay: {fileID: 0}
   damageFlashVisual: {fileID: 3677851521251101403}
   laserTargetOverlayRenderer: {fileID: 0}
 --- !u!114 &3677851521251101403

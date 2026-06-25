@@ -12,6 +12,7 @@ public class StrangePopupController : MonoBehaviour
     [SerializeField] private bool pauseWhenHomeButtonAppears = true;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private EndingSequenceController endingSequenceController;
+    [SerializeField] private EndingMovieController endingMovieController;
 
     private Coroutine animationRoutine;
     private Coroutine homeButtonRoutine;
@@ -57,6 +58,13 @@ public class StrangePopupController : MonoBehaviour
     public void OnClickHome()
     {
         Time.timeScale = 1f;
+
+        if (endingMovieController != null)
+        {
+            endingMovieController.PlayMovie();
+            return;
+        }
+
         endingSequenceController?.EndEndingAndReset();
 
         if (gameManager == null)

@@ -5,6 +5,7 @@ public class EndingSequenceController : MonoBehaviour
     [SerializeField] private GameObject normalGaugeRoot;
     [SerializeField] private EndingGaugeController endingGauge;
     [SerializeField] private StrangePopupController strangePopup;
+    [SerializeField] private EndingMovieController endingMovieController;
     [SerializeField] private LaserChargeController laserChargeController;
     [SerializeField] private PlayerDamagedManager playerDamagedManager;
     [SerializeField] private GameObject pauseButton;
@@ -74,6 +75,9 @@ public class EndingSequenceController : MonoBehaviour
 
         if (strangePopup != null)
             strangePopup.HideAndReset();
+
+        if (endingMovieController != null)
+            endingMovieController.StopAndReset();
 
         if (!wasEnding)
             return;

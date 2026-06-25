@@ -8560,9 +8560,11 @@ MonoBehaviour:
   - {fileID: 1079818715}
   - {fileID: 412532923}
   filledColor: {r: 0.09805238, g: 1, b: 0, a: 1}
-  emptyColor: {r: 0.101960786, g: 1, b: 0, a: 0.12}
+  emptyColor: {r: 0.101960786, g: 1, b: 0, a: 0.4745098}
   flickerAmount: 0.2
-  flickerSpeed: 2
+  flickerSpeed: 13
+  flickerPhase: 0
+  minFlickerAlpha: 0
   onFilled:
     m_PersistentCalls:
       m_Calls:
@@ -9333,6 +9335,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4626840519418612361}
   - component: {fileID: 4196809907539309908}
+  - component: {fileID: 4626840519418612362}
   - component: {fileID: 22802466009801029}
   m_Layer: 3
   m_Name: BreakableCeiling
@@ -16619,6 +16622,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5817911144973919479}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4626840519418612362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85471160011748515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e9eea529f484f66be60407266e4fddd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DecorativeFlickerSprite
+  targetRenderer: {fileID: 4196809907539309908}
+  canFlicker: 1
+  flickerAmount: 0.2
+  flickerSpeed: 13
+  minAlpha: 0.25
+  phase: 0
+  randomizePhaseOnAwake: 1
+  captureColorOnEnable: 1
 --- !u!224 &4642441805611387947
 RectTransform:
   m_ObjectHideFlags: 0

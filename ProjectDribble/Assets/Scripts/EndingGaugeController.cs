@@ -12,6 +12,8 @@ public class EndingGaugeController : MonoBehaviour
     [SerializeField] private Color emptyColor = new Color(0.2f, 1f, 0.25f, 0.12f);
     [SerializeField] private float flickerAmount = 0.2f;
     [SerializeField] private float flickerSpeed = 18f;
+    [SerializeField] private float flickerPhase;
+    [SerializeField, Range(0f, 1f)] private float minFlickerAlpha;
     [SerializeField] private UnityEvent onFilled;
 
     private float elapsed;
@@ -97,13 +99,13 @@ public class EndingGaugeController : MonoBehaviour
 
     private Color CreateFlickerColor(Color baseColor, bool canFlicker)
     {
-        if (!canFlicker || flickerAmount <= 0f)
-            return baseColor;
-
-        float wave = Mathf.Sin(Time.unscaledTime * flickerSpeed + Random.value * 0.35f);
-        float alphaOffset = Mathf.Abs(wave) * flickerAmount;
-        Color color = baseColor;
-        color.a = Mathf.Clamp01(baseColor.a - alphaOffset);
-        return color;
+        return SharedFlickerSignal.ApplyAlphaFlicker(
+            baseColor,
+            canFlicker,
+            flickerAmount,
+            flickerSpeed,
+            flickerPhase,
+            minFlickerAlpha
+        );
     }
 }

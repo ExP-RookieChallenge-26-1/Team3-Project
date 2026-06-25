@@ -18849,9 +18849,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "path": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "file_name": "BlockCell.cs",
-    "content_hash": "942739d7811f4b43cc31e59dccc009ee4b4d2d01",
-    "size": 8701,
-    "line_count": 327,
+    "content_hash": "8a2925d27d8be779dc652d54e23e7cbd31453653",
+    "size": 9414,
+    "line_count": 354,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -18876,6 +18876,7 @@
     "unity_type": "MonoBehaviour",
     "methods": [
       "Color",
+      "Range",
       "Awake",
       "Init",
       "SetSpriteOverride",
@@ -18894,6 +18895,9 @@
       "EnsureLaserTargetOverlay",
       "GameObject",
       "UpdateHpVisual",
+      "GetUndamagedStemColor",
+      "RefreshDamageTint",
+      "ResetDamageTint",
       "ResetTransientVisuals",
       "OnDrawGizmosSelected"
     ],
@@ -18990,13 +18994,6 @@
         "is_static": false
       },
       {
-        "name": "color",
-        "type": "Color",
-        "access": "internal",
-        "serialized": false,
-        "is_static": false
-      },
-      {
         "name": "showGlitch",
         "type": "bool",
         "access": "internal",
@@ -19006,6 +19003,13 @@
       {
         "name": "color",
         "type": "Color",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "multiplier",
+        "type": "float",
         "access": "internal",
         "serialized": false,
         "is_static": false
@@ -19123,11 +19127,14 @@
       "FeedbackManager",
       "PlayBlockBreakFeedback",
       "UpdateHpVisual",
+      "GetUndamagedStemColor",
       "Lerp",
+      "RefreshDamageTint",
       "SetState",
       "LaserTargetOverlay",
       "SetParent",
       "AddComponent",
+      "ResetDamageTint",
       "ResetVisual",
       "OnDrawGizmosSelected",
       "GetComponentsInChildren",
@@ -19159,6 +19166,7 @@
       0.42,
       1,
       0,
+      0.2,
       3,
       1.05,
       0.3,
@@ -27444,9 +27452,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
     "path": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
     "file_name": "PlayerHealth.cs",
-    "content_hash": "19d827131ecc6ce7e76d6065e454a690985b0448",
-    "size": 3816,
-    "line_count": 146,
+    "content_hash": "be515b56500b7203e6c699bc0270e80af2d93085",
+    "size": 4882,
+    "line_count": 184,
     "namespace": "",
     "using_list": [
       "System",
@@ -27471,10 +27479,13 @@
     "main_class_name": "PlayerHealth",
     "unity_type": "MonoBehaviour",
     "methods": [
+      "Min",
       "Awake",
+      "Update",
       "InitializePlayerHealth",
       "ResetPlayerHealth",
       "TakeDamage",
+      "UpdateAutoRecovery",
       "UpdateHealthVisuals",
       "ApplyRendererRgb",
       "UpdatePaddleCorruptionVisuals",
@@ -27513,6 +27524,20 @@
         "is_static": false
       },
       {
+        "name": "lastDamageTime",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "pendingRecovery",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "previousHp",
         "type": "int",
         "access": "internal",
@@ -27530,9 +27555,10 @@
     "properties": [],
     "events": [],
     "unity_messages": [
-      "Awake"
+      "Awake",
+      "Update"
     ],
-    "has_update": false,
+    "has_update": true,
     "has_fixed_update": false,
     "has_late_update": false,
     "has_awake": true,
@@ -27550,6 +27576,7 @@
     "referenced_types": [
       "int",
       "bool",
+      "float",
       "Color",
       "System",
       "Collections",
@@ -27558,6 +27585,9 @@
       "OnPlayerDead",
       "Data",
       "HealthData",
+      "Auto",
+      "Recovery",
+      "Min",
       "Ground",
       "Visual",
       "SpriteRenderer",
@@ -27569,6 +27599,8 @@
       "MaxHp",
       "Awake",
       "InitializePlayerHealth",
+      "Update",
+      "UpdateAutoRecovery",
       "Max",
       "ResetPlayerHealth",
       "UpdateHealthVisuals",
@@ -27584,6 +27616,7 @@
       "PlayerHit",
       "Clamp01",
       "Die",
+      "FloorToInt",
       "Lerp",
       "ApplyRendererRgb",
       "UpdatePaddleCorruptionVisuals",
@@ -27607,12 +27640,15 @@
     ],
     "string_literals": [
       "Data",
+      "Auto Recovery",
       "Ground Visual",
       "Paddle Visual",
       "Player HP: {currentHp}",
       "Game Over"
     ],
     "numeric_literals": [
+      0,
+      3,
       1,
       0.5
     ],
@@ -27625,6 +27661,7 @@
     ],
     "summary_signals": [
       "런타임 컴포넌트",
+      "Update 기반 처리 존재",
       "전투 계열 로직 포함"
     ]
   },

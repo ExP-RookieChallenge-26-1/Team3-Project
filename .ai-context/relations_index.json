@@ -28002,6 +28002,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "from_class": "BlockCell",
+    "to_type": "GetUndamagedStemColor",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
+    "from_class": "BlockCell",
     "to_type": "Gizmos",
     "relation_type": "uses",
     "strength": 1
@@ -28184,7 +28191,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
     "from_class": "BlockCell",
+    "to_type": "RefreshDamageTint",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
+    "from_class": "BlockCell",
     "to_type": "RemoveBlock",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Block/BlockCell.cs",
+    "from_class": "BlockCell",
+    "to_type": "ResetDamageTint",
     "relation_type": "uses",
     "strength": 1
   },
@@ -41176,6 +41197,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
     "from_class": "PlayerHealth",
+    "to_type": "Auto",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
+    "from_class": "PlayerHealth",
     "to_type": "Awake",
     "relation_type": "uses",
     "strength": 1
@@ -41247,6 +41275,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
     "from_class": "PlayerHealth",
     "to_type": "DownPaddleRenderer",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
+    "from_class": "PlayerHealth",
+    "to_type": "float",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
+    "from_class": "PlayerHealth",
+    "to_type": "FloorToInt",
     "relation_type": "uses",
     "strength": 1
   },
@@ -41351,6 +41393,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
     "from_class": "PlayerHealth",
+    "to_type": "Min",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
+    "from_class": "PlayerHealth",
     "to_type": "OnPlayerDead",
     "relation_type": "uses",
     "strength": 1
@@ -41401,6 +41450,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
     "from_class": "PlayerHealth",
     "to_type": "PlayGameOverSoundDelayed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
+    "from_class": "PlayerHealth",
+    "to_type": "Recovery",
     "relation_type": "uses",
     "strength": 1
   },
@@ -41464,6 +41520,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
     "from_class": "PlayerHealth",
     "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
+    "from_class": "PlayerHealth",
+    "to_type": "Update",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
+    "from_class": "PlayerHealth",
+    "to_type": "UpdateAutoRecovery",
     "relation_type": "uses",
     "strength": 1
   },

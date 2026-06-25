@@ -2781,6 +2781,23 @@
     "risk_score": 46
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
+    "class_name": "PlayerHealth",
+    "risk_flags": [
+      "update-heavy",
+      "high-coupling",
+      "init-order-sensitive",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Unity 업데이트 루프 사용",
+      "참조 타입 또는 관계 수가 많음",
+      "초기화 순서에 민감할 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 46
+  },
+  {
     "file_id": "ProjectDribble/Assets/TextMesh Pro/Examples & Extras/Scripts/EnvMapAnimator.cs",
     "class_name": "EnvMapAnimator",
     "risk_flags": [
@@ -3117,21 +3134,6 @@
     "risk_reasons": [
       "Unity 업데이트 루프 사용",
       "참조 타입 또는 관계 수가 많음",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 36
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
-    "class_name": "PlayerHealth",
-    "risk_flags": [
-      "high-coupling",
-      "init-order-sensitive",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "참조 타입 또는 관계 수가 많음",
-      "초기화 순서에 민감할 가능성",
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 36

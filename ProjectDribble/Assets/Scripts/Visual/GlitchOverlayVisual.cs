@@ -96,6 +96,10 @@ public class GlitchOverlayVisual : MonoBehaviour
         glowShadowVisual?.ApplyVisualProfile(profile);
         glowShadowVisual?.SetState(true, connected);
 
+        glitchRenderer.sprite = currentSelectedSprite;
+        glitchRenderer.enabled = true;
+        SetAlpha(alpha);
+
         if (pulseVisual != null)
         {
             pulseVisual.SetBaseAlpha(alpha);

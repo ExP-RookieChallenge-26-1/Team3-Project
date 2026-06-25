@@ -8599,7 +8599,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: daf4012dcb58f1c48a93e38896bbdd93, type: 3}
     - {fileID: 21300000, guid: 98761adda90bfaa42a07fea3a0fdf324, type: 3}
   fallbackSegmentCoreSprites:
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 98761adda90bfaa42a07fea3a0fdf324, type: 3}
   leftSegmentMaxHp: 40
   centerSegmentMaxHp: 50
   rightSegmentMaxHp: 40
@@ -8646,10 +8646,10 @@ MonoBehaviour:
     disconnectedGlowColor: {r: 0.45, g: 0.5, b: 0.42, a: 1}
     disconnectedGlowAlpha: 0.25
   segmentGlowProfiles:
-  - glowColor: {r: 0, g: 0.7294118, b: 0.31785327, a: 1}
+  - glowColor: {r: 0, g: 0.7830189, b: 0.53162867, a: 1}
     scaleMultiplier: 1.12
-    glowAlphaMin: 0.155
-    glowAlphaMax: 0.906
+    glowAlphaMin: 0.103
+    glowAlphaMax: 0.855
     pulseSpeed: 1
     phaseOffset: 0
     alphaCurve:
@@ -8687,10 +8687,10 @@ MonoBehaviour:
       m_RotationOrder: 4
     disconnectedGlowColor: {r: 0.367791, g: 0.5377358, b: 0.44179922, a: 1}
     disconnectedGlowAlpha: 0.377
-  - glowColor: {r: 0, g: 0.745283, b: 0.5076917, a: 1}
+  - glowColor: {r: 0, g: 0.6509434, b: 0.28347534, a: 1}
     scaleMultiplier: 1.12
-    glowAlphaMin: 0.176
-    glowAlphaMax: 0.834
+    glowAlphaMin: 0.347
+    glowAlphaMax: 0.917
     pulseSpeed: 1
     phaseOffset: 0
     alphaCurve:
@@ -8730,8 +8730,8 @@ MonoBehaviour:
     disconnectedGlowAlpha: 0.407
   - glowColor: {r: 0.4508724, g: 0.74509805, b: 0, a: 1}
     scaleMultiplier: 1.12
-    glowAlphaMin: 0.368
-    glowAlphaMax: 0.773
+    glowAlphaMin: 0.198
+    glowAlphaMax: 0.818
     pulseSpeed: 1
     phaseOffset: 0
     alphaCurve:
@@ -13148,7 +13148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce4ddca0e0922b4fabe0ca8ecd8882a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PointerDownButton
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 949227556}
   action: 3
 --- !u!114 &2720300358015218240
 MonoBehaviour:

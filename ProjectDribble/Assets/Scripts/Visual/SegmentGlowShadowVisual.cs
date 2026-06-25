@@ -75,8 +75,13 @@ public sealed class SegmentGlowShadowVisual : MonoBehaviour
 
     public void Initialize(SpriteRenderer renderer)
     {
-        if (renderer != null && renderer != glowRenderer)
+        if (renderer != null)
+        {
+            if (glowRenderer == renderer)
+                glowRenderer = null;
+
             targetRenderer = renderer;
+        }
 
         EnsureTargetRenderer();
         EnsureGlowRenderer();

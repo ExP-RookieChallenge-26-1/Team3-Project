@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3880507704467658687}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.90453, y: 0.14697, z: 0}
+  m_LocalPosition: {x: 0, y: 0.14697, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 82a845e4f21a7a14f8284875a6c12286, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e68dd8c9a2fdf584798482659b0f3247, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -92,7 +92,7 @@ SpriteRenderer:
   m_Size: {x: 3, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!114 &3916834592663857604
 MonoBehaviour:
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bbd98eb8066a4f458ba953afc893d5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SegmentGlowShadowVisual
-  targetRenderer: {fileID: 0}
+  targetRenderer: {fileID: 2735149166923990631}
   glowRenderer: {fileID: 6713834042051001224}
   generatedChildName: Auto Glow Shadow
   silhouetteGlowMaterial: {fileID: 2100000, guid: cf513e452cd5cb9438cf1448e8b1bc3d, type: 2}
@@ -401,7 +401,7 @@ MonoBehaviour:
   maxCrackAlpha: 1
   disconnectedStemColor: {r: 1, g: 1, b: 1, a: 0.48235294}
   dangerStemColor: {r: 0.33909282, g: 0.7075472, b: 0.25031152, a: 1}
-  glitchOverlay: {fileID: 0}
+  glitchOverlay: {fileID: 3916834592663857604}
   damageFlashVisual: {fileID: 3677851521251101403}
   laserTargetOverlayRenderer: {fileID: 0}
 --- !u!114 &3677851521251101403
@@ -417,6 +417,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageFlashVisual
   targetRenderer: {fileID: 2735149166923990631}
-  flashColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
+  flashColor: {r: 0.5754717, g: 0.33388218, b: 0.33388218, a: 1}
   flashDuration: 0.08
   recoverDuration: 0.12

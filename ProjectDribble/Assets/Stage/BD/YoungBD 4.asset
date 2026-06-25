@@ -67,7 +67,7 @@ MonoBehaviour:
     maxGrowPerTick: 2
     initialDelay: 0
   - flowBlockPrefabOverride: {fileID: -3824261130330139456, guid: 395089d7cf5c57544a3ba4809d654e6f, type: 3}
-    ceilingSegmentIndex: 0
+    ceilingSegmentIndex: 2
     startCoord: {x: 5, y: 0}
     minX: 5
     maxX: 6

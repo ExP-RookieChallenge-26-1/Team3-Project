@@ -33852,6 +33852,258 @@
     "strength": 1
   },
   {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "GameManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "Awake",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "Began",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "bool",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "Check",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "EndEndingAndReset",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "EndingSequenceController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "float",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "GameManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "GetMouseButtonDown",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "GetTouch",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "GoHomeFromEnding",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "HandleMovieFinished",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "HasReturnInput",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "HideAndReset",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "Input",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "Instance",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "LogWarning",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "Min",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "OnDisable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "OnEnable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "Play",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "PlayMovie",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "PositiveInfinity",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "ReturnHomeAfterMovie",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "SetActive",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "Stop",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "StopAndReset",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "StrangePopupController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "Touch",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "TouchPhase",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "Update",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "Video",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "VideoPlayer",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
     "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
     "from_class": "EndingSequenceController",
     "to_type": "MonoBehaviour",
@@ -33896,6 +34148,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
     "from_class": "EndingSequenceController",
+    "to_type": "EndingMovieController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
     "to_type": "HideAndReset",
     "relation_type": "uses",
     "strength": 1
@@ -33932,6 +34191,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
     "from_class": "EndingSequenceController",
     "to_type": "SetActive",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
+    "to_type": "StopAndReset",
     "relation_type": "uses",
     "strength": 1
   },
@@ -43885,6 +44151,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
     "from_class": "StrangePopupController",
+    "to_type": "EndingMovieController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
     "to_type": "EndingSequenceController",
     "relation_type": "uses",
     "strength": 1
@@ -43942,6 +44215,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
     "from_class": "StrangePopupController",
     "to_type": "OnClickHome",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "PlayMovie",
     "relation_type": "uses",
     "strength": 1
   },

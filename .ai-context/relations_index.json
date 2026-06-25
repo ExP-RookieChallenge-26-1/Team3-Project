@@ -44032,329 +44032,28 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
     "from_class": "RecallTutorialManager",
-    "to_type": "GameManager",
-    "relation_type": "singleton-access",
-    "strength": 4
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "SaveManager",
-    "relation_type": "singleton-access",
-    "strength": 4
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "Approximately",
+    "to_type": "Deprecated",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
     "from_class": "RecallTutorialManager",
-    "to_type": "Awake",
+    "to_type": "This",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
     "from_class": "RecallTutorialManager",
-    "to_type": "BallController",
+    "to_type": "TutorialManager",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
     "from_class": "RecallTutorialManager",
-    "to_type": "BallRespawner",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "BeginRecallTutorial",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "bool",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "CanObserveBall",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "Current",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "EndRecallTutorial",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "ExternalOnly",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "FindAnyObjectByType",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "float",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "GameManager",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "HandleBallRecalled",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "HasSeenRecallTutorial",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "HideTutorialPopup",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "Instance",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "IsCaptured",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "IsGameStarted",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "IsPaused",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "IsPausedByTutorial",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "IsRecallTutorialActive",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "IsTutorialPopupOpen",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "LogWarning",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "Max",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "Min",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "ObserveY",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "OnBallRecalled",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "OnDisable",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "OnEnable",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "RecallGuideMessage",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "RecallTutorial",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "References",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "Required",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "ResetObservation",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "ResolveReferences",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "Save",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "SaveManager",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "SetRecallTutorialSeen",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "Settings",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "ShowTutorialPopup",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "StartObservation",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "TryBeginRecallTutorial",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "TutorialPopupCloseMode",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "UIManager",
+    "to_type": "TutorialUI",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44362,13 +44061,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
     "from_class": "RecallTutorialManager",
     "to_type": "UnityEngine",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/RecallTutorialManager.cs",
-    "from_class": "RecallTutorialManager",
-    "to_type": "Update",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44417,6 +44109,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "Approximately",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "Awake",
     "relation_type": "uses",
     "strength": 1
@@ -44425,6 +44124,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
     "to_type": "BallController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "BallRespawner",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "BeginRecallTutorial",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44508,6 +44221,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "CanObserveRecallTutorial",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "CeilingManager",
     "relation_type": "uses",
     "strength": 1
@@ -44550,6 +44270,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "CompleteRecallTutorial",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "CompleteStage2LaserUnlock",
     "relation_type": "uses",
     "strength": 1
@@ -44558,6 +44285,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
     "to_type": "Contains",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "Current",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44579,6 +44313,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
     "to_type": "Empty",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "EndRecallTutorial",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44648,6 +44389,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "HandleRecallTutorialBallRecalled",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "HandleStage1BallCaptured",
     "relation_type": "uses",
     "strength": 1
@@ -44683,7 +44431,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "HasSeenRecallTutorial",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "HasShown",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "HideTutorialPopup",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44725,6 +44487,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "IsCaptured",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "IsGameStarted",
     "relation_type": "uses",
     "strength": 1
@@ -44746,7 +44515,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "IsPaused",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "IsPausedByTutorial",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "IsRecallTutorialActive",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44816,6 +44599,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "Max",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "MaxGaugeSegments",
     "relation_type": "uses",
     "strength": 1
@@ -44837,6 +44627,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "Min",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "None",
     "relation_type": "uses",
     "strength": 1
@@ -44845,6 +44642,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
     "to_type": "NotifyTriggerEntered",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "ObserveRecallTutorialY",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "OnBallRecalled",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44879,6 +44690,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "OnEnable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "OnGaugeSegmentChanged",
     "relation_type": "uses",
     "strength": 1
@@ -44907,7 +44725,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "Recall",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "References",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "ResetRecallObservation",
     "relation_type": "uses",
     "strength": 1
   },
@@ -45019,7 +44851,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "SetRecallTutorialSeen",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "SetTutorialTopBoundaryActive",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "ShowRecallTutorialPopup",
     "relation_type": "uses",
     "strength": 1
   },
@@ -45250,6 +45096,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "StartRecallObservation",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "Step",
     "relation_type": "uses",
     "strength": 1
@@ -45265,6 +45118,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
     "to_type": "System",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "TryBeginRecallTutorial",
     "relation_type": "uses",
     "strength": 1
   },
@@ -45356,6 +45216,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
     "to_type": "Update",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "UpdateRecallTutorial",
     "relation_type": "uses",
     "strength": 1
   },
@@ -45628,6 +45495,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
+    "to_type": "Recall",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
+    "from_class": "UIManager",
     "to_type": "SetActive",
     "relation_type": "uses",
     "strength": 1
@@ -45643,6 +45517,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
     "from_class": "UIManager",
     "to_type": "ShowMessage",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialUI.cs",
+    "from_class": "UIManager",
+    "to_type": "ShowRecallTutorialPopup",
     "relation_type": "uses",
     "strength": 1
   },

@@ -5,7 +5,7 @@
   "total_cs_files": 189,
   "mono_behaviour_files": 158,
   "scriptable_object_files": 10,
-  "files_with_update": 57,
+  "files_with_update": 56,
   "files_with_fixed_update": 1,
   "files_with_late_update": 9,
   "singleton_candidates": 5,
@@ -20,7 +20,7 @@
     "manager": 68,
     "data": 60,
     "ui": 103,
-    "scene": 5,
+    "scene": 6,
     "network": 2,
     "inventory": 2
   },
@@ -44,6 +44,12 @@
       "referenced_type_count": 166
     },
     {
+      "class_name": "TutorialManager",
+      "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+      "relation_count": 166,
+      "referenced_type_count": 163
+    },
+    {
       "class_name": "TMP_TextSelector_B",
       "file_id": "PaddlePrototype/Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextSelector_B.cs",
       "relation_count": 144,
@@ -54,12 +60,6 @@
       "file_id": "ProjectDribble/Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextSelector_B.cs",
       "relation_count": 144,
       "referenced_type_count": 137
-    },
-    {
-      "class_name": "TutorialManager",
-      "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-      "relation_count": 141,
-      "referenced_type_count": 138
     },
     {
       "class_name": "TMP_TextInfoDebugTool",

@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject pauseButton;
     [SerializeField] private GameObject quitConfirmPopup;
     [SerializeField] private GameObject homeConfirmPopup;
+    [SerializeField] private GameObject creditPopup;
 
     private bool isPausedByTutorial;
     private float timeScaleBeforeTutorial = 1f;
@@ -243,6 +244,18 @@ public class GameManager : MonoBehaviour
             quitConfirmPopup.SetActive(false);
     }
 
+    public void ShowCreditPopup()
+    {
+        if (creditPopup != null)
+            creditPopup.SetActive(true);
+    }
+
+    public void HideCreditPopup()
+    {
+        if (creditPopup != null)
+            creditPopup.SetActive(false);
+    }
+
     public void ConfirmQuitGame()
     {
 #if UNITY_EDITOR
@@ -265,6 +278,7 @@ public class GameManager : MonoBehaviour
     public void Initialize()
     {
         CloseConfirmPopups();
+        HideCreditPopup();
         FeedbackManager.Instance?.StopRecallHoldFeedback();
         FeedbackManager.Instance?.StopLaserChargeFeedback();
         Time.timeScale = 0f;

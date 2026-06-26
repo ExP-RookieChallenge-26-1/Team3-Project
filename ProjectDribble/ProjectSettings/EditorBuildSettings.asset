@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/RealProjectDribble 2.unity
     guid: d3fa0e55025bcfc4986607744ce76515
-  - enabled: 0
-    path: Assets/Scenes/MainScene.unity
-    guid: 4fe24d64bc2fbbe4ca127c83c2a7a7d2
   - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: 0ed2dfc2691062f49b292b81721407a7
+  - enabled: 0
     path: Assets/Scenes/MainScene kjw 2.unity
     guid: 24c69475e3205cb41837dd3b0aca8bfa
   m_configObjects:

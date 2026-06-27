@@ -33833,6 +33833,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
     "from_class": "EndingGaugeController",
+    "to_type": "SoundManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
     "to_type": "ApplyAlphaFlicker",
     "relation_type": "uses",
     "strength": 1
@@ -33868,6 +33875,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
     "from_class": "EndingGaugeController",
+    "to_type": "CeilToInt",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "Clamp",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
     "to_type": "Clamp01",
     "relation_type": "uses",
     "strength": 1
@@ -33883,6 +33904,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
     "from_class": "EndingGaugeController",
     "to_type": "CreateFlickerColor",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "DefaultNamespace",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "EndingGaugeErrorTick",
     "relation_type": "uses",
     "strength": 1
   },
@@ -33917,6 +33952,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
     "from_class": "EndingGaugeController",
+    "to_type": "Instance",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "int",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
     "to_type": "Invoke",
     "relation_type": "uses",
     "strength": 1
@@ -33925,6 +33974,34 @@
     "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
     "from_class": "EndingGaugeController",
     "to_type": "Length",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "Min",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "NegativeInfinity",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "Play",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "PlayErrorTickIfSlotAdvanced",
     "relation_type": "uses",
     "strength": 1
   },
@@ -33946,6 +34023,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
     "from_class": "EndingGaugeController",
     "to_type": "SharedFlickerSignal",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "SoundId",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
+    "from_class": "EndingGaugeController",
+    "to_type": "SoundManager",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34029,7 +34120,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
     "from_class": "EndingMovieController",
+    "to_type": "DefaultNamespace",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
     "to_type": "EndEndingAndReset",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "EndingErrorVideoStart",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34191,6 +34296,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
     "from_class": "EndingMovieController",
     "to_type": "SetDirectAudioMute",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "SoundId",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34394,6 +34506,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
     "from_class": "EndingSequenceController",
     "to_type": "StopAndReset",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
+    "to_type": "StopDamageRoutine",
     "relation_type": "uses",
     "strength": 1
   },
@@ -36087,6 +36206,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
+    "to_type": "Apply",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "ApplyEndingClearedTitleStateIfNeeded",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
     "to_type": "ApplySavedProgressState",
     "relation_type": "uses",
     "strength": 1
@@ -36213,6 +36346,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
+    "to_type": "EndingBgm",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "EndingNextGlitch",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
     "to_type": "EndingSequenceController",
     "relation_type": "uses",
     "strength": 1
@@ -36228,6 +36375,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "FeedbackManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "FindAnyObjectByType",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "FindObjectsInactive",
     "relation_type": "uses",
     "strength": 1
   },
@@ -36290,6 +36451,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
+    "to_type": "Include",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
     "to_type": "Initialize",
     "relation_type": "uses",
     "strength": 1
@@ -36333,6 +36501,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "IsEnding",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "IsGameplayDamageAllowed",
     "relation_type": "uses",
     "strength": 1
   },
@@ -36493,6 +36668,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
+    "to_type": "PlayerHealth",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
     "to_type": "PlayGameplayBgm",
     "relation_type": "uses",
     "strength": 1
@@ -36536,6 +36718,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "RequestStageClear",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "ResetPlayerHealth",
     "relation_type": "uses",
     "strength": 1
   },
@@ -36696,6 +36885,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
+    "to_type": "StageArtManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "StageArtProfile",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
     "to_type": "StageClear",
     "relation_type": "uses",
     "strength": 1
@@ -36774,6 +36977,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "ToTitle",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "TryPlayBgmIfConfigured",
     "relation_type": "uses",
     "strength": 1
   },
@@ -41323,6 +41533,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/PlayerDamagedManager.cs",
     "from_class": "PlayerDamagedManager",
+    "to_type": "GameManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerDamagedManager.cs",
+    "from_class": "PlayerDamagedManager",
     "to_type": "BlockManager",
     "relation_type": "uses",
     "strength": 1
@@ -41372,6 +41589,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/PlayerDamagedManager.cs",
     "from_class": "PlayerDamagedManager",
+    "to_type": "GameManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerDamagedManager.cs",
+    "from_class": "PlayerDamagedManager",
     "to_type": "GetLength",
     "relation_type": "uses",
     "strength": 1
@@ -41393,6 +41617,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/PlayerDamagedManager.cs",
     "from_class": "PlayerDamagedManager",
+    "to_type": "Instance",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerDamagedManager.cs",
+    "from_class": "PlayerDamagedManager",
+    "to_type": "IsGameplayDamageAllowed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerDamagedManager.cs",
+    "from_class": "PlayerDamagedManager",
     "to_type": "Log",
     "relation_type": "uses",
     "strength": 1
@@ -41401,6 +41639,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/PlayerDamagedManager.cs",
     "from_class": "PlayerDamagedManager",
     "to_type": "Min",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerDamagedManager.cs",
+    "from_class": "PlayerDamagedManager",
+    "to_type": "OnDisable",
     "relation_type": "uses",
     "strength": 1
   },
@@ -41422,6 +41667,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/PlayerDamagedManager.cs",
     "from_class": "PlayerDamagedManager",
     "to_type": "StopCoroutine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerDamagedManager.cs",
+    "from_class": "PlayerDamagedManager",
+    "to_type": "StopDamageRoutine",
     "relation_type": "uses",
     "strength": 1
   },
@@ -41472,6 +41724,13 @@
     "from_class": "PlayerHealth",
     "to_type": "MonoBehaviour",
     "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
+    "from_class": "PlayerHealth",
+    "to_type": "GameManager",
+    "relation_type": "singleton-access",
     "strength": 4
   },
   {
@@ -41603,6 +41862,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
     "from_class": "PlayerHealth",
+    "to_type": "GameManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
+    "from_class": "PlayerHealth",
     "to_type": "GameOver",
     "relation_type": "uses",
     "strength": 1
@@ -41660,6 +41926,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
     "from_class": "PlayerHealth",
     "to_type": "Invoke",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
+    "from_class": "PlayerHealth",
+    "to_type": "IsGameplayDamageAllowed",
     "relation_type": "uses",
     "strength": 1
   },
@@ -42535,6 +42808,55 @@
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundId.cs",
     "from_class": "SoundId",
     "to_type": "DefaultNamespace",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundId.cs",
+    "from_class": "SoundId",
+    "to_type": "Ending",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundId.cs",
+    "from_class": "SoundId",
+    "to_type": "EndingBgm",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundId.cs",
+    "from_class": "SoundId",
+    "to_type": "EndingErrorVideoStart",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundId.cs",
+    "from_class": "SoundId",
+    "to_type": "EndingGaugeErrorTick",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundId.cs",
+    "from_class": "SoundId",
+    "to_type": "EndingNextGlitch",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundId.cs",
+    "from_class": "SoundId",
+    "to_type": "EndingPopupNoise",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundId.cs",
+    "from_class": "SoundId",
+    "to_type": "EndingQuestionAppear",
     "relation_type": "uses",
     "strength": 1
   },
@@ -43452,6 +43774,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
     "to_type": "TryGetValue",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "TryPlayBgmIfConfigured",
     "relation_type": "uses",
     "strength": 1
   },
@@ -45166,6 +45495,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
     "from_class": "StrangePopupController",
+    "to_type": "SoundManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
     "to_type": "AnimateDots",
     "relation_type": "uses",
     "strength": 1
@@ -45194,6 +45530,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
     "from_class": "StrangePopupController",
+    "to_type": "DefaultNamespace",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
     "to_type": "Empty",
     "relation_type": "uses",
     "strength": 1
@@ -45209,6 +45552,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
     "from_class": "StrangePopupController",
     "to_type": "EndingMovieController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "EndingPopupNoise",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "EndingQuestionAppear",
     "relation_type": "uses",
     "strength": 1
   },
@@ -45278,6 +45635,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
     "from_class": "StrangePopupController",
+    "to_type": "Play",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
     "to_type": "PlayMovie",
     "relation_type": "uses",
     "strength": 1
@@ -45300,6 +45664,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
     "from_class": "StrangePopupController",
     "to_type": "ShowHomeButtonAfterDelay",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "SoundId",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
+    "from_class": "StrangePopupController",
+    "to_type": "SoundManager",
     "relation_type": "uses",
     "strength": 1
   },

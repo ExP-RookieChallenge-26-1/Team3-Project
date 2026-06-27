@@ -22581,14 +22581,15 @@
     "file_id": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
     "path": "ProjectDribble/Assets/Scripts/EndingGaugeController.cs",
     "file_name": "EndingGaugeController.cs",
-    "content_hash": "7f2ac8dbcac233e92b1c34dc973bad9580bfe834",
-    "size": 2763,
-    "line_count": 112,
+    "content_hash": "bdd0e6aa99c46757eb171244996eed0aa017c90d",
+    "size": 3809,
+    "line_count": 140,
     "namespace": "",
     "using_list": [
       "UnityEngine",
       "UnityEngine.Events",
-      "UnityEngine.UI"
+      "UnityEngine.UI",
+      "DefaultNamespace"
     ],
     "classes": [
       {
@@ -22609,11 +22610,13 @@
     "methods": [
       "Color",
       "Range",
+      "Min",
       "Awake",
       "Update",
       "BeginFill",
       "ResetGauge",
       "ApplyFill",
+      "PlayErrorTickIfSlotAdvanced",
       "CreateFlickerColor"
     ],
     "fields": [
@@ -22634,6 +22637,20 @@
       {
         "name": "filled",
         "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "lastFilledSlotCount",
+        "type": "int",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "lastErrorTickRealtime",
+        "type": "float",
         "access": "private",
         "serialized": false,
         "is_static": false
@@ -22665,6 +22682,13 @@
         "access": "internal",
         "serialized": false,
         "is_static": false
+      },
+      {
+        "name": "now",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
       }
     ],
     "properties": [],
@@ -22691,12 +22715,16 @@
     "referenced_types": [
       "float",
       "bool",
+      "int",
       "Image",
       "UnityEngine",
       "Events",
       "UI",
+      "DefaultNamespace",
       "Color",
+      "Min",
       "UnityEvent",
+      "NegativeInfinity",
       "Fill01",
       "Clamp01",
       "Awake",
@@ -22708,6 +22736,14 @@
       "SetActive",
       "CreateFlickerColor",
       "Length",
+      "Clamp",
+      "CeilToInt",
+      "PlayErrorTickIfSlotAdvanced",
+      "SoundManager",
+      "Instance",
+      "Play",
+      "SoundId",
+      "EndingGaugeErrorTick",
       "SharedFlickerSignal",
       "ApplyAlphaFlicker"
     ],
@@ -22715,7 +22751,9 @@
     "created_types": [
       "Color"
     ],
-    "singleton_access_types": [],
+    "singleton_access_types": [
+      "SoundManager"
+    ],
     "string_literals": [],
     "numeric_literals": [
       8,
@@ -22724,31 +22762,33 @@
       0.25,
       0.12,
       18,
-      0
+      0,
+      0.08
     ],
     "guessed_roles": [
       "runtime",
       "ui",
-      "inventory",
-      "save-load"
+      "manager",
+      "player",
+      "inventory"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
       "Update 기반 처리 존재",
       "UI 관련 로직 포함",
-      "인벤토리 계열 로직 포함",
-      "저장/불러오기 관련 로직 포함"
+      "인벤토리 계열 로직 포함"
     ]
   },
   {
     "file_id": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
     "path": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
     "file_name": "EndingMovieController.cs",
-    "content_hash": "77c104bb568456cefd4897634b27b824a6f260ea",
-    "size": 4664,
-    "line_count": 170,
+    "content_hash": "ce88a87fe9a5460308d241380bd7a4cce1ce00ea",
+    "size": 4756,
+    "line_count": 172,
     "namespace": "",
     "using_list": [
+      "DefaultNamespace",
       "UnityEngine",
       "UnityEngine.Video"
     ],
@@ -22838,6 +22878,7 @@
       "bool",
       "float",
       "ushort",
+      "DefaultNamespace",
       "UnityEngine",
       "Video",
       "VideoPlayer",
@@ -22858,13 +22899,15 @@
       "SoundManager",
       "Instance",
       "StopAllAudioForEnding",
+      "Play",
+      "SoundId",
+      "EndingErrorVideoStart",
       "SetActive",
       "HideAndReset",
       "LogWarning",
       "Check",
       "MuteVideoAudio",
       "Stop",
-      "Play",
       "Input",
       "GetMouseButtonDown",
       "Touch",
@@ -22911,9 +22954,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
     "path": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
     "file_name": "EndingSequenceController.cs",
-    "content_hash": "3cae29f16bdf076e551bc0e0560f5776d80e88c7",
-    "size": 3077,
-    "line_count": 104,
+    "content_hash": "99670c8fd5b9249c5bed35243aaa6cbd86201110",
+    "size": 3131,
+    "line_count": 105,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -23009,6 +23052,7 @@
       "StopForEnding",
       "SetActive",
       "HideAndReset",
+      "StopDamageRoutine",
       "BeginFill",
       "ResetGauge",
       "StopAndReset"
@@ -24017,9 +24061,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "path": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "file_name": "GameManager.cs",
-    "content_hash": "7fc8e6f78b3d557997c19b209517e75fe36f9e49",
-    "size": 14737,
-    "line_count": 526,
+    "content_hash": "535b87978f51d1fbd23e9cfda0542490121fd4d2",
+    "size": 16345,
+    "line_count": 568,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -24070,6 +24114,7 @@
       "GoHomeInternal",
       "GoHomeFromEnding",
       "Initialize",
+      "ApplyEndingClearedTitleStateIfNeeded",
       "CloseConfirmPopups",
       "ApplySavedProgressState",
       "PauseForTutorial",
@@ -24121,6 +24166,20 @@
         "is_static": false
       },
       {
+        "name": "isEndingTransitioning",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "showEndingClearedTitleState",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "currentStage",
         "type": "int",
         "access": "internal",
@@ -24162,7 +24221,7 @@
     "serialize_field_count": 0,
     "public_field_count": 0,
     "get_component_count": 0,
-    "find_call_count": 0,
+    "find_call_count": 2,
     "new_keyword_count": 0,
     "coroutine_count": 0,
     "singleton_candidate": true,
@@ -24182,7 +24241,10 @@
       "SaveManager",
       "LaserUnlockState",
       "PaddleController",
+      "PlayerHealth",
       "EndingSequenceController",
+      "StageArtManager",
+      "StageArtProfile",
       "UI",
       "IsPausedByTutorial",
       "IsPaused",
@@ -24192,6 +24254,8 @@
       "IsRecallTutorialActive",
       "IsEnding",
       "ShouldSuppressBallCollisionFeedback",
+      "IsGameplayDamageAllowed",
+      "IsCurrentStageEnding",
       "Awake",
       "LogWarning",
       "Keeping",
@@ -24203,7 +24267,6 @@
       "PlayTitleBgm",
       "RequestStageClear",
       "Cannot",
-      "IsCurrentStageEnding",
       "Stage",
       "FeedbackManager",
       "StopRecallHoldFeedback",
@@ -24235,8 +24298,13 @@
       "PlayGameplayBgm",
       "StartStage",
       "StartEndingStage",
+      "EndingNextGlitch",
+      "TryPlayBgmIfConfigured",
+      "EndingBgm",
       "CloseConfirmPopups",
       "TryStartEndingStage",
+      "FindAnyObjectByType",
+      "ResetPlayerHealth",
       "ResetPosition",
       "RetryStage",
       "Restore",
@@ -24269,6 +24337,10 @@
       "CancelQuitGame",
       "GoHomeFromEnding",
       "EndEndingAndReset",
+      "ApplyEndingClearedTitleStateIfNeeded",
+      "FindObjectsInactive",
+      "Include",
+      "Apply",
       "Current",
       "UnlockLaser",
       "LockLaser",
@@ -24313,7 +24385,8 @@
       "런타임 컴포넌트",
       "싱글톤 후보",
       "UI 관련 로직 포함",
-      "저장/불러오기 관련 로직 포함"
+      "저장/불러오기 관련 로직 포함",
+      "Find 계열 탐색 사용"
     ]
   },
   {
@@ -27519,9 +27592,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/PlayerDamagedManager.cs",
     "path": "ProjectDribble/Assets/Scripts/PlayerDamagedManager.cs",
     "file_name": "PlayerDamagedManager.cs",
-    "content_hash": "dec02d21865de490488c3c571f62c87a0c26f32b",
-    "size": 1808,
-    "line_count": 79,
+    "content_hash": "3784acc07e1efb8bc808aa52e74d0baf9ba70a73",
+    "size": 2253,
+    "line_count": 101,
     "namespace": "",
     "using_list": [
       "UnityEngine",
@@ -27544,7 +27617,9 @@
     "main_class_name": "PlayerDamagedManager",
     "unity_type": "MonoBehaviour",
     "methods": [
+      "OnDisable",
       "Update",
+      "StopDamageRoutine",
       "CheckConnected",
       "DamageRoutine",
       "WaitForSeconds"
@@ -27575,6 +27650,7 @@
     "properties": [],
     "events": [],
     "unity_messages": [
+      "OnDisable",
       "Update"
     ],
     "has_update": true,
@@ -27583,7 +27659,7 @@
     "has_awake": false,
     "has_start": false,
     "has_on_enable": false,
-    "has_on_disable": false,
+    "has_on_disable": true,
     "serialize_field_count": 0,
     "public_field_count": 0,
     "get_component_count": 0,
@@ -27602,7 +27678,12 @@
       "BlockManager",
       "PlayerHealth",
       "HealthData",
+      "OnDisable",
+      "StopDamageRoutine",
       "Update",
+      "GameManager",
+      "Instance",
+      "IsGameplayDamageAllowed",
       "CheckConnected",
       "StartCoroutine",
       "DamageRoutine",
@@ -27618,7 +27699,9 @@
     "created_types": [
       "WaitForSeconds"
     ],
-    "singleton_access_types": [],
+    "singleton_access_types": [
+      "GameManager"
+    ],
     "string_literals": [
       "데미지 받기"
     ],
@@ -27629,9 +27712,9 @@
     ],
     "guessed_roles": [
       "runtime",
+      "manager",
       "player",
       "combat",
-      "manager",
       "data"
     ],
     "summary_signals": [
@@ -27644,9 +27727,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
     "path": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
     "file_name": "PlayerHealth.cs",
-    "content_hash": "fa2b8238a37f632d5143dea2b68168d766602ee1",
-    "size": 5394,
-    "line_count": 199,
+    "content_hash": "99685e60dfc12d0087a37d775e126c5ed2a1f00e",
+    "size": 5624,
+    "line_count": 206,
     "namespace": "",
     "using_list": [
       "System",
@@ -27750,6 +27833,13 @@
         "access": "internal",
         "serialized": false,
         "is_static": false
+      },
+      {
+        "name": "break",
+        "type": "yield",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
       }
     ],
     "properties": [],
@@ -27805,12 +27895,14 @@
       "ResetPlayerHealth",
       "UpdateHealthVisuals",
       "TakeDamage",
+      "GameManager",
+      "Instance",
+      "IsGameplayDamageAllowed",
       "Clamp",
       "Log",
       "Player",
       "HP",
       "SoundManager",
-      "Instance",
       "Play",
       "SoundId",
       "PlayerHit",
@@ -27838,6 +27930,7 @@
       "WaitForSeconds"
     ],
     "singleton_access_types": [
+      "GameManager",
       "SoundManager"
     ],
     "string_literals": [
@@ -28415,9 +28508,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Sound/SoundId.cs",
     "path": "ProjectDribble/Assets/Scripts/Sound/SoundId.cs",
     "file_name": "SoundId.cs",
-    "content_hash": "7a1ee1c12000ede492082fd9cadaf7fd46e4d9a0",
-    "size": 759,
-    "line_count": 43,
+    "content_hash": "bda8703eda5dd7ce9c460dd4b809715e20c6c9ef",
+    "size": 970,
+    "line_count": 51,
     "namespace": "DefaultNamespace",
     "using_list": [],
     "classes": [],
@@ -28473,7 +28566,14 @@
       "BGM",
       "StageBGM",
       "TitleBGM",
-      "GameplayBGM"
+      "GameplayBGM",
+      "Ending",
+      "EndingNextGlitch",
+      "EndingGaugeErrorTick",
+      "EndingPopupNoise",
+      "EndingQuestionAppear",
+      "EndingErrorVideoStart",
+      "EndingBgm"
     ],
     "component_access_types": [],
     "created_types": [],
@@ -28496,14 +28596,17 @@
       15,
       16,
       17,
-      18
+      18,
+      19,
+      20,
+      21
     ],
     "guessed_roles": [
       "ui",
       "player",
       "combat",
-      "scene",
-      "data"
+      "runtime",
+      "scene"
     ],
     "summary_signals": [
       "UI 관련 로직 포함",
@@ -28514,9 +28617,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "file_name": "SoundManager.cs",
-    "content_hash": "33c0da5ffcb6282c8710eef0d8bad506fff6470e",
-    "size": 16861,
-    "line_count": 627,
+    "content_hash": "c3f663d42892e3345b0324c52c43e756864e8419",
+    "size": 17296,
+    "line_count": 642,
     "namespace": "",
     "using_list": [
       "System.Collections.Generic",
@@ -28563,6 +28666,7 @@
       "PlayTitleBgm",
       "PlayGameplayBgm",
       "PlayBgm",
+      "TryPlayBgmIfConfigured",
       "PlayBgmInternal",
       "GetBgmIntroClip",
       "StopBgmSources",
@@ -28862,6 +28966,7 @@
       "TitleBGM",
       "PlayGameplayBgm",
       "GameplayBGM",
+      "TryPlayBgmIfConfigured",
       "GetBgmIntroClip",
       "StopBgmSources",
       "Loop",
@@ -29842,12 +29947,13 @@
     "file_id": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
     "path": "ProjectDribble/Assets/Scripts/StrangePopupController.cs",
     "file_name": "StrangePopupController.cs",
-    "content_hash": "6c09c8972adb360a0a9c4f8145d1aa1ac02ca07f",
-    "size": 3066,
-    "line_count": 119,
+    "content_hash": "5e6c6e7874350f0892a60eef207ff52f48718d70",
+    "size": 3222,
+    "line_count": 124,
     "namespace": "",
     "using_list": [
       "System.Collections",
+      "DefaultNamespace",
       "TMPro",
       "UnityEngine"
     ],
@@ -29926,6 +30032,7 @@
       "int",
       "System",
       "Collections",
+      "DefaultNamespace",
       "TMPro",
       "UnityEngine",
       "TextMeshProUGUI",
@@ -29936,6 +30043,11 @@
       "HideAndReset",
       "Show",
       "SetActive",
+      "SoundManager",
+      "Instance",
+      "Play",
+      "SoundId",
+      "EndingPopupNoise",
       "StartCoroutine",
       "AnimateDots",
       "ShowHomeButtonAfterDelay",
@@ -29944,11 +30056,11 @@
       "OnClickHome",
       "PlayMovie",
       "EndEndingAndReset",
-      "Instance",
       "GoHomeFromEnding",
       "LogWarning",
       "WaitForSecondsRealtime",
       "Max",
+      "EndingQuestionAppear",
       "StopCoroutine"
     ],
     "component_access_types": [],
@@ -29956,6 +30068,7 @@
       "WaitForSecondsRealtime"
     ],
     "singleton_access_types": [
+      "SoundManager",
       "GameManager"
     ],
     "string_literals": [

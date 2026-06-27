@@ -2968,6 +2968,23 @@
     "risk_score": 42
   },
   {
+    "file_id": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "class_name": "EndingSequenceController",
+    "risk_flags": [
+      "find-heavy",
+      "save-load-sensitive",
+      "ui-runtime-mixed",
+      "state-owner"
+    ],
+    "risk_reasons": [
+      "Find 계열 탐색 사용",
+      "저장/불러오기 관련 로직 포함",
+      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
+      "상태 중심 또는 관리 중심 클래스일 가능성"
+    ],
+    "risk_score": 42
+  },
+  {
     "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialTrigger.cs",
     "class_name": "TutorialTrigger",
     "risk_flags": [
@@ -3179,21 +3196,6 @@
     "risk_reasons": [
       "초기화 순서에 민감할 가능성",
       "저장/불러오기 관련 로직 포함",
-      "상태 중심 또는 관리 중심 클래스일 가능성"
-    ],
-    "risk_score": 30
-  },
-  {
-    "file_id": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
-    "class_name": "EndingSequenceController",
-    "risk_flags": [
-      "save-load-sensitive",
-      "ui-runtime-mixed",
-      "state-owner"
-    ],
-    "risk_reasons": [
-      "저장/불러오기 관련 로직 포함",
-      "UI와 런타임 책임이 한 파일에 섞였을 가능성",
       "상태 중심 또는 관리 중심 클래스일 가능성"
     ],
     "risk_score": 30

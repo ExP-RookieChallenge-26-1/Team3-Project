@@ -40,8 +40,8 @@
     {
       "class_name": "BallCapturedDribbleController",
       "file_id": "ProjectDribble/Assets/Scripts/Ball/BallCapturedDribbleController.cs",
-      "relation_count": 171,
-      "referenced_type_count": 166
+      "relation_count": 174,
+      "referenced_type_count": 168
     },
     {
       "class_name": "TutorialManager",
@@ -76,8 +76,8 @@
     {
       "class_name": "BallController",
       "file_id": "ProjectDribble/Assets/Scripts/Ball/BallController.cs",
-      "relation_count": 129,
-      "referenced_type_count": 118
+      "relation_count": 130,
+      "referenced_type_count": 119
     },
     {
       "class_name": "StageManager",

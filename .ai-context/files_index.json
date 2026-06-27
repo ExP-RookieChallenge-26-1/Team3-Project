@@ -15701,9 +15701,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallCapturedDribbleController.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallCapturedDribbleController.cs",
     "file_name": "BallCapturedDribbleController.cs",
-    "content_hash": "0ce7f6553ac5af0e049cfed072f8536155446679",
-    "size": 23939,
-    "line_count": 769,
+    "content_hash": "5763a8a1061ea160867b867087f94553e2a2514e",
+    "size": 24213,
+    "line_count": 775,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -15774,7 +15774,8 @@
       "LogCapturedDribble",
       "LogCapturePhase",
       "LogCapture",
-      "ShouldLogCapture"
+      "ShouldLogCapture",
+      "ShouldSuppressBallCollisionFeedback"
     ],
     "fields": [
       {
@@ -16180,6 +16181,7 @@
       "Skipped",
       "SoundPlayOptions",
       "GetSpeedRatio",
+      "ShouldSuppressBallCollisionFeedback",
       "FeedbackManager",
       "Instance",
       "PlayBallBounceFeedback",
@@ -16209,7 +16211,8 @@
       "DribbleSpeed",
       "AddSpeedByDribble",
       "DebugCapturedDribbleLog",
-      "DebugCaptureLog"
+      "DebugCaptureLog",
+      "GameManager"
     ],
     "component_access_types": [],
     "created_types": [
@@ -16218,7 +16221,8 @@
     ],
     "singleton_access_types": [
       "FeedbackManager",
-      "SoundManager"
+      "SoundManager",
+      "GameManager"
     ],
     "string_literals": [
       "Capture Approach",
@@ -16277,9 +16281,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "file_name": "BallCollisionHandler.cs",
-    "content_hash": "58a8022a2bc6d28751ed70a26b09efcb35c98161",
-    "size": 9786,
-    "line_count": 310,
+    "content_hash": "1215ca0a9ea10834e88bab8159a57d0ebf6c08ad",
+    "size": 10046,
+    "line_count": 319,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -16312,6 +16316,7 @@
       "IsFloorCollider",
       "GetCollisionSound",
       "PlayCollisionFeedback",
+      "ShouldSuppressBallCollisionFeedback",
       "IsFloorName"
     ],
     "fields": [
@@ -16479,6 +16484,7 @@
       "CeilingBrick",
       "WallBallHitReceiver",
       "BallGroundBounce",
+      "ShouldSuppressBallCollisionFeedback",
       "FeedbackManager",
       "Instance",
       "SoundManager",
@@ -16489,6 +16495,7 @@
       "Block",
       "Wall",
       "PlayBallBounceFeedback",
+      "GameManager",
       "Contains"
     ],
     "component_access_types": [
@@ -16501,7 +16508,8 @@
     ],
     "singleton_access_types": [
       "FeedbackManager",
-      "SoundManager"
+      "SoundManager",
+      "GameManager"
     ],
     "string_literals": [
       "[PaddleReward] frame={Time.frameCount}, collider={hitCollider.name}, ",
@@ -16620,9 +16628,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ball/BallController.cs",
     "path": "ProjectDribble/Assets/Scripts/Ball/BallController.cs",
     "file_name": "BallController.cs",
-    "content_hash": "441e58b3c76997c0f4cab3d4a320423554069479",
-    "size": 13627,
-    "line_count": 419,
+    "content_hash": "3297b70476f2f2f7154617d7276b2cebeab0f545",
+    "size": 14021,
+    "line_count": 436,
     "namespace": "",
     "using_list": [
       "System",
@@ -16658,6 +16666,7 @@
       "Release",
       "Shoot",
       "Launch",
+      "StopForEnding",
       "ReleaseUpward",
       "SetBallDirection",
       "CorrectDirection",
@@ -16823,7 +16832,7 @@
     "has_on_disable": false,
     "serialize_field_count": 0,
     "public_field_count": 5,
-    "get_component_count": 9,
+    "get_component_count": 11,
     "find_call_count": 0,
     "new_keyword_count": 3,
     "coroutine_count": 0,
@@ -16898,6 +16907,7 @@
       "SetBallSpeed",
       "Launch",
       "Rigidbody2D",
+      "StopForEnding",
       "ReleaseUpward",
       "LogCapturedDribble",
       "Upward",
@@ -21570,9 +21580,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "file_name": "CeilingManager.cs",
-    "content_hash": "2aff4f0bb0d192346072960eaeef7afc54f89349",
-    "size": 32195,
-    "line_count": 1033,
+    "content_hash": "5bbbab47096c2b1a3173586e46a0f439b0b31869",
+    "size": 32637,
+    "line_count": 1049,
     "namespace": "",
     "using_list": [
       "System",
@@ -21609,6 +21619,7 @@
     "unity_type": "MonoBehaviour",
     "methods": [
       "Vector2",
+      "Min",
       "Awake",
       "Start",
       "InitializeCeiling",
@@ -21666,6 +21677,7 @@
       "PlayCoreDamageFlash",
       "SetCoreAlive",
       "DisableStemGrowthForSegment",
+      "AddCeilingSegmentBreakGaugeReward",
       "GetSegmentByIndex",
       "GetSegmentByX",
       "GetSegmentByCoord",
@@ -22003,7 +22015,7 @@
     "serialize_field_count": 0,
     "public_field_count": 2,
     "get_component_count": 0,
-    "find_call_count": 1,
+    "find_call_count": 2,
     "new_keyword_count": 15,
     "coroutine_count": 0,
     "singleton_candidate": false,
@@ -22055,6 +22067,7 @@
       "BallRespawner",
       "Gauge",
       "GaugeManager",
+      "Min",
       "Block",
       "Growth",
       "BlockManager",
@@ -22131,8 +22144,7 @@
       "Invoke",
       "BreakSegmentBricks",
       "RecallBallToPaddle",
-      "AddGauge",
-      "GaugePerSegment",
+      "AddCeilingSegmentBreakGaugeReward",
       "GetHpPercent",
       "Clamp01",
       "FeedbackManager",
@@ -22173,7 +22185,6 @@
       "Abs",
       "Approximately",
       "GetAliveBricksInSegment",
-      "Min",
       "Remove",
       "RemoveAt",
       "Break",
@@ -22198,6 +22209,7 @@
       "PlayDamageFlash",
       "DisableStemGrowthByCeilingSegment",
       "DisableStemGrowthByStartXRange",
+      "AddGauge",
       "ContainsX",
       "GetSegmentIndexByCoord",
       "Stage"
@@ -22247,6 +22259,7 @@
       0.5,
       0.01,
       0,
+      11,
       3,
       0.0001
     ],
@@ -22898,9 +22911,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
     "path": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
     "file_name": "EndingSequenceController.cs",
-    "content_hash": "5cbb9ce6186b682de40ba12da4a9b202d4ab98b4",
-    "size": 2870,
-    "line_count": 98,
+    "content_hash": "3cae29f16bdf076e551bc0e0560f5776d80e88c7",
+    "size": 3077,
+    "line_count": 104,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -22975,7 +22988,7 @@
     "serialize_field_count": 0,
     "public_field_count": 0,
     "get_component_count": 0,
-    "find_call_count": 0,
+    "find_call_count": 1,
     "new_keyword_count": 0,
     "coroutine_count": 0,
     "singleton_candidate": false,
@@ -22988,9 +23001,12 @@
       "EndingMovieController",
       "LaserChargeController",
       "PlayerDamagedManager",
+      "BallController",
       "IsEnding",
       "BeginEnding",
       "EndEndingAndReset",
+      "FindAnyObjectByType",
+      "StopForEnding",
       "SetActive",
       "HideAndReset",
       "BeginFill",
@@ -23015,7 +23031,8 @@
       "런타임 컴포넌트",
       "UI 관련 로직 포함",
       "전투 계열 로직 포함",
-      "저장/불러오기 관련 로직 포함"
+      "저장/불러오기 관련 로직 포함",
+      "Find 계열 탐색 사용"
     ]
   },
   {
@@ -23459,9 +23476,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
     "file_name": "FeedbackManager.cs",
-    "content_hash": "766a96996f1dce98138a0c3126641a882e75c852",
-    "size": 7620,
-    "line_count": 229,
+    "content_hash": "2f7d6fcd1e6bcbf183b5327362b2a203264b2572",
+    "size": 7743,
+    "line_count": 232,
     "namespace": "",
     "using_list": [
       "System.Collections.Generic",
@@ -23600,6 +23617,8 @@
       "VibrateOneShot",
       "PlayBallBounceFeedback",
       "SoundPlayOptions",
+      "GameManager",
+      "ShouldSuppressBallCollisionFeedback",
       "Clamp01",
       "PlayCeilingHitFeedback",
       "CeilingHit",
@@ -23638,6 +23657,7 @@
     ],
     "singleton_access_types": [
       "SoundManager",
+      "GameManager",
       "VibrationManager"
     ],
     "string_literals": [
@@ -23997,9 +24017,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "path": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "file_name": "GameManager.cs",
-    "content_hash": "e7021f3bcd7ecbaf44a30a50a3f2edf126d985c4",
-    "size": 13370,
-    "line_count": 484,
+    "content_hash": "ec3e60d64ebfef22f6c8700181082a25b282e174",
+    "size": 13534,
+    "line_count": 486,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -24161,6 +24181,8 @@
       "IsStageClearInputBlocked",
       "IsPlayerInputBlocked",
       "IsRecallTutorialActive",
+      "IsEnding",
+      "ShouldSuppressBallCollisionFeedback",
       "Awake",
       "LogWarning",
       "Keeping",

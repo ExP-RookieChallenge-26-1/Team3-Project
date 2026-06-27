@@ -22451,6 +22451,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCapturedDribbleController.cs",
     "from_class": "BallCapturedDribbleController",
+    "to_type": "GameManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCapturedDribbleController.cs",
+    "from_class": "BallCapturedDribbleController",
     "to_type": "SoundManager",
     "relation_type": "singleton-access",
     "strength": 4
@@ -23039,6 +23046,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCapturedDribbleController.cs",
     "from_class": "BallCapturedDribbleController",
+    "to_type": "GameManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCapturedDribbleController.cs",
+    "from_class": "BallCapturedDribbleController",
     "to_type": "GetAlignedReleaseDirection",
     "relation_type": "uses",
     "strength": 1
@@ -23438,6 +23452,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCapturedDribbleController.cs",
     "from_class": "BallCapturedDribbleController",
+    "to_type": "ShouldSuppressBallCollisionFeedback",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCapturedDribbleController.cs",
+    "from_class": "BallCapturedDribbleController",
     "to_type": "Skipped",
     "relation_type": "uses",
     "strength": 1
@@ -23662,6 +23683,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "from_class": "BallCollisionHandler",
+    "to_type": "GameManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
     "to_type": "SoundManager",
     "relation_type": "singleton-access",
     "strength": 4
@@ -23880,6 +23908,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "from_class": "BallCollisionHandler",
     "to_type": "float",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "GameManager",
     "relation_type": "uses",
     "strength": 1
   },
@@ -24118,6 +24153,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
     "from_class": "BallCollisionHandler",
     "to_type": "ReflectUp",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallCollisionHandler.cs",
+    "from_class": "BallCollisionHandler",
+    "to_type": "ShouldSuppressBallCollisionFeedback",
     "relation_type": "uses",
     "strength": 1
   },
@@ -25049,6 +25091,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallController.cs",
     "from_class": "BallController",
     "to_type": "StartPendingCapture",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallController.cs",
+    "from_class": "BallController",
+    "to_type": "StopForEnding",
     "relation_type": "uses",
     "strength": 1
   },
@@ -31957,6 +32006,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "from_class": "CeilingManager",
+    "to_type": "AddCeilingSegmentBreakGaugeReward",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
+    "from_class": "CeilingManager",
     "to_type": "AddGauge",
     "relation_type": "uses",
     "strength": 1
@@ -32455,13 +32511,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
     "from_class": "CeilingManager",
     "to_type": "GaugeManager",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
-    "from_class": "CeilingManager",
-    "to_type": "GaugePerSegment",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34246,6 +34295,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
     "from_class": "EndingSequenceController",
+    "to_type": "BallController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
     "to_type": "BeginEnding",
     "relation_type": "uses",
     "strength": 1
@@ -34282,6 +34338,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
     "from_class": "EndingSequenceController",
     "to_type": "EndingMovieController",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
+    "to_type": "FindAnyObjectByType",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34331,6 +34394,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
     "from_class": "EndingSequenceController",
     "to_type": "StopAndReset",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
+    "to_type": "StopForEnding",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34827,6 +34897,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
     "from_class": "FeedbackManager",
+    "to_type": "GameManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
     "to_type": "SoundManager",
     "relation_type": "singleton-access",
     "strength": 4
@@ -35010,6 +35087,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
     "from_class": "FeedbackManager",
     "to_type": "float",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "GameManager",
     "relation_type": "uses",
     "strength": 1
   },
@@ -35213,6 +35297,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
     "from_class": "FeedbackManager",
     "to_type": "SceneManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Feedback/FeedbackManager.cs",
+    "from_class": "FeedbackManager",
+    "to_type": "ShouldSuppressBallCollisionFeedback",
     "relation_type": "uses",
     "strength": 1
   },
@@ -36234,6 +36325,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
+    "to_type": "IsEnding",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
     "to_type": "IsGameStarted",
     "relation_type": "uses",
     "strength": 1
@@ -36508,6 +36606,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "SetTutorialCleared",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "ShouldSuppressBallCollisionFeedback",
     "relation_type": "uses",
     "strength": 1
   },

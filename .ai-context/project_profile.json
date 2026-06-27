@@ -82,8 +82,8 @@
     {
       "class_name": "GameManager",
       "file_id": "ProjectDribble/Assets/Scripts/GameManager.cs",
-      "relation_count": 126,
-      "referenced_type_count": 123
+      "relation_count": 125,
+      "referenced_type_count": 122
     }
   ],
   "high_risk_classes": [

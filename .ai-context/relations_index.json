@@ -34407,6 +34407,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
     "from_class": "EndingSequenceController",
+    "to_type": "SoundManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
     "to_type": "BallController",
     "relation_type": "uses",
     "strength": 1
@@ -34470,6 +34477,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
     "from_class": "EndingSequenceController",
+    "to_type": "Instance",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
     "to_type": "IsEnding",
     "relation_type": "uses",
     "strength": 1
@@ -34505,7 +34519,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
     "from_class": "EndingSequenceController",
+    "to_type": "SoundManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
     "to_type": "StopAndReset",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
+    "from_class": "EndingSequenceController",
+    "to_type": "StopBgm",
     "relation_type": "uses",
     "strength": 1
   },
@@ -36346,13 +36374,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
-    "to_type": "EndingBgm",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
-    "from_class": "GameManager",
     "to_type": "EndingNextGlitch",
     "relation_type": "uses",
     "strength": 1
@@ -36955,6 +36976,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
+    "to_type": "StopBgm",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
     "to_type": "StopLaserChargeFeedback",
     "relation_type": "uses",
     "strength": 1
@@ -36977,13 +37005,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "ToTitle",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
-    "from_class": "GameManager",
-    "to_type": "TryPlayBgmIfConfigured",
     "relation_type": "uses",
     "strength": 1
   },

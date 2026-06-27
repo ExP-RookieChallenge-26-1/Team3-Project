@@ -22954,9 +22954,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
     "path": "ProjectDribble/Assets/Scripts/EndingSequenceController.cs",
     "file_name": "EndingSequenceController.cs",
-    "content_hash": "99670c8fd5b9249c5bed35243aaa6cbd86201110",
-    "size": 3131,
-    "line_count": 105,
+    "content_hash": "f74900b4eeb9a1598c41febc86ecd11227c58d71",
+    "size": 3173,
+    "line_count": 106,
     "namespace": "",
     "using_list": [
       "UnityEngine"
@@ -23048,6 +23048,9 @@
       "IsEnding",
       "BeginEnding",
       "EndEndingAndReset",
+      "SoundManager",
+      "Instance",
+      "StopBgm",
       "FindAnyObjectByType",
       "StopForEnding",
       "SetActive",
@@ -23059,15 +23062,17 @@
     ],
     "component_access_types": [],
     "created_types": [],
-    "singleton_access_types": [],
+    "singleton_access_types": [
+      "SoundManager"
+    ],
     "string_literals": [],
     "numeric_literals": [
       1
     ],
     "guessed_roles": [
+      "manager",
       "player",
       "combat",
-      "manager",
       "ui",
       "save-load"
     ],
@@ -24061,8 +24066,8 @@
     "file_id": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "path": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "file_name": "GameManager.cs",
-    "content_hash": "535b87978f51d1fbd23e9cfda0542490121fd4d2",
-    "size": 16345,
+    "content_hash": "239281740de0be2a2190bae269e1af0856c18f7c",
+    "size": 16307,
     "line_count": 568,
     "namespace": "",
     "using_list": [
@@ -24299,8 +24304,7 @@
       "StartStage",
       "StartEndingStage",
       "EndingNextGlitch",
-      "TryPlayBgmIfConfigured",
-      "EndingBgm",
+      "StopBgm",
       "CloseConfirmPopups",
       "TryStartEndingStage",
       "FindAnyObjectByType",

@@ -27025,11 +27025,13 @@
     "file_id": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
     "path": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
     "file_name": "PaddleCorruptionVisual.cs",
-    "content_hash": "1b63784a29502e1f9388b2fd52a1a0e22621feb5",
-    "size": 3183,
-    "line_count": 103,
+    "content_hash": "95398a402a8dd3c10fe14e10e3c491024ed108db",
+    "size": 8389,
+    "line_count": 258,
     "namespace": "",
     "using_list": [
+      "System",
+      "System.Collections.Generic",
       "UnityEngine"
     ],
     "classes": [
@@ -27040,6 +27042,16 @@
         "base_types": [
           "MonoBehaviour"
         ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      },
+      {
+        "name": "CorruptionStage",
+        "kind": "class",
+        "access": "internal",
+        "base_types": [],
         "interfaces": [],
         "attributes": [],
         "is_partial": false,
@@ -27059,9 +27071,20 @@
       "ApplyCorruption",
       "ApplyBaseTint",
       "ApplyOverlay",
+      "LogOverlayStateIfChanged",
+      "GetEffectiveCorruptionStartHealthRatio",
+      "HasValidStages",
+      "TryGetStageForHealthRatio",
       "OnValidate"
     ],
     "fields": [
+      {
+        "name": "sprite",
+        "type": "Sprite",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
       {
         "name": "overlayFlicker",
         "type": "DecorativeFlickerSprite",
@@ -27070,7 +27093,21 @@
         "is_static": false
       },
       {
+        "name": "fallbackOverlaySprite",
+        "type": "Sprite",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "currentCorruption",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "currentHealthRatio",
         "type": "float",
         "access": "private",
         "serialized": false,
@@ -27084,8 +27121,99 @@
         "is_static": false
       },
       {
+        "name": "lastLoggedHealthRatio",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "lastLoggedThreshold",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "lastLoggedSprite",
+        "type": "Sprite",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "lastLoggedRendererEnabled",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "hasLoggedState",
+        "type": "bool",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "color",
         "type": "Color",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "overlaySprite",
+        "type": "Sprite",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "startHealthRatio",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "stage",
+        "type": "CorruptionStage",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "selectedThreshold",
+        "type": "float",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "stage",
+        "type": "CorruptionStage",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "selectedSprite",
+        "type": "Sprite",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "rendererEnabled",
+        "type": "bool",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "selectedSpriteName",
+        "type": "string",
         "access": "internal",
         "serialized": false,
         "is_static": false
@@ -27104,36 +27232,58 @@
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 0,
-    "public_field_count": 0,
+    "public_field_count": 1,
     "get_component_count": 2,
     "find_call_count": 0,
-    "new_keyword_count": 1,
+    "new_keyword_count": 2,
     "coroutine_count": 0,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
+      "Sprite",
       "DecorativeFlickerSprite",
       "float",
+      "bool",
       "Color",
+      "string",
+      "System",
+      "Collections",
+      "Generic",
       "UnityEngine",
+      "Serializable",
+      "Applies",
+      "Lower",
       "Renderers",
       "SpriteRenderer",
       "Base",
       "Tint",
       "Overlay",
+      "UNITY_EDITOR",
+      "DEVELOPMENT_BUILD",
+      "NaN",
       "Awake",
       "GetComponent",
       "ApplyCorruption",
       "ApplyHealthRatio",
+      "Clamp01",
       "CalculateCorruption",
       "SetVisibilityAlpha",
-      "Clamp01",
       "ResetVisual",
+      "GetEffectiveCorruptionStartHealthRatio",
       "InverseLerp",
       "ApplyBaseTint",
       "ApplyOverlay",
       "Lerp",
+      "HasValidStages",
+      "TryGetStageForHealthRatio",
       "SetBaseColor",
+      "LogOverlayStateIfChanged",
+      "Count",
+      "Max",
+      "PositiveInfinity",
+      "Approximately",
+      "None",
+      "Log",
       "OnValidate"
     ],
     "component_access_types": [
@@ -27141,28 +27291,34 @@
       "DecorativeFlickerSprite"
     ],
     "created_types": [
-      "Color"
+      "Color",
+      "List"
     ],
     "singleton_access_types": [],
     "string_literals": [
       "Renderers",
       "Base Tint",
-      "Overlay"
+      "Overlay",
+      "None",
+      "rendererEnabled={rendererEnabled}, rendererSprite={rendererSpriteName}, ",
+      "activeSelf={corruptionOverlayRenderer.gameObject.activeSelf}"
     ],
     "numeric_literals": [
-      0.4,
-      1,
       0,
+      1,
+      0.4,
       0.7,
       0.001
     ],
     "guessed_roles": [
       "runtime",
       "combat",
+      "ui",
       "save-load"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
+      "UI 관련 로직 포함",
       "전투 계열 로직 포함",
       "저장/불러오기 관련 로직 포함",
       "컴포넌트 조회 사용"
@@ -27488,9 +27644,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
     "path": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
     "file_name": "PlayerHealth.cs",
-    "content_hash": "be515b56500b7203e6c699bc0270e80af2d93085",
-    "size": 4882,
-    "line_count": 184,
+    "content_hash": "fa2b8238a37f632d5143dea2b68168d766602ee1",
+    "size": 5394,
+    "line_count": 199,
     "namespace": "",
     "using_list": [
       "System",
@@ -27525,6 +27681,7 @@
       "UpdateHealthVisuals",
       "ApplyRendererRgb",
       "UpdatePaddleCorruptionVisuals",
+      "ResolvePaddleCorruptionVisualsIfMissing",
       "Die",
       "StartGameOverSoundDelay",
       "PlayGameOverSoundDelayed",
@@ -27574,6 +27731,13 @@
         "is_static": false
       },
       {
+        "name": "hasAttemptedPaddleCorruptionVisualResolve",
+        "type": "bool",
+        "access": "private",
+        "serialized": true,
+        "is_static": false
+      },
+      {
         "name": "previousHp",
         "type": "int",
         "access": "internal",
@@ -27601,7 +27765,7 @@
     "has_start": false,
     "has_on_enable": false,
     "has_on_disable": false,
-    "serialize_field_count": 0,
+    "serialize_field_count": 1,
     "public_field_count": 0,
     "get_component_count": 0,
     "find_call_count": 0,
@@ -27656,8 +27820,10 @@
       "Lerp",
       "ApplyRendererRgb",
       "UpdatePaddleCorruptionVisuals",
+      "ResolvePaddleCorruptionVisualsIfMissing",
       "Length",
       "ApplyHealthRatio",
+      "GetComponentsInChildren",
       "Game",
       "Over",
       "StartGameOverSoundDelay",
@@ -27698,6 +27864,7 @@
     "summary_signals": [
       "런타임 컴포넌트",
       "Update 기반 처리 존재",
+      "인스펙터 직렬화 필드 사용",
       "전투 계열 로직 포함"
     ]
   },

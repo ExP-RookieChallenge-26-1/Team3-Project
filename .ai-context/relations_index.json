@@ -40763,9 +40763,23 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
     "from_class": "PaddleCorruptionVisual",
+    "to_type": "List",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
     "to_type": "MonoBehaviour",
     "relation_type": "inherits",
     "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "Applies",
+    "relation_type": "uses",
+    "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
@@ -40798,6 +40812,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
     "from_class": "PaddleCorruptionVisual",
+    "to_type": "Approximately",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
     "to_type": "Awake",
     "relation_type": "uses",
     "strength": 1
@@ -40806,6 +40827,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
     "from_class": "PaddleCorruptionVisual",
     "to_type": "Base",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "bool",
     "relation_type": "uses",
     "strength": 1
   },
@@ -40826,7 +40854,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
     "from_class": "PaddleCorruptionVisual",
+    "to_type": "Collections",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
     "to_type": "Color",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "Count",
     "relation_type": "uses",
     "strength": 1
   },
@@ -40840,6 +40882,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
     "from_class": "PaddleCorruptionVisual",
+    "to_type": "DEVELOPMENT_BUILD",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
     "to_type": "float",
     "relation_type": "uses",
     "strength": 1
@@ -40847,7 +40896,28 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
     "from_class": "PaddleCorruptionVisual",
+    "to_type": "Generic",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
     "to_type": "GetComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "GetEffectiveCorruptionStartHealthRatio",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "HasValidStages",
     "relation_type": "uses",
     "strength": 1
   },
@@ -40868,6 +40938,48 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
     "from_class": "PaddleCorruptionVisual",
+    "to_type": "Log",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "LogOverlayStateIfChanged",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "Lower",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "Max",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "NaN",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "None",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
     "to_type": "OnValidate",
     "relation_type": "uses",
     "strength": 1
@@ -40876,6 +40988,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
     "from_class": "PaddleCorruptionVisual",
     "to_type": "Overlay",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "PositiveInfinity",
     "relation_type": "uses",
     "strength": 1
   },
@@ -40896,6 +41015,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
     "from_class": "PaddleCorruptionVisual",
+    "to_type": "Serializable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
     "to_type": "SetBaseColor",
     "relation_type": "uses",
     "strength": 1
@@ -40910,6 +41036,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
     "from_class": "PaddleCorruptionVisual",
+    "to_type": "Sprite",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
     "to_type": "SpriteRenderer",
     "relation_type": "uses",
     "strength": 1
@@ -40917,7 +41050,35 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
     "from_class": "PaddleCorruptionVisual",
+    "to_type": "string",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "System",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
     "to_type": "Tint",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "TryGetStageForHealthRatio",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Paddle/PaddleCorruptionVisual.cs",
+    "from_class": "PaddleCorruptionVisual",
+    "to_type": "UNITY_EDITOR",
     "relation_type": "uses",
     "strength": 1
   },
@@ -41449,6 +41610,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
     "from_class": "PlayerHealth",
+    "to_type": "GetComponentsInChildren",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
+    "from_class": "PlayerHealth",
     "to_type": "Ground",
     "relation_type": "uses",
     "strength": 1
@@ -41604,6 +41772,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
     "from_class": "PlayerHealth",
     "to_type": "ResetPlayerHealth",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/PlayerHealth.cs",
+    "from_class": "PlayerHealth",
+    "to_type": "ResolvePaddleCorruptionVisualsIfMissing",
     "relation_type": "uses",
     "strength": 1
   },

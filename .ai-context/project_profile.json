@@ -10,7 +10,7 @@
   "files_with_late_update": 9,
   "singleton_candidates": 5,
   "manager_like_classes": 71,
-  "ui_related_classes": 106,
+  "ui_related_classes": 107,
   "save_load_related_classes": 112,
   "role_counts": {
     "runtime": 169,
@@ -19,7 +19,7 @@
     "save-load": 112,
     "manager": 69,
     "data": 59,
-    "ui": 106,
+    "ui": 107,
     "scene": 6,
     "network": 2,
     "inventory": 2

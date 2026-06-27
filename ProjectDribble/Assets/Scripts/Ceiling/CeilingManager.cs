@@ -79,6 +79,7 @@ public class CeilingManager : MonoBehaviour
 
     [Header("Gauge")]
     [SerializeField] private GaugeManager _gaugeManager;
+    [SerializeField, Min(0f)] private float ceilingSegmentBreakGaugeReward = 11f;
     [Header("Block Growth")]
     [SerializeField] private BlockManager blockManager;
 
@@ -96,6 +97,9 @@ public class CeilingManager : MonoBehaviour
 
         if (blockManager == null)
             blockManager = FindAnyObjectByType<BlockManager>();
+
+        if (_gaugeManager == null)
+            _gaugeManager = FindAnyObjectByType<GaugeManager>();
     }
 
     private void Start()
@@ -378,7 +382,7 @@ public class CeilingManager : MonoBehaviour
                 ballRespawner.RecallBallToPaddle();
             else
                 Debug.LogWarning("CeilingManager: BallRespawner is missing; the ball was not recalled.");
-            //_gaugeManager.AddGauge(_gaugeManager.GaugePerSegment);
+            AddCeilingSegmentBreakGaugeReward();
         }
         else
         {
@@ -912,6 +916,18 @@ public class CeilingManager : MonoBehaviour
             blockManager.DisableStemGrowthByCeilingSegment(segmentIndex);
 
         blockManager.DisableStemGrowthByStartXRange(segment.StartX, segment.EndX);
+    }
+
+    private void AddCeilingSegmentBreakGaugeReward()
+    {
+        if (_gaugeManager == null)
+            return;
+
+        int reward = Mathf.RoundToInt(ceilingSegmentBreakGaugeReward);
+        if (reward <= 0)
+            return;
+
+        _gaugeManager.AddGauge(reward);
     }
     
     private CeilingSegment GetSegmentByIndex(int segmentIndex)

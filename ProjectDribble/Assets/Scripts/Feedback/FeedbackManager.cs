@@ -106,6 +106,9 @@ public sealed class FeedbackManager : MonoBehaviour
         SoundId soundId,
         SoundPlayOptions options)
     {
+        if (GameManager.Instance != null && GameManager.Instance.ShouldSuppressBallCollisionFeedback)
+            return;
+
         SoundManager.Instance?.Play(soundId, options);
 
         float sourceIntensity = Mathf.Clamp01(options.volumeScale);

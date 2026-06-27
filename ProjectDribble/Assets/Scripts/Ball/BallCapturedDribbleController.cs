@@ -630,14 +630,14 @@ public class BallCapturedDribbleController : MonoBehaviour
             volumeScale = 0.7f
         };
 
-        if (FeedbackManager.Instance != null)
+        if (!ShouldSuppressBallCollisionFeedback() && FeedbackManager.Instance != null)
         {
             FeedbackManager.Instance.PlayBallBounceFeedback(
                 BallFeedbackSurface.Paddle,
                 SoundId.BallBounce,
                 feedbackOptions);
         }
-        else
+        else if (!ShouldSuppressBallCollisionFeedback())
         {
             SoundManager.Instance?.Play(SoundId.BallBounce, feedbackOptions);
         }
@@ -764,5 +764,11 @@ public class BallCapturedDribbleController : MonoBehaviour
     private bool ShouldLogCapture()
     {
         return ball == null || ball.data == null || ball.data.DebugCaptureLog;
+    }
+
+    private bool ShouldSuppressBallCollisionFeedback()
+    {
+        return GameManager.Instance != null &&
+               GameManager.Instance.ShouldSuppressBallCollisionFeedback;
     }
 }

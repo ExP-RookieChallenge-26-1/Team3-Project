@@ -280,6 +280,9 @@ public class BallCollisionHandler : MonoBehaviour
         SoundId soundId,
         SoundPlayOptions options)
     {
+        if (ShouldSuppressBallCollisionFeedback())
+            return;
+
         if (FeedbackManager.Instance == null)
         {
             SoundManager.Instance?.Play(soundId, options);
@@ -297,6 +300,12 @@ public class BallCollisionHandler : MonoBehaviour
             surface = BallFeedbackSurface.Wall;
 
         FeedbackManager.Instance.PlayBallBounceFeedback(surface, soundId, options);
+    }
+
+    private bool ShouldSuppressBallCollisionFeedback()
+    {
+        return GameManager.Instance != null &&
+               GameManager.Instance.ShouldSuppressBallCollisionFeedback;
     }
     
 

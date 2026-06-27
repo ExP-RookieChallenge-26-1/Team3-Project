@@ -254,6 +254,23 @@ public class BallController : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
     }
 
+    public void StopForEnding()
+    {
+        direction = Vector2.zero;
+
+        if (BallMovement == null)
+            BallMovement = GetComponent<BallMovement>();
+
+        BallMovement?.SetBallSpeed(0f);
+
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+        }
+    }
+
     
 
     public void ReleaseUpward()

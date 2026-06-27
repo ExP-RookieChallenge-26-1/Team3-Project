@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
     public bool IsStageClearInputBlocked => isStageClearInputBlocked;
     public bool IsPlayerInputBlocked => isStageClearInputBlocked;
     public bool IsRecallTutorialActive { get; private set; }
+    public bool IsEnding => endingSequenceController != null && endingSequenceController.IsEnding;
+    public bool ShouldSuppressBallCollisionFeedback => IsEnding;
 
     private void Awake()
     {

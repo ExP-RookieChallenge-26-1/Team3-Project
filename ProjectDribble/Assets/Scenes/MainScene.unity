@@ -431,7 +431,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &79915370
 RectTransform:
   m_ObjectHideFlags: 0
@@ -582,7 +582,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &113365928
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1345,7 +1345,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &202891176
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2269,7 +2269,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &460307028
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2798,7 +2798,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &723040852
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3819,7 +3819,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1163724066
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4052,9 +4052,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.35937503
+    x: 0
     y: 0
-    width: 0.28125
+    width: 1
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -4442,7 +4442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1308974107
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5316,7 +5316,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1656796778
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5730,7 +5730,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1746390034
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6084,7 +6084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1793560961
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6159,7 +6159,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1795383121
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6234,7 +6234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1799709660
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7113,6 +7113,7 @@ MonoBehaviour:
   endingMovieController: {fileID: 2112426483}
   laserChargeController: {fileID: 4454907405174469521}
   playerDamagedManager: {fileID: 6182955833864151122}
+  ballController: {fileID: 0}
   pauseButton: {fileID: 2810978945133541024}
   disableLaserDuringEnding: 1
   disableDamageDuringEnding: 1
@@ -7130,7 +7131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EndingGaugeController
   root: {fileID: 118527033}
-  fillDuration: 6
+  fillDuration: 10
   fillImage: {fileID: 0}
   gaugeSlots:
   - {fileID: 1746390035}
@@ -7816,6 +7817,7 @@ MonoBehaviour:
   segmentDividerScale: 1
   ballRespawner: {fileID: 1390329812061374387}
   _gaugeManager: {fileID: 8966763087485139492}
+  ceilingSegmentBreakGaugeReward: 20
   blockManager: {fileID: 4361603370357834238}
 --- !u!224 &24099822523223320
 RectTransform:

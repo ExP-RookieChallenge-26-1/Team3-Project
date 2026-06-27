@@ -8,6 +8,7 @@ public class EndingSequenceController : MonoBehaviour
     [SerializeField] private EndingMovieController endingMovieController;
     [SerializeField] private LaserChargeController laserChargeController;
     [SerializeField] private PlayerDamagedManager playerDamagedManager;
+    [SerializeField] private BallController ballController;
     [SerializeField] private GameObject pauseButton;
     [SerializeField] private bool disableLaserDuringEnding = true;
     [SerializeField] private bool disableDamageDuringEnding = true;
@@ -27,6 +28,11 @@ public class EndingSequenceController : MonoBehaviour
 
         isEnding = true;
         Time.timeScale = 1f;
+
+        if (ballController == null)
+            ballController = FindAnyObjectByType<BallController>();
+
+        ballController?.StopForEnding();
 
         if (normalGaugeRoot != null)
             normalGaugeRoot.SetActive(false);

@@ -3180,7 +3180,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 169c584824c3f3642a7c710c86cc4767, type: 2}
   - {fileID: 11400000, guid: 4e55d7cbdc2293c4091b9f3636ccfd3c, type: 2}
   - {fileID: 11400000, guid: fe80df33717eefa43b6e2adf5ff63f3e, type: 2}
-  - {fileID: 11400000, guid: 54ffe47851dc9a646b91752f8f887676, type: 2}
   - {fileID: 11400000, guid: 0fa4ea42d6e6ad548842ef9c9da3b3c9, type: 2}
   titleStageIndex: 0
   startStageIndex: 1
@@ -4257,9 +4256,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.30976096
+    x: 0.32224333
     y: 0
-    width: 0.38047808
+    width: 0.35456273
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -7768,7 +7767,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2112426481}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 5d1fd379abee2ae419af6a95b1a36ae7, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 489b70238aafeff49ac890a54a570580, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -7852,8 +7851,8 @@ MonoBehaviour:
   defaultGlowProfile:
     glowColor: {r: 0.57254905, g: 1, b: 0.57254905, a: 0.92941177}
     scaleMultiplier: 1.12
-    glowAlphaMin: 0.15
-    glowAlphaMax: 1
+    glowAlphaMin: 0.199
+    glowAlphaMax: 0.937
     pulseSpeed: 1
     phaseOffset: 0
     alphaCurve:
@@ -8936,7 +8935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StageArtManager
   overlayRoot: {fileID: 845197163174211712}
   overlayImage: {fileID: 844007108896553344}
-  overlayCanvasGroup: {fileID: 798449975959186432}
+  overlayCanvasGroup: {fileID: 0}
   screenDecorRoot: {fileID: 5535690463866401957}
 --- !u!114 &742079920240221859
 MonoBehaviour:
@@ -9215,14 +9214,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 0.6666667}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 266638f5c9bd96f4bb2bf48bbed30ac6, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12047,8 +12046,7 @@ MonoBehaviour:
     usePitchByRatio: 1
     minPitch: 0.8
   - id: 23
-    clips:
-    - {fileID: 8300000, guid: cf4699807adf36b41b8764f7211a8f43, type: 3}
+    clips: []
     loopClip: {fileID: 0}
     legacyClip: {fileID: 0}
     soundType: 1

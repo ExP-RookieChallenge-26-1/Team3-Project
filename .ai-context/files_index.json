@@ -23715,8 +23715,8 @@
     "file_id": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
     "file_name": "VibrationManager.cs",
-    "content_hash": "7d6803f45b5f0e0b8124dc9e8cd5c715ec1acda1",
-    "size": 11151,
+    "content_hash": "26ae684418f035242ee28223f96e7ff0c143d8b5",
+    "size": 11165,
     "line_count": 358,
     "namespace": "",
     "using_list": [
@@ -23768,9 +23768,9 @@
     ],
     "fields": [
       {
-        "name": "VibrationEnabledKey",
+        "name": "VibrationEnabledPrefsKey",
         "type": "string",
-        "access": "private",
+        "access": "public",
         "serialized": false,
         "is_static": false
       },
@@ -23869,7 +23869,7 @@
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 0,
-    "public_field_count": 0,
+    "public_field_count": 1,
     "get_component_count": 0,
     "find_call_count": 1,
     "new_keyword_count": 1,
@@ -23887,7 +23887,7 @@
       "Generic",
       "UnityEngine",
       "Instance",
-      "VibrationEnabledKey",
+      "VibrationEnabledPrefsKey",
       "VibrationEnabled",
       "Amplitude",
       "Progressive",
@@ -24017,9 +24017,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "path": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "file_name": "GameManager.cs",
-    "content_hash": "ec3e60d64ebfef22f6c8700181082a25b282e174",
-    "size": 13534,
-    "line_count": 486,
+    "content_hash": "7fc8e6f78b3d557997c19b209517e75fe36f9e49",
+    "size": 14737,
+    "line_count": 526,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -24047,6 +24047,7 @@
       "RequestStageClear",
       "RequestGameOver",
       "StartGame",
+      "OnClickNewGameButton",
       "StartGameAtStage",
       "StartEndingStage",
       "RetryStage",
@@ -24070,6 +24071,7 @@
       "GoHomeFromEnding",
       "Initialize",
       "CloseConfirmPopups",
+      "ApplySavedProgressState",
       "PauseForTutorial",
       "BeginRecallTutorial",
       "EndRecallTutorial",
@@ -24120,6 +24122,13 @@
       },
       {
         "name": "currentStage",
+        "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "startStageIndex",
         "type": "int",
         "access": "internal",
         "serialized": false,
@@ -24218,8 +24227,10 @@
       "StageCount",
       "TryResolvePlayableStartStageIndex",
       "StartGameAtStage",
-      "Current",
-      "UnlockLaser",
+      "OnClickNewGameButton",
+      "ResetProgressSaveOnly",
+      "ApplySavedProgressState",
+      "SetGameplaySfxBlocked",
       "ClearBgmMuffles",
       "PlayGameplayBgm",
       "StartStage",
@@ -24258,6 +24269,9 @@
       "CancelQuitGame",
       "GoHomeFromEnding",
       "EndEndingAndReset",
+      "Current",
+      "UnlockLaser",
+      "LockLaser",
       "PauseForTutorial",
       "Log",
       "Tutorial",
@@ -27775,9 +27789,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/SaveData.cs",
     "path": "ProjectDribble/Assets/Scripts/SaveData.cs",
     "file_name": "SaveData.cs",
-    "content_hash": "822d8c141e83cef550331a7bbb285937cf91cdcf",
-    "size": 225,
-    "line_count": 11,
+    "content_hash": "663e79317bc63c2e344cf0e9c48c8000ef965137",
+    "size": 264,
+    "line_count": 12,
     "namespace": "",
     "using_list": [
       "System"
@@ -27825,6 +27839,13 @@
         "access": "public",
         "serialized": false,
         "is_static": false
+      },
+      {
+        "name": "endingCleared",
+        "type": "bool",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
       }
     ],
     "properties": [],
@@ -27838,7 +27859,7 @@
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 0,
-    "public_field_count": 4,
+    "public_field_count": 5,
     "get_component_count": 0,
     "find_call_count": 0,
     "new_keyword_count": 0,
@@ -27868,9 +27889,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/SaveManager.cs",
     "path": "ProjectDribble/Assets/Scripts/SaveManager.cs",
     "file_name": "SaveManager.cs",
-    "content_hash": "923ea9cbec48b16796585fcfd7da843c5a57d221",
-    "size": 1768,
-    "line_count": 81,
+    "content_hash": "2a72a2ea52f249f6406d70fe5bfc6086e851e7ae",
+    "size": 2021,
+    "line_count": 93,
     "namespace": "",
     "using_list": [
       "System.IO",
@@ -27901,10 +27922,19 @@
       "SetLaserUnlocked",
       "SetTutorialCleared",
       "SetRecallTutorialSeen",
+      "SetEndingCleared",
       "GetStartStageIndex",
+      "ResetProgressSaveOnly",
       "ResetSave"
     ],
     "fields": [
+      {
+        "name": "ProgressSaveFileName",
+        "type": "string",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
       {
         "name": "nextStage",
         "type": "int",
@@ -27937,7 +27967,7 @@
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 0,
-    "public_field_count": 0,
+    "public_field_count": 1,
     "get_component_count": 0,
     "find_call_count": 0,
     "new_keyword_count": 3,
@@ -27945,12 +27975,14 @@
     "singleton_candidate": true,
     "dont_destroy_on_load": true,
     "referenced_types": [
+      "string",
       "int",
       "SaveData",
       "System",
       "IO",
       "UnityEngine",
       "Instance",
+      "ProgressSaveFileName",
       "Current",
       "SavePath",
       "Path",
@@ -27972,8 +28004,10 @@
       "SetLaserUnlocked",
       "SetTutorialCleared",
       "SetRecallTutorialSeen",
+      "SetEndingCleared",
       "GetStartStageIndex",
       "Clamp",
+      "ResetProgressSaveOnly",
       "ResetSave"
     ],
     "component_access_types": [],
@@ -28313,9 +28347,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "file_name": "SoundManager.cs",
-    "content_hash": "e22a6dfa7a2f9333e55eac76e1dd9c2c83924a3a",
-    "size": 14738,
-    "line_count": 547,
+    "content_hash": "33c0da5ffcb6282c8710eef0d8bad506fff6470e",
+    "size": 16861,
+    "line_count": 627,
     "namespace": "",
     "using_list": [
       "System.Collections.Generic",
@@ -28354,6 +28388,10 @@
       "CalculateVolume",
       "CanPlayByInterval",
       "GetSourceFor",
+      "ShouldBlockSound",
+      "IsUiSfx",
+      "SetGameplaySfxBlocked",
+      "StopGameplaySfx",
       "ApplyMixerGroup",
       "PlayTitleBgm",
       "PlayGameplayBgm",
@@ -28370,9 +28408,24 @@
       "LinearToDb",
       "SetBgmMuffled",
       "ClearBgmMuffles",
-      "ApplyBgmMuffleState"
+      "ApplyBgmMuffleState",
+      "ApplySavedVolumeState"
     ],
     "fields": [
+      {
+        "name": "BgmVolumePrefsKey",
+        "type": "string",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "SfxVolumePrefsKey",
+        "type": "string",
+        "access": "public",
+        "serialized": false,
+        "is_static": false
+      },
       {
         "name": "currentLoopData",
         "type": "SoundData",
@@ -28425,6 +28478,13 @@
       {
         "name": "userSfxVolume",
         "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "gameplaySfxBlocked",
+        "type": "bool",
         "access": "private",
         "serialized": false,
         "is_static": false
@@ -28533,7 +28593,7 @@
     "has_on_enable": false,
     "has_on_disable": false,
     "serialize_field_count": 0,
-    "public_field_count": 0,
+    "public_field_count": 2,
     "get_component_count": 0,
     "find_call_count": 0,
     "new_keyword_count": 0,
@@ -28541,12 +28601,12 @@
     "singleton_candidate": true,
     "dont_destroy_on_load": true,
     "referenced_types": [
+      "string",
       "SoundData",
       "SoundPlayOptions",
       "SoundId",
       "float",
       "bool",
-      "string",
       "double",
       "System",
       "Collections",
@@ -28563,6 +28623,10 @@
       "Settings",
       "Tutorial",
       "Instance",
+      "BgmVolumePrefsKey",
+      "BGMVolume",
+      "SfxVolumePrefsKey",
+      "SFXVolume",
       "BallSpeedController",
       "Sources",
       "AudioSource",
@@ -28572,10 +28636,10 @@
       "Sound",
       "Data",
       "None",
+      "BgmVolume",
+      "SfxVolume",
       "BgmVolumeParameter",
-      "BGMVolume",
       "SfxVolumeParameter",
-      "SFXVolume",
       "BgmLowPassCutoffParameter",
       "BGMLowPassCutoff",
       "BgmScheduleDelay",
@@ -28583,7 +28647,11 @@
       "Destroy",
       "DontDestroyOnLoad",
       "Initialize",
+      "Clamp01",
+      "PlayerPrefs",
+      "GetFloat",
       "ApplyBgmMuffleState",
+      "ApplySavedVolumeState",
       "Clear",
       "ContainsKey",
       "LogWarning",
@@ -28597,6 +28665,7 @@
       "Play",
       "Default",
       "TryGetSoundData",
+      "ShouldBlockSound",
       "CanPlayByInterval",
       "PlayBgmInternal",
       "AudioClip",
@@ -28612,12 +28681,14 @@
       "Stop",
       "TryGetValue",
       "Length",
-      "Clamp01",
       "Lerp",
       "Clamp",
       "ToString",
       "UIClick",
       "GaugeSegmentFilled",
+      "IsUiSfx",
+      "SetGameplaySfxBlocked",
+      "StopGameplaySfx",
       "AudioMixerGroup",
       "PlayTitleBgm",
       "PlayBgm",
@@ -28638,6 +28709,7 @@
       "SetBgmVolume",
       "SetSfxVolume",
       "SetFloat",
+      "Save",
       "LinearToDb",
       "SetBgmMuffled",
       "Remove",
@@ -28649,6 +28721,8 @@
     "created_types": [],
     "singleton_access_types": [],
     "string_literals": [
+      "Settings.BGMVolume",
+      "Settings.SFXVolume",
       "Audio Sources",
       "sfxSource",
       "Audio Mixer",
@@ -28678,16 +28752,15 @@
       20
     ],
     "guessed_roles": [
+      "save-load",
       "manager",
       "runtime",
-      "save-load",
-      "data",
-      "ui"
+      "player",
+      "data"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
       "싱글톤 후보",
-      "UI 관련 로직 포함",
       "저장/불러오기 관련 로직 포함"
     ]
   },
@@ -29272,9 +29345,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "file_name": "StageManager.cs",
-    "content_hash": "58f2f82e9f2847bcd4858a9aece44ee8d440f2bb",
-    "size": 13668,
-    "line_count": 488,
+    "content_hash": "501f189c5cb12136fd09819f5aedfcbb8e2a16fd",
+    "size": 14859,
+    "line_count": 535,
     "namespace": "",
     "using_list": [
       "System",
@@ -29322,6 +29395,9 @@
       "ApplyBallTuning",
       "IsValidStageIndex",
       "IsNormalStageIndex",
+      "GetNormalStageNumber",
+      "RefreshStageNumberUI",
+      "EnsureStageNumberUI",
       "IsPlayableStartStageIndex",
       "FindFirstStageIndex",
       "ApplyBossPatternStateForCurrentStage"
@@ -29405,6 +29481,13 @@
         "is_static": false
       },
       {
+        "name": "normalStageNumber",
+        "type": "int",
+        "access": "internal",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "stage",
         "type": "StageDefinition",
         "access": "internal",
@@ -29430,7 +29513,7 @@
     "serialize_field_count": 0,
     "public_field_count": 0,
     "get_component_count": 0,
-    "find_call_count": 5,
+    "find_call_count": 7,
     "new_keyword_count": 0,
     "coroutine_count": 0,
     "singleton_candidate": false,
@@ -29456,6 +29539,7 @@
       "TutorialManager",
       "StageArtManager",
       "EndingSequenceController",
+      "StageNumberUI",
       "Top",
       "Decoration",
       "CurrentStageIndex",
@@ -29534,6 +29618,7 @@
       "ApplyBossPatternStateForCurrentStage",
       "BeginEnding",
       "EndEndingAndReset",
+      "RefreshStageNumberUI",
       "BeginStage",
       "UseTopDecoration",
       "TopDecorationPrefab",
@@ -29542,6 +29627,14 @@
       "Destroy",
       "ClearStageTuning",
       "ApplyStageTuning",
+      "GetNormalStageNumber",
+      "EnsureStageNumberUI",
+      "SetStageNumber",
+      "Hide",
+      "FindObjectsInactive",
+      "Include",
+      "Canvas",
+      "CreateUnder",
       "Tutorial",
       "StartBossPattern"
     ],
@@ -29565,14 +29658,15 @@
     ],
     "numeric_literals": [],
     "guessed_roles": [
+      "ui",
       "manager",
       "runtime",
       "combat",
-      "player",
-      "data"
+      "player"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
+      "UI 관련 로직 포함",
       "전투 계열 로직 포함",
       "Find 계열 탐색 사용"
     ]
@@ -29799,9 +29893,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "path": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "file_name": "TutorialManager.cs",
-    "content_hash": "fdf9f34dc57c69c0bf2f2d118f7d9b42df649750",
-    "size": 22530,
-    "line_count": 782,
+    "content_hash": "3931dff2d12cb583a5d4e91965269797c9168685",
+    "size": 24566,
+    "line_count": 847,
     "namespace": "",
     "using_list": [
       "System",
@@ -29857,7 +29951,9 @@
       "RestoreDefaultCeilingState",
       "SetTutorialTopBoundaryActive",
       "UpdateRecallTutorial",
-      "CanObserveRecallTutorial",
+      "CanShowRecallTutorialNow",
+      "TryShowStage3RecallTutorial",
+      "CanObserveGeneralStageRecallTutorial",
       "HasSeenRecallTutorial",
       "ObserveRecallTutorialY",
       "TryBeginRecallTutorial",
@@ -29888,6 +29984,13 @@
         "is_static": false
       },
       {
+        "name": "currentStageDefinition",
+        "type": "StageDefinition",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
         "name": "currentTutorialStageId",
         "type": "TutorialStageId",
         "access": "private",
@@ -29897,6 +30000,20 @@
       {
         "name": "currentPhase",
         "type": "TutorialPhase",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "stageElapsedTime",
+        "type": "float",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      },
+      {
+        "name": "stage3PlayingElapsedTime",
+        "type": "float",
         "access": "private",
         "serialized": false,
         "is_static": false
@@ -30040,6 +30157,7 @@
     "dont_destroy_on_load": false,
     "referenced_types": [
       "float",
+      "StageDefinition",
       "TutorialStageId",
       "TutorialPhase",
       "bool",
@@ -30113,7 +30231,6 @@
       "OnDestroy",
       "UnsubscribeStageEvents",
       "BeginStage",
-      "StageDefinition",
       "ResolveTutorialStageId",
       "IsGameStarted",
       "RestoreDefaultCeilingState",
@@ -30175,16 +30292,22 @@
       "IsPausedByTutorial",
       "Clear",
       "SetActive",
-      "CanObserveRecallTutorial",
+      "CanShowRecallTutorialNow",
+      "TryShowStage3RecallTutorial",
+      "CanObserveGeneralStageRecallTutorial",
+      "Max",
       "ObserveRecallTutorialY",
       "HasSeenRecallTutorial",
       "IsCaptured",
       "IsPaused",
+      "IsStageClearInputBlocked",
+      "IsEnding",
       "Approximately",
+      "TryBeginRecallTutorial",
+      "StageType",
+      "Normal",
       "Current",
       "StartRecallObservation",
-      "Max",
-      "TryBeginRecallTutorial",
       "ShowRecallTutorialPopup",
       "CompleteRecallTutorial",
       "BeginRecallTutorial",
@@ -30231,6 +30354,10 @@
       0,
       18,
       4,
+      5.5,
+      8,
+      2.5,
+      14,
       8,
       2,
       3,
@@ -30690,9 +30817,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
     "path": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
     "file_name": "BGMSlider.cs",
-    "content_hash": "2a84b3e6b55e538f6185fba1582f4ea0b3321f23",
-    "size": 443,
-    "line_count": 18,
+    "content_hash": "0e47fe28733ccafd45c629cb5675e4d81bb03ad1",
+    "size": 937,
+    "line_count": 41,
     "namespace": "",
     "using_list": [
       "UnityEngine",
@@ -30702,7 +30829,7 @@
       {
         "name": "BGMSlider",
         "kind": "class",
-        "access": "public",
+        "access": "internal",
         "base_types": [
           "MonoBehaviour"
         ],
@@ -30715,58 +30842,88 @@
     "main_class_name": "BGMSlider",
     "unity_type": "MonoBehaviour",
     "methods": [
-      "OnBGMSliderValueChanged",
-      "NormalizeSliderValue"
+      "Awake",
+      "OnEnable",
+      "OnValueChanged"
     ],
-    "fields": [],
+    "fields": [
+      {
+        "name": "BgmVolumeKey",
+        "type": "string",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
     "properties": [],
     "events": [],
-    "unity_messages": [],
+    "unity_messages": [
+      "Awake",
+      "OnEnable"
+    ],
     "has_update": false,
     "has_fixed_update": false,
     "has_late_update": false,
-    "has_awake": false,
+    "has_awake": true,
     "has_start": false,
-    "has_on_enable": false,
+    "has_on_enable": true,
     "has_on_disable": false,
     "serialize_field_count": 0,
     "public_field_count": 0,
-    "get_component_count": 0,
+    "get_component_count": 1,
     "find_call_count": 0,
     "new_keyword_count": 0,
     "coroutine_count": 0,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
+      "string",
       "UnityEngine",
       "UI",
+      "BgmVolumeKey",
+      "Settings",
+      "BGMVolume",
+      "Slider",
+      "Awake",
+      "GetComponent",
+      "OnEnable",
+      "Clamp01",
+      "PlayerPrefs",
+      "GetFloat",
+      "SetValueWithoutNotify",
       "SoundManager",
-      "OnBGMSliderValueChanged",
-      "Log",
+      "Instance",
       "SetBgmVolume",
-      "NormalizeSliderValue",
-      "Clamp01"
+      "OnValueChanged",
+      "SetFloat",
+      "Save"
     ],
-    "component_access_types": [],
+    "component_access_types": [
+      "Slider"
+    ],
     "created_types": [],
-    "singleton_access_types": [],
+    "singleton_access_types": [
+      "SoundManager"
+    ],
     "string_literals": [
-      "bgm 조절: {value}"
+      "Settings.BGMVolume"
     ],
     "numeric_literals": [
-      1,
-      100
+      0,
+      1
     ],
     "guessed_roles": [
+      "save-load",
       "ui",
       "manager",
-      "save-load",
-      "runtime"
+      "runtime",
+      "player"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
       "UI 관련 로직 포함",
-      "저장/불러오기 관련 로직 포함"
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
     ]
   },
   {
@@ -30903,18 +31060,19 @@
     "file_id": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
     "path": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
     "file_name": "SFXSlider.cs",
-    "content_hash": "a9d5e782e4517fdb9c2bffd3b3731f68451e7f9a",
-    "size": 421,
-    "line_count": 17,
+    "content_hash": "e3bc3487f2b670e38f435e1ab1c9c5c71699a0ba",
+    "size": 937,
+    "line_count": 41,
     "namespace": "",
     "using_list": [
-      "UnityEngine"
+      "UnityEngine",
+      "UnityEngine.UI"
     ],
     "classes": [
       {
         "name": "SFXSlider",
         "kind": "class",
-        "access": "public",
+        "access": "internal",
         "base_types": [
           "MonoBehaviour"
         ],
@@ -30927,57 +31085,211 @@
     "main_class_name": "SFXSlider",
     "unity_type": "MonoBehaviour",
     "methods": [
-      "OnSFXSliderValueChanged",
-      "NormalizeSliderValue"
+      "Awake",
+      "OnEnable",
+      "OnValueChanged"
     ],
-    "fields": [],
+    "fields": [
+      {
+        "name": "SfxVolumeKey",
+        "type": "string",
+        "access": "private",
+        "serialized": false,
+        "is_static": false
+      }
+    ],
     "properties": [],
     "events": [],
-    "unity_messages": [],
+    "unity_messages": [
+      "Awake",
+      "OnEnable"
+    ],
     "has_update": false,
     "has_fixed_update": false,
     "has_late_update": false,
-    "has_awake": false,
+    "has_awake": true,
     "has_start": false,
-    "has_on_enable": false,
+    "has_on_enable": true,
     "has_on_disable": false,
     "serialize_field_count": 0,
     "public_field_count": 0,
-    "get_component_count": 0,
+    "get_component_count": 1,
     "find_call_count": 0,
     "new_keyword_count": 0,
     "coroutine_count": 0,
     "singleton_candidate": false,
     "dont_destroy_on_load": false,
     "referenced_types": [
+      "string",
       "UnityEngine",
+      "UI",
+      "SfxVolumeKey",
+      "Settings",
+      "SFXVolume",
+      "Slider",
+      "Awake",
+      "GetComponent",
+      "OnEnable",
+      "Clamp01",
+      "PlayerPrefs",
+      "GetFloat",
+      "SetValueWithoutNotify",
       "SoundManager",
-      "OnSFXSliderValueChanged",
-      "Log",
+      "Instance",
       "SetSfxVolume",
-      "NormalizeSliderValue",
-      "Clamp01"
+      "OnValueChanged",
+      "SetFloat",
+      "Save"
     ],
-    "component_access_types": [],
+    "component_access_types": [
+      "Slider"
+    ],
     "created_types": [],
-    "singleton_access_types": [],
+    "singleton_access_types": [
+      "SoundManager"
+    ],
     "string_literals": [
-      "sfx 조절: {value}"
+      "Settings.SFXVolume"
     ],
     "numeric_literals": [
-      1,
-      100
+      0,
+      1
     ],
     "guessed_roles": [
+      "save-load",
       "ui",
       "manager",
-      "save-load",
-      "runtime"
+      "runtime",
+      "player"
     ],
     "summary_signals": [
       "런타임 컴포넌트",
       "UI 관련 로직 포함",
-      "저장/불러오기 관련 로직 포함"
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
+    ]
+  },
+  {
+    "file_id": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "path": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "file_name": "StageNumberUI.cs",
+    "content_hash": "c46ac52e7a4ecaee38918cc00da4d4df0b4d27e8",
+    "size": 1964,
+    "line_count": 72,
+    "namespace": "",
+    "using_list": [
+      "TMPro",
+      "UnityEngine",
+      "UnityEngine.UI"
+    ],
+    "classes": [
+      {
+        "name": "StageNumberUI",
+        "kind": "class",
+        "access": "internal",
+        "base_types": [
+          "MonoBehaviour"
+        ],
+        "interfaces": [],
+        "attributes": [],
+        "is_partial": false,
+        "is_generic": false
+      }
+    ],
+    "main_class_name": "StageNumberUI",
+    "unity_type": "MonoBehaviour",
+    "methods": [
+      "CreateUnder",
+      "Vector2",
+      "Color",
+      "Awake",
+      "SetStageNumber",
+      "Hide",
+      "SetVisible"
+    ],
+    "fields": [],
+    "properties": [],
+    "events": [],
+    "unity_messages": [
+      "Awake"
+    ],
+    "has_update": false,
+    "has_fixed_update": false,
+    "has_late_update": false,
+    "has_awake": true,
+    "has_start": false,
+    "has_on_enable": false,
+    "has_on_disable": false,
+    "serialize_field_count": 0,
+    "public_field_count": 0,
+    "get_component_count": 1,
+    "find_call_count": 0,
+    "new_keyword_count": 7,
+    "coroutine_count": 0,
+    "singleton_candidate": false,
+    "dont_destroy_on_load": false,
+    "referenced_types": [
+      "TMPro",
+      "UnityEngine",
+      "UI",
+      "TextMeshProUGUI",
+      "CreateUnder",
+      "Canvas",
+      "RectTransform",
+      "SetParent",
+      "GetComponent",
+      "Vector2",
+      "AddComponent",
+      "TextAlignmentOptions",
+      "Left",
+      "FontStyles",
+      "Bold",
+      "Color",
+      "Empty",
+      "Outline",
+      "Hide",
+      "Awake",
+      "GetComponentInChildren",
+      "SetStageNumber",
+      "STAGE",
+      "SetVisible",
+      "SetActive"
+    ],
+    "component_access_types": [
+      "RectTransform"
+    ],
+    "created_types": [
+      "Vector2",
+      "Color"
+    ],
+    "singleton_access_types": [],
+    "string_literals": [
+      "StageNumberUI",
+      "STAGE {normalStageNumber}"
+    ],
+    "numeric_literals": [
+      0,
+      1,
+      28,
+      24,
+      220,
+      48,
+      26,
+      0.65,
+      2
+    ],
+    "guessed_roles": [
+      "ui",
+      "combat",
+      "runtime",
+      "save-load"
+    ],
+    "summary_signals": [
+      "런타임 컴포넌트",
+      "UI 관련 로직 포함",
+      "전투 계열 로직 포함",
+      "저장/불러오기 관련 로직 포함",
+      "컴포넌트 조회 사용"
     ]
   },
   {

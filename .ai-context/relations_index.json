@@ -36052,7 +36052,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Feedback/VibrationManager.cs",
     "from_class": "VibrationManager",
-    "to_type": "VibrationEnabledKey",
+    "to_type": "VibrationEnabledPrefsKey",
     "relation_type": "uses",
     "strength": 1
   },
@@ -36081,6 +36081,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "Application",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "ApplySavedProgressState",
     "relation_type": "uses",
     "strength": 1
   },
@@ -36395,6 +36402,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
+    "to_type": "LockLaser",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
     "to_type": "Log",
     "relation_type": "uses",
     "strength": 1
@@ -36424,6 +36438,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "OnClickHomeButton",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "OnClickNewGameButton",
     "relation_type": "uses",
     "strength": 1
   },
@@ -36528,6 +36549,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
+    "to_type": "ResetProgressSaveOnly",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
     "to_type": "RestartCurrentStage",
     "relation_type": "uses",
     "strength": 1
@@ -36592,6 +36620,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
     "from_class": "GameManager",
     "to_type": "SetBgmMuffled",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/GameManager.cs",
+    "from_class": "GameManager",
+    "to_type": "SetGameplaySfxBlocked",
     "relation_type": "uses",
     "strength": 1
   },
@@ -41939,7 +41974,21 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/SaveManager.cs",
     "from_class": "SaveManager",
+    "to_type": "ProgressSaveFileName",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/SaveManager.cs",
+    "from_class": "SaveManager",
     "to_type": "ReadAllText",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/SaveManager.cs",
+    "from_class": "SaveManager",
+    "to_type": "ResetProgressSaveOnly",
     "relation_type": "uses",
     "strength": 1
   },
@@ -41974,6 +42023,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/SaveManager.cs",
     "from_class": "SaveManager",
+    "to_type": "SetEndingCleared",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/SaveManager.cs",
+    "from_class": "SaveManager",
     "to_type": "SetLaserUnlocked",
     "relation_type": "uses",
     "strength": 1
@@ -41989,6 +42045,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/SaveManager.cs",
     "from_class": "SaveManager",
     "to_type": "SetTutorialCleared",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/SaveManager.cs",
+    "from_class": "SaveManager",
+    "to_type": "string",
     "relation_type": "uses",
     "strength": 1
   },
@@ -42457,6 +42520,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
+    "to_type": "ApplySavedVolumeState",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
     "to_type": "Approximately",
     "relation_type": "uses",
     "strength": 1
@@ -42555,6 +42625,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
+    "to_type": "BgmVolume",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
     "to_type": "BGMVolume",
     "relation_type": "uses",
     "strength": 1
@@ -42563,6 +42640,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
     "to_type": "BgmVolumeParameter",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "BgmVolumePrefsKey",
     "relation_type": "uses",
     "strength": 1
   },
@@ -42751,6 +42835,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
+    "to_type": "GetFloat",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
     "to_type": "GetRandomClip",
     "relation_type": "uses",
     "strength": 1
@@ -42787,6 +42878,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
     "to_type": "InverseLerp",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "IsUiSfx",
     "relation_type": "uses",
     "strength": 1
   },
@@ -42884,6 +42982,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
+    "to_type": "PlayerPrefs",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
     "to_type": "PlayGameplayBgm",
     "relation_type": "uses",
     "strength": 1
@@ -42926,6 +43031,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
+    "to_type": "Save",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
     "to_type": "Serialization",
     "relation_type": "uses",
     "strength": 1
@@ -42948,6 +43060,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
     "to_type": "SetFloat",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "SetGameplaySfxBlocked",
     "relation_type": "uses",
     "strength": 1
   },
@@ -42989,6 +43108,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
+    "to_type": "SfxVolume",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
     "to_type": "SFXVolume",
     "relation_type": "uses",
     "strength": 1
@@ -42997,6 +43123,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
     "to_type": "SfxVolumeParameter",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "SfxVolumePrefsKey",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "ShouldBlockSound",
     "relation_type": "uses",
     "strength": 1
   },
@@ -43074,6 +43214,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
     "from_class": "SoundManager",
     "to_type": "StopBgmSources",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
+    "from_class": "SoundManager",
+    "to_type": "StopGameplaySfx",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44123,6 +44270,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "Canvas",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "Ceiling",
     "relation_type": "uses",
     "strength": 1
@@ -44173,6 +44327,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
     "to_type": "ContinueStageClear",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "CreateUnder",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44263,6 +44424,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "EnsureStageNumberUI",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "Falling",
     "relation_type": "uses",
     "strength": 1
@@ -44278,6 +44446,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
     "to_type": "FindFirstStageIndex",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "FindObjectsInactive",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44305,6 +44480,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "GetNormalStageNumber",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "HandleNormalBlocksCleared",
     "relation_type": "uses",
     "strength": 1
@@ -44320,6 +44502,20 @@
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
     "to_type": "HandleStageCleared",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "Hide",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "Include",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44536,6 +44732,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
+    "to_type": "RefreshStageNumberUI",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
     "to_type": "RequestGameOver",
     "relation_type": "uses",
     "strength": 1
@@ -44565,6 +44768,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
     "to_type": "SetActive",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "SetStageNumber",
     "relation_type": "uses",
     "strength": 1
   },
@@ -44614,6 +44824,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
     "from_class": "StageManager",
     "to_type": "StageDefinition",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
+    "from_class": "StageManager",
+    "to_type": "StageNumberUI",
     "relation_type": "uses",
     "strength": 1
   },
@@ -45166,7 +45383,14 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
-    "to_type": "CanObserveRecallTutorial",
+    "to_type": "CanObserveGeneralStageRecallTutorial",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "CanShowRecallTutorialNow",
     "relation_type": "uses",
     "strength": 1
   },
@@ -45439,6 +45663,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "IsEnding",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "IsGameStarted",
     "relation_type": "uses",
     "strength": 1
@@ -45475,6 +45706,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
     "to_type": "IsRecallTutorialActive",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "IsStageClearInputBlocked",
     "relation_type": "uses",
     "strength": 1
   },
@@ -45580,6 +45818,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
     "to_type": "None",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "Normal",
     "relation_type": "uses",
     "strength": 1
   },
@@ -46034,6 +46279,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "StageType",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "StartGrowth",
     "relation_type": "uses",
     "strength": 1
@@ -46084,6 +46336,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
     "to_type": "TryShowStage2LaserUnlock",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
+    "to_type": "TryShowStage3RecallTutorial",
     "relation_type": "uses",
     "strength": 1
   },
@@ -46769,9 +47028,44 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
     "from_class": "BGMSlider",
+    "to_type": "Slider",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
     "to_type": "MonoBehaviour",
     "relation_type": "inherits",
     "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
+    "to_type": "SoundManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
+    "to_type": "Awake",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
+    "to_type": "BGMVolume",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
+    "to_type": "BgmVolumeKey",
+    "relation_type": "uses",
+    "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
@@ -46783,21 +47077,49 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
     "from_class": "BGMSlider",
-    "to_type": "Log",
+    "to_type": "GetComponent",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
     "from_class": "BGMSlider",
-    "to_type": "NormalizeSliderValue",
+    "to_type": "GetFloat",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
     "from_class": "BGMSlider",
-    "to_type": "OnBGMSliderValueChanged",
+    "to_type": "Instance",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
+    "to_type": "OnEnable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
+    "to_type": "OnValueChanged",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
+    "to_type": "PlayerPrefs",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
+    "to_type": "Save",
     "relation_type": "uses",
     "strength": 1
   },
@@ -46811,7 +47133,42 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
     "from_class": "BGMSlider",
+    "to_type": "SetFloat",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
+    "to_type": "Settings",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
+    "to_type": "SetValueWithoutNotify",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
+    "to_type": "Slider",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
     "to_type": "SoundManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/BGMSlider.cs",
+    "from_class": "BGMSlider",
+    "to_type": "string",
     "relation_type": "uses",
     "strength": 1
   },
@@ -47070,9 +47427,30 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
     "from_class": "SFXSlider",
+    "to_type": "Slider",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
     "to_type": "MonoBehaviour",
     "relation_type": "inherits",
     "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
+    "to_type": "SoundManager",
+    "relation_type": "singleton-access",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
+    "to_type": "Awake",
+    "relation_type": "uses",
+    "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
@@ -47084,21 +47462,56 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
     "from_class": "SFXSlider",
-    "to_type": "Log",
+    "to_type": "GetComponent",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
     "from_class": "SFXSlider",
-    "to_type": "NormalizeSliderValue",
+    "to_type": "GetFloat",
     "relation_type": "uses",
     "strength": 1
   },
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
     "from_class": "SFXSlider",
-    "to_type": "OnSFXSliderValueChanged",
+    "to_type": "Instance",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
+    "to_type": "OnEnable",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
+    "to_type": "OnValueChanged",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
+    "to_type": "PlayerPrefs",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
+    "to_type": "Save",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
+    "to_type": "SetFloat",
     "relation_type": "uses",
     "strength": 1
   },
@@ -47112,6 +47525,41 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
     "from_class": "SFXSlider",
+    "to_type": "Settings",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
+    "to_type": "SetValueWithoutNotify",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
+    "to_type": "SFXVolume",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
+    "to_type": "SfxVolumeKey",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
+    "to_type": "Slider",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
     "to_type": "SoundManager",
     "relation_type": "uses",
     "strength": 1
@@ -47119,7 +47567,224 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
     "from_class": "SFXSlider",
+    "to_type": "string",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
+    "to_type": "UI",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/Settings/SFXSlider.cs",
+    "from_class": "SFXSlider",
     "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "RectTransform",
+    "relation_type": "component-access",
+    "strength": 3
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "Color",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "Vector2",
+    "relation_type": "creates",
+    "strength": 2
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "MonoBehaviour",
+    "relation_type": "inherits",
+    "strength": 4
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "AddComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "Awake",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "Bold",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "Canvas",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "Color",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "CreateUnder",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "Empty",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "FontStyles",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "GetComponent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "GetComponentInChildren",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "Hide",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "Left",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "Outline",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "RectTransform",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "SetActive",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "SetParent",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "SetStageNumber",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "SetVisible",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "STAGE",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "TextAlignmentOptions",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "TextMeshProUGUI",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "TMPro",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "UI",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "UnityEngine",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/UI/StageNumberUI.cs",
+    "from_class": "StageNumberUI",
+    "to_type": "Vector2",
     "relation_type": "uses",
     "strength": 1
   },

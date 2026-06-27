@@ -2,24 +2,24 @@
   "project_name": "unknown",
   "language": "C#",
   "engine_guess": "Unity",
-  "total_cs_files": 193,
-  "mono_behaviour_files": 161,
+  "total_cs_files": 194,
+  "mono_behaviour_files": 162,
   "scriptable_object_files": 10,
   "files_with_update": 59,
   "files_with_fixed_update": 1,
   "files_with_late_update": 9,
   "singleton_candidates": 5,
   "manager_like_classes": 71,
-  "ui_related_classes": 105,
-  "save_load_related_classes": 111,
+  "ui_related_classes": 106,
+  "save_load_related_classes": 112,
   "role_counts": {
-    "runtime": 168,
-    "player": 84,
-    "combat": 117,
-    "save-load": 111,
+    "runtime": 169,
+    "player": 87,
+    "combat": 118,
+    "save-load": 112,
     "manager": 69,
-    "data": 60,
-    "ui": 105,
+    "data": 59,
+    "ui": 106,
     "scene": 6,
     "network": 2,
     "inventory": 2
@@ -46,8 +46,8 @@
     {
       "class_name": "TutorialManager",
       "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-      "relation_count": 166,
-      "referenced_type_count": 163
+      "relation_count": 172,
+      "referenced_type_count": 169
     },
     {
       "class_name": "TMP_TextSelector_B",
@@ -82,8 +82,8 @@
     {
       "class_name": "StageManager",
       "file_id": "ProjectDribble/Assets/Scripts/Stage/StageManager.cs",
-      "relation_count": 110,
-      "referenced_type_count": 108
+      "relation_count": 120,
+      "referenced_type_count": 118
     }
   ],
   "high_risk_classes": [
@@ -304,31 +304,6 @@
       "risk_score": 100
     },
     {
-      "file_id": "ProjectDribble/Assets/Scripts/Sound/SoundManager.cs",
-      "class_name": "SoundManager",
-      "risk_flags": [
-        "singleton-candidate",
-        "high-coupling",
-        "magic-number-heavy",
-        "large-class",
-        "init-order-sensitive",
-        "save-load-sensitive",
-        "ui-runtime-mixed",
-        "state-owner"
-      ],
-      "risk_reasons": [
-        "Instance 또는 DontDestroyOnLoad 패턴 감지",
-        "참조 타입 또는 관계 수가 많음",
-        "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
-        "파일/메서드/필드 수가 많아 책임이 커질 가능성",
-        "초기화 순서에 민감할 가능성",
-        "저장/불러오기 관련 로직 포함",
-        "UI와 런타임 책임이 한 파일에 섞였을 가능성",
-        "상태 중심 또는 관리 중심 클래스일 가능성"
-      ],
-      "risk_score": 96
-    },
-    {
       "file_id": "ProjectDribble/Assets/Scripts/Ball/BallMovement.cs",
       "class_name": "BallMovement",
       "risk_flags": [
@@ -344,6 +319,31 @@
       "risk_reasons": [
         "참조 타입 또는 관계 수가 많음",
         "public 필드 노출 수가 많음",
+        "GetComponent/TryGetComponent 호출이 많음",
+        "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
+        "파일/메서드/필드 수가 많아 책임이 커질 가능성",
+        "초기화 순서에 민감할 가능성",
+        "저장/불러오기 관련 로직 포함",
+        "상태 중심 또는 관리 중심 클래스일 가능성"
+      ],
+      "risk_score": 93
+    },
+    {
+      "file_id": "ProjectDribble/Assets/Scripts/Ball/BallSpeedController.cs",
+      "class_name": "BallSpeedController",
+      "risk_flags": [
+        "update-heavy",
+        "high-coupling",
+        "getcomponent-heavy",
+        "magic-number-heavy",
+        "large-class",
+        "init-order-sensitive",
+        "save-load-sensitive",
+        "state-owner"
+      ],
+      "risk_reasons": [
+        "Unity 업데이트 루프 사용",
+        "참조 타입 또는 관계 수가 많음",
         "GetComponent/TryGetComponent 호출이 많음",
         "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
         "파일/메서드/필드 수가 많아 책임이 커질 가능성",

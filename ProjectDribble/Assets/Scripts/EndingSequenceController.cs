@@ -51,6 +51,7 @@ public class EndingSequenceController : MonoBehaviour
         if (playerDamagedManager != null)
         {
             damageWasEnabled = playerDamagedManager.enabled;
+            playerDamagedManager.StopDamageRoutine();
 
             if (disableDamageDuringEnding)
                 playerDamagedManager.enabled = false;

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using DefaultNamespace;
 
 public class EndingGaugeController : MonoBehaviour
 {
@@ -14,11 +15,14 @@ public class EndingGaugeController : MonoBehaviour
     [SerializeField] private float flickerSpeed = 18f;
     [SerializeField] private float flickerPhase;
     [SerializeField, Range(0f, 1f)] private float minFlickerAlpha;
+    [SerializeField, Min(0f)] private float errorTickMinInterval = 0.08f;
     [SerializeField] private UnityEvent onFilled;
 
     private float elapsed;
     private bool filling;
     private bool filled;
+    private int lastFilledSlotCount;
+    private float lastErrorTickRealtime = float.NegativeInfinity;
 
     public float Fill01 => fillDuration <= 0f ? 1f : Mathf.Clamp01(elapsed / fillDuration);
 
@@ -49,6 +53,8 @@ public class EndingGaugeController : MonoBehaviour
         elapsed = 0f;
         filled = false;
         filling = true;
+        lastFilledSlotCount = 0;
+        lastErrorTickRealtime = float.NegativeInfinity;
 
         if (root != null)
             root.SetActive(true);
@@ -63,6 +69,8 @@ public class EndingGaugeController : MonoBehaviour
         elapsed = 0f;
         filled = false;
         filling = false;
+        lastFilledSlotCount = 0;
+        lastErrorTickRealtime = float.NegativeInfinity;
         ApplyFill(0f);
 
         if (root != null)
@@ -81,6 +89,8 @@ public class EndingGaugeController : MonoBehaviour
             return;
 
         float scaledFill = fill * gaugeSlots.Length;
+        int filledSlotCount = Mathf.Clamp(Mathf.CeilToInt(scaledFill), 0, gaugeSlots.Length);
+        PlayErrorTickIfSlotAdvanced(filledSlotCount);
 
         for (int i = 0; i < gaugeSlots.Length; i++)
         {
@@ -95,6 +105,24 @@ public class EndingGaugeController : MonoBehaviour
                 ? CreateFlickerColor(filledColor, true)
                 : emptyColor;
         }
+    }
+
+    private void PlayErrorTickIfSlotAdvanced(int filledSlotCount)
+    {
+        if (!filling || filledSlotCount <= lastFilledSlotCount)
+        {
+            lastFilledSlotCount = filledSlotCount;
+            return;
+        }
+
+        float now = Time.unscaledTime;
+        if (now - lastErrorTickRealtime >= errorTickMinInterval)
+        {
+            SoundManager.Instance?.Play(SoundId.EndingGaugeErrorTick);
+            lastErrorTickRealtime = now;
+        }
+
+        lastFilledSlotCount = filledSlotCount;
     }
 
     private Color CreateFlickerColor(Color baseColor, bool canFlicker)

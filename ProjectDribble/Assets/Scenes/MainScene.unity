@@ -3029,7 +3029,10 @@ MonoBehaviour:
   saveManager: {fileID: 1304030403}
   laserUnlockState: {fileID: 487274947}
   paddleController: {fileID: 6356577598330059143}
+  playerHealth: {fileID: 2946782009235622389}
   endingSequenceController: {fileID: 2002476920}
+  stageArtManager: {fileID: 740297814692893696}
+  endingClearedTitleArtProfile: {fileID: 11400000, guid: 30c775c7cbfe9554c9025c6383198e76, type: 2}
   titleUI: {fileID: 9009906005929067097}
   pauseUI: {fileID: 1655959441620804118}
   stageClearUI: {fileID: 8402107493515325041}
@@ -3165,9 +3168,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c45564d325ef49139c5263decad7dc0b, type: 2}
   - {fileID: 11400000, guid: 67064a7c8c0243a7920eca81a2138532, type: 2}
   - {fileID: 11400000, guid: 1ada66f7386143b38676bcf9e01e805e, type: 2}
-  - {fileID: 11400000, guid: 82f92230405c88b419e9372787484565, type: 2}
   - {fileID: 11400000, guid: 3a1e2c1347e609d408c4da31945a07d5, type: 2}
   - {fileID: 11400000, guid: 56a9382f87c3e3c47ab02a156ce0158f, type: 2}
+  - {fileID: 11400000, guid: 82f92230405c88b419e9372787484565, type: 2}
   - {fileID: 11400000, guid: 41c9534ee6da2564e836200c0a6e423b, type: 2}
   - {fileID: 11400000, guid: 1ff20c8d59e2f1e4bad1b087f875aadf, type: 2}
   - {fileID: 11400000, guid: bb062c08a961a014ba193cce36055ad7, type: 2}
@@ -3177,7 +3180,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 169c584824c3f3642a7c710c86cc4767, type: 2}
   - {fileID: 11400000, guid: 4e55d7cbdc2293c4091b9f3636ccfd3c, type: 2}
   - {fileID: 11400000, guid: fe80df33717eefa43b6e2adf5ff63f3e, type: 2}
-  - {fileID: 11400000, guid: 54ffe47851dc9a646b91752f8f887676, type: 2}
   - {fileID: 11400000, guid: 0fa4ea42d6e6ad548842ef9c9da3b3c9, type: 2}
   titleStageIndex: 0
   startStageIndex: 1
@@ -7354,6 +7356,7 @@ MonoBehaviour:
   flickerSpeed: 16
   flickerPhase: 3
   minFlickerAlpha: 0.118
+  errorTickMinInterval: 0.08
   onFilled:
     m_PersistentCalls:
       m_Calls:
@@ -11979,6 +11982,96 @@ MonoBehaviour:
     maxPitch: 2
     pitchRandomRange: 0
     mixerGroup: {fileID: -2828534213274750351, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
+    minInterval: 0
+    usePitchByRatio: 1
+    minPitch: 0.8
+  - id: 19
+    clips:
+    - {fileID: 0}
+    loopClip: {fileID: 0}
+    legacyClip: {fileID: 0}
+    soundType: 1
+    baseVolume: 1
+    volumeRandomRange: 0
+    basePitch: 1
+    maxPitch: 1
+    pitchRandomRange: 0.03
+    mixerGroup: {fileID: -2828534213274750351, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
+    minInterval: 0
+    usePitchByRatio: 1
+    minPitch: 0.8
+  - id: 20
+    clips:
+    - {fileID: 8300000, guid: 1b1abc8fcffcdc74d92a9ce155cefc60, type: 3}
+    loopClip: {fileID: 0}
+    legacyClip: {fileID: 0}
+    soundType: 1
+    baseVolume: 0.5
+    volumeRandomRange: 0
+    basePitch: 1
+    maxPitch: 3
+    pitchRandomRange: 0.03
+    mixerGroup: {fileID: -2828534213274750351, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
+    minInterval: 0.08
+    usePitchByRatio: 1
+    minPitch: 0.8
+  - id: 21
+    clips:
+    - {fileID: 0}
+    loopClip: {fileID: 0}
+    legacyClip: {fileID: 0}
+    soundType: 1
+    baseVolume: 1
+    volumeRandomRange: 0
+    basePitch: 1
+    maxPitch: 1
+    pitchRandomRange: 0.03
+    mixerGroup: {fileID: -2828534213274750351, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
+    minInterval: 0
+    usePitchByRatio: 1
+    minPitch: 0.8
+  - id: 22
+    clips:
+    - {fileID: 0}
+    loopClip: {fileID: 0}
+    legacyClip: {fileID: 0}
+    soundType: 1
+    baseVolume: 1
+    volumeRandomRange: 0
+    basePitch: 1
+    maxPitch: 1
+    pitchRandomRange: 0.03
+    mixerGroup: {fileID: -2828534213274750351, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
+    minInterval: 0
+    usePitchByRatio: 1
+    minPitch: 0.8
+  - id: 23
+    clips:
+    - {fileID: 0}
+    loopClip: {fileID: 0}
+    legacyClip: {fileID: 0}
+    soundType: 1
+    baseVolume: 1
+    volumeRandomRange: 0
+    basePitch: 1
+    maxPitch: 1
+    pitchRandomRange: 0.03
+    mixerGroup: {fileID: -2828534213274750351, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
+    minInterval: 0
+    usePitchByRatio: 1
+    minPitch: 0.8
+  - id: 24
+    clips:
+    - {fileID: 0}
+    loopClip: {fileID: 0}
+    legacyClip: {fileID: 0}
+    soundType: 0
+    baseVolume: 1
+    volumeRandomRange: 0
+    basePitch: 1
+    maxPitch: 1
+    pitchRandomRange: 0
+    mixerGroup: {fileID: -6424471294437657134, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
     minInterval: 0
     usePitchByRatio: 1
     minPitch: 0.8
@@ -20729,7 +20822,7 @@ MonoBehaviour:
   corruptionStartHealthRatio: 1
   overlayMinAlpha: 0.495
   overlayMaxAlpha: 1
-  overlayColor: {r: 1, g: 1, b: 1, a: 1}
+  overlayColor: {r: 0.3529412, g: 0.90956324, b: 0.9622642, a: 1}
   stages:
   - healthRatioThreshold: 0.8
     sprite: {fileID: 21300000, guid: 3590fac4ce49950449e6ca00874702bc, type: 3}
@@ -21374,7 +21467,7 @@ MonoBehaviour:
   corruptionStartHealthRatio: 1
   overlayMinAlpha: 0.495
   overlayMaxAlpha: 1
-  overlayColor: {r: 1, g: 1, b: 1, a: 1}
+  overlayColor: {r: 0.3529412, g: 0.90956324, b: 0.9622642, a: 1}
   stages:
   - healthRatioThreshold: 0.8
     sprite: {fileID: 21300000, guid: c202df23a67b1b34abe3cb50d16b21f7, type: 3}

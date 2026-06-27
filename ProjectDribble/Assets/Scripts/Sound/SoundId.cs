@@ -37,6 +37,14 @@
 
         // 16 is intentionally unused because legacy scene data still contains this value.
         TitleBGM = 17,
-        GameplayBGM = 18
+        GameplayBGM = 18,
+
+        // Ending
+        EndingNextGlitch = 19,
+        EndingGaugeErrorTick = 20,
+        EndingPopupNoise = 21,
+        EndingQuestionAppear = 22,
+        EndingErrorVideoStart = 23,
+        EndingBgm = 24
     }
 }

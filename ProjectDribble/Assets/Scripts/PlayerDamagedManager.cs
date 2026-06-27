@@ -10,8 +10,19 @@ public class PlayerDamagedManager : MonoBehaviour
     private bool isConnected;
     private Coroutine damageCoroutine;
 
+    private void OnDisable()
+    {
+        StopDamageRoutine();
+    }
+
     private void Update()
     {
+        if (GameManager.Instance != null && !GameManager.Instance.IsGameplayDamageAllowed)
+        {
+            StopDamageRoutine();
+            return;
+        }
+
         CheckConnected();
 
         if (isConnected)
@@ -29,6 +40,17 @@ public class PlayerDamagedManager : MonoBehaviour
                 damageCoroutine = null;
             }
         }
+    }
+
+    public void StopDamageRoutine()
+    {
+        isConnected = false;
+
+        if (damageCoroutine == null)
+            return;
+
+        StopCoroutine(damageCoroutine);
+        damageCoroutine = null;
     }
 
     private void CheckConnected()

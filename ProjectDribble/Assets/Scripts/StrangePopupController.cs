@@ -1,4 +1,5 @@
 using System.Collections;
+using DefaultNamespace;
 using TMPro;
 using UnityEngine;
 
@@ -33,6 +34,8 @@ public class StrangePopupController : MonoBehaviour
 
         if (dotText != null)
             dotText.text = ".";
+
+        SoundManager.Instance?.Play(SoundId.EndingPopupNoise);
 
         if (homeButton != null)
             homeButton.SetActive(false);
@@ -96,6 +99,8 @@ public class StrangePopupController : MonoBehaviour
 
         if (homeButton != null)
             homeButton.SetActive(true);
+
+        SoundManager.Instance?.Play(SoundId.EndingQuestionAppear);
 
         if (pauseWhenHomeButtonAppears)
             Time.timeScale = 0f;

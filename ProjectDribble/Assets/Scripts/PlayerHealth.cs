@@ -64,6 +64,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (GameManager.Instance != null && !GameManager.Instance.IsGameplayDamageAllowed)
+            return;
+
         if (isDead)
             return;
 
@@ -193,6 +196,10 @@ public class PlayerHealth : MonoBehaviour
     private IEnumerator PlayGameOverSoundDelayed()
     {
         yield return new WaitForSeconds(0.5f);
+
+        if (GameManager.Instance != null && !GameManager.Instance.IsGameplayDamageAllowed)
+            yield break;
+
         SoundManager.Instance.Play(SoundId.GameOver);
     }
 }

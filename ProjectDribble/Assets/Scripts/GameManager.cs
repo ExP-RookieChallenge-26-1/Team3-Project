@@ -12,7 +12,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private SaveManager saveManager;
     [SerializeField] private LaserUnlockState laserUnlockState;
     [SerializeField] private PaddleController paddleController;
+    [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private EndingSequenceController endingSequenceController;
+    [SerializeField] private StageArtManager stageArtManager;
+    [SerializeField] private StageArtProfile endingClearedTitleArtProfile;
 
     [Header("UI")]
     [SerializeField] private GameObject titleUI;
@@ -33,6 +36,8 @@ public class GameManager : MonoBehaviour
     private float timeScaleBefore = 1f;
     private bool isGameStarted;
     private bool isStageClearInputBlocked;
+    private bool isEndingTransitioning;
+    private bool showEndingClearedTitleState;
 
     public bool IsPausedByTutorial => isPausedByTutorial;
     public bool IsPaused => isPaused;
@@ -41,7 +46,13 @@ public class GameManager : MonoBehaviour
     public bool IsPlayerInputBlocked => isStageClearInputBlocked;
     public bool IsRecallTutorialActive { get; private set; }
     public bool IsEnding => endingSequenceController != null && endingSequenceController.IsEnding;
-    public bool ShouldSuppressBallCollisionFeedback => IsEnding;
+    public bool ShouldSuppressBallCollisionFeedback => !IsGameplayDamageAllowed;
+    public bool IsGameplayDamageAllowed =>
+        isGameStarted &&
+        !isStageClearInputBlocked &&
+        !isEndingTransitioning &&
+        !IsEnding &&
+        (stageManager == null || !stageManager.IsCurrentStageEnding);
 
     private void Awake()
     {
@@ -122,6 +133,9 @@ public class GameManager : MonoBehaviour
 
     public void RequestGameOver()
     {
+        if (!IsGameplayDamageAllowed)
+            return;
+
         if (isStageClearInputBlocked)
             return;
 
@@ -168,6 +182,7 @@ public class GameManager : MonoBehaviour
     {
         ApplySavedProgressState();
 
+        isEndingTransitioning = false;
         SoundManager.Instance?.SetGameplaySfxBlocked(false);
         Time.timeScale = timeScaleBefore;
         isPaused = false;
@@ -184,7 +199,10 @@ public class GameManager : MonoBehaviour
 
     public void StartEndingStage()
     {
+        isEndingTransitioning = true;
         SoundManager.Instance?.SetGameplaySfxBlocked(false);
+        SoundManager.Instance?.Play(SoundId.EndingNextGlitch);
+        SoundManager.Instance?.TryPlayBgmIfConfigured(SoundId.EndingBgm, true);
         CloseConfirmPopups();
 
         if (pauseUI != null)
@@ -216,9 +234,16 @@ public class GameManager : MonoBehaviour
 
         if (stageManager == null || !stageManager.TryStartEndingStage())
         {
+            isEndingTransitioning = false;
             Debug.LogWarning("GameManager: Cannot start ending stage.");
             return;
         }
+
+        if (playerHealth == null)
+            playerHealth = FindAnyObjectByType<PlayerHealth>();
+
+        playerHealth?.ResetPlayerHealth();
+        isEndingTransitioning = false;
 
         if (paddleController != null)
             paddleController.ResetPosition();
@@ -226,6 +251,7 @@ public class GameManager : MonoBehaviour
 
     public void RetryStage()
     {
+        isEndingTransitioning = false;
         SoundManager.Instance?.SetGameplaySfxBlocked(false);
 
         if (pauseUI != null)
@@ -256,6 +282,7 @@ public class GameManager : MonoBehaviour
 
     public void NextStage()
     {
+        isEndingTransitioning = false;
         SoundManager.Instance?.SetGameplaySfxBlocked(false);
 
         // Stage initialization may immediately open a tutorial popup. Resume the
@@ -398,6 +425,7 @@ public class GameManager : MonoBehaviour
     public void GoHomeFromEnding()
     {
         Time.timeScale = 1f;
+        showEndingClearedTitleState = true;
         endingSequenceController?.EndEndingAndReset();
         saveManager?.ResetProgressSaveOnly();
         ApplySavedProgressState();
@@ -417,6 +445,7 @@ public class GameManager : MonoBehaviour
         isGameStarted = false;
         isPausedByTutorial = false;
         isStageClearInputBlocked = false;
+        isEndingTransitioning = false;
         IsRecallTutorialActive = false;
         timeScaleBefore = 1f;
         timeScaleBeforeTutorial = 1f;
@@ -426,6 +455,8 @@ public class GameManager : MonoBehaviour
 
         if (stageManager != null)
             stageManager.StartStage(0);
+
+        ApplyEndingClearedTitleStateIfNeeded();
 
         if (paddleController != null)
             paddleController.ResetPosition();
@@ -450,6 +481,17 @@ public class GameManager : MonoBehaviour
 
         if (pauseButton != null)
             pauseButton.SetActive(false);
+    }
+
+    private void ApplyEndingClearedTitleStateIfNeeded()
+    {
+        if (!showEndingClearedTitleState || endingClearedTitleArtProfile == null)
+            return;
+
+        if (stageArtManager == null)
+            stageArtManager = FindAnyObjectByType<StageArtManager>(FindObjectsInactive.Include);
+
+        stageArtManager?.Apply(endingClearedTitleArtProfile);
     }
 
     private void CloseConfirmPopups()

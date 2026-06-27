@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -54,6 +55,7 @@ public class EndingMovieController : MonoBehaviour
     {
         Time.timeScale = 1f;
         SoundManager.Instance?.StopAllAudioForEnding();
+        SoundManager.Instance?.Play(SoundId.EndingErrorVideoStart);
         isPlaying = false;
         waitingForTap = false;
         inputEnabledRealtime = float.PositiveInfinity;

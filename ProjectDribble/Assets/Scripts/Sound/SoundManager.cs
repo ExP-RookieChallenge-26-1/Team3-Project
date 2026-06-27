@@ -404,6 +404,21 @@ public class SoundManager : MonoBehaviour
         PlayBgmInternal(id, data, restart);
     }
 
+    public bool TryPlayBgmIfConfigured(SoundId id, bool restart = false)
+    {
+        if (!soundMap.TryGetValue(id, out SoundData data))
+            return false;
+
+        if (data == null || data.soundType != SoundType.BGM)
+            return false;
+
+        if (data.clips == null || data.clips.Length == 0 || data.clips[0] == null)
+            return false;
+
+        PlayBgmInternal(id, data, restart);
+        return true;
+    }
+
     private void PlayBgmInternal(SoundId id, SoundData data)
     {
         PlayBgmInternal(id, data, false);

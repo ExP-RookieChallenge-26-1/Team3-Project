@@ -21,6 +21,9 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
 
+    public const string BgmVolumePrefsKey = "Settings.BGMVolume";
+    public const string SfxVolumePrefsKey = "Settings.SFXVolume";
+
     [SerializeField] private BallSpeedController ballSpeedController;
 
     [Header("Audio Sources")]
@@ -54,6 +57,9 @@ public class SoundManager : MonoBehaviour
     private float userSfxVolume = 1f;
     private bool gameplaySfxBlocked = true;
 
+    public float BgmVolume => userBgmVolume;
+    public float SfxVolume => userSfxVolume;
+
     private const string BgmVolumeParameter = "BGMVolume";
     private const string SfxVolumeParameter = "SFXVolume";
     private const string BgmLowPassCutoffParameter = "BGMLowPassCutoff";
@@ -75,6 +81,9 @@ public class SoundManager : MonoBehaviour
 
     private void Initialize()
     {
+        userBgmVolume = Mathf.Clamp01(PlayerPrefs.GetFloat(BgmVolumePrefsKey, 1f));
+        userSfxVolume = Mathf.Clamp01(PlayerPrefs.GetFloat(SfxVolumePrefsKey, 1f));
+
         if (bgmSource != null)
             bgmSource.loop = false;
 
@@ -85,6 +94,7 @@ public class SoundManager : MonoBehaviour
             loopSource.loop = true;
 
         ApplyBgmMuffleState();
+        ApplySavedVolumeState();
 
         soundMap.Clear();
         lastPlayTimes.Clear();
@@ -515,6 +525,8 @@ public class SoundManager : MonoBehaviour
     public void SetBgmVolume(float normalizedVolume)
     {
         userBgmVolume = Mathf.Clamp01(normalizedVolume);
+        PlayerPrefs.SetFloat(BgmVolumePrefsKey, userBgmVolume);
+        PlayerPrefs.Save();
 
         if (audioMixer != null)
         {
@@ -538,6 +550,8 @@ public class SoundManager : MonoBehaviour
     public void SetSfxVolume(float normalizedVolume)
     {
         userSfxVolume = Mathf.Clamp01(normalizedVolume);
+        PlayerPrefs.SetFloat(SfxVolumePrefsKey, userSfxVolume);
+        PlayerPrefs.Save();
 
         if (audioMixer != null)
         {
@@ -584,6 +598,25 @@ public class SoundManager : MonoBehaviour
             ? muffledLowPassCutoff
             : normalLowPassCutoff;
         audioMixer.SetFloat(BgmLowPassCutoffParameter, cutoff);
+    }
+
+    private void ApplySavedVolumeState()
+    {
+        if (audioMixer != null)
+        {
+            audioMixer.SetFloat(BgmVolumeParameter, LinearToDb(userBgmVolume));
+            audioMixer.SetFloat(SfxVolumeParameter, LinearToDb(userSfxVolume));
+            return;
+        }
+
+        if (defaultSfxSource != null)
+            defaultSfxSource.volume = userSfxVolume;
+
+        if (uiSfxSource != null)
+            uiSfxSource.volume = userSfxVolume;
+
+        if (loopSource != null)
+            loopSource.volume = userSfxVolume;
     }
 
     private float LinearToDb(float value)

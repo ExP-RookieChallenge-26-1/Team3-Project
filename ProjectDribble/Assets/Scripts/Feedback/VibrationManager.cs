@@ -6,7 +6,7 @@ public sealed class VibrationManager : MonoBehaviour
 {
     public static VibrationManager Instance { get; private set; }
 
-    private const string VibrationEnabledKey = "VibrationEnabled";
+    public const string VibrationEnabledPrefsKey = "VibrationEnabled";
 
     [Header("Amplitude")]
     [SerializeField, Range(1, 255)] private int minAmplitude = 30;
@@ -60,7 +60,7 @@ public sealed class VibrationManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        VibrationEnabled = PlayerPrefs.GetInt(VibrationEnabledKey, 1) != 0;
+        VibrationEnabled = PlayerPrefs.GetInt(VibrationEnabledPrefsKey, 1) != 0;
     }
 
     private void OnApplicationPause(bool paused)
@@ -77,7 +77,7 @@ public sealed class VibrationManager : MonoBehaviour
     public void SetVibrationEnabled(bool enabled)
     {
         VibrationEnabled = enabled;
-        PlayerPrefs.SetInt(VibrationEnabledKey, enabled ? 1 : 0);
+        PlayerPrefs.SetInt(VibrationEnabledPrefsKey, enabled ? 1 : 0);
         PlayerPrefs.Save();
 
         if (!enabled)

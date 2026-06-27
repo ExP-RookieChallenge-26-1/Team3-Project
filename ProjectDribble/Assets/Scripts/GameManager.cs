@@ -148,10 +148,25 @@ public class GameManager : MonoBehaviour
         StartGameAtStage(startStageIndex);
     }
 
+    public void OnClickNewGameButton()
+    {
+        if (saveManager == null || stageManager == null)
+        {
+            Debug.LogWarning("GameManager: Cannot start a new game because SaveManager or StageManager is missing.");
+            return;
+        }
+
+        saveManager.ResetProgressSaveOnly();
+        ApplySavedProgressState();
+
+        int startStageIndex = 0;
+        stageManager.TryResolvePlayableStartStageIndex(startStageIndex, out startStageIndex);
+        StartGameAtStage(startStageIndex);
+    }
+
     public void StartGameAtStage(int startStageIndex)
     {
-        if (saveManager != null && saveManager.Current.laserUnlocked && laserUnlockState != null)
-            laserUnlockState.UnlockLaser();
+        ApplySavedProgressState();
 
         SoundManager.Instance?.SetGameplaySfxBlocked(false);
         Time.timeScale = timeScaleBefore;
@@ -384,6 +399,8 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         endingSequenceController?.EndEndingAndReset();
+        saveManager?.ResetProgressSaveOnly();
+        ApplySavedProgressState();
         GoHomeInternal();
         Time.timeScale = 1f;
     }
@@ -439,6 +456,22 @@ public class GameManager : MonoBehaviour
     {
         HideQuitConfirmPopup();
         HideHomeConfirmPopup();
+    }
+
+    private void ApplySavedProgressState()
+    {
+        if (laserUnlockState == null)
+            return;
+
+        bool shouldUnlockLaser =
+            saveManager != null &&
+            saveManager.Current != null &&
+            saveManager.Current.laserUnlocked;
+
+        if (shouldUnlockLaser)
+            laserUnlockState.UnlockLaser();
+        else
+            laserUnlockState.LockLaser();
     }
 
     public void PauseForTutorial()

@@ -7,4 +7,5 @@ public class SaveData
     public bool laserUnlocked = false;
     public bool tutorialCleared = false;
     public bool recallTutorialSeen = false;
+    public bool endingCleared = false;
 }

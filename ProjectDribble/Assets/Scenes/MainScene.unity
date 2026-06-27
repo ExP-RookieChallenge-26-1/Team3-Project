@@ -3801,7 +3801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7aace894cd1fd49bec152aa76c1f5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SFXSlider
-  SoundManager: {fileID: 2250531861603855641}
+  slider: {fileID: 0}
 --- !u!114 &1135490452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3814,7 +3814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f943b8bbbbad30a45ac2b5b3544e3b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BGMSlider
-  SoundManager: {fileID: 2250531861603855641}
+  slider: {fileID: 0}
 --- !u!114 &1135490453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9930,15 +9930,15 @@ MonoBehaviour:
   m_HandleRect: {fileID: 3459202951111662085}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 100
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2071420608035680857}
         m_TargetAssemblyTypeName: BGMSlider, Assembly-CSharp
-        m_MethodName: OnBGMSliderValueChanged
+        m_MethodName: OnValueChanged
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11433,7 +11433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f943b8bbbbad30a45ac2b5b3544e3b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BGMSlider
-  SoundManager: {fileID: 2250531861603855641}
+  slider: {fileID: 1030777089202414721}
 --- !u!114 &2095610027467843329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19458,7 +19458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7aace894cd1fd49bec152aa76c1f5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SFXSlider
-  SoundManager: {fileID: 2250531861603855641}
+  slider: {fileID: 7626903629438537394}
 --- !u!1 &7584580963022800083
 GameObject:
   m_ObjectHideFlags: 0
@@ -19548,15 +19548,15 @@ MonoBehaviour:
   m_HandleRect: {fileID: 3107788110494073682}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 100
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7573332568341357921}
         m_TargetAssemblyTypeName: SFXSlider, Assembly-CSharp
-        m_MethodName: OnSFXSliderValueChanged
+        m_MethodName: OnValueChanged
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

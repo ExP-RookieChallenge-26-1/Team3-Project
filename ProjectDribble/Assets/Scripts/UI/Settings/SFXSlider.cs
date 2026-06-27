@@ -1,16 +1,40 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class SFXSlider : MonoBehaviour
+public sealed class SFXSlider : MonoBehaviour
 {
-    [SerializeField] private SoundManager SoundManager;
-    public void OnSFXSliderValueChanged(float value)
+    private const string SfxVolumeKey = "Settings.SFXVolume";
+
+    [SerializeField] private Slider slider;
+
+    private void Awake()
     {
-        Debug.Log($"sfx 조절: {value}");
-        SoundManager.SetSfxVolume(NormalizeSliderValue(value));
+        if (slider == null)
+            slider = GetComponent<Slider>();
     }
 
-    private float NormalizeSliderValue(float value)
+    private void OnEnable()
     {
-        return Mathf.Clamp01(value > 1f ? value / 100f : value);
+        if (slider == null)
+            return;
+
+        slider.minValue = 0f;
+        slider.maxValue = 1f;
+        slider.wholeNumbers = false;
+
+        float savedValue = Mathf.Clamp01(PlayerPrefs.GetFloat(SfxVolumeKey, 1f));
+
+        slider.SetValueWithoutNotify(savedValue);
+        SoundManager.Instance?.SetSfxVolume(savedValue);
+    }
+
+    public void OnValueChanged(float value)
+    {
+        float normalized = Mathf.Clamp01(value);
+
+        PlayerPrefs.SetFloat(SfxVolumeKey, normalized);
+        PlayerPrefs.Save();
+
+        SoundManager.Instance?.SetSfxVolume(normalized);
     }
 }

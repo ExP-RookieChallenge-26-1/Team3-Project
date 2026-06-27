@@ -5,9 +5,11 @@ public class SaveManager : MonoBehaviour
 {
     public static SaveManager Instance { get; private set; }
 
+    public const string ProgressSaveFileName = "save.json";
+
     public SaveData Current { get; private set; }
 
-    private string SavePath => Path.Combine(Application.persistentDataPath, "save.json");
+    private string SavePath => Path.Combine(Application.persistentDataPath, ProgressSaveFileName);
 
     private void Awake()
     {
@@ -66,15 +68,25 @@ public class SaveManager : MonoBehaviour
         Current.recallTutorialSeen = value;
     }
 
+    public void SetEndingCleared(bool value)
+    {
+        Current.endingCleared = value;
+    }
+
     public int GetStartStageIndex(int stageCount)
     {
         int nextStage = Current.highestClearedStageIndex + 1;
         return Mathf.Clamp(nextStage, 0, stageCount - 1);
     }
 
-    public void ResetSave()
+    public void ResetProgressSaveOnly()
     {
         Current = new SaveData();
         Save();
+    }
+
+    public void ResetSave()
+    {
+        ResetProgressSaveOnly();
     }
 }

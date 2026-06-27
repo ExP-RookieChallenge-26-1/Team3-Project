@@ -1,17 +1,40 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BGMSlider : MonoBehaviour
+public sealed class BGMSlider : MonoBehaviour
 {
-    [SerializeField] private SoundManager SoundManager;
-    public void OnBGMSliderValueChanged(float value)
+    private const string BgmVolumeKey = "Settings.BGMVolume";
+
+    [SerializeField] private Slider slider;
+
+    private void Awake()
     {
-        Debug.Log($"bgm 조절: {value}");
-        SoundManager.SetBgmVolume(NormalizeSliderValue(value));
+        if (slider == null)
+            slider = GetComponent<Slider>();
     }
 
-    private float NormalizeSliderValue(float value)
+    private void OnEnable()
     {
-        return Mathf.Clamp01(value > 1f ? value / 100f : value);
+        if (slider == null)
+            return;
+
+        slider.minValue = 0f;
+        slider.maxValue = 1f;
+        slider.wholeNumbers = false;
+
+        float savedValue = Mathf.Clamp01(PlayerPrefs.GetFloat(BgmVolumeKey, 1f));
+
+        slider.SetValueWithoutNotify(savedValue);
+        SoundManager.Instance?.SetBgmVolume(savedValue);
+    }
+
+    public void OnValueChanged(float value)
+    {
+        float normalized = Mathf.Clamp01(value);
+
+        PlayerPrefs.SetFloat(BgmVolumeKey, normalized);
+        PlayerPrefs.Save();
+
+        SoundManager.Instance?.SetBgmVolume(normalized);
     }
 }

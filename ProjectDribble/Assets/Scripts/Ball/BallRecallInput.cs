@@ -6,6 +6,7 @@ public class BallRecallInput : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private BallRespawner ballRespawner;
+    [SerializeField] private BallController ballController;
 
     [Header("Swipe Setting")]
     [SerializeField] private float minSwipeDistance = 80f;
@@ -22,9 +23,18 @@ public class BallRecallInput : MonoBehaviour
 
     private float holdTimer;
 
+    private void Awake()
+    {
+        if (ballRespawner == null)
+            ballRespawner = FindAnyObjectByType<BallRespawner>();
+
+        if (ballController == null)
+            ballController = FindAnyObjectByType<BallController>();
+    }
+
     private void Update()
     {
-        if (IsPlayerInputBlocked())
+        if (!CanProcessRecallInput())
         {
             CancelHold();
             isPointerDown = false;
@@ -113,8 +123,6 @@ public class BallRecallInput : MonoBehaviour
         hasRecalledThisSwipe = false;
 
         holdTimer = 0f;
-
-        Debug.Log("BeginPointer: " + position);
     }
 
     private void MovePointer(Vector2 currentPosition)
@@ -143,14 +151,10 @@ public class BallRecallInput : MonoBehaviour
     private void HoldDownSwipe()
     {
         isDownSwipeHolding = true;
-        holdTimer += IsRecallTutorialActive()
-            ? Time.unscaledDeltaTime
-            : Time.deltaTime;
+        holdTimer += Time.deltaTime;
 
         float progress = holdDuration > 0f ? holdTimer / holdDuration : 1f;
         FeedbackManager.Instance?.StartRecallHoldFeedback(progress);
-
-        Debug.Log("Holding Down Swipe: " + holdTimer);
 
         if (holdTimer >= holdDuration)
         {
@@ -176,8 +180,6 @@ public class BallRecallInput : MonoBehaviour
         hasRecalledThisSwipe = false;
 
         holdTimer = 0f;
-
-        Debug.Log("EndPointer");
     }
 
     private void OnDisable()
@@ -187,7 +189,6 @@ public class BallRecallInput : MonoBehaviour
 
     private void RecallBall()
     {
-        Debug.Log("Recall Ball");
         FeedbackManager.Instance?.StopRecallHoldFeedback();
 
         if (ballRespawner == null)
@@ -199,21 +200,33 @@ public class BallRecallInput : MonoBehaviour
         ballRespawner.RecallBallToPaddle();
     }
 
-    private bool IsRecallTutorialActive()
+    private bool CanProcessRecallInput()
     {
-        return GameManager.Instance != null && GameManager.Instance.IsRecallTutorialActive;
-    }
+        GameManager gameManager = GameManager.Instance;
 
-    private bool IsPlayerInputBlocked()
-    {
-        return GameManager.Instance != null && GameManager.Instance.IsPlayerInputBlocked;
+        if (gameManager == null ||
+            !gameManager.IsGameStarted ||
+            gameManager.IsPaused ||
+            gameManager.IsPausedByTutorial ||
+            gameManager.IsPlayerInputBlocked ||
+            gameManager.IsEnding)
+        {
+            return false;
+        }
+
+        if (Time.timeScale <= 0f)
+            return false;
+
+        if (ballController == null)
+            ballController = FindAnyObjectByType<BallController>();
+
+        return ballController != null &&
+               ballController.gameObject.activeInHierarchy &&
+               !ballController.IsCaptured;
     }
 
     private bool IsPointerOverUI(int pointerId = -1)
     {
-        if (IsRecallTutorialActive())
-            return false;
-
         if (EventSystem.current == null)
             return false;
 

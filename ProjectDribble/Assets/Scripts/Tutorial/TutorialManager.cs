@@ -92,6 +92,7 @@ public class TutorialManager : MonoBehaviour
     private bool isRunningPendingStageClear;
     private Action pendingStageClearCallback;
     private bool hasRecallObservation;
+    private bool isWaitingForRecallTutorialInput;
     private bool recallTutorialSeenThisSession;
     private float recallObservedTime;
     private float recallObservedMinY;
@@ -536,6 +537,8 @@ public class TutorialManager : MonoBehaviour
         if (uiManager != null)
             uiManager.HideTutorialPopupWithoutCallback();
 
+        isWaitingForRecallTutorialInput = false;
+
         if (IsRecallTutorialActive)
             gameManager.EndRecallTutorial();
         else if (gameManager != null && gameManager.IsPausedByTutorial)
@@ -633,7 +636,8 @@ public class TutorialManager : MonoBehaviour
     {
         if (!enableRecallTutorial ||
             HasSeenRecallTutorial() ||
-            IsRecallTutorialActive)
+            IsRecallTutorialActive ||
+            isWaitingForRecallTutorialInput)
         {
             return false;
         }
@@ -733,7 +737,7 @@ public class TutorialManager : MonoBehaviour
             return;
         }
 
-        bool shown = uiManager.ShowRecallTutorialPopup(CompleteRecallTutorial);
+        bool shown = uiManager.ShowRecallTutorialPopup(HandleRecallTutorialPopupClosed);
 
         if (!shown)
             return;
@@ -743,14 +747,24 @@ public class TutorialManager : MonoBehaviour
 
     private void HandleRecallTutorialBallRecalled()
     {
+        if (!isWaitingForRecallTutorialInput)
+            return;
+
+        CompleteRecallTutorial();
+    }
+
+    private void HandleRecallTutorialPopupClosed()
+    {
         if (!IsRecallTutorialActive)
             return;
 
-        uiManager?.HideTutorialPopup();
+        gameManager?.EndRecallTutorial();
+        isWaitingForRecallTutorialInput = true;
     }
 
     private void CompleteRecallTutorial()
     {
+        isWaitingForRecallTutorialInput = false;
         recallTutorialSeenThisSession = true;
 
         if (saveRecallTutorialSeen && saveManager != null)

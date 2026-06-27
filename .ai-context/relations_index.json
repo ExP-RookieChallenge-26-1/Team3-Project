@@ -34127,6 +34127,20 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
     "from_class": "EndingMovieController",
+    "to_type": "Direct",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "EnableVideoAudio",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
     "to_type": "EndEndingAndReset",
     "relation_type": "uses",
     "strength": 1
@@ -34232,20 +34246,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
     "from_class": "EndingMovieController",
-    "to_type": "MuteVideoAudio",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
-    "from_class": "EndingMovieController",
-    "to_type": "None",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
-    "from_class": "EndingMovieController",
     "to_type": "OnDisable",
     "relation_type": "uses",
     "strength": 1
@@ -34296,6 +34296,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
     "from_class": "EndingMovieController",
     "to_type": "SetDirectAudioMute",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
+    "from_class": "EndingMovieController",
+    "to_type": "SetDirectAudioVolume",
     "relation_type": "uses",
     "strength": 1
   },

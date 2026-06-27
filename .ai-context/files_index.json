@@ -22783,9 +22783,9 @@
     "file_id": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
     "path": "ProjectDribble/Assets/Scripts/EndingMovieController.cs",
     "file_name": "EndingMovieController.cs",
-    "content_hash": "ce88a87fe9a5460308d241380bd7a4cce1ce00ea",
-    "size": 4756,
-    "line_count": 172,
+    "content_hash": "971a0a1f1ea9920d7769d679c6675f153efe55d1",
+    "size": 4948,
+    "line_count": 178,
     "namespace": "",
     "using_list": [
       "DefaultNamespace",
@@ -22819,7 +22819,7 @@
       "HandleMovieFinished",
       "HasReturnInput",
       "ReturnHomeAfterMovie",
-      "MuteVideoAudio"
+      "EnableVideoAudio"
     ],
     "fields": [
       {
@@ -22906,7 +22906,7 @@
       "HideAndReset",
       "LogWarning",
       "Check",
-      "MuteVideoAudio",
+      "EnableVideoAudio",
       "Stop",
       "Input",
       "GetMouseButtonDown",
@@ -22917,8 +22917,9 @@
       "EndEndingAndReset",
       "GoHomeFromEnding",
       "VideoAudioOutputMode",
-      "None",
-      "SetDirectAudioMute"
+      "Direct",
+      "SetDirectAudioMute",
+      "SetDirectAudioVolume"
     ],
     "component_access_types": [],
     "created_types": [],

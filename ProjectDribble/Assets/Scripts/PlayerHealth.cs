@@ -31,6 +31,7 @@ public class PlayerHealth : MonoBehaviour
     [Header("Paddle Visual")]
     [SerializeField] private bool enablePaddleBaseTint;
     [SerializeField] private PaddleCorruptionVisual[] paddleCorruptionVisuals;
+    private bool hasAttemptedPaddleCorruptionVisualResolve;
     
     public int CurrentHp => currentHp;
     public int MaxHp => runtimeMaxHp;
@@ -148,11 +149,25 @@ public class PlayerHealth : MonoBehaviour
 
     private void UpdatePaddleCorruptionVisuals(float hpRatio)
     {
+        ResolvePaddleCorruptionVisualsIfMissing();
+
         if (paddleCorruptionVisuals == null)
             return;
 
         for (int i = 0; i < paddleCorruptionVisuals.Length; i++)
             paddleCorruptionVisuals[i]?.ApplyHealthRatio(hpRatio);
+    }
+
+    private void ResolvePaddleCorruptionVisualsIfMissing()
+    {
+        if (hasAttemptedPaddleCorruptionVisualResolve ||
+            paddleCorruptionVisuals != null && paddleCorruptionVisuals.Length > 0)
+        {
+            return;
+        }
+
+        hasAttemptedPaddleCorruptionVisualResolve = true;
+        paddleCorruptionVisuals = GetComponentsInChildren<PaddleCorruptionVisual>(true);
     }
 
     private void Die()

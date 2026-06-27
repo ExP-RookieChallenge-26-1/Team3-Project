@@ -228,7 +228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9652113
 Transform:
   m_ObjectHideFlags: 0
@@ -293,7 +293,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: e1cc6c9163a58654b832a4147cf5c147, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c202df23a67b1b34abe3cb50d16b21f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DecorativeFlickerSprite
   targetRenderer: {fileID: 9652114}
   canFlicker: 1
-  flickerAmount: 0.4
+  flickerAmount: 0.2
   flickerSpeed: 13
   minAlpha: 0.25
   phase: 0
@@ -449,7 +449,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -70, y: 0}
-  m_SizeDelta: {x: 25, y: 80}
+  m_SizeDelta: {x: 28, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &79915371
 MonoBehaviour:
@@ -471,7 +471,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5874496105167938030, guid: e9fa70efd9e46c04da5990c8f1eef42f, type: 3}
+  m_Sprite: {fileID: 1631184572, guid: 54eb80dc90fcdb54da8b8bfd400a83ca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -600,7 +600,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 42, y: 0}
-  m_SizeDelta: {x: 25, y: 80}
+  m_SizeDelta: {x: 28, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &113365929
 MonoBehaviour:
@@ -622,7 +622,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5874496105167938030, guid: e9fa70efd9e46c04da5990c8f1eef42f, type: 3}
+  m_Sprite: {fileID: 1627685604, guid: 54eb80dc90fcdb54da8b8bfd400a83ca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1363,7 +1363,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -42, y: 0}
-  m_SizeDelta: {x: 25, y: 80}
+  m_SizeDelta: {x: 28, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &202891177
 MonoBehaviour:
@@ -1385,7 +1385,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5874496105167938030, guid: e9fa70efd9e46c04da5990c8f1eef42f, type: 3}
+  m_Sprite: {fileID: -744266033, guid: 54eb80dc90fcdb54da8b8bfd400a83ca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2287,7 +2287,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -126, y: 0}
-  m_SizeDelta: {x: 25, y: 80}
+  m_SizeDelta: {x: 28, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &460307029
 MonoBehaviour:
@@ -2309,7 +2309,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5874496105167938030, guid: e9fa70efd9e46c04da5990c8f1eef42f, type: 3}
+  m_Sprite: {fileID: -620233110, guid: 54eb80dc90fcdb54da8b8bfd400a83ca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2767,6 +2767,10 @@ MonoBehaviour:
   recallWatchMaxY: 18
   recallObserveDuration: 4
   recallMaxYDeviation: 10
+  stage3RecallDelay: 5.5
+  generalStageRecallDelay: 8
+  generalStageRecallObserveDuration: 2.5
+  generalStageRecallMaxYDeviation: 14
   saveRecallTutorialSeen: 1
   pauseOnMessage: 1
 --- !u!114 &625922476
@@ -2816,7 +2820,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 14, y: 0}
-  m_SizeDelta: {x: 25, y: 80}
+  m_SizeDelta: {x: 28, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &723040853
 MonoBehaviour:
@@ -2838,7 +2842,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5874496105167938030, guid: e9fa70efd9e46c04da5990c8f1eef42f, type: 3}
+  m_Sprite: {fileID: 155415388, guid: 54eb80dc90fcdb54da8b8bfd400a83ca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4035,7 +4039,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 126, y: 0}
-  m_SizeDelta: {x: 25, y: 80}
+  m_SizeDelta: {x: 28, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1163724067
 MonoBehaviour:
@@ -4057,7 +4061,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5874496105167938030, guid: e9fa70efd9e46c04da5990c8f1eef42f, type: 3}
+  m_Sprite: {fileID: 177061416, guid: 54eb80dc90fcdb54da8b8bfd400a83ca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4658,7 +4662,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 154, y: 0}
-  m_SizeDelta: {x: 25, y: 80}
+  m_SizeDelta: {x: 28, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1308974108
 MonoBehaviour:
@@ -4680,7 +4684,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5874496105167938030, guid: e9fa70efd9e46c04da5990c8f1eef42f, type: 3}
+  m_Sprite: {fileID: -1958874641, guid: 54eb80dc90fcdb54da8b8bfd400a83ca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5532,7 +5536,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 70, y: 0}
-  m_SizeDelta: {x: 25, y: 80}
+  m_SizeDelta: {x: 28, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1656796779
 MonoBehaviour:
@@ -5554,7 +5558,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5874496105167938030, guid: e9fa70efd9e46c04da5990c8f1eef42f, type: 3}
+  m_Sprite: {fileID: 765451974, guid: 54eb80dc90fcdb54da8b8bfd400a83ca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5946,7 +5950,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -154, y: 0}
-  m_SizeDelta: {x: 25, y: 80}
+  m_SizeDelta: {x: 28, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1746390035
 MonoBehaviour:
@@ -5968,7 +5972,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5874496105167938030, guid: e9fa70efd9e46c04da5990c8f1eef42f, type: 3}
+  m_Sprite: {fileID: 1722314488, guid: 54eb80dc90fcdb54da8b8bfd400a83ca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6170,7 +6174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1793384439
 Transform:
   m_ObjectHideFlags: 0
@@ -6235,7 +6239,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 78ffecec0cc6b0f41b829f64f141ad64, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c202df23a67b1b34abe3cb50d16b21f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6259,7 +6263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DecorativeFlickerSprite
   targetRenderer: {fileID: 1793384440}
   canFlicker: 1
-  flickerAmount: 0.4
+  flickerAmount: 0.2
   flickerSpeed: 13
   minAlpha: 0.25
   phase: 0
@@ -6300,7 +6304,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -98, y: 0}
-  m_SizeDelta: {x: 25, y: 80}
+  m_SizeDelta: {x: 28, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1793560962
 MonoBehaviour:
@@ -6322,7 +6326,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5874496105167938030, guid: e9fa70efd9e46c04da5990c8f1eef42f, type: 3}
+  m_Sprite: {fileID: 707383300, guid: 54eb80dc90fcdb54da8b8bfd400a83ca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6375,7 +6379,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -14, y: 0}
-  m_SizeDelta: {x: 25, y: 80}
+  m_SizeDelta: {x: 28, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1795383122
 MonoBehaviour:
@@ -6397,7 +6401,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5874496105167938030, guid: e9fa70efd9e46c04da5990c8f1eef42f, type: 3}
+  m_Sprite: {fileID: -353416288, guid: 54eb80dc90fcdb54da8b8bfd400a83ca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6450,7 +6454,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 98, y: 0}
-  m_SizeDelta: {x: 25, y: 80}
+  m_SizeDelta: {x: 28, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1799709661
 MonoBehaviour:
@@ -6472,7 +6476,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5874496105167938030, guid: e9fa70efd9e46c04da5990c8f1eef42f, type: 3}
+  m_Sprite: {fileID: -108229291, guid: 54eb80dc90fcdb54da8b8bfd400a83ca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7346,9 +7350,9 @@ MonoBehaviour:
   - {fileID: 1308974108}
   filledColor: {r: 1, g: 1, b: 1, a: 1}
   emptyColor: {r: 1, g: 1, b: 1, a: 0}
-  flickerAmount: 0.4
-  flickerSpeed: 13
-  flickerPhase: 1
+  flickerAmount: 0.2
+  flickerSpeed: 16
+  flickerPhase: 3
   minFlickerAlpha: 0.118
   onFilled:
     m_PersistentCalls:
@@ -20721,11 +20725,20 @@ MonoBehaviour:
   corruptionOverlayRenderer: {fileID: 1793384440}
   enableBaseTint: 1
   normalBaseColor: {r: 1, g: 1, b: 1, a: 1}
-  corruptedBaseTint: {r: 0.18396229, g: 1, b: 0.18396233, a: 1}
-  corruptionStartHealthRatio: 0.7
-  overlayMinAlpha: 0
-  overlayMaxAlpha: 0.7
-  overlayColor: {r: 0, g: 1, b: 0, a: 1}
+  corruptedBaseTint: {r: 1, g: 1, b: 1, a: 1}
+  corruptionStartHealthRatio: 1
+  overlayMinAlpha: 0.495
+  overlayMaxAlpha: 1
+  overlayColor: {r: 1, g: 1, b: 1, a: 1}
+  stages:
+  - healthRatioThreshold: 0.8
+    sprite: {fileID: 21300000, guid: 3590fac4ce49950449e6ca00874702bc, type: 3}
+  - healthRatioThreshold: 0.5
+    sprite: {fileID: 21300000, guid: 37d9595bbd074cd45a4144a5576c0ac0, type: 3}
+  - healthRatioThreshold: 0.3
+    sprite: {fileID: 21300000, guid: ae55b9e8c4746ab488ee1168bd99f12c, type: 3}
+  - healthRatioThreshold: 0.05
+    sprite: {fileID: 21300000, guid: 43652838e2156bf4499d7a3f498a43d3, type: 3}
 --- !u!1 &8240597207507215224
 GameObject:
   m_ObjectHideFlags: 0
@@ -21357,11 +21370,20 @@ MonoBehaviour:
   corruptionOverlayRenderer: {fileID: 9652114}
   enableBaseTint: 1
   normalBaseColor: {r: 1, g: 1, b: 1, a: 1}
-  corruptedBaseTint: {r: 0.25, g: 1, b: 0.25000006, a: 1}
-  corruptionStartHealthRatio: 0.7
-  overlayMinAlpha: 0
-  overlayMaxAlpha: 0.7
-  overlayColor: {r: 0, g: 1, b: 0, a: 1}
+  corruptedBaseTint: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 1}
+  corruptionStartHealthRatio: 1
+  overlayMinAlpha: 0.495
+  overlayMaxAlpha: 1
+  overlayColor: {r: 1, g: 1, b: 1, a: 1}
+  stages:
+  - healthRatioThreshold: 0.8
+    sprite: {fileID: 21300000, guid: c202df23a67b1b34abe3cb50d16b21f7, type: 3}
+  - healthRatioThreshold: 0.5
+    sprite: {fileID: 21300000, guid: 96fb4eeb05d707b4db8d78893440a59f, type: 3}
+  - healthRatioThreshold: 0.3
+    sprite: {fileID: 21300000, guid: dc2e58cae9ad5a743bd5d6aaabb2fbdb, type: 3}
+  - healthRatioThreshold: 0.05
+    sprite: {fileID: 21300000, guid: 20f9c2816d68cfa44afc472cc53acd2b, type: 3}
 --- !u!1 &8497571361594911244
 GameObject:
   m_ObjectHideFlags: 0

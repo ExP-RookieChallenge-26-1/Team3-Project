@@ -16,7 +16,7 @@ MonoBehaviour:
   blockData: {fileID: 11400000, guid: f38812b10878e4b409e9e0125e745966, type: 2}
   useCeiling: 1
   ceilingSegmentMode: 1
-  ceilingMaxHpOverride: 20
+  ceilingMaxHpOverride: 10
   playerMaxHpOverride: 10
   clearCondition: 0
   useTopDecoration: 0

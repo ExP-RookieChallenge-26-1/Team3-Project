@@ -28,6 +28,7 @@ public class EndingSequenceController : MonoBehaviour
 
         isEnding = true;
         Time.timeScale = 1f;
+        SoundManager.Instance?.StopBgm();
 
         if (ballController == null)
             ballController = FindAnyObjectByType<BallController>();

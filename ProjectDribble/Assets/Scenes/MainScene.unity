@@ -3180,6 +3180,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 169c584824c3f3642a7c710c86cc4767, type: 2}
   - {fileID: 11400000, guid: 4e55d7cbdc2293c4091b9f3636ccfd3c, type: 2}
   - {fileID: 11400000, guid: fe80df33717eefa43b6e2adf5ff63f3e, type: 2}
+  - {fileID: 11400000, guid: 54ffe47851dc9a646b91752f8f887676, type: 2}
   - {fileID: 11400000, guid: 0fa4ea42d6e6ad548842ef9c9da3b3c9, type: 2}
   titleStageIndex: 0
   startStageIndex: 1
@@ -11942,9 +11943,9 @@ MonoBehaviour:
     minPitch: 0.8
   - id: 18
     clips:
-    - {fileID: 8300000, guid: aadfc7706afdd9a4cadb0c0121e30e0e, type: 3}
-    loopClip: {fileID: 8300000, guid: aadfc7706afdd9a4cadb0c0121e30e0e, type: 3}
-    legacyClip: {fileID: 8300000, guid: 0bdc554abe1ea01428e29a58803c3b9a, type: 3}
+    - {fileID: 8300000, guid: 4fcfcd389c5920a44b7c74cdbebc7dc3, type: 3}
+    loopClip: {fileID: 8300000, guid: 4fcfcd389c5920a44b7c74cdbebc7dc3, type: 3}
+    legacyClip: {fileID: 8300000, guid: 4fcfcd389c5920a44b7c74cdbebc7dc3, type: 3}
     soundType: 0
     baseVolume: 1
     volumeRandomRange: 0
@@ -11987,7 +11988,7 @@ MonoBehaviour:
     minPitch: 0.8
   - id: 19
     clips:
-    - {fileID: 0}
+    - {fileID: 8300000, guid: 2a61225b28a3a4341a95c3699800a45b, type: 3}
     loopClip: {fileID: 0}
     legacyClip: {fileID: 0}
     soundType: 1
@@ -12002,15 +12003,15 @@ MonoBehaviour:
     minPitch: 0.8
   - id: 20
     clips:
-    - {fileID: 8300000, guid: 1b1abc8fcffcdc74d92a9ce155cefc60, type: 3}
+    - {fileID: 8300000, guid: d3168fc6ab440b140987948c8967e056, type: 3}
     loopClip: {fileID: 0}
     legacyClip: {fileID: 0}
     soundType: 1
-    baseVolume: 0.5
+    baseVolume: 1
     volumeRandomRange: 0
     basePitch: 1
-    maxPitch: 3
-    pitchRandomRange: 0.03
+    maxPitch: 1
+    pitchRandomRange: 0
     mixerGroup: {fileID: -2828534213274750351, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
     minInterval: 0.08
     usePitchByRatio: 1
@@ -12025,7 +12026,7 @@ MonoBehaviour:
     volumeRandomRange: 0
     basePitch: 1
     maxPitch: 1
-    pitchRandomRange: 0.03
+    pitchRandomRange: 0
     mixerGroup: {fileID: -2828534213274750351, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
     minInterval: 0
     usePitchByRatio: 1
@@ -12040,14 +12041,14 @@ MonoBehaviour:
     volumeRandomRange: 0
     basePitch: 1
     maxPitch: 1
-    pitchRandomRange: 0.03
+    pitchRandomRange: 0
     mixerGroup: {fileID: -2828534213274750351, guid: eb3b07b221612cc40aa6be7cde6de044, type: 2}
     minInterval: 0
     usePitchByRatio: 1
     minPitch: 0.8
   - id: 23
     clips:
-    - {fileID: 0}
+    - {fileID: 8300000, guid: cf4699807adf36b41b8764f7211a8f43, type: 3}
     loopClip: {fileID: 0}
     legacyClip: {fileID: 0}
     soundType: 1
@@ -20822,7 +20823,7 @@ MonoBehaviour:
   corruptionStartHealthRatio: 1
   overlayMinAlpha: 0.495
   overlayMaxAlpha: 1
-  overlayColor: {r: 0.3529412, g: 0.90956324, b: 0.9622642, a: 1}
+  overlayColor: {r: 0.252314, g: 0.6261526, b: 0.6603774, a: 1}
   stages:
   - healthRatioThreshold: 0.8
     sprite: {fileID: 21300000, guid: 3590fac4ce49950449e6ca00874702bc, type: 3}
@@ -21467,7 +21468,7 @@ MonoBehaviour:
   corruptionStartHealthRatio: 1
   overlayMinAlpha: 0.495
   overlayMaxAlpha: 1
-  overlayColor: {r: 0.3529412, g: 0.90956324, b: 0.9622642, a: 1}
+  overlayColor: {r: 0.252314, g: 0.6261526, b: 0.6603774, a: 1}
   stages:
   - healthRatioThreshold: 0.8
     sprite: {fileID: 21300000, guid: c202df23a67b1b34abe3cb50d16b21f7, type: 3}

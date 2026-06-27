@@ -202,7 +202,7 @@ public class GameManager : MonoBehaviour
         isEndingTransitioning = true;
         SoundManager.Instance?.SetGameplaySfxBlocked(false);
         SoundManager.Instance?.Play(SoundId.EndingNextGlitch);
-        SoundManager.Instance?.TryPlayBgmIfConfigured(SoundId.EndingBgm, true);
+        SoundManager.Instance?.StopBgm();
         CloseConfirmPopups();
 
         if (pauseUI != null)

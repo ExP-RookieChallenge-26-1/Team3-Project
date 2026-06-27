@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3463539631378529315}
   - component: {fileID: 3008409919184172545}
   - component: {fileID: 1886099129351762766}
+  - component: {fileID: 4032068415909804098}
   m_Layer: 0
   m_Name: Ceiling_Core
   m_TagString: Untagged
@@ -158,7 +159,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   pulseSpeed: 1
-  minAlpha: 0.7
+  minAlpha: 0.9
   maxAlpha: 1
   pulseColor: {r: 0.64705884, g: 1, b: 0.64705884, a: 1}
   scaleAmount: 0.03
@@ -242,3 +243,23 @@ MonoBehaviour:
   useUnscaledTime: 0
   disconnectedGlowColor: {r: 0.45, g: 0.5, b: 0.42, a: 1}
   disconnectedAlpha: 0.08
+--- !u!114 &4032068415909804098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9079664033724141661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e9eea529f484f66be60407266e4fddd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DecorativeFlickerSprite
+  targetRenderer: {fileID: 4996926366765568128}
+  canFlicker: 1
+  flickerAmount: 0.4
+  flickerSpeed: 8
+  minAlpha: 0.419
+  phase: 0
+  randomizePhaseOnAwake: 1
+  captureColorOnEnable: 1

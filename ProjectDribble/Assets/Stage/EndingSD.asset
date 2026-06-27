@@ -26,10 +26,10 @@ MonoBehaviour:
   ballStartPosition: {x: 0, y: -11.3}
   ballStartDirection: {x: 0, y: -1}
   ballStartSpeed: 30
-  overrideBallTuning: 0
-  maxSpeedOverride: 45
+  overrideBallTuning: 1
+  maxSpeedOverride: 30
   maxDamageOverride: 5
-  speedGainMultiplierOverride: 0.5
-  powerGainMultiplierOverride: 0.5
+  speedGainMultiplierOverride: 0
+  powerGainMultiplierOverride: 0
   isTutorialStage: 0
   tutorialStageId: 0

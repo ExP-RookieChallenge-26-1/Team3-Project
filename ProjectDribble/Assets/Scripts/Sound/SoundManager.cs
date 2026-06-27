@@ -52,6 +52,7 @@ public class SoundManager : MonoBehaviour
     private readonly HashSet<BgmMuffleReason> bgmMuffleReasons = new();
     private float userBgmVolume = 1f;
     private float userSfxVolume = 1f;
+    private bool gameplaySfxBlocked = true;
 
     private const string BgmVolumeParameter = "BGMVolume";
     private const string SfxVolumeParameter = "SFXVolume";
@@ -142,6 +143,9 @@ public class SoundManager : MonoBehaviour
         if (!TryGetSoundData(id, out SoundData data))
             return;
 
+        if (ShouldBlockSound(id, data))
+            return;
+
         if (!CanPlayByInterval(data))
             return;
 
@@ -193,6 +197,9 @@ public class SoundManager : MonoBehaviour
         }
 
         if (!TryGetSoundData(id, out SoundData data))
+            return;
+
+        if (ShouldBlockSound(id, data))
             return;
 
         if (loopSource.isPlaying && currentLoopId == id)
@@ -302,6 +309,46 @@ public class SoundManager : MonoBehaviour
             return uiSfxSource != null ? uiSfxSource : defaultSfxSource;
 
         return defaultSfxSource;
+    }
+
+    private bool ShouldBlockSound(SoundId id, SoundData data)
+    {
+        if (!gameplaySfxBlocked)
+            return false;
+
+        if (data == null || data.soundType != SoundType.SFX)
+            return false;
+
+        return !IsUiSfx(id);
+    }
+
+    private bool IsUiSfx(SoundId id)
+    {
+        return id == SoundId.UIClick;
+    }
+
+    public void SetGameplaySfxBlocked(bool blocked)
+    {
+        if (gameplaySfxBlocked == blocked)
+        {
+            if (gameplaySfxBlocked)
+                StopGameplaySfx();
+
+            return;
+        }
+
+        gameplaySfxBlocked = blocked;
+
+        if (gameplaySfxBlocked)
+            StopGameplaySfx();
+    }
+
+    private void StopGameplaySfx()
+    {
+        StopLoop();
+
+        if (defaultSfxSource != null)
+            defaultSfxSource.Stop();
     }
 
     private void ApplyMixerGroup(AudioSource source, AudioMixerGroup mixerGroup)

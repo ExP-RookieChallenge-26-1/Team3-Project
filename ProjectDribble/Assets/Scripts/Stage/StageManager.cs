@@ -22,6 +22,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] private TutorialManager tutorialManager;
     [SerializeField] private StageArtManager stageArtManager;
     [SerializeField] private EndingSequenceController endingSequenceController;
+    [SerializeField] private StageNumberUI stageNumberUI;
 
     [Header("Top Decoration")]
     [SerializeField] private Transform topDecorationParent;
@@ -364,6 +365,8 @@ public class StageManager : MonoBehaviour
         else
             endingSequenceController?.EndEndingAndReset();
 
+        RefreshStageNumberUI();
+
         if (!isEndingStage && tutorialManager != null)
         {
             tutorialManager.BeginStage(currentStageIndex, data);
@@ -440,6 +443,50 @@ public class StageManager : MonoBehaviour
                stage.StageType == StageType.Normal &&
                !stage.isTutorialStage &&
                index != titleStageIndex;
+    }
+
+    private int GetNormalStageNumber(int stageIndex)
+    {
+        if (!IsNormalStageIndex(stageIndex))
+            return -1;
+
+        int normalStageNumber = 0;
+
+        for (int i = 0; i <= stageIndex; i++)
+        {
+            if (IsNormalStageIndex(i))
+                normalStageNumber++;
+        }
+
+        return normalStageNumber;
+    }
+
+    private void RefreshStageNumberUI()
+    {
+        EnsureStageNumberUI();
+
+        if (stageNumberUI == null)
+            return;
+
+        int normalStageNumber = GetNormalStageNumber(currentStageIndex);
+        if (normalStageNumber > 0)
+            stageNumberUI.SetStageNumber(normalStageNumber);
+        else
+            stageNumberUI.Hide();
+    }
+
+    private void EnsureStageNumberUI()
+    {
+        if (stageNumberUI != null)
+            return;
+
+        stageNumberUI = FindAnyObjectByType<StageNumberUI>(FindObjectsInactive.Include);
+
+        if (stageNumberUI != null)
+            return;
+
+        Canvas canvas = FindAnyObjectByType<Canvas>(FindObjectsInactive.Include);
+        stageNumberUI = StageNumberUI.CreateUnder(canvas);
     }
 
     private bool IsPlayableStartStageIndex(int index)

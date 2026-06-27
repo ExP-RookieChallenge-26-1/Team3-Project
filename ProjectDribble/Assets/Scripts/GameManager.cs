@@ -153,6 +153,7 @@ public class GameManager : MonoBehaviour
         if (saveManager != null && saveManager.Current.laserUnlocked && laserUnlockState != null)
             laserUnlockState.UnlockLaser();
 
+        SoundManager.Instance?.SetGameplaySfxBlocked(false);
         Time.timeScale = timeScaleBefore;
         isPaused = false;
         isGameStarted = true;
@@ -168,6 +169,7 @@ public class GameManager : MonoBehaviour
 
     public void StartEndingStage()
     {
+        SoundManager.Instance?.SetGameplaySfxBlocked(false);
         CloseConfirmPopups();
 
         if (pauseUI != null)
@@ -209,6 +211,8 @@ public class GameManager : MonoBehaviour
 
     public void RetryStage()
     {
+        SoundManager.Instance?.SetGameplaySfxBlocked(false);
+
         if (pauseUI != null)
             pauseUI.SetActive(false);
 
@@ -237,6 +241,8 @@ public class GameManager : MonoBehaviour
 
     public void NextStage()
     {
+        SoundManager.Instance?.SetGameplaySfxBlocked(false);
+
         // Stage initialization may immediately open a tutorial popup. Resume the
         // stage-clear pause first so that popup remains the final pause owner.
         ResumeGame();
@@ -388,6 +394,7 @@ public class GameManager : MonoBehaviour
         HideCreditPopup();
         FeedbackManager.Instance?.StopRecallHoldFeedback();
         FeedbackManager.Instance?.StopLaserChargeFeedback();
+        SoundManager.Instance?.SetGameplaySfxBlocked(true);
         Time.timeScale = 0f;
         isPaused = true;
         isGameStarted = false;

@@ -62,6 +62,14 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private float recallObserveDuration = 4f;
     [Min(0f)]
     [SerializeField] private float recallMaxYDeviation = 10f;
+    [Min(0f)]
+    [SerializeField] private float stage3RecallDelay = 5.5f;
+    [Min(0f)]
+    [SerializeField] private float generalStageRecallDelay = 8f;
+    [Min(0f)]
+    [SerializeField] private float generalStageRecallObserveDuration = 2.5f;
+    [Min(0f)]
+    [SerializeField] private float generalStageRecallMaxYDeviation = 14f;
     [SerializeField] private bool saveRecallTutorialSeen = true;
 
     [Header("Legacy Dynamic Message")]
@@ -70,8 +78,11 @@ public class TutorialManager : MonoBehaviour
 
     private readonly HashSet<TutorialId> shownTutorials = new();
 
+    private StageDefinition currentStageDefinition;
     private TutorialStageId currentTutorialStageId = TutorialStageId.None;
     private TutorialPhase currentPhase = TutorialPhase.None;
+    private float stageElapsedTime;
+    private float stage3PlayingElapsedTime;
     private float stage1PlayElapsed;
     private bool hasShownStep2;
     private bool hasShownStep3;
@@ -137,6 +148,8 @@ public class TutorialManager : MonoBehaviour
 
     private void Update()
     {
+        stageElapsedTime += Time.deltaTime;
+
         if (currentTutorialStageId == TutorialStageId.Stage1 &&
             currentPhase == TutorialPhase.Stage1BreakNormalBlocks &&
             !hasShownStep2)
@@ -168,6 +181,7 @@ public class TutorialManager : MonoBehaviour
     public void BeginStage(int stageIndex, StageDefinition stageDefinition)
     {
         ClearStageRuntimeState();
+        currentStageDefinition = stageDefinition;
         currentTutorialStageId = ResolveTutorialStageId(stageDefinition);
 
         if (gameManager != null && !gameManager.IsGameStarted)
@@ -400,6 +414,7 @@ public class TutorialManager : MonoBehaviour
 
         blockManager?.StartGrowth();
         currentPhase = TutorialPhase.Stage3Playing;
+        stage3PlayingElapsedTime = 0f;
     }
 
     private void HandleStage3CeilingSegmentDestroyed(CeilingSegment segment)
@@ -531,8 +546,11 @@ public class TutorialManager : MonoBehaviour
         SetTutorialTopBoundaryActive(false);
 
         shownTutorials.Clear();
+        currentStageDefinition = null;
         currentTutorialStageId = TutorialStageId.None;
         currentPhase = TutorialPhase.None;
+        stageElapsedTime = 0f;
+        stage3PlayingElapsedTime = 0f;
         stage1PlayElapsed = 0f;
         hasShownStep2 = false;
         hasShownStep3 = false;
@@ -580,7 +598,16 @@ public class TutorialManager : MonoBehaviour
 
     private void UpdateRecallTutorial()
     {
-        if (!CanObserveRecallTutorial())
+        if (!CanShowRecallTutorialNow())
+        {
+            ResetRecallObservation();
+            return;
+        }
+
+        if (TryShowStage3RecallTutorial())
+            return;
+
+        if (!CanObserveGeneralStageRecallTutorial())
         {
             ResetRecallObservation();
             return;
@@ -594,13 +621,17 @@ public class TutorialManager : MonoBehaviour
             return;
         }
 
-        ObserveRecallTutorialY(currentY);
+        float observeDuration = generalStageRecallObserveDuration > 0f
+            ? generalStageRecallObserveDuration
+            : recallObserveDuration;
+        float maxYDeviation = Mathf.Max(recallMaxYDeviation, generalStageRecallMaxYDeviation);
+
+        ObserveRecallTutorialY(currentY, observeDuration, maxYDeviation);
     }
 
-    private bool CanObserveRecallTutorial()
+    private bool CanShowRecallTutorialNow()
     {
         if (!enableRecallTutorial ||
-            currentTutorialStageId == TutorialStageId.None ||
             HasSeenRecallTutorial() ||
             IsRecallTutorialActive)
         {
@@ -613,7 +644,9 @@ public class TutorialManager : MonoBehaviour
         if (gameManager == null ||
             !gameManager.IsGameStarted ||
             gameManager.IsPaused ||
-            gameManager.IsPausedByTutorial)
+            gameManager.IsPausedByTutorial ||
+            gameManager.IsStageClearInputBlocked ||
+            gameManager.IsEnding)
         {
             return false;
         }
@@ -622,6 +655,35 @@ public class TutorialManager : MonoBehaviour
             return false;
 
         return uiManager == null || !uiManager.IsTutorialPopupOpen;
+    }
+
+    private bool TryShowStage3RecallTutorial()
+    {
+        if (currentTutorialStageId != TutorialStageId.Stage3 ||
+            currentPhase != TutorialPhase.Stage3Playing)
+        {
+            return false;
+        }
+
+        stage3PlayingElapsedTime += Time.deltaTime;
+
+        if (stage3PlayingElapsedTime < stage3RecallDelay)
+            return false;
+
+        TryBeginRecallTutorial();
+        return true;
+    }
+
+    private bool CanObserveGeneralStageRecallTutorial()
+    {
+        if (currentStageDefinition == null ||
+            currentStageDefinition.StageType != StageType.Normal ||
+            currentStageDefinition.isTutorialStage)
+        {
+            return false;
+        }
+
+        return stageElapsedTime >= generalStageRecallDelay;
     }
 
     private bool HasSeenRecallTutorial()
@@ -635,7 +697,10 @@ public class TutorialManager : MonoBehaviour
                saveManager.Current.recallTutorialSeen;
     }
 
-    private void ObserveRecallTutorialY(float currentY)
+    private void ObserveRecallTutorialY(
+        float currentY,
+        float requiredDuration,
+        float maxYDeviation)
     {
         if (!hasRecallObservation)
         {
@@ -646,7 +711,7 @@ public class TutorialManager : MonoBehaviour
         recallObservedMinY = Mathf.Min(recallObservedMinY, currentY);
         recallObservedMaxY = Mathf.Max(recallObservedMaxY, currentY);
 
-        if (recallObservedMaxY - recallObservedMinY > recallMaxYDeviation)
+        if (recallObservedMaxY - recallObservedMinY > maxYDeviation)
         {
             StartRecallObservation(currentY);
             return;
@@ -654,7 +719,7 @@ public class TutorialManager : MonoBehaviour
 
         recallObservedTime += Time.deltaTime;
 
-        if (recallObservedTime >= recallObserveDuration)
+        if (recallObservedTime >= requiredDuration)
             TryBeginRecallTutorial();
     }
 

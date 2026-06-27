@@ -1690,7 +1690,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD654\uBA74\uC744 \uD130\uCE58\uD558\uC138\uC694"
+  m_text: "The End\n \uD654\uBA74\uC744 \uD130\uCE58\uD558\uC138\uC694"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 918434269bb24c24b906e887f8429164, type: 2}
   m_sharedMaterial: {fileID: -1724841276917211242, guid: 918434269bb24c24b906e887f8429164, type: 2}
@@ -2493,7 +2493,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 545960189}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 9696e043da842794090d0889d609c9d5, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 5d1fd379abee2ae419af6a95b1a36ae7, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -4257,9 +4257,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.30976096
     y: 0
-    width: 1
+    width: 0.38047808
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -7768,7 +7768,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2112426481}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 9696e043da842794090d0889d609c9d5, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 5d1fd379abee2ae419af6a95b1a36ae7, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -7788,7 +7788,7 @@ VideoPlayer:
   - 1
   m_Url: 
   m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 01
+  m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 0
   m_SkipOnDrop: 0
@@ -7831,21 +7831,21 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 68fc4066114af9a4ab61b7c6b1ee3328, type: 3}
   ceilingCorePrefab: {fileID: 3008409919184172545, guid: 6264e087cebf290489c6eb15a6747dba, type: 3}
   ceilingCoreParent: {fileID: 5817911144973919479}
-  ceilingCoreOffset: {x: 0, y: 0}
+  ceilingCoreOffset: {x: 0, y: -0.5}
   segmentCoreSpriteSets:
-  - segmentCellCount: 1
+  - segmentCellCount: 7
     sprites:
-    - {fileID: 21300000, guid: 5c237bda240907a429ef8b15a940e7d3, type: 3}
+    - {fileID: 21300000, guid: 5644fc6421786474fbde2f369fe967de, type: 3}
+  - segmentCellCount: 4
+    sprites:
+    - {fileID: 21300000, guid: 65bbc694d1294e64ab6f35e2097011fa, type: 3}
+    - {fileID: 21300000, guid: de0918c96ce94f147ab79ef5e8241fe8, type: 3}
   - segmentCellCount: 2
     sprites:
-    - {fileID: 21300000, guid: 751a6d138dbded64eb166e1bab4f5423, type: 3}
-    - {fileID: 21300000, guid: cfd92cfa2ae1c8745ad026d9bba42395, type: 3}
-  - segmentCellCount: 3
-    sprites:
-    - {fileID: 21300000, guid: daf4012dcb58f1c48a93e38896bbdd93, type: 3}
-    - {fileID: 21300000, guid: 98761adda90bfaa42a07fea3a0fdf324, type: 3}
+    - {fileID: 21300000, guid: 3979bf5a6816758408bb136ac563a869, type: 3}
+    - {fileID: 21300000, guid: 6d0135f87f3f60b4aad31eca17354434, type: 3}
   fallbackSegmentCoreSprites:
-  - {fileID: 21300000, guid: 98761adda90bfaa42a07fea3a0fdf324, type: 3}
+  - {fileID: 21300000, guid: de0918c96ce94f147ab79ef5e8241fe8, type: 3}
   leftSegmentMaxHp: 40
   centerSegmentMaxHp: 50
   rightSegmentMaxHp: 40
@@ -11763,11 +11763,11 @@ MonoBehaviour:
     minPitch: 0.8
   - id: 3
     clips:
-    - {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
+    - {fileID: 0}
     loopClip: {fileID: 0}
-    legacyClip: {fileID: 8300000, guid: 22d2093b45b209441bfdab3a4938fc81, type: 3}
+    legacyClip: {fileID: 0}
     soundType: 1
-    baseVolume: 0.489
+    baseVolume: 0
     volumeRandomRange: 0
     basePitch: 1
     maxPitch: 2

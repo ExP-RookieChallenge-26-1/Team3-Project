@@ -1,28 +1,40 @@
 fileFormatVersion: 2
-guid: 98761adda90bfaa42a07fea3a0fdf324
+guid: 5644fc6421786474fbde2f369fe967de
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1379703679958215697
-    second: Ceiling_Core_S2_112x72_0
+      213: -3929290797719471440
+    second: L1_0
   - first:
-      213: 7755932877377458457
-    second: Ceiling_Core_S2_112x72_1
+      213: -2138316483127934571
+    second: L1_1
   - first:
-      213: -4064038469296871279
-    second: Ceiling_Core_S2_112x72_2
+      213: 5139246752355523121
+    second: L1_2
   - first:
-      213: -8007998649848634146
-    second: Ceiling_Core_S2_112x72_3
+      213: 2872521292945261504
+    second: L1_3
   - first:
-      213: 5294522453370429747
-    second: Ceiling_Core_S2_112x72_4
+      213: -1659881604871170586
+    second: L1_4
   - first:
-      213: -491369231196089195
-    second: Ceiling_Core_S2_112x72_5
+      213: 8862709109934548651
+    second: L1_5
   - first:
-      213: -5077660208858707279
-    second: Ceiling_Core_S2_112x72_6
+      213: -3958795875092402317
+    second: L1_6
+  - first:
+      213: 7869018166347440691
+    second: L1_7
+  - first:
+      213: -5844644544099206776
+    second: L1_8
+  - first:
+      213: 5514303687828034996
+    second: L1_9
+  - first:
+      213: -3394359348326724235
+    second: L1_10
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -131,78 +143,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ceiling_Core_S2_112x72_0
+      name: L1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 57
-        width: 21
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 11c653bdf21b52310800000000000000
-      internalID: 1379703679958215697
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ceiling_Core_S2_112x72_1
-      rect:
-        serializedVersion: 2
-        x: 20
-        y: 56
-        width: 20
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9115bd9fbdb92ab60800000000000000
-      internalID: 7755932877377458457
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ceiling_Core_S2_112x72_2
-      rect:
-        serializedVersion: 2
-        x: 27
-        y: 9
-        width: 57
-        height: 54
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 198a90c5b82a997c0800000000000000
-      internalID: -4064038469296871279
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ceiling_Core_S2_112x72_3
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 53
-        width: 11
+        x: 69
+        y: 61
+        width: 6
         height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -212,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ed4e6f9f7afddd090800000000000000
-      internalID: -8007998649848634146
+      spriteID: 0ba38b676da5879c0800000000000000
+      internalID: -3929290797719471440
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ceiling_Core_S2_112x72_4
+      name: L1_1
       rect:
         serializedVersion: 2
-        x: 83
-        y: 58
-        width: 26
-        height: 12
+        x: 75
+        y: 54
+        width: 73
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,20 +180,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3316978ae1ce97940800000000000000
-      internalID: 5294522453370429747
+      spriteID: 5910cc5ec7c2352e0800000000000000
+      internalID: -2138316483127934571
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ceiling_Core_S2_112x72_5
+      name: L1_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 14
-        width: 41
-        height: 30
+        x: 196
+        y: 53
+        width: 28
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -256,19 +202,129 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5941001a94e4e29f0800000000000000
-      internalID: -491369231196089195
+      spriteID: 13a1b3f31b5425740800000000000000
+      internalID: 5139246752355523121
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ceiling_Core_S2_112x72_6
+      name: L1_3
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 63
+        width: 20
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c38fbb85ee3dd720800000000000000
+      internalID: 2872521292945261504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: L1_4
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 65
+        width: 19
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e5d27c897ae6f8e0800000000000000
+      internalID: -1659881604871170586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: L1_5
       rect:
         serializedVersion: 2
         x: 68
-        y: 14
-        width: 39
+        y: 10
+        width: 52
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba664459afaaefa70800000000000000
+      internalID: 8862709109934548651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: L1_6
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 20
+        width: 29
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37fe5de40288f09c0800000000000000
+      internalID: -3958795875092402317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: L1_7
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 32
+        width: 63
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3322c38945e543d60800000000000000
+      internalID: 7869018166347440691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: L1_8
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 8
+        width: 27
         height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -278,8 +334,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1ba47d051f68889b0800000000000000
-      internalID: -5077660208858707279
+      spriteID: 889ba8ed0c6a3eea0800000000000000
+      internalID: -5844644544099206776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: L1_9
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 7
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b5dd90fcfdb68c40800000000000000
+      internalID: 5514303687828034996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: L1_10
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 7
+        width: 63
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57d85f22820d4e0d0800000000000000
+      internalID: -3394359348326724235
       vertices: []
       indices: 
       edges: []
@@ -298,13 +398,17 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Ceiling_Core_S2_112x72_0: 1379703679958215697
-      Ceiling_Core_S2_112x72_1: 7755932877377458457
-      Ceiling_Core_S2_112x72_2: -4064038469296871279
-      Ceiling_Core_S2_112x72_3: -8007998649848634146
-      Ceiling_Core_S2_112x72_4: 5294522453370429747
-      Ceiling_Core_S2_112x72_5: -491369231196089195
-      Ceiling_Core_S2_112x72_6: -5077660208858707279
+      L1_0: -3929290797719471440
+      L1_1: -2138316483127934571
+      L1_10: -3394359348326724235
+      L1_2: 5139246752355523121
+      L1_3: 2872521292945261504
+      L1_4: -1659881604871170586
+      L1_5: 8862709109934548651
+      L1_6: -3958795875092402317
+      L1_7: 7869018166347440691
+      L1_8: -5844644544099206776
+      L1_9: 5514303687828034996
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

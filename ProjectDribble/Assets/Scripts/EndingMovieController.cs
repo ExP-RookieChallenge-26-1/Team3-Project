@@ -91,7 +91,7 @@ public class EndingMovieController : MonoBehaviour
         if (videoPlayer.clip.length <= 0d)
             Debug.LogWarning("[EndingMovieController] Video clip length is 0 or not ready yet. Check import/settings.");
 
-        MuteVideoAudio();
+        EnableVideoAudio();
         videoPlayer.Stop();
         videoPlayer.isLooping = false;
         videoPlayer.time = 0d;
@@ -157,15 +157,21 @@ public class EndingMovieController : MonoBehaviour
             Debug.LogWarning("[EndingMovieController] GameManager is missing; cannot return home.");
     }
 
-    private void MuteVideoAudio()
+    private void EnableVideoAudio()
     {
         if (videoPlayer == null)
             return;
 
-        videoPlayer.audioOutputMode = VideoAudioOutputMode.None;
+        videoPlayer.audioOutputMode = VideoAudioOutputMode.Direct;
+
+        if (videoPlayer.controlledAudioTrackCount == 0)
+            videoPlayer.controlledAudioTrackCount = 1;
 
         ushort trackCount = videoPlayer.controlledAudioTrackCount;
         for (ushort i = 0; i < trackCount; i++)
-            videoPlayer.SetDirectAudioMute(i, true);
+        {
+            videoPlayer.SetDirectAudioMute(i, false);
+            videoPlayer.SetDirectAudioVolume(i, 1f);
+        }
     }
 }

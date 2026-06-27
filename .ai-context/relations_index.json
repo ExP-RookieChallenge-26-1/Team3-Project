@@ -26084,7 +26084,14 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "from_class": "BallRecallInput",
-    "to_type": "Ball",
+    "to_type": "Awake",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
+    "from_class": "BallRecallInput",
+    "to_type": "BallController",
     "relation_type": "uses",
     "strength": 1
   },
@@ -26119,7 +26126,7 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "from_class": "BallRecallInput",
-    "to_type": "Down",
+    "to_type": "CanProcessRecallInput",
     "relation_type": "uses",
     "strength": 1
   },
@@ -26148,6 +26155,13 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "from_class": "BallRecallInput",
     "to_type": "FeedbackManager",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
+    "from_class": "BallRecallInput",
+    "to_type": "FindAnyObjectByType",
     "relation_type": "uses",
     "strength": 1
   },
@@ -26196,13 +26210,6 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "from_class": "BallRecallInput",
-    "to_type": "Holding",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
-    "from_class": "BallRecallInput",
     "to_type": "InputSystem",
     "relation_type": "uses",
     "strength": 1
@@ -26211,6 +26218,41 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "from_class": "BallRecallInput",
     "to_type": "Instance",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
+    "from_class": "BallRecallInput",
+    "to_type": "IsCaptured",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
+    "from_class": "BallRecallInput",
+    "to_type": "IsEnding",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
+    "from_class": "BallRecallInput",
+    "to_type": "IsGameStarted",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
+    "from_class": "BallRecallInput",
+    "to_type": "IsPaused",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
+    "from_class": "BallRecallInput",
+    "to_type": "IsPausedByTutorial",
     "relation_type": "uses",
     "strength": 1
   },
@@ -26232,20 +26274,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "from_class": "BallRecallInput",
     "to_type": "IsPointerOverUI",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
-    "from_class": "BallRecallInput",
-    "to_type": "IsRecallTutorialActive",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
-    "from_class": "BallRecallInput",
-    "to_type": "Log",
     "relation_type": "uses",
     "strength": 1
   },
@@ -26281,13 +26309,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
     "from_class": "BallRecallInput",
     "to_type": "ReadValue",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Ball/BallRecallInput.cs",
-    "from_class": "BallRecallInput",
-    "to_type": "Recall",
     "relation_type": "uses",
     "strength": 1
   },
@@ -34884,13 +34905,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
     "from_class": "PointerInputReader",
     "to_type": "IsPressed",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/etc/PointerInputReader.cs",
-    "from_class": "PointerInputReader",
-    "to_type": "IsRecallTutorialActive",
     "relation_type": "uses",
     "strength": 1
   },
@@ -46146,6 +46160,13 @@
   {
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
+    "to_type": "HandleRecallTutorialPopupClosed",
+    "relation_type": "uses",
+    "strength": 1
+  },
+  {
+    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+    "from_class": "TutorialManager",
     "to_type": "HandleStage1BallCaptured",
     "relation_type": "uses",
     "strength": 1
@@ -46189,13 +46210,6 @@
     "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
     "from_class": "TutorialManager",
     "to_type": "HasShown",
-    "relation_type": "uses",
-    "strength": 1
-  },
-  {
-    "from_file": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-    "from_class": "TutorialManager",
-    "to_type": "HideTutorialPopup",
     "relation_type": "uses",
     "strength": 1
   },

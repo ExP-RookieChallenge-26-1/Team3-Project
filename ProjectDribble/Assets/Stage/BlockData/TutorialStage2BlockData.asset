@@ -26,7 +26,7 @@ MonoBehaviour:
     maxLength: 20
     width: 1
     growWeight: 1
-    maxBlocksPerRow: 4
+    maxBlocksPerRow: 7
     directionOptions: []
     enabled: 1
     spawnInterval: 1

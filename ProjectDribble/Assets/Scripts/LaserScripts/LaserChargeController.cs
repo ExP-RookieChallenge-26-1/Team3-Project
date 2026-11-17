@@ -1,3 +1,4 @@
+using System;
 using DefaultNamespace;
 using ScriptableObjects;
 using UnityEngine;
@@ -27,6 +28,9 @@ public class LaserChargeController : MonoBehaviour
     public bool IsReturningGauge => isReturningGauge;
     public int ChargedLevelCount => chargeCount;
     public int ConsumedGaugeValue => _data != null ? chargeCount * _data.gaugePerSegment : 0;
+
+    public event Action OnChargeCompleted;
+    public event Action<bool> OnCapturedChargeReleased;
 
     private void Awake()
     {
@@ -142,6 +146,12 @@ public class LaserChargeController : MonoBehaviour
         Debug.Log("[LaserCharge] Start charging by BallCaptured event");
     }
 
+    internal void StartChargingCapturedBall()
+    {
+        if (ballController != null && ballController.IsCaptured && !isDribbling)
+            HandleBallCaptured();
+    }
+
     private void HandleBallReleased()
     {
         FeedbackManager.Instance?.StopLaserChargeFeedback();
@@ -173,8 +183,9 @@ public class LaserChargeController : MonoBehaviour
         isDribbling = false;
 
         Debug.Log("[LaserCharge] Stop charging by BallReleased event");
-        TryFireChargedLaser();
+        bool fired = TryFireChargedLaser();
         Reset();
+        OnCapturedChargeReleased?.Invoke(fired);
     }
     
     
@@ -303,29 +314,30 @@ public class LaserChargeController : MonoBehaviour
         chargeCount++;
         SoundManager.Instance.SetLoopRatio(GetChargeRatio());
         SoundManager.Instance.PlayLoop(SoundId.LaserCharge, GetChargeRatio());
+        OnChargeCompleted?.Invoke();
     }
 
-    private void TryFireChargedLaser()
+    private bool TryFireChargedLaser()
     {
         FeedbackManager.Instance?.StopLaserChargeFeedback();
 
-        if (!IsLaserUnlocked())
-            return;
+        if (!IsLaserUnlocked() || chargeCount <= 0)
+            return false;
 
-        if (chargeCount > 0)
-        {
-            float chargeRatio = GetChargeRatio();
-            SoundManager.Instance.StopLoop();
-            if (FeedbackManager.Instance != null)
-                FeedbackManager.Instance.PlayLaserFireFeedback(chargeRatio);
-            else
-                SoundManager.Instance?.Play(SoundId.LaserFire, chargeRatio);
-            int firedChargeLevel = chargeCount;
-            if (laserShoot.ShootLaser(firedChargeLevel) && laserFireFlashEffect != null)
-                laserFireFlashEffect.Play(firedChargeLevel, GetPaddleCenterPosition());
+        float chargeRatio = GetChargeRatio();
+        SoundManager.Instance.StopLoop();
+        if (FeedbackManager.Instance != null)
+            FeedbackManager.Instance.PlayLaserFireFeedback(chargeRatio);
+        else
+            SoundManager.Instance?.Play(SoundId.LaserFire, chargeRatio);
 
-            chargeCount = 0;
-        }
+        int firedChargeLevel = chargeCount;
+        bool fired = laserShoot.ShootLaser(firedChargeLevel);
+        if (fired && laserFireFlashEffect != null)
+            laserFireFlashEffect.Play(firedChargeLevel, GetPaddleCenterPosition());
+
+        chargeCount = 0;
+        return fired;
     }
 
     private Vector3 GetPaddleCenterPosition()

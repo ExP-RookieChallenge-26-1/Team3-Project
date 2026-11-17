@@ -37,7 +37,19 @@ public class TutorialManager : MonoBehaviour
         Stage3Playing
     }
 
+    private enum LaserPracticeStep
+    {
+        None,
+        WaitingForFirstCapture,
+        ShowingHoldHint,
+        Charging,
+        ReadyToFire,
+        WaitingForRetryCapture
+    }
+
     private const float AimGuideForceDelay = 10f;
+    private const float LaserHoldHintPauseDuration = 0.8f;
+    private const string LaserChargeHint = "화면을 꾹 눌러 레이저를 충전하세요";
 
     [Header("References")]
     [FormerlySerializedAs("tutorialUI")]
@@ -87,6 +99,8 @@ public class TutorialManager : MonoBehaviour
     private bool isWaitingForDribblePress;
     private bool hasShownStep3;
     private bool hasShownStep5;
+    private LaserPracticeStep laserPracticeStep;
+    private float laserHoldHintResumeTime;
     private bool hasShownStep7;
     private bool hasShownStep8;
     private bool isRunningPendingStageClear;
@@ -150,6 +164,22 @@ public class TutorialManager : MonoBehaviour
     private void Update()
     {
         stageElapsedTime += Time.deltaTime;
+
+        if (laserPracticeStep != LaserPracticeStep.None &&
+            gameManager != null && gameManager.IsStageClearInputBlocked)
+        {
+            if (laserPracticeStep == LaserPracticeStep.ShowingHoldHint)
+                gameManager.ResumeFromTutorial();
+
+            laserPracticeStep = LaserPracticeStep.None;
+            uiManager?.HidePracticeHint();
+        }
+        else if (laserPracticeStep == LaserPracticeStep.ShowingHoldHint &&
+                 Time.unscaledTime >= laserHoldHintResumeTime)
+        {
+            laserPracticeStep = LaserPracticeStep.Charging;
+            gameManager.ResumeFromTutorial();
+        }
 
         if (currentTutorialStageId == TutorialStageId.Stage1 &&
             currentPhase == TutorialPhase.Stage1BreakNormalBlocks &&
@@ -278,7 +308,8 @@ public class TutorialManager : MonoBehaviour
             if (gameManager != null && gameManager.IsPausedByTutorial &&
                 ballController != null && ballController.IsCaptured)
             {
-                isWaitingForDribblePress = uiManager != null && uiManager.ShowDribblePracticeHint();
+                isWaitingForDribblePress = uiManager != null && uiManager.ShowPracticeHint(
+                    "화면을 꾹 눌러 공의 속도를 높이세요.\n손을 떼면 공이 발사됩니다.");
             }
         });
     }
@@ -296,8 +327,8 @@ public class TutorialManager : MonoBehaviour
             return;
         }
 
-        if (!isPressed)
-            uiManager?.HideDribblePracticeHint();
+        if (!isPressed && laserPracticeStep == LaserPracticeStep.None)
+            uiManager?.HidePracticeHint();
     }
 
     private void HandleStage1NormalBlocksCleared()
@@ -418,6 +449,71 @@ public class TutorialManager : MonoBehaviour
             saveManager.SetLaserUnlocked(true);
             saveManager.Save();
         }
+
+        if (ballController == null || laserChargeController == null ||
+            gameManager == null || uiManager == null ||
+            !uiManager.ShowPracticeHint("드리블을 시작해 레이저 충전을 하세요"))
+        {
+            return;
+        }
+
+        laserPracticeStep = LaserPracticeStep.WaitingForFirstCapture;
+        ballController.OnCaptured += HandleLaserPracticeCapture;
+        laserChargeController.OnChargeCompleted += HandleLaserPracticeChargeCompleted;
+        laserChargeController.OnCapturedChargeReleased += HandleLaserPracticeRelease;
+
+        if (ballController.IsCaptured)
+        {
+            laserPracticeStep = LaserPracticeStep.Charging;
+            laserChargeController.StartChargingCapturedBall();
+        }
+    }
+
+    private void HandleLaserPracticeCapture()
+    {
+        if (gameManager.IsStageClearInputBlocked)
+            return;
+
+        if (laserPracticeStep == LaserPracticeStep.WaitingForFirstCapture)
+        {
+            uiManager.ShowPracticeHint("드리블을 유지하세요");
+            laserPracticeStep = LaserPracticeStep.ShowingHoldHint;
+            laserHoldHintResumeTime = Time.unscaledTime + LaserHoldHintPauseDuration;
+            gameManager.PauseForTutorial();
+        }
+        else if (laserPracticeStep == LaserPracticeStep.WaitingForRetryCapture)
+        {
+            laserPracticeStep = LaserPracticeStep.Charging;
+            uiManager.ShowPracticeHint(LaserChargeHint);
+        }
+    }
+
+    private void HandleLaserPracticeChargeCompleted()
+    {
+        if (laserPracticeStep != LaserPracticeStep.Charging)
+            return;
+
+        laserPracticeStep = LaserPracticeStep.ReadyToFire;
+        uiManager.ShowPracticeHint("손을 떼 레이저를 발사하세요");
+    }
+
+    private void HandleLaserPracticeRelease(bool fired)
+    {
+        if (laserPracticeStep != LaserPracticeStep.Charging &&
+            laserPracticeStep != LaserPracticeStep.ReadyToFire)
+        {
+            return;
+        }
+
+        if (fired)
+        {
+            laserPracticeStep = LaserPracticeStep.None;
+            uiManager.HidePracticeHint();
+            return;
+        }
+
+        laserPracticeStep = LaserPracticeStep.WaitingForRetryCapture;
+        uiManager.ShowPracticeHint("충전 실패! 다시 드리블을 시작하세요");
     }
 
     private void BeginStage3()
@@ -562,10 +658,11 @@ public class TutorialManager : MonoBehaviour
         if (uiManager != null)
         {
             uiManager.HideTutorialPopupWithoutCallback();
-            uiManager.HideDribblePracticeHint();
+            uiManager.HidePracticeHint();
         }
 
         isWaitingForDribblePress = false;
+        laserPracticeStep = LaserPracticeStep.None;
         isWaitingForRecallTutorialInput = false;
 
         if (IsRecallTutorialActive)
@@ -599,7 +696,16 @@ public class TutorialManager : MonoBehaviour
             blockManager.OnNormalBlocksCleared -= HandleStage1NormalBlocksCleared;
 
         if (ballController != null)
+        {
             ballController.OnCaptured -= HandleStage1BallCaptured;
+            ballController.OnCaptured -= HandleLaserPracticeCapture;
+        }
+
+        if (laserChargeController != null)
+        {
+            laserChargeController.OnChargeCompleted -= HandleLaserPracticeChargeCompleted;
+            laserChargeController.OnCapturedChargeReleased -= HandleLaserPracticeRelease;
+        }
 
         if (ceilingManager != null)
             ceilingManager.OnCeilingSegmentDestroyed -= HandleStage3CeilingSegmentDestroyed;

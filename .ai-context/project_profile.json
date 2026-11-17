@@ -7,18 +7,18 @@
   "scriptable_object_files": 10,
   "files_with_update": 59,
   "files_with_fixed_update": 1,
-  "files_with_late_update": 9,
+  "files_with_late_update": 8,
   "singleton_candidates": 5,
   "manager_like_classes": 72,
   "ui_related_classes": 107,
-  "save_load_related_classes": 111,
+  "save_load_related_classes": 112,
   "role_counts": {
     "runtime": 170,
     "player": 88,
-    "combat": 118,
-    "save-load": 111,
+    "combat": 117,
+    "save-load": 112,
     "manager": 70,
-    "data": 58,
+    "data": 59,
     "ui": 107,
     "scene": 6,
     "network": 2,
@@ -34,8 +34,14 @@
     {
       "class_name": "CeilingManager",
       "file_id": "ProjectDribble/Assets/Scripts/Ceiling/CeilingManager.cs",
-      "relation_count": 201,
-      "referenced_type_count": 192
+      "relation_count": 206,
+      "referenced_type_count": 196
+    },
+    {
+      "class_name": "TutorialManager",
+      "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
+      "relation_count": 175,
+      "referenced_type_count": 172
     },
     {
       "class_name": "BallCapturedDribbleController",
@@ -44,10 +50,10 @@
       "referenced_type_count": 168
     },
     {
-      "class_name": "TutorialManager",
-      "file_id": "ProjectDribble/Assets/Scripts/Tutorial/TutorialManager.cs",
-      "relation_count": 172,
-      "referenced_type_count": 169
+      "class_name": "GameManager",
+      "file_id": "ProjectDribble/Assets/Scripts/GameManager.cs",
+      "relation_count": 145,
+      "referenced_type_count": 141
     },
     {
       "class_name": "TMP_TextSelector_B",
@@ -78,12 +84,6 @@
       "file_id": "ProjectDribble/Assets/Scripts/Ball/BallController.cs",
       "relation_count": 130,
       "referenced_type_count": 119
-    },
-    {
-      "class_name": "GameManager",
-      "file_id": "ProjectDribble/Assets/Scripts/GameManager.cs",
-      "relation_count": 125,
-      "referenced_type_count": 122
     }
   ],
   "high_risk_classes": [
@@ -202,6 +202,7 @@
         "singleton-candidate",
         "high-coupling",
         "find-heavy",
+        "magic-number-heavy",
         "large-class",
         "init-order-sensitive",
         "save-load-sensitive",
@@ -212,6 +213,7 @@
         "Instance 또는 DontDestroyOnLoad 패턴 감지",
         "참조 타입 또는 관계 수가 많음",
         "Find 계열 탐색 사용",
+        "숫자 리터럴이 많아 의미 파악이 어려울 수 있음",
         "파일/메서드/필드 수가 많아 책임이 커질 가능성",
         "초기화 순서에 민감할 가능성",
         "저장/불러오기 관련 로직 포함",

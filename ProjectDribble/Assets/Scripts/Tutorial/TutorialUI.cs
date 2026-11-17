@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     private bool isTutorialPopupOpen;
     private TutorialPopupCloseMode tutorialPopupCloseMode = TutorialPopupCloseMode.ClickToClose;
     private GameObject currentTutorialPopupRoot;
+    private TextMeshProUGUI dribblePracticeHint;
 
     public bool IsTutorialPopupOpen => isTutorialPopupOpen;
     public GameObject CurrentTutorialPopupRoot => currentTutorialPopupRoot;
@@ -34,6 +35,7 @@ public class UIManager : MonoBehaviour
 
     protected virtual void OnDisable()
     {
+        HideDribblePracticeHint();
         if (isTutorialPopupOpen)
         {
             HideTutorialPopup();
@@ -41,6 +43,42 @@ public class UIManager : MonoBehaviour
         }
 
         SoundManager.Instance?.SetBgmMuffled(BgmMuffleReason.Tutorial, false);
+    }
+
+    public bool ShowDribblePracticeHint()
+    {
+        if (messageText == null || !gameObject.activeInHierarchy)
+            return false;
+
+        if (dribblePracticeHint == null)
+        {
+            var hint = new GameObject("Dribble Practice Hint", typeof(RectTransform));
+            hint.transform.SetParent(transform, false);
+            dribblePracticeHint = hint.AddComponent<TextMeshProUGUI>();
+            dribblePracticeHint.font = messageText.font;
+            dribblePracticeHint.fontSize = 20f;
+            dribblePracticeHint.color = Color.white;
+            dribblePracticeHint.outlineColor = Color.black;
+            dribblePracticeHint.outlineWidth = 0.2f;
+            dribblePracticeHint.alignment = TextAlignmentOptions.Center;
+            dribblePracticeHint.raycastTarget = false;
+            dribblePracticeHint.text = "화면을 꾹 눌러 공의 속도를 높이세요.\n손을 떼면 공이 발사됩니다.";
+
+            RectTransform rect = dribblePracticeHint.rectTransform;
+            rect.anchorMin = new Vector2(0.05f, 0.4f);
+            rect.anchorMax = new Vector2(0.95f, 0.4f);
+            rect.sizeDelta = new Vector2(0f, 64f);
+            rect.anchoredPosition = Vector2.zero;
+        }
+
+        dribblePracticeHint.gameObject.SetActive(true);
+        return true;
+    }
+
+    public void HideDribblePracticeHint()
+    {
+        if (dribblePracticeHint != null)
+            dribblePracticeHint.gameObject.SetActive(false);
     }
 
     public bool ShowTutorialPopup(

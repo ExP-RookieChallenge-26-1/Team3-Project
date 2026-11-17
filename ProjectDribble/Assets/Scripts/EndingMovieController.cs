@@ -6,6 +6,7 @@ public class EndingMovieController : MonoBehaviour
 {
     [SerializeField] private GameObject movieRoot;
     [SerializeField] private VideoPlayer videoPlayer;
+    [SerializeField] private AudioClip movieAudioClip;
     [SerializeField] private GameObject tapToReturnText;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private EndingSequenceController endingSequenceController;
@@ -14,8 +15,10 @@ public class EndingMovieController : MonoBehaviour
     [SerializeField, Min(0f)] private float inputEnableDelayAfterMovie = 0.2f;
 
     private bool isPlaying;
+    private bool movieAudioPending;
     private bool waitingForTap;
     private float inputEnabledRealtime = float.PositiveInfinity;
+    private AudioSource movieAudioSource;
 
     private void Awake()
     {
@@ -35,11 +38,21 @@ public class EndingMovieController : MonoBehaviour
     {
         if (videoPlayer != null)
             videoPlayer.loopPointReached -= HandleMovieFinished;
+
+        StopMovieAudio();
     }
 
     private void Update()
     {
-        if (isPlaying || !waitingForTap)
+        if (isPlaying)
+        {
+            if (movieAudioPending && videoPlayer != null && videoPlayer.isPlaying && videoPlayer.frame >= 0)
+                PlayMovieAudio();
+
+            return;
+        }
+
+        if (!waitingForTap)
             return;
 
         if (Time.realtimeSinceStartup < inputEnabledRealtime)
@@ -54,6 +67,7 @@ public class EndingMovieController : MonoBehaviour
     public void PlayMovie()
     {
         Time.timeScale = 1f;
+        StopMovieAudio();
         SoundManager.Instance?.StopAllAudioForEnding();
         SoundManager.Instance?.Play(SoundId.EndingErrorVideoStart);
         isPlaying = false;
@@ -91,19 +105,18 @@ public class EndingMovieController : MonoBehaviour
         if (videoPlayer.clip.length <= 0d)
             Debug.LogWarning("[EndingMovieController] Video clip length is 0 or not ready yet. Check import/settings.");
 
-        EnableVideoAudio();
         videoPlayer.Stop();
+        videoPlayer.audioOutputMode = VideoAudioOutputMode.None;
         videoPlayer.isLooping = false;
-        videoPlayer.time = 0d;
-        videoPlayer.Play();
-
+        movieAudioPending = movieAudioClip != null;
         isPlaying = true;
-        waitingForTap = false;
-        inputEnabledRealtime = float.PositiveInfinity;
+        videoPlayer.Play();
     }
 
     public void StopAndReset()
     {
+        StopMovieAudio();
+
         if (videoPlayer != null)
             videoPlayer.Stop();
 
@@ -120,9 +133,20 @@ public class EndingMovieController : MonoBehaviour
 
     private void HandleMovieFinished(VideoPlayer finishedPlayer)
     {
+        if (!isPlaying)
+            return;
+
+        StopMovieAudio();
         isPlaying = false;
         waitingForTap = true;
         inputEnabledRealtime = Time.realtimeSinceStartup + inputEnableDelayAfterMovie;
+
+        SaveManager saveManager = SaveManager.Instance;
+        if (saveManager != null)
+        {
+            saveManager.SetEndingCleared(true);
+            saveManager.Save();
+        }
 
         if (tapToReturnText != null)
             tapToReturnText.SetActive(true);
@@ -157,21 +181,32 @@ public class EndingMovieController : MonoBehaviour
             Debug.LogWarning("[EndingMovieController] GameManager is missing; cannot return home.");
     }
 
-    private void EnableVideoAudio()
+    private void PlayMovieAudio()
     {
-        if (videoPlayer == null)
+        movieAudioPending = false;
+
+        float offset = Mathf.Max(0f, (float)videoPlayer.time);
+        float volume = SoundManager.Instance != null ? SoundManager.Instance.SfxVolume : 1f;
+        if (offset >= movieAudioClip.length || volume <= 0f)
             return;
 
-        videoPlayer.audioOutputMode = VideoAudioOutputMode.Direct;
-
-        if (videoPlayer.controlledAudioTrackCount == 0)
-            videoPlayer.controlledAudioTrackCount = 1;
-
-        ushort trackCount = videoPlayer.controlledAudioTrackCount;
-        for (ushort i = 0; i < trackCount; i++)
+        if (movieAudioSource == null)
         {
-            videoPlayer.SetDirectAudioMute(i, false);
-            videoPlayer.SetDirectAudioVolume(i, 1f);
+            movieAudioSource = gameObject.AddComponent<AudioSource>();
+            movieAudioSource.playOnAwake = false;
+            movieAudioSource.spatialBlend = 0f;
         }
+
+        movieAudioSource.clip = movieAudioClip;
+        movieAudioSource.volume = volume;
+        movieAudioSource.time = offset;
+        movieAudioSource.Play();
+    }
+
+    private void StopMovieAudio()
+    {
+        movieAudioPending = false;
+        if (movieAudioSource != null)
+            movieAudioSource.Stop();
     }
 }

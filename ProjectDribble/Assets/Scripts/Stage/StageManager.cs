@@ -182,6 +182,12 @@ public class StageManager : MonoBehaviour
         CompleteCurrentStage();
     }
 
+    private void HandleCeilingClearImpact()
+    {
+        if (CurrentStageDefinition?.clearCondition == StageClearCondition.DestroyCeiling)
+            GameManager.Instance?.BeginStageClearSlowMotion();
+    }
+
     private void HandleNormalBlocksCleared()
     {
         StageDefinition data = CurrentStageDefinition;
@@ -205,6 +211,16 @@ public class StageManager : MonoBehaviour
         if (bossController != null)
             bossController.StopBossPattern();
 
+        GameManager gameManager = GameManager.Instance;
+        gameManager?.BeginStageClearSlowMotion();
+        if (IsCurrentStageFinalTutorialStage && gameManager != null)
+            gameManager.AfterStageClearSlowMotion(ShowStageClear);
+        else
+            ShowStageClear();
+    }
+
+    private void ShowStageClear()
+    {
         Action continueStageClear = ContinueStageClear;
         if (tutorialManager != null &&
             tutorialManager.TryInterceptStageClear(CurrentStageDefinition, continueStageClear))
@@ -239,6 +255,7 @@ public class StageManager : MonoBehaviour
     {
         if (ceilingManager != null)
         {
+            ceilingManager.OnStageClearImpact += HandleCeilingClearImpact;
             ceilingManager.OnStageCleared += HandleStageCleared;
         }
 
@@ -257,6 +274,7 @@ public class StageManager : MonoBehaviour
     {
         if (ceilingManager != null)
         {
+            ceilingManager.OnStageClearImpact -= HandleCeilingClearImpact;
             ceilingManager.OnStageCleared -= HandleStageCleared;
         }
 

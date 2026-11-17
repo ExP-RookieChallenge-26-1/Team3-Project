@@ -24,7 +24,7 @@ MonoBehaviour:
   laserMaxSpeed: 80
   laserBoostAmount: 20
   laserReturnThreshold: 70
-  weakenedSpeed: 15
+  weakenedSpeed: 12
   weakenedDuration: 1
   baseDamage: 5
   maxDamage: 7

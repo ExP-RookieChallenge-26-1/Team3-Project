@@ -2492,7 +2492,7 @@ VideoPlayer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 545960189}
-  m_Enabled: 1
+  m_Enabled: 0
   m_VideoClip: {fileID: 32900000, guid: 5d1fd379abee2ae419af6a95b1a36ae7, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
@@ -3043,6 +3043,9 @@ MonoBehaviour:
   quitConfirmPopup: {fileID: 5273428933712074846}
   homeConfirmPopup: {fileID: 529747594738315702}
   creditPopup: {fileID: 1135490449}
+  enableStageClearSlowMotion: 1
+  stageClearSlowMotionScale: 0.5
+  stageClearSlowMotionDuration: 0.22
 --- !u!1 &964261114
 GameObject:
   m_ObjectHideFlags: 0
@@ -4242,10 +4245,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.32224333
+    x: 0.18518518
     y: 0
-    width: 0.35456273
-    height: 1
+    width: 0.22222222
+    height: 0.22222222
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -7739,6 +7742,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EndingMovieController
   movieRoot: {fileID: 197938651}
   videoPlayer: {fileID: 2112426485}
+  movieAudioClip: {fileID: 8300000, guid: 95e3a29b5d9f40b4ae931ad59a06c600, type: 3}
   tapToReturnText: {fileID: 319680995}
   gameManager: {fileID: 949227556}
   endingSequenceController: {fileID: 2002476920}
@@ -7766,7 +7770,7 @@ VideoPlayer:
   m_DataSource: 0
   m_TimeUpdateMode: 2
   m_PlaybackSpeed: 1
-  m_AudioOutputMode: 2
+  m_AudioOutputMode: 0
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
@@ -15654,7 +15658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a41f589ab7344ec29be6fa179461c36d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaserFireFlashEffect
-  level1Sprite: {fileID: 21300000, guid: d07e71530af9c2f499013a3bc1ea8517, type: 3}
+  level1Sprite: {fileID: 21300000, guid: 4cc7cf2af95e10843a5a4f7d098b6a5c, type: 3}
   level2Sprite: {fileID: 21300000, guid: 4cc7cf2af95e10843a5a4f7d098b6a5c, type: 3}
   duration: 0.1
   fireFlashYOffset: 1
@@ -17496,7 +17500,7 @@ VideoPlayer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4726416711956510947}
-  m_Enabled: 1
+  m_Enabled: 0
   m_VideoClip: {fileID: 32900000, guid: 9696e043da842794090d0889d609c9d5, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
@@ -19289,9 +19293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BallSpeedController
   data: {fileID: 11400000, guid: 154261d0ebba1af4c892b67528c213b0, type: 2}
   ballSpriteRenderer: {fileID: 2939823309469030166}
-  weakenedMinAlpha: 0.35
-  weakenedMaxAlpha: 1
-  weakenedBlinkSpeed: 9
+  weakenedAlpha: 0.35
   currentSpeed: 0
 --- !u!114 &7298989739067330109
 MonoBehaviour:

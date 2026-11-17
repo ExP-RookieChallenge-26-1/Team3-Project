@@ -13,6 +13,7 @@ public class CeilingManager : MonoBehaviour
         public Sprite[] sprites;
     }
 
+    public event Action OnStageClearImpact;
     public event Action OnStageCleared;
     public event Action<CeilingSegment> OnCeilingSegmentDestroyed;
 
@@ -359,6 +360,10 @@ public class CeilingManager : MonoBehaviour
         }
 
         bool destroyed = segment.ApplyDamage(damage);
+        bool cleared = destroyed && AreAllSegmentsDestroyed();
+        if (cleared)
+            OnStageClearImpact?.Invoke();
+
         int segmentIndex = segments.IndexOf(segment);
         UpdateCurrentHpFromSegments();
 
@@ -371,7 +376,21 @@ public class CeilingManager : MonoBehaviour
 
         if (destroyed)
         {
-            SetCoreAlive(segmentIndex, false);
+            GameManager gameManager = GameManager.Instance;
+            if (cleared && gameManager != null && gameManager.IsStageClearSlowing)
+            {
+                CeilingCore finalCore = GetCoreByIndex(segmentIndex);
+                gameManager.AfterStageClearSlowMotion(() =>
+                {
+                    if (finalCore != null)
+                        finalCore.SetAliveState(false);
+                });
+            }
+            else
+            {
+                SetCoreAlive(segmentIndex, false);
+            }
+
             SetSegmentDividerState(segmentIndex, false);
             SoundManager.Instance?.Play(SoundId.CeilingBreak);
             Debug.Log($"Ceiling segment {segment.SegmentName} destroyed.");
@@ -394,7 +413,7 @@ public class CeilingManager : MonoBehaviour
                 SoundManager.Instance?.Play(SoundId.CeilingHit, hitRatio);
         }
 
-        if (AreAllSegmentsDestroyed())
+        if (cleared)
         {
             Die();
         }

@@ -135,9 +135,6 @@ public class LaserChargeController : MonoBehaviour
         if (!IsLaserUnlocked())
             return;
 
-        if (IsPointerOverUI())
-            return;
-
         isDribbling = true;
         chargeTimer = 0f;
         FeedbackManager.Instance?.StartLaserChargeFeedback();
@@ -175,12 +172,6 @@ public class LaserChargeController : MonoBehaviour
 
         isDribbling = false;
 
-        if (IsPointerOverUI())
-        {
-            Reset();
-            return;
-        }
-
         Debug.Log("[LaserCharge] Stop charging by BallReleased event");
         TryFireChargedLaser();
         Reset();
@@ -212,17 +203,23 @@ public class LaserChargeController : MonoBehaviour
             return;
         }
 
+        if (Time.timeScale <= 0f)
+            return;
+
         UpdateChargePreview();
 
-        if (isDribbling && IsLaserUnlocked() && !IsPointerOverUI())
+        bool canCharge = CanCharge();
+        if (canCharge || chargeCount > 0)
             FeedbackManager.Instance?.UpdateLaserChargeFeedback();
         else
             FeedbackManager.Instance?.StopLaserChargeFeedback();
 
-        if (CheckTimer())
-        {
-            TryIncreaseChargeLevel();
-        }
+        if (!canCharge)
+            return;
+
+        chargeTimer += Time.deltaTime;
+        if (chargeTimer >= _data.chargeTime)
+            IncreaseChargeLevel();
     }
     
     private void UpdateChargePreview()
@@ -289,51 +286,19 @@ public class LaserChargeController : MonoBehaviour
         return closest != null ? closest.bounds.max.y : laserStartPoint.position.y;
     }
     
-    // 드리블 타임 체크
-    // 기준 시간 이상이면 true 반환
-    private bool CheckTimer()
+    private bool CanCharge()
     {
-        if (!IsLaserUnlocked())
-            return false;
-
-        if (IsPointerOverUI())
-            return false;
-
-        if (isDribbling)
-        {
-            chargeTimer += Time.deltaTime;
-
-            if (chargeTimer >= _data.chargeTime)
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return isDribbling && IsLaserUnlocked() && _data != null &&
+               guageManager != null && guageManager.FilledGaugeSegments > 0 &&
+               chargeCount < _data.maxChargeCount &&
+               (ballController != null || !IsPointerOverUI());
     }
 
-    // 차징 레벨 올리기 시도
-    private void TryIncreaseChargeLevel()
-    {
-        if (!IsLaserUnlocked() || guageManager == null)
-            return;
-        
-        if (guageManager.FilledGaugeSegments > 0)
-        {
-            if (chargeCount < _data.maxChargeCount)
-            {
-                IncreaseChargeLevel();
-            }
-            
-            
-        }
-    }
     private void IncreaseChargeLevel()
     {
-        if (!IsLaserUnlocked() || guageManager == null)
+        if (!guageManager.TryReduceGaugeLevel())
             return;
-        
-        guageManager.TryReduceGaugeLevel();
+
         chargeTimer = 0f;
         chargeCount++;
         SoundManager.Instance.SetLoopRatio(GetChargeRatio());

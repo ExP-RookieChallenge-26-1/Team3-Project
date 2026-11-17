@@ -1,6 +1,6 @@
 using System;
-using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public enum BallSpeedState
 {
@@ -11,6 +11,8 @@ public enum BallSpeedState
 
 public class BallSpeedController : MonoBehaviour
 {
+    private const float WeakenedRecoveryDuration = 0.3f;
+
     private Transform tr;
     private CircleCollider2D cc;
 
@@ -35,13 +37,13 @@ public class BallSpeedController : MonoBehaviour
     private float weakenedDuration;
     [Header("Weakened Visual")]
     [SerializeField] private SpriteRenderer ballSpriteRenderer;
-    [SerializeField, Range(0f, 1f)] private float weakenedMinAlpha = 0.35f;
-    [SerializeField, Range(0f, 1f)] private float weakenedMaxAlpha = 1f;
-    [SerializeField, Min(0f)] private float weakenedBlinkSpeed = 8f;
+    [FormerlySerializedAs("weakenedMinAlpha")]
+    [SerializeField, Range(0f, 1f)] private float weakenedAlpha = 0.35f;
     [SerializeField] private float currentSpeed;
 
     private BallSpeedState currentSpeedState = BallSpeedState.Normal;
-    private Coroutine weakenedCoroutine;
+    private float weakenedStartedAt;
+    private float weakenedRecoveryStartedAt = float.PositiveInfinity;
     private float lastBlockSpeedSlowTime = -999f;
     private bool isInitialized;
     private bool hasStageMaxSpeedOverride;
@@ -73,30 +75,30 @@ public class BallSpeedController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (IsWeakened && GetWeakenedRecoveryProgress() >= 1f)
+        {
+            BallMovement.SetBallSpeed(baseSpeed);
+            currentSpeed = BallMovement.speed;
+            SetSpeedState(BallSpeedState.Normal);
+        }
+
         ClampSpeed();
         currentSpeed = BallMovement.speed;
         moveDistance = BallMovement.moveDistance;
     }
 
-    private void LateUpdate()
-    {
-        UpdateWeakenedBlink();
-    }
-
     private void OnEnable()
     {
         if (IsWeakened)
-            weakenedCoroutine = StartCoroutine(RecoverFromWeakened());
+        {
+            weakenedStartedAt = Time.time;
+            weakenedRecoveryStartedAt = float.PositiveInfinity;
+            SetBallAlpha(weakenedAlpha);
+        }
     }
 
     private void OnDisable()
     {
-        if (weakenedCoroutine != null)
-        {
-            StopCoroutine(weakenedCoroutine);
-            weakenedCoroutine = null;
-        }
-
         RestoreOriginalAlpha();
     }
 
@@ -176,15 +178,15 @@ public class BallSpeedController : MonoBehaviour
     
     public void AddSpeed(float amount)
     {
+        if (amount > 0f)
+            amount *= speedGainMultiplier;
+
         if (IsWeakened && amount > 0f)
         {
-            BallMovement.SetBallSpeed(weakenedSpeed);
+            ClampSpeed();
             currentSpeed = BallMovement.speed;
             return;
         }
-
-        if (amount > 0f)
-            amount *= speedGainMultiplier;
 
         BallMovement.AddBallSpeed(amount);
         ClampSpeed();
@@ -212,7 +214,7 @@ public class BallSpeedController : MonoBehaviour
     {
         if (IsWeakened)
         {
-            BallMovement.SetBallSpeed(weakenedSpeed);
+            BallMovement.SetBallSpeed(Mathf.SmoothStep(weakenedSpeed, baseSpeed, GetWeakenedRecoveryProgress()));
             return;
         }
 
@@ -261,24 +263,27 @@ public class BallSpeedController : MonoBehaviour
 
     public void ApplyGroundWeakened()
     {
-        if (weakenedCoroutine != null)
-            StopCoroutine(weakenedCoroutine);
-
+        weakenedStartedAt = Time.time;
+        weakenedRecoveryStartedAt = float.PositiveInfinity;
         SetSpeedState(BallSpeedState.Weakened);
         BallMovement.SetBallSpeed(weakenedSpeed);
         currentSpeed = BallMovement.speed;
         BallPowerController?.ResetToBaseDamage();
-        weakenedCoroutine = StartCoroutine(RecoverFromWeakened());
     }
 
-    private IEnumerator RecoverFromWeakened()
+    public void TryStartWeakenedRecovery()
     {
-        yield return new WaitForSeconds(weakenedDuration);
+        if (IsWeakened &&
+            float.IsPositiveInfinity(weakenedRecoveryStartedAt) &&
+            Time.time - weakenedStartedAt >= weakenedDuration)
+        {
+            weakenedRecoveryStartedAt = Time.time;
+        }
+    }
 
-        SetSpeedState(BallSpeedState.Normal);
-        BallMovement.SetBallSpeed(baseSpeed);
-        currentSpeed = BallMovement.speed;
-        weakenedCoroutine = null;
+    private float GetWeakenedRecoveryProgress()
+    {
+        return Mathf.Clamp01((Time.time - weakenedRecoveryStartedAt) / WeakenedRecoveryDuration);
     }
 
     private float GetCurrentMaxSpeed()
@@ -313,19 +318,11 @@ public class BallSpeedController : MonoBehaviour
 
         if (currentSpeedState == BallSpeedState.Weakened)
             RestoreOriginalAlpha();
+        else if (nextState == BallSpeedState.Weakened)
+            SetBallAlpha(weakenedAlpha);
 
         currentSpeedState = nextState;
         OnSpeedStateChanged?.Invoke(currentSpeedState);
-    }
-
-    private void UpdateWeakenedBlink()
-    {
-        if (!IsWeakened || ballSpriteRenderer == null)
-            return;
-
-        float t = (Mathf.Sin(Time.time * weakenedBlinkSpeed) + 1f) * 0.5f;
-        float alpha = Mathf.Lerp(weakenedMinAlpha, weakenedMaxAlpha, t);
-        SetBallAlpha(alpha);
     }
 
     private void RestoreOriginalAlpha()

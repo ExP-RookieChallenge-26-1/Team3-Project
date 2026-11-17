@@ -37,7 +37,6 @@ public class TutorialManager : MonoBehaviour
         Stage3Playing
     }
 
-    private const float AimGuideDetectionDelay = 3f;
     private const float AimGuideForceDelay = 10f;
 
     [Header("References")]
@@ -85,6 +84,7 @@ public class TutorialManager : MonoBehaviour
     private float stage3PlayingElapsedTime;
     private float stage1PlayElapsed;
     private bool hasShownStep2;
+    private bool isWaitingForDribblePress;
     private bool hasShownStep3;
     private bool hasShownStep5;
     private bool hasShownStep7;
@@ -259,8 +259,7 @@ public class TutorialManager : MonoBehaviour
     {
         if (currentTutorialStageId != TutorialStageId.Stage1 ||
             currentPhase != TutorialPhase.Stage1BreakNormalBlocks ||
-            hasShownStep2 ||
-            stage1PlayElapsed < AimGuideDetectionDelay)
+            hasShownStep2)
         {
             return;
         }
@@ -274,7 +273,31 @@ public class TutorialManager : MonoBehaviour
             return;
 
         hasShownStep2 = true;
-        ShowStepPopup(2);
+        ShowStepPopup(2, () =>
+        {
+            if (gameManager != null && gameManager.IsPausedByTutorial &&
+                ballController != null && ballController.IsCaptured)
+            {
+                isWaitingForDribblePress = uiManager != null && uiManager.ShowDribblePracticeHint();
+            }
+        });
+    }
+
+    public void OnGameplayPointerChanged(bool isPressed)
+    {
+        if (isWaitingForDribblePress)
+        {
+            if (isPressed)
+            {
+                isWaitingForDribblePress = false;
+                gameManager?.ResumeFromTutorial();
+            }
+
+            return;
+        }
+
+        if (!isPressed)
+            uiManager?.HideDribblePracticeHint();
     }
 
     private void HandleStage1NormalBlocksCleared()
@@ -420,7 +443,8 @@ public class TutorialManager : MonoBehaviour
 
     private void HandleStage3CeilingSegmentDestroyed(CeilingSegment segment)
     {
-        if (currentTutorialStageId != TutorialStageId.Stage3 || hasShownStep7)
+        if (currentTutorialStageId != TutorialStageId.Stage3 || hasShownStep7 ||
+            ceilingManager.AreAllSegmentsDestroyed())
             return;
 
         // CeilingManager disables the destroyed segment's stem before raising this event.
@@ -513,7 +537,8 @@ public class TutorialManager : MonoBehaviour
             }
             finally
             {
-                gameManager?.ResumeFromTutorial();
+                if (!isWaitingForDribblePress)
+                    gameManager?.ResumeFromTutorial();
             }
         });
 
@@ -535,8 +560,12 @@ public class TutorialManager : MonoBehaviour
         ResetRecallObservation();
 
         if (uiManager != null)
+        {
             uiManager.HideTutorialPopupWithoutCallback();
+            uiManager.HideDribblePracticeHint();
+        }
 
+        isWaitingForDribblePress = false;
         isWaitingForRecallTutorialInput = false;
 
         if (IsRecallTutorialActive)

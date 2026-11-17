@@ -1,7 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
+using UnityEngine.UI;
 
+[DefaultExecutionOrder(-10)]
 public class PointerInputReader : MonoBehaviour
 {
     public bool IsPressed { get; private set; }
@@ -10,63 +14,68 @@ public class PointerInputReader : MonoBehaviour
     public bool WasPressedThisFrame { get; private set; }
     public bool WasReleasedThisFrame { get; private set; }
 
-    private bool wasPressedLastFrame;
+    private readonly List<RaycastResult> raycastResults = new();
+    private ButtonControl dragButton;
+    private Vector2Control dragPosition;
 
     private void Update()
     {
-        if (GameManager.Instance != null &&
-            GameManager.Instance.IsPlayerInputBlocked)
+        GameManager gameManager = GameManager.Instance;
+        bool wasPressed = IsPressed;
+        if (gameManager != null && gameManager.IsPlayerInputBlocked)
         {
-            IsPressed = false;
-            ScreenPosition = Vector2.zero;
-            WasPressedThisFrame = false;
-            WasReleasedThisFrame = wasPressedLastFrame;
-            wasPressedLastFrame = false;
-            return;
+            dragButton = null;
+        }
+        else if (dragButton == null || !dragButton.isPressed)
+        {
+            dragButton = null;
+            var touch = Touchscreen.current?.primaryTouch;
+            if (touch != null && touch.press.isPressed)
+                TryBeginDrag(touch.press, touch.position, touch.touchId.ReadValue());
+            else if (Mouse.current != null)
+                TryBeginDrag(Mouse.current.leftButton, Mouse.current.position, -1);
         }
 
-        IsPressed = TryReadPointer(out Vector2 screenPosition);
-        ScreenPosition = screenPosition;
+        IsPressed = dragButton != null;
+        ScreenPosition = IsPressed ? dragPosition.ReadValue() : Vector2.zero;
 
-        WasPressedThisFrame = IsPressed && !wasPressedLastFrame;
-        WasReleasedThisFrame = !IsPressed && wasPressedLastFrame;
-
-        wasPressedLastFrame = IsPressed;
+        WasPressedThisFrame = IsPressed && !wasPressed;
+        WasReleasedThisFrame = !IsPressed && wasPressed;
+        if (WasPressedThisFrame || WasReleasedThisFrame)
+            gameManager?.OnGameplayPointerChanged(IsPressed);
     }
 
-    private bool TryReadPointer(out Vector2 screenPosition)
+    private void TryBeginDrag(ButtonControl button, Vector2Control position, int pointerId)
     {
-        screenPosition = Vector2.zero;
+        if (!button.wasPressedThisFrame || !button.isPressed ||
+            IsPointerOverUI(position.ReadValue(), pointerId))
+            return;
 
-        // 모바일 터치
-        if (Touchscreen.current != null)
+        dragButton = button;
+        dragPosition = position;
+    }
+
+    private bool IsPointerOverUI(Vector2 position, int pointerId)
+    {
+        EventSystem eventSystem = EventSystem.current;
+        if (eventSystem == null)
+            return false;
+
+        var pointer = new PointerEventData(eventSystem) { position = position, pointerId = pointerId };
+        eventSystem.RaycastAll(pointer, raycastResults);
+        foreach (RaycastResult hit in raycastResults)
         {
-            var touch = Touchscreen.current.primaryTouch;
-
-            if (touch.press.isPressed)
-            {
-                screenPosition = touch.position.ReadValue();
-                return !IsPointerOverUI(touch.touchId.ReadValue());
-            }
-        }
-
-        // 에디터 / PC 마우스
-        if (Mouse.current != null && Mouse.current.leftButton.isPressed)
-        {
-            screenPosition = Mouse.current.position.ReadValue();
-            return !IsPointerOverUI();
+            if (hit.module is GraphicRaycaster)
+                return true;
         }
 
         return false;
     }
 
-    private bool IsPointerOverUI(int pointerId = -1)
+    private void OnDisable()
     {
-        if (EventSystem.current == null)
-            return false;
-
-        return pointerId >= 0
-            ? EventSystem.current.IsPointerOverGameObject(pointerId)
-            : EventSystem.current.IsPointerOverGameObject();
+        dragButton = null;
+        dragPosition = null;
+        IsPressed = false;
     }
 }

@@ -110,6 +110,7 @@ public class SoundManager : MonoBehaviour
                 continue;
             }
 
+            data.MigrateLegacyClip();
             soundMap.Add(data.id, data);
         }
     }

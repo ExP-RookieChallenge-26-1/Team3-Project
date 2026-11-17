@@ -103,7 +103,8 @@ public class BallController : MonoBehaviour
 
         if (IsCaptured)
         {
-            capturedDribbleController.Tick();
+            if (Time.timeScale > 0f)
+                capturedDribbleController.Tick();
             return;
         }
 

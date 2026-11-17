@@ -36,6 +36,10 @@ public class BallCollisionHandler : MonoBehaviour
             return new BallCollisionResult(incomingDirection.normalized, false);
         }
 
+        bool isFloorHit = IsFloorCollider(hit.collider);
+        if (!isFloorHit)
+            ballSpeedController.TryStartWeakenedRecovery();
+
         float speedRatio = ballSpeedController.GetSpeedRatio();
 
         SoundPlayOptions options;
@@ -68,7 +72,6 @@ public class BallCollisionHandler : MonoBehaviour
             }
         }
 
-        bool isFloorHit = IsFloorCollider(hit.collider);
         IBallSpeedModifier speedModifier =
             hit.collider.GetComponentInParent<IBallSpeedModifier>();
 

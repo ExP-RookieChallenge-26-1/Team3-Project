@@ -4,7 +4,7 @@ using UnityEngine.Audio;
 using UnityEngine.Serialization;
 
 [System.Serializable]
-public class SoundData : ISerializationCallbackReceiver
+public class SoundData
 {
     public SoundId id;
 
@@ -44,11 +44,7 @@ public class SoundData : ISerializationCallbackReceiver
     [HideInInspector]
     public float minPitch = 0.9f;
 
-    public void OnBeforeSerialize()
-    {
-    }
-
-    public void OnAfterDeserialize()
+    internal void MigrateLegacyClip()
     {
         if ((clips == null || clips.Length == 0) && legacyClip != null)
         {

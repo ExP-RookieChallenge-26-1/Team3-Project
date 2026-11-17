@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using DefaultNamespace;
 using UnityEngine;
 
@@ -29,6 +31,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject homeConfirmPopup;
     [SerializeField] private GameObject creditPopup;
 
+    [Header("Stage Clear Slow Motion")]
+    [SerializeField] private bool enableStageClearSlowMotion = true;
+    [SerializeField, Range(0.01f, 1f)] private float stageClearSlowMotionScale = 0.5f;
+    [SerializeField, Min(0f)] private float stageClearSlowMotionDuration = 0.22f;
+
     private bool isPausedByTutorial;
     private float timeScaleBeforeTutorial = 1f;
 
@@ -38,18 +45,22 @@ public class GameManager : MonoBehaviour
     private bool isStageClearInputBlocked;
     private bool isEndingTransitioning;
     private bool showEndingClearedTitleState;
+    private Coroutine stageClearSlowMotion;
+    private Action afterStageClearSlowMotion;
+    private float timeScaleBeforeStageClearSlowMotion;
 
     public bool IsPausedByTutorial => isPausedByTutorial;
     public bool IsPaused => isPaused;
     public bool IsGameStarted => isGameStarted;
-    public bool IsStageClearInputBlocked => isStageClearInputBlocked;
-    public bool IsPlayerInputBlocked => isStageClearInputBlocked;
+    public bool IsStageClearSlowing => stageClearSlowMotion != null;
+    public bool IsStageClearInputBlocked => isStageClearInputBlocked || IsStageClearSlowing;
+    public bool IsPlayerInputBlocked => IsStageClearInputBlocked;
     public bool IsRecallTutorialActive { get; private set; }
     public bool IsEnding => endingSequenceController != null && endingSequenceController.IsEnding;
     public bool ShouldSuppressBallCollisionFeedback => !IsGameplayDamageAllowed;
     public bool IsGameplayDamageAllowed =>
         isGameStarted &&
-        !isStageClearInputBlocked &&
+        !IsStageClearInputBlocked &&
         !isEndingTransitioning &&
         !IsEnding &&
         (stageManager == null || !stageManager.IsCurrentStageEnding);
@@ -77,6 +88,9 @@ public class GameManager : MonoBehaviour
 
     public void RequestStageClear()
     {
+        if (isStageClearInputBlocked)
+            return;
+
         if (stageManager == null)
         {
             Debug.LogWarning("GameManager: Cannot clear stage because StageManager is missing.");
@@ -108,27 +122,63 @@ public class GameManager : MonoBehaviour
 
         isStageClearInputBlocked = true;
 
-        if (stageClearUI != null)
-            stageClearUI.SetActive(false);
-
-        if (gameClearUI != null)
-            gameClearUI.SetActive(false);
-
-        if (stageManager.IsCurrentStageLastNormalStage())
-        {
-            if (gameClearUI != null)
-                gameClearUI.SetActive(true);
-
-            SoundManager.Instance?.Play(SoundId.StageClear);
-        }
-        else
-        {
-            if (stageClearUI != null)
-                stageClearUI.SetActive(true);
-            SoundManager.Instance?.Play(SoundId.StageClear);
-        }
         if (pauseButton != null)
             pauseButton.SetActive(false);
+
+        AfterStageClearSlowMotion(ShowStageClearResult);
+    }
+
+    public void BeginStageClearSlowMotion()
+    {
+        if (!enableStageClearSlowMotion || stageClearSlowMotionDuration <= 0f ||
+            !IsGameplayDamageAllowed || Time.timeScale <= 0f)
+            return;
+
+        timeScaleBeforeStageClearSlowMotion = Time.timeScale;
+        Time.timeScale *= stageClearSlowMotionScale;
+        stageClearSlowMotion = StartCoroutine(WaitForStageClearSlowMotion());
+    }
+
+    public void AfterStageClearSlowMotion(Action action)
+    {
+        if (IsStageClearSlowing)
+            afterStageClearSlowMotion += action;
+        else
+            action.Invoke();
+    }
+
+    private IEnumerator WaitForStageClearSlowMotion()
+    {
+        yield return new WaitForSecondsRealtime(stageClearSlowMotionDuration);
+        Time.timeScale = timeScaleBeforeStageClearSlowMotion;
+        stageClearSlowMotion = null;
+        Action finish = afterStageClearSlowMotion;
+        afterStageClearSlowMotion = null;
+        finish?.Invoke();
+    }
+
+    private void ShowStageClearResult()
+    {
+        bool isLastStage = stageManager.IsCurrentStageLastNormalStage();
+        stageClearUI?.SetActive(!isLastStage);
+        gameClearUI?.SetActive(isLastStage);
+        SoundManager.Instance?.Play(SoundId.StageClear);
+    }
+
+    private void CancelStageClearSlowMotion()
+    {
+        if (stageClearSlowMotion == null)
+            return;
+
+        StopCoroutine(stageClearSlowMotion);
+        stageClearSlowMotion = null;
+        afterStageClearSlowMotion = null;
+        Time.timeScale = timeScaleBeforeStageClearSlowMotion;
+    }
+
+    private void OnDisable()
+    {
+        CancelStageClearSlowMotion();
     }
 
     public void RequestGameOver()
@@ -157,6 +207,16 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        if (saveManager.Current.endingCleared)
+        {
+            saveManager.ResetProgressSaveOnly();
+        }
+        else if (stageManager.IsLastNormalStage(saveManager.Current.highestClearedStageIndex))
+        {
+            StartEndingStage();
+            return;
+        }
+
         int startStageIndex = saveManager.GetStartStageIndex(stageManager.StageCount);
         stageManager.TryResolvePlayableStartStageIndex(startStageIndex, out startStageIndex);
         StartGameAtStage(startStageIndex);
@@ -180,6 +240,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGameAtStage(int startStageIndex)
     {
+        CancelStageClearSlowMotion();
         ApplySavedProgressState();
 
         isEndingTransitioning = false;
@@ -199,6 +260,7 @@ public class GameManager : MonoBehaviour
 
     public void StartEndingStage()
     {
+        CancelStageClearSlowMotion();
         isEndingTransitioning = true;
         SoundManager.Instance?.SetGameplaySfxBlocked(false);
         SoundManager.Instance?.Play(SoundId.EndingNextGlitch);
@@ -251,6 +313,7 @@ public class GameManager : MonoBehaviour
 
     public void RetryStage()
     {
+        CancelStageClearSlowMotion();
         isEndingTransitioning = false;
         SoundManager.Instance?.SetGameplaySfxBlocked(false);
 
@@ -282,6 +345,7 @@ public class GameManager : MonoBehaviour
 
     public void NextStage()
     {
+        CancelStageClearSlowMotion();
         isEndingTransitioning = false;
         SoundManager.Instance?.SetGameplaySfxBlocked(false);
 
@@ -312,7 +376,7 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        if (isPaused)
+        if (isPaused || isPausedByTutorial || IsStageClearInputBlocked)
             return;
 
         FeedbackManager.Instance?.StopRecallHoldFeedback();
@@ -435,6 +499,7 @@ public class GameManager : MonoBehaviour
 
     public void Initialize()
     {
+        CancelStageClearSlowMotion();
         CloseConfirmPopups();
         HideCreditPopup();
         FeedbackManager.Instance?.StopRecallHoldFeedback();
@@ -532,6 +597,11 @@ public class GameManager : MonoBehaviour
         Debug.Log(
             $"[Tutorial] PauseForTutorial called. " +
             $"previousTimeScale={timeScaleBeforeTutorial}, Time.timeScale={Time.timeScale}");
+    }
+
+    public void OnGameplayPointerChanged(bool isPressed)
+    {
+        tutorialManager?.OnGameplayPointerChanged(isPressed);
     }
 
     public void BeginRecallTutorial()
